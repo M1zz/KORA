@@ -31,6 +31,8 @@
 		AA022 /* KakaoLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA122 /* KakaoLocalService.swift */; };
 		AA023 /* SubwayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA123 /* SubwayView.swift */; };
 		AA024 /* seoul_metro.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AA124 /* seoul_metro.pdf */; };
+		AA025 /* SubwayLineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA125 /* SubwayLineData.swift */; };
+		AA026 /* SubwayLineBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA126 /* SubwayLineBrowserView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +60,8 @@
 		AA122 /* KakaoLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLocalService.swift; sourceTree = "<group>"; };
 		AA123 /* SubwayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayView.swift; sourceTree = "<group>"; };
 		AA124 /* seoul_metro.pdf */ = {isa = PBXFileReference; lastKnownFileType = com.adobe.pdf; path = seoul_metro.pdf; sourceTree = "<group>"; };
+		AA125 /* SubwayLineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineData.swift; sourceTree = "<group>"; };
+		AA126 /* SubwayLineBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineBrowserView.swift; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -127,6 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				AA123 /* SubwayView.swift */,
+				AA125 /* SubwayLineData.swift */,
+				AA126 /* SubwayLineBrowserView.swift */,
 			);
 			path = Subway;
 			sourceTree = "<group>";
@@ -309,6 +315,8 @@
 				AA021 /* KakaoConfig.swift in Sources */,
 				AA022 /* KakaoLocalService.swift in Sources */,
 				AA023 /* SubwayView.swift in Sources */,
+				AA025 /* SubwayLineData.swift in Sources */,
+				AA026 /* SubwayLineBrowserView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
