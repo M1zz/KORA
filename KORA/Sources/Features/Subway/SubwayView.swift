@@ -6,7 +6,7 @@ import PDFKit
 
 struct SubwayView: View {
     @State private var selectedMode: TransitMode = .subway
-    @State private var selectedTab: SubwayTab = .lines
+    @State private var selectedTab: SubwayTab = .navigator
 
     enum TransitMode: String, CaseIterable {
         case subway     = "지하철"
@@ -14,9 +14,10 @@ struct SubwayView: View {
     }
 
     enum SubwayTab: String, CaseIterable {
-        case lines = "노선"
-        case map   = "路線図"
-        case fare  = "料金・時間"
+        case navigator = "経路"
+        case lines     = "노선"
+        case map       = "路線図"
+        case fare      = "料金・時間"
     }
 
     var body: some View {
@@ -82,9 +83,10 @@ struct SubwayView: View {
     @ViewBuilder
     private var subwayTabContent: some View {
         switch selectedTab {
-        case .lines: SubwayLineBrowserView()
-        case .map:   MetroMapView()
-        case .fare:  FareInfoView()
+        case .navigator: SubwayNavigatorView()
+        case .lines:     SubwayLineBrowserView()
+        case .map:       MetroMapView()
+        case .fare:      FareInfoView()
         }
     }
 }

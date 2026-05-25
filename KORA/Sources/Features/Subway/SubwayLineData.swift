@@ -344,4 +344,46 @@ enum MetroLineData {
             .filter { $0 != lineNumber }
             .map { (number: $0, color: lineColor($0)) }
     }
+
+    // MARK: - Navigator Helpers
+
+    static var allStationNames: [String] {
+        var seen = Set<String>()
+        var names: [String] = []
+        for line in seoulLines {
+            for route in line.routes {
+                for s in route.stations where seen.insert(s).inserted {
+                    names.append(s)
+                }
+            }
+        }
+        return names.sorted()
+    }
+
+    static func findJourneys(from: String, to: String) -> [JourneyResult] {
+        var results: [JourneyResult] = []
+        for line in seoulLines {
+            for route in line.routes {
+                guard let fi = route.stations.firstIndex(of: from),
+                      let ti = route.stations.firstIndex(of: to),
+                      fi != ti else { continue }
+                let reversed = ti < fi
+                let slice = reversed
+                    ? Array(route.stations[ti...fi].reversed())
+                    : Array(route.stations[fi...ti])
+                let terminus = reversed ? route.terminusA : route.terminusB
+                results.append(JourneyResult(line: line, route: route, stations: slice, terminus: terminus))
+            }
+        }
+        return results
+    }
+}
+
+// MARK: - Journey Model
+
+struct JourneyResult {
+    let line: SeoulMetroLineInfo
+    let route: MetroRoute
+    let stations: [String]   // Korean names, from→to direction
+    let terminus: String     // Korean terminus (matches in-train/platform display)
 }

@@ -35,6 +35,7 @@
 		AA026 /* SubwayLineBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA126 /* SubwayLineBrowserView.swift */; };
 		AA027 /* SubwayStationLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA127 /* SubwayStationLocale.swift */; };
 		AA028 /* subway_jp.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AA128 /* subway_jp.pdf */; };
+		AA029 /* SubwayNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA129 /* SubwayNavigatorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		AA126 /* SubwayLineBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineBrowserView.swift; sourceTree = "<group>"; };
 		AA127 /* SubwayStationLocale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationLocale.swift; sourceTree = "<group>"; };
 		AA128 /* subway_jp.pdf */ = {isa = PBXFileReference; lastKnownFileType = com.adobe.pdf; path = subway_jp.pdf; sourceTree = "<group>"; };
+		AA129 /* SubwayNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayNavigatorView.swift; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -139,6 +141,7 @@
 				AA125 /* SubwayLineData.swift */,
 				AA126 /* SubwayLineBrowserView.swift */,
 				AA127 /* SubwayStationLocale.swift */,
+				AA129 /* SubwayNavigatorView.swift */,
 			);
 			path = Subway;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				AA025 /* SubwayLineData.swift in Sources */,
 				AA026 /* SubwayLineBrowserView.swift in Sources */,
 				AA027 /* SubwayStationLocale.swift in Sources */,
+				AA029 /* SubwayNavigatorView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
