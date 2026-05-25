@@ -20,6 +20,11 @@ final class PlaceStore {
         places.insert(place, at: 0)
     }
 
+    func update(_ place: Place) {
+        guard let idx = places.firstIndex(where: { $0.id == place.id }) else { return }
+        places[idx] = place
+    }
+
     func delete(_ place: Place) {
         places.removeAll { $0.id == place.id }
     }

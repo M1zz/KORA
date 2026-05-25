@@ -1,45 +1,14 @@
 import SwiftUI
 
+/// During the "navigation-first" phase we hide all tabs and run the
+/// SubwayView as the sole root screen. The data layer (PlaceStore,
+/// SharedInbox, NavigationCoordinator) stays intact so that:
+/// - previously-saved places still surface in the navigator's quick list
+/// - URLs sent via Share Extension are kept in the App Group inbox and will
+///   be picked up automatically when the Save UI is reintroduced.
 struct MainTabView: View {
-    @State private var selectedTab: Tab = .save
-
-    enum Tab {
-        case save, go, subway, now, share
-    }
-
     var body: some View {
-        TabView(selection: $selectedTab) {
-            SaveView()
-                .tabItem {
-                    Label("Save", systemImage: "bookmark.fill")
-                }
-                .tag(Tab.save)
-
-            GoView()
-                .tabItem {
-                    Label("Go", systemImage: "map.fill")
-                }
-                .tag(Tab.go)
-
-            SubwayView()
-                .tabItem {
-                    Label("대중교통", systemImage: "tram.fill")
-                }
-                .tag(Tab.subway)
-
-            NowView()
-                .tabItem {
-                    Label("Now", systemImage: "clock.fill")
-                }
-                .tag(Tab.now)
-
-            ShareView()
-                .tabItem {
-                    Label("Share", systemImage: "person.2.fill")
-                }
-                .tag(Tab.share)
-        }
-        .tint(KORATheme.accent)
+        SubwayView()
     }
 }
 

@@ -345,6 +345,89 @@ enum MetroLineData {
             .map { (number: $0, color: lineColor($0)) }
     }
 
+    // MARK: - Transfer walking time
+
+    /// Approximate platform-to-platform walking time at a transfer station, in minutes.
+    /// Curated from publicly known walk times — large interchange hubs are heavier.
+    /// Default 3 min when no entry exists.
+    static func transferWalkingMinutes(at station: String) -> Int {
+        transferWalkTimeTable[station] ?? 3
+    }
+
+    private static let transferWalkTimeTable: [String: Int] = [
+        // Heavy hubs
+        "서울역":              6,
+        "동대문역사문화공원":  5,
+        "고속터미널":          6,
+        "사당":                5,
+        "왕십리":              5,
+        "신도림":              4,
+        "충무로":              4,
+        "종로3가":             4,
+        "을지로3가":           3,
+        "을지로4가":           3,
+        "잠실":                4,
+        "건대입구":            3,
+        "교대":                3,
+        "강남":                3,   // 신분당↔2 (실내 환승)
+        "삼성":                3,
+        "선릉":                3,
+        "여의도":              4,
+        "공덕":                4,
+        "동대문":              3,
+        "시청":                2,
+        "합정":                3,
+        "당산":                3,
+        "노원":                3,
+        "이수":                3,
+        "총신대입구":          3,
+        "삼각지":              3,
+        "약수":                3,
+        "청구":                3,
+        "신당":                3,
+        "군자":                3,
+        "천호":                3,
+        "석촌":                3,
+        "가락시장":            3,
+        "동작":                4,
+        "도봉산":              3,
+        "온수":                3,
+        "가산디지털단지":      4,
+        "노량진":              3,
+        "대림":                3,
+        "영등포구청":          3,
+        "충정로":              3,
+        "회기":                3,
+        "태릉입구":            3,
+        "종합운동장":          3,
+        "창동":                3,
+        "금정":                4
+    ]
+
+    // MARK: - Train schedule (last/first)
+
+    /// Approximate last-train departure time at terminal stations (24h clock,
+    /// minutes since midnight; values past midnight use +24h so 01:00 = 1500).
+    /// Used to surface a "막차 임박" banner — not a precise per-station table.
+    static func lastTrainMinutesPastMidnight(for line: Int) -> Int {
+        switch line {
+        case 1...9: return 60      // 翌01:00
+        default:    return 30      // safer default
+        }
+    }
+
+    /// Current local minute-of-day mapped to the same +24h scheme so we can
+    /// compare against lastTrainMinutesPastMidnight directly.
+    static func currentMinutesPastMidnight(now: Date = Date()) -> Int {
+        let cal = Calendar(identifier: .gregorian)
+        let comps = cal.dateComponents([.hour, .minute], from: now)
+        let m = (comps.hour ?? 0) * 60 + (comps.minute ?? 0)
+        // After midnight but before 04:00, treat as previous day's late night
+        // so the "last train" comparison stays monotonic.
+        if (comps.hour ?? 0) < 4 { return m + 24 * 60 }
+        return m
+    }
+
     // MARK: - Navigator Helpers
 
     static var allStationNames: [String] {
@@ -357,7 +440,11 @@ enum MetroLineData {
                 }
             }
         }
-        return names.sorted()
+        // Sort by katakana reading (アイウエオ order) since that's the displayed primary name.
+        return names.sorted { a, b in
+            displayName(for: a, language: .japanese)
+                < displayName(for: b, language: .japanese)
+        }
     }
 
     static func findJourneys(from: String, to: String) -> [JourneyResult] {
@@ -377,6 +464,165 @@ enum MetroLineData {
         }
         return results
     }
+
+    // MARK: - Transfer Routing
+
+    /// All lines that serve a given station (deduped).
+    static func linesContaining(_ station: String) -> [Int] {
+        var result: [Int] = []
+        for line in seoulLines where !result.contains(line.number) {
+            if line.routes.contains(where: { $0.stations.contains(station) }) {
+                result.append(line.number)
+            }
+        }
+        return result
+    }
+
+    /// Transfer stations that exist on both given lines.
+    static func transferStations(between a: Int, and b: Int) -> [String] {
+        guard a != b else { return [] }
+        return stationTransferLines.compactMap { (station, lines) in
+            (lines.contains(a) && lines.contains(b)) ? station : nil
+        }
+    }
+
+    /// Find a single-line segment between two stations on a specific line.
+    /// Returns the shortest variant when multiple routes contain both.
+    /// Correctly handles circular routes (e.g. Line 2) by trying both
+    /// wrap-around directions and picking the shorter.
+    static func findSegment(from: String, to: String, lineNumber: Int) -> JourneySegment? {
+        guard from != to,
+              let line = seoulLines.first(where: { $0.number == lineNumber }) else { return nil }
+
+        var best: JourneySegment? = nil
+        for route in line.routes {
+            guard let fi = route.stations.firstIndex(of: from),
+                  let ti = route.stations.firstIndex(of: to),
+                  fi != ti else { continue }
+
+            let candidates: [JourneySegment]
+            if route.isCircular {
+                let count = route.stations.count
+                let forwardLen = (ti - fi + count) % count
+                let backwardLen = count - forwardLen
+
+                let forwardSlice = buildCircularSlice(route.stations, from: fi, to: ti, forward: true)
+                let backwardSlice = buildCircularSlice(route.stations, from: fi, to: ti, forward: false)
+
+                // For circular trains the "terminus" sign typically displays the next
+                // major arrival station — use the destination station itself as that
+                // proxy so the user can match it to in-car signage.
+                let forwardSeg = JourneySegment(
+                    line: line,
+                    stations: forwardSlice,
+                    terminus: forwardSlice.last ?? route.terminusA
+                )
+                let backwardSeg = JourneySegment(
+                    line: line,
+                    stations: backwardSlice,
+                    terminus: backwardSlice.last ?? route.terminusB
+                )
+                candidates = forwardLen <= backwardLen
+                    ? [forwardSeg, backwardSeg]
+                    : [backwardSeg, forwardSeg]
+            } else {
+                let reversed = ti < fi
+                let slice = reversed
+                    ? Array(route.stations[ti...fi].reversed())
+                    : Array(route.stations[fi...ti])
+                let terminus = reversed ? route.terminusA : route.terminusB
+                candidates = [JourneySegment(line: line, stations: slice, terminus: terminus)]
+            }
+
+            for segment in candidates {
+                if best == nil || segment.stations.count < best!.stations.count {
+                    best = segment
+                }
+            }
+        }
+        return best
+    }
+
+    /// Walks the (circular) `stations` array from `start` to `end`,
+    /// going forward (increasing index, wrap to 0) or backward.
+    private static func buildCircularSlice(_ stations: [String], from start: Int, to end: Int, forward: Bool) -> [String] {
+        var result: [String] = []
+        let count = stations.count
+        var i = start
+        while true {
+            result.append(stations[i])
+            if i == end { break }
+            i = forward ? (i + 1) % count : (i - 1 + count) % count
+        }
+        return result
+    }
+
+    /// Find direct + 1-transfer (+ 2-transfer fallback) journeys.
+    /// Returns the best few options sorted by (transfers ↑, total stops ↑).
+    static func findAnyJourneys(from: String, to: String) -> [TransferJourney] {
+        guard from != to else { return [] }
+
+        // 0-transfer (direct)
+        let direct = findJourneys(from: from, to: to).map { d in
+            TransferJourney(segments: [
+                JourneySegment(line: d.line, stations: d.stations, terminus: d.terminus)
+            ])
+        }
+        if !direct.isEmpty {
+            return Array(direct.prefix(4))
+        }
+
+        let fromLines = linesContaining(from)
+        let toLines = linesContaining(to)
+        var results: [TransferJourney] = []
+        var seen = Set<String>()
+
+        // 1-transfer
+        for fL in fromLines {
+            for tL in toLines where tL != fL {
+                for ts in transferStations(between: fL, and: tL) where ts != from && ts != to {
+                    guard let s1 = findSegment(from: from, to: ts, lineNumber: fL),
+                          let s2 = findSegment(from: ts, to: to, lineNumber: tL) else { continue }
+                    let sig = "\(fL)|\(ts)|\(tL)"
+                    if seen.insert(sig).inserted {
+                        results.append(TransferJourney(segments: [s1, s2]))
+                    }
+                }
+            }
+        }
+
+        // 2-transfer fallback (only if no 1-transfer path exists)
+        if results.isEmpty {
+            for fL in fromLines {
+                for tL in toLines where tL != fL {
+                    for mid in seoulLines where mid.number != fL && mid.number != tL {
+                        let mL = mid.number
+                        let firstHops = transferStations(between: fL, and: mL)
+                        let secondHops = transferStations(between: mL, and: tL)
+                        guard !firstHops.isEmpty, !secondHops.isEmpty else { continue }
+
+                        for t1 in firstHops where t1 != from && t1 != to {
+                            for t2 in secondHops where t2 != from && t2 != to && t2 != t1 {
+                                guard let s1 = findSegment(from: from, to: t1, lineNumber: fL),
+                                      let s2 = findSegment(from: t1, to: t2, lineNumber: mL),
+                                      let s3 = findSegment(from: t2, to: to, lineNumber: tL) else { continue }
+                                let sig = "\(fL)|\(t1)|\(mL)|\(t2)|\(tL)"
+                                if seen.insert(sig).inserted {
+                                    results.append(TransferJourney(segments: [s1, s2, s3]))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        let sorted = results.sorted { a, b in
+            if a.transferCount != b.transferCount { return a.transferCount < b.transferCount }
+            return a.totalStops < b.totalStops
+        }
+        return Array(sorted.prefix(4))
+    }
 }
 
 // MARK: - Journey Model
@@ -386,4 +632,28 @@ struct JourneyResult {
     let route: MetroRoute
     let stations: [String]   // Korean names, from→to direction
     let terminus: String     // Korean terminus (matches in-train/platform display)
+}
+
+/// One single-line leg within a (possibly multi-line) journey.
+struct JourneySegment: Identifiable {
+    let id = UUID()
+    let line: SeoulMetroLineInfo
+    let stations: [String]   // [boarding, ..., disembark/transfer]
+    let terminus: String
+    var stopCount: Int { max(stations.count - 1, 0) }
+}
+
+/// A complete journey, possibly with transfers. `segments.count == 1` is a direct route.
+struct TransferJourney: Identifiable {
+    let id = UUID()
+    let segments: [JourneySegment]
+
+    var transferCount: Int { max(segments.count - 1, 0) }
+    var totalStops: Int { segments.reduce(0) { $0 + $1.stopCount } }
+    var isDirect: Bool { segments.count == 1 }
+
+    /// Short label like "2号線 → 1号線" used in the alternative-route picker.
+    var lineSummaryLabel: String {
+        segments.map { "\($0.line.number)号線" }.joined(separator: " → ")
+    }
 }

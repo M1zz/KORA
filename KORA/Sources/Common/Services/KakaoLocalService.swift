@@ -112,6 +112,29 @@ final class KakaoLocalService {
         return try await fetch(path: "search/keyword.json", queryItems: items)
     }
 
+    // MARK: - 최근접 지하철역
+
+    /// Returns the single closest subway station (SW8) within `radius` meters,
+    /// or nil if none. The returned KakaoDocument's `placeName` typically ends
+    /// with "역" (e.g., "강남역") — strip the suffix to match `MetroLineData`.
+    func searchNearestSubway(
+        latitude: Double,
+        longitude: Double,
+        radius: Int = 2000
+    ) async throws -> KakaoDocument? {
+        try checkKey()
+        let items: [URLQueryItem] = [
+            URLQueryItem(name: "category_group_code", value: "SW8"),
+            URLQueryItem(name: "x", value: "\(longitude)"),
+            URLQueryItem(name: "y", value: "\(latitude)"),
+            URLQueryItem(name: "radius", value: "\(radius)"),
+            URLQueryItem(name: "sort", value: "distance"),
+            URLQueryItem(name: "size", value: "1")
+        ]
+        let docs = try await fetch(path: "search/category.json", queryItems: items)
+        return docs.first
+    }
+
     // MARK: - 카테고리 주변 검색
 
     func searchNearby(

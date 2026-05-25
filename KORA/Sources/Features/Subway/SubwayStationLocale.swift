@@ -440,4 +440,32 @@ extension MetroLineData {
     static func subtitle(for ko: String, language: StationLanguage) -> String? {
         language == .korean ? nil : ko
     }
+
+    // MARK: - Kana sectioning
+
+    /// Canonical order of kana row headers used for sectioned station lists.
+    static let kanaIndexOrder: [String] = [
+        "ア", "カ", "サ", "タ", "ナ", "ハ", "マ", "ヤ", "ラ", "ワ", "他"
+    ]
+
+    /// Returns the gojuon (五十音) row header for a station's Japanese
+    /// display name — used as a section header in the station picker.
+    /// e.g. "カンナム" → "カ", "ホンデイック" → "ハ", "イテウォン" → "ア".
+    static func kanaInitial(for koStation: String) -> String {
+        let ja = displayName(for: koStation, language: .japanese)
+        guard let first = ja.unicodeScalars.first else { return "他" }
+        switch first.value {
+        case 0x30A1...0x30AA: return "ア"  // ア行 (incl. ァィゥェォ)
+        case 0x30AB...0x30B4: return "カ"  // カ行 (incl. ガギグゲゴ)
+        case 0x30B5...0x30BE: return "サ"  // サ行 (incl. ザジズゼゾ)
+        case 0x30BF...0x30C9: return "タ"  // タ行 (incl. ダヂヅデド, ッ)
+        case 0x30CA...0x30CE: return "ナ"  // ナ行
+        case 0x30CF...0x30DD: return "ハ"  // ハ行 (incl. バビ…, パピ…)
+        case 0x30DE...0x30E2: return "マ"  // マ行
+        case 0x30E3...0x30E8: return "ヤ"  // ヤ行 (incl. ャュョ)
+        case 0x30E9...0x30ED: return "ラ"  // ラ行
+        case 0x30EE...0x30F4: return "ワ"  // ワ行 (incl. ヮヰヱヲン, ヴ)
+        default:              return "他"
+        }
+    }
 }

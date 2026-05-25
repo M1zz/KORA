@@ -76,6 +76,52 @@ final class SaveViewModel {
         store.add(place)
         dismissSearch()
         urlInput = ""
+        Task { await self.attachNearestStation(for: place) }
+    }
+
+    /// Resolves the closest subway station and updates the Place in the store.
+    /// Tries the bundled local coordinate table first (instant, offline) and
+    /// falls back to Kakao SW8 search only when nothing's nearby locally.
+    /// Silent on failure — `nearestStation` simply stays empty.
+    private func attachNearestStation(for place: Place) async {
+        // 1. Local hardcoded coordinates (covers all known stations)
+        if let local = MetroLineData.nearestStation(
+            latitude: place.coordinate.latitude,
+            longitude: place.coordinate.longitude
+        ) {
+            var updated = place
+            updated.nearestStation = local.name
+            store.update(updated)
+            return
+        }
+
+        // 2. Fallback for places outside the local table's coverage
+        do {
+            guard let doc = try await kakao.searchNearestSubway(
+                latitude: place.coordinate.latitude,
+                longitude: place.coordinate.longitude
+            ) else { return }
+            var updated = place
+            updated.nearestStation = Self.normalizeStationName(doc.placeName)
+            store.update(updated)
+        } catch {
+            // ignore — display will fall back to empty
+        }
+    }
+
+    /// Kakao returns names like "강남역", "잠실(송파구청)역". Strip the trailing
+    /// "역" and any parenthetical so we get the canonical name used in
+    /// `MetroLineData` (e.g., "강남", "잠실").
+    static func normalizeStationName(_ raw: String) -> String {
+        var name = raw
+        if let paren = name.firstIndex(of: "(") {
+            name = String(name[..<paren])
+        }
+        name = name.trimmingCharacters(in: .whitespaces)
+        if name.hasSuffix("역") {
+            name = String(name.dropLast())
+        }
+        return name
     }
 
     func dismissSearch() {

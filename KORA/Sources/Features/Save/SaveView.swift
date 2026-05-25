@@ -4,6 +4,7 @@ struct SaveView: View {
     @State private var viewModel = SaveViewModel()
     @State private var selectedCategory: PlaceCategory? = nil
     @State private var showAddSheet: Bool = false
+    @State private var coordinator = NavigationCoordinator.shared
 
     var body: some View {
         NavigationStack {
@@ -52,6 +53,10 @@ struct SaveView: View {
                 }
                 .onAppear {
                     viewModel.checkClipboard()
+                    consumePendingShare()
+                }
+                .onChange(of: coordinator.shareRequestNonce) { _, _ in
+                    consumePendingShare()
                 }
 
                 // + FAB — 클립보드 배너가 없을 때만 표시
@@ -74,6 +79,13 @@ struct SaveView: View {
             }
         }
         .animation(.spring(response: 0.25), value: viewModel.showClipboardPrompt)
+    }
+
+    private func consumePendingShare() {
+        guard let url = coordinator.pendingShareURL, !url.isEmpty else { return }
+        coordinator.clearShare()
+        viewModel.urlInput = url
+        Task { await viewModel.parseURL() }
     }
 
     // MARK: - Clipboard Banner
@@ -169,14 +181,17 @@ struct SaveView: View {
             } else {
                 LazyVStack(spacing: 12) {
                     ForEach(places) { place in
-                        PlaceCardView(place: place)
-                            .swipeActions(edge: .trailing) {
-                                Button(role: .destructive) {
-                                    viewModel.delete(place)
-                                } label: {
-                                    Label("削除", systemImage: "trash")
-                                }
+                        PlaceCardView(place: place, onRoute: { p in
+                            guard !p.nearestStation.isEmpty else { return }
+                            NavigationCoordinator.shared.routeTo(station: p.nearestStation)
+                        })
+                        .swipeActions(edge: .trailing) {
+                            Button(role: .destructive) {
+                                viewModel.delete(place)
+                            } label: {
+                                Label("削除", systemImage: "trash")
                             }
+                        }
                     }
                 }
                 .padding(.bottom, 88)

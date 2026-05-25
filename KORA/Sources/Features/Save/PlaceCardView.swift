@@ -5,6 +5,7 @@ import SwiftUI
 struct PlaceCardView: View {
     let place: Place
     var onDelete: (() -> Void)? = nil
+    var onRoute: ((Place) -> Void)? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -38,10 +39,24 @@ struct PlaceCardView: View {
 
             // 하단: 위치 + 대기시간
             HStack(spacing: KORATheme.spacing16) {
-                Label(place.nearestStation, systemImage: "tram.fill")
-                    .font(.system(size: 12))
+                if !place.nearestStation.isEmpty {
+                    Label {
+                        Text(stationDisplayJa)
+                            .font(.system(size: 12, weight: .medium))
+                        + Text("  \(place.nearestStation)")
+                            .font(.system(size: 11))
+                            .foregroundColor(KORATheme.labelTertiary)
+                    } icon: {
+                        Image(systemName: "tram.fill")
+                    }
                     .foregroundStyle(KORATheme.labelSecondary)
                     .lineLimit(1)
+                } else {
+                    Label("最寄り駅を解析中…", systemImage: "tram.fill")
+                        .font(.system(size: 12))
+                        .foregroundStyle(KORATheme.labelTertiary)
+                        .lineLimit(1)
+                }
 
                 if let wait = place.waitMinutes {
                     Spacer()
@@ -52,6 +67,28 @@ struct PlaceCardView: View {
             }
             .padding(.horizontal, KORATheme.spacing16)
             .padding(.vertical, KORATheme.spacing12)
+
+            // Route CTA
+            if !place.nearestStation.isEmpty {
+                Divider().padding(.horizontal, KORATheme.spacing16)
+                Button {
+                    onRoute?(place)
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "tram.tunnel.fill")
+                            .font(.system(size: 13, weight: .semibold))
+                        Text("ここへ向かう")
+                            .font(.system(size: 13, weight: .semibold))
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 11, weight: .semibold))
+                            .foregroundStyle(KORATheme.accent.opacity(0.7))
+                    }
+                    .foregroundStyle(KORATheme.accent)
+                    .padding(.horizontal, KORATheme.spacing16)
+                    .padding(.vertical, 10)
+                }
+            }
 
             // 태그
             if !place.tags.isEmpty {
@@ -72,6 +109,14 @@ struct PlaceCardView: View {
         .background(KORATheme.background)
         .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusLG))
         .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+    }
+
+    // MARK: - Computed
+
+    private var stationDisplayJa: String {
+        guard !place.nearestStation.isEmpty else { return "" }
+        let ja = MetroLineData.displayName(for: place.nearestStation, language: .japanese)
+        return "\(ja)駅"
     }
 
     // MARK: - Subviews

@@ -1,0 +1,40 @@
+{
+  "sourceLanguage" : "ja",
+  "strings" : {
+    "share.memo_placeholder" : {
+      "comment" : "Memo input placeholder",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メモ（任意・後で編集可）"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메모 (선택사항, 나중에 수정 가능)"
+          }
+        }
+      }
+    },
+    "share.title" : {
+      "comment" : "Share sheet title",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "KORAに保存"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "KORA에 저장"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
