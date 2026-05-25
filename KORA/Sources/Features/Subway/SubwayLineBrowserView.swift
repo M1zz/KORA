@@ -258,7 +258,8 @@ struct SubwayLineBrowserView: View {
                         isFirst: idx == 0,
                         isLast: idx == displayedStations.count - 1,
                         isCircular: route.isCircular,
-                        lineColor: line.color
+                        lineColor: line.color,
+                        transfers: MetroLineData.transferBadges(for: ko, excluding: line.number)
                     )
                 }
             }
@@ -277,6 +278,7 @@ struct StationTimelineRow: View {
     let isLast: Bool
     let isCircular: Bool
     let lineColor: Color
+    let transfers: [(number: Int, color: Color)]
 
     private var isTerminus: Bool { !isCircular && (isFirst || isLast) }
     private static let rowH: CGFloat = 52
@@ -286,13 +288,28 @@ struct StationTimelineRow: View {
             timeline
                 .frame(width: 20, height: Self.rowH)
 
-            VStack(alignment: .leading, spacing: 1) {
-                Text(primaryName)
-                    .font(.system(
-                        size: isTerminus ? 15 : 14,
-                        weight: isTerminus ? .bold : .regular
-                    ))
-                    .foregroundStyle(isTerminus ? lineColor : KORATheme.labelPrimary)
+            VStack(alignment: .leading, spacing: 2) {
+                HStack(spacing: 6) {
+                    Text(primaryName)
+                        .font(.system(
+                            size: isTerminus ? 15 : 14,
+                            weight: isTerminus ? .bold : .regular
+                        ))
+                        .foregroundStyle(isTerminus ? lineColor : KORATheme.labelPrimary)
+
+                    if !transfers.isEmpty {
+                        HStack(spacing: 4) {
+                            ForEach(transfers, id: \.number) { t in
+                                Text("\(t.number)")
+                                    .font(.system(size: 9, weight: .bold))
+                                    .foregroundStyle(.white)
+                                    .frame(width: 16, height: 16)
+                                    .background(t.color)
+                                    .clipShape(Circle())
+                            }
+                        }
+                    }
+                }
 
                 if let sub = subtitle {
                     Text(sub)

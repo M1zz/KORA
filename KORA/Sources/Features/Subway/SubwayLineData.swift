@@ -278,4 +278,70 @@ enum MetroLineData {
             )
         ]
     )
+
+    // MARK: - Transfer Stations
+
+    static let stationTransferLines: [String: [Int]] = [
+        // Line 1 transfers
+        "시청": [1, 2],
+        "신도림": [1, 2],
+        "동대문": [1, 4],
+        "서울역": [1, 4],
+        "창동": [1, 4],
+        "금정": [1, 4],
+        "석계": [1, 6],
+        "도봉산": [1, 7],
+        "가산디지털단지": [1, 7],
+        "온수": [1, 7],
+        "노량진": [1, 9],
+        // Line 2 transfers
+        "을지로3가": [2, 3],
+        "교대": [2, 3],
+        "동대문역사문화공원": [2, 4, 5],
+        "사당": [2, 4],
+        "을지로4가": [2, 5],
+        "왕십리": [2, 5],
+        "영등포구청": [2, 5],
+        "충정로": [2, 5],
+        "신당": [2, 6],
+        "합정": [2, 6],
+        "건대입구": [2, 7],
+        "대림": [2, 7],
+        "잠실": [2, 8],
+        "당산": [2, 9],
+        "종합운동장": [2, 9],
+        "삼성": [2, 9],
+        // Line 3 transfers
+        "충무로": [3, 4],
+        "약수": [3, 6],
+        "고속터미널": [3, 7, 9],
+        "가락시장": [3, 8],
+        // Line 4 transfers
+        "삼각지": [4, 6],
+        "노원": [4, 7],
+        "총신대입구": [4, 7],
+        "이수": [4, 7],
+        "동작": [4, 9],
+        // Line 5 transfers
+        "공덕": [5, 6],
+        "청구": [5, 6],
+        "군자": [5, 7],
+        "천호": [5, 8],
+        "여의도": [5, 9],
+        // Line 6 transfers
+        "태릉입구": [6, 7],
+        // Line 8 transfers
+        "석촌": [8, 9],
+    ]
+
+    static func lineColor(_ number: Int) -> Color {
+        seoulLines.first(where: { $0.number == number })?.color ?? .gray
+    }
+
+    static func transferBadges(for station: String, excluding lineNumber: Int) -> [(number: Int, color: Color)] {
+        guard let lines = stationTransferLines[station] else { return [] }
+        return lines
+            .filter { $0 != lineNumber }
+            .map { (number: $0, color: lineColor($0)) }
+    }
 }
