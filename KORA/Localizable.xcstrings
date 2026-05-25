@@ -1367,6 +1367,7 @@
       }
     },
     "路線図を選択" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
