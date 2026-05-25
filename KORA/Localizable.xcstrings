@@ -1,0 +1,1489 @@
+{
+  "sourceLanguage" : "ja",
+  "strings" : {
+    "" : {
+
+    },
+    "〜" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "~"
+          }
+        }
+      }
+    },
+    "「%@」をバンドルに追加してください" : {
+
+    },
+    "%@ %@" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ %2$@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%lld" : {
+
+    },
+    "%lldm" : {
+
+    },
+    "%lld人が参考になった" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld명에게 도움이 됐다고 함"
+          }
+        }
+      }
+    },
+    "%lld分待ち" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld분 대기"
+          }
+        }
+      }
+    },
+    "•" : {
+
+    },
+    "⛩️" : {
+
+    },
+    "🗼" : {
+
+    },
+    "🦌" : {
+
+    },
+    "1〜9号線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1~9호선"
+          }
+        }
+      }
+    },
+    "1号線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1호선"
+          }
+        }
+      }
+    },
+    "2号線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "2호선"
+          }
+        }
+      }
+    },
+    "3号線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3호선"
+          }
+        }
+      }
+    },
+    "4号線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "4호선"
+          }
+        }
+      }
+    },
+    "5号線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5호선"
+          }
+        }
+      }
+    },
+    "6号線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "6호선"
+          }
+        }
+      }
+    },
+    "7号線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "7호선"
+          }
+        }
+      }
+    },
+    "8号線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "8호선"
+          }
+        }
+      }
+    },
+    "9号線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "9호선"
+          }
+        }
+      }
+    },
+    "Appleマップで案内を開始" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple 지도로 안내 시작"
+          }
+        }
+      }
+    },
+    "Go" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가기"
+          }
+        }
+      }
+    },
+    "https://instagram.com/p/..." : {
+
+    },
+    "Instagram、YouTube、XのURLに対応しています" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instagram, YouTube, X URL을 지원합니다"
+          }
+        }
+      }
+    },
+    "InstagramのURLを貼り付ける" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instagram URL 붙여넣기"
+          }
+        }
+      }
+    },
+    "InstagramのURLを貼り付けると\n自動でスポット情報が追加されます" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Instagram URL을 붙여넣으면\n자동으로 장소 정보가 추가됩니다"
+          }
+        }
+      }
+    },
+    "K-POP" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "K-POP"
+          }
+        }
+      }
+    },
+    "Now" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장"
+          }
+        }
+      }
+    },
+    "Saveタブでスポットを保存すると\nここでレビューを書けます" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Save 탭에서 장소를 저장하면\n여기서 리뷰를 쓸 수 있습니다"
+          }
+        }
+      }
+    },
+    "Share" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공유"
+          }
+        }
+      }
+    },
+    "URLの生成に失敗しました" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL 생성에 실패했습니다"
+          }
+        }
+      }
+    },
+    "URLを貼り付ける" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL 붙여넣기"
+          }
+        }
+      }
+    },
+    "난지ナルター" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "난지나루터"
+          }
+        }
+      }
+    },
+    "대중교통" : {
+
+    },
+    "뚝섬ナルター" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "뚝섬나루터"
+          }
+        }
+      }
+    },
+    "エンタメ" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "엔터테인먼트"
+          }
+        }
+      }
+    },
+    "カード" : {
+
+    },
+    "カード可" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카드 가능"
+          }
+        }
+      }
+    },
+    "カフェ" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "카페"
+          }
+        }
+      }
+    },
+    "キーワードで場所を検索" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "키워드로 장소 검색"
+          }
+        }
+      }
+    },
+    "キャンセル" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
+          }
+        }
+      }
+    },
+    "グループ向き" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그룹 추천"
+          }
+        }
+      }
+    },
+    "コスパ良し" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가성비 최고"
+          }
+        }
+      }
+    },
+    "このスポットのレビューはまだありません" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 장소의 리뷰가 아직 없습니다"
+          }
+        }
+      }
+    },
+    "ショッピング" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "쇼핑"
+          }
+        }
+      }
+    },
+    "すべて" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전체"
+          }
+        }
+      }
+    },
+    "スポットを確認" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "장소 확인"
+          }
+        }
+      }
+    },
+    "スポット情報が取得できませんでした" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "장소 정보를 가져올 수 없었습니다"
+          }
+        }
+      }
+    },
+    "スポット情報を取得しました！" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "장소 정보를 가져왔습니다!"
+          }
+        }
+      }
+    },
+    "スポット情報を取得中..." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "장소 정보 가져오는 중..."
+          }
+        }
+      }
+    },
+    "ソウル" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서울"
+          }
+        }
+      }
+    },
+    "ソウル地下鉄" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서울 지하철"
+          }
+        }
+      }
+    },
+    "タグを選ぶ" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "태그 선택"
+          }
+        }
+      }
+    },
+    "ナルター数" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "나루터 수"
+          }
+        }
+      }
+    },
+    "ネットワーク接続エラー" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "네트워크 연결 오류"
+          }
+        }
+      }
+    },
+    "ビューティ" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "뷰티"
+          }
+        }
+      }
+    },
+    "フェスティバル" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "페스티벌"
+          }
+        }
+      }
+    },
+    "ポップアップ" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "팝업"
+          }
+        }
+      }
+    },
+    "マーケット" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "마켓"
+          }
+        }
+      }
+    },
+    "まだレビューがありません" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아직 리뷰가 없습니다"
+          }
+        }
+      }
+    },
+    "まだ保存したスポットがありません" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아직 저장된 장소가 없습니다"
+          }
+        }
+      }
+    },
+    "もっと見る" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더 보기"
+          }
+        }
+      }
+    },
+    "リストに保存する" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "목록에 저장"
+          }
+        }
+      }
+    },
+    "リンクが見つかりました" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "링크를 발견했어요"
+          }
+        }
+      }
+    },
+    "レストラン" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "레스토랑"
+          }
+        }
+      }
+    },
+    "レビューを投稿する" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "리뷰 올리기"
+          }
+        }
+      }
+    },
+    "レビューを書く" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "리뷰 쓰기"
+          }
+        }
+      }
+    },
+    "一人でも◎" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "혼자도 OK"
+          }
+        }
+      }
+    },
+    "不正なレスポンス" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "잘못된 응답"
+          }
+        }
+      }
+    },
+    "並ばずOK" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "대기 없음 OK"
+          }
+        }
+      }
+    },
+    "並び必須" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "대기 필수"
+          }
+        }
+      }
+    },
+    "主要ナルター（乗り場）" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주요 나루터 (승강장)"
+          }
+        }
+      }
+    },
+    "乗り換えルール" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "환승 규칙"
+          }
+        }
+      }
+    },
+    "交通" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "교통"
+          }
+        }
+      }
+    },
+    "京春線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "경춘선"
+          }
+        }
+      }
+    },
+    "京義中央線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "경의중앙선"
+          }
+        }
+      }
+    },
+    "今すぐ行ける" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금 갈 수 있는 곳"
+          }
+        }
+      }
+    },
+    "今日のイベント" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘의 이벤트"
+          }
+        }
+      }
+    },
+    "件" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "건"
+          }
+        }
+      }
+    },
+    "最適化中..." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최적화 중..."
+          }
+        }
+      }
+    },
+    "写真映え" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사진 맛집"
+          }
+        }
+      }
+    },
+    "出身" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "출신"
+          }
+        }
+      }
+    },
+    "分待ち" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "분 대기"
+          }
+        }
+      }
+    },
+    "利用のコツ" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이용 팁"
+          }
+        }
+      }
+    },
+    "削除" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "삭제"
+          }
+        }
+      }
+    },
+    "動線を最適化する" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "동선 최적화"
+          }
+        }
+      }
+    },
+    "区分" : {
+
+    },
+    "周辺 2km 以内のスポットとイベントを表示中" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "반경 2km 이내의 장소와 이벤트 표시 중"
+          }
+        }
+      }
+    },
+    "営業中" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "영업 중"
+          }
+        }
+      }
+    },
+    "営業中のみ" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "영업 중만"
+          }
+        }
+      }
+    },
+    "地下鉄" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지하철"
+          }
+        }
+      }
+    },
+    "地下鉄路線図" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지하철 노선도"
+          }
+        }
+      }
+    },
+    "城心堂、弘大カフェ..." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성심당, 홍대 카페..."
+          }
+        }
+      }
+    },
+    "基本運賃" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기본 요금"
+          }
+        }
+      }
+    },
+    "大人（19歳以上）" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "어른 (19세 이상)"
+          }
+        }
+      }
+    },
+    "大人（一般）" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "어른 (일반)"
+          }
+        }
+      }
+    },
+    "子供（6-12歳）" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "어린이 (6~12세)"
+          }
+        }
+      }
+    },
+    "子供（12歳以下）" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "어린이 (12세 이하)"
+          }
+        }
+      }
+    },
+    "定期券（月）" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정기권 (월)"
+          }
+        }
+      }
+    },
+    "実際に行った人だけが書けるレビュー" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실제 방문자만 쓸 수 있는 리뷰"
+          }
+        }
+      }
+    },
+    "広津ナルター" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "광나루터"
+          }
+        }
+      }
+    },
+    "弘大エリア付近" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "홍대 지역 근처"
+          }
+        }
+      }
+    },
+    "待ちなし" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "대기 없음"
+          }
+        }
+      }
+    },
+    "徒歩" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "도보"
+          }
+        }
+      }
+    },
+    "所要時間" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "소요 시간"
+          }
+        }
+      }
+    },
+    "料金・時間" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요금·시간"
+          }
+        }
+      }
+    },
+    "新盆唐線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "신분당선"
+          }
+        }
+      }
+    },
+    "日本人旅行者のリアルな声" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일본인 여행자의 생생한 후기"
+          }
+        }
+      }
+    },
+    "日本語少し可" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일본어 조금 가능"
+          }
+        }
+      }
+    },
+    "更新" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "새로 고침"
+          }
+        }
+      }
+    },
+    "有効なURLを入力してください" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "올바른 URL을 입력해주세요"
+          }
+        }
+      }
+    },
+    "未就学（〜5歳）" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "미취학 (5세 이하)"
+          }
+        }
+      }
+    },
+    "検索結果" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "검색 결과"
+          }
+        }
+      }
+    },
+    "検索結果がありません" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "검색 결과가 없습니다"
+          }
+        }
+      }
+    },
+    "楊花ナルター" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "양화나루터"
+          }
+        }
+      }
+    },
+    "水仁盆唐線" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수인분당선"
+          }
+        }
+      }
+    },
+    "汝矣島ナルター" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여의도나루터"
+          }
+        }
+      }
+    },
+    "準備中" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "준비 중"
+          }
+        }
+      }
+    },
+    "漢江バス" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "한강버스"
+          }
+        }
+      }
+    },
+    "漢江バスとは" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "한강버스란?"
+          }
+        }
+      }
+    },
+    "漢江バスは、漢江を水上バスで移動できる新しい都市交通です。主要ナルター（乗り場）を結び、観光・通勤の両方に利用できます。" : {
+
+    },
+    "現金" : {
+
+    },
+    "現金のみ" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현금 전용"
+          }
+        }
+      }
+    },
+    "空港鉄道" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공항철도"
+          }
+        }
+      }
+    },
+    "経路を計算中..." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "경로 계산 중..."
+          }
+        }
+      }
+    },
+    "絶対行くべき" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "꼭 가야 해"
+          }
+        }
+      }
+    },
+    "英語OK" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "영어 OK"
+          }
+        }
+      }
+    },
+    "蚕院ナルター" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "잠원나루터"
+          }
+        }
+      }
+    },
+    "観光スポット" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "관광 명소"
+          }
+        }
+      }
+    },
+    "訪問済み" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "방문 완료"
+          }
+        }
+      }
+    },
+    "評価" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "평점"
+          }
+        }
+      }
+    },
+    "議政府軽電鉄" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의정부 경전철"
+          }
+        }
+      }
+    },
+    "路線カラーガイド" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노선 색상 가이드"
+          }
+        }
+      }
+    },
+    "路線図" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노선도"
+          }
+        }
+      }
+    },
+    "路線図が読み込めません" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노선도를 불러올 수 없습니다"
+          }
+        }
+      }
+    },
+    "路線図を選択" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "노선도 선택"
+          }
+        }
+      }
+    },
+    "車" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "자동차"
+          }
+        }
+      }
+    },
+    "辛さ注意" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "매운 주의"
+          }
+        }
+      }
+    },
+    "追加" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "추가"
+          }
+        }
+      }
+    },
+    "運航開始" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "운항 시작"
+          }
+        }
+      }
+    },
+    "運行時間" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "운행 시간"
+          }
+        }
+      }
+    },
+    "運賃" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "요금"
+          }
+        }
+      }
+    },
+    "釜山" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "부산"
+          }
+        }
+      }
+    },
+    "釜山地下鉄" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "부산 지하철"
+          }
+        }
+      }
+    },
+    "閉じる" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "닫기"
+          }
+        }
+      }
+    },
+    "青少年（13-18歳）" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "청소년 (13~18세)"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
