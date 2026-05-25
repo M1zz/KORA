@@ -6,6 +6,7 @@ struct SubwayLineBrowserView: View {
     @State private var selectedLineIdx: Int = 2   // default: 3호선
     @State private var selectedRouteIdx: Int = 0
     @State private var isReversed: Bool = false
+    @State private var language: StationLanguage = .japanese
 
     private let lines = MetroLineData.seoulLines
 
@@ -20,6 +21,7 @@ struct SubwayLineBrowserView: View {
             lineSelector
             Divider()
 
+            // Route picker (only for lines with branches)
             if line.routes.count > 1 {
                 routeSelector
                     .padding(.horizontal, 16)
@@ -28,10 +30,15 @@ struct SubwayLineBrowserView: View {
                 Divider()
             }
 
-            directionBar
-                .padding(.horizontal, 16)
-                .padding(.vertical, 10)
-                .background(Color(.systemBackground))
+            // Direction toggle + language toggle in one bar
+            HStack(spacing: 12) {
+                directionBar
+                Spacer(minLength: 0)
+                languageMenu
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 10)
+            .background(Color(.systemBackground))
             Divider()
 
             stationList
@@ -112,7 +119,7 @@ struct SubwayLineBrowserView: View {
     private var linearDirectionBar: some View {
         HStack(spacing: 0) {
             directionButton(
-                label: "\(route.terminusA)행",
+                label: terminusLabel(route.terminusA),
                 icon: "arrow.left",
                 isSelected: !isReversed,
                 isLeft: true
@@ -123,7 +130,7 @@ struct SubwayLineBrowserView: View {
                 .frame(width: 1)
 
             directionButton(
-                label: "\(route.terminusB)행",
+                label: terminusLabel(route.terminusB),
                 icon: "arrow.right",
                 isSelected: isReversed,
                 isLeft: false
@@ -137,6 +144,14 @@ struct SubwayLineBrowserView: View {
         )
     }
 
+    private func terminusLabel(_ ko: String) -> String {
+        switch language {
+        case .korean:   return "\(ko)행"
+        case .japanese: return "\(MetroLineData.displayName(for: ko, language: .japanese))行"
+        case .english:  return "To \(MetroLineData.displayName(for: ko, language: .english))"
+        }
+    }
+
     private func directionButton(
         label: String,
         icon: String,
@@ -145,18 +160,16 @@ struct SubwayLineBrowserView: View {
         action: @escaping () -> Void
     ) -> some View {
         Button(action: action) {
-            HStack(spacing: 5) {
+            HStack(spacing: 4) {
                 if isLeft {
-                    Image(systemName: icon)
-                        .font(.system(size: 10, weight: .semibold))
+                    Image(systemName: icon).font(.system(size: 10, weight: .semibold))
                 }
                 Text(label)
-                    .font(.system(size: 13, weight: isSelected ? .semibold : .regular))
+                    .font(.system(size: 12, weight: isSelected ? .semibold : .regular))
                     .lineLimit(1)
-                    .minimumScaleFactor(0.75)
+                    .minimumScaleFactor(0.7)
                 if !isLeft {
-                    Image(systemName: icon)
-                        .font(.system(size: 10, weight: .semibold))
+                    Image(systemName: icon).font(.system(size: 10, weight: .semibold))
                 }
             }
             .foregroundStyle(isSelected ? .white : KORATheme.labelSecondary)
@@ -167,23 +180,25 @@ struct SubwayLineBrowserView: View {
 
     private var circleDirectionBar: some View {
         HStack(spacing: 8) {
-            circleDirectionButton("외선순환", icon: "arrow.clockwise", isSelected: !isReversed) {
-                isReversed = false
-            }
-            circleDirectionButton("내선순환", icon: "arrow.counterclockwise", isSelected: isReversed) {
-                isReversed = true
-            }
-            Spacer()
+            circleDirectionButton("外線循環", sub: "외선순환", icon: "arrow.clockwise",   isSelected: !isReversed) { isReversed = false }
+            circleDirectionButton("内線循環", sub: "내선순환", icon: "arrow.counterclockwise", isSelected: isReversed)  { isReversed = true  }
         }
     }
 
     private func circleDirectionButton(
-        _ label: String,
+        _ ja: String, sub ko: String,
         icon: String,
         isSelected: Bool,
         action: @escaping () -> Void
     ) -> some View {
-        Button(action: action) {
+        let label: String = {
+            switch language {
+            case .korean:   return ko
+            case .japanese: return ja
+            case .english:  return ja == "外線循環" ? "Outer Loop" : "Inner Loop"
+            }
+        }()
+        return Button(action: action) {
             HStack(spacing: 5) {
                 Image(systemName: icon).font(.system(size: 11, weight: .medium))
                 Text(label).font(.system(size: 13, weight: isSelected ? .semibold : .regular))
@@ -198,14 +213,48 @@ struct SubwayLineBrowserView: View {
         }
     }
 
+    // MARK: - Language Menu
+
+    private var languageMenu: some View {
+        Menu {
+            ForEach(StationLanguage.allCases, id: \.self) { lang in
+                Button {
+                    withAnimation(.easeInOut(duration: 0.15)) { language = lang }
+                } label: {
+                    HStack {
+                        Text(lang.rawValue)
+                        if language == lang {
+                            Image(systemName: "checkmark")
+                        }
+                    }
+                }
+            }
+        } label: {
+            HStack(spacing: 4) {
+                Image(systemName: "globe")
+                    .font(.system(size: 13, weight: .medium))
+                Text(language.rawValue)
+                    .font(.system(size: 12, weight: .medium))
+                Image(systemName: "chevron.down")
+                    .font(.system(size: 9, weight: .semibold))
+            }
+            .foregroundStyle(KORATheme.accent)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 7)
+            .background(KORATheme.accent.opacity(0.1))
+            .clipShape(Capsule())
+        }
+    }
+
     // MARK: - Station List
 
     private var stationList: some View {
         ScrollView {
             LazyVStack(spacing: 0) {
-                ForEach(Array(displayedStations.enumerated()), id: \.offset) { idx, name in
+                ForEach(Array(displayedStations.enumerated()), id: \.offset) { idx, ko in
                     StationTimelineRow(
-                        name: name,
+                        primaryName: MetroLineData.displayName(for: ko, language: language),
+                        subtitle: MetroLineData.subtitle(for: ko, language: language),
                         isFirst: idx == 0,
                         isLast: idx == displayedStations.count - 1,
                         isCircular: route.isCircular,
@@ -222,60 +271,65 @@ struct SubwayLineBrowserView: View {
 // MARK: - Station Timeline Row
 
 struct StationTimelineRow: View {
-    let name: String
+    let primaryName: String
+    let subtitle: String?
     let isFirst: Bool
     let isLast: Bool
     let isCircular: Bool
     let lineColor: Color
 
     private var isTerminus: Bool { !isCircular && (isFirst || isLast) }
-    private static let rowH: CGFloat = 46
+    private static let rowH: CGFloat = 52
 
     var body: some View {
         HStack(spacing: 14) {
-            ZStack {
-                // Top connector (drawn for all rows except the first of a non-circular line)
-                if !isFirst || isCircular {
-                    VStack(spacing: 0) {
-                        Rectangle()
-                            .fill(lineColor.opacity(0.5))
-                            .frame(width: 3, height: Self.rowH / 2)
-                        Spacer(minLength: 0)
-                    }
-                }
-                // Bottom connector
-                if !isLast || isCircular {
-                    VStack(spacing: 0) {
-                        Spacer(minLength: 0)
-                        Rectangle()
-                            .fill(lineColor.opacity(0.5))
-                            .frame(width: 3, height: Self.rowH / 2)
-                    }
-                }
-                // Station dot
-                Circle()
-                    .fill(isTerminus ? lineColor : Color(.systemBackground))
-                    .frame(
-                        width: isTerminus ? 14 : 10,
-                        height: isTerminus ? 14 : 10
-                    )
-                    .overlay(
-                        Circle().stroke(lineColor, lineWidth: isTerminus ? 0 : 2.5)
-                    )
-            }
-            .frame(width: 20, height: Self.rowH)
+            timeline
+                .frame(width: 20, height: Self.rowH)
 
-            Text(name)
-                .font(.system(
-                    size: isTerminus ? 15 : 14,
-                    weight: isTerminus ? .bold : .regular
-                ))
-                .foregroundStyle(isTerminus ? lineColor : KORATheme.labelPrimary)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(primaryName)
+                    .font(.system(
+                        size: isTerminus ? 15 : 14,
+                        weight: isTerminus ? .bold : .regular
+                    ))
+                    .foregroundStyle(isTerminus ? lineColor : KORATheme.labelPrimary)
+
+                if let sub = subtitle {
+                    Text(sub)
+                        .font(.system(size: 11))
+                        .foregroundStyle(KORATheme.labelSecondary)
+                }
+            }
 
             Spacer()
         }
         .padding(.leading, 28)
-        .frame(height: Self.rowH)
+        .frame(minHeight: Self.rowH)
+    }
+
+    private var timeline: some View {
+        ZStack {
+            if !isFirst || isCircular {
+                VStack(spacing: 0) {
+                    Rectangle()
+                        .fill(lineColor.opacity(0.5))
+                        .frame(width: 3, height: Self.rowH / 2)
+                    Spacer(minLength: 0)
+                }
+            }
+            if !isLast || isCircular {
+                VStack(spacing: 0) {
+                    Spacer(minLength: 0)
+                    Rectangle()
+                        .fill(lineColor.opacity(0.5))
+                        .frame(width: 3, height: Self.rowH / 2)
+                }
+            }
+            Circle()
+                .fill(isTerminus ? lineColor : Color(.systemBackground))
+                .frame(width: isTerminus ? 14 : 10, height: isTerminus ? 14 : 10)
+                .overlay(Circle().stroke(lineColor, lineWidth: isTerminus ? 0 : 2.5))
+        }
     }
 }
 

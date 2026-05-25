@@ -96,34 +96,42 @@ enum MetroCity: String, CaseIterable {
     case busan = "釜山"
 }
 
+// MARK: - Metro Map Language
+
+enum MapLanguage: String, CaseIterable {
+    case korean   = "KO"
+    case japanese = "JP"
+}
+
 // MARK: - Metro Map
 
 struct MetroMapView: View {
     @State private var selectedCity: MetroCity = .seoul
-    @State private var showCityPicker = false
+    @State private var mapLang: MapLanguage = .japanese
 
     var body: some View {
         VStack(spacing: 0) {
-            cityPicker
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(Color(UIColor.systemBackground))
+            HStack(spacing: 0) {
+                cityPicker
+                Spacer()
+                if selectedCity == .seoul {
+                    mapLanguageToggle
+                        .padding(.trailing, 16)
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+            .background(Color(UIColor.systemBackground))
 
             Divider()
 
             mapContent
                 .ignoresSafeArea(edges: .bottom)
         }
-        .confirmationDialog("路線図を選択", isPresented: $showCityPicker, titleVisibility: .visible) {
-            ForEach(MetroCity.allCases, id: \.self) { city in
-                Button(city.rawValue) { selectedCity = city }
-            }
-            Button("キャンセル", role: .cancel) {}
-        }
     }
 
     private var cityPicker: some View {
-        HStack {
+        HStack(spacing: 4) {
             ForEach(MetroCity.allCases, id: \.self) { city in
                 Button {
                     selectedCity = city
@@ -139,26 +147,44 @@ struct MetroMapView: View {
                     .foregroundStyle(selectedCity == city ? KORATheme.accent : KORATheme.labelSecondary)
                     .padding(.horizontal, 14)
                     .padding(.vertical, 7)
-                    .background(
-                        selectedCity == city
-                            ? KORATheme.accent.opacity(0.12)
-                            : Color.clear
-                    )
+                    .background(selectedCity == city ? KORATheme.accent.opacity(0.12) : Color.clear)
                     .clipShape(Capsule())
                 }
             }
-            Spacer()
         }
+    }
+
+    private var mapLanguageToggle: some View {
+        HStack(spacing: 0) {
+            ForEach(MapLanguage.allCases, id: \.self) { lang in
+                Button {
+                    mapLang = lang
+                } label: {
+                    Text(lang.rawValue)
+                        .font(.system(size: 12, weight: mapLang == lang ? .bold : .regular))
+                        .foregroundStyle(mapLang == lang ? .white : KORATheme.labelSecondary)
+                        .frame(width: 36, height: 28)
+                        .background(mapLang == lang ? KORATheme.accent : Color.clear)
+                }
+            }
+        }
+        .background(Color(UIColor.secondarySystemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(KORATheme.separator, lineWidth: 0.5)
+        )
     }
 
     @ViewBuilder
     private var mapContent: some View {
         switch selectedCity {
         case .seoul:
-            if let url = Bundle.main.url(forResource: "seoul_metro", withExtension: "pdf") {
+            let resource = mapLang == .japanese ? "subway_jp" : "seoul_metro"
+            if let url = Bundle.main.url(forResource: resource, withExtension: "pdf") {
                 PDFKitView(url: url)
             } else {
-                missingPlaceholder(name: "seoul_metro.pdf")
+                missingPlaceholder(name: "\(resource).pdf")
             }
         case .busan:
             if let image = UIImage(named: "busan_subway") {
