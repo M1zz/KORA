@@ -477,6 +477,13 @@ struct SubwayNavigatorView: View {
             VStack(spacing: 14) {
                 ForEach(Array(j.segments.enumerated()), id: \.offset) { idx, seg in
                     directionCard(seg)
+                    if seg.stations.count > 1 {
+                        nextStationCard(
+                            boardingKo: seg.stations[0],
+                            nextKo: seg.stations[1],
+                            lineColor: seg.line.color
+                        )
+                    }
                     if idx < j.segments.count - 1 {
                         transferCard(
                             at: seg.stations.last ?? "",
@@ -493,49 +500,28 @@ struct SubwayNavigatorView: View {
         }
     }
 
-    /// Direction (◯行き) + next station (다음역). Two pieces of info per segment.
+    /// Direction card: ◯◯行き — which train to board.
     private func directionCard(_ seg: JourneySegment) -> some View {
         let terminusJa = MetroLineData.displayName(for: seg.terminus, language: .japanese)
-        let nextStationKo: String? = seg.stations.count > 1 ? seg.stations[1] : nil
 
-        return VStack(alignment: .leading, spacing: 10) {
-            // Direction
-            HStack(spacing: 12) {
-                Text("\(seg.line.number)")
-                    .font(.system(size: 18, weight: .black))
-                    .foregroundStyle(.white)
-                    .frame(width: 40, height: 40)
-                    .background(seg.line.color)
-                    .clipShape(Circle())
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("\(terminusJa)行き")
-                        .font(.system(size: 22, weight: .black))
-                        .foregroundStyle(seg.line.color)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.7)
-                    Text("\(seg.terminus)行")
-                        .font(.system(size: 12))
-                        .foregroundStyle(KORATheme.labelSecondary)
-                }
-                Spacer()
+        return HStack(spacing: 12) {
+            Text("\(seg.line.number)")
+                .font(.system(size: 18, weight: .black))
+                .foregroundStyle(.white)
+                .frame(width: 40, height: 40)
+                .background(seg.line.color)
+                .clipShape(Circle())
+            VStack(alignment: .leading, spacing: 2) {
+                Text("\(terminusJa)行き")
+                    .font(.system(size: 22, weight: .black))
+                    .foregroundStyle(seg.line.color)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.7)
+                Text("\(seg.terminus)行")
+                    .font(.system(size: 12))
+                    .foregroundStyle(KORATheme.labelSecondary)
             }
-
-            // Next station
-            if let nextKo = nextStationKo {
-                let nextJa = MetroLineData.displayName(for: nextKo, language: .japanese)
-                HStack(spacing: 8) {
-                    Text("次は")
-                        .font(.system(size: 11, weight: .semibold))
-                        .foregroundStyle(KORATheme.labelSecondary)
-                    Text(nextJa)
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundStyle(KORATheme.labelPrimary)
-                    Text(nextKo)
-                        .font(.system(size: 12))
-                        .foregroundStyle(KORATheme.labelTertiary)
-                    Spacer()
-                }
-            }
+            Spacer()
         }
         .padding(16)
         .background(seg.line.color.opacity(0.08))
@@ -544,6 +530,65 @@ struct SubwayNavigatorView: View {
             RoundedRectangle(cornerRadius: 14)
                 .stroke(seg.line.color.opacity(0.25), lineWidth: 1)
         )
+    }
+
+    /// Next station card — mirrors what's displayed on the train's in-car
+    /// info ("current → next"), so the user can verify they're on the right
+    /// direction's train at first stop.
+    private func nextStationCard(boardingKo: String, nextKo: String, lineColor: Color) -> some View {
+        let boardJa = MetroLineData.displayName(for: boardingKo, language: .japanese)
+        let nextJa = MetroLineData.displayName(for: nextKo, language: .japanese)
+
+        return VStack(alignment: .leading, spacing: 10) {
+            HStack(spacing: 6) {
+                Image(systemName: "rectangle.split.1x2.fill")
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(KORATheme.labelTertiary)
+                Text("車内表示")
+                    .font(.system(size: 11, weight: .semibold))
+                    .foregroundStyle(KORATheme.labelSecondary)
+                Spacer()
+            }
+
+            HStack(spacing: 0) {
+                VStack(spacing: 3) {
+                    Text(boardJa)
+                        .font(.system(size: 22, weight: .black))
+                        .foregroundStyle(KORATheme.labelPrimary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                    Text(boardingKo)
+                        .font(.system(size: 12))
+                        .foregroundStyle(KORATheme.labelSecondary)
+                }
+                .frame(maxWidth: .infinity)
+
+                Image(systemName: "arrow.right")
+                    .font(.system(size: 22, weight: .black))
+                    .foregroundStyle(lineColor)
+                    .padding(.horizontal, 10)
+
+                VStack(spacing: 3) {
+                    Text(nextJa)
+                        .font(.system(size: 22, weight: .black))
+                        .foregroundStyle(lineColor)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                    Text(nextKo)
+                        .font(.system(size: 12))
+                        .foregroundStyle(KORATheme.labelSecondary)
+                }
+                .frame(maxWidth: .infinity)
+            }
+        }
+        .padding(18)
+        .background(Color(.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 14))
+        .overlay(
+            RoundedRectangle(cornerRadius: 14)
+                .stroke(lineColor.opacity(0.4), lineWidth: 1.5)
+        )
+        .shadow(color: lineColor.opacity(0.12), radius: 6, y: 2)
     }
 
     /// Transfer station card — the station where the user switches lines.
