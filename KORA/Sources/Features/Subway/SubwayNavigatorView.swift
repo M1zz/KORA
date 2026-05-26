@@ -92,6 +92,7 @@ struct SubwayNavigatorView: View {
             completedSegments = []
             onBoardSegmentIdx = nil
         }
+        .toolbar { languageToolbar }
     }
 
     // MARK: - Boarding state machine
@@ -144,7 +145,6 @@ struct SubwayNavigatorView: View {
                 boardingActionBar(for: j)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
-            englishToggleFAB
         }
     }
 
@@ -574,26 +574,23 @@ struct SubwayNavigatorView: View {
         }
     }
 
-    private var englishToggleFAB: some View {
-        Button {
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
-                showEnglish.toggle()
+    // MARK: - Language picker (toolbar)
+
+    /// Apple-standard Menu on the navigation bar's trailing edge.
+    /// Tap to choose between Japanese (default) and English display.
+    @ToolbarContentBuilder
+    var languageToolbar: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Menu {
+                Picker("Language", selection: $showEnglish) {
+                    Label("日本語", systemImage: "j.circle").tag(false)
+                    Label("English", systemImage: "e.circle").tag(true)
+                }
+            } label: {
+                Image(systemName: "globe")
+                    .accessibilityLabel(showEnglish ? "Display language: English" : "Display language: Japanese")
             }
-        } label: {
-            Text("EN")
-                .font(.body).fontWeight(.bold)
-                .foregroundStyle(showEnglish ? .white : KORATheme.accent)
-            .padding(.horizontal, 12)
-            .padding(.vertical, 7)
-            .background(showEnglish ? KORATheme.accent : Color(.secondarySystemBackground))
-            .clipShape(Capsule())
-            .overlay(Capsule().stroke(KORATheme.accent.opacity(showEnglish ? 0 : 0.4), lineWidth: 1))
-            .shadow(color: KORATheme.accent.opacity(0.2), radius: 6, y: 3)
         }
-        .buttonStyle(.plain)
-        .padding(.trailing, 20)
-        .padding(.bottom, 24)
-        .accessibilityLabel(showEnglish ? "영어 표기 중. 일본어로 전환" : "일본어 표기 중. 영어로 전환")
     }
 
     // MARK: Current-station header (top of screen, line-colored)

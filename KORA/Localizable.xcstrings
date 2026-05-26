@@ -1,7 +1,6 @@
 {
   "sourceLanguage": "ja",
   "strings": {
-    "": {},
     "  %@": {},
     "〜": {
       "localizations": {
@@ -68,17 +67,8 @@
         }
       }
     },
-    "%@역에서 %lld호선으로 환승하세요": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$@역에서 %2$lld호선으로 환승하세요"
-          }
-        }
-      }
-    },
     "%@で下車": {
+      "extractionState": "stale",
       "localizations": {
         "ko": {
           "stringUnit": {
@@ -99,6 +89,7 @@
       }
     },
     "%@で乗換": {
+      "extractionState": "stale",
       "localizations": {
         "ko": {
           "stringUnit": {
@@ -163,16 +154,6 @@
     "%lld": {},
     "%lldm": {},
     "%lld호선": {},
-    "%lld호선 %@ 방면 열차를 타세요": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "new",
-            "value": "%1$lld호선 %2$@ 방면 열차를 타세요"
-          }
-        }
-      }
-    },
     "%lld호선 막차까지 %lld분 남았습니다. 서둘러 주세요.": {
       "localizations": {
         "ja": {
@@ -248,8 +229,6 @@
         }
       }
     },
-    "⚡ %@": {},
-    "⚡ %lld分後到着": {},
     "⛩️": {},
     "📍 GPSで自動取得": {
       "extractionState": "stale",
@@ -418,8 +397,6 @@
         }
       }
     },
-    "API Key": {},
-    "API 키를 입력하세요": {},
     "Appleマップで案内を開始": {
       "extractionState": "stale",
       "localizations": {
@@ -433,6 +410,7 @@
     },
     "EN": {},
     "Get off at %@": {
+      "extractionState": "stale",
       "localizations": {
         "ko": {
           "stringUnit": {
@@ -572,6 +550,7 @@
       }
     },
     "Transfer at %@": {
+      "extractionState": "stale",
       "localizations": {
         "ko": {
           "stringUnit": {
@@ -613,6 +592,7 @@
         }
       }
     },
+    "경로 초기화": {},
     "난지ナルター": {
       "extractionState": "stale",
       "localizations": {
@@ -635,10 +615,6 @@
         }
       }
     },
-    "목적지: %@역에서 내리세요": {},
-    "서울 열린데이터광장(data.seoul.go.kr)에서 API 키를 발급받으세요.\n「서울시 지하철 실시간 도착정보」": {},
-    "실시간 도착 정보 API 키 설정": {},
-    "실시간 도착 정보 연결됨. 설정 변경": {},
     "역 이름 (한국어 · 日本語 · English)": {
       "localizations": {
         "ko": {
@@ -649,19 +625,7 @@
         }
       }
     },
-    "연결 해제": {},
     "영어 표기 중. 일본어로 전환": {},
-    "완료": {},
-    "완료: %lld호선 %@역에서 %@역 구간 탑승 완료": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "new",
-            "value": "완료: %1$lld호선 %2$@역에서 %3$@역 구간 탑승 완료"
-          }
-        }
-      }
-    },
     "일본어 표기 중. 영어로 전환": {},
     "지금 어느 역에 계신가요?": {
       "extractionState": "stale",
@@ -670,29 +634,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "지금 어느 역에 계신가요?"
-          }
-        }
-      }
-    },
-    "탑승 완료": {
-      "extractionState": "stale"
-    },
-    "탑승역 %@, 다음역 %@. 열차 방향 확인용.": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "new",
-            "value": "탑승역 %1$@, 다음역 %2$@. 열차 방향 확인용."
-          }
-        }
-      }
-    },
-    "현재 탑승 중: %lld호선 %@행": {
-      "localizations": {
-        "ja": {
-          "stringUnit": {
-            "state": "new",
-            "value": "현재 탑승 중: %1$lld호선 %2$@행"
           }
         }
       }
@@ -878,9 +819,6 @@
           }
         }
       }
-    },
-    "スケジュール読込中…": {
-      "extractionState": "stale"
     },
     "すべて": {
       "extractionState": "stale",
@@ -1125,12 +1063,6 @@
         }
       }
     },
-    "リアルタイム接続中": {
-      "extractionState": "stale"
-    },
-    "リアルタイム設定": {
-      "extractionState": "stale"
-    },
     "リストに保存する": {
       "extractionState": "stale",
       "localizations": {
@@ -1282,6 +1214,17 @@
         }
       }
     },
+    "乗る電車": {
+      "extractionState": "stale",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "탈 전철"
+          }
+        }
+      }
+    },
     "乗換": {
       "extractionState": "stale",
       "localizations": {
@@ -1304,12 +1247,44 @@
         }
       }
     },
+    "乗換後の電車": {
+      "extractionState": "stale",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "환승 후 전철"
+          }
+        }
+      }
+    },
+    "乗換駅": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "환승역"
+          }
+        }
+      }
+    },
     "乗換駅に着きましたか？": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
             "value": "환승역에 도착하셨나요?"
+          }
+        }
+      }
+    },
+    "乗換駅まで乗車中": {
+      "extractionState": "stale",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "환승역까지 이동 중"
           }
         }
       }
@@ -1335,6 +1310,7 @@
       }
     },
     "乗車中": {
+      "extractionState": "stale",
       "localizations": {
         "ko": {
           "stringUnit": {
@@ -1630,6 +1606,7 @@
       }
     },
     "到着予定 %@": {
+      "extractionState": "stale",
       "localizations": {
         "ko": {
           "stringUnit": {
@@ -1788,6 +1765,7 @@
       }
     },
     "変更": {
+      "extractionState": "stale",
       "localizations": {
         "ko": {
           "stringUnit": {
@@ -1959,6 +1937,7 @@
       }
     },
     "所要時間 約%lld分": {
+      "extractionState": "stale",
       "localizations": {
         "ko": {
           "stringUnit": {
@@ -2091,6 +2070,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "다음 승강장으로"
+          }
+        }
+      }
+    },
+    "次の電車": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다음 전철"
           }
         }
       }
@@ -2358,6 +2347,17 @@
         }
       }
     },
+    "目的地まで乗車中": {
+      "extractionState": "stale",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "목적지까지 이동 중"
+          }
+        }
+      }
+    },
     "目的地を選ぶ": {
       "extractionState": "stale",
       "localizations": {
@@ -2398,6 +2398,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "약 %lld분"
+          }
+        }
+      }
+    },
+    "約%lld分 (%lld駅)": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "約%1$lld分 (%2$lld駅)"
+          }
+        }
+      }
+    },
+    "約%lld分後": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "약 %lld분 후"
+          }
+        }
+      }
+    },
+    "約1分後": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "약 1분 후"
           }
         }
       }
@@ -2627,6 +2657,7 @@
         }
       }
     },
+    "車内表示で確認": {},
     "辛さ注意": {
       "extractionState": "stale",
       "localizations": {
@@ -2755,6 +2786,16 @@
         }
       }
     },
+    "降りる駅": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "내릴 역"
+          }
+        }
+      }
+    },
     "青少年（13-18歳）": {
       "extractionState": "stale",
       "localizations": {
@@ -2787,92 +2828,32 @@
       }
     },
     "駅を手動で選ぶ": {},
-    "乗る電車": {
+    "Language": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "탈 전철"
+            "value": "언어"
           }
         }
       }
     },
-    "乗換後の電車": {
+    "English": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "환승 후 전철"
+            "value": "영어"
           }
         }
       }
     },
-    "目的地まで乗車中": {
+    "日本語": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "목적지까지 이동 중"
-          }
-        }
-      }
-    },
-    "乗換駅まで乗車中": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "환승역까지 이동 중"
-          }
-        }
-      }
-    },
-    "降りる駅": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "내릴 역"
-          }
-        }
-      }
-    },
-    "乗換駅": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "환승역"
-          }
-        }
-      }
-    },
-    "約1分後": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "약 1분 후"
-          }
-        }
-      }
-    },
-    "約%lld分後": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "약 %lld분 후"
-          }
-        }
-      }
-    },
-    "次の電車": {
-      "localizations": {
-        "ko": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "다음 전철"
+            "value": "일본어"
           }
         }
       }

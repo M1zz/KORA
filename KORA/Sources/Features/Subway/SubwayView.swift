@@ -1,9 +1,14 @@
 import SwiftUI
 
-/// Single-screen subway navigation host.
+/// Single-screen subway navigation host. Wraps the navigator in a
+/// NavigationStack so the language picker can live in the standard
+/// trailing toolbar slot.
 struct SubwayView: View {
     var body: some View {
-        SubwayNavigatorView()
+        NavigationStack {
+            SubwayNavigatorView()
+                .navigationBarTitleDisplayMode(.inline)
+        }
     }
 }
 
