@@ -1,6 +1,7 @@
 {
   "sourceLanguage": "ja",
   "strings": {
+    "": {},
     "  %@": {},
     "〜": {
       "localizations": {
@@ -87,6 +88,16 @@
         }
       }
     },
+    "%@で下車したらタップ": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@에서 내렸으면 탭하세요"
+          }
+        }
+      }
+    },
     "%@で乗換": {
       "localizations": {
         "ko": {
@@ -124,6 +135,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@행"
+          }
+        }
+      }
+    },
+    "%@行きに乗ったらタップ": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@행을 탔으면 탭하세요"
           }
         }
       }
@@ -603,7 +624,6 @@
         }
       }
     },
-    "도착했습니다": {},
     "뚝섬ナルター": {
       "extractionState": "stale",
       "localizations": {
@@ -615,7 +635,6 @@
         }
       }
     },
-    "목적지 도착. 탭하면 목적지가 초기화됩니다.": {},
     "목적지: %@역에서 내리세요": {},
     "서울 열린데이터광장(data.seoul.go.kr)에서 API 키를 발급받으세요.\n「서울시 지하철 실시간 도착정보」": {},
     "실시간 도착 정보 API 키 설정": {},
@@ -655,13 +674,25 @@
         }
       }
     },
-    "탑승 완료": {},
+    "탑승 완료": {
+      "extractionState": "stale"
+    },
     "탑승역 %@, 다음역 %@. 열차 방향 확인용.": {
       "localizations": {
         "ja": {
           "stringUnit": {
             "state": "new",
             "value": "탑승역 %1$@, 다음역 %2$@. 열차 방향 확인용."
+          }
+        }
+      }
+    },
+    "현재 탑승 중: %lld호선 %@행": {
+      "localizations": {
+        "ja": {
+          "stringUnit": {
+            "state": "new",
+            "value": "현재 탑승 중: %1$lld호선 %2$@행"
           }
         }
       }
@@ -684,6 +715,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "엔터테인먼트"
+          }
+        }
+      }
+    },
+    "お疲れさまでした": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "수고하셨습니다"
           }
         }
       }
@@ -838,7 +879,9 @@
         }
       }
     },
-    "スケジュール読込中…": {},
+    "スケジュール読込中…": {
+      "extractionState": "stale"
+    },
     "すべて": {
       "extractionState": "stale",
       "localizations": {
@@ -1082,8 +1125,12 @@
         }
       }
     },
-    "リアルタイム接続中": {},
-    "リアルタイム設定": {},
+    "リアルタイム接続中": {
+      "extractionState": "stale"
+    },
+    "リアルタイム設定": {
+      "extractionState": "stale"
+    },
     "リストに保存する": {
       "extractionState": "stale",
       "localizations": {
@@ -1257,12 +1304,42 @@
         }
       }
     },
+    "乗換駅に着きましたか？": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "환승역에 도착하셨나요?"
+          }
+        }
+      }
+    },
     "乗車": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
             "value": "승차"
+          }
+        }
+      }
+    },
+    "乗車しましたか？": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "탑승하셨나요?"
+          }
+        }
+      }
+    },
+    "乗車中": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "탑승 중"
           }
         }
       }
@@ -1528,6 +1605,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "이용 팁"
+          }
+        }
+      }
+    },
+    "到着!": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "도착!"
+          }
+        }
+      }
+    },
+    "到着しましたか？": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "도착하셨나요?"
           }
         }
       }
@@ -2690,82 +2787,92 @@
       }
     },
     "駅を手動で選ぶ": {},
-    "乗車しましたか？": {
+    "乗る電車": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "탑승하셨나요?"
+            "value": "탈 전철"
           }
         }
       }
     },
-    "%@行きに乗ったらタップ": {
+    "乗換後の電車": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@행을 탔으면 탭하세요"
+            "value": "환승 후 전철"
           }
         }
       }
     },
-    "乗換駅に着きましたか？": {
+    "目的地まで乗車中": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "환승역에 도착하셨나요?"
+            "value": "목적지까지 이동 중"
           }
         }
       }
     },
-    "到着しましたか？": {
+    "乗換駅まで乗車中": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "도착하셨나요?"
+            "value": "환승역까지 이동 중"
           }
         }
       }
     },
-    "%@で下車したらタップ": {
+    "降りる駅": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@에서 내렸으면 탭하세요"
+            "value": "내릴 역"
           }
         }
       }
     },
-    "到着!": {
+    "乗換駅": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "도착!"
+            "value": "환승역"
           }
         }
       }
     },
-    "お疲れさまでした": {
+    "約1分後": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "수고하셨습니다"
+            "value": "약 1분 후"
           }
         }
       }
     },
-    "乗車中": {
+    "約%lld分後": {
       "localizations": {
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "탑승 중"
+            "value": "약 %lld분 후"
+          }
+        }
+      }
+    },
+    "次の電車": {
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "다음 전철"
           }
         }
       }

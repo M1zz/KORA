@@ -12,10 +12,6 @@ struct SubwayNavigatorView: View {
     @State private var showToPicker = false
     @State private var selectedJourneyIdx = 0
     @State private var showEnglish = false
-    @AppStorage("kora.metro.apikey") private var realtimeAPIKey: String = ""
-    @State private var segmentTimings: [Int: SegmentTiming] = [:]
-    @State private var realtimeArrivals: [Int: [RealtimeArrivalInfo]] = [:]
-    @State private var showAPIKeySheet = false
     @State private var completedSegments: Set<Int> = []
     /// Segment the user is *currently on board* (between boarding and alighting).
     /// `nil` means user is on a platform waiting / transferring / not yet started.
@@ -93,8 +89,6 @@ struct SubwayNavigatorView: View {
         }
         .onChange(of: coordinator.routeRequestNonce) { _, _ in consumePendingDestination() }
         .onChange(of: journey?.id) { _, _ in
-            segmentTimings = [:]
-            realtimeArrivals = [:]
             completedSegments = []
             onBoardSegmentIdx = nil
         }
@@ -136,13 +130,13 @@ struct SubwayNavigatorView: View {
     private var navigatorBody: some View {
         ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
-                currentStationHeader
                 if let j = journey {
-                    Divider()
-                    journeyScroll(j)
+                    activeStepHost(for: j)
                 } else if fromStation != nil && toStation != nil {
+                    currentStationHeader
                     noRouteView
                 } else {
+                    currentStationHeader
                     destinationFocusBody
                 }
             }
@@ -151,6 +145,294 @@ struct SubwayNavigatorView: View {
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
             englishToggleFAB
+        }
+    }
+
+    // MARK: - Single-step active block
+
+    /// Replaces the multi-segment scroll. Shows only the CURRENT step the
+    /// user has to act on — past steps disappear, future steps are hidden.
+    @ViewBuilder
+    private func activeStepHost(for j: TransferJourney) -> some View {
+        let phase = boardingPhase(for: j)
+        ScrollView {
+            VStack(spacing: 16) {
+                stepProgressLabel(j: j, phase: phase)
+                activeStepBlock(j: j, phase: phase)
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 22)
+            .padding(.bottom, 220) // sticky action bar clearance
+            .frame(maxWidth: .infinity)
+        }
+        .scrollIndicators(.hidden)
+        .animation(.easeInOut(duration: 0.3), value: phase)
+    }
+
+    /// "Step N / M" label + small reset affordance.
+    private func stepProgressLabel(j: TransferJourney, phase: BoardingPhase) -> some View {
+        let totalSteps = j.segments.count * 2
+        let currentStep: Int = {
+            switch phase {
+            case .waitingToBoard(let i): return i * 2 + 1
+            case .onTrain(let i):        return i * 2 + 2
+            case .finished:              return totalSteps
+            }
+        }()
+        return HStack {
+            HStack(spacing: 4) {
+                ForEach(0..<totalSteps, id: \.self) { step in
+                    Capsule()
+                        .fill(step < currentStep ? Color.green : (step == currentStep - 1 ? KORATheme.accent : KORATheme.separator))
+                        .frame(height: 4)
+                }
+            }
+            .frame(maxWidth: .infinity)
+            Spacer(minLength: 12)
+            Button {
+                resetJourney()
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.title3)
+                    .foregroundStyle(KORATheme.labelTertiary)
+            }
+            .accessibilityLabel("경로 초기화")
+        }
+    }
+
+    @ViewBuilder
+    private func activeStepBlock(j: TransferJourney, phase: BoardingPhase) -> some View {
+        switch phase {
+        case .waitingToBoard(let i):
+            waitingBlock(seg: j.segments[i], segmentIdx: i, totalSegments: j.segments.count)
+        case .onTrain(let i):
+            onTrainBlock(seg: j.segments[i], segmentIdx: i, totalSegments: j.segments.count)
+        case .finished:
+            finishedBlock(j: j)
+        }
+    }
+
+    // MARK: Waiting-to-board step
+
+    private func waitingBlock(seg: JourneySegment, segmentIdx: Int, totalSegments: Int) -> some View {
+        let terminusDisplay = MetroLineData.displayName(for: seg.terminus, language: displayLanguage)
+        let boardingKo = seg.stations.first ?? ""
+        let boardingDisplay = MetroLineData.displayName(for: boardingKo, language: displayLanguage)
+        let nextKo: String? = seg.stations.count > 1 ? seg.stations[1] : nil
+        let nextDisplay = nextKo.map { MetroLineData.displayName(for: $0, language: displayLanguage) } ?? ""
+        let timing = SubwayScheduleService.timing(for: seg, at: Date())
+        let isFirstStep = segmentIdx == 0
+        let stepTitle = isFirstStep ? "乗る電車" : "乗換後の電車"
+
+        return VStack(spacing: 16) {
+            stepBlockTitle(stepTitle)
+
+            // Identification — direction + first stop, two ways to verify the same train
+            VStack(spacing: 18) {
+                // Line + direction (terminus)
+                HStack(spacing: 14) {
+                    Text("\(seg.line.number)")
+                        .font(.largeTitle).fontWeight(.black)
+                        .foregroundStyle(.white)
+                        .frame(width: 64, height: 64)
+                        .background(seg.line.color)
+                        .clipShape(Circle())
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text("\(terminusDisplay)行き")
+                            .font(.largeTitle).fontWeight(.black)
+                            .foregroundStyle(seg.line.color)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.6)
+                        Text("\(seg.terminus)行")
+                            .font(.title3)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                    }
+                    Spacer()
+                }
+
+                Divider()
+
+                // First-stop preview (= "이 열차의 다음역") to double-check
+                if let nk = nextKo {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("車内表示で確認")
+                            .font(.body).fontWeight(.semibold)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        HStack(spacing: 0) {
+                            VStack(spacing: 2) {
+                                Text(boardingDisplay)
+                                    .font(.title2).fontWeight(.bold)
+                                    .lineLimit(1).minimumScaleFactor(0.6)
+                                Text(boardingKo)
+                                    .font(.body)
+                                    .foregroundStyle(KORATheme.labelSecondary)
+                            }
+                            .frame(maxWidth: .infinity)
+                            Image(systemName: "arrow.right")
+                                .font(.title2).fontWeight(.black)
+                                .foregroundStyle(seg.line.color)
+                                .padding(.horizontal, 8)
+                            VStack(spacing: 2) {
+                                Text(nextDisplay)
+                                    .font(.title2).fontWeight(.bold)
+                                    .foregroundStyle(seg.line.color)
+                                    .lineLimit(1).minimumScaleFactor(0.6)
+                                Text(nk)
+                                    .font(.body)
+                                    .foregroundStyle(KORATheme.labelSecondary)
+                            }
+                            .frame(maxWidth: .infinity)
+                        }
+                    }
+                }
+
+                // Schedule (offline computed)
+                if let t = timing {
+                    arrivalBadge(timing: t, lineColor: seg.line.color)
+                }
+            }
+            .padding(20)
+            .background(seg.line.color.opacity(0.08))
+            .clipShape(RoundedRectangle(cornerRadius: 18))
+            .overlay(RoundedRectangle(cornerRadius: 18).stroke(seg.line.color.opacity(0.25), lineWidth: 1.2))
+        }
+    }
+
+    // MARK: On-train step
+
+    private func onTrainBlock(seg: JourneySegment, segmentIdx: Int, totalSegments: Int) -> some View {
+        let alightKo = seg.stations.last ?? ""
+        let alightDisplay = MetroLineData.displayName(for: alightKo, language: displayLanguage)
+        let lineColor = seg.line.color
+        let isLastSegment = (segmentIdx == totalSegments - 1)
+        let title = isLastSegment ? "目的地まで乗車中" : "乗換駅まで乗車中"
+
+        return VStack(spacing: 16) {
+            stepBlockTitle(title)
+
+            VStack(spacing: 18) {
+                HStack(spacing: 14) {
+                    Image(systemName: "tram.fill")
+                        .font(.largeTitle)
+                        .foregroundStyle(.white)
+                        .frame(width: 64, height: 64)
+                        .background(lineColor)
+                        .clipShape(Circle())
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(isLastSegment ? "降りる駅" : "乗換駅")
+                            .font(.body).fontWeight(.semibold)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                        Text(alightDisplay)
+                            .font(.largeTitle).fontWeight(.black)
+                            .foregroundStyle(lineColor)
+                            .lineLimit(2)
+                            .minimumScaleFactor(0.6)
+                        Text(alightKo)
+                            .font(.title3)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                    }
+                    Spacer()
+                }
+
+                Divider()
+
+                HStack(spacing: 14) {
+                    Image(systemName: "clock.fill")
+                        .font(.title2)
+                        .foregroundStyle(lineColor)
+                    Text("約\(max(seg.stopCount * 2, 1))分 (\(seg.stopCount)駅)")
+                        .font(.title2).fontWeight(.bold)
+                        .foregroundStyle(KORATheme.labelPrimary)
+                    Spacer()
+                }
+            }
+            .padding(20)
+            .background(lineColor.opacity(0.08))
+            .clipShape(RoundedRectangle(cornerRadius: 18))
+            .overlay(RoundedRectangle(cornerRadius: 18).stroke(lineColor.opacity(0.25), lineWidth: 1.2))
+        }
+    }
+
+    // MARK: Finished block
+
+    private func finishedBlock(j: TransferJourney) -> some View {
+        let destKo = j.segments.last?.stations.last ?? ""
+        let destDisplay = MetroLineData.displayName(for: destKo, language: displayLanguage)
+        let color = j.segments.last?.line.color ?? .green
+
+        return VStack(spacing: 18) {
+            Image(systemName: "checkmark.seal.fill")
+                .font(.largeTitle)
+                .foregroundStyle(color)
+                .padding(.top, 30)
+
+            Text("到着!")
+                .font(.largeTitle).fontWeight(.black)
+                .foregroundStyle(color)
+            Text(destDisplay)
+                .font(.title2).fontWeight(.bold)
+            Text(destKo)
+                .font(.body)
+                .foregroundStyle(KORATheme.labelSecondary)
+        }
+        .frame(maxWidth: .infinity)
+        .padding(30)
+        .background(color.opacity(0.08))
+        .clipShape(RoundedRectangle(cornerRadius: 18))
+        .overlay(RoundedRectangle(cornerRadius: 18).stroke(color.opacity(0.25), lineWidth: 1.2))
+    }
+
+    // MARK: Step block title + arrival badge
+
+    private func stepBlockTitle(_ text: String) -> some View {
+        HStack {
+            Text(LocalizedStringKey(text))
+                .font(.body).fontWeight(.semibold)
+                .foregroundStyle(KORATheme.labelSecondary)
+                .textCase(.uppercase)
+            Spacer()
+        }
+    }
+
+    /// Offline-computed arrival prediction.
+    private func arrivalBadge(timing: SegmentTiming, lineColor: Color) -> some View {
+        let m = timing.minutesUntilArrival
+        return HStack(spacing: 10) {
+            Image(systemName: m <= 1 ? "tram.fill" : "clock.fill")
+                .font(.title3)
+                .foregroundStyle(m <= 1 ? .orange : lineColor)
+            VStack(alignment: .leading, spacing: 1) {
+                if m <= 0 {
+                    Text("まもなく到着")
+                        .font(.title3).fontWeight(.bold)
+                        .foregroundStyle(.orange)
+                } else if m == 1 {
+                    Text("約1分後")
+                        .font(.title3).fontWeight(.bold)
+                        .foregroundStyle(.orange)
+                } else {
+                    Text("約\(m)分後")
+                        .font(.title3).fontWeight(.bold)
+                        .foregroundStyle(lineColor)
+                }
+                Text("次の電車")
+                    .font(.body)
+                    .foregroundStyle(KORATheme.labelSecondary)
+            }
+            Spacer()
+        }
+        .padding(14)
+        .background(Color(.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    private func resetJourney() {
+        withAnimation(.easeInOut(duration: 0.3)) {
+            toStation = nil
+            completedSegments = []
+            onBoardSegmentIdx = nil
+            selectedJourneyIdx = 0
         }
     }
 
@@ -374,18 +656,6 @@ struct SubwayNavigatorView: View {
                     }
 
                     Spacer()
-
-                    VStack(spacing: 2) {
-                        Image(systemName: "pencil")
-                            .font(.body).fontWeight(.semibold)
-                        Text("変更")
-                            .font(.body).fontWeight(.semibold)
-                    }
-                    .foregroundStyle(KORATheme.labelTertiary)
-                    .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .background(Color(.tertiarySystemBackground))
-                    .clipShape(Capsule())
                 }
                 .padding(.horizontal, 18)
                 .padding(.vertical, 16)
@@ -680,491 +950,6 @@ struct SubwayNavigatorView: View {
 
     // MARK: Journey cards — strictly direction + next station + transfer + destination.
 
-    private func journeyScroll(_ j: TransferJourney) -> some View {
-        ScrollView {
-            VStack(spacing: 14) {
-                // Completed segments pinned at top as compact rows
-                let doneIndices = j.segments.indices.filter { completedSegments.contains($0) }
-                if !doneIndices.isEmpty {
-                    VStack(spacing: 6) {
-                        ForEach(doneIndices, id: \.self) { idx in
-                            completedSegmentRow(seg: j.segments[idx])
-                                .transition(.asymmetric(
-                                    insertion: .move(edge: .top).combined(with: .opacity),
-                                    removal: .opacity
-                                ))
-                        }
-                    }
-                    Divider().padding(.vertical, 4)
-                }
-
-                // Active segments
-                ForEach(Array(j.segments.enumerated()), id: \.offset) { idx, seg in
-                    if !completedSegments.contains(idx) {
-                        segmentGroup(idx: idx, seg: seg, j: j)
-                            .transition(.asymmetric(
-                                insertion: .identity,
-                                removal: .move(edge: .leading).combined(with: .opacity)
-                            ))
-                        if idx < j.segments.count - 1 && !completedSegments.contains(idx + 1) {
-                            transferCard(
-                                at: seg.stations.last ?? "",
-                                from: seg.line,
-                                to: j.segments[idx + 1].line
-                            )
-                            .transition(.opacity)
-                        }
-                    }
-                }
-                destinationCard(j)
-                apiKeyButton
-            }
-            .padding(.horizontal, 16)
-            .padding(.top, 18)
-            .padding(.bottom, 140) // leave room for the sticky boarding action bar
-            .animation(.easeOut(duration: 0.32), value: completedSegments)
-        }
-        .task(id: j.id) {
-            refreshTimings(journey: j)
-            if !realtimeAPIKey.isEmpty {
-                await refreshRealtime(journey: j)
-            }
-            while !Task.isCancelled {
-                try? await Task.sleep(for: .seconds(30))
-                guard !Task.isCancelled else { break }
-                refreshTimings(journey: j)
-                if !realtimeAPIKey.isEmpty {
-                    await refreshRealtime(journey: j)
-                }
-            }
-        }
-    }
-
-    private func completedSegmentRow(seg: JourneySegment) -> some View {
-        HStack(spacing: 10) {
-            Image(systemName: "checkmark.circle.fill")
-                .foregroundStyle(.green)
-                .font(.body)
-
-            Text("\(seg.line.number)")
-                .font(.body).fontWeight(.black)
-                .foregroundStyle(.white)
-                .frame(width: 22, height: 22)
-                .background(seg.line.color)
-                .clipShape(Circle())
-
-            Text(MetroLineData.displayName(for: seg.stations.first ?? "", language: displayLanguage))
-                .font(.body).fontWeight(.semibold)
-                .foregroundStyle(KORATheme.labelSecondary)
-
-            Image(systemName: "arrow.right")
-                .font(.body)
-                .foregroundStyle(KORATheme.labelTertiary)
-
-            Text(MetroLineData.displayName(for: seg.stations.last ?? "", language: displayLanguage))
-                .font(.body)
-                .foregroundStyle(KORATheme.labelTertiary)
-                .lineLimit(1)
-
-            Spacer()
-
-            Text("탑승 완료")
-                .font(.body).fontWeight(.semibold)
-                .foregroundStyle(.green)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 3)
-                .background(Color.green.opacity(0.12))
-                .clipShape(Capsule())
-        }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 8)
-        .background(Color(.secondarySystemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("완료: \(seg.line.number)호선 \(seg.stations.first ?? "")역에서 \(seg.stations.last ?? "")역 구간 탑승 완료")
-    }
-
-    // MARK: - Segment Group (swipe-left to complete)
-
-    @ViewBuilder
-    private func segmentGroup(idx: Int, seg: JourneySegment, j: TransferJourney) -> some View {
-        let isOnBoard = (onBoardSegmentIdx == idx)
-        let isActive = isOnBoard
-                       || (onBoardSegmentIdx == nil
-                           && j.segments.indices.first(where: { !completedSegments.contains($0) }) == idx)
-
-        VStack(spacing: 14) {
-            directionCard(seg)
-                .overlay(alignment: .topTrailing) {
-                    if isOnBoard {
-                        Label("乗車中", systemImage: "tram.fill")
-                            .labelStyle(.titleAndIcon)
-                            .font(.body).fontWeight(.bold)
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 6)
-                            .background(seg.line.color)
-                            .clipShape(Capsule())
-                            .padding(10)
-                            .accessibilityHidden(true)
-                    }
-                }
-            timingRow(for: idx, seg: seg)
-            if seg.stations.count > 1 {
-                nextStationCard(
-                    boardingKo: seg.stations[0],
-                    nextKo: seg.stations[1],
-                    lineColor: seg.line.color
-                )
-            }
-        }
-        .opacity(isActive ? 1.0 : 0.55)
-        .accessibilityLabel(isOnBoard ? "현재 탑승 중: \(seg.line.number)호선 \(seg.terminus)행" : "")
-    }
-
-    // MARK: - Journey Summary Banner
-
-    private func journeySummaryBanner(_ j: TransferJourney) -> some View {
-        let arrival = SubwayScheduleService.estimatedArrival(for: j)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        let totalMins = j.segments.reduce(0) { $0 + max(1, $1.stopCount * 2) }
-            + j.segments.dropFirst().reduce(0) { $0 + MetroLineData.transferWalkingMinutes(at: $1.stations[0]) }
-
-        return HStack(spacing: 0) {
-            VStack(alignment: .leading, spacing: 2) {
-                Text("所要時間 約\(totalMins)分")
-                    .font(.body).fontWeight(.semibold)
-                    .foregroundStyle(KORATheme.labelPrimary)
-                if let arr = arrival {
-                    Text("到着予定 \(formatter.string(from: arr))")
-                        .font(.body)
-                        .foregroundStyle(KORATheme.labelSecondary)
-                }
-            }
-            Spacer()
-            Image(systemName: "clock")
-                .font(.body)
-                .foregroundStyle(KORATheme.accent)
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 10)
-        .background(KORATheme.accent.opacity(0.07))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-    }
-
-    // MARK: - Timing Row
-
-    @ViewBuilder
-    private func timingRow(for idx: Int, seg: JourneySegment) -> some View {
-        let timing = segmentTimings[idx]
-        let realtime = realtimeArrivals[idx] ?? []
-        let lineColor = seg.line.color
-
-        if let rt = realtime.first {
-            // Real-time API path: simple pill
-            HStack(spacing: 8) {
-                Circle().fill(rt.minutesUntilArrival == 0 ? Color.orange : lineColor).frame(width: 8, height: 8)
-                if rt.minutesUntilArrival == 0 {
-                    Text("まもなく到着").font(.body).fontWeight(.semibold).foregroundStyle(.orange)
-                } else if let m = rt.minutesUntilArrival {
-                    Text("⚡ \(m)分後到着").font(.body).fontWeight(.semibold).foregroundStyle(lineColor)
-                } else {
-                    Text("⚡ \(rt.message)").font(.body).fontWeight(.semibold).foregroundStyle(lineColor).lineLimit(1)
-                }
-                Spacer()
-            }
-            .padding(.horizontal, 14).padding(.vertical, 10)
-            .background(Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-        } else if let t = timing {
-            TrainApproachCard(
-                timing: t,
-                boardingStation: seg.stations[0],
-                terminus: seg.terminus,
-                lineNumber: seg.line.number,
-                lineColor: lineColor,
-                displayLanguage: displayLanguage
-            )
-        } else {
-            HStack(spacing: 8) {
-                ProgressView().scaleEffect(0.7).tint(lineColor)
-                Text("スケジュール読込中…").font(.body).foregroundStyle(KORATheme.labelTertiary)
-            }
-            .padding(.horizontal, 14).padding(.vertical, 10)
-            .background(Color(.secondarySystemBackground))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-        }
-    }
-
-    // MARK: - API Key Button
-
-    private var apiKeyButton: some View {
-        Button { showAPIKeySheet = true } label: {
-            HStack(spacing: 6) {
-                Image(systemName: realtimeAPIKey.isEmpty ? "bolt.slash" : "bolt.fill")
-                    .font(.body)
-                    .foregroundStyle(realtimeAPIKey.isEmpty ? KORATheme.labelTertiary : .orange)
-                Text(realtimeAPIKey.isEmpty ? "リアルタイム設定" : "リアルタイム接続中")
-                    .font(.body).fontWeight(.medium)
-                    .foregroundStyle(realtimeAPIKey.isEmpty ? KORATheme.labelTertiary : .orange)
-            }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 6)
-            .background(Color(.tertiarySystemBackground))
-            .clipShape(Capsule())
-        }
-        .buttonStyle(.plain)
-        .sheet(isPresented: $showAPIKeySheet) { apiKeySheet }
-        .accessibilityLabel(realtimeAPIKey.isEmpty ? "실시간 도착 정보 API 키 설정" : "실시간 도착 정보 연결됨. 설정 변경")
-    }
-
-    private var apiKeySheet: some View {
-        NavigationView {
-            VStack(alignment: .leading, spacing: 20) {
-                Text("서울 열린데이터광장(data.seoul.go.kr)에서 API 키를 발급받으세요.\n「서울시 지하철 실시간 도착정보」")
-                    .font(.body)
-                    .foregroundStyle(KORATheme.labelSecondary)
-                    .padding(.top, 4)
-
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("API Key")
-                        .font(.body).fontWeight(.semibold)
-                        .foregroundStyle(KORATheme.labelSecondary)
-                    TextField("API 키를 입력하세요", text: $realtimeAPIKey)
-                        .textFieldStyle(.roundedBorder)
-                        .autocorrectionDisabled()
-                        .textInputAutocapitalization(.never)
-                }
-
-                if !realtimeAPIKey.isEmpty {
-                    Button(role: .destructive) {
-                        realtimeAPIKey = ""
-                    } label: {
-                        Text("연결 해제")
-                            .font(.body)
-                    }
-                }
-
-                Spacer()
-            }
-            .padding(20)
-            .navigationTitle("リアルタイム設定")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("완료") { showAPIKeySheet = false }
-                }
-            }
-        }
-    }
-
-    // MARK: - Data Loading
-
-    private func refreshTimings(journey: TransferJourney) {
-        let now = Date()
-        var result: [Int: SegmentTiming] = [:]
-        for (idx, seg) in journey.segments.enumerated() {
-            result[idx] = SubwayScheduleService.timing(for: seg, at: now)
-        }
-        segmentTimings = result
-    }
-
-    private func refreshRealtime(journey: TransferJourney) async {
-        let key = realtimeAPIKey
-        guard !key.isEmpty else { return }
-        var result: [Int: [RealtimeArrivalInfo]] = [:]
-        for (idx, seg) in journey.segments.enumerated() {
-            let station = seg.stations[0]
-            let lineNum = seg.line.number
-            if let arrivals = try? await RealtimeArrivalService.fetch(station: station, lineNumber: lineNum, apiKey: key) {
-                result[idx] = arrivals
-            }
-        }
-        realtimeArrivals = result
-    }
-
-    /// Direction card: ◯◯行き — which train to board.
-    private func directionCard(_ seg: JourneySegment) -> some View {
-        let terminusDisplay = MetroLineData.displayName(for: seg.terminus, language: displayLanguage)
-
-        return HStack(spacing: 12) {
-            Text("\(seg.line.number)")
-                .font(.title3).fontWeight(.black)
-                .foregroundStyle(.white)
-                .frame(width: 40, height: 40)
-                .background(seg.line.color)
-                .clipShape(Circle())
-            VStack(alignment: .leading, spacing: 2) {
-                if showEnglish {
-                    Text(terminusDisplay)
-                        .font(.title2).fontWeight(.black)
-                        .foregroundStyle(seg.line.color)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.7)
-                } else {
-                    Text("\(terminusDisplay)行き")
-                        .font(.title2).fontWeight(.black)
-                        .foregroundStyle(seg.line.color)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.7)
-                }
-                Text("\(seg.terminus)行")
-                    .font(.body)
-                    .foregroundStyle(KORATheme.labelSecondary)
-            }
-            Spacer()
-        }
-        .padding(16)
-        .background(seg.line.color.opacity(0.08))
-        .clipShape(RoundedRectangle(cornerRadius: 14))
-        .overlay(
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(seg.line.color.opacity(0.25), lineWidth: 1)
-        )
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(seg.line.number)호선 \(seg.terminus) 방면 열차를 타세요")
-        .accessibilityAddTraits(.isHeader)
-    }
-
-    /// Next station card — mirrors what's displayed on the train's in-car
-    /// info ("current → next"), so the user can verify they're on the right
-    /// direction's train at first stop.
-    private func nextStationCard(boardingKo: String, nextKo: String, lineColor: Color) -> some View {
-        let boardDisplay = MetroLineData.displayName(for: boardingKo, language: displayLanguage)
-        let nextDisplay = MetroLineData.displayName(for: nextKo, language: displayLanguage)
-
-        return VStack(alignment: .leading, spacing: 10) {
-            HStack(spacing: 0) {
-                VStack(spacing: 3) {
-                    Text(boardDisplay)
-                        .font(.title2).fontWeight(.black)
-                        .foregroundStyle(KORATheme.labelPrimary)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.6)
-                    Text(boardingKo)
-                        .font(.body)
-                        .foregroundStyle(KORATheme.labelSecondary)
-                }
-                .frame(maxWidth: .infinity)
-
-                Image(systemName: "arrow.right")
-                    .font(.title2).fontWeight(.black)
-                    .foregroundStyle(lineColor)
-                    .padding(.horizontal, 10)
-
-                VStack(spacing: 3) {
-                    Text(nextDisplay)
-                        .font(.title2).fontWeight(.black)
-                        .foregroundStyle(lineColor)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.6)
-                    Text(nextKo)
-                        .font(.body)
-                        .foregroundStyle(KORATheme.labelSecondary)
-                }
-                .frame(maxWidth: .infinity)
-            }
-        }
-        .padding(18)
-        .background(Color(.systemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 14))
-        .overlay(
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(lineColor.opacity(0.4), lineWidth: 1.5)
-        )
-        .shadow(color: lineColor.opacity(0.12), radius: 6, y: 2)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("탑승역 \(boardingKo), 다음역 \(nextKo). 열차 방향 확인용.")
-    }
-
-    /// Transfer station card — the station where the user switches lines.
-    private func transferCard(at station: String, from: SeoulMetroLineInfo, to: SeoulMetroLineInfo) -> some View {
-        let stationDisplay = MetroLineData.displayName(for: station, language: displayLanguage)
-        let allLines = MetroLineData.linesContaining(station)
-
-        return HStack(spacing: 12) {
-            Image(systemName: "arrow.triangle.swap")
-                .font(.body).fontWeight(.bold)
-                .foregroundStyle(.white)
-                .frame(width: 36, height: 36)
-                .background(KORATheme.accent)
-                .clipShape(Circle())
-            VStack(alignment: .leading, spacing: 3) {
-                if showEnglish {
-                    Text("Transfer at \(stationDisplay)")
-                        .font(.title3).fontWeight(.bold)
-                } else {
-                    Text("\(stationDisplay)で乗換")
-                        .font(.title3).fontWeight(.bold)
-                }
-                HStack(spacing: 6) {
-                    Text(station)
-                        .font(.body)
-                        .foregroundStyle(KORATheme.labelSecondary)
-                    HStack(spacing: 3) {
-                        ForEach(allLines, id: \.self) { num in
-                            Text("\(num)")
-                                .font(.body).fontWeight(.black)
-                                .foregroundStyle(.white)
-                                .frame(width: 16, height: 16)
-                                .background(MetroLineData.lineColor(num))
-                                .clipShape(Circle())
-                        }
-                    }
-                }
-            }
-            Spacer()
-        }
-        .padding(16)
-        .background(KORATheme.accent.opacity(0.10))
-        .clipShape(RoundedRectangle(cornerRadius: 14))
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(station)역에서 \(to.number)호선으로 환승하세요")
-    }
-
-    /// Final destination card.
-    private func destinationCard(_ j: TransferJourney) -> some View {
-        let destKo = j.segments.last?.stations.last ?? ""
-        let destDisplay = MetroLineData.displayName(for: destKo, language: displayLanguage)
-        let lineColor = j.segments.last?.line.color ?? KORATheme.accent
-
-        return HStack(spacing: 12) {
-            Image(systemName: "flag.fill")
-                .font(.body).fontWeight(.bold)
-                .foregroundStyle(.white)
-                .frame(width: 36, height: 36)
-                .background(lineColor)
-                .clipShape(Circle())
-            VStack(alignment: .leading, spacing: 3) {
-                if showEnglish {
-                    Text("Get off at \(destDisplay)")
-                        .font(.title3).fontWeight(.black)
-                        .foregroundStyle(lineColor)
-                } else {
-                    Text("\(destDisplay)で下車")
-                        .font(.title3).fontWeight(.black)
-                        .foregroundStyle(lineColor)
-                }
-                Text(destKo)
-                    .font(.body)
-                    .foregroundStyle(KORATheme.labelSecondary)
-            }
-            Spacer()
-        }
-        .padding(16)
-        .background(lineColor.opacity(0.10))
-        .clipShape(RoundedRectangle(cornerRadius: 14))
-        .overlay(
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(lineColor.opacity(0.35), lineWidth: 1.5)
-        )
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("목적지: \(destKo)역에서 내리세요")
-        .accessibilityAddTraits(.isStaticText)
-    }
-
-    // MARK: Saved-place rows
 
     private func atStationRow(_ place: Place) -> some View {
         HStack(spacing: 12) {
