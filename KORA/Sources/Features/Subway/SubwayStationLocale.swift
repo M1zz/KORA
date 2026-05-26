@@ -419,7 +419,7 @@ extension MetroLineData {
         "삼성중앙":    .init(ja: "サムソンジュンアン",       en: "Samseong (Jungang)"),
         "봉은사":      .init(ja: "ポンウンサ",            en: "Bongeunsa"),
         "삼전":        .init(ja: "サムジョン",            en: "Samjeon"),
-        "석촌고분":    .init(ja: "ソクチョンゴブン",        en: "Seokchon Ancient Tombs"),
+        "석촌고분":    .init(ja: "ソクチョンゴブン",        en: "Seokchongobun"),
         "송파나루":    .init(ja: "ソンパナル",            en: "Songpa Naru"),
         "한성백제":    .init(ja: "ハンソンペクチェ",        en: "Hanseong Baekje"),
         "올림픽공원":  .init(ja: "オリムピックコンウォン",   en: "Olympic Park"),
