@@ -438,6 +438,12 @@ enum MetroLineData {
         seoulLines.first(where: { $0.number == number })?.color ?? .gray
     }
 
+    /// Round-badge text for a line: short letter code if defined (e.g. "AR"
+    /// for AREX, "K" for 경의중앙선), otherwise the bare number.
+    static func lineBadgeText(_ number: Int) -> String {
+        seoulLines.first(where: { $0.number == number })?.badgeText ?? "\(number)"
+    }
+
     static func transferBadges(for station: String, excluding lineNumber: Int) -> [(number: Int, color: Color)] {
         return linesContaining(station)
             .filter { $0 != lineNumber }

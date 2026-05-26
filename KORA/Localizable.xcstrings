@@ -25,9 +25,6 @@
         }
       }
     },
-    "(%@)" : {
-
-    },
     "「%@」をバンドルに追加してください" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -79,6 +76,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@역까지 %lld정거장 남음. %@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@역까지 %2$lld정거장 남음. %3$@"
           }
         }
       }
@@ -194,9 +201,6 @@
 
     },
     "%lldm" : {
-
-    },
-    "%lld호선" : {
 
     },
     "%lld호선 막차까지 %lld분 남았습니다. 서둘러 주세요." : {
@@ -701,6 +705,9 @@
           }
         }
       }
+    },
+    "다음 정거장 %@역" : {
+
     },
     "뚝섬ナルター" : {
       "extractionState" : "stale",

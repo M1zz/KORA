@@ -113,23 +113,23 @@ extension NavLoc {
         en: "Check the in-train display",
         zh: "请查看车内显示"
     )
-    static let verifyNextStopTitle = NavLoc(
-        ko: "다음 정거장이 이 역인지 확인",
-        ja: "次の駅がこの駅か確認",
-        en: "Make sure the next stop is",
-        zh: "确认下一站是这个站"
+    static let nextStopShort = NavLoc(
+        ko: "다음 정거장",
+        ja: "次の駅",
+        en: "Next stop",
+        zh: "下一站"
     )
-    static let ledMatchHint = NavLoc(
-        ko: "차량 안내판에 이 이름이 보이면 맞는 열차예요",
-        ja: "車内の表示にこの駅名が出れば正しい電車です",
-        en: "If this name shows on the in-train display, you're on the right train",
-        zh: "如果车内显示这个站名,就是正确的列车"
+    static let verifyTipTitle = NavLoc(
+        ko: "다음 정거장 확인",
+        ja: "次の駅を確認",
+        en: "Verify the next stop",
+        zh: "确认下一站"
     )
-    static let wrongTrainHint = NavLoc(
-        ko: "다른 역이 보이면 내려서 반대편 승강장으로 가세요",
-        ja: "違う駅名が出たら降りて反対側のホームへ",
-        en: "If different, get off and take the opposite platform",
-        zh: "如果是其他站名,请下车前往对面站台"
+    static let verifyTipMessage = NavLoc(
+        ko: "차량 안내판에 이 역명이 나오면 맞는 열차예요. 다른 역이면 내려서 반대편 승강장으로 가세요.",
+        ja: "車内の表示にこの駅名が出れば正しい電車です。違う場合は降りて反対側のホームへ。",
+        en: "If this station name appears on the in-train display, you're on the right train. If not, get off and take the opposite platform.",
+        zh: "如果车内显示这个站名,就是正确的列车。如果不是,请下车前往对面站台。"
     )
     static let arrived = NavLoc(
         ko: "도착!",
@@ -220,6 +220,30 @@ extension NavLoc {
         ja: "到着予定",
         en: "ETA",
         zh: "预计到达"
+    )
+    static let alightCalm = NavLoc(
+        ko: "내릴 역",
+        ja: "降車駅",
+        en: "Get off at",
+        zh: "下车站"
+    )
+    static let prepareToGetOff = NavLoc(
+        ko: "곧 내릴 준비하세요",
+        ja: "そろそろ降車の準備",
+        en: "Prepare to get off",
+        zh: "请准备下车"
+    )
+    static let nextStopGetOff = NavLoc(
+        ko: "다음 정거장에서 내리세요",
+        ja: "次の駅で降りてください",
+        en: "Get off at the next stop",
+        zh: "请在下一站下车"
+    )
+    static let getOffNow = NavLoc(
+        ko: "지금 내리세요!",
+        ja: "今降りてください!",
+        en: "Get off now!",
+        zh: "请立即下车!"
     )
     static func stopsRemaining(_ stops: Int, _ lang: StationLanguage) -> String {
         switch lang {
