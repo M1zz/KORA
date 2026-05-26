@@ -610,66 +610,44 @@ struct SubwayNavigatorView: View {
 
     @ViewBuilder
     private func segmentGroup(idx: Int, seg: JourneySegment, j: TransferJourney) -> some View {
-        SwipeToCompleteContainer {
-            withAnimation(.easeOut(duration: 0.28)) { _ = completedSegments.insert(idx) }
-        } content: {
-            VStack(spacing: 14) {
-                directionCard(seg)
-                timingRow(for: idx, seg: seg)
-                if seg.stations.count > 1 {
-                    nextStationCard(
-                        boardingKo: seg.stations[0],
-                        nextKo: seg.stations[1],
-                        lineColor: seg.line.color
-                    )
+        VStack(spacing: 14) {
+            directionCard(seg)
+                .overlay(alignment: .topTrailing) {
+                    Button {
+                        withAnimation(.spring(response: 0.35, dampingFraction: 0.7)) {
+                            _ = completedSegments.insert(idx)
+                        }
+                    } label: {
+                        HStack(spacing: 4) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.system(size: 13))
+                            Text("탑승 완료")
+                                .font(.system(size: 11, weight: .semibold))
+                        }
+                        .foregroundStyle(.green)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(Color.green.opacity(0.12))
+                        .clipShape(Capsule())
+                    }
+                    .buttonStyle(.plain)
+                    .padding(10)
                 }
+            timingRow(for: idx, seg: seg)
+            if seg.stations.count > 1 {
+                nextStationCard(
+                    boardingKo: seg.stations[0],
+                    nextKo: seg.stations[1],
+                    lineColor: seg.line.color
+                )
             }
         }
         .accessibilityAction(named: "탑승 완료") {
-            withAnimation(.easeOut(duration: 0.28)) { _ = completedSegments.insert(idx) }
+            withAnimation(.spring(response: 0.35, dampingFraction: 0.7)) {
+                _ = completedSegments.insert(idx)
+            }
         }
     }
-
-// MARK: - Swipe container (independent gesture state per card)
-
-private struct SwipeToCompleteContainer<Content: View>: View {
-    let onComplete: () -> Void
-    @ViewBuilder let content: () -> Content
-
-    @GestureState private var dragX: CGFloat = 0
-
-    private var progress: CGFloat { min(1.0, abs(dragX) / 80.0) }
-
-    var body: some View {
-        content()
-            .overlay(alignment: .trailing) {
-                Label("탑승 완료", systemImage: "checkmark.circle.fill")
-                    .font(.system(size: 12, weight: .semibold))
-                    .foregroundStyle(.green)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 6)
-                    .background(Color.green.opacity(0.12))
-                    .clipShape(Capsule())
-                    .padding(.trailing, 4)
-                    .opacity(Double(progress))
-                    .scaleEffect(0.8 + 0.2 * Double(progress))
-            }
-            .offset(x: dragX)
-            .gesture(
-                DragGesture(minimumDistance: 15, coordinateSpace: .local)
-                    .updating($dragX) { v, state, _ in
-                        guard abs(v.translation.width) > abs(v.translation.height) else { return }
-                        guard v.translation.width < 0 else { return }
-                        state = max(v.translation.width, -110)
-                    }
-                    .onEnded { v in
-                        if v.translation.width < -60 {
-                            onComplete()
-                        }
-                    }
-            )
-    }
-}
 
     // MARK: - Journey Summary Banner
 
