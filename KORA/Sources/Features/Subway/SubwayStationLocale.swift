@@ -538,7 +538,6 @@ extension MetroLineData {
         "덕소":              .init(ja: "トクソ",                en: "Deokso"),
         "도농":              .init(ja: "トノン",                en: "Donong"),
         "양정":              .init(ja: "ヤンジョン",            en: "Yangjeong"),
-        "구리":              .init(ja: "クリ",                  en: "Guri"),
         "양원":              .init(ja: "ヤンウォン",            en: "Yangwon"),
         "망우":              .init(ja: "マンウ",                en: "Mangu"),
         "중랑":              .init(ja: "チュンナン",            en: "Jungnang"),
@@ -605,6 +604,90 @@ extension MetroLineData {
         case 0x30E9...0x30ED: return "ラ"  // ラ行
         case 0x30EE...0x30F4: return "ワ"  // ワ行 (incl. ヮヰヱヲン, ヴ)
         default:              return "他"
+        }
+    }
+
+    // MARK: - Korean Hangul sectioning (가나다순)
+
+    /// Canonical 가나다 order for Korean section headers. Doubled consonants
+    /// are collapsed (ㄲ → ㄱ, ㄸ → ㄷ, etc.) so the index stays compact.
+    static let hangulIndexOrder: [String] = [
+        "ㄱ", "ㄴ", "ㄷ", "ㄹ", "ㅁ", "ㅂ", "ㅅ", "ㅇ", "ㅈ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ", "#"
+    ]
+
+    /// Extracts the leading consonant of a Hangul syllable for sectioning.
+    /// Doubled consonants are mapped to their base (ㄲ → ㄱ, etc.).
+    static func hangulInitial(for koStation: String) -> String {
+        guard let first = koStation.unicodeScalars.first else { return "#" }
+        let v = first.value
+        guard v >= 0xAC00 && v <= 0xD7A3 else { return "#" }
+        let initials = ["ㄱ", "ㄲ", "ㄴ", "ㄷ", "ㄸ", "ㄹ", "ㅁ", "ㅂ", "ㅃ", "ㅅ", "ㅆ",
+                        "ㅇ", "ㅈ", "ㅉ", "ㅊ", "ㅋ", "ㅌ", "ㅍ", "ㅎ"]
+        let raw = initials[Int(v - 0xAC00) / 588]
+        switch raw {
+        case "ㄲ": return "ㄱ"
+        case "ㄸ": return "ㄷ"
+        case "ㅃ": return "ㅂ"
+        case "ㅆ": return "ㅅ"
+        case "ㅉ": return "ㅈ"
+        default:   return raw
+        }
+    }
+
+    // MARK: - English A–Z sectioning
+
+    static let englishIndexOrder: [String] = {
+        let letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".map { String($0) }
+        return letters + ["#"]
+    }()
+
+    static func englishInitial(for koStation: String) -> String {
+        let en = displayName(for: koStation, language: .english).uppercased()
+        guard let first = en.first else { return "#" }
+        let s = String(first)
+        return ("A"..."Z").contains(s) ? s : "#"
+    }
+
+    // MARK: - Per-language sort & section dispatch
+
+    /// Comparison key used when sorting a station list in display order for
+    /// the picker. Each language uses its own collation:
+    ///   ko → 한글 Unicode (가나다)
+    ///   ja → katakana (gojuon)
+    ///   en → lowercase Latin (A-Z)
+    ///   zh → Chinese display name (Unicode)
+    static func sortKey(for koStation: String, language: StationLanguage) -> String {
+        switch language {
+        case .korean:   return koStation
+        case .japanese: return displayName(for: koStation, language: .japanese)
+        case .english:  return displayName(for: koStation, language: .english).lowercased()
+        case .chinese:  return displayName(for: koStation, language: .chinese)
+        }
+    }
+
+    /// Whether the picker should use section headers for this language.
+    /// Chinese uses a flat list (no good single-letter section system).
+    static func usesSections(for language: StationLanguage) -> Bool {
+        language != .chinese
+    }
+
+    /// Ordered section keys for the chosen language.
+    static func sectionOrder(for language: StationLanguage) -> [String] {
+        switch language {
+        case .korean:   return hangulIndexOrder
+        case .japanese: return kanaIndexOrder
+        case .english:  return englishIndexOrder
+        case .chinese:  return []
+        }
+    }
+
+    /// Header key for a station in the chosen language.
+    static func sectionInitial(for koStation: String, language: StationLanguage) -> String {
+        switch language {
+        case .korean:   return hangulInitial(for: koStation)
+        case .japanese: return kanaInitial(for: koStation)
+        case .english:  return englishInitial(for: koStation)
+        case .chinese:  return ""
         }
     }
 }

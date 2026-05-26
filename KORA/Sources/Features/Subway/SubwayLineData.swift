@@ -784,7 +784,13 @@ struct JourneySegment: Identifiable {
 
 /// A complete journey, possibly with transfers. `segments.count == 1` is a direct route.
 struct TransferJourney: Identifiable {
-    let id = UUID()
+    /// Stable id derived from segment contents — identical routes share the same id
+    /// across recomputes so SwiftUI's `.onChange(of: journey?.id)` doesn't fire spuriously.
+    var id: String {
+        segments
+            .map { "\($0.line.number):\($0.stations.joined(separator: ","))" }
+            .joined(separator: "|")
+    }
     let segments: [JourneySegment]
 
     var transferCount: Int { max(segments.count - 1, 0) }

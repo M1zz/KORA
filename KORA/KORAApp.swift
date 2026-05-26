@@ -1,4 +1,5 @@
 import SwiftUI
+import TipKit
 
 @main
 struct KORAApp: App {
@@ -9,6 +10,11 @@ struct KORAApp: App {
         // notices immediately.
         MetroLineData.assertStationNamesValid()
         #endif
+
+        try? Tips.configure([
+            .displayFrequency(.immediate),
+            .datastoreLocation(.applicationDefault)
+        ])
     }
 
     var body: some Scene {

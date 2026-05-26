@@ -15,6 +15,7 @@
       }
     },
     "· %@" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -23,6 +24,9 @@
           }
         }
       }
+    },
+    "(%@)" : {
+
     },
     "「%@」をバンドルに追加してください" : {
       "extractionState" : "stale",
@@ -52,6 +56,16 @@
         }
       }
     },
+    "%@ (%@)" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ (%2$@)"
+          }
+        }
+      }
+    },
     "%@ %@" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -65,6 +79,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@역까지 %lld정거장, 약 %lld분 남음" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@역까지 %2$lld정거장, 약 %3$lld분 남음"
           }
         }
       }
@@ -139,6 +163,7 @@
       }
     },
     "%@行きに乗ったらタップ" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -204,9 +229,6 @@
         }
       }
     },
-    "%lld前" : {
-
-    },
     "%lld号線" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -219,6 +241,7 @@
       }
     },
     "%lld号線の終電が近づいています" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -448,12 +471,6 @@
         }
       }
     },
-    "Auto (%@)" : {
-
-    },
-    "Display language: %@" : {
-
-    },
     "English" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -487,9 +504,6 @@
         }
       }
     },
-    "GPSが使えない場合は下から駅を選んでください" : {
-
-    },
     "GPSが使えない場合は下のボタンから検索してください" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -506,9 +520,6 @@
           }
         }
       }
-    },
-    "GPSで現在地を取得" : {
-
     },
     "GPSと地下鉄DBから最寄り駅を割り出しています" : {
       "extractionState" : "stale",
@@ -573,6 +584,7 @@
       }
     },
     "Language" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -676,7 +688,7 @@
         }
       }
     },
-    "경로 초기화" : {
+    "길게 누르면 언어를 바꿀 수 있어요" : {
 
     },
     "난지ナルター" : {
@@ -701,7 +713,11 @@
         }
       }
     },
+    "언어 변경" : {
+
+    },
     "역 이름 (한국어 · 日本語 · English)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -721,6 +737,9 @@
           }
         }
       }
+    },
+    "현재 %@역 근처" : {
+
     },
     "アプリ「漢江バス」で予約・決済が便利" : {
       "extractionState" : "stale",
@@ -1000,6 +1019,7 @@
       }
     },
     "どこに行きますか？" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1092,6 +1112,7 @@
       }
     },
     "まずは出発駅を教えてください" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1129,6 +1150,7 @@
       }
     },
     "まもなく到着" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1373,6 +1395,7 @@
       }
     },
     "乗換駅で下車" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -1405,6 +1428,7 @@
       }
     },
     "乗車" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1415,6 +1439,7 @@
       }
     },
     "乗車しましたか？" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1486,6 +1511,7 @@
       }
     },
     "今いる駅は？" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1598,6 +1624,7 @@
       }
     },
     "全路線" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1625,6 +1652,7 @@
       }
     },
     "最初からもう一度" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1641,6 +1669,7 @@
       }
     },
     "最大2回までの乗換で到達できる経路がありません" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1720,6 +1749,7 @@
       }
     },
     "別の目的地を選ぶ" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1747,6 +1777,7 @@
       }
     },
     "到着!" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2091,6 +2122,7 @@
       }
     },
     "徒歩で到着" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2261,6 +2293,7 @@
       }
     },
     "次の電車" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2419,6 +2452,7 @@
       }
     },
     "現在地の取得に失敗しました" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2522,9 +2556,6 @@
         }
       }
     },
-    "発車待ち" : {
-
-    },
     "目的地" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2609,6 +2640,7 @@
       }
     },
     "約%lld分後" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2619,6 +2651,7 @@
       }
     },
     "約1分後" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2640,6 +2673,7 @@
       }
     },
     "終電まで残り %lld 分" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2661,6 +2695,7 @@
       }
     },
     "経路が見つかりません" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2773,6 +2808,7 @@
       }
     },
     "該当する駅が見つかりません" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2866,6 +2902,7 @@
       }
     },
     "車内表示で確認" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -2887,6 +2924,7 @@
       }
     },
     "近くに駅が見つかりませんでした" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2962,6 +3000,7 @@
       }
     },
     "選んだ駅は次回起動時にも記憶されます" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -3016,6 +3055,7 @@
       }
     },
     "降りる駅" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -3032,6 +3072,7 @@
       }
     },
     "電車の現在位置" : {
+      "extractionState" : "stale",
       "localizations" : {
         "zh-Hans" : {
           "stringUnit" : {
@@ -3064,6 +3105,7 @@
       }
     },
     "駅をタップして経路を表示" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -3078,9 +3120,6 @@
           }
         }
       }
-    },
-    "駅を手動で選ぶ" : {
-
     }
   },
   "version" : "1.0"

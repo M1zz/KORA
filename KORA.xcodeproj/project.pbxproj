@@ -42,6 +42,7 @@
 		AA033 /* SubwayStationCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA133 /* SubwayStationCoordinates.swift */; };
 		AA040 /* SubwayStationLocaleValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA140 /* SubwayStationLocaleValidation.swift */; };
 		AA041 /* SubwayStationChineseNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA141 /* SubwayStationChineseNames.swift */; };
+		AA042 /* SubwayNavigatorStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA142 /* SubwayNavigatorStrings.swift */; };
 		AA034 /* SubwayScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA134 /* SubwayScheduleService.swift */; };
 		AA035 /* RealtimeArrivalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA135 /* RealtimeArrivalService.swift */; };
 /* End PBXBuildFile section */
@@ -107,6 +108,7 @@
 		AA133 /* SubwayStationCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationCoordinates.swift; sourceTree = "<group>"; };
 		AA140 /* SubwayStationLocaleValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationLocaleValidation.swift; sourceTree = "<group>"; };
 		AA141 /* SubwayStationChineseNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationChineseNames.swift; sourceTree = "<group>"; };
+		AA142 /* SubwayNavigatorStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayNavigatorStrings.swift; sourceTree = "<group>"; };
 		AA134 /* SubwayScheduleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayScheduleService.swift; sourceTree = "<group>"; };
 		AA135 /* RealtimeArrivalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeArrivalService.swift; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,6 +256,7 @@
 				AA125 /* SubwayLineData.swift */,
 				AA127 /* SubwayStationLocale.swift */,
 				AA129 /* SubwayNavigatorView.swift */,
+				AA142 /* SubwayNavigatorStrings.swift */,
 				AA133 /* SubwayStationCoordinates.swift */,
 				AA140 /* SubwayStationLocaleValidation.swift */,
 				AA141 /* SubwayStationChineseNames.swift */,
@@ -445,6 +448,7 @@
 				AA025 /* SubwayLineData.swift in Sources */,
 				AA027 /* SubwayStationLocale.swift in Sources */,
 				AA029 /* SubwayNavigatorView.swift in Sources */,
+				AA042 /* SubwayNavigatorStrings.swift in Sources */,
 				AA033 /* SubwayStationCoordinates.swift in Sources */,
 				AA040 /* SubwayStationLocaleValidation.swift in Sources */,
 				AA041 /* SubwayStationChineseNames.swift in Sources */,

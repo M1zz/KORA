@@ -1,5 +1,33 @@
 import SwiftUI
 import CoreLocation
+import TipKit
+
+// MARK: - Tips
+
+/// Onboarding tip: tells the user they can long-press the station name
+/// (or welcome title) to change the display language. Shown until the user
+/// performs a long-press for the first time.
+struct LanguageLongPressTip: Tip {
+    static let didLongPress = Event(id: "language-long-press-discovered")
+
+    let lang: StationLanguage
+
+    var title: Text {
+        Text(NavLoc.tipTitle.resolved(lang))
+    }
+
+    var message: Text? {
+        Text(NavLoc.tipMessage.resolved(lang))
+    }
+
+    var image: Image? {
+        Image(systemName: "hand.tap.fill")
+    }
+
+    var rules: [Rule] {
+        [#Rule(Self.didLongPress) { $0.donations.count == 0 }]
+    }
+}
 
 // MARK: - Navigator View
 
@@ -10,13 +38,24 @@ struct SubwayNavigatorView: View {
     @State private var toStation: String? = nil
     @State private var showFromPicker = false
     @State private var showToPicker = false
+    @State private var showLanguagePicker = false
     @State private var selectedJourneyIdx = 0
     /// "" = auto-detect from system locale; otherwise StationLanguage.rawValue
     @AppStorage("kora.display_language") private var languagePref: String = ""
     /// Index of the current "ride block" (= one subway segment). Increments by 1
-    /// every time the user confirms they've boarded a train. When equal to
+    /// every time the user confirms they've alighted from a train. When equal to
     /// `journey.segments.count`, the journey is finished.
     @State private var currentBlockIdx: Int = 0
+
+    /// When the user tapped "boarded" for the current segment. While non-nil,
+    /// the ride block shows an in-transit view (estimated current station,
+    /// stops remaining, ETA). Tapping the action bar again advances to the
+    /// next segment.
+    @State private var boardedAt: Date? = nil
+
+    /// True while the user is correcting the current-train-position estimate
+    /// from the in-transit view.
+    @State private var showPositionCorrection = false
 
     private var displayLanguage: StationLanguage {
         guard !languagePref.isEmpty,
@@ -65,15 +104,39 @@ struct SubwayNavigatorView: View {
         }
         .animation(.easeInOut(duration: 0.25), value: fromStation == nil)
         .sheet(isPresented: $showFromPicker) {
-            StationSearchSheet(title: "現在地 / 현재 역", excluding: toStation) {
+            StationSearchSheet(
+                title: NavLoc.currentStationTitle.resolved(displayLanguage),
+                excluding: toStation,
+                displayLanguage: displayLanguage
+            ) {
                 fromStation = $0
                 selectedJourneyIdx = 0
             }
         }
         .sheet(isPresented: $showToPicker) {
-            StationSearchSheet(title: "目的地 / 목적지", excluding: fromStation) {
+            StationSearchSheet(
+                title: NavLoc.destinationTitle.resolved(displayLanguage),
+                excluding: fromStation,
+                displayLanguage: displayLanguage
+            ) {
                 toStation = $0
                 selectedJourneyIdx = 0
+            }
+        }
+        .sheet(isPresented: $showLanguagePicker) {
+            LanguagePickerSheet(languagePref: $languagePref)
+                .presentationDetents([.medium])
+        }
+        .sheet(isPresented: $showPositionCorrection) {
+            if let j = journey, j.segments.indices.contains(currentBlockIdx) {
+                PositionCorrectionSheet(
+                    seg: j.segments[currentBlockIdx],
+                    displayLanguage: displayLanguage,
+                    estimatedStation: estimatedCurrentKo(in: j.segments[currentBlockIdx])
+                ) { chosenKo in
+                    applyPositionCorrection(to: chosenKo, in: j.segments[currentBlockIdx])
+                }
+                .presentationDetents([.medium, .large])
             }
         }
         .onAppear {
@@ -96,22 +159,32 @@ struct SubwayNavigatorView: View {
         .onChange(of: coordinator.routeRequestNonce) { _, _ in consumePendingDestination() }
         .onChange(of: journey?.id) { _, _ in
             currentBlockIdx = 0
+            boardedAt = nil
         }
-        .toolbar { languageToolbar }
     }
 
     // MARK: - Boarding state machine (one tap = one segment)
 
-    /// Advance to the next ride block when the user confirms they've boarded
-    /// the current train. After the last segment's tap, the journey is done.
+    /// Two-tap boarding flow:
+    ///   tap 1 → mark `boardedAt` (now shows in-transit view)
+    ///   tap 2 → user has alighted, advance to next segment, clear `boardedAt`
+    /// On the finished card, tap = reset for a re-do.
     private func advanceBoarding(in j: TransferJourney) {
         withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
             if currentBlockIdx >= j.segments.count {
                 // Finished — tap = reset for a re-do.
                 currentBlockIdx = 0
+                boardedAt = nil
                 resetJourney()
+            } else if boardedAt == nil {
+                boardedAt = Date()
+                let haptic = UIImpactFeedbackGenerator(style: .light)
+                haptic.impactOccurred()
             } else {
                 currentBlockIdx += 1
+                boardedAt = nil
+                let haptic = UIImpactFeedbackGenerator(style: .medium)
+                haptic.impactOccurred()
             }
         }
     }
@@ -125,7 +198,6 @@ struct SubwayNavigatorView: View {
                     currentStationHeader
                     noRouteView
                 } else {
-                    currentStationHeader
                     destinationFocusBody
                 }
             }
@@ -144,7 +216,6 @@ struct SubwayNavigatorView: View {
     private func activeStepHost(for j: TransferJourney) -> some View {
         ScrollView {
             VStack(spacing: 16) {
-                resetRow
                 if currentBlockIdx < j.segments.count {
                     rideBlock(
                         seg: j.segments[currentBlockIdx],
@@ -163,27 +234,11 @@ struct SubwayNavigatorView: View {
         .animation(.easeInOut(duration: 0.3), value: currentBlockIdx)
     }
 
-    /// Subtle reset row at the very top.
-    private var resetRow: some View {
-        HStack {
-            Spacer()
-            Button {
-                resetJourney()
-            } label: {
-                Image(systemName: "xmark.circle.fill")
-                    .font(.title3)
-                    .foregroundStyle(KORATheme.labelTertiary)
-            }
-            .accessibilityLabel("경로 초기화")
-        }
-    }
-
     // MARK: One ride block
 
     /// Self-contained block for ONE subway ride: direction + next station +
     /// where to get off (with transfer hint or destination indicator).
     private func rideBlock(seg: JourneySegment, isLast: Bool) -> some View {
-        let terminusDisplay = MetroLineData.displayName(for: seg.terminus, language: displayLanguage)
         let boardingKo = seg.stations.first ?? ""
         let boardingDisplay = MetroLineData.displayName(for: boardingKo, language: displayLanguage)
         let alightKo = seg.stations.last ?? ""
@@ -195,66 +250,79 @@ struct SubwayNavigatorView: View {
         let nextLines = MetroLineData.linesContaining(alightKo)
 
         return VStack(spacing: 18) {
-            // Direction header — which train
+            // Direction header — which train.
+            // The direction text gets layout priority so it never truncates;
+            // the line-number badge shrinks (min 44pt) if space is tight.
             HStack(spacing: 14) {
                 Text(seg.line.badgeText)
                     .font(.largeTitle).fontWeight(.black)
                     .foregroundStyle(.white)
-                    .frame(width: 64, height: 64)
+                    .frame(minWidth: 44, idealWidth: 64, maxWidth: 64,
+                           minHeight: 44, idealHeight: 64, maxHeight: 64)
                     .background(seg.line.color)
                     .clipShape(Circle())
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
+                    .layoutPriority(0)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(directionLabel(terminus: seg.terminus))
                         .font(.largeTitle).fontWeight(.black)
                         .foregroundStyle(seg.line.color)
-                        .lineLimit(2)
-                        .minimumScaleFactor(0.6)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
                     // Secondary line: always show Korean Hangul so the user
                     // can match the platform signage in any UI language.
                     if displayLanguage != .korean {
                         Text("\(seg.terminus)행")
                             .font(.title3)
                             .foregroundStyle(KORATheme.labelSecondary)
+                            .lineLimit(nil)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
-                Spacer()
+                .layoutPriority(1)
+                Spacer(minLength: 0)
             }
 
             Divider()
 
-            // In-car display verification — boarding → next stop
-            if let nk = nextKo {
+            // After "boarded" was tapped: show live in-transit position +
+            // stops remaining + ETA, refreshed every few seconds.
+            if let bt = boardedAt {
+                inTransitSection(seg: seg, boardedAt: bt)
+                Divider()
+            } else if let nk = nextKo {
                 VStack(alignment: .leading, spacing: 8) {
-                    Text("車内表示で確認")
+                    Text(NavLoc.confirmInTrainDisplay.resolved(displayLanguage))
                         .font(.body).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.labelSecondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                    HStack(spacing: 0) {
-                        VStack(spacing: 2) {
-                            Text(boardingDisplay)
-                                .font(.title2).fontWeight(.bold)
-                                .lineLimit(1).minimumScaleFactor(0.6)
-                            Text(boardingKo)
-                                .font(.body)
-                                .foregroundStyle(KORATheme.labelSecondary)
-                        }
-                        .frame(maxWidth: .infinity)
-                        Image(systemName: "arrow.right")
-                            .font(.title2).fontWeight(.black)
-                            .foregroundStyle(seg.line.color)
-                            .padding(.horizontal, 8)
-                        VStack(spacing: 2) {
-                            Text(nextDisplay)
-                                .font(.title2).fontWeight(.bold)
+
+                    let boardingCol = stationCol(primary: boardingDisplay, secondary: boardingKo, tint: nil)
+                    let nextCol = stationCol(primary: nextDisplay, secondary: nk, tint: seg.line.color)
+
+                    ViewThatFits(in: .horizontal) {
+                        // Horizontal layout — preferred.
+                        HStack(spacing: 0) {
+                            boardingCol
+                                .frame(maxWidth: .infinity)
+                            Image(systemName: "arrow.right")
+                                .font(.title2).fontWeight(.black)
                                 .foregroundStyle(seg.line.color)
-                                .lineLimit(1).minimumScaleFactor(0.6)
-                            Text(nk)
-                                .font(.body)
-                                .foregroundStyle(KORATheme.labelSecondary)
+                                .padding(.horizontal, 8)
+                            nextCol
+                                .frame(maxWidth: .infinity)
                         }
-                        .frame(maxWidth: .infinity)
+                        // Vertical fallback — used when text is too long.
+                        VStack(spacing: 6) {
+                            boardingCol
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            Image(systemName: "arrow.down")
+                                .font(.title3).fontWeight(.black)
+                                .foregroundStyle(seg.line.color)
+                            nextCol
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
                     }
                 }
 
@@ -270,13 +338,16 @@ struct SubwayNavigatorView: View {
                     .background(isLast ? alightLineColor : KORATheme.accent)
                     .clipShape(Circle())
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(isLast ? "降りる駅" : "乗換駅で下車")
+                    Text(isLast
+                         ? NavLoc.getOffStation.resolved(displayLanguage)
+                         : NavLoc.transferStation.resolved(displayLanguage))
                         .font(.body).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.labelSecondary)
                     Text(alightDisplay)
                         .font(.title2).fontWeight(.black)
                         .foregroundStyle(KORATheme.labelPrimary)
-                        .lineLimit(1).minimumScaleFactor(0.7)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
                     HStack(spacing: 6) {
                         Text(alightKo)
                             .font(.body)
@@ -299,12 +370,199 @@ struct SubwayNavigatorView: View {
                 Spacer()
             }
 
-            trainApproachVisual(seg: seg, timing: timing)
+            // Train approach visual is only useful pre-boarding (it shows
+            // the incoming train's position relative to your boarding stop).
+            if boardedAt == nil {
+                trainApproachVisual(seg: seg, timing: timing)
+            }
         }
         .padding(20)
         .background(seg.line.color.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 18))
         .overlay(RoundedRectangle(cornerRadius: 18).stroke(seg.line.color.opacity(0.25), lineWidth: 1.2))
+    }
+
+    /// Two-line station label (display name + Korean Hangul). Never truncates
+    /// and never shrinks — wraps onto additional lines instead.
+    @ViewBuilder
+    private func stationCol(primary: String, secondary: String, tint: Color?) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(primary)
+                .font(.title2).fontWeight(.bold)
+                .foregroundStyle(tint ?? KORATheme.labelPrimary)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
+                .multilineTextAlignment(.leading)
+            Text(secondary)
+                .font(.body)
+                .foregroundStyle(KORATheme.labelSecondary)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
+                .multilineTextAlignment(.leading)
+        }
+    }
+
+    // MARK: In-transit section (post-boarding)
+
+    /// Estimates current train position from `boardedAt` and shows: current
+    /// station, stops to alight, and minutes remaining. Refreshes every 5s
+    /// via TimelineView so the labels stay live.
+    @ViewBuilder
+    private func inTransitSection(seg: JourneySegment, boardedAt: Date) -> some View {
+        TimelineView(.periodic(from: boardedAt, by: 5)) { context in
+            let now = context.date
+            let totalStops = max(seg.stopCount, 1)
+            let secsPerStop = secondsPerStop(for: seg)
+            let elapsed = max(Int(now.timeIntervalSince(boardedAt)), 0)
+            let stopsTraveled = min(elapsed / secsPerStop, totalStops)
+            let stopsRemaining = max(totalStops - stopsTraveled, 0)
+            let currentStationIdx = min(stopsTraveled, seg.stations.count - 1)
+            let currentKo = seg.stations[currentStationIdx]
+            let currentDisplay = MetroLineData.displayName(for: currentKo, language: displayLanguage)
+            let alightKo = seg.stations.last ?? ""
+            let alightDisplay = MetroLineData.displayName(for: alightKo, language: displayLanguage)
+            let secsRemaining = max((totalStops - stopsTraveled) * secsPerStop - (elapsed % secsPerStop), 0)
+            let minsRemaining = (secsRemaining + 30) / 60
+
+            VStack(alignment: .leading, spacing: 14) {
+                // Current position — tappable to correct
+                Button {
+                    showPositionCorrection = true
+                } label: {
+                    HStack(alignment: .center, spacing: 12) {
+                        ZStack {
+                            Circle()
+                                .fill(seg.line.color)
+                                .frame(width: 44, height: 44)
+                            Image(systemName: "tram.fill")
+                                .font(.title3).fontWeight(.bold)
+                                .foregroundStyle(.white)
+                        }
+                        VStack(alignment: .leading, spacing: 2) {
+                            HStack(spacing: 6) {
+                                Text(NavLoc.currentlyAt.resolved(displayLanguage))
+                                    .font(.body).fontWeight(.semibold)
+                                    .foregroundStyle(KORATheme.labelSecondary)
+                                Image(systemName: "pencil.circle.fill")
+                                    .font(.body)
+                                    .foregroundStyle(KORATheme.labelTertiary)
+                            }
+                            Text(currentDisplay)
+                                .font(.title2).fontWeight(.black)
+                                .foregroundStyle(KORATheme.labelPrimary)
+                                .lineLimit(nil)
+                                .fixedSize(horizontal: false, vertical: true)
+                            if displayLanguage != .korean {
+                                Text(currentKo)
+                                    .font(.body).fontWeight(.medium)
+                                    .foregroundStyle(KORATheme.labelSecondary)
+                            }
+                        }
+                        Spacer(minLength: 0)
+                    }
+                }
+                .buttonStyle(.plain)
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("현재 \(currentKo)역 근처")
+                .accessibilityHint(NavLoc.correctPosition.resolved(displayLanguage))
+                .accessibilityAddTraits(.isButton)
+
+                // Progress bar — stations remaining
+                if totalStops > 0 {
+                    GeometryReader { geo in
+                        let progress = min(max(Double(stopsTraveled) / Double(totalStops), 0), 1)
+                        ZStack(alignment: .leading) {
+                            Capsule()
+                                .fill(seg.line.color.opacity(0.18))
+                            Capsule()
+                                .fill(seg.line.color)
+                                .frame(width: geo.size.width * progress)
+                        }
+                    }
+                    .frame(height: 8)
+                    .accessibilityHidden(true)
+                }
+
+                // Stops remaining + ETA
+                HStack(alignment: .firstTextBaseline) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(NavLoc.stopsToAlight.resolved(displayLanguage))
+                            .font(.body)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                        Text(NavLoc.stopsRemaining(stopsRemaining, displayLanguage))
+                            .font(.title).fontWeight(.black)
+                            .foregroundStyle(KORATheme.labelPrimary)
+                    }
+                    Spacer()
+                    VStack(alignment: .trailing, spacing: 2) {
+                        Text(NavLoc.etaLabel.resolved(displayLanguage))
+                            .font(.body)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                        Text(minsRemaining == 0
+                             ? NavLoc.arrivingSoon.resolved(displayLanguage)
+                             : NavLoc.aboutMinutes(minsRemaining, displayLanguage))
+                            .font(.title2).fontWeight(.bold)
+                            .foregroundStyle(seg.line.color)
+                    }
+                }
+                .accessibilityElement(children: .combine)
+                .accessibilityLabel("\(alightKo)역까지 \(stopsRemaining)정거장, 약 \(minsRemaining)분 남음")
+
+                // Alight reminder
+                HStack(spacing: 8) {
+                    Image(systemName: "flag.checkered")
+                        .font(.body).fontWeight(.bold)
+                        .foregroundStyle(seg.line.color)
+                    Text(alightDisplay)
+                        .font(.body).fontWeight(.semibold)
+                        .foregroundStyle(KORATheme.labelPrimary)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
+                    if displayLanguage != .korean {
+                        Text("(\(alightKo))")
+                            .font(.body)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                    }
+                }
+            }
+        }
+    }
+
+    /// Average seconds-per-stop for a segment — derived from `SegmentTiming`
+    /// if a schedule lookup succeeds, otherwise a 2-minute fallback.
+    private func secondsPerStop(for seg: JourneySegment) -> Int {
+        let stops = max(seg.stopCount, 1)
+        if let timing = SubwayScheduleService.timing(for: seg, at: Date()) {
+            let total = max(timing.travelMinutes * 60, stops)
+            return max(total / stops, 60)
+        }
+        return 120
+    }
+
+    /// Current estimated Korean station name for the given segment, derived
+    /// from `boardedAt` + `secondsPerStop`. Falls back to the boarding station
+    /// if not yet boarded.
+    private func estimatedCurrentKo(in seg: JourneySegment) -> String {
+        guard let bt = boardedAt else { return seg.stations.first ?? "" }
+        let secsPerStop = secondsPerStop(for: seg)
+        let elapsed = max(Int(Date().timeIntervalSince(bt)), 0)
+        let totalStops = max(seg.stopCount, 1)
+        let stopsTraveled = min(elapsed / secsPerStop, totalStops)
+        let idx = min(stopsTraveled, seg.stations.count - 1)
+        return seg.stations[idx]
+    }
+
+    /// Back-calculates `boardedAt` so the time-based estimator now reports
+    /// `chosenKo` as the current station. Effectively a one-tap correction.
+    private func applyPositionCorrection(to chosenKo: String, in seg: JourneySegment) {
+        guard let idx = seg.stations.firstIndex(of: chosenKo) else { return }
+        let secsPerStop = secondsPerStop(for: seg)
+        // Aim for the middle of the chosen station's window so a small clock
+        // tick doesn't immediately bump it to the next stop.
+        let elapsedSecs = idx * secsPerStop + secsPerStop / 2
+        boardedAt = Date(timeIntervalSinceNow: -Double(elapsedSecs))
+        let haptic = UIImpactFeedbackGenerator(style: .light)
+        haptic.impactOccurred()
     }
 
     // MARK: Finished block
@@ -320,7 +578,7 @@ struct SubwayNavigatorView: View {
                 .foregroundStyle(color)
                 .padding(.top, 30)
 
-            Text("到着!")
+            Text(NavLoc.arrived.resolved(displayLanguage))
                 .font(.largeTitle).fontWeight(.black)
                 .foregroundStyle(color)
             Text(destDisplay)
@@ -377,7 +635,7 @@ struct SubwayNavigatorView: View {
         let isFarAway = trainIdx == nil
 
         return VStack(alignment: .leading, spacing: 12) {
-            Text(LocalizedStringKey("電車の現在位置"))
+            Text(NavLoc.trainCurrentLocation.resolved(displayLanguage))
                 .font(.body).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.labelSecondary)
 
@@ -472,19 +730,19 @@ struct SubwayNavigatorView: View {
                 .foregroundStyle(m <= 1 ? .orange : lineColor)
             VStack(alignment: .leading, spacing: 1) {
                 if m <= 0 {
-                    Text("まもなく到着")
+                    Text(NavLoc.arrivingSoon.resolved(displayLanguage))
                         .font(.title3).fontWeight(.bold)
                         .foregroundStyle(.orange)
                 } else if m == 1 {
-                    Text("約1分後")
+                    Text(NavLoc.aboutMinutes(1, displayLanguage))
                         .font(.title3).fontWeight(.bold)
                         .foregroundStyle(.orange)
                 } else {
-                    Text("約\(m)分後")
+                    Text(NavLoc.aboutMinutes(m, displayLanguage))
                         .font(.title3).fontWeight(.bold)
                         .foregroundStyle(lineColor)
                 }
-                Text("次の電車")
+                Text(NavLoc.nextTrain.resolved(displayLanguage))
                     .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
@@ -500,6 +758,7 @@ struct SubwayNavigatorView: View {
             toStation = nil
             currentBlockIdx = 0
             selectedJourneyIdx = 0
+            boardedAt = nil
         }
     }
 
@@ -544,7 +803,7 @@ struct SubwayNavigatorView: View {
                 Image(systemName: "arrow.counterclockwise")
                     .font(.title3)
                     .foregroundStyle(.white)
-                Text("最初からもう一度")
+                Text(NavLoc.startOver.resolved(displayLanguage))
                     .font(.title3).fontWeight(.bold)
                     .foregroundStyle(.white)
                 Spacer()
@@ -552,19 +811,25 @@ struct SubwayNavigatorView: View {
         } else {
             let seg = j.segments[currentBlockIdx]
             let terminus = MetroLineData.displayName(for: seg.terminus, language: displayLanguage)
+            let alight = MetroLineData.displayName(for: seg.stations.last ?? "", language: displayLanguage)
+            let isBoarded = boardedAt != nil
             HStack(spacing: 12) {
-                Image(systemName: "tram.fill")
+                Image(systemName: isBoarded ? "figure.walk" : "tram.fill")
                     .font(.title3)
                     .foregroundStyle(.white)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("乗車しましたか？")
+                    Text(isBoarded
+                         ? NavLoc.didYouGetOff.resolved(displayLanguage)
+                         : NavLoc.didYouBoard.resolved(displayLanguage))
                         .font(.body).fontWeight(.semibold)
                         .foregroundStyle(.white.opacity(0.85))
-                    Text("\(terminus)行きに乗ったらタップ")
+                    Text(isBoarded
+                         ? "\(alight) — \(NavLoc.tapWhenOff.resolved(displayLanguage))"
+                         : NavLoc.tapWhenBoarded(terminus, displayLanguage))
                         .font(.title3).fontWeight(.bold)
                         .foregroundStyle(.white)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.7)
+                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
                 Image(systemName: "checkmark.circle.fill")
@@ -574,38 +839,15 @@ struct SubwayNavigatorView: View {
         }
     }
 
-    // MARK: - Language picker (toolbar)
-
-    /// Apple-standard Menu on the navigation bar's trailing edge. Tap to
-    /// choose between 한국어 / 日本語 / English / 中文 — or "Auto" to follow
-    /// the system locale.
-    @ToolbarContentBuilder
-    var languageToolbar: some ToolbarContent {
-        ToolbarItem(placement: .topBarTrailing) {
-            Menu {
-                Picker("Language", selection: $languagePref) {
-                    Label("Auto (\(StationLanguage.resolveFromSystemLocale().displayName))", systemImage: "sparkles")
-                        .tag("")
-                    ForEach(StationLanguage.allCases, id: \.self) { lang in
-                        Text(lang.displayName).tag(lang.rawValue)
-                    }
-                }
-            } label: {
-                Image(systemName: "globe")
-                    .accessibilityLabel("Display language: \(displayLanguage.displayName)")
-            }
-        }
-    }
-
     // MARK: Current-station header (top of screen, line-colored)
 
-    /// Top-of-screen current station card. Shows the line color stripe(s) for
-    /// transfer stations, a large Japanese station name, the Korean subtitle,
-    /// and tap-anywhere-to-change affordance. This is the user's anchor point
-    /// — the source for every route they build below.
+    /// Top-of-screen current station card. Modeled after the iconic Seoul
+    /// subway station sign — thick colored border on a white capsule with the
+    /// line number badge on the left, station name centered, and a tap
+    /// affordance on the right.
     private var currentStationHeader: some View {
         let ko = fromStation ?? ""
-        let ja = MetroLineData.displayName(for: ko, language: displayLanguage)
+        let display = MetroLineData.displayName(for: ko, language: displayLanguage)
         let lines = MetroLineData.linesContaining(ko)
         let primaryColor = lines.first.map { MetroLineData.lineColor($0) } ?? KORATheme.accent
 
@@ -614,122 +856,178 @@ struct SubwayNavigatorView: View {
             ? "\(ko)역. 현재역 변경하려면 탭하세요."
             : "\(ko)역, \(lineNames). 현재역 변경하려면 탭하세요."
 
-        return VStack(spacing: 0) {
-            // Decorative color stripe — hidden from VoiceOver
-            HStack(spacing: 0) {
-                if lines.isEmpty {
-                    Rectangle().fill(KORATheme.accent).frame(height: 6)
-                } else {
+        return Button {
+            showFromPicker = true
+        } label: {
+            HStack(alignment: .center, spacing: 12) {
+                VStack(spacing: 4) {
                     ForEach(lines, id: \.self) { num in
-                        Rectangle()
-                            .fill(MetroLineData.lineColor(num))
-                            .frame(height: 6)
+                        Text("\(num)")
+                            .font(.body).fontWeight(.black)
+                            .foregroundStyle(.white)
+                            .frame(width: 36, height: 36)
+                            .background(MetroLineData.lineColor(num))
+                            .clipShape(Circle())
+                            .accessibilityLabel("\(num)호선")
                     }
                 }
-            }
-            .accessibilityHidden(true)
 
-            Button {
-                showFromPicker = true
-            } label: {
-                HStack(alignment: .center, spacing: 14) {
-                    VStack(spacing: 4) {
-                        ForEach(lines, id: \.self) { num in
-                            Text("\(num)")
-                                .font(.body).fontWeight(.black)
-                                .foregroundStyle(.white)
-                                .frame(width: 30, height: 30)
-                                .background(MetroLineData.lineColor(num))
-                                .clipShape(Circle())
-                                .accessibilityLabel("\(num)호선")
-                        }
-                    }
-
-                    VStack(alignment: .leading, spacing: 3) {
-                        Text(ja)
-                            .font(.title).fontWeight(.black)
-                            .foregroundStyle(KORATheme.labelPrimary)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.6)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(display)
+                        .font(.title).fontWeight(.black)
+                        .foregroundStyle(KORATheme.labelPrimary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                    if displayLanguage != .korean {
                         Text(ko)
                             .font(.body).fontWeight(.medium)
                             .foregroundStyle(KORATheme.labelSecondary)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.6)
                     }
-
-                    Spacer()
-                }
-                .padding(.horizontal, 18)
-                .padding(.vertical, 16)
-                .background(primaryColor.opacity(0.08))
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel(headerLabel)
-        }
-    }
-
-    // MARK: Destination-focused body (no journey yet)
-
-    /// Big destination CTA when no destination is set, plus saved-place
-    /// quick routes below. Replaces the old fromOnlyView/emptyStateView split.
-    private var destinationFocusBody: some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                destinationCTA
-
-                if !savedPlacesAtFromStation.isEmpty {
-                    savedSection(
-                        title: "この駅にあるスポット",
-                        places: savedPlacesAtFromStation,
-                        atStation: true
-                    )
-                }
-
-                if !savedPlacesNearby.isEmpty {
-                    savedSection(
-                        title: "保存スポットへ行く",
-                        places: savedPlacesNearby,
-                        atStation: false
-                    )
-                }
-            }
-            .padding(16)
-            .padding(.bottom, 32)
-        }
-    }
-
-    private var destinationCTA: some View {
-        Button {
-            showToPicker = true
-        } label: {
-            HStack(spacing: 14) {
-                Image(systemName: "magnifyingglass.circle.fill")
-                    .font(.largeTitle)
-                    .foregroundStyle(KORATheme.accent)
-
-                VStack(alignment: .leading, spacing: 2) {
-                    Text("どこに行きますか？")
-                        .font(.title3).fontWeight(.bold)
-                        .foregroundStyle(KORATheme.labelPrimary)
-                    Text("駅をタップして経路を表示")
-                        .font(.body)
-                        .foregroundStyle(KORATheme.labelSecondary)
                 }
 
                 Spacer()
 
                 Image(systemName: "chevron.right")
                     .font(.body).fontWeight(.bold)
-                    .foregroundStyle(KORATheme.accent.opacity(0.5))
+                    .foregroundStyle(primaryColor.opacity(0.6))
             }
-            .padding(20)
-            .background(KORATheme.accent.opacity(0.08))
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .padding(.vertical, 12)
+            .padding(.leading, 10)
+            .padding(.trailing, 20)
+            .background(
+                Capsule()
+                    .fill(Color(.systemBackground))
+            )
             .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(KORATheme.accent.opacity(0.15), lineWidth: 1)
+                Capsule()
+                    .strokeBorder(primaryColor, lineWidth: 4)
             )
         }
         .buttonStyle(.plain)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 6)
+        .accessibilityLabel(headerLabel)
+        .accessibilityHint("길게 누르면 언어를 바꿀 수 있어요")
+        .highPriorityGesture(
+            LongPressGesture(minimumDuration: 0.6).onEnded { _ in
+                let haptic = UIImpactFeedbackGenerator(style: .medium)
+                haptic.impactOccurred()
+                showLanguagePicker = true
+                Task { await LanguageLongPressTip.didLongPress.donate() }
+            }
+        )
+        .accessibilityAction(named: "언어 변경") { showLanguagePicker = true }
+        .popoverTip(LanguageLongPressTip(lang: displayLanguage), arrowEdge: .top)
+    }
+
+    // MARK: Destination-focused body (no journey yet)
+
+    /// From + To capsules centered vertically as one hero pair, with optional
+    /// saved-place quick routes pinned to the bottom.
+    private var destinationFocusBody: some View {
+        let hasSaved = !savedPlacesAtFromStation.isEmpty || !savedPlacesNearby.isEmpty
+
+        return VStack(spacing: 0) {
+            Spacer(minLength: 0)
+            VStack(spacing: 0) {
+                currentStationHeader
+                destinationCTA
+            }
+            Spacer(minLength: 0)
+
+            if hasSaved {
+                ScrollView {
+                    VStack(spacing: 16) {
+                        if !savedPlacesAtFromStation.isEmpty {
+                            savedSection(
+                                title: NavLoc.savedAtThisStation.resolved(displayLanguage),
+                                places: savedPlacesAtFromStation,
+                                atStation: true
+                            )
+                        }
+
+                        if !savedPlacesNearby.isEmpty {
+                            savedSection(
+                                title: NavLoc.savedGoTo.resolved(displayLanguage),
+                                places: savedPlacesNearby,
+                                atStation: false
+                            )
+                        }
+                    }
+                    .padding(16)
+                    .padding(.bottom, 32)
+                }
+                .frame(maxHeight: 320)
+            }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    /// Destination capsule — visual twin of `currentStationHeader` styled
+    /// after the Seoul subway station sign (thick accent border, white
+    /// capsule fill, circular leading badge).
+    private var destinationCTA: some View {
+        Button {
+            showToPicker = true
+        } label: {
+            HStack(alignment: .center, spacing: 12) {
+                ZStack {
+                    Circle()
+                        .fill(KORATheme.accent)
+                        .frame(width: 36, height: 36)
+                    Image(systemName: "magnifyingglass")
+                        .font(.body).fontWeight(.black)
+                        .foregroundStyle(.white)
+                }
+                .accessibilityHidden(true)
+
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(NavLoc.whereToGo.resolved(displayLanguage))
+                        .font(.title).fontWeight(.black)
+                        .foregroundStyle(KORATheme.labelPrimary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.6)
+                    Text(NavLoc.tapStationForRoute.resolved(displayLanguage))
+                        .font(.body).fontWeight(.medium)
+                        .foregroundStyle(KORATheme.labelSecondary)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                }
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                    .font(.body).fontWeight(.bold)
+                    .foregroundStyle(KORATheme.accent.opacity(0.6))
+            }
+            .padding(.vertical, 12)
+            .padding(.leading, 10)
+            .padding(.trailing, 20)
+            .background(
+                Capsule()
+                    .fill(Color(.systemBackground))
+            )
+            .overlay(
+                Capsule()
+                    .strokeBorder(KORATheme.accent, lineWidth: 4)
+            )
+        }
+        .buttonStyle(.plain)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 6)
+        .accessibilityLabel(NavLoc.whereToGo.resolved(displayLanguage))
+        .accessibilityHint(NavLoc.tapStationForRoute.resolved(displayLanguage))
+        .highPriorityGesture(
+            LongPressGesture(minimumDuration: 0.6).onEnded { _ in
+                let haptic = UIImpactFeedbackGenerator(style: .medium)
+                haptic.impactOccurred()
+                showLanguagePicker = true
+                Task { await LanguageLongPressTip.didLongPress.donate() }
+            }
+        )
+        .accessibilityAction(named: "언어 변경") { showLanguagePicker = true }
     }
 
     private func savedSection(title: String, places: [Place], atStation: Bool) -> some View {
@@ -780,15 +1078,29 @@ struct SubwayNavigatorView: View {
                             .foregroundStyle(KORATheme.accent)
                     }
                     VStack(spacing: 6) {
-                        Text("今いる駅は？")
+                        Text(NavLoc.welcomeTitle.resolved(displayLanguage))
                             .font(.title).fontWeight(.bold)
                             .multilineTextAlignment(.center)
-                        Text(locationError != nil ? "GPSが使えない場合は下から駅を選んでください" : "まずは出発駅を教えてください")
+                        Text(locationError != nil
+                             ? NavLoc.welcomeHintNoGPS.resolved(displayLanguage)
+                             : NavLoc.welcomeHintDefault.resolved(displayLanguage))
                             .font(.body)
                             .foregroundStyle(KORATheme.labelSecondary)
                             .multilineTextAlignment(.center)
                             .padding(.horizontal, 32)
                     }
+                    .accessibilityElement(children: .combine)
+                    .accessibilityHint("길게 누르면 언어를 바꿀 수 있어요")
+                    .simultaneousGesture(
+                        LongPressGesture(minimumDuration: 0.5).onEnded { _ in
+                            let haptic = UIImpactFeedbackGenerator(style: .medium)
+                            haptic.impactOccurred()
+                            showLanguagePicker = true
+                            Task { await LanguageLongPressTip.didLongPress.donate() }
+                        }
+                    )
+                    .accessibilityAction(named: "언어 변경") { showLanguagePicker = true }
+                    .popoverTip(LanguageLongPressTip(lang: displayLanguage), arrowEdge: .top)
                 }
 
                 VStack(spacing: 12) {
@@ -798,7 +1110,7 @@ struct SubwayNavigatorView: View {
                         HStack(spacing: 8) {
                             Image(systemName: "location.fill")
                                 .font(.body).fontWeight(.semibold)
-                            Text("GPSで現在地を取得")
+                            Text(NavLoc.useGPS.resolved(displayLanguage))
                                 .font(.body).fontWeight(.semibold)
                         }
                         .frame(maxWidth: .infinity)
@@ -815,7 +1127,7 @@ struct SubwayNavigatorView: View {
                         HStack(spacing: 8) {
                             Image(systemName: "magnifyingglass")
                                 .font(.body).fontWeight(.semibold)
-                            Text("駅を手動で選ぶ")
+                            Text(NavLoc.pickStationManually.resolved(displayLanguage))
                                 .font(.body).fontWeight(.semibold)
                         }
                         .frame(maxWidth: .infinity)
@@ -837,7 +1149,7 @@ struct SubwayNavigatorView: View {
 
                 Spacer()
 
-                Text("選んだ駅は次回起動時にも記憶されます")
+                Text(NavLoc.footerNote.resolved(displayLanguage))
                     .font(.body)
                     .foregroundStyle(KORATheme.labelTertiary)
                     .padding(.bottom, 24)
@@ -889,10 +1201,10 @@ struct SubwayNavigatorView: View {
                 .background(Color.orange)
                 .clipShape(Circle())
             VStack(alignment: .leading, spacing: 2) {
-                Text("終電まで残り \(w.minutesRemaining) 分")
+                Text(NavLoc.lastTrainRemaining(w.minutesRemaining, displayLanguage))
                     .font(.body).fontWeight(.bold)
                     .foregroundStyle(.orange)
-                Text("\(w.line)号線の終電が近づいています")
+                Text(NavLoc.lastTrainApproaching(line: w.line, displayLanguage))
                     .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
@@ -939,11 +1251,11 @@ struct SubwayNavigatorView: View {
                 return
             }
 
-            locationError = String(localized: "近くに駅が見つかりませんでした")
+            locationError = NavLoc.locationErrorNoStation.resolved(displayLanguage)
         } catch let e as LocationService.LocationError {
             locationError = e.errorDescription
         } catch {
-            locationError = String(localized: "現在地の取得に失敗しました")
+            locationError = NavLoc.locationErrorFetchFailed.resolved(displayLanguage)
         }
     }
 
@@ -964,15 +1276,15 @@ struct SubwayNavigatorView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(place.nameJP)
                     .font(.body).fontWeight(.semibold)
-                    .lineLimit(1)
+                    .lineLimit(2)
                 Text(place.name)
                     .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
-                    .lineLimit(1)
+                    .lineLimit(2)
             }
             Spacer()
 
-            Text("徒歩で到着")
+            Text(NavLoc.walkingArrived.resolved(displayLanguage))
                 .font(.body).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.accent)
                 .padding(.horizontal, 8)
@@ -1006,7 +1318,7 @@ struct SubwayNavigatorView: View {
                     Text(place.nameJP)
                         .font(.body).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.labelPrimary)
-                        .lineLimit(1)
+                        .lineLimit(2)
                     HStack(spacing: 4) {
                         Image(systemName: "tram.fill")
                             .font(.body)
@@ -1014,7 +1326,7 @@ struct SubwayNavigatorView: View {
                     }
                     .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
-                    .lineLimit(1)
+                    .lineLimit(2)
                 }
                 Spacer()
                 Image(systemName: "arrow.right.circle.fill")
@@ -1039,10 +1351,10 @@ struct SubwayNavigatorView: View {
                 .font(.largeTitle)
                 .foregroundStyle(KORATheme.labelSecondary.opacity(0.25))
             VStack(spacing: 4) {
-                Text("経路が見つかりません")
+                Text(NavLoc.noRouteFound.resolved(displayLanguage))
                     .font(.body).fontWeight(.semibold)
                     .foregroundStyle(KORATheme.labelSecondary)
-                Text("最大2回までの乗換で到達できる経路がありません")
+                Text(NavLoc.noRouteHint.resolved(displayLanguage))
                     .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary.opacity(0.6))
                     .multilineTextAlignment(.center)
@@ -1052,7 +1364,7 @@ struct SubwayNavigatorView: View {
                 toStation = nil
                 selectedJourneyIdx = 0
             } label: {
-                Text("別の目的地を選ぶ")
+                Text(NavLoc.pickAnotherDestination.resolved(displayLanguage))
                     .font(.body).fontWeight(.semibold)
                     .foregroundStyle(.white)
                     .padding(.horizontal, 18)
@@ -1174,7 +1486,9 @@ private struct TrainApproachCard: View {
                             .foregroundStyle(isBoarding ? KORATheme.labelPrimary : KORATheme.labelTertiary)
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
-                        Text(isBoarding ? "乗車" : "\(stopsAway)前")
+                        Text(isBoarding
+                             ? NavLoc.boardingShort.resolved(displayLanguage)
+                             : NavLoc.stopsBefore(stopsAway, displayLanguage))
                             .font(.body)
                             .foregroundStyle(KORATheme.labelTertiary)
                     }
@@ -1192,7 +1506,7 @@ private struct TrainApproachCard: View {
                             .font(.body).fontWeight(.medium)
                             .foregroundStyle(KORATheme.labelTertiary)
                             .accessibilityHidden(true)
-                        Text("発車待ち")
+                        Text(NavLoc.waitingToDepart.resolved(displayLanguage))
                             .font(.body)
                             .foregroundStyle(KORATheme.labelTertiary)
                             .accessibilityHidden(true)
@@ -1228,6 +1542,7 @@ private struct TrainApproachCard: View {
 struct StationSearchSheet: View {
     let title: String
     let excluding: String?
+    let displayLanguage: StationLanguage
     let onSelect: (String) -> Void
 
     @Environment(\.dismiss) private var dismiss
@@ -1236,8 +1551,8 @@ struct StationSearchSheet: View {
 
     private let allLines = MetroLineData.seoulLines
 
-    // Stations on the selected line, sorted by katakana for consistent gojuon
-    // ordering with the all-lines mode. Deduped across line branches.
+    // Stations on the selected line, sorted in the display language's natural
+    // order (한글 가나다 / 五十音 / A-Z / 中文). Deduped across line branches.
     private var stationsOnSelectedLine: [String] {
         guard let num = selectedLineNumber,
               let line = allLines.first(where: { $0.number == num }) else { return [] }
@@ -1249,8 +1564,8 @@ struct StationSearchSheet: View {
             }
         }
         return out.sorted { a, b in
-            MetroLineData.displayName(for: a, language: .japanese)
-                < MetroLineData.displayName(for: b, language: .japanese)
+            MetroLineData.sortKey(for: a, language: displayLanguage)
+                < MetroLineData.sortKey(for: b, language: displayLanguage)
         }
     }
 
@@ -1258,6 +1573,8 @@ struct StationSearchSheet: View {
         let q = query.trimmingCharacters(in: .whitespaces)
         let base = (selectedLineNumber == nil
                     ? MetroLineData.allStationNames
+                        .sorted { MetroLineData.sortKey(for: $0, language: displayLanguage)
+                                < MetroLineData.sortKey(for: $1, language: displayLanguage) }
                     : stationsOnSelectedLine)
             .filter { $0 != excluding }
         guard !q.isEmpty else { return base }
@@ -1265,24 +1582,25 @@ struct StationSearchSheet: View {
             s.contains(q)
                 || MetroLineData.displayName(for: s, language: .japanese).contains(q)
                 || MetroLineData.displayName(for: s, language: .english).lowercased().contains(q.lowercased())
+                || MetroLineData.displayName(for: s, language: .chinese).contains(q)
         }
     }
 
-    /// True when the list should be grouped under gojuon (kana) section
-    /// headers. Applied whenever the search box is empty — both all-lines
-    /// and line-selected modes share the same katakana ordering for
-    /// predictability.
-    private var shouldUseKanaSections: Bool {
-        query.trimmingCharacters(in: .whitespaces).isEmpty
+    /// True when the list should be grouped under section headers — uses the
+    /// display language's natural collation (한글 / 五十音 / A-Z). Chinese mode
+    /// uses a flat sorted list since there's no clean single-letter system.
+    private var shouldUseLanguageSections: Bool {
+        MetroLineData.usesSections(for: displayLanguage)
+            && query.trimmingCharacters(in: .whitespaces).isEmpty
     }
 
-    private var kanaSections: [(key: String, stations: [String])] {
+    private var languageSections: [(key: String, stations: [String])] {
         var dict: [String: [String]] = [:]
         for s in filtered {
-            let key = MetroLineData.kanaInitial(for: s)
+            let key = MetroLineData.sectionInitial(for: s, language: displayLanguage)
             dict[key, default: []].append(s)
         }
-        return MetroLineData.kanaIndexOrder.compactMap { key in
+        return MetroLineData.sectionOrder(for: displayLanguage).compactMap { key in
             guard let arr = dict[key], !arr.isEmpty else { return nil }
             return (key, arr)
         }
@@ -1296,18 +1614,18 @@ struct StationSearchSheet: View {
 
                 if filtered.isEmpty {
                     emptyState
-                } else if shouldUseKanaSections {
+                } else if shouldUseLanguageSections {
                     sectionedListView
                 } else {
                     flatListView
                 }
             }
-            .searchable(text: $query, prompt: "역 이름 (한국어 · 日本語 · English)")
+            .searchable(text: $query, prompt: NavLoc.searchPrompt.resolved(displayLanguage))
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("閉じる") { dismiss() }
+                    Button(NavLoc.done.resolved(displayLanguage)) { dismiss() }
                 }
             }
         }
@@ -1329,7 +1647,7 @@ struct StationSearchSheet: View {
     }
 
     private var sectionedListView: some View {
-        let sections = kanaSections
+        let sections = languageSections
         return ScrollViewReader { proxy in
             ZStack(alignment: .trailing) {
                 List {
@@ -1346,7 +1664,7 @@ struct StationSearchSheet: View {
                             }
                         } header: {
                             HStack(spacing: 8) {
-                                Text(group.key + "行")
+                                Text(displayLanguage == .japanese ? group.key + "行" : group.key)
                                     .font(.body).fontWeight(.bold)
                                     .foregroundStyle(KORATheme.accent)
                                 Text("\(group.stations.count)")
@@ -1416,7 +1734,7 @@ struct StationSearchSheet: View {
         return Button {
             withAnimation(.easeInOut(duration: 0.15)) { selectedLineNumber = nil }
         } label: {
-            Text("全路線")
+            Text(NavLoc.allLines.resolved(displayLanguage))
                 .font(.body).fontWeight(isSelected ? .bold : .medium)
                 .foregroundStyle(isSelected ? .white : KORATheme.labelSecondary)
                 .padding(.horizontal, 14)
@@ -1441,7 +1759,7 @@ struct StationSearchSheet: View {
                     .clipShape(Capsule())
                     .lineLimit(1)
                     .minimumScaleFactor(0.6)
-                Text(line.code != nil ? line.name : "号線")
+                Text(line.code != nil ? line.name : NavLoc.lineLabel(line.number, displayLanguage))
                     .font(.body).fontWeight(isSelected ? .bold : .medium)
                     .foregroundStyle(isSelected ? .white : line.color)
             }
@@ -1455,21 +1773,27 @@ struct StationSearchSheet: View {
     // MARK: - Row
 
     private func stationRow(_ station: String) -> some View {
-        let enName = MetroLineData.displayName(for: station, language: .english)
+        let primary = MetroLineData.displayName(for: station, language: displayLanguage)
+        let subtitle = MetroLineData.subtitle(for: station, language: displayLanguage)
+        let romaji = displayLanguage == .english
+            ? nil
+            : MetroLineData.displayName(for: station, language: .english)
         return HStack {
             VStack(alignment: .leading, spacing: 2) {
-                Text(MetroLineData.displayName(for: station, language: .japanese))
+                Text(primary)
                     .font(.body).fontWeight(.medium)
                     .foregroundStyle(KORATheme.labelPrimary)
                 HStack(spacing: 5) {
-                    Text(station)
-                        .font(.body)
-                        .foregroundStyle(KORATheme.labelSecondary)
-                    if !enName.isEmpty {
-                        Text("· \(enName)")
+                    if let subtitle {
+                        Text(subtitle)
+                            .font(.body)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                    }
+                    if let romaji, !romaji.isEmpty, subtitle != romaji {
+                        Text(subtitle == nil ? romaji : "· \(romaji)")
                             .font(.body)
                             .foregroundStyle(KORATheme.labelTertiary)
-                            .lineLimit(1)
+                            .lineLimit(2)
                     }
                 }
             }
@@ -1493,7 +1817,7 @@ struct StationSearchSheet: View {
             Image(systemName: "magnifyingglass")
                 .font(.largeTitle)
                 .foregroundStyle(KORATheme.labelSecondary.opacity(0.4))
-            Text("該当する駅が見つかりません")
+            Text(NavLoc.noMatchingStation.resolved(displayLanguage))
                 .font(.body)
                 .foregroundStyle(KORATheme.labelSecondary)
             Spacer()
@@ -1523,4 +1847,240 @@ private extension Array {
 
 #Preview {
     SubwayNavigatorView()
+}
+
+// MARK: - Language picker sheet
+
+/// Bottom sheet for choosing display language. Reached by long-pressing the
+/// station header (or the welcome title before a station is picked).
+// MARK: - Position correction sheet
+
+/// Lists every station in the current segment so the user can pick the one
+/// they're actually at. Two hint sources surface as suggestion rows:
+///   • GPS-based: nearest segment station to the device's current coordinates
+///     (only useful above ground, but it's a free signal when available).
+///   • Time-based: the existing schedule-derived estimate.
+struct PositionCorrectionSheet: View {
+    let seg: JourneySegment
+    let displayLanguage: StationLanguage
+    let estimatedStation: String
+    let onPick: (String) -> Void
+
+    @Environment(\.dismiss) private var dismiss
+    @State private var locationSuggestion: String? = nil
+    @State private var isFetchingLocation = false
+    private let locationService = LocationService()
+
+    var body: some View {
+        NavigationStack {
+            List {
+                // GPS-based suggestion (only if it resolved to a station inside
+                // the current segment — otherwise we'd be misleading).
+                if let gps = locationSuggestion, gps != estimatedStation {
+                    Section {
+                        suggestionRow(ko: gps, icon: "location.circle.fill", iconColor: .blue,
+                                      caption: NavLoc.gpsSuggestion.resolved(displayLanguage))
+                    }
+                } else if isFetchingLocation {
+                    Section {
+                        HStack(spacing: 10) {
+                            ProgressView()
+                            Text(NavLoc.searchingLocation.resolved(displayLanguage))
+                                .font(.body)
+                                .foregroundStyle(KORATheme.labelSecondary)
+                        }
+                    }
+                }
+
+                Section {
+                    ForEach(seg.stations, id: \.self) { ko in
+                        let display = MetroLineData.displayName(for: ko, language: displayLanguage)
+                        let isEstimate = (ko == estimatedStation)
+                        let isGPS = (ko == locationSuggestion)
+                        Button {
+                            onPick(ko)
+                            dismiss()
+                        } label: {
+                            HStack(alignment: .center, spacing: 12) {
+                                Circle()
+                                    .fill(seg.line.color)
+                                    .frame(width: 14, height: 14)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(display)
+                                        .font(.body).fontWeight(isEstimate || isGPS ? .bold : .regular)
+                                        .foregroundStyle(KORATheme.labelPrimary)
+                                        .lineLimit(nil)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                    if displayLanguage != .korean {
+                                        Text(ko)
+                                            .font(.body)
+                                            .foregroundStyle(KORATheme.labelSecondary)
+                                    }
+                                }
+                                Spacer()
+                                if isGPS {
+                                    Image(systemName: "location.circle.fill")
+                                        .font(.body)
+                                        .foregroundStyle(.blue)
+                                } else if isEstimate {
+                                    Image(systemName: "clock.fill")
+                                        .font(.body)
+                                        .foregroundStyle(seg.line.color)
+                                }
+                            }
+                        }
+                        .foregroundStyle(KORATheme.labelPrimary)
+                    }
+                } header: {
+                    Text(NavLoc.pickCurrentStation.resolved(displayLanguage))
+                }
+            }
+            .navigationTitle(NavLoc.correctPosition.resolved(displayLanguage))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(NavLoc.done.resolved(displayLanguage)) { dismiss() }
+                }
+            }
+            .task { await tryLocate() }
+        }
+    }
+
+    @ViewBuilder
+    private func suggestionRow(ko: String, icon: String, iconColor: Color, caption: String) -> some View {
+        let display = MetroLineData.displayName(for: ko, language: displayLanguage)
+        Button {
+            onPick(ko)
+            dismiss()
+        } label: {
+            HStack(alignment: .center, spacing: 12) {
+                Image(systemName: icon)
+                    .font(.title2)
+                    .foregroundStyle(iconColor)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(caption)
+                        .font(.body).fontWeight(.semibold)
+                        .foregroundStyle(iconColor)
+                    Text(display)
+                        .font(.title3).fontWeight(.bold)
+                        .foregroundStyle(KORATheme.labelPrimary)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
+                    if displayLanguage != .korean {
+                        Text(ko)
+                            .font(.body)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                    }
+                }
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.body)
+                    .foregroundStyle(KORATheme.labelTertiary)
+            }
+        }
+        .foregroundStyle(KORATheme.labelPrimary)
+    }
+
+    private func tryLocate() async {
+        guard locationSuggestion == nil, !isFetchingLocation else { return }
+        isFetchingLocation = true
+        defer { isFetchingLocation = false }
+        do {
+            let coord = try await locationService.requestOnce()
+            locationSuggestion = nearestStation(in: seg.stations, to: coord)
+        } catch {
+            // Underground / denied / unavailable — silently skip the suggestion.
+            locationSuggestion = nil
+        }
+    }
+
+    /// Nearest station from the candidate list to a coordinate, using an
+    /// equirectangular approximation (good enough for ranking within Seoul).
+    private func nearestStation(in candidates: [String], to coord: CLLocationCoordinate2D) -> String? {
+        var bestKo: String? = nil
+        var bestDist = Double.infinity
+        let cosLat = cos(coord.latitude * .pi / 180)
+        for ko in candidates {
+            guard let c = MetroLineData.stationCoordinates[ko] else { continue }
+            let dlat = c.lat - coord.latitude
+            let dlng = (c.lng - coord.longitude) * cosLat
+            let d = dlat * dlat + dlng * dlng
+            if d < bestDist {
+                bestDist = d
+                bestKo = ko
+            }
+        }
+        // Reject GPS hints that put us > ~3 km from any segment station —
+        // most likely indoor noise rather than a real fix.
+        let metersSquared = bestDist * 111_000 * 111_000
+        guard metersSquared < 3_000 * 3_000 else { return nil }
+        return bestKo
+    }
+}
+
+struct LanguagePickerSheet: View {
+    @Binding var languagePref: String
+    @Environment(\.dismiss) private var dismiss
+
+    /// Language used to render this sheet's chrome (title, "Auto", Done button).
+    /// Pinned to the user's resolved preference at sheet-open time so toggling
+    /// a row instantly changes the visible labels.
+    private var sheetLang: StationLanguage {
+        guard !languagePref.isEmpty,
+              let explicit = StationLanguage(rawValue: languagePref)
+        else { return StationLanguage.resolveFromSystemLocale() }
+        return explicit
+    }
+
+    var body: some View {
+        NavigationStack {
+            List {
+                Section {
+                    Button {
+                        languagePref = ""
+                        dismiss()
+                    } label: {
+                        HStack {
+                            Label(
+                                "\(NavLoc.autoLabel.resolved(sheetLang)) (\(StationLanguage.resolveFromSystemLocale().displayName))",
+                                systemImage: "sparkles"
+                            )
+                            Spacer()
+                            if languagePref.isEmpty {
+                                Image(systemName: "checkmark")
+                                    .foregroundStyle(KORATheme.accent)
+                            }
+                        }
+                    }
+                    .foregroundStyle(KORATheme.labelPrimary)
+                }
+
+                Section {
+                    ForEach(StationLanguage.allCases, id: \.self) { lang in
+                        Button {
+                            languagePref = lang.rawValue
+                            dismiss()
+                        } label: {
+                            HStack {
+                                Text(lang.displayName)
+                                Spacer()
+                                if languagePref == lang.rawValue {
+                                    Image(systemName: "checkmark")
+                                        .foregroundStyle(KORATheme.accent)
+                                }
+                            }
+                        }
+                        .foregroundStyle(KORATheme.labelPrimary)
+                    }
+                }
+            }
+            .navigationTitle(NavLoc.languagePickerTitle.resolved(sheetLang))
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(NavLoc.done.resolved(sheetLang)) { dismiss() }
+                }
+            }
+        }
+    }
 }

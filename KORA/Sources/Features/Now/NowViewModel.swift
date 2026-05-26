@@ -27,21 +27,29 @@ final class NowViewModel: NSObject {
 }
 
 extension NowViewModel: CLLocationManagerDelegate {
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        locationStatus = manager.authorizationStatus
-        if manager.authorizationStatus == .authorizedWhenInUse {
-            manager.requestLocation()
-        } else {
-            isLoadingLocation = false
+    nonisolated func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
+        let status = manager.authorizationStatus
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            self.locationStatus = status
+            if status == .authorizedWhenInUse {
+                manager.requestLocation()
+            } else {
+                self.isLoadingLocation = false
+            }
         }
     }
 
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        isLoadingLocation = false
+    nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        Task { @MainActor [weak self] in
+            self?.isLoadingLocation = false
+        }
     }
 
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        isLoadingLocation = false
+    nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        Task { @MainActor [weak self] in
+            self?.isLoadingLocation = false
+        }
     }
 }
 
