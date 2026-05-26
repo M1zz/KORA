@@ -3,16 +3,46 @@ import Foundation
 // MARK: - Station Locale
 
 struct StationLocale {
-    let ja: String   // katakana (Japanese display)
-    let en: String   // English display
+    let ja: String        // katakana (Japanese display)
+    let en: String        // English display
+    let zh: String?       // simplified Chinese (optional — falls back to Korean when nil)
+
+    init(ja: String, en: String, zh: String? = nil) {
+        self.ja = ja
+        self.en = en
+        self.zh = zh
+    }
 }
 
 // MARK: - Language
 
-enum StationLanguage: String, CaseIterable {
-    case korean   = "한국어"
-    case japanese = "日本語"
-    case english  = "English"
+enum StationLanguage: String, CaseIterable, Codable {
+    case korean
+    case japanese
+    case english
+    case chinese
+
+    /// Human-readable label shown in the language picker menu.
+    var displayName: String {
+        switch self {
+        case .korean:   return "한국어"
+        case .japanese: return "日本語"
+        case .english:  return "English"
+        case .chinese:  return "中文"
+        }
+    }
+
+    /// Maps a system locale language code to a StationLanguage.
+    static func resolveFromSystemLocale() -> StationLanguage {
+        let code = Locale.current.language.languageCode?.identifier ?? "ko"
+        switch code {
+        case "ko": return .korean
+        case "ja": return .japanese
+        case "zh": return .chinese
+        case "en": return .english
+        default:   return .english
+        }
+    }
 }
 
 // MARK: - Locale Dictionary
@@ -534,12 +564,14 @@ extension MetroLineData {
         "문산":              .init(ja: "ムンサン",              en: "Munsan"),
     ]
 
-    // Helper: display name for a Korean station name given a language
+    // Helper: display name for a Korean station name given a language.
+    // For Chinese, falls back through stationChineseNames → inline zh → Korean.
     static func displayName(for ko: String, language: StationLanguage) -> String {
         switch language {
         case .korean:   return ko
         case .japanese: return stationLocale[ko]?.ja ?? ko
         case .english:  return stationLocale[ko]?.en ?? ko
+        case .chinese:  return stationChineseNames[ko] ?? stationLocale[ko]?.zh ?? ko
         }
     }
 

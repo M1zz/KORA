@@ -11,13 +11,19 @@ struct SubwayNavigatorView: View {
     @State private var showFromPicker = false
     @State private var showToPicker = false
     @State private var selectedJourneyIdx = 0
-    @State private var showEnglish = false
+    /// "" = auto-detect from system locale; otherwise StationLanguage.rawValue
+    @AppStorage("kora.display_language") private var languagePref: String = ""
     /// Index of the current "ride block" (= one subway segment). Increments by 1
     /// every time the user confirms they've boarded a train. When equal to
     /// `journey.segments.count`, the journey is finished.
     @State private var currentBlockIdx: Int = 0
 
-    private var displayLanguage: StationLanguage { showEnglish ? .english : .japanese }
+    private var displayLanguage: StationLanguage {
+        guard !languagePref.isEmpty,
+              let explicit = StationLanguage(rawValue: languagePref)
+        else { return StationLanguage.resolveFromSystemLocale() }
+        return explicit
+    }
 
     // Location detection
     @State private var isLocating = false
@@ -200,14 +206,18 @@ struct SubwayNavigatorView: View {
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
                 VStack(alignment: .leading, spacing: 4) {
-                    Text("\(terminusDisplay)行き")
+                    Text(directionLabel(terminus: seg.terminus))
                         .font(.largeTitle).fontWeight(.black)
                         .foregroundStyle(seg.line.color)
                         .lineLimit(2)
                         .minimumScaleFactor(0.6)
-                    Text("\(seg.terminus)行")
-                        .font(.title3)
-                        .foregroundStyle(KORATheme.labelSecondary)
+                    // Secondary line: always show Korean Hangul so the user
+                    // can match the platform signage in any UI language.
+                    if displayLanguage != .korean {
+                        Text("\(seg.terminus)행")
+                            .font(.title3)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                    }
                 }
                 Spacer()
             }
@@ -289,9 +299,7 @@ struct SubwayNavigatorView: View {
                 Spacer()
             }
 
-            if let t = timing {
-                arrivalBadge(timing: t, lineColor: seg.line.color)
-            }
+            trainApproachVisual(seg: seg, timing: timing)
         }
         .padding(20)
         .background(seg.line.color.opacity(0.08))
@@ -329,6 +337,131 @@ struct SubwayNavigatorView: View {
     }
 
     // MARK: Arrival badge
+
+    /// Compute the 3 previous stations a train passes through before
+    /// reaching the boarding station, in arrival order (earliest → latest).
+    /// For circular routes (e.g. Line 2), wraps around the array.
+    private func previousStations(for seg: JourneySegment, count: Int = 3) -> [String] {
+        let boarding = seg.stations.first ?? ""
+        guard let route = seg.line.routes.first(where: {
+            $0.stations.contains(boarding) && $0.stations.contains(seg.terminus)
+        }), let boardingIdx = route.stations.firstIndex(of: boarding) else { return [] }
+
+        let terminusIdx = route.stations.firstIndex(of: seg.terminus) ?? boardingIdx
+        // The train comes FROM the side opposite to terminus.
+        let step = terminusIdx < boardingIdx ? 1 : -1
+        let n = route.stations.count
+
+        var result: [String] = []
+        for i in 1...count {
+            var idx = boardingIdx + step * i
+            if route.isCircular {
+                idx = ((idx % n) + n) % n
+            } else if idx < 0 || idx >= n {
+                break
+            }
+            result.append(route.stations[idx])
+        }
+        return result.reversed()
+    }
+
+    /// Visualization showing the 3 prev stations + boarding station with the
+    /// approaching train icon over its current position (offline schedule
+    /// driven). Replaces the bare "N分後" arrival badge with a spatial map.
+    private func trainApproachVisual(seg: JourneySegment, timing: SegmentTiming?) -> some View {
+        let prev = previousStations(for: seg, count: 3)
+        let boarding = seg.stations.first ?? ""
+        let allStops = prev + [boarding]
+        let trainAt = timing?.currentTrainStation
+        let trainIdx = trainAt.flatMap { allStops.firstIndex(of: $0) }
+        let isFarAway = trainIdx == nil
+
+        return VStack(alignment: .leading, spacing: 12) {
+            Text(LocalizedStringKey("電車の現在位置"))
+                .font(.body).fontWeight(.semibold)
+                .foregroundStyle(KORATheme.labelSecondary)
+
+            HStack(alignment: .center, spacing: 0) {
+                if isFarAway {
+                    VStack(spacing: 2) {
+                        Image(systemName: "tram.fill")
+                            .font(.title3)
+                            .foregroundStyle(seg.line.color)
+                        Image(systemName: "arrow.right")
+                            .font(.caption)
+                            .foregroundStyle(KORATheme.labelTertiary)
+                    }
+                    .frame(width: 28)
+                    Rectangle()
+                        .fill(seg.line.color.opacity(0.4))
+                        .frame(width: 16, height: 3)
+                }
+                ForEach(Array(allStops.enumerated()), id: \.offset) { idx, st in
+                    visualStationDot(
+                        station: st,
+                        isBoarding: idx == allStops.count - 1,
+                        isTrainHere: trainIdx == idx,
+                        lineColor: seg.line.color
+                    )
+                    if idx < allStops.count - 1 {
+                        Rectangle()
+                            .fill(seg.line.color.opacity(0.4))
+                            .frame(height: 3)
+                    }
+                }
+            }
+        }
+        .padding(14)
+        .background(Color(.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .accessibilityLabel(approachAccessibility(seg: seg, trainAt: trainAt))
+    }
+
+    private func visualStationDot(station: String, isBoarding: Bool, isTrainHere: Bool, lineColor: Color) -> some View {
+        VStack(spacing: 4) {
+            // Top slot: train icon if it's here, otherwise spacer for alignment
+            if isTrainHere {
+                Image(systemName: "tram.fill")
+                    .font(.title3)
+                    .foregroundStyle(.orange)
+                    .symbolEffect(.pulse)
+            } else {
+                Color.clear.frame(height: 22)
+            }
+
+            Circle()
+                .fill(isBoarding ? lineColor : (isTrainHere ? Color.orange : Color.gray.opacity(0.5)))
+                .frame(width: isBoarding ? 18 : 12,
+                       height: isBoarding ? 18 : 12)
+                .overlay(
+                    Circle()
+                        .stroke(.white, lineWidth: isBoarding ? 2 : 0)
+                )
+
+            Text(MetroLineData.displayName(for: station, language: displayLanguage))
+                .font(.body).fontWeight(isBoarding ? .bold : .regular)
+                .foregroundStyle(isBoarding ? KORATheme.labelPrimary : KORATheme.labelSecondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+        }
+        .frame(maxWidth: .infinity)
+    }
+
+    private func approachAccessibility(seg: JourneySegment, trainAt: String?) -> String {
+        guard let at = trainAt else { return "전철이 멀리 떨어져 있습니다" }
+        return "전철이 현재 \(at)에 있습니다"
+    }
+
+    /// Direction label translated for current display language.
+    private func directionLabel(terminus: String) -> String {
+        let display = MetroLineData.displayName(for: terminus, language: displayLanguage)
+        switch displayLanguage {
+        case .korean:   return "\(display)행"
+        case .japanese: return "\(display)行き"
+        case .english:  return "Toward \(display)"
+        case .chinese:  return "开往\(display)"
+        }
+    }
 
     /// Offline-computed arrival prediction.
     private func arrivalBadge(timing: SegmentTiming, lineColor: Color) -> some View {
@@ -443,19 +576,23 @@ struct SubwayNavigatorView: View {
 
     // MARK: - Language picker (toolbar)
 
-    /// Apple-standard Menu on the navigation bar's trailing edge.
-    /// Tap to choose between Japanese (default) and English display.
+    /// Apple-standard Menu on the navigation bar's trailing edge. Tap to
+    /// choose between 한국어 / 日本語 / English / 中文 — or "Auto" to follow
+    /// the system locale.
     @ToolbarContentBuilder
     var languageToolbar: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
             Menu {
-                Picker("Language", selection: $showEnglish) {
-                    Label("日本語", systemImage: "j.circle").tag(false)
-                    Label("English", systemImage: "e.circle").tag(true)
+                Picker("Language", selection: $languagePref) {
+                    Label("Auto (\(StationLanguage.resolveFromSystemLocale().displayName))", systemImage: "sparkles")
+                        .tag("")
+                    ForEach(StationLanguage.allCases, id: \.self) { lang in
+                        Text(lang.displayName).tag(lang.rawValue)
+                    }
                 }
             } label: {
                 Image(systemName: "globe")
-                    .accessibilityLabel(showEnglish ? "Display language: English" : "Display language: Japanese")
+                    .accessibilityLabel("Display language: \(displayLanguage.displayName)")
             }
         }
     }
@@ -873,12 +1010,7 @@ struct SubwayNavigatorView: View {
                     HStack(spacing: 4) {
                         Image(systemName: "tram.fill")
                             .font(.body)
-                        if showEnglish {
-                            Text(MetroLineData.displayName(for: place.nearestStation, language: .english))
-                        } else {
-                            Text(MetroLineData.displayName(for: place.nearestStation, language: .japanese))
-                                + Text("駅")
-                        }
+                        Text(MetroLineData.displayName(for: place.nearestStation, language: displayLanguage))
                     }
                     .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)

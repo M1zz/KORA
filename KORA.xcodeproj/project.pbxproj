@@ -41,6 +41,7 @@
 		AA032 /* SharedInbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA132 /* SharedInbox.swift */; };
 		AA033 /* SubwayStationCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA133 /* SubwayStationCoordinates.swift */; };
 		AA040 /* SubwayStationLocaleValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA140 /* SubwayStationLocaleValidation.swift */; };
+		AA041 /* SubwayStationChineseNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA141 /* SubwayStationChineseNames.swift */; };
 		AA034 /* SubwayScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA134 /* SubwayScheduleService.swift */; };
 		AA035 /* RealtimeArrivalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA135 /* RealtimeArrivalService.swift */; };
 /* End PBXBuildFile section */
@@ -105,6 +106,7 @@
 		AA132 /* SharedInbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInbox.swift; sourceTree = "<group>"; };
 		AA133 /* SubwayStationCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationCoordinates.swift; sourceTree = "<group>"; };
 		AA140 /* SubwayStationLocaleValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationLocaleValidation.swift; sourceTree = "<group>"; };
+		AA141 /* SubwayStationChineseNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationChineseNames.swift; sourceTree = "<group>"; };
 		AA134 /* SubwayScheduleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayScheduleService.swift; sourceTree = "<group>"; };
 		AA135 /* RealtimeArrivalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeArrivalService.swift; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,6 +256,7 @@
 				AA129 /* SubwayNavigatorView.swift */,
 				AA133 /* SubwayStationCoordinates.swift */,
 				AA140 /* SubwayStationLocaleValidation.swift */,
+				AA141 /* SubwayStationChineseNames.swift */,
 				AA134 /* SubwayScheduleService.swift */,
 				AA135 /* RealtimeArrivalService.swift */,
 			);
@@ -444,6 +447,7 @@
 				AA029 /* SubwayNavigatorView.swift in Sources */,
 				AA033 /* SubwayStationCoordinates.swift in Sources */,
 				AA040 /* SubwayStationLocaleValidation.swift in Sources */,
+				AA041 /* SubwayStationChineseNames.swift in Sources */,
 				AA034 /* SubwayScheduleService.swift in Sources */,
 				AA035 /* RealtimeArrivalService.swift in Sources */,
 			);

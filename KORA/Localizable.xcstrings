@@ -69,6 +69,9 @@
         }
       }
     },
+    "%@행" : {
+
+    },
     "%@で下車" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -114,6 +117,7 @@
       }
     },
     "%@行" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -124,6 +128,7 @@
       }
     },
     "%@行き" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -139,6 +144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@행을 탔으면 탭하세요"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "乘坐开往%@的列车后点击"
           }
         }
       }
@@ -251,6 +262,12 @@
             "state" : "translated",
             "value" : "📍 GPS로 자동 가져오기"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "📍 GPS自动定位"
+          }
         }
       }
     },
@@ -278,6 +295,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "🚉 역을 직접 선택"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "🚉 手动选择车站"
           }
         }
       }
@@ -425,13 +448,14 @@
         }
       }
     },
-    "Display language: English" : {
+    "Auto (%@)" : {
 
     },
-    "Display language: Japanese" : {
+    "Display language: %@" : {
 
     },
     "English" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -474,6 +498,12 @@
             "state" : "translated",
             "value" : "GPS를 사용할 수 없으면 아래 버튼에서 검색해주세요"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GPS不可用时,请点击下面按钮搜索"
+          }
         }
       }
     },
@@ -487,6 +517,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "GPS와 지하철 DB로 가장 가까운 역을 찾고 있습니다"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在通过GPS和地铁数据库定位最近车站"
           }
         }
       }
@@ -970,6 +1006,12 @@
             "state" : "translated",
             "value" : "어디로 가시나요?"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您想去哪里?"
+          }
         }
       }
     },
@@ -1056,6 +1098,12 @@
             "state" : "translated",
             "value" : "먼저 출발역을 알려주세요"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请先选择出发站"
+          }
         }
       }
     },
@@ -1097,6 +1145,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "GPS로 다시 가져오기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "重新用GPS定位"
           }
         }
       }
@@ -1319,7 +1373,14 @@
       }
     },
     "乗換駅で下車" : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在换乘站下车"
+          }
+        }
+      }
     },
     "乗換駅に着きましたか？" : {
       "extractionState" : "stale",
@@ -1359,6 +1420,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "탑승하셨나요?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已上车了吗?"
           }
         }
       }
@@ -1424,6 +1491,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "지금 어느 역이세요?"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您现在在哪个站？"
           }
         }
       }
@@ -1531,6 +1604,12 @@
             "state" : "translated",
             "value" : "전체 노선"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "全部线路"
+          }
         }
       }
     },
@@ -1552,6 +1631,12 @@
             "state" : "translated",
             "value" : "처음부터 다시"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "从头开始"
+          }
         }
       }
     },
@@ -1561,6 +1646,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "최대 2회 환승으로 도달 가능한 경로가 없습니다"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "最多换乘2次无法到达"
           }
         }
       }
@@ -1635,6 +1726,12 @@
             "state" : "translated",
             "value" : "다른 목적지 선택"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "选择其他目的地"
+          }
         }
       }
     },
@@ -1655,6 +1752,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "도착!"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已到达!"
           }
         }
       }
@@ -1714,11 +1817,18 @@
       }
     },
     "号線" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "호선"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "号线"
           }
         }
       }
@@ -2045,6 +2155,7 @@
       }
     },
     "日本語" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2287,6 +2398,12 @@
             "state" : "translated",
             "value" : "현재 역"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "当前位置 / 현재 역"
+          }
         }
       }
     },
@@ -2351,6 +2468,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "현재 위치 검색 중…"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在搜索当前位置…"
           }
         }
       }
@@ -2420,6 +2543,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "목적지"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "目的地 / 목적지"
           }
         }
       }
@@ -2538,6 +2667,12 @@
             "state" : "translated",
             "value" : "경로를 찾을 수 없습니다"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未找到路线"
+          }
         }
       }
     },
@@ -2644,6 +2779,12 @@
             "state" : "translated",
             "value" : "해당하는 역이 없습니다"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未找到匹配的车站"
+          }
         }
       }
     },
@@ -2725,7 +2866,14 @@
       }
     },
     "車内表示で確認" : {
-
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请确认车内显示"
+          }
+        }
+      }
     },
     "辛さ注意" : {
       "extractionState" : "stale",
@@ -2820,6 +2968,12 @@
             "state" : "translated",
             "value" : "선택한 역은 다음 실행 시에도 기억됩니다"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所选车站将被记住,下次启动时使用"
+          }
         }
       }
     },
@@ -2852,6 +3006,12 @@
             "state" : "translated",
             "value" : "닫기"
           }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "关闭"
+          }
         }
       }
     },
@@ -2861,6 +3021,22 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "내릴 역"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下车站"
+          }
+        }
+      }
+    },
+    "電車の現在位置" : {
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "列车当前位置"
           }
         }
       }
@@ -2877,6 +3053,7 @@
       }
     },
     "駅" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2892,6 +3069,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "역을 탭하여 경로 보기"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点击车站显示路线"
           }
         }
       }
