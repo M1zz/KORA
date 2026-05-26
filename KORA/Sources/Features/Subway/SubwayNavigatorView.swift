@@ -239,8 +239,6 @@ struct SubwayNavigatorView: View {
     /// Self-contained block for ONE subway ride: direction + next station +
     /// where to get off (with transfer hint or destination indicator).
     private func rideBlock(seg: JourneySegment, isLast: Bool) -> some View {
-        let boardingKo = seg.stations.first ?? ""
-        let boardingDisplay = MetroLineData.displayName(for: boardingKo, language: displayLanguage)
         let alightKo = seg.stations.last ?? ""
         let alightDisplay = MetroLineData.displayName(for: alightKo, language: displayLanguage)
         let nextKo: String? = seg.stations.count > 1 ? seg.stations[1] : nil
@@ -292,40 +290,10 @@ struct SubwayNavigatorView: View {
                 inTransitSection(seg: seg, boardedAt: bt)
                 Divider()
             } else if let nk = nextKo {
-                VStack(alignment: .leading, spacing: 8) {
-                    Text(NavLoc.confirmInTrainDisplay.resolved(displayLanguage))
-                        .font(.body).fontWeight(.semibold)
-                        .foregroundStyle(KORATheme.labelSecondary)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
-                    let boardingCol = stationCol(primary: boardingDisplay, secondary: boardingKo, tint: nil)
-                    let nextCol = stationCol(primary: nextDisplay, secondary: nk, tint: seg.line.color)
-
-                    ViewThatFits(in: .horizontal) {
-                        // Horizontal layout — preferred.
-                        HStack(spacing: 0) {
-                            boardingCol
-                                .frame(maxWidth: .infinity)
-                            Image(systemName: "arrow.right")
-                                .font(.title2).fontWeight(.black)
-                                .foregroundStyle(seg.line.color)
-                                .padding(.horizontal, 8)
-                            nextCol
-                                .frame(maxWidth: .infinity)
-                        }
-                        // Vertical fallback — used when text is too long.
-                        VStack(spacing: 6) {
-                            boardingCol
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                            Image(systemName: "arrow.down")
-                                .font(.title3).fontWeight(.black)
-                                .foregroundStyle(seg.line.color)
-                            nextCol
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                        }
-                    }
-                }
-
+                // HERO verification card — the single most important pre-boarding
+                // action. Hangul is the largest text because the in-train LED
+                // shows Korean. The display language sits below as a phonetic aid.
+                verifyNextStopCard(nextKo: nk, nextDisplay: nextDisplay, lineColor: seg.line.color)
                 Divider()
             }
 
@@ -400,6 +368,80 @@ struct SubwayNavigatorView: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .multilineTextAlignment(.leading)
         }
+    }
+
+    // MARK: Pre-boarding verification (wrong-direction defense)
+
+    /// HERO card that asks the user to verify the next-stop name against the
+    /// in-train LED display. Hangul is intentionally the largest text since
+    /// Seoul platform/train LEDs are Korean — that's the literal verification
+    /// target. The chosen display language sits below as a phonetic aid.
+    @ViewBuilder
+    private func verifyNextStopCard(nextKo: String, nextDisplay: String, lineColor: Color) -> some View {
+        VStack(alignment: .leading, spacing: 14) {
+            HStack(spacing: 8) {
+                Image(systemName: "exclamationmark.bubble.fill")
+                    .font(.title3).fontWeight(.bold)
+                    .foregroundStyle(lineColor)
+                Text(NavLoc.verifyNextStopTitle.resolved(displayLanguage))
+                    .font(.body).fontWeight(.bold)
+                    .foregroundStyle(lineColor)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+
+            // Verification target — Hangul biggest, display language smaller
+            // beneath. When display is already Korean, the Hangul line stands
+            // alone (no redundancy).
+            VStack(alignment: .leading, spacing: 4) {
+                Text(nextKo)
+                    .font(.system(size: 44, weight: .black))
+                    .foregroundStyle(KORATheme.labelPrimary)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
+                if displayLanguage != .korean && nextDisplay != nextKo {
+                    Text(nextDisplay)
+                        .font(.title2).fontWeight(.semibold)
+                        .foregroundStyle(KORATheme.labelSecondary)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+
+            VStack(alignment: .leading, spacing: 6) {
+                Label {
+                    Text(NavLoc.ledMatchHint.resolved(displayLanguage))
+                        .font(.body)
+                        .foregroundStyle(KORATheme.labelSecondary)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
+                } icon: {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundStyle(.green)
+                }
+                Label {
+                    Text(NavLoc.wrongTrainHint.resolved(displayLanguage))
+                        .font(.body)
+                        .foregroundStyle(KORATheme.labelSecondary)
+                        .lineLimit(nil)
+                        .fixedSize(horizontal: false, vertical: true)
+                } icon: {
+                    Image(systemName: "arrow.uturn.left.circle.fill")
+                        .foregroundStyle(.orange)
+                }
+            }
+        }
+        .padding(18)
+        .frame(maxWidth: .infinity)
+        .background(lineColor.opacity(0.06))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .strokeBorder(lineColor.opacity(0.45), lineWidth: 2)
+        )
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("다음 정거장 \(nextKo)역. 차내 안내판에 이 역명이 보이면 맞는 열차입니다.")
     }
 
     // MARK: In-transit section (post-boarding)
