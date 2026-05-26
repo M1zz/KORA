@@ -17,6 +17,9 @@ struct SubwayNavigatorView: View {
     @State private var realtimeArrivals: [Int: [RealtimeArrivalInfo]] = [:]
     @State private var showAPIKeySheet = false
     @State private var completedSegments: Set<Int> = []
+    /// Segment the user is *currently on board* (between boarding and alighting).
+    /// `nil` means user is on a platform waiting / transferring / not yet started.
+    @State private var onBoardSegmentIdx: Int? = nil
 
     private var displayLanguage: StationLanguage { showEnglish ? .english : .japanese }
 
@@ -93,11 +96,45 @@ struct SubwayNavigatorView: View {
             segmentTimings = [:]
             realtimeArrivals = [:]
             completedSegments = []
+            onBoardSegmentIdx = nil
+        }
+    }
+
+    // MARK: - Boarding state machine
+
+    private enum BoardingPhase: Equatable {
+        case waitingToBoard(segmentIdx: Int)   // at a platform, waiting for the train
+        case onTrain(segmentIdx: Int)          // already boarded, heading to alight
+        case finished                          // arrived at final destination
+    }
+
+    private func boardingPhase(for j: TransferJourney) -> BoardingPhase {
+        if completedSegments.count >= j.segments.count { return .finished }
+        if let idx = onBoardSegmentIdx { return .onTrain(segmentIdx: idx) }
+        let next = j.segments.indices.first(where: { !completedSegments.contains($0) }) ?? 0
+        return .waitingToBoard(segmentIdx: next)
+    }
+
+    /// Advance the boarding state machine by one step.
+    private func advanceBoarding(in j: TransferJourney) {
+        let phase = boardingPhase(for: j)
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
+            switch phase {
+            case .waitingToBoard(let i):
+                onBoardSegmentIdx = i
+            case .onTrain(let i):
+                completedSegments.insert(i)
+                onBoardSegmentIdx = nil
+            case .finished:
+                // Reset for a re-do.
+                completedSegments = []
+                onBoardSegmentIdx = nil
+            }
         }
     }
 
     private var navigatorBody: some View {
-        ZStack(alignment: .bottomTrailing) {
+        ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
                 currentStationHeader
                 if let j = journey {
@@ -109,7 +146,149 @@ struct SubwayNavigatorView: View {
                     destinationFocusBody
                 }
             }
+            if let j = journey {
+                boardingActionBar(for: j)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
+            }
             englishToggleFAB
+        }
+    }
+
+    // MARK: - Boarding action bar (sticky bottom)
+
+    @ViewBuilder
+    private func boardingActionBar(for j: TransferJourney) -> some View {
+        let phase = boardingPhase(for: j)
+        VStack(spacing: 0) {
+            phaseProgressBar(j: j, phase: phase)
+
+            Button {
+                advanceBoarding(in: j)
+            } label: {
+                boardingActionLabel(j: j, phase: phase)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 18)
+                    .padding(.horizontal, 18)
+                    .background(boardingActionBackground(j: j, phase: phase))
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .padding(.horizontal, 14)
+                    .padding(.top, 8)
+                    .padding(.bottom, 22)
+            }
+            .buttonStyle(.plain)
+        }
+        .background(
+            Rectangle()
+                .fill(.ultraThinMaterial)
+                .ignoresSafeArea(edges: .bottom)
+        )
+        .frame(maxWidth: .infinity, alignment: .bottom)
+        .frame(maxHeight: .infinity, alignment: .bottom)
+    }
+
+    /// Discrete dots showing progress through the journey.
+    /// For a K-segment journey, total steps = 2K + 1 (board, alight, board, alight, ..., finish).
+    private func phaseProgressBar(j: TransferJourney, phase: BoardingPhase) -> some View {
+        let totalSteps = j.segments.count * 2
+        let currentStep: Int = {
+            switch phase {
+            case .waitingToBoard(let i):
+                return i * 2
+            case .onTrain(let i):
+                return i * 2 + 1
+            case .finished:
+                return totalSteps
+            }
+        }()
+
+        return HStack(spacing: 6) {
+            ForEach(0..<totalSteps, id: \.self) { step in
+                Capsule()
+                    .fill(step < currentStep ? Color.green : (step == currentStep ? KORATheme.accent : KORATheme.separator))
+                    .frame(height: 4)
+            }
+        }
+        .padding(.horizontal, 18)
+        .padding(.top, 10)
+    }
+
+    @ViewBuilder
+    private func boardingActionLabel(j: TransferJourney, phase: BoardingPhase) -> some View {
+        switch phase {
+        case .waitingToBoard(let i):
+            let seg = j.segments[i]
+            let terminus = MetroLineData.displayName(for: seg.terminus, language: displayLanguage)
+            HStack(spacing: 12) {
+                Image(systemName: "tram.fill")
+                    .font(.title3)
+                    .foregroundStyle(.white)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("乗車しましたか？")
+                        .font(.body).fontWeight(.semibold)
+                        .foregroundStyle(.white.opacity(0.85))
+                    Text("\(terminus)行きに乗ったらタップ")
+                        .font(.title3).fontWeight(.bold)
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                }
+                Spacer()
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.title2)
+                    .foregroundStyle(.white.opacity(0.9))
+            }
+
+        case .onTrain(let i):
+            let seg = j.segments[i]
+            let isLastSegment = (i == j.segments.count - 1)
+            let alightKo = seg.stations.last ?? ""
+            let alightDisplay = MetroLineData.displayName(for: alightKo, language: displayLanguage)
+            HStack(spacing: 12) {
+                Image(systemName: isLastSegment ? "flag.checkered" : "arrow.triangle.swap")
+                    .font(.title3)
+                    .foregroundStyle(.white)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(isLastSegment ? "到着しましたか？" : "乗換駅に着きましたか？")
+                        .font(.body).fontWeight(.semibold)
+                        .foregroundStyle(.white.opacity(0.85))
+                    Text("\(alightDisplay)で下車したらタップ")
+                        .font(.title3).fontWeight(.bold)
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.7)
+                }
+                Spacer()
+                Image(systemName: "checkmark.circle.fill")
+                    .font(.title2)
+                    .foregroundStyle(.white.opacity(0.9))
+            }
+
+        case .finished:
+            HStack(spacing: 12) {
+                Image(systemName: "party.popper.fill")
+                    .font(.title3)
+                    .foregroundStyle(.white)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("到着!")
+                        .font(.title2).fontWeight(.black)
+                        .foregroundStyle(.white)
+                    Text("お疲れさまでした")
+                        .font(.body)
+                        .foregroundStyle(.white.opacity(0.85))
+                }
+                Spacer()
+                Image(systemName: "arrow.counterclockwise")
+                    .font(.title3)
+                    .foregroundStyle(.white.opacity(0.9))
+            }
+        }
+    }
+
+    private func boardingActionBackground(j: TransferJourney, phase: BoardingPhase) -> Color {
+        switch phase {
+        case .waitingToBoard(let i): return j.segments[i].line.color
+        case .onTrain(let i):        return j.segments[i].line.color
+        case .finished:              return .green
         }
     }
 
@@ -538,12 +717,11 @@ struct SubwayNavigatorView: View {
                     }
                 }
                 destinationCard(j)
-                arrivedButton
                 apiKeyButton
             }
             .padding(.horizontal, 16)
             .padding(.top, 18)
-            .padding(.bottom, 40)
+            .padding(.bottom, 140) // leave room for the sticky boarding action bar
             .animation(.easeOut(duration: 0.32), value: completedSegments)
         }
         .task(id: j.id) {
@@ -610,28 +788,26 @@ struct SubwayNavigatorView: View {
 
     @ViewBuilder
     private func segmentGroup(idx: Int, seg: JourneySegment, j: TransferJourney) -> some View {
+        let isOnBoard = (onBoardSegmentIdx == idx)
+        let isActive = isOnBoard
+                       || (onBoardSegmentIdx == nil
+                           && j.segments.indices.first(where: { !completedSegments.contains($0) }) == idx)
+
         VStack(spacing: 14) {
             directionCard(seg)
                 .overlay(alignment: .topTrailing) {
-                    Button {
-                        withAnimation(.spring(response: 0.35, dampingFraction: 0.7)) {
-                            _ = completedSegments.insert(idx)
-                        }
-                    } label: {
-                        HStack(spacing: 4) {
-                            Image(systemName: "checkmark.circle.fill")
-                                .font(.body)
-                            Text("탑승 완료")
-                                .font(.body).fontWeight(.semibold)
-                        }
-                        .foregroundStyle(.green)
-                        .padding(.horizontal, 10)
-                        .padding(.vertical, 6)
-                        .background(Color.green.opacity(0.12))
-                        .clipShape(Capsule())
+                    if isOnBoard {
+                        Label("乗車中", systemImage: "tram.fill")
+                            .labelStyle(.titleAndIcon)
+                            .font(.body).fontWeight(.bold)
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 10)
+                            .padding(.vertical, 6)
+                            .background(seg.line.color)
+                            .clipShape(Capsule())
+                            .padding(10)
+                            .accessibilityHidden(true)
                     }
-                    .buttonStyle(.plain)
-                    .padding(10)
                 }
             timingRow(for: idx, seg: seg)
             if seg.stations.count > 1 {
@@ -642,11 +818,8 @@ struct SubwayNavigatorView: View {
                 )
             }
         }
-        .accessibilityAction(named: "탑승 완료") {
-            withAnimation(.spring(response: 0.35, dampingFraction: 0.7)) {
-                _ = completedSegments.insert(idx)
-            }
-        }
+        .opacity(isActive ? 1.0 : 0.55)
+        .accessibilityLabel(isOnBoard ? "현재 탑승 중: \(seg.line.number)호선 \(seg.terminus)행" : "")
     }
 
     // MARK: - Journey Summary Banner
@@ -989,30 +1162,6 @@ struct SubwayNavigatorView: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel("목적지: \(destKo)역에서 내리세요")
         .accessibilityAddTraits(.isStaticText)
-    }
-
-    private var arrivedButton: some View {
-        Button {
-            withAnimation(.easeInOut(duration: 0.25)) {
-                toStation = nil
-                completedSegments = []
-                selectedJourneyIdx = 0
-            }
-        } label: {
-            HStack(spacing: 8) {
-                Image(systemName: "flag.checkered")
-                    .font(.body).fontWeight(.semibold)
-                Text("도착했습니다")
-                    .font(.body).fontWeight(.semibold)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 12)
-            .background(Color(.secondarySystemBackground))
-            .foregroundStyle(KORATheme.labelSecondary)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-        }
-        .buttonStyle(.plain)
-        .accessibilityLabel("목적지 도착. 탭하면 목적지가 초기화됩니다.")
     }
 
     // MARK: Saved-place rows
