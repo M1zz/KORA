@@ -12,7 +12,7 @@ struct EmptyStateView: View {
             Spacer()
 
             Image(systemName: systemImage)
-                .font(.system(size: 56, weight: .thin))
+                .font(.largeTitle).fontWeight(.thin)
                 .foregroundStyle(KORATheme.accent.opacity(0.6))
 
             VStack(spacing: KORATheme.spacing8) {

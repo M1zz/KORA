@@ -60,9 +60,9 @@ struct ShareView: View {
         HStack(spacing: 12) {
             VStack(alignment: .leading, spacing: 4) {
                 Text("日本人旅行者のリアルな声")
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                 Text("実際に行った人だけが書けるレビュー")
-                    .font(.system(size: 13))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
             Spacer()
@@ -73,7 +73,7 @@ struct ShareView: View {
                         .frame(width: 28, height: 28)
                         .overlay(
                             Text(["🗼","⛩️","🦌"][i])
-                                .font(.system(size: 14))
+                                .font(.body)
                         )
                         .overlay(Circle().strokeBorder(Color(UIColor.systemBackground), lineWidth: 2))
                 }
@@ -95,9 +95,9 @@ struct ShareView: View {
                     } label: {
                         HStack(spacing: 6) {
                             Image(systemName: place.category.systemImage)
-                                .font(.system(size: 13))
+                                .font(.body)
                             Text(place.nameJP)
-                                .font(.system(size: 13, weight: .medium))
+                                .font(.body).fontWeight(.medium)
                         }
                         .padding(.horizontal, 14)
                         .padding(.vertical, 8)
@@ -122,14 +122,14 @@ struct ShareView: View {
     private var emptyState: some View {
         VStack(spacing: 16) {
             Image(systemName: "bubble.left.and.bubble.right")
-                .font(.system(size: 52, weight: .thin))
+                .font(.largeTitle).fontWeight(.thin)
                 .foregroundStyle(KORATheme.accent.opacity(0.5))
                 .padding(.top, 40)
             Text("まだレビューがありません")
-                .font(.system(size: 17, weight: .semibold))
+                .font(.body).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.labelPrimary)
             Text("Saveタブでスポットを保存すると\nここでレビューを書けます")
-                .font(.system(size: 14))
+                .font(.body)
                 .foregroundStyle(KORATheme.labelSecondary)
                 .multilineTextAlignment(.center)
                 .lineSpacing(4)
@@ -143,7 +143,7 @@ struct ShareView: View {
         VStack(spacing: 14) {
             if reviews.isEmpty {
                 Text("このスポットのレビューはまだありません")
-                    .font(.system(size: 14))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 24)
@@ -171,33 +171,33 @@ struct ReviewCardView: View {
                         .fill(KORATheme.accentLight)
                         .frame(width: 40, height: 40)
                     Text(String(review.authorName.prefix(1)))
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.body).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.accent)
                 }
 
                 VStack(alignment: .leading, spacing: 2) {
                     HStack(spacing: 6) {
                         Text(review.authorName)
-                            .font(.system(size: 14, weight: .semibold))
+                            .font(.body).fontWeight(.semibold)
                         if review.isVerified {
                             Label("訪問済み", systemImage: "checkmark.seal.fill")
-                                .font(.system(size: 11))
+                                .font(.body)
                                 .foregroundStyle(Color(hex: "#185FA5"))
                         }
                     }
                     Text(review.authorRegion) + Text("出身")
-                        .font(.system(size: 12))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelSecondary)
                 }
 
                 Spacer()
 
-                KORARatingView(rating: review.rating, size: 12)
+                KORARatingView(rating: review.rating, style: .body)
             }
 
             // 본문
             Text(review.body)
-                .font(.system(size: 14))
+                .font(.body)
                 .foregroundStyle(KORATheme.labelPrimary)
                 .lineSpacing(4)
 
@@ -207,7 +207,7 @@ struct ReviewCardView: View {
                     HStack(spacing: 6) {
                         ForEach(review.tags, id: \.self) { tag in
                             (Text(verbatim: tag.emoji + " ") + Text(LocalizedStringKey(tag.rawValue)))
-                                .font(.system(size: 12))
+                                .font(.body)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 4)
                                 .background(KORATheme.surface)
@@ -221,7 +221,7 @@ struct ReviewCardView: View {
             // 푸터
             HStack {
                 Text(review.visitDate.formatted(date: .abbreviated, time: .omitted))
-                    .font(.system(size: 12))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelTertiary)
 
                 Spacer()
@@ -229,7 +229,7 @@ struct ReviewCardView: View {
                 Button {
                 } label: {
                     Label("\(review.helpfulCount)人が参考になった", systemImage: "hand.thumbsup")
-                        .font(.system(size: 12))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelSecondary)
                 }
             }
@@ -256,9 +256,9 @@ struct WriteReviewSheet: View {
                     // 별점
                     VStack(spacing: 8) {
                         Text("評価")
-                            .font(.system(size: 13, weight: .semibold))
+                            .font(.body).fontWeight(.semibold)
                             .foregroundStyle(KORATheme.labelSecondary)
-                        KORARatingView(rating: rating, size: 28)
+                        KORARatingView(rating: rating, style: .title)
                         Slider(value: $rating, in: 1...5, step: 0.5)
                             .tint(Color(hex: "#EF9F27"))
                     }
@@ -269,7 +269,7 @@ struct WriteReviewSheet: View {
                     // 태그 선택
                     VStack(alignment: .leading, spacing: 10) {
                         Text("タグを選ぶ")
-                            .font(.system(size: 13, weight: .semibold))
+                            .font(.body).fontWeight(.semibold)
                             .foregroundStyle(KORATheme.labelSecondary)
                         FlowLayout(spacing: 8) {
                             ForEach(ReviewTag.allCases, id: \.self) { tag in
@@ -281,7 +281,7 @@ struct WriteReviewSheet: View {
                                     }
                                 } label: {
                                     (Text(verbatim: tag.emoji + " ") + Text(LocalizedStringKey(tag.rawValue)))
-                                        .font(.system(size: 13))
+                                        .font(.body)
                                         .padding(.horizontal, 12)
                                         .padding(.vertical, 6)
                                         .background(selectedTags.contains(tag)
@@ -301,11 +301,11 @@ struct WriteReviewSheet: View {
                     // 본문
                     VStack(alignment: .leading, spacing: 8) {
                         Text("レビューを書く")
-                            .font(.system(size: 13, weight: .semibold))
+                            .font(.body).fontWeight(.semibold)
                             .foregroundStyle(KORATheme.labelSecondary)
                         TextEditor(text: $reviewText)
                             .frame(minHeight: 120)
-                            .font(.system(size: 15))
+                            .font(.body)
                             .padding(8)
                             .background(KORATheme.surface)
                             .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusMD))

@@ -15,11 +15,11 @@ struct PlaceCardView: View {
 
                 VStack(alignment: .leading, spacing: 3) {
                     Text(place.nameJP)
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.body).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.labelPrimary)
 
                     Text(place.name)
-                        .font(.system(size: 13))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelSecondary)
                 }
 
@@ -28,7 +28,7 @@ struct PlaceCardView: View {
                 VStack(alignment: .trailing, spacing: 4) {
                     openStatusBadge
                     Text(place.priceRange.symbolJP)
-                        .font(.system(size: 12, weight: .medium))
+                        .font(.body).fontWeight(.medium)
                         .foregroundStyle(KORATheme.labelTertiary)
                 }
             }
@@ -42,9 +42,9 @@ struct PlaceCardView: View {
                 if !place.nearestStation.isEmpty {
                     Label {
                         Text(stationDisplayJa)
-                            .font(.system(size: 12, weight: .medium))
+                            .font(.body).fontWeight(.medium)
                         + Text("  \(place.nearestStation)")
-                            .font(.system(size: 11))
+                            .font(.body)
                             .foregroundColor(KORATheme.labelTertiary)
                     } icon: {
                         Image(systemName: "tram.fill")
@@ -53,7 +53,7 @@ struct PlaceCardView: View {
                     .lineLimit(1)
                 } else {
                     Label("最寄り駅を解析中…", systemImage: "tram.fill")
-                        .font(.system(size: 12))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelTertiary)
                         .lineLimit(1)
                 }
@@ -61,7 +61,7 @@ struct PlaceCardView: View {
                 if let wait = place.waitMinutes {
                     Spacer()
                     Label("\(wait)分待ち", systemImage: "clock")
-                        .font(.system(size: 12, weight: .medium))
+                        .font(.body).fontWeight(.medium)
                         .foregroundStyle(wait > 20 ? Color(hex: "#BA7517") : Color(hex: "#1D9E75"))
                 }
             }
@@ -76,12 +76,12 @@ struct PlaceCardView: View {
                 } label: {
                     HStack(spacing: 6) {
                         Image(systemName: "tram.tunnel.fill")
-                            .font(.system(size: 13, weight: .semibold))
+                            .font(.body).fontWeight(.semibold)
                         Text("ここへ向かう")
-                            .font(.system(size: 13, weight: .semibold))
+                            .font(.body).fontWeight(.semibold)
                         Spacer()
                         Image(systemName: "chevron.right")
-                            .font(.system(size: 11, weight: .semibold))
+                            .font(.body).fontWeight(.semibold)
                             .foregroundStyle(KORATheme.accent.opacity(0.7))
                     }
                     .foregroundStyle(KORATheme.accent)
@@ -127,14 +127,14 @@ struct PlaceCardView: View {
                 .fill(KORATheme.categoryColor(place.category).opacity(0.12))
                 .frame(width: 44, height: 44)
             Image(systemName: place.category.systemImage)
-                .font(.system(size: 18))
+                .font(.title3)
                 .foregroundStyle(KORATheme.categoryColor(place.category))
         }
     }
 
     private var openStatusBadge: some View {
         (place.isOpen ? Text("営業中") : Text("準備中"))
-            .font(.system(size: 11, weight: .semibold))
+            .font(.body).fontWeight(.semibold)
             .padding(.horizontal, 8)
             .padding(.vertical, 3)
             .background(place.isOpen

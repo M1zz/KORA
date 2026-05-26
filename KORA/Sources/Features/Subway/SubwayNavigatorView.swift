@@ -120,7 +120,7 @@ struct SubwayNavigatorView: View {
             }
         } label: {
             Text("EN")
-                .font(.system(size: 15, weight: .bold))
+                .font(.body).fontWeight(.bold)
                 .foregroundStyle(showEnglish ? .white : KORATheme.accent)
             .padding(.horizontal, 12)
             .padding(.vertical, 7)
@@ -174,7 +174,7 @@ struct SubwayNavigatorView: View {
                     VStack(spacing: 4) {
                         ForEach(lines, id: \.self) { num in
                             Text("\(num)")
-                                .font(.system(size: 14, weight: .black))
+                                .font(.body).fontWeight(.black)
                                 .foregroundStyle(.white)
                                 .frame(width: 30, height: 30)
                                 .background(MetroLineData.lineColor(num))
@@ -185,12 +185,12 @@ struct SubwayNavigatorView: View {
 
                     VStack(alignment: .leading, spacing: 3) {
                         Text(ja)
-                            .font(.system(size: 28, weight: .black))
+                            .font(.title).fontWeight(.black)
                             .foregroundStyle(KORATheme.labelPrimary)
                             .lineLimit(1)
                             .minimumScaleFactor(0.6)
                         Text(ko)
-                            .font(.system(size: 17, weight: .medium))
+                            .font(.body).fontWeight(.medium)
                             .foregroundStyle(KORATheme.labelSecondary)
                     }
 
@@ -198,9 +198,9 @@ struct SubwayNavigatorView: View {
 
                     VStack(spacing: 2) {
                         Image(systemName: "pencil")
-                            .font(.system(size: 12, weight: .semibold))
+                            .font(.body).fontWeight(.semibold)
                         Text("変更")
-                            .font(.system(size: 9, weight: .semibold))
+                            .font(.body).fontWeight(.semibold)
                     }
                     .foregroundStyle(KORATheme.labelTertiary)
                     .padding(.horizontal, 8)
@@ -253,22 +253,22 @@ struct SubwayNavigatorView: View {
         } label: {
             HStack(spacing: 14) {
                 Image(systemName: "magnifyingglass.circle.fill")
-                    .font(.system(size: 32))
+                    .font(.largeTitle)
                     .foregroundStyle(KORATheme.accent)
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text("どこに行きますか？")
-                        .font(.system(size: 19, weight: .bold))
+                        .font(.title3).fontWeight(.bold)
                         .foregroundStyle(KORATheme.labelPrimary)
                     Text("駅をタップして経路を表示")
-                        .font(.system(size: 17))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelSecondary)
                 }
 
                 Spacer()
 
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .bold))
+                    .font(.body).fontWeight(.bold)
                     .foregroundStyle(KORATheme.accent.opacity(0.5))
             }
             .padding(20)
@@ -286,10 +286,10 @@ struct SubwayNavigatorView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
                 Text(LocalizedStringKey(title))
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                     .foregroundStyle(KORATheme.labelSecondary)
                 Text("\(places.count)")
-                    .font(.system(size: 11, weight: .bold))
+                    .font(.body).fontWeight(.bold)
                     .foregroundStyle(KORATheme.accent)
                     .padding(.horizontal, 6)
                     .padding(.vertical, 2)
@@ -326,15 +326,15 @@ struct SubwayNavigatorView: View {
                             .fill(KORATheme.accent.opacity(0.12))
                             .frame(width: 120, height: 120)
                         Image(systemName: "location.viewfinder")
-                            .font(.system(size: 56, weight: .light))
+                            .font(.largeTitle).fontWeight(.light)
                             .foregroundStyle(KORATheme.accent)
                     }
                     VStack(spacing: 6) {
                         Text("今いる駅は？")
-                            .font(.system(size: 24, weight: .bold))
+                            .font(.title).fontWeight(.bold)
                             .multilineTextAlignment(.center)
                         Text(locationError != nil ? "GPSが使えない場合は下から駅を選んでください" : "まずは出発駅を教えてください")
-                            .font(.system(size: 17))
+                            .font(.body)
                             .foregroundStyle(KORATheme.labelSecondary)
                             .multilineTextAlignment(.center)
                             .padding(.horizontal, 32)
@@ -347,9 +347,9 @@ struct SubwayNavigatorView: View {
                     } label: {
                         HStack(spacing: 8) {
                             Image(systemName: "location.fill")
-                                .font(.system(size: 17, weight: .semibold))
+                                .font(.body).fontWeight(.semibold)
                             Text("GPSで現在地を取得")
-                                .font(.system(size: 17, weight: .semibold))
+                                .font(.body).fontWeight(.semibold)
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 14)
@@ -364,9 +364,9 @@ struct SubwayNavigatorView: View {
                     } label: {
                         HStack(spacing: 8) {
                             Image(systemName: "magnifyingglass")
-                                .font(.system(size: 17, weight: .semibold))
+                                .font(.body).fontWeight(.semibold)
                             Text("駅を手動で選ぶ")
-                                .font(.system(size: 17, weight: .semibold))
+                                .font(.body).fontWeight(.semibold)
                         }
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 14)
@@ -379,7 +379,7 @@ struct SubwayNavigatorView: View {
 
                 if let err = locationError {
                     Label(err, systemImage: "exclamationmark.triangle.fill")
-                        .font(.system(size: 17))
+                        .font(.body)
                         .foregroundStyle(.orange)
                         .padding(.horizontal, 24)
                         .multilineTextAlignment(.center)
@@ -388,7 +388,7 @@ struct SubwayNavigatorView: View {
                 Spacer()
 
                 Text("選んだ駅は次回起動時にも記憶されます")
-                    .font(.system(size: 15))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelTertiary)
                     .padding(.bottom, 24)
             }
@@ -433,17 +433,17 @@ struct SubwayNavigatorView: View {
     private func lastTrainBanner(_ w: LastTrainWarning) -> some View {
         HStack(spacing: 10) {
             Image(systemName: "clock.badge.exclamationmark.fill")
-                .font(.system(size: 14, weight: .bold))
+                .font(.body).fontWeight(.bold)
                 .foregroundStyle(.white)
                 .frame(width: 28, height: 28)
                 .background(Color.orange)
                 .clipShape(Circle())
             VStack(alignment: .leading, spacing: 2) {
                 Text("終電まで残り \(w.minutesRemaining) 分")
-                    .font(.system(size: 17, weight: .bold))
+                    .font(.body).fontWeight(.bold)
                     .foregroundStyle(.orange)
                 Text("\(w.line)号線の終電が近づいています")
-                    .font(.system(size: 17))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
             Spacer()
@@ -566,32 +566,32 @@ struct SubwayNavigatorView: View {
         HStack(spacing: 10) {
             Image(systemName: "checkmark.circle.fill")
                 .foregroundStyle(.green)
-                .font(.system(size: 15))
+                .font(.body)
 
             Text("\(seg.line.number)")
-                .font(.system(size: 11, weight: .black))
+                .font(.body).fontWeight(.black)
                 .foregroundStyle(.white)
                 .frame(width: 22, height: 22)
                 .background(seg.line.color)
                 .clipShape(Circle())
 
             Text(MetroLineData.displayName(for: seg.stations.first ?? "", language: displayLanguage))
-                .font(.system(size: 17, weight: .semibold))
+                .font(.body).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.labelSecondary)
 
             Image(systemName: "arrow.right")
-                .font(.system(size: 13))
+                .font(.body)
                 .foregroundStyle(KORATheme.labelTertiary)
 
             Text(MetroLineData.displayName(for: seg.stations.last ?? "", language: displayLanguage))
-                .font(.system(size: 17))
+                .font(.body)
                 .foregroundStyle(KORATheme.labelTertiary)
                 .lineLimit(1)
 
             Spacer()
 
             Text("탑승 완료")
-                .font(.system(size: 13, weight: .semibold))
+                .font(.body).fontWeight(.semibold)
                 .foregroundStyle(.green)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 3)
@@ -620,9 +620,9 @@ struct SubwayNavigatorView: View {
                     } label: {
                         HStack(spacing: 4) {
                             Image(systemName: "checkmark.circle.fill")
-                                .font(.system(size: 17))
+                                .font(.body)
                             Text("탑승 완료")
-                                .font(.system(size: 17, weight: .semibold))
+                                .font(.body).fontWeight(.semibold)
                         }
                         .foregroundStyle(.green)
                         .padding(.horizontal, 10)
@@ -661,17 +661,17 @@ struct SubwayNavigatorView: View {
         return HStack(spacing: 0) {
             VStack(alignment: .leading, spacing: 2) {
                 Text("所要時間 約\(totalMins)分")
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                     .foregroundStyle(KORATheme.labelPrimary)
                 if let arr = arrival {
                     Text("到着予定 \(formatter.string(from: arr))")
-                        .font(.system(size: 11))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelSecondary)
                 }
             }
             Spacer()
             Image(systemName: "clock")
-                .font(.system(size: 14))
+                .font(.body)
                 .foregroundStyle(KORATheme.accent)
         }
         .padding(.horizontal, 16)
@@ -693,11 +693,11 @@ struct SubwayNavigatorView: View {
             HStack(spacing: 8) {
                 Circle().fill(rt.minutesUntilArrival == 0 ? Color.orange : lineColor).frame(width: 8, height: 8)
                 if rt.minutesUntilArrival == 0 {
-                    Text("まもなく到着").font(.system(size: 17, weight: .semibold)).foregroundStyle(.orange)
+                    Text("まもなく到着").font(.body).fontWeight(.semibold).foregroundStyle(.orange)
                 } else if let m = rt.minutesUntilArrival {
-                    Text("⚡ \(m)分後到着").font(.system(size: 17, weight: .semibold)).foregroundStyle(lineColor)
+                    Text("⚡ \(m)分後到着").font(.body).fontWeight(.semibold).foregroundStyle(lineColor)
                 } else {
-                    Text("⚡ \(rt.message)").font(.system(size: 17, weight: .semibold)).foregroundStyle(lineColor).lineLimit(1)
+                    Text("⚡ \(rt.message)").font(.body).fontWeight(.semibold).foregroundStyle(lineColor).lineLimit(1)
                 }
                 Spacer()
             }
@@ -716,7 +716,7 @@ struct SubwayNavigatorView: View {
         } else {
             HStack(spacing: 8) {
                 ProgressView().scaleEffect(0.7).tint(lineColor)
-                Text("スケジュール読込中…").font(.system(size: 17)).foregroundStyle(KORATheme.labelTertiary)
+                Text("スケジュール読込中…").font(.body).foregroundStyle(KORATheme.labelTertiary)
             }
             .padding(.horizontal, 14).padding(.vertical, 10)
             .background(Color(.secondarySystemBackground))
@@ -730,10 +730,10 @@ struct SubwayNavigatorView: View {
         Button { showAPIKeySheet = true } label: {
             HStack(spacing: 6) {
                 Image(systemName: realtimeAPIKey.isEmpty ? "bolt.slash" : "bolt.fill")
-                    .font(.system(size: 15))
+                    .font(.body)
                     .foregroundStyle(realtimeAPIKey.isEmpty ? KORATheme.labelTertiary : .orange)
                 Text(realtimeAPIKey.isEmpty ? "リアルタイム設定" : "リアルタイム接続中")
-                    .font(.system(size: 17, weight: .medium))
+                    .font(.body).fontWeight(.medium)
                     .foregroundStyle(realtimeAPIKey.isEmpty ? KORATheme.labelTertiary : .orange)
             }
             .padding(.horizontal, 12)
@@ -750,13 +750,13 @@ struct SubwayNavigatorView: View {
         NavigationView {
             VStack(alignment: .leading, spacing: 20) {
                 Text("서울 열린데이터광장(data.seoul.go.kr)에서 API 키를 발급받으세요.\n「서울시 지하철 실시간 도착정보」")
-                    .font(.system(size: 17))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
                     .padding(.top, 4)
 
                 VStack(alignment: .leading, spacing: 6) {
                     Text("API Key")
-                        .font(.system(size: 17, weight: .semibold))
+                        .font(.body).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.labelSecondary)
                     TextField("API 키를 입력하세요", text: $realtimeAPIKey)
                         .textFieldStyle(.roundedBorder)
@@ -769,7 +769,7 @@ struct SubwayNavigatorView: View {
                         realtimeAPIKey = ""
                     } label: {
                         Text("연결 해제")
-                            .font(.system(size: 17))
+                            .font(.body)
                     }
                 }
 
@@ -817,7 +817,7 @@ struct SubwayNavigatorView: View {
 
         return HStack(spacing: 12) {
             Text("\(seg.line.number)")
-                .font(.system(size: 18, weight: .black))
+                .font(.title3).fontWeight(.black)
                 .foregroundStyle(.white)
                 .frame(width: 40, height: 40)
                 .background(seg.line.color)
@@ -825,19 +825,19 @@ struct SubwayNavigatorView: View {
             VStack(alignment: .leading, spacing: 2) {
                 if showEnglish {
                     Text(terminusDisplay)
-                        .font(.system(size: 22, weight: .black))
+                        .font(.title2).fontWeight(.black)
                         .foregroundStyle(seg.line.color)
                         .lineLimit(1)
                         .minimumScaleFactor(0.7)
                 } else {
                     Text("\(terminusDisplay)行き")
-                        .font(.system(size: 22, weight: .black))
+                        .font(.title2).fontWeight(.black)
                         .foregroundStyle(seg.line.color)
                         .lineLimit(1)
                         .minimumScaleFactor(0.7)
                 }
                 Text("\(seg.terminus)行")
-                    .font(.system(size: 17))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
             Spacer()
@@ -865,29 +865,29 @@ struct SubwayNavigatorView: View {
             HStack(spacing: 0) {
                 VStack(spacing: 3) {
                     Text(boardDisplay)
-                        .font(.system(size: 22, weight: .black))
+                        .font(.title2).fontWeight(.black)
                         .foregroundStyle(KORATheme.labelPrimary)
                         .lineLimit(1)
                         .minimumScaleFactor(0.6)
                     Text(boardingKo)
-                        .font(.system(size: 17))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelSecondary)
                 }
                 .frame(maxWidth: .infinity)
 
                 Image(systemName: "arrow.right")
-                    .font(.system(size: 22, weight: .black))
+                    .font(.title2).fontWeight(.black)
                     .foregroundStyle(lineColor)
                     .padding(.horizontal, 10)
 
                 VStack(spacing: 3) {
                     Text(nextDisplay)
-                        .font(.system(size: 22, weight: .black))
+                        .font(.title2).fontWeight(.black)
                         .foregroundStyle(lineColor)
                         .lineLimit(1)
                         .minimumScaleFactor(0.6)
                     Text(nextKo)
-                        .font(.system(size: 17))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelSecondary)
                 }
                 .frame(maxWidth: .infinity)
@@ -912,7 +912,7 @@ struct SubwayNavigatorView: View {
 
         return HStack(spacing: 12) {
             Image(systemName: "arrow.triangle.swap")
-                .font(.system(size: 16, weight: .bold))
+                .font(.body).fontWeight(.bold)
                 .foregroundStyle(.white)
                 .frame(width: 36, height: 36)
                 .background(KORATheme.accent)
@@ -920,19 +920,19 @@ struct SubwayNavigatorView: View {
             VStack(alignment: .leading, spacing: 3) {
                 if showEnglish {
                     Text("Transfer at \(stationDisplay)")
-                        .font(.system(size: 18, weight: .bold))
+                        .font(.title3).fontWeight(.bold)
                 } else {
                     Text("\(stationDisplay)で乗換")
-                        .font(.system(size: 18, weight: .bold))
+                        .font(.title3).fontWeight(.bold)
                 }
                 HStack(spacing: 6) {
                     Text(station)
-                        .font(.system(size: 17))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelSecondary)
                     HStack(spacing: 3) {
                         ForEach(allLines, id: \.self) { num in
                             Text("\(num)")
-                                .font(.system(size: 9, weight: .black))
+                                .font(.body).fontWeight(.black)
                                 .foregroundStyle(.white)
                                 .frame(width: 16, height: 16)
                                 .background(MetroLineData.lineColor(num))
@@ -958,7 +958,7 @@ struct SubwayNavigatorView: View {
 
         return HStack(spacing: 12) {
             Image(systemName: "flag.fill")
-                .font(.system(size: 16, weight: .bold))
+                .font(.body).fontWeight(.bold)
                 .foregroundStyle(.white)
                 .frame(width: 36, height: 36)
                 .background(lineColor)
@@ -966,15 +966,15 @@ struct SubwayNavigatorView: View {
             VStack(alignment: .leading, spacing: 3) {
                 if showEnglish {
                     Text("Get off at \(destDisplay)")
-                        .font(.system(size: 20, weight: .black))
+                        .font(.title3).fontWeight(.black)
                         .foregroundStyle(lineColor)
                 } else {
                     Text("\(destDisplay)で下車")
-                        .font(.system(size: 20, weight: .black))
+                        .font(.title3).fontWeight(.black)
                         .foregroundStyle(lineColor)
                 }
                 Text(destKo)
-                    .font(.system(size: 17))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
             Spacer()
@@ -1001,9 +1001,9 @@ struct SubwayNavigatorView: View {
         } label: {
             HStack(spacing: 8) {
                 Image(systemName: "flag.checkered")
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                 Text("도착했습니다")
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 12)
@@ -1020,7 +1020,7 @@ struct SubwayNavigatorView: View {
     private func atStationRow(_ place: Place) -> some View {
         HStack(spacing: 12) {
             Image(systemName: place.category.systemImage)
-                .font(.system(size: 14))
+                .font(.body)
                 .foregroundStyle(KORATheme.categoryColor(place.category))
                 .frame(width: 32, height: 32)
                 .background(KORATheme.categoryColor(place.category).opacity(0.12))
@@ -1028,17 +1028,17 @@ struct SubwayNavigatorView: View {
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(place.nameJP)
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                     .lineLimit(1)
                 Text(place.name)
-                    .font(.system(size: 17))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
                     .lineLimit(1)
             }
             Spacer()
 
             Text("徒歩で到着")
-                .font(.system(size: 14, weight: .semibold))
+                .font(.body).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.accent)
                 .padding(.horizontal, 8)
                 .padding(.vertical, 4)
@@ -1061,7 +1061,7 @@ struct SubwayNavigatorView: View {
         } label: {
             HStack(spacing: 12) {
                 Image(systemName: place.category.systemImage)
-                    .font(.system(size: 14))
+                    .font(.body)
                     .foregroundStyle(KORATheme.categoryColor(place.category))
                     .frame(width: 32, height: 32)
                     .background(KORATheme.categoryColor(place.category).opacity(0.12))
@@ -1069,12 +1069,12 @@ struct SubwayNavigatorView: View {
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(place.nameJP)
-                        .font(.system(size: 17, weight: .semibold))
+                        .font(.body).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.labelPrimary)
                         .lineLimit(1)
                     HStack(spacing: 4) {
                         Image(systemName: "tram.fill")
-                            .font(.system(size: 13))
+                            .font(.body)
                         if showEnglish {
                             Text(MetroLineData.displayName(for: place.nearestStation, language: .english))
                         } else {
@@ -1082,13 +1082,13 @@ struct SubwayNavigatorView: View {
                                 + Text("駅")
                         }
                     }
-                    .font(.system(size: 17))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
                     .lineLimit(1)
                 }
                 Spacer()
                 Image(systemName: "arrow.right.circle.fill")
-                    .font(.system(size: 22))
+                    .font(.title2)
                     .foregroundStyle(KORATheme.accent)
             }
             .padding(10)
@@ -1106,14 +1106,14 @@ struct SubwayNavigatorView: View {
         VStack(spacing: 16) {
             Spacer()
             Image(systemName: "exclamationmark.triangle")
-                .font(.system(size: 44))
+                .font(.largeTitle)
                 .foregroundStyle(KORATheme.labelSecondary.opacity(0.25))
             VStack(spacing: 4) {
                 Text("経路が見つかりません")
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                     .foregroundStyle(KORATheme.labelSecondary)
                 Text("最大2回までの乗換で到達できる経路がありません")
-                    .font(.system(size: 17))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary.opacity(0.6))
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
@@ -1123,7 +1123,7 @@ struct SubwayNavigatorView: View {
                 selectedJourneyIdx = 0
             } label: {
                 Text("別の目的地を選ぶ")
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                     .foregroundStyle(.white)
                     .padding(.horizontal, 18)
                     .padding(.vertical, 10)
@@ -1191,7 +1191,7 @@ private struct TrainApproachCard: View {
                         // Train icon slot
                         if isTrain {
                             Image(systemName: "tram.fill")
-                                .font(.system(size: 13, weight: .bold))
+                                .font(.body).fontWeight(.bold)
                                 .foregroundStyle(lineColor)
                                 .frame(height: iconH)
                         } else {
@@ -1240,12 +1240,12 @@ private struct TrainApproachCard: View {
                     let stopsAway  = all.count - 1 - idx
                     VStack(spacing: 2) {
                         Text(MetroLineData.displayName(for: all[idx], language: displayLanguage))
-                            .font(.system(size: 9, weight: isBoarding ? .semibold : .regular))
+                            .font(.body).fontWeight(isBoarding ? .semibold : .regular)
                             .foregroundStyle(isBoarding ? KORATheme.labelPrimary : KORATheme.labelTertiary)
                             .lineLimit(1)
                             .minimumScaleFactor(0.5)
                         Text(isBoarding ? "乗車" : "\(stopsAway)前")
-                            .font(.system(size: 8))
+                            .font(.body)
                             .foregroundStyle(KORATheme.labelTertiary)
                     }
                     .frame(width: dotSize)
@@ -1259,11 +1259,11 @@ private struct TrainApproachCard: View {
                 if trainIdx == nil {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(MetroLineData.displayName(for: timing.currentTrainTerminus, language: displayLanguage))
-                            .font(.system(size: 15, weight: .medium))
+                            .font(.body).fontWeight(.medium)
                             .foregroundStyle(KORATheme.labelTertiary)
                             .accessibilityHidden(true)
                         Text("発車待ち")
-                            .font(.system(size: 13))
+                            .font(.body)
                             .foregroundStyle(KORATheme.labelTertiary)
                             .accessibilityHidden(true)
                     }
@@ -1274,7 +1274,7 @@ private struct TrainApproachCard: View {
                     let m = secs / 60
                     let s = secs % 60
                     Text(String(format: "%02d:%02d", m, s))
-                        .font(.system(size: 38, weight: .black, design: .monospaced))
+                        .font(.system(.largeTitle, design: .monospaced).weight(.black))
                         .foregroundStyle(secs < 60 ? .orange : lineColor)
                         .contentTransition(.numericText(countsDown: true))
                         .accessibilityHidden(true)  // value surfaced via card-level accessibilityValue
@@ -1417,10 +1417,10 @@ struct StationSearchSheet: View {
                         } header: {
                             HStack(spacing: 8) {
                                 Text(group.key + "行")
-                                    .font(.system(size: 17, weight: .bold))
+                                    .font(.body).fontWeight(.bold)
                                     .foregroundStyle(KORATheme.accent)
                                 Text("\(group.stations.count)")
-                                    .font(.system(size: 14, weight: .semibold))
+                                    .font(.body).fontWeight(.semibold)
                                     .foregroundStyle(KORATheme.labelSecondary)
                                 Spacer()
                             }
@@ -1444,7 +1444,7 @@ struct StationSearchSheet: View {
                     }
                 } label: {
                     Text(key)
-                        .font(.system(size: 11, weight: .bold))
+                        .font(.body).fontWeight(.bold)
                         .foregroundStyle(KORATheme.accent)
                         .frame(width: 22, height: 18)
                         .contentShape(Rectangle())
@@ -1487,7 +1487,7 @@ struct StationSearchSheet: View {
             withAnimation(.easeInOut(duration: 0.15)) { selectedLineNumber = nil }
         } label: {
             Text("全路線")
-                .font(.system(size: 15, weight: isSelected ? .bold : .medium))
+                .font(.body).fontWeight(isSelected ? .bold : .medium)
                 .foregroundStyle(isSelected ? .white : KORATheme.labelSecondary)
                 .padding(.horizontal, 14)
                 .padding(.vertical, 8)
@@ -1503,13 +1503,13 @@ struct StationSearchSheet: View {
         } label: {
             HStack(spacing: 6) {
                 Text("\(line.number)")
-                    .font(.system(size: 12, weight: .black))
+                    .font(.body).fontWeight(.black)
                     .foregroundStyle(isSelected ? line.color : .white)
                     .frame(width: 20, height: 20)
                     .background(isSelected ? Color.white : line.color)
                     .clipShape(Circle())
                 Text("号線")
-                    .font(.system(size: 15, weight: isSelected ? .bold : .medium))
+                    .font(.body).fontWeight(isSelected ? .bold : .medium)
                     .foregroundStyle(isSelected ? .white : line.color)
             }
             .padding(.horizontal, 10)
@@ -1526,15 +1526,15 @@ struct StationSearchSheet: View {
         return HStack {
             VStack(alignment: .leading, spacing: 2) {
                 Text(MetroLineData.displayName(for: station, language: .japanese))
-                    .font(.system(size: 17, weight: .medium))
+                    .font(.body).fontWeight(.medium)
                     .foregroundStyle(KORATheme.labelPrimary)
                 HStack(spacing: 5) {
                     Text(station)
-                        .font(.system(size: 17))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelSecondary)
                     if !enName.isEmpty {
                         Text("· \(enName)")
-                            .font(.system(size: 15))
+                            .font(.body)
                             .foregroundStyle(KORATheme.labelTertiary)
                             .lineLimit(1)
                     }
@@ -1544,7 +1544,7 @@ struct StationSearchSheet: View {
             HStack(spacing: 3) {
                 ForEach(linesForStation(station), id: \.self) { num in
                     Text("\(num)")
-                        .font(.system(size: 9, weight: .bold))
+                        .font(.body).fontWeight(.bold)
                         .foregroundStyle(.white)
                         .frame(width: 18, height: 18)
                         .background(MetroLineData.lineColor(num))
@@ -1558,10 +1558,10 @@ struct StationSearchSheet: View {
         VStack(spacing: 8) {
             Spacer()
             Image(systemName: "magnifyingglass")
-                .font(.system(size: 36))
+                .font(.largeTitle)
                 .foregroundStyle(KORATheme.labelSecondary.opacity(0.4))
             Text("該当する駅が見つかりません")
-                .font(.system(size: 17))
+                .font(.body)
                 .foregroundStyle(KORATheme.labelSecondary)
             Spacer()
         }

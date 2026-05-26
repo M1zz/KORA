@@ -18,10 +18,10 @@ struct KORAPrimaryButton: View {
             HStack(spacing: 6) {
                 if let icon {
                     Image(systemName: icon)
-                        .font(.system(size: 15, weight: .semibold))
+                        .font(.body).fontWeight(.semibold)
                 }
                 Text(LocalizedStringKey(title))
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 14)
@@ -50,10 +50,10 @@ struct KORASecondaryButton: View {
             HStack(spacing: 6) {
                 if let icon {
                     Image(systemName: icon)
-                        .font(.system(size: 15, weight: .medium))
+                        .font(.body).fontWeight(.medium)
                 }
                 Text(LocalizedStringKey(title))
-                    .font(.system(size: 16, weight: .medium))
+                    .font(.body).fontWeight(.medium)
             }
             .frame(maxWidth: .infinity)
             .padding(.vertical, 13)
@@ -76,7 +76,7 @@ struct KORATagChip: View {
 
     var body: some View {
         Text(LocalizedStringKey(text))
-            .font(.system(size: 12, weight: .medium))
+            .font(.body).fontWeight(.medium)
             .padding(.horizontal, 10)
             .padding(.vertical, 4)
             .background(color.opacity(0.12))
@@ -89,22 +89,22 @@ struct KORATagChip: View {
 
 struct KORARatingView: View {
     let rating: Double
-    let size: CGFloat
+    let style: Font
 
-    init(rating: Double, size: CGFloat = 14) {
+    init(rating: Double, style: Font = .body) {
         self.rating = rating
-        self.size = size
+        self.style = style
     }
 
     var body: some View {
         HStack(spacing: 2) {
             ForEach(1...5, id: \.self) { index in
                 Image(systemName: starImageName(for: index))
-                    .font(.system(size: size))
+                    .font(style)
                     .foregroundStyle(Color(hex: "#EF9F27"))
             }
             Text(String(format: "%.1f", rating))
-                .font(.system(size: size, weight: .semibold))
+                .font(style).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.labelPrimary)
         }
     }

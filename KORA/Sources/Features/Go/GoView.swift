@@ -93,13 +93,13 @@ struct GoView: View {
                         ForEach(Array(viewModel.optimizedRoute.enumerated()), id: \.element.id) { idx, place in
                             HStack(spacing: 4) {
                                 Text("\(idx + 1)")
-                                    .font(.system(size: 12, weight: .bold))
+                                    .font(.body).fontWeight(.bold)
                                     .foregroundStyle(.white)
                                     .frame(width: 20, height: 20)
                                     .background(KORATheme.accent)
                                     .clipShape(Circle())
                                 Text(place.nameJP)
-                                    .font(.system(size: 13, weight: .medium))
+                                    .font(.body).fontWeight(.medium)
                                     .foregroundStyle(KORATheme.labelPrimary)
                             }
                             .padding(.horizontal, 10)
@@ -109,7 +109,7 @@ struct GoView: View {
 
                             if idx < viewModel.optimizedRoute.count - 1 {
                                 Image(systemName: "arrow.right")
-                                    .font(.system(size: 11))
+                                    .font(.body)
                                     .foregroundStyle(KORATheme.labelTertiary)
                             }
                         }
@@ -146,13 +146,13 @@ struct MapPinView: View {
                     .shadow(color: .black.opacity(0.2), radius: 4)
 
                 Image(systemName: place.category.systemImage)
-                    .font(.system(size: isSelected ? 18 : 14))
+                    .font(isSelected ? .title3 : .body)
                     .foregroundStyle(.white)
             }
 
             if isSelected {
                 Text(place.nameJP)
-                    .font(.system(size: 12, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                     .foregroundStyle(KORATheme.labelPrimary)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
@@ -182,17 +182,17 @@ struct SelectedPlacePanel: View {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(place.nameJP)
-                        .font(.system(size: 17, weight: .semibold))
+                        .font(.body).fontWeight(.semibold)
                     if !place.name.isEmpty && place.name != place.nameJP {
                         Text(place.name)
-                            .font(.system(size: 13))
+                            .font(.body)
                             .foregroundStyle(KORATheme.labelSecondary)
                     }
                 }
                 Spacer()
                 Button(action: onClose) {
                     Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 22))
+                        .font(.title2)
                         .foregroundStyle(KORATheme.labelTertiary)
                 }
             }
@@ -200,7 +200,7 @@ struct SelectedPlacePanel: View {
             // 주소
             if !place.address.isEmpty {
                 Label(place.address, systemImage: "mappin")
-                    .font(.system(size: 13))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
                     .lineLimit(1)
             }
@@ -237,9 +237,9 @@ struct SelectedPlacePanel: View {
         } label: {
             HStack(spacing: 4) {
                 Image(systemName: icon)
-                    .font(.system(size: 12))
+                    .font(.body)
                 Text(label)
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.body).fontWeight(.medium)
             }
             .padding(.horizontal, 14)
             .padding(.vertical, 7)
@@ -258,17 +258,17 @@ struct SelectedPlacePanel: View {
                 ProgressView()
                     .scaleEffect(0.8)
                 Text("経路を計算中...")
-                    .font(.system(size: 13))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
         } else if let route {
             HStack(spacing: 16) {
                 Label(formatDistance(route.distance), systemImage: "arrow.left.and.right")
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                     .foregroundStyle(KORATheme.accent)
 
                 Label(formatTime(route.expectedTravelTime), systemImage: "clock")
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                     .foregroundStyle(KORATheme.accent)
 
                 Spacer()

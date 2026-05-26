@@ -65,7 +65,7 @@ struct SaveView: View {
                         showAddSheet = true
                     } label: {
                         Image(systemName: "plus")
-                            .font(.system(size: 22, weight: .semibold))
+                            .font(.title2).fontWeight(.semibold)
                             .foregroundStyle(.white)
                             .frame(width: 56, height: 56)
                             .background(KORATheme.accent)
@@ -94,16 +94,16 @@ struct SaveView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack(spacing: 10) {
                 Image(systemName: "link.circle.fill")
-                    .font(.system(size: 22))
+                    .font(.title2)
                     .foregroundStyle(KORATheme.accent)
 
                 VStack(alignment: .leading, spacing: 2) {
                     Text("リンクが見つかりました")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.body).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.labelPrimary)
                     if let url = viewModel.clipboardURL {
                         Text(url)
-                            .font(.system(size: 12))
+                            .font(.body)
                             .foregroundStyle(KORATheme.labelSecondary)
                             .lineLimit(1)
                             .truncationMode(.middle)
@@ -117,14 +117,14 @@ struct SaveView: View {
                 Button("キャンセル") {
                     viewModel.dismissClipboard()
                 }
-                .font(.system(size: 13))
+                .font(.body)
                 .foregroundStyle(KORATheme.labelSecondary)
 
                 Button {
                     viewModel.acceptClipboardURL()
                 } label: {
                     Text("追加")
-                        .font(.system(size: 13, weight: .semibold))
+                        .font(.body).fontWeight(.semibold)
                         .foregroundStyle(.white)
                         .padding(.horizontal, 16)
                         .padding(.vertical, 8)
@@ -210,7 +210,7 @@ struct SaveView: View {
                     .tint(.white)
                     .scaleEffect(1.4)
                 Text("スポット情報を取得中...")
-                    .font(.system(size: 15, weight: .medium))
+                    .font(.body).fontWeight(.medium)
                     .foregroundStyle(.white)
             }
             .padding(28)
@@ -256,11 +256,11 @@ struct AddPlaceSheet: View {
             HStack(spacing: 10) {
                 HStack(spacing: 8) {
                     Image(systemName: "link")
-                        .font(.system(size: 15))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelTertiary)
 
                     TextField("https://instagram.com/p/...", text: $viewModel.urlInput)
-                        .font(.system(size: 15))
+                        .font(.body)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
                         .keyboardType(.URL)
@@ -288,7 +288,7 @@ struct AddPlaceSheet: View {
                     Task { await viewModel.parseURL() }
                 } label: {
                     Image(systemName: "arrow.up.circle.fill")
-                        .font(.system(size: 36))
+                        .font(.largeTitle)
                         .foregroundStyle(viewModel.urlInput.isEmpty
                             ? KORATheme.accent.opacity(0.3)
                             : KORATheme.accent
@@ -299,7 +299,7 @@ struct AddPlaceSheet: View {
 
             if let error = viewModel.errorMessage {
                 Label(error, systemImage: "exclamationmark.triangle.fill")
-                    .font(.system(size: 13))
+                    .font(.body)
                     .foregroundStyle(Color.red)
             }
         }
@@ -311,17 +311,17 @@ struct AddPlaceSheet: View {
     private var kakaoSearchSection: some View {
         VStack(alignment: .leading, spacing: 10) {
             Text("キーワードで場所を検索")
-                .font(.system(size: 13, weight: .semibold))
+                .font(.body).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.labelSecondary)
 
             HStack(spacing: 10) {
                 HStack(spacing: 8) {
                     Image(systemName: "magnifyingglass")
-                        .font(.system(size: 15))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelTertiary)
 
                     TextField("城心堂、弘大カフェ...", text: $viewModel.searchQuery)
-                        .font(.system(size: 15))
+                        .font(.body)
                         .submitLabel(.search)
                         .onSubmit {
                             Task { await viewModel.searchKakao() }
@@ -347,7 +347,7 @@ struct AddPlaceSheet: View {
                             .frame(width: 36, height: 36)
                     } else {
                         Image(systemName: "magnifyingglass.circle.fill")
-                            .font(.system(size: 36))
+                            .font(.largeTitle)
                             .foregroundStyle(viewModel.searchQuery.isEmpty
                                 ? KORATheme.accent.opacity(0.3)
                                 : KORATheme.accent
@@ -376,10 +376,10 @@ struct FilterChip: View {
             HStack(spacing: 4) {
                 if let img = systemImage {
                     Image(systemName: img)
-                        .font(.system(size: 12))
+                        .font(.body)
                 }
                 Text(LocalizedStringKey(title))
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.body).fontWeight(.medium)
             }
             .padding(.horizontal, 12)
             .padding(.vertical, 7)
@@ -404,10 +404,10 @@ struct ParsedPlaceSheet: View {
                     // 파싱 성공 배너
                     HStack(spacing: 10) {
                         Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 20))
+                            .font(.title3)
                             .foregroundStyle(Color(hex: "#1D9E75"))
                         Text("スポット情報を取得しました！")
-                            .font(.system(size: 15, weight: .semibold))
+                            .font(.body).fontWeight(.semibold)
                     }
                     .frame(maxWidth: .infinity)
                     .padding()
@@ -450,10 +450,10 @@ struct KakaoSearchResultsSheet: View {
                 if viewModel.searchResults.isEmpty {
                     VStack(spacing: 16) {
                         Image(systemName: "magnifyingglass")
-                            .font(.system(size: 48, weight: .thin))
+                            .font(.largeTitle).fontWeight(.thin)
                             .foregroundStyle(KORATheme.labelTertiary)
                         Text("検索結果がありません")
-                            .font(.system(size: 17))
+                            .font(.body)
                             .foregroundStyle(KORATheme.labelSecondary)
                     }
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -496,21 +496,21 @@ struct KakaoResultRow: View {
                     .fill(KORATheme.categoryColor(PlaceCategory.from(kakaoCode: doc.categoryGroupCode)).opacity(0.12))
                     .frame(width: 44, height: 44)
                 Image(systemName: PlaceCategory.from(kakaoCode: doc.categoryGroupCode).systemImage)
-                    .font(.system(size: 18))
+                    .font(.title3)
                     .foregroundStyle(KORATheme.categoryColor(PlaceCategory.from(kakaoCode: doc.categoryGroupCode)))
             }
 
             VStack(alignment: .leading, spacing: 3) {
                 Text(doc.placeName)
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                     .foregroundStyle(KORATheme.labelPrimary)
                 Text(doc.displayAddress)
-                    .font(.system(size: 12))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
                     .lineLimit(1)
                 if !doc.categoryName.isEmpty {
                     Text(doc.categoryName.components(separatedBy: " > ").last ?? doc.categoryName)
-                        .font(.system(size: 11))
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelTertiary)
                 }
             }
@@ -519,12 +519,12 @@ struct KakaoResultRow: View {
 
             if !doc.distance.isEmpty, let m = Int(doc.distance) {
                 Text(m >= 1000 ? String(format: "%.1fkm", Double(m) / 1000) : "\(m)m")
-                    .font(.system(size: 12))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelTertiary)
             }
 
             Image(systemName: "plus.circle.fill")
-                .font(.system(size: 22))
+                .font(.title2)
                 .foregroundStyle(KORATheme.accent)
         }
         .padding(KORATheme.spacing12)

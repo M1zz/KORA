@@ -36,15 +36,15 @@ struct NowView: View {
                     .fill(KORATheme.accentLight)
                     .frame(width: 40, height: 40)
                 Image(systemName: "location.fill")
-                    .font(.system(size: 16))
+                    .font(.body)
                     .foregroundStyle(KORATheme.accent)
             }
 
             VStack(alignment: .leading, spacing: 2) {
                 Text("弘大エリア付近")
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                 Text("周辺 2km 以内のスポットとイベントを表示中")
-                    .font(.system(size: 12))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
 
@@ -53,7 +53,7 @@ struct NowView: View {
             Button("更新") {
                 viewModel.requestLocation()
             }
-            .font(.system(size: 13, weight: .medium))
+            .font(.body).fontWeight(.medium)
             .foregroundStyle(KORATheme.accent)
         }
         .padding(KORATheme.spacing16)
@@ -67,10 +67,10 @@ struct NowView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Text("今日のイベント")
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                 Spacer()
                 Text("\(viewModel.events.count)") + Text("件")
-                    .font(.system(size: 13))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
             .padding(.horizontal)
@@ -92,10 +92,10 @@ struct NowView: View {
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Text("今すぐ行ける")
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                 Spacer()
                 Text("営業中のみ")
-                    .font(.system(size: 13))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
             .padding(.horizontal)
@@ -119,7 +119,7 @@ struct EventCard: View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Text(LocalizedStringKey(event.category.rawValue))
-                    .font(.system(size: 11, weight: .bold))
+                    .font(.body).fontWeight(.bold)
                     .padding(.horizontal, 8)
                     .padding(.vertical, 3)
                     .background(Color(hex: event.category.color).opacity(0.15))
@@ -129,25 +129,25 @@ struct EventCard: View {
                 Spacer()
 
                 Text("\(event.distanceM)m")
-                    .font(.system(size: 12))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelTertiary)
             }
 
             Text(event.titleJP)
-                .font(.system(size: 15, weight: .semibold))
+                .font(.body).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.labelPrimary)
                 .lineLimit(2)
 
             Text(event.locationJP)
-                .font(.system(size: 13))
+                .font(.body)
                 .foregroundStyle(KORATheme.labelSecondary)
                 .lineLimit(1)
 
             HStack(spacing: 4) {
                 Image(systemName: "clock")
-                    .font(.system(size: 12))
+                    .font(.body)
                 Text(event.startTime) + Text("〜") + Text(event.endTime)
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.body).fontWeight(.medium)
             }
             .foregroundStyle(KORATheme.accent)
         }
@@ -171,15 +171,15 @@ struct NearbyPlaceRow: View {
                     .fill(KORATheme.categoryColor(place.category).opacity(0.12))
                     .frame(width: 44, height: 44)
                 Image(systemName: place.category.systemImage)
-                    .font(.system(size: 18))
+                    .font(.title3)
                     .foregroundStyle(KORATheme.categoryColor(place.category))
             }
 
             VStack(alignment: .leading, spacing: 3) {
                 Text(place.nameJP)
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                 Text(place.nearestStation)
-                    .font(.system(size: 12))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
 
@@ -194,11 +194,11 @@ struct NearbyPlaceRow: View {
                             Text("待ちなし")
                         }
                     }
-                    .font(.system(size: 12, weight: .semibold))
+                    .font(.body).fontWeight(.semibold)
                     .foregroundStyle(wait > 20 ? Color(hex: "#BA7517") : Color(hex: "#1D9E75"))
                 }
                 Text(place.priceRange.symbolJP)
-                    .font(.system(size: 12))
+                    .font(.body)
                     .foregroundStyle(KORATheme.labelTertiary)
             }
         }
