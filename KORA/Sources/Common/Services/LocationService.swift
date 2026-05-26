@@ -40,16 +40,20 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     }
 
     func requestOnce() async throws -> CLLocationCoordinate2D {
-        try await withCheckedThrowingContinuation { (cont: CheckedContinuation<CLLocationCoordinate2D, Error>) in
-            self.continuation = cont
-            switch manager.authorizationStatus {
-            case .notDetermined:
-                manager.requestWhenInUseAuthorization()
-            case .authorizedWhenInUse, .authorizedAlways:
-                manager.requestLocation()
-            default:
-                self.finish(.failure(LocationError.denied))
+        try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { (cont: CheckedContinuation<CLLocationCoordinate2D, Error>) in
+                self.continuation = cont
+                switch manager.authorizationStatus {
+                case .notDetermined:
+                    manager.requestWhenInUseAuthorization()
+                case .authorizedWhenInUse, .authorizedAlways:
+                    manager.requestLocation()
+                default:
+                    self.finish(.failure(LocationError.denied))
+                }
             }
+        } onCancel: {
+            Task { @MainActor in self.finish(.failure(CancellationError())) }
         }
     }
 

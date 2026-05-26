@@ -478,6 +478,43 @@ enum MetroLineData {
         return result
     }
 
+    /// Returns up to `count` stations immediately before `boarding` in the
+    /// direction of travel (from terminus toward boarding), ordered
+    /// furthest-first so they read left-to-right on the approach track.
+    static func approachStations(before boarding: String, toward terminus: String, lineNumber: Int, count: Int = 3) -> [String] {
+        guard let line = seoulLines.first(where: { $0.number == lineNumber }) else { return [] }
+        for route in line.routes {
+            guard let bi = route.stations.firstIndex(of: boarding) else { continue }
+            if route.isCircular {
+                let n = route.stations.count
+                let goForward: Bool
+                if let ti = route.stations.firstIndex(of: terminus) {
+                    let fwd = (ti - bi + n) % n
+                    goForward = fwd <= n - fwd
+                } else { goForward = true }
+                var result: [String] = []
+                for step in (1...count).reversed() {
+                    let idx = goForward ? (bi - step + n) % n : (bi + step) % n
+                    result.append(route.stations[idx])
+                }
+                return result
+            } else {
+                let goForward = route.terminusB == terminus ||
+                    (route.terminusA != terminus &&
+                     route.stations.firstIndex(of: terminus).map { $0 > bi } ?? true)
+                if goForward {
+                    let start = max(0, bi - count)
+                    return Array(route.stations[start..<bi])
+                } else {
+                    guard bi + 1 < route.stations.count else { continue }
+                    let end = min(route.stations.count - 1, bi + count)
+                    return Array(route.stations[(bi + 1)...end].reversed())
+                }
+            }
+        }
+        return []
+    }
+
     /// Transfer stations that exist on both given lines.
     static func transferStations(between a: Int, and b: Int) -> [String] {
         guard a != b else { return [] }
