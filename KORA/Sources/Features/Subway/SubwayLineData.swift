@@ -16,15 +16,31 @@ struct SeoulMetroLineInfo: Identifiable {
     let id = UUID()
     let number: Int
     let name: String
+    /// Optional short badge label used in the UI when the line isn't a
+    /// numbered subway (e.g. "AR" for 공항철도, "K" for 경의중앙선).
+    /// When nil, the badge displays `\(number)`.
+    let code: String?
     let color: Color
     let routes: [MetroRoute]
+
+    init(number: Int, name: String, code: String? = nil, color: Color, routes: [MetroRoute]) {
+        self.number = number
+        self.name = name
+        self.code = code
+        self.color = color
+        self.routes = routes
+    }
+
+    /// Text shown in the round line badge.
+    var badgeText: String { code ?? "\(number)" }
 }
 
 // MARK: - Station Data
 
 enum MetroLineData {
     static let seoulLines: [SeoulMetroLineInfo] = [
-        line1, line2, line3, line4, line5, line6, line7, line8, line9
+        line1, line2, line3, line4, line5, line6, line7, line8, line9,
+        line10, line11, line12, line13
     ]
 
     // MARK: Line 1
@@ -279,6 +295,90 @@ enum MetroLineData {
         ]
     )
 
+    // MARK: Line 10 — 공항철도
+
+    static let line10 = SeoulMetroLineInfo(
+        number: 10, name: "공항철도", code: "AR",
+        color: Color(red: 0.45, green: 0.78, blue: 0.89),
+        routes: [
+            MetroRoute(
+                label: "서울역↔인천공항2터미널",
+                stations: [
+                    "서울역", "공덕", "홍대입구", "디지털미디어시티", "마곡나루",
+                    "김포공항", "계양", "검암", "청라국제도시", "영종",
+                    "운서", "공항화물청사", "인천공항1터미널", "인천공항2터미널"
+                ],
+                isCircular: false
+            )
+        ]
+    )
+
+    // MARK: Line 11 — 신분당선
+
+    static let line11 = SeoulMetroLineInfo(
+        number: 11, name: "신분당선", code: "D",
+        color: Color(red: 0.84, green: 0.00, blue: 0.23),
+        routes: [
+            MetroRoute(
+                label: "신사↔광교",
+                stations: [
+                    "신사", "논현", "신논현", "강남", "양재", "양재시민의숲",
+                    "청계산입구", "판교", "정자", "미금", "동천", "수지구청",
+                    "성복", "상현", "광교중앙", "광교"
+                ],
+                isCircular: false
+            )
+        ]
+    )
+
+    // MARK: Line 12 — 수인분당선
+
+    static let line12 = SeoulMetroLineInfo(
+        number: 12, name: "수인분당선", code: "수인",
+        color: Color(red: 0.96, green: 0.64, blue: 0.00),
+        routes: [
+            MetroRoute(
+                label: "청량리↔인천",
+                stations: [
+                    "청량리", "왕십리", "서울숲", "압구정로데오", "강남구청",
+                    "선정릉", "한티", "도곡", "구룡", "개포동", "대모산입구",
+                    "수서", "복정", "가천대", "태평", "모란", "야탑", "이매",
+                    "서현", "수내", "정자", "미금", "오리", "죽전", "보정",
+                    "구성", "신갈", "기흥", "상갈", "청명", "영통", "망포",
+                    "매탄권선", "수원시청", "매교", "수원", "고색", "오목천",
+                    "어천", "야목", "사리", "한대앞", "중앙", "고잔", "초지",
+                    "안산", "신길온천", "정왕", "오이도", "달월", "월곶",
+                    "소래포구", "인천논현", "호구포", "남동인더스파크",
+                    "원인재", "연수", "송도", "인하대", "숭의", "신포", "인천"
+                ],
+                isCircular: false
+            )
+        ]
+    )
+
+    // MARK: Line 13 — 경의중앙선
+
+    static let line13 = SeoulMetroLineInfo(
+        number: 13, name: "경의중앙선", code: "K",
+        color: Color(red: 0.47, green: 0.77, blue: 0.64),
+        routes: [
+            MetroRoute(
+                label: "지평↔문산",
+                stations: [
+                    "지평", "용문", "원덕", "양평", "오빈", "아신", "국수",
+                    "신원", "양수", "운길산", "팔당", "도심", "덕소", "도농",
+                    "양정", "구리", "양원", "망우", "상봉", "중랑", "회기",
+                    "청량리", "왕십리", "응봉", "옥수", "한남", "서빙고", "이촌",
+                    "용산", "효창공원앞", "공덕", "서강대", "신촌", "가좌",
+                    "디지털미디어시티", "수색", "화전", "강매", "행신", "능곡",
+                    "대곡", "곡산", "백마", "풍산", "일산", "탄현", "야당",
+                    "운정", "금촌", "월롱", "파주", "문산"
+                ],
+                isCircular: false
+            )
+        ]
+    )
+
     // MARK: - Transfer Stations
 
     static let stationTransferLines: [String: [Int]] = [
@@ -339,8 +439,7 @@ enum MetroLineData {
     }
 
     static func transferBadges(for station: String, excluding lineNumber: Int) -> [(number: Int, color: Color)] {
-        guard let lines = stationTransferLines[station] else { return [] }
-        return lines
+        return linesContaining(station)
             .filter { $0 != lineNumber }
             .map { (number: $0, color: lineColor($0)) }
     }
@@ -515,12 +614,15 @@ enum MetroLineData {
         return []
     }
 
-    /// Transfer stations that exist on both given lines.
+    /// Transfer stations that exist on both given lines — derived from each
+    /// line's route data so it stays accurate as new lines are added.
     static func transferStations(between a: Int, and b: Int) -> [String] {
-        guard a != b else { return [] }
-        return stationTransferLines.compactMap { (station, lines) in
-            (lines.contains(a) && lines.contains(b)) ? station : nil
-        }
+        guard a != b,
+              let lineA = seoulLines.first(where: { $0.number == a }),
+              let lineB = seoulLines.first(where: { $0.number == b }) else { return [] }
+        let stationsA = Set(lineA.routes.flatMap { $0.stations })
+        let stationsB = Set(lineB.routes.flatMap { $0.stations })
+        return Array(stationsA.intersection(stationsB))
     }
 
     /// Find a single-line segment between two stations on a specific line.

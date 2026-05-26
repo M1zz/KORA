@@ -28,6 +28,8 @@ EXCEPTIONS = {
     "국회의사당",
     "금천구청", "영등포구청", "양천구청", "강남구청", "마포구청",
     "강동구청", "부평구청", "부천시청", "하남시청",
+    # Line 10–13 additions
+    "양재시민의숲", "서울숲", "수지구청", "수원시청",
 }
 
 # Words that indicate translation rather than romanization.

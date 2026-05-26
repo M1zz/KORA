@@ -191,12 +191,14 @@ struct SubwayNavigatorView: View {
         return VStack(spacing: 18) {
             // Direction header — which train
             HStack(spacing: 14) {
-                Text("\(seg.line.number)")
+                Text(seg.line.badgeText)
                     .font(.largeTitle).fontWeight(.black)
                     .foregroundStyle(.white)
                     .frame(width: 64, height: 64)
                     .background(seg.line.color)
                     .clipShape(Circle())
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
                 VStack(alignment: .leading, spacing: 4) {
                     Text("\(terminusDisplay)行き")
                         .font(.largeTitle).fontWeight(.black)
@@ -1298,13 +1300,16 @@ struct StationSearchSheet: View {
             withAnimation(.easeInOut(duration: 0.15)) { selectedLineNumber = line.number }
         } label: {
             HStack(spacing: 6) {
-                Text("\(line.number)")
+                Text(line.badgeText)
                     .font(.body).fontWeight(.black)
                     .foregroundStyle(isSelected ? line.color : .white)
-                    .frame(width: 20, height: 20)
+                    .frame(minWidth: 20, minHeight: 20)
+                    .padding(.horizontal, 4)
                     .background(isSelected ? Color.white : line.color)
-                    .clipShape(Circle())
-                Text("号線")
+                    .clipShape(Capsule())
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.6)
+                Text(line.code != nil ? line.name : "号線")
                     .font(.body).fontWeight(isSelected ? .bold : .medium)
                     .foregroundStyle(isSelected ? .white : line.color)
             }

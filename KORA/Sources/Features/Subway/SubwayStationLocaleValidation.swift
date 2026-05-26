@@ -41,7 +41,12 @@ extension MetroLineData {
         "국회의사당",            // National Assembly
         // 구청/시청 — "-gu Office", "City Hall"
         "금천구청", "영등포구청", "양천구청", "강남구청", "마포구청",
-        "강동구청", "부평구청", "부천시청", "하남시청"
+        "강동구청", "부평구청", "부천시청", "하남시청",
+        // Line 10–13 official translations
+        "양재시민의숲",          // Yangjae Citizen's Forest
+        "서울숲",                // Seoul Forest
+        "수지구청",              // Suji-gu Office
+        "수원시청"               // Suwon City Hall
     ]
 
     /// English words that, when found in a station's English name, suggest

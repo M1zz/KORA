@@ -115,6 +115,30 @@ enum SubwayScheduleService {
                 firstFromB_wd:335, firstFromB_sat:340, firstFromB_sun:345, secsPerStop:110,
                 weekdayHeadways:[h(300,420,8),h(420,540,5),h(540,1080,7),h(1080,1200,5),h(1200,1500,9)],
                 weekendHeadways:[h(300,540,10),h(540,1320,7),h(1320,1500,10)]),
+            // Line 10 — 공항철도 (AREX). Longer inter-station distances, lower frequency.
+            RouteSchedule(lineNumber:10, terminusA:"서울역", terminusB:"인천공항2터미널", isCircular:false,
+                firstFromA_wd:330, firstFromA_sat:335, firstFromA_sun:340,
+                firstFromB_wd:330, firstFromB_sat:335, firstFromB_sun:340, secsPerStop:200,
+                weekdayHeadways:[h(300,1500,10)],
+                weekendHeadways:[h(300,1500,12)]),
+            // Line 11 — 신분당선
+            RouteSchedule(lineNumber:11, terminusA:"신사", terminusB:"광교", isCircular:false,
+                firstFromA_wd:330, firstFromA_sat:335, firstFromA_sun:340,
+                firstFromB_wd:330, firstFromB_sat:335, firstFromB_sun:340, secsPerStop:90,
+                weekdayHeadways:[h(300,390,6),h(390,540,4),h(540,1080,5),h(1080,1200,4),h(1200,1500,7)],
+                weekendHeadways:[h(300,540,7),h(540,1320,5),h(1320,1500,8)]),
+            // Line 12 — 수인분당선
+            RouteSchedule(lineNumber:12, terminusA:"청량리", terminusB:"인천", isCircular:false,
+                firstFromA_wd:330, firstFromA_sat:335, firstFromA_sun:340,
+                firstFromB_wd:330, firstFromB_sat:335, firstFromB_sun:340, secsPerStop:110,
+                weekdayHeadways:[h(300,390,9),h(390,540,5),h(540,1080,7),h(1080,1200,5),h(1200,1500,10)],
+                weekendHeadways:[h(300,540,10),h(540,1320,7),h(1320,1500,12)]),
+            // Line 13 — 경의중앙선
+            RouteSchedule(lineNumber:13, terminusA:"지평", terminusB:"문산", isCircular:false,
+                firstFromA_wd:330, firstFromA_sat:335, firstFromA_sun:340,
+                firstFromB_wd:330, firstFromB_sat:335, firstFromB_sun:340, secsPerStop:180,
+                weekdayHeadways:[h(300,390,12),h(390,540,7),h(540,1080,10),h(1080,1200,7),h(1200,1500,14)],
+                weekendHeadways:[h(300,540,15),h(540,1320,10),h(1320,1500,18)]),
         ]
     }()
 
