@@ -317,7 +317,7 @@ struct SubwayNavigatorView: View {
                 // HERO verification card — the single most important pre-boarding
                 // action. Hangul is the largest text because the in-train LED
                 // shows Korean. The display language sits below as a phonetic aid.
-                verifyNextStopCard(nextKo: nk, nextDisplay: nextDisplay, lineColor: seg.line.color)
+                verifyNextStopCard(currentKo: seg.stations.first ?? "", nextKo: nk, nextDisplay: nextDisplay, lineColor: seg.line.color)
                 Divider()
             }
 
@@ -396,13 +396,12 @@ struct SubwayNavigatorView: View {
 
     // MARK: Pre-boarding verification (wrong-direction defense)
 
-    /// Compact next-stop card. Just the station name — large Hangul (the LED
-    /// verification target) over a smaller display-language reading. The
-    /// teaching for *what to do with this* lives in `NextStopVerifyTip`, shown
-    /// once via TipKit popover instead of repeating on every ride.
+    /// Current station → next station card shown vertically before boarding.
     @ViewBuilder
-    private func verifyNextStopCard(nextKo: String, nextDisplay: String, lineColor: Color) -> some View {
-        VStack(alignment: .leading, spacing: 6) {
+    private func verifyNextStopCard(currentKo: String, nextKo: String, nextDisplay: String, lineColor: Color) -> some View {
+        let currentDisplay = MetroLineData.displayName(for: currentKo, language: displayLanguage)
+
+        VStack(alignment: .leading, spacing: 4) {
             HStack(spacing: 6) {
                 Image(systemName: "tram.fill")
                     .font(.body).fontWeight(.bold)
@@ -411,12 +410,31 @@ struct SubwayNavigatorView: View {
                     .font(.body).fontWeight(.semibold)
                     .foregroundStyle(lineColor)
             }
-            Text(nextKo)
-                .font(.system(size: 44, weight: .black))
+            .padding(.bottom, 6)
+
+            // Current station
+            Text(currentKo)
+                .font(.system(size: 30, weight: .black))
                 .foregroundStyle(KORATheme.labelPrimary)
+            if displayLanguage != .korean && currentDisplay != currentKo {
+                Text(currentDisplay)
+                    .font(.body).fontWeight(.medium)
+                    .foregroundStyle(KORATheme.labelSecondary)
+            }
+
+            // Downward arrow
+            Image(systemName: "arrow.down")
+                .font(.title).fontWeight(.bold)
+                .foregroundStyle(lineColor.opacity(0.7))
+                .padding(.vertical, 4)
+
+            // Next station
+            Text(nextKo)
+                .font(.system(size: 38, weight: .black))
+                .foregroundStyle(lineColor)
             if displayLanguage != .korean && nextDisplay != nextKo {
                 Text(nextDisplay)
-                    .font(.title2).fontWeight(.semibold)
+                    .font(.body).fontWeight(.medium)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
         }
@@ -429,7 +447,7 @@ struct SubwayNavigatorView: View {
                 .strokeBorder(lineColor.opacity(0.45), lineWidth: 2)
         )
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("다음 정거장 \(nextKo)역")
+        .accessibilityLabel("\(currentKo)역 출발, 다음 정거장 \(nextKo)역")
         .popoverTip(NextStopVerifyTip(lang: displayLanguage), arrowEdge: .top)
     }
 
