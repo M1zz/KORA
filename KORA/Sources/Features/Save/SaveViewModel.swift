@@ -13,6 +13,10 @@ final class SaveViewModel {
     var showClipboardPrompt: Bool = false
     var clipboardURL: String? = nil
 
+    // MARK: Manual Name Prompt (Instagram can't be scraped)
+    var showManualNamePrompt: Bool = false
+    var manualNameInput: String = ""
+
     // MARK: Kakao Search State
     var searchQuery: String = ""
     var searchResults: [KakaoDocument] = []
@@ -33,13 +37,21 @@ final class SaveViewModel {
         let url = urlInput.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !url.isEmpty else { return }
 
+        // Instagram blocks server-side scraping — skip OG fetch entirely
+        // and ask the user to type the place name so we can search Kakao.
+        let isInstagram = url.contains("instagram.com") || url.contains("instagr.am")
+        if isInstagram {
+            pendingSourceURL = url
+            showManualNamePrompt = true
+            return
+        }
+
         isLoading = true
         errorMessage = nil
         parsedPlace = nil
 
         do {
             let place = try await parser.parse(urlString: url)
-            // OG 파싱 성공 → 추출된 이름으로 Kakao 검색
             searchQuery = place.name
             await searchKakao(imageURLFallback: place.imageURL, sourceURL: url)
         } catch {
@@ -47,6 +59,24 @@ final class SaveViewModel {
         }
 
         isLoading = false
+    }
+
+    // MARK: - Manual Name Entry (after Instagram URL detection)
+
+    func submitManualName() async {
+        let name = manualNameInput.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !name.isEmpty else { return }
+        searchQuery = name
+        manualNameInput = ""
+        showManualNamePrompt = false
+        await searchKakao(sourceURL: pendingSourceURL)
+    }
+
+    func dismissManualPrompt() {
+        showManualNamePrompt = false
+        manualNameInput = ""
+        pendingSourceURL = nil
+        urlInput = ""
     }
 
     // MARK: - Kakao Keyword Search

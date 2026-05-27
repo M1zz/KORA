@@ -39,6 +39,17 @@ private enum SaveLoc {
     static func loading(_ l: StationLanguage) -> String {
         switch l { case .korean: return "장소 정보 가져오는 중..."; case .japanese: return "スポット情報を取得中..."; case .english: return "Loading place info..."; case .chinese: return "正在获取地点信息..." }
     }
+    static func instagramHint(_ l: StationLanguage) -> String {
+        switch l {
+        case .korean:   return "Instagram 링크를 저장했어요.\n장소명으로 검색해서 저장할 장소를 찾아주세요."
+        case .japanese: return "Instagramリンクを保存しました。\n場所名で検索して保存するスポットを探してください。"
+        case .english:  return "Instagram link saved.\nSearch by place name to find the spot."
+        case .chinese:  return "已保存Instagram链接。\n请用地点名称搜索要保存的地点。"
+        }
+    }
+    static func placeName(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "장소명 검색"; case .japanese: return "場所名で検索"; case .english: return "Search place name"; case .chinese: return "搜索地点名称" }
+    }
     static func addSheetTitle(_ l: StationLanguage) -> String {
         switch l { case .korean: return "Instagram URL 붙여넣기"; case .japanese: return "InstagramのURLを貼り付ける"; case .english: return "Paste Instagram URL"; case .chinese: return "粘贴Instagram URL" }
     }
@@ -150,6 +161,9 @@ struct SaveView: View {
                 }
                 .onChange(of: coordinator.shareRequestNonce) { _, _ in
                     consumePendingShare()
+                }
+                .onChange(of: viewModel.showManualNamePrompt) { _, shown in
+                    if shown { showAddSheet = true }
                 }
 
                 if !viewModel.showClipboardPrompt || showMap {
@@ -332,7 +346,12 @@ struct AddPlaceSheet: View {
             ScrollView {
                 VStack(spacing: 16) {
                     urlInputSection
-                    kakaoSearchSection
+                    if viewModel.showManualNamePrompt {
+                        manualNameSection
+                    }
+                    if !viewModel.showManualNamePrompt {
+                        kakaoSearchSection
+                    }
                 }
                 .padding()
             }
@@ -341,7 +360,10 @@ struct AddPlaceSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(SaveLoc.close(lang)) { dismiss() }
+                    Button(SaveLoc.close(lang)) {
+                        viewModel.dismissManualPrompt()
+                        dismiss()
+                    }
                 }
             }
         }
@@ -349,6 +371,70 @@ struct AddPlaceSheet: View {
         .onChange(of: viewModel.showSearchResults) { _, shown in
             if shown { dismiss() }
         }
+    }
+
+    private var manualNameSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(alignment: .top, spacing: 10) {
+                Image(systemName: "info.circle.fill")
+                    .font(.body)
+                    .foregroundStyle(KORATheme.accent)
+                    .padding(.top, 1)
+                Text(SaveLoc.instagramHint(lang))
+                    .font(.body)
+                    .foregroundStyle(KORATheme.labelSecondary)
+            }
+
+            HStack(spacing: 10) {
+                HStack(spacing: 8) {
+                    Image(systemName: "magnifyingglass")
+                        .font(.body)
+                        .foregroundStyle(KORATheme.labelTertiary)
+
+                    TextField(SaveLoc.searchPlaceholder(lang), text: $viewModel.manualNameInput)
+                        .font(.body)
+                        .submitLabel(.search)
+                        .onSubmit {
+                            Task { await viewModel.submitManualName() }
+                        }
+
+                    if !viewModel.manualNameInput.isEmpty {
+                        Button { viewModel.manualNameInput = "" } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundStyle(KORATheme.labelTertiary)
+                        }
+                    }
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 11)
+                .background(KORATheme.surface)
+                .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusMD))
+
+                Button {
+                    Task { await viewModel.submitManualName() }
+                } label: {
+                    if viewModel.isSearching {
+                        ProgressView().tint(KORATheme.accent)
+                            .frame(width: 36, height: 36)
+                    } else {
+                        Image(systemName: "magnifyingglass.circle.fill")
+                            .font(.largeTitle)
+                            .foregroundStyle(viewModel.manualNameInput.isEmpty
+                                ? KORATheme.accent.opacity(0.3)
+                                : KORATheme.accent
+                            )
+                    }
+                }
+                .disabled(viewModel.manualNameInput.isEmpty || viewModel.isSearching)
+            }
+        }
+        .padding(KORATheme.spacing16)
+        .background(KORATheme.background)
+        .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusLG))
+        .overlay(
+            RoundedRectangle(cornerRadius: KORATheme.radiusLG)
+                .strokeBorder(KORATheme.accent.opacity(0.3), lineWidth: 1)
+        )
     }
 
     private var urlInputSection: some View {
