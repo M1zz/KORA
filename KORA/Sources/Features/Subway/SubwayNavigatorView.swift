@@ -1059,16 +1059,15 @@ struct SubwayNavigatorView: View {
         return (prev, next)
     }
 
-    /// Single-line "← 역삼  ·  선릉 →" label. Font shrinks to fit; never wraps.
+    /// "강남 → 역삼" style label: current station name → next station.
     @ViewBuilder
     private func neighboringStationsLabel(for stationKo: String) -> some View {
-        let (prev, next) = neighboringStations(for: stationKo)
-        if prev != nil || next != nil {
-            let prevStr = prev.map { "← \(MetroLineData.displayName(for: $0, language: displayLanguage))" } ?? ""
-            let sep    = (prev != nil && next != nil) ? "  ·  " : ""
-            let nextStr = next.map { "\(MetroLineData.displayName(for: $0, language: displayLanguage)) →" } ?? ""
-            Text(prevStr + sep + nextStr)
-                .font(.callout)
+        let (_, next) = neighboringStations(for: stationKo)
+        if let nextKo = next {
+            let current = MetroLineData.displayName(for: stationKo, language: displayLanguage)
+            let nextName = MetroLineData.displayName(for: nextKo, language: displayLanguage)
+            Text("\(current) → \(nextName)")
+                .font(.callout).fontWeight(.medium)
                 .foregroundStyle(KORATheme.labelSecondary)
                 .lineLimit(1)
                 .minimumScaleFactor(0.38)
