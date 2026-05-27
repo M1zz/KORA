@@ -519,6 +519,8 @@ struct SubwayNavigatorView: View {
                 .accessibilityElement(children: .combine)
                 .accessibilityLabel("\(alightKo)역까지 \(stopsRemaining)정거장, 약 \(minsRemaining)분 남음")
 
+                inTransitProgressVisual(seg: seg, currentKo: currentKo)
+
                 // Alight target — escalates as we approach.
                 //   > 3 stops away: calm informational card
                 //   2-3 stops:      orange "prepare" warning
@@ -766,6 +768,62 @@ struct SubwayNavigatorView: View {
     private func approachAccessibility(seg: JourneySegment, trainAt: String?) -> String {
         guard let at = trainAt else { return "전철이 멀리 떨어져 있습니다" }
         return "전철이 현재 \(at)에 있습니다"
+    }
+
+    /// Shows where the user currently is relative to the destination.
+    /// Displays the last 3 stations before the destination + destination,
+    /// with the current station marked by a pulsing train icon.
+    private func inTransitProgressVisual(seg: JourneySegment, currentKo: String) -> some View {
+        let destIdx = seg.stations.count - 1
+        let alightKo = seg.stations.last ?? ""
+
+        let windowCount = 3
+        let windowStart = max(destIdx - windowCount, 0)
+        let windowStations = Array(seg.stations[windowStart...destIdx])
+
+        let currentIdx = seg.stations.firstIndex(of: currentKo) ?? 0
+        let isBeforeWindow = currentIdx < windowStart
+
+        return VStack(alignment: .leading, spacing: 12) {
+            Text(NavLoc.myCurrentPosition.resolved(displayLanguage))
+                .font(.body).fontWeight(.semibold)
+                .foregroundStyle(KORATheme.labelSecondary)
+
+            HStack(alignment: .center, spacing: 0) {
+                if isBeforeWindow {
+                    VStack(spacing: 2) {
+                        Image(systemName: "tram.fill")
+                            .font(.title3)
+                            .foregroundStyle(seg.line.color)
+                            .symbolEffect(.pulse)
+                        Image(systemName: "arrow.right")
+                            .font(.caption)
+                            .foregroundStyle(KORATheme.labelTertiary)
+                    }
+                    .frame(width: 28)
+                    Rectangle()
+                        .fill(seg.line.color.opacity(0.4))
+                        .frame(width: 16, height: 3)
+                }
+
+                ForEach(Array(windowStations.enumerated()), id: \.offset) { idx, st in
+                    visualStationDot(
+                        station: st,
+                        isBoarding: st == alightKo,
+                        isTrainHere: st == currentKo,
+                        lineColor: seg.line.color
+                    )
+                    if idx < windowStations.count - 1 {
+                        Rectangle()
+                            .fill(seg.line.color.opacity(0.4))
+                            .frame(height: 3)
+                    }
+                }
+            }
+        }
+        .padding(14)
+        .background(Color(.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
     /// Direction label translated for current display language.

@@ -371,6 +371,12 @@ extension NavLoc {
         en: "Train's current location",
         zh: "列车当前位置"
     )
+    static let myCurrentPosition = NavLoc(
+        ko: "내 현재 위치",
+        ja: "現在地",
+        en: "My position",
+        zh: "当前位置"
+    )
     static let boardingShort = NavLoc(
         ko: "탑승",
         ja: "乗車",
