@@ -494,22 +494,6 @@ struct SubwayNavigatorView: View {
                 .accessibilityHint(NavLoc.correctPosition.resolved(displayLanguage))
                 .accessibilityAddTraits(.isButton)
 
-                // Progress bar — stations remaining
-                if totalStops > 0 {
-                    GeometryReader { geo in
-                        let progress = min(max(Double(stopsTraveled) / Double(totalStops), 0), 1)
-                        ZStack(alignment: .leading) {
-                            Capsule()
-                                .fill(seg.line.color.opacity(0.18))
-                            Capsule()
-                                .fill(seg.line.color)
-                                .frame(width: geo.size.width * progress)
-                        }
-                    }
-                    .frame(height: 8)
-                    .accessibilityHidden(true)
-                }
-
                 // Stops remaining + ETA
                 HStack(alignment: .firstTextBaseline) {
                     VStack(alignment: .leading, spacing: 2) {
@@ -661,15 +645,29 @@ struct SubwayNavigatorView: View {
     /// For circular routes (e.g. Line 2), wraps around the array.
     private func previousStations(for seg: JourneySegment, count: Int = 3) -> [String] {
         let boarding = seg.stations.first ?? ""
-        guard let route = seg.line.routes.first(where: {
-            $0.stations.contains(boarding) && $0.stations.contains(seg.terminus)
-        }), let boardingIdx = route.stations.firstIndex(of: boarding) else { return [] }
+        // Prefer a route that contains both boarding station AND terminus so the
+        // direction is unambiguous. Fall back to any route with the boarding
+        // station — necessary for branching lines where terminus lives on a
+        // different branch (e.g. Sinbundang, Line 9 express).
+        let route = seg.line.routes.first(where: {
+                        $0.stations.contains(boarding) && $0.stations.contains(seg.terminus)
+                    }) ?? seg.line.routes.first(where: { $0.stations.contains(boarding) })
+        guard let route, let boardingIdx = route.stations.firstIndex(of: boarding) else { return [] }
 
-        let terminusIdx = route.stations.firstIndex(of: seg.terminus) ?? boardingIdx
-        // The train comes FROM the side opposite to terminus.
-        let step = terminusIdx < boardingIdx ? 1 : -1
+        // Direction: train approaches from the side OPPOSITE to its terminus.
+        // When terminus is absent from the fallback route, use the second journey
+        // station (first stop after boarding) to infer which way the train moves.
+        let step: Int
+        if let tIdx = route.stations.firstIndex(of: seg.terminus) {
+            step = tIdx < boardingIdx ? 1 : -1
+        } else if seg.stations.count > 1,
+                  let nextIdx = route.stations.firstIndex(of: seg.stations[1]) {
+            step = nextIdx < boardingIdx ? 1 : -1
+        } else {
+            return []
+        }
+
         let n = route.stations.count
-
         var result: [String] = []
         for i in 1...count {
             var idx = boardingIdx + step * i
@@ -757,8 +755,10 @@ struct SubwayNavigatorView: View {
                 )
 
             Text(MetroLineData.displayName(for: station, language: displayLanguage))
-                .font(.body).fontWeight(isBoarding ? .bold : .regular)
+                .font(.system(size: 11)).fontWeight(isBoarding ? .bold : .regular)
                 .foregroundStyle(isBoarding ? KORATheme.labelPrimary : KORATheme.labelSecondary)
+                .multilineTextAlignment(.center)
+                .autoFitLine(minScale: 0.7)
         }
         .frame(maxWidth: .infinity)
     }
