@@ -290,12 +290,14 @@ struct SubwayNavigatorView: View {
                     Text(directionLabel(terminus: seg.terminus))
                         .font(.largeTitle).fontWeight(.black)
                         .foregroundStyle(seg.line.color)
+                        .autoFitLine(minScale: 0.55)
                     // Secondary line: always show Korean Hangul so the user
                     // can match the platform signage in any UI language.
                     if displayLanguage != .korean {
                         Text("\(seg.terminus)행")
                             .font(.title3)
                             .foregroundStyle(KORATheme.labelSecondary)
+                            .autoFitLine(minScale: 0.7)
                     }
                 }
                 .layoutPriority(1)
@@ -884,6 +886,7 @@ struct SubwayNavigatorView: View {
                          : NavLoc.tapWhenBoarded(terminus, displayLanguage))
                         .font(.title3).fontWeight(.bold)
                         .foregroundStyle(.white)
+                        .autoFitLine(minScale: 0.6)
                 }
                 Spacer()
                 Image(systemName: "checkmark.circle.fill")
@@ -931,10 +934,12 @@ struct SubwayNavigatorView: View {
                     Text(display)
                         .font(.title).fontWeight(.black)
                         .foregroundStyle(KORATheme.labelPrimary)
+                        .autoFitLine(minScale: 0.6)
                     if displayLanguage != .korean {
                         Text(ko)
                             .font(.body).fontWeight(.medium)
                             .foregroundStyle(KORATheme.labelSecondary)
+                            .autoFitLine()
                     }
                     neighboringStationsLabel(for: ko)
                 }
@@ -1073,9 +1078,11 @@ struct SubwayNavigatorView: View {
                     Text(NavLoc.whereToGo.resolved(displayLanguage))
                         .font(.title).fontWeight(.black)
                         .foregroundStyle(KORATheme.labelPrimary)
+                        .autoFitLine(minScale: 0.6)
                     Text(NavLoc.tapStationForRoute.resolved(displayLanguage))
                         .font(.body).fontWeight(.medium)
                         .foregroundStyle(KORATheme.labelSecondary)
+                        .autoFitLine()
                 }
 
                 Spacer()

@@ -61,6 +61,19 @@ enum KORATheme {
     static let radiusXL: CGFloat = 20
 }
 
+// MARK: - Auto-fit line modifier
+
+extension View {
+    /// Keeps a label on one line by scaling the font down to `minScale` (default 65%)
+    /// before falling back to truncation. Use for station names, direction labels,
+    /// and any other text that should stay single-line but can flex smaller.
+    func autoFitLine(minScale: CGFloat = 0.65) -> some View {
+        self
+            .lineLimit(1)
+            .minimumScaleFactor(minScale)
+    }
+}
+
 // MARK: - Color Extension
 
 extension Color {
