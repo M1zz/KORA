@@ -936,6 +936,7 @@ struct SubwayNavigatorView: View {
                             .font(.body).fontWeight(.medium)
                             .foregroundStyle(KORATheme.labelSecondary)
                     }
+                    neighboringStationsLabel(for: ko)
                 }
 
                 Spacer()
@@ -971,6 +972,40 @@ struct SubwayNavigatorView: View {
         )
         .accessibilityAction(named: "언어 변경") { showLanguagePicker = true }
         .popoverTip(LanguageLongPressTip(lang: displayLanguage), arrowEdge: .top)
+    }
+
+    // MARK: Neighboring stations
+
+    /// Returns (prev, next) Korean station names for the primary line at `stationKo`.
+    private func neighboringStations(for stationKo: String) -> (prev: String?, next: String?) {
+        let lineNums = MetroLineData.linesContaining(stationKo)
+        guard let lineNum = lineNums.first,
+              let line = MetroLineData.seoulLines.first(where: { $0.number == lineNum }),
+              let route = line.routes.first(where: { $0.stations.contains(stationKo) }),
+              let idx = route.stations.firstIndex(of: stationKo)
+        else { return (nil, nil) }
+        let count = route.stations.count
+        let prev: String? = idx > 0 ? route.stations[idx - 1]
+            : (route.isCircular ? route.stations[count - 1] : nil)
+        let next: String? = idx < count - 1 ? route.stations[idx + 1]
+            : (route.isCircular ? route.stations[0] : nil)
+        return (prev, next)
+    }
+
+    /// Single-line "← 역삼  ·  선릉 →" label. Font shrinks to fit; never wraps.
+    @ViewBuilder
+    private func neighboringStationsLabel(for stationKo: String) -> some View {
+        let (prev, next) = neighboringStations(for: stationKo)
+        if prev != nil || next != nil {
+            let prevStr = prev.map { "← \(MetroLineData.displayName(for: $0, language: displayLanguage))" } ?? ""
+            let sep    = (prev != nil && next != nil) ? "  ·  " : ""
+            let nextStr = next.map { "\(MetroLineData.displayName(for: $0, language: displayLanguage)) →" } ?? ""
+            Text(prevStr + sep + nextStr)
+                .font(.callout)
+                .foregroundStyle(KORATheme.labelSecondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.5)
+        }
     }
 
     // MARK: Destination-focused body (no journey yet)
