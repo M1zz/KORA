@@ -290,7 +290,9 @@ struct SubwayNavigatorView: View {
                     Text(directionLabel(terminus: seg.terminus))
                         .font(.largeTitle).fontWeight(.black)
                         .foregroundStyle(seg.line.color)
-                        .autoFitLine(minScale: 0.55)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.65)
+                        .fixedSize(horizontal: false, vertical: true)
                     // Secondary line: always show Korean Hangul so the user
                     // can match the platform signage in any UI language.
                     if displayLanguage != .korean {
@@ -992,7 +994,9 @@ struct SubwayNavigatorView: View {
                     Text(display)
                         .font(.title).fontWeight(.black)
                         .foregroundStyle(KORATheme.labelPrimary)
-                        .autoFitLine(minScale: 0.6)
+                        .lineLimit(2)
+                        .minimumScaleFactor(0.7)
+                        .fixedSize(horizontal: false, vertical: true)
                     if displayLanguage != .korean {
                         Text(ko)
                             .font(.body).fontWeight(.medium)
@@ -1067,7 +1071,7 @@ struct SubwayNavigatorView: View {
                 .font(.callout)
                 .foregroundStyle(KORATheme.labelSecondary)
                 .lineLimit(1)
-                .minimumScaleFactor(0.5)
+                .minimumScaleFactor(0.38)
         }
     }
 
