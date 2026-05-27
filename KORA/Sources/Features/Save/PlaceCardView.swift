@@ -101,6 +101,25 @@ struct PlaceCardView: View {
                     .padding(.horizontal, KORATheme.spacing16)
                     .padding(.vertical, 10)
                 }
+            } else if let urlString = place.sourceURL,
+                      !urlString.isEmpty,
+                      let linkURL = URL(string: urlString) {
+                Divider().padding(.horizontal, KORATheme.spacing16)
+                Link(destination: linkURL) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "safari.fill")
+                            .font(.body).fontWeight(.semibold)
+                        Text(openLinkLabel)
+                            .font(.body).fontWeight(.semibold)
+                        Spacer()
+                        Image(systemName: "arrow.up.right")
+                            .font(.body).fontWeight(.semibold)
+                            .foregroundStyle(KORATheme.accent.opacity(0.7))
+                    }
+                    .foregroundStyle(KORATheme.accent)
+                    .padding(.horizontal, KORATheme.spacing16)
+                    .padding(.vertical, 10)
+                }
             }
 
             // 태그
@@ -161,6 +180,15 @@ struct PlaceCardView: View {
         case .japanese: return "ここへ向かう"
         case .english:  return "Head there"
         case .chinese:  return "前往这里"
+        }
+    }
+
+    private var openLinkLabel: String {
+        switch lang {
+        case .korean:   return "링크 열기"
+        case .japanese: return "リンクを開く"
+        case .english:  return "Open link"
+        case .chinese:  return "打开链接"
         }
     }
 

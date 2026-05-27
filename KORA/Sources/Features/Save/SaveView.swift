@@ -50,6 +50,15 @@ private enum SaveLoc {
     static func placeName(_ l: StationLanguage) -> String {
         switch l { case .korean: return "장소명 검색"; case .japanese: return "場所名で検索"; case .english: return "Search place name"; case .chinese: return "搜索地点名称" }
     }
+    static func quickSave(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "링크만 저장"; case .japanese: return "リンクだけ保存"; case .english: return "Save link only"; case .chinese: return "仅保存链接" }
+    }
+    static func searchPlace(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "장소 검색"; case .japanese: return "場所を検索"; case .english: return "Search Place"; case .chinese: return "搜索地点" }
+    }
+    static func openLink(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "링크 열기"; case .japanese: return "リンクを開く"; case .english: return "Open link"; case .chinese: return "打开链接" }
+    }
     static func addSheetTitle(_ l: StationLanguage) -> String {
         switch l { case .korean: return "Instagram URL 붙여넣기"; case .japanese: return "InstagramのURLを貼り付ける"; case .english: return "Paste Instagram URL"; case .chinese: return "粘贴Instagram URL" }
     }
@@ -385,45 +394,68 @@ struct AddPlaceSheet: View {
                     .foregroundStyle(KORATheme.labelSecondary)
             }
 
-            HStack(spacing: 10) {
-                HStack(spacing: 8) {
-                    Image(systemName: "magnifyingglass")
-                        .font(.body)
-                        .foregroundStyle(KORATheme.labelTertiary)
-
-                    TextField(SaveLoc.searchPlaceholder(lang), text: $viewModel.manualNameInput)
-                        .font(.body)
-                        .submitLabel(.search)
-                        .onSubmit {
-                            Task { await viewModel.submitManualName() }
-                        }
-
-                    if !viewModel.manualNameInput.isEmpty {
-                        Button { viewModel.manualNameInput = "" } label: {
-                            Image(systemName: "xmark.circle.fill")
-                                .foregroundStyle(KORATheme.labelTertiary)
-                        }
+            // Name input
+            HStack(spacing: 8) {
+                Image(systemName: "character.cursor.ibeam")
+                    .font(.body)
+                    .foregroundStyle(KORATheme.labelTertiary)
+                TextField(SaveLoc.searchPlaceholder(lang), text: $viewModel.manualNameInput)
+                    .font(.body)
+                    .submitLabel(.done)
+                if !viewModel.manualNameInput.isEmpty {
+                    Button { viewModel.manualNameInput = "" } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(KORATheme.labelTertiary)
                     }
                 }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 11)
-                .background(KORATheme.surface)
-                .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusMD))
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 11)
+            .background(KORATheme.surface)
+            .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusMD))
+
+            // Dual action: quick save vs full Kakao search
+            HStack(spacing: 10) {
+                Button {
+                    viewModel.saveQuickLink(name: viewModel.manualNameInput)
+                    dismiss()
+                } label: {
+                    HStack(spacing: 5) {
+                        Image(systemName: "bookmark.fill")
+                        Text(SaveLoc.quickSave(lang))
+                    }
+                    .font(.body).fontWeight(.semibold)
+                    .foregroundStyle(viewModel.manualNameInput.isEmpty
+                        ? KORATheme.labelTertiary
+                        : KORATheme.labelSecondary
+                    )
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 11)
+                    .background(KORATheme.surface)
+                    .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusMD))
+                }
+                .disabled(viewModel.manualNameInput.isEmpty)
 
                 Button {
                     Task { await viewModel.submitManualName() }
                 } label: {
-                    if viewModel.isSearching {
-                        ProgressView().tint(KORATheme.accent)
-                            .frame(width: 36, height: 36)
-                    } else {
-                        Image(systemName: "magnifyingglass.circle.fill")
-                            .font(.largeTitle)
-                            .foregroundStyle(viewModel.manualNameInput.isEmpty
-                                ? KORATheme.accent.opacity(0.3)
-                                : KORATheme.accent
-                            )
+                    HStack(spacing: 5) {
+                        if viewModel.isSearching {
+                            ProgressView().tint(.white).scaleEffect(0.8)
+                        } else {
+                            Image(systemName: "magnifyingglass")
+                        }
+                        Text(SaveLoc.searchPlace(lang))
                     }
+                    .font(.body).fontWeight(.semibold)
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 11)
+                    .background(viewModel.manualNameInput.isEmpty
+                        ? KORATheme.accent.opacity(0.4)
+                        : KORATheme.accent
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusMD))
                 }
                 .disabled(viewModel.manualNameInput.isEmpty || viewModel.isSearching)
             }

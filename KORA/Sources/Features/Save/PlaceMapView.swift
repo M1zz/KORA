@@ -8,10 +8,12 @@ struct PlaceMapView: View {
     @Binding var selectedPlace: Place?
     @State private var mapSelection: UUID?
 
+    private var locatablePlaces: [Place] { places.filter { $0.hasLocation } }
+
     var body: some View {
         ZStack(alignment: .bottom) {
             Map(initialPosition: initialCameraPosition, selection: $mapSelection) {
-                ForEach(places) { place in
+                ForEach(locatablePlaces) { place in
                     Annotation(
                         place.nameJP.isEmpty ? place.name : place.nameJP,
                         coordinate: place.coordinate.clLocation,
@@ -28,7 +30,7 @@ struct PlaceMapView: View {
             .mapStyle(.standard)
             .onChange(of: mapSelection) { _, id in
                 withAnimation(.spring(response: 0.35)) {
-                    selectedPlace = id == nil ? nil : places.first { $0.id == id }
+                    selectedPlace = id == nil ? nil : locatablePlaces.first { $0.id == id }
                 }
             }
 

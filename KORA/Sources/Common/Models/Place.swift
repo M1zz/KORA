@@ -58,6 +58,13 @@ struct Place: Identifiable, Codable, Hashable {
     }
 }
 
+extension Place {
+    /// True when the place has real geographic coordinates (not the default 0,0).
+    var hasLocation: Bool {
+        coordinate.latitude != 0 || coordinate.longitude != 0
+    }
+}
+
 // MARK: - Coordinate
 
 struct Coordinate: Codable, Hashable {

@@ -72,6 +72,27 @@ final class SaveViewModel {
         await searchKakao(sourceURL: pendingSourceURL)
     }
 
+    /// Saves the Instagram URL immediately without coordinates — just a named bookmark.
+    func saveQuickLink(name: String) {
+        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return }
+        let place = Place(
+            name: trimmed,
+            nameJP: trimmed,
+            category: .attraction,
+            address: "",
+            addressJP: "",
+            coordinate: Coordinate(latitude: 0, longitude: 0),
+            nearestStation: "",
+            sourceURL: pendingSourceURL
+        )
+        store.add(place)
+        manualNameInput = ""
+        showManualNamePrompt = false
+        pendingSourceURL = nil
+        urlInput = ""
+    }
+
     func dismissManualPrompt() {
         showManualNamePrompt = false
         manualNameInput = ""
