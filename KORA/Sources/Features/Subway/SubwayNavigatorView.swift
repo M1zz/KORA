@@ -285,23 +285,17 @@ struct SubwayNavigatorView: View {
                            minHeight: 44, idealHeight: 64, maxHeight: 64)
                     .background(seg.line.color)
                     .clipShape(Circle())
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(1)
                     .layoutPriority(0)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(directionLabel(terminus: seg.terminus))
                         .font(.largeTitle).fontWeight(.black)
                         .foregroundStyle(seg.line.color)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5)
                     // Secondary line: always show Korean Hangul so the user
                     // can match the platform signage in any UI language.
                     if displayLanguage != .korean {
                         Text("\(seg.terminus)행")
                             .font(.title3)
                             .foregroundStyle(KORATheme.labelSecondary)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
                     }
                 }
                 .layoutPriority(1)
@@ -344,8 +338,6 @@ struct SubwayNavigatorView: View {
                         Text(alightDisplay)
                             .font(.title2).fontWeight(.black)
                             .foregroundStyle(KORATheme.labelPrimary)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
                         HStack(spacing: 6) {
                             if displayLanguage != .korean {
                                 Text(alightKo)
@@ -361,8 +353,6 @@ struct SubwayNavigatorView: View {
                                         Text(MetroLineData.lineBadgeText(num))
                                             .font(.caption).fontWeight(.black)
                                             .foregroundStyle(.white)
-                                            .lineLimit(1)
-                                            .minimumScaleFactor(0.5)
                                             .padding(.horizontal, 5)
                                             .frame(minWidth: 20, minHeight: 18)
                                             .background(MetroLineData.lineColor(num))
@@ -392,14 +382,10 @@ struct SubwayNavigatorView: View {
             Text(primary)
                 .font(.title2).fontWeight(.bold)
                 .foregroundStyle(tint ?? KORATheme.labelPrimary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.leading)
             Text(secondary)
                 .font(.body)
                 .foregroundStyle(KORATheme.labelSecondary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
                 .multilineTextAlignment(.leading)
         }
     }
@@ -424,14 +410,10 @@ struct SubwayNavigatorView: View {
             Text(nextKo)
                 .font(.system(size: 44, weight: .black))
                 .foregroundStyle(KORATheme.labelPrimary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
             if displayLanguage != .korean && nextDisplay != nextKo {
                 Text(nextDisplay)
                     .font(.title2).fontWeight(.semibold)
                     .foregroundStyle(KORATheme.labelSecondary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
             }
         }
         .padding(18)
@@ -495,8 +477,6 @@ struct SubwayNavigatorView: View {
                             Text(currentDisplay)
                                 .font(.title2).fontWeight(.black)
                                 .foregroundStyle(KORATheme.labelPrimary)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
                             if displayLanguage != .korean {
                                 Text(currentKo)
                                     .font(.body).fontWeight(.medium)
@@ -582,21 +562,15 @@ struct SubwayNavigatorView: View {
                 Text(level.headline(lang: displayLanguage))
                     .font(.body).fontWeight(.bold)
                     .foregroundStyle(level.accent)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
             }
 
             Text(alightKo)
                 .font(.system(size: level.koSize, weight: .black))
                 .foregroundStyle(KORATheme.labelPrimary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
             if displayLanguage != .korean && alightDisplay != alightKo {
                 Text(alightDisplay)
                     .font(.title3).fontWeight(.semibold)
                     .foregroundStyle(KORATheme.labelSecondary)
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.5)
             }
         }
         .padding(level.padding)
@@ -783,8 +757,6 @@ struct SubwayNavigatorView: View {
             Text(MetroLineData.displayName(for: station, language: displayLanguage))
                 .font(.body).fontWeight(isBoarding ? .bold : .regular)
                 .foregroundStyle(isBoarding ? KORATheme.labelPrimary : KORATheme.labelSecondary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.5)
         }
         .frame(maxWidth: .infinity)
     }
@@ -912,8 +884,6 @@ struct SubwayNavigatorView: View {
                          : NavLoc.tapWhenBoarded(terminus, displayLanguage))
                         .font(.title3).fontWeight(.bold)
                         .foregroundStyle(.white)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5)
                 }
                 Spacer()
                 Image(systemName: "checkmark.circle.fill")
@@ -949,8 +919,6 @@ struct SubwayNavigatorView: View {
                         Text(MetroLineData.lineBadgeText(num))
                             .font(.body).fontWeight(.black)
                             .foregroundStyle(.white)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
                             .padding(.horizontal, 4)
                             .frame(minWidth: 36, minHeight: 36)
                             .background(MetroLineData.lineColor(num))
@@ -963,14 +931,10 @@ struct SubwayNavigatorView: View {
                     Text(display)
                         .font(.title).fontWeight(.black)
                         .foregroundStyle(KORATheme.labelPrimary)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.6)
                     if displayLanguage != .korean {
                         Text(ko)
                             .font(.body).fontWeight(.medium)
                             .foregroundStyle(KORATheme.labelSecondary)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.6)
                     }
                 }
 
@@ -1074,13 +1038,9 @@ struct SubwayNavigatorView: View {
                     Text(NavLoc.whereToGo.resolved(displayLanguage))
                         .font(.title).fontWeight(.black)
                         .foregroundStyle(KORATheme.labelPrimary)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.6)
                     Text(NavLoc.tapStationForRoute.resolved(displayLanguage))
                         .font(.body).fontWeight(.medium)
                         .foregroundStyle(KORATheme.labelSecondary)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.7)
                 }
 
                 Spacer()
@@ -1453,11 +1413,9 @@ struct SubwayNavigatorView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text(place.nameJP)
                     .font(.body).fontWeight(.semibold)
-                    .lineLimit(2)
                 Text(place.name)
                     .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
-                    .lineLimit(2)
             }
             Spacer()
 
@@ -1495,7 +1453,6 @@ struct SubwayNavigatorView: View {
                     Text(place.nameJP)
                         .font(.body).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.labelPrimary)
-                        .lineLimit(2)
                     HStack(spacing: 4) {
                         Image(systemName: "tram.fill")
                             .font(.body)
@@ -1503,7 +1460,6 @@ struct SubwayNavigatorView: View {
                     }
                     .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
-                    .lineLimit(2)
                 }
                 Spacer()
                 Image(systemName: "arrow.right.circle.fill")
@@ -1661,8 +1617,6 @@ private struct TrainApproachCard: View {
                         Text(MetroLineData.displayName(for: all[idx], language: displayLanguage))
                             .font(.body).fontWeight(isBoarding ? .semibold : .regular)
                             .foregroundStyle(isBoarding ? KORATheme.labelPrimary : KORATheme.labelTertiary)
-                            .lineLimit(1)
-                            .minimumScaleFactor(0.5)
                         Text(isBoarding
                              ? NavLoc.boardingShort.resolved(displayLanguage)
                              : NavLoc.stopsBefore(stopsAway, displayLanguage))
@@ -1934,8 +1888,6 @@ struct StationSearchSheet: View {
                     .padding(.horizontal, 4)
                     .background(isSelected ? Color.white : line.color)
                     .clipShape(Capsule())
-                    .lineLimit(1)
-                    .minimumScaleFactor(0.6)
                 Text(line.code != nil ? line.name : NavLoc.lineLabel(line.number, displayLanguage))
                     .font(.body).fontWeight(isSelected ? .bold : .medium)
                     .foregroundStyle(isSelected ? .white : line.color)
@@ -1970,7 +1922,6 @@ struct StationSearchSheet: View {
                         Text(subtitle == nil ? romaji : "· \(romaji)")
                             .font(.body)
                             .foregroundStyle(KORATheme.labelTertiary)
-                            .lineLimit(2)
                     }
                 }
             }
@@ -1980,8 +1931,6 @@ struct StationSearchSheet: View {
                     Text(MetroLineData.lineBadgeText(num))
                         .font(.caption).fontWeight(.bold)
                         .foregroundStyle(.white)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5)
                         .padding(.horizontal, 4)
                         .frame(minWidth: 20, minHeight: 18)
                         .background(MetroLineData.lineColor(num))
@@ -2089,8 +2038,6 @@ struct PositionCorrectionSheet: View {
                                     Text(display)
                                         .font(.body).fontWeight(isEstimate || isGPS ? .bold : .regular)
                                         .foregroundStyle(KORATheme.labelPrimary)
-                                        .lineLimit(1)
-                                        .minimumScaleFactor(0.5)
                                     if displayLanguage != .korean {
                                         Text(ko)
                                             .font(.body)
@@ -2144,8 +2091,6 @@ struct PositionCorrectionSheet: View {
                     Text(display)
                         .font(.title3).fontWeight(.bold)
                         .foregroundStyle(KORATheme.labelPrimary)
-                        .lineLimit(1)
-                        .minimumScaleFactor(0.5)
                     if displayLanguage != .korean {
                         Text(ko)
                             .font(.body)
