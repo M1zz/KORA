@@ -1453,9 +1453,9 @@ struct SubwayNavigatorView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 8))
 
             VStack(alignment: .leading, spacing: 2) {
-                Text(place.nameJP)
+                Text(displayLanguage == .korean ? place.name : place.nameJP)
                     .font(.body).fontWeight(.semibold)
-                Text(place.name)
+                Text(displayLanguage == .korean ? place.nameJP : place.name)
                     .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
@@ -1492,7 +1492,7 @@ struct SubwayNavigatorView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 8))
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(place.nameJP)
+                    Text(displayLanguage == .korean ? place.name : place.nameJP)
                         .font(.body).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.labelPrimary)
                     HStack(spacing: 4) {

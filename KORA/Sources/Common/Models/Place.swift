@@ -81,12 +81,45 @@ enum PlaceCategory: String, Codable, CaseIterable {
 
     var displayNameJP: String {
         switch self {
-        case .restaurant:  return "レストラン"
-        case .cafe:        return "カフェ"
-        case .shopping:    return "ショッピング"
-        case .attraction:  return "観光スポット"
+        case .restaurant:    return "レストラン"
+        case .cafe:          return "カフェ"
+        case .shopping:      return "ショッピング"
+        case .attraction:    return "観光スポット"
         case .entertainment: return "エンタメ"
-        case .beauty:      return "ビューティ"
+        case .beauty:        return "ビューティ"
+        }
+    }
+
+    func displayName(language: StationLanguage) -> String {
+        switch language {
+        case .korean:
+            switch self {
+            case .restaurant:    return "음식점"
+            case .cafe:          return "카페"
+            case .shopping:      return "쇼핑"
+            case .attraction:    return "관광명소"
+            case .entertainment: return "엔터테인먼트"
+            case .beauty:        return "뷰티"
+            }
+        case .japanese: return displayNameJP
+        case .english:
+            switch self {
+            case .restaurant:    return "Restaurant"
+            case .cafe:          return "Cafe"
+            case .shopping:      return "Shopping"
+            case .attraction:    return "Attraction"
+            case .entertainment: return "Entertainment"
+            case .beauty:        return "Beauty"
+            }
+        case .chinese:
+            switch self {
+            case .restaurant:    return "餐厅"
+            case .cafe:          return "咖啡厅"
+            case .shopping:      return "购物"
+            case .attraction:    return "景点"
+            case .entertainment: return "娱乐"
+            case .beauty:        return "美容"
+            }
         }
     }
 

@@ -7,6 +7,17 @@ struct PlaceCardView: View {
     var onDelete: (() -> Void)? = nil
     var onRoute: ((Place) -> Void)? = nil
 
+    @AppStorage("kora.display_language") private var languagePref: String = ""
+
+    private var lang: StationLanguage {
+        guard !languagePref.isEmpty, let e = StationLanguage(rawValue: languagePref)
+        else { return StationLanguage.resolveFromSystemLocale() }
+        return e
+    }
+
+    private var primaryName: String  { lang == .korean ? place.name   : place.nameJP }
+    private var secondaryName: String { lang == .korean ? place.nameJP : place.name  }
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             // 상단: 카테고리 + 이름 + 상태
@@ -14,13 +25,15 @@ struct PlaceCardView: View {
                 categoryIcon
 
                 VStack(alignment: .leading, spacing: 3) {
-                    Text(place.nameJP)
+                    Text(primaryName)
                         .font(.body).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.labelPrimary)
 
-                    Text(place.name)
-                        .font(.body)
-                        .foregroundStyle(KORATheme.labelSecondary)
+                    if !secondaryName.isEmpty && secondaryName != primaryName {
+                        Text(secondaryName)
+                            .font(.body)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                    }
                 }
 
                 Spacer()
@@ -41,7 +54,7 @@ struct PlaceCardView: View {
             HStack(spacing: KORATheme.spacing16) {
                 if !place.nearestStation.isEmpty {
                     Label {
-                        Text(stationDisplayJa)
+                        Text(stationDisplay)
                             .font(.body).fontWeight(.medium)
                         + Text("  \(place.nearestStation)")
                             .font(.body)
@@ -52,7 +65,7 @@ struct PlaceCardView: View {
                     .foregroundStyle(KORATheme.labelSecondary)
                     .lineLimit(1)
                 } else {
-                    Label("最寄り駅を解析中…", systemImage: "tram.fill")
+                    Label(analyzingStation, systemImage: "tram.fill")
                         .font(.body)
                         .foregroundStyle(KORATheme.labelTertiary)
                         .lineLimit(1)
@@ -60,7 +73,7 @@ struct PlaceCardView: View {
 
                 if let wait = place.waitMinutes {
                     Spacer()
-                    Label("\(wait)分待ち", systemImage: "clock")
+                    Label(waitLabel(wait), systemImage: "clock")
                         .font(.body).fontWeight(.medium)
                         .foregroundStyle(wait > 20 ? Color(hex: "#BA7517") : Color(hex: "#1D9E75"))
                 }
@@ -77,7 +90,7 @@ struct PlaceCardView: View {
                     HStack(spacing: 6) {
                         Image(systemName: "tram.tunnel.fill")
                             .font(.body).fontWeight(.semibold)
-                        Text("ここへ向かう")
+                        Text(routeButtonLabel)
                             .font(.body).fontWeight(.semibold)
                         Spacer()
                         Image(systemName: "chevron.right")
@@ -111,12 +124,44 @@ struct PlaceCardView: View {
         .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
     }
 
-    // MARK: - Computed
+    // MARK: - Computed (language-aware)
 
-    private var stationDisplayJa: String {
+    private var stationDisplay: String {
         guard !place.nearestStation.isEmpty else { return "" }
-        let ja = MetroLineData.displayName(for: place.nearestStation, language: .japanese)
-        return "\(ja)駅"
+        let name = MetroLineData.displayName(for: place.nearestStation, language: lang)
+        switch lang {
+        case .korean:   return "\(name)역"
+        case .japanese: return "\(name)駅"
+        case .english:  return "\(name) Stn."
+        case .chinese:  return "\(name)站"
+        }
+    }
+
+    private var analyzingStation: String {
+        switch lang {
+        case .korean:   return "가까운 역 찾는 중…"
+        case .japanese: return "最寄り駅を解析中…"
+        case .english:  return "Finding nearest station…"
+        case .chinese:  return "正在查找最近车站…"
+        }
+    }
+
+    private func waitLabel(_ minutes: Int) -> String {
+        switch lang {
+        case .korean:   return "\(minutes)분 대기"
+        case .japanese: return "\(minutes)分待ち"
+        case .english:  return "\(minutes) min wait"
+        case .chinese:  return "等候\(minutes)分钟"
+        }
+    }
+
+    private var routeButtonLabel: String {
+        switch lang {
+        case .korean:   return "여기로 가기"
+        case .japanese: return "ここへ向かう"
+        case .english:  return "Head there"
+        case .chinese:  return "前往这里"
+        }
     }
 
     // MARK: - Subviews
@@ -133,7 +178,14 @@ struct PlaceCardView: View {
     }
 
     private var openStatusBadge: some View {
-        (place.isOpen ? Text("営業中") : Text("準備中"))
+        let label: String
+        switch lang {
+        case .korean:   label = place.isOpen ? "영업 중"  : "준비 중"
+        case .japanese: label = place.isOpen ? "営業中"   : "準備中"
+        case .english:  label = place.isOpen ? "Open"     : "Closed"
+        case .chinese:  label = place.isOpen ? "营业中"   : "准备中"
+        }
+        return Text(label)
             .font(.body).fontWeight(.semibold)
             .padding(.horizontal, 8)
             .padding(.vertical, 3)

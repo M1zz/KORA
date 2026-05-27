@@ -1,5 +1,75 @@
 import SwiftUI
 
+// MARK: - Localized strings for Save section
+
+private enum SaveLoc {
+    static func listTab(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "목록"; case .japanese: return "リスト"; case .english: return "List"; case .chinese: return "列表" }
+    }
+    static func mapTab(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "지도"; case .japanese: return "マップ"; case .english: return "Map"; case .chinese: return "地图" }
+    }
+    static func navTitle(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "가고 싶은"; case .japanese: return "行きたい"; case .english: return "Saved"; case .chinese: return "想去的" }
+    }
+    static func linkFound(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "링크를 찾았습니다"; case .japanese: return "リンクが見つかりました"; case .english: return "Link found"; case .chinese: return "找到链接" }
+    }
+    static func cancel(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "취소"; case .japanese: return "キャンセル"; case .english: return "Cancel"; case .chinese: return "取消" }
+    }
+    static func add(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "추가"; case .japanese: return "追加"; case .english: return "Add"; case .chinese: return "添加" }
+    }
+    static func allFilter(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "전체"; case .japanese: return "すべて"; case .english: return "All"; case .chinese: return "全部" }
+    }
+    static func emptyTitle(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "아직 저장된 장소가 없습니다"; case .japanese: return "まだ保存したスポットがありません"; case .english: return "No saved places yet"; case .chinese: return "还没有保存的地点" }
+    }
+    static func emptySubtitle(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "Instagram URL을 붙여넣으면\n자동으로 장소 정보가 추가됩니다"; case .japanese: return "InstagramのURLを貼り付けると\n自動でスポット情報が追加されます"; case .english: return "Paste an Instagram URL\nto automatically add a place"; case .chinese: return "粘贴Instagram URL\n可自动添加地点信息" }
+    }
+    static func pasteURL(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "URL 붙여넣기"; case .japanese: return "URLを貼り付ける"; case .english: return "Paste URL"; case .chinese: return "粘贴URL" }
+    }
+    static func delete(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "삭제"; case .japanese: return "削除"; case .english: return "Delete"; case .chinese: return "删除" }
+    }
+    static func loading(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "장소 정보 가져오는 중..."; case .japanese: return "スポット情報を取得中..."; case .english: return "Loading place info..."; case .chinese: return "正在获取地点信息..." }
+    }
+    static func addSheetTitle(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "Instagram URL 붙여넣기"; case .japanese: return "InstagramのURLを貼り付ける"; case .english: return "Paste Instagram URL"; case .chinese: return "粘贴Instagram URL" }
+    }
+    static func close(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "닫기"; case .japanese: return "閉じる"; case .english: return "Close"; case .chinese: return "关闭" }
+    }
+    static func searchByKeyword(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "키워드로 장소 검색"; case .japanese: return "キーワードで場所を検索"; case .english: return "Search by keyword"; case .chinese: return "用关键词搜索" }
+    }
+    static func searchPlaceholder(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "성심당, 홍대 카페..."; case .japanese: return "城心堂、弘大カフェ..."; case .english: return "Sungsimdang, Hongdae cafe..."; case .chinese: return "圣心堂、弘大咖啡..." }
+    }
+    static func placeInfoFetched(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "장소 정보를 가져왔습니다!"; case .japanese: return "スポット情報を取得しました！"; case .english: return "Place info retrieved!"; case .chinese: return "已获取地点信息！" }
+    }
+    static func saveToList(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "목록에 저장하기"; case .japanese: return "リストに保存する"; case .english: return "Save to list"; case .chinese: return "保存到列表" }
+    }
+    static func checkPlace(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "장소 확인"; case .japanese: return "スポットを確認"; case .english: return "Confirm Place"; case .chinese: return "确认地点" }
+    }
+    static func noResults(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "검색 결과가 없습니다"; case .japanese: return "検索結果がありません"; case .english: return "No results found"; case .chinese: return "没有搜索结果" }
+    }
+    static func searchResults(_ l: StationLanguage) -> String {
+        switch l { case .korean: return "검색 결과"; case .japanese: return "検索結果"; case .english: return "Search Results"; case .chinese: return "搜索结果" }
+    }
+}
+
+// MARK: - SaveView
+
 struct SaveView: View {
     @State private var viewModel = SaveViewModel()
     @State private var selectedCategory: PlaceCategory? = nil
@@ -8,13 +78,21 @@ struct SaveView: View {
     @State private var selectedMapPlace: Place? = nil
     @State private var coordinator = NavigationCoordinator.shared
 
+    @AppStorage("kora.display_language") private var languagePref: String = ""
+
+    private var lang: StationLanguage {
+        guard !languagePref.isEmpty, let e = StationLanguage(rawValue: languagePref)
+        else { return StationLanguage.resolveFromSystemLocale() }
+        return e
+    }
+
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
                 VStack(spacing: 0) {
                     Picker("", selection: $showMap) {
-                        Text("リスト").tag(false)
-                        Text("マップ").tag(true)
+                        Text(SaveLoc.listTab(lang)).tag(false)
+                        Text(SaveLoc.mapTab(lang)).tag(true)
                     }
                     .pickerStyle(.segmented)
                     .padding(.horizontal)
@@ -46,7 +124,7 @@ struct SaveView: View {
                         .background(Color(UIColor.systemGroupedBackground))
                     }
                 }
-                .navigationTitle("行きたい")
+                .navigationTitle(SaveLoc.navTitle(lang))
                 .navigationBarTitleDisplayMode(.inline)
                 .overlay {
                     if viewModel.isLoading {
@@ -113,7 +191,7 @@ struct SaveView: View {
                     .foregroundStyle(KORATheme.accent)
 
                 VStack(alignment: .leading, spacing: 2) {
-                    Text("リンクが見つかりました")
+                    Text(SaveLoc.linkFound(lang))
                         .font(.body).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.labelPrimary)
                     if let url = viewModel.clipboardURL {
@@ -129,7 +207,7 @@ struct SaveView: View {
             HStack(spacing: 8) {
                 Spacer()
 
-                Button("キャンセル") {
+                Button(SaveLoc.cancel(lang)) {
                     viewModel.dismissClipboard()
                 }
                 .font(.body)
@@ -138,7 +216,7 @@ struct SaveView: View {
                 Button {
                     viewModel.acceptClipboardURL()
                 } label: {
-                    Text("追加")
+                    Text(SaveLoc.add(lang))
                         .font(.body).fontWeight(.semibold)
                         .foregroundStyle(.white)
                         .padding(.horizontal, 16)
@@ -159,12 +237,12 @@ struct SaveView: View {
     private var categoryFilterSection: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
-                FilterChip(title: "すべて", isSelected: selectedCategory == nil) {
+                FilterChip(title: SaveLoc.allFilter(lang), isSelected: selectedCategory == nil) {
                     selectedCategory = nil
                 }
                 ForEach(PlaceCategory.allCases, id: \.self) { cat in
                     FilterChip(
-                        title: cat.displayNameJP,
+                        title: cat.displayName(language: lang),
                         systemImage: cat.systemImage,
                         isSelected: selectedCategory == cat
                     ) {
@@ -186,9 +264,9 @@ struct SaveView: View {
             if places.isEmpty {
                 EmptyStateView(
                     systemImage: "bookmark",
-                    title: "まだ保存したスポットがありません",
-                    subtitle: "InstagramのURLを貼り付けると\n自動でスポット情報が追加されます",
-                    actionTitle: "URLを貼り付ける"
+                    title: SaveLoc.emptyTitle(lang),
+                    subtitle: SaveLoc.emptySubtitle(lang),
+                    actionTitle: SaveLoc.pasteURL(lang)
                 ) {
                     showAddSheet = true
                 }
@@ -204,7 +282,7 @@ struct SaveView: View {
                             Button(role: .destructive) {
                                 viewModel.delete(place)
                             } label: {
-                                Label("削除", systemImage: "trash")
+                                Label(SaveLoc.delete(lang), systemImage: "trash")
                             }
                         }
                     }
@@ -224,7 +302,7 @@ struct SaveView: View {
                 ProgressView()
                     .tint(.white)
                     .scaleEffect(1.4)
-                Text("スポット情報を取得中...")
+                Text(SaveLoc.loading(lang))
                     .font(.body).fontWeight(.medium)
                     .foregroundStyle(.white)
             }
@@ -242,6 +320,13 @@ struct AddPlaceSheet: View {
     @FocusState private var isURLFieldFocused: Bool
     @Bindable var viewModel: SaveViewModel
 
+    @AppStorage("kora.display_language") private var languagePref: String = ""
+    private var lang: StationLanguage {
+        guard !languagePref.isEmpty, let e = StationLanguage(rawValue: languagePref)
+        else { return StationLanguage.resolveFromSystemLocale() }
+        return e
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -252,11 +337,11 @@ struct AddPlaceSheet: View {
                 .padding()
             }
             .background(Color(UIColor.systemGroupedBackground))
-            .navigationTitle("InstagramのURLを貼り付ける")
+            .navigationTitle(SaveLoc.addSheetTitle(lang))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("閉じる") { dismiss() }
+                    Button(SaveLoc.close(lang)) { dismiss() }
                 }
             }
         }
@@ -325,7 +410,7 @@ struct AddPlaceSheet: View {
 
     private var kakaoSearchSection: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text("キーワードで場所を検索")
+            Text(SaveLoc.searchByKeyword(lang))
                 .font(.body).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.labelSecondary)
 
@@ -335,7 +420,7 @@ struct AddPlaceSheet: View {
                         .font(.body)
                         .foregroundStyle(KORATheme.labelTertiary)
 
-                    TextField("城心堂、弘大カフェ...", text: $viewModel.searchQuery)
+                    TextField(SaveLoc.searchPlaceholder(lang), text: $viewModel.searchQuery)
                         .font(.body)
                         .submitLabel(.search)
                         .onSubmit {
@@ -393,7 +478,7 @@ struct FilterChip: View {
                     Image(systemName: img)
                         .font(.body)
                 }
-                Text(LocalizedStringKey(title))
+                Text(title)
                     .font(.body).fontWeight(.medium)
             }
             .padding(.horizontal, 12)
@@ -412,16 +497,22 @@ struct ParsedPlaceSheet: View {
     let onSave: () -> Void
     let onDismiss: () -> Void
 
+    @AppStorage("kora.display_language") private var languagePref: String = ""
+    private var lang: StationLanguage {
+        guard !languagePref.isEmpty, let e = StationLanguage(rawValue: languagePref)
+        else { return StationLanguage.resolveFromSystemLocale() }
+        return e
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 20) {
-                    // 파싱 성공 배너
                     HStack(spacing: 10) {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.title3)
                             .foregroundStyle(Color(hex: "#1D9E75"))
-                        Text("スポット情報を取得しました！")
+                        Text(SaveLoc.placeInfoFetched(lang))
                             .font(.body).fontWeight(.semibold)
                     }
                     .frame(maxWidth: .infinity)
@@ -432,21 +523,21 @@ struct ParsedPlaceSheet: View {
                     PlaceCardView(place: place)
 
                     VStack(spacing: 12) {
-                        KORAPrimaryButton("リストに保存する", icon: "bookmark.fill") {
+                        KORAPrimaryButton(SaveLoc.saveToList(lang), icon: "bookmark.fill") {
                             onSave()
                         }
-                        KORASecondaryButton("キャンセル") {
+                        KORASecondaryButton(SaveLoc.cancel(lang)) {
                             onDismiss()
                         }
                     }
                 }
                 .padding()
             }
-            .navigationTitle("スポットを確認")
+            .navigationTitle(SaveLoc.checkPlace(lang))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("閉じる") { onDismiss() }
+                    Button(SaveLoc.close(lang)) { onDismiss() }
                 }
             }
         }
@@ -459,6 +550,13 @@ struct KakaoSearchResultsSheet: View {
     @Environment(\.dismiss) private var dismiss
     let viewModel: SaveViewModel
 
+    @AppStorage("kora.display_language") private var languagePref: String = ""
+    private var lang: StationLanguage {
+        guard !languagePref.isEmpty, let e = StationLanguage(rawValue: languagePref)
+        else { return StationLanguage.resolveFromSystemLocale() }
+        return e
+    }
+
     var body: some View {
         NavigationStack {
             Group {
@@ -467,7 +565,7 @@ struct KakaoSearchResultsSheet: View {
                         Image(systemName: "magnifyingglass")
                             .font(.largeTitle).fontWeight(.thin)
                             .foregroundStyle(KORATheme.labelTertiary)
-                        Text("検索結果がありません")
+                        Text(SaveLoc.noResults(lang))
                             .font(.body)
                             .foregroundStyle(KORATheme.labelSecondary)
                     }
@@ -487,11 +585,11 @@ struct KakaoSearchResultsSheet: View {
                 }
             }
             .background(Color(UIColor.systemGroupedBackground))
-            .navigationTitle("検索結果")
+            .navigationTitle(SaveLoc.searchResults(lang))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    Button("キャンセル") {
+                    Button(SaveLoc.cancel(lang)) {
                         viewModel.dismissSearch()
                         dismiss()
                     }
