@@ -44,6 +44,7 @@
 		AA041 /* SubwayStationChineseNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA141 /* SubwayStationChineseNames.swift */; };
 		AA042 /* SubwayNavigatorStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA142 /* SubwayNavigatorStrings.swift */; };
 		AA034 /* SubwayScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA134 /* SubwayScheduleService.swift */; };
+		AA043 /* PlaceMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA143 /* PlaceMapView.swift */; };
 		AA035 /* RealtimeArrivalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA135 /* RealtimeArrivalService.swift */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +112,7 @@
 		AA142 /* SubwayNavigatorStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayNavigatorStrings.swift; sourceTree = "<group>"; };
 		AA134 /* SubwayScheduleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayScheduleService.swift; sourceTree = "<group>"; };
 		AA135 /* RealtimeArrivalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeArrivalService.swift; sourceTree = "<group>"; };
+		AA143 /* PlaceMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMapView.swift; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -219,6 +221,7 @@
 				AA105 /* SaveViewModel.swift */,
 				AA106 /* PlaceCardView.swift */,
 				AA114 /* LinkParserService.swift */,
+				AA143 /* PlaceMapView.swift */,
 			);
 			path = Save;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				AA004 /* SaveView.swift in Sources */,
 				AA005 /* SaveViewModel.swift in Sources */,
 				AA006 /* PlaceCardView.swift in Sources */,
+				AA043 /* PlaceMapView.swift in Sources */,
 				AA007 /* GoView.swift in Sources */,
 				AA008 /* NowView.swift in Sources */,
 				AA009 /* ShareView.swift in Sources */,

@@ -4,34 +4,49 @@ struct SaveView: View {
     @State private var viewModel = SaveViewModel()
     @State private var selectedCategory: PlaceCategory? = nil
     @State private var showAddSheet: Bool = false
+    @State private var showMap: Bool = false
+    @State private var selectedMapPlace: Place? = nil
     @State private var coordinator = NavigationCoordinator.shared
 
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
-                ScrollView {
-                    VStack(spacing: 0) {
-                        // 클립보드 링크 감지 배너
-                        if viewModel.showClipboardPrompt {
-                            clipboardBanner
-                                .padding(.horizontal)
-                                .padding(.top, 12)
-                                .padding(.bottom, 4)
-                                .transition(.move(edge: .top).combined(with: .opacity))
+                VStack(spacing: 0) {
+                    Picker("", selection: $showMap) {
+                        Text("リスト").tag(false)
+                        Text("マップ").tag(true)
+                    }
+                    .pickerStyle(.segmented)
+                    .padding(.horizontal)
+                    .padding(.vertical, 8)
+                    .background(Color(UIColor.systemGroupedBackground))
+
+                    if showMap {
+                        PlaceMapView(
+                            places: viewModel.places(for: selectedCategory),
+                            selectedPlace: $selectedMapPlace
+                        )
+                    } else {
+                        ScrollView {
+                            VStack(spacing: 0) {
+                                if viewModel.showClipboardPrompt {
+                                    clipboardBanner
+                                        .padding(.horizontal)
+                                        .padding(.top, 12)
+                                        .padding(.bottom, 4)
+                                        .transition(.move(edge: .top).combined(with: .opacity))
+                                }
+                                categoryFilterSection
+                                    .padding(.top, 8)
+                                    .padding(.bottom, 8)
+                                placesSection
+                                    .padding(.horizontal)
+                            }
                         }
-
-                        // 카테고리 필터
-                        categoryFilterSection
-                            .padding(.top, 8)
-                            .padding(.bottom, 8)
-
-                        // 저장된 장소 리스트
-                        placesSection
-                            .padding(.horizontal)
+                        .background(Color(UIColor.systemGroupedBackground))
                     }
                 }
-                .background(Color(UIColor.systemGroupedBackground))
-                .navigationTitle("Save")
+                .navigationTitle("行きたい")
                 .navigationBarTitleDisplayMode(.inline)
                 .overlay {
                     if viewModel.isLoading {
@@ -59,8 +74,7 @@ struct SaveView: View {
                     consumePendingShare()
                 }
 
-                // + FAB — 클립보드 배너가 없을 때만 표시
-                if !viewModel.showClipboardPrompt {
+                if !viewModel.showClipboardPrompt || showMap {
                     Button {
                         showAddSheet = true
                     } label: {
@@ -79,6 +93,7 @@ struct SaveView: View {
             }
         }
         .animation(.spring(response: 0.25), value: viewModel.showClipboardPrompt)
+        .animation(.easeInOut(duration: 0.2), value: showMap)
     }
 
     private func consumePendingShare() {
