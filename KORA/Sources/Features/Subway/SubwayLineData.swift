@@ -7,9 +7,35 @@ struct MetroRoute: Identifiable {
     let label: String
     let stations: [String]
     let isCircular: Bool
+    /// Known intermediate terminus stations for this route.
+    /// A train signed "XX행" terminates at XX but still serves all stops before it,
+    /// so passengers can board it when the destination comes before XX.
+    let shortTermini: [String]
+    /// For circular routes: the direction label shown on trains going forward
+    /// (increasing index). e.g. "내선순환" for Line 2.
+    let circularForwardLabel: String?
+    /// For circular routes: the direction label shown on trains going backward
+    /// (decreasing index). e.g. "외선순환" for Line 2.
+    let circularBackwardLabel: String?
+    /// Fixed landmark stations used for platform direction hints on circular routes.
+    /// Seoul Metro Line 2 officially uses 6–7 major stations so passengers can
+    /// match what they read on the physical platform signs.
+    let directionLandmarks: [String]
 
     var terminusA: String { stations.first ?? "" }
     var terminusB: String { stations.last ?? "" }
+
+    init(label: String, stations: [String], isCircular: Bool, shortTermini: [String] = [],
+         circularForwardLabel: String? = nil, circularBackwardLabel: String? = nil,
+         directionLandmarks: [String] = []) {
+        self.label = label
+        self.stations = stations
+        self.isCircular = isCircular
+        self.shortTermini = shortTermini
+        self.circularForwardLabel = circularForwardLabel
+        self.circularBackwardLabel = circularBackwardLabel
+        self.directionLandmarks = directionLandmarks
+    }
 }
 
 struct SeoulMetroLineInfo: Identifiable {
@@ -66,7 +92,9 @@ enum MetroLineData {
                     "백운", "동암", "간석", "주안", "도화",
                     "제물포", "도원", "동인천", "인천"
                 ],
-                isCircular: false
+                isCircular: false,
+                // 단거리 북행: 소요산까지 안 가는 열차들
+                shortTermini: ["동두천", "동두천중앙", "의정부", "광운대", "청량리"]
             ),
             MetroRoute(
                 label: "소요산↔신창",
@@ -79,7 +107,10 @@ enum MetroLineData {
                     "서정리", "지제", "평택", "성환", "직산",
                     "두정", "천안", "아산", "배방", "온양온천", "신창"
                 ],
-                isCircular: false
+                isCircular: false,
+                // 북행 단거리 + 남행 중간 종착
+                shortTermini: ["동두천", "동두천중앙", "의정부", "광운대", "청량리",
+                               "천안", "아산", "온양온천", "수원", "병점"]
             ),
             MetroRoute(
                 label: "서동탄지선",
@@ -108,7 +139,13 @@ enum MetroLineData {
                     "문래", "영등포구청", "당산", "합정", "홍대입구",
                     "신촌", "이대", "아현", "충정로"
                 ],
-                isCircular: true
+                isCircular: true,
+                circularForwardLabel: "내선순환",
+                circularBackwardLabel: "외선순환",
+                // Seoul Metro Line 2 official direction landmark stations.
+                // The two nearest of these in each direction of travel are shown
+                // on the platform signs so passengers can orient themselves.
+                directionLandmarks: ["시청", "왕십리", "잠실", "강남", "교대", "신도림", "홍대입구"]
             ),
             MetroRoute(
                 label: "성수지선",
@@ -165,7 +202,10 @@ enum MetroLineData {
                     "대야미", "반월", "상록수", "한대앞", "중앙",
                     "고잔", "초지", "안산", "신길온천", "정왕", "오이도"
                 ],
-                isCircular: false
+                isCircular: false,
+                // 사당 기준: 남행은 오이도 외에 안산행·한대앞행·금정행이 같은 방향
+                //           북행은 당고개 외에 서울역행 단거리 운행
+                shortTermini: ["서울역", "금정", "한대앞", "안산"]
             )
         ]
     )
@@ -351,7 +391,9 @@ enum MetroLineData {
                     "소래포구", "인천논현", "호구포", "남동인더스파크",
                     "원인재", "연수", "송도", "인하대", "숭의", "신포", "인천"
                 ],
-                isCircular: false
+                isCircular: false,
+                // 남행: 오이도·수원 등에서 끊기는 열차 / 북행: 왕십리·청량리까지만
+                shortTermini: ["청량리", "왕십리", "수서", "수원", "오이도", "안산", "한대앞"]
             )
         ]
     )
@@ -374,7 +416,9 @@ enum MetroLineData {
                     "대곡", "곡산", "백마", "풍산", "일산", "탄현", "야당",
                     "운정", "금촌", "월롱", "파주", "문산"
                 ],
-                isCircular: false
+                isCircular: false,
+                // 동행: 용문·지평까지 안 가는 청량리행·용산행 / 서행: 행신·능곡·일산 단거리
+                shortTermini: ["청량리", "왕십리", "용산", "행신", "능곡", "일산", "문산"]
             )
         ]
     )
@@ -563,11 +607,80 @@ enum MetroLineData {
                 let slice = reversed
                     ? Array(route.stations[ti...fi].reversed())
                     : Array(route.stations[fi...ti])
-                let terminus = reversed ? route.terminusA : route.terminusB
-                results.append(JourneyResult(line: line, route: route, stations: slice, terminus: terminus))
+                let terminus: String
+                if route.isCircular {
+                    terminus = reversed
+                        ? (route.circularBackwardLabel ?? route.terminusA)
+                        : (route.circularForwardLabel ?? route.terminusB)
+                } else {
+                    terminus = reversed ? route.terminusA : route.terminusB
+                }
+                let alts = validAlternativeTermini(route: route, destinationIdx: ti, reversed: reversed, primaryTerminus: terminus)
+                results.append(JourneyResult(line: line, route: route, stations: slice, terminus: terminus, alternativeTermini: alts))
             }
         }
         return results
+    }
+
+    /// Filters `route.shortTermini` to those that still serve `destinationIdx`.
+    /// A short-turn train signed "X행" is valid when X lies between the destination
+    /// and the route's far end — meaning it passes through the destination before stopping.
+    private static func validAlternativeTermini(
+        route: MetroRoute,
+        destinationIdx: Int,
+        reversed: Bool,
+        primaryTerminus: String
+    ) -> [String] {
+        route.shortTermini.compactMap { term -> String? in
+            guard term != primaryTerminus,
+                  let si = route.stations.firstIndex(of: term) else { return nil }
+            // Forward (fi < ti, going toward terminusB at high index):
+            //   short-turn train goes from low→high; valid if it reaches destination (si >= destinationIdx)
+            // Reversed (fi > ti, going toward terminusA at low index):
+            //   valid if si <= destinationIdx
+            let valid = reversed ? si <= destinationIdx : si >= destinationIdx
+            return valid ? term : nil
+        }
+    }
+
+    // MARK: - Platform Direction Landmarks
+
+    /// Returns the 2 nearest official direction-landmark stations ahead of
+    /// `boarding` in the direction of travel. Uses the route's `directionLandmarks`
+    /// list — the same stations Seoul Metro prints on physical platform signs.
+    ///
+    /// Only meaningful for circular routes with `directionLandmarks` set.
+    static func aheadLandmarks(
+        from boarding: String,
+        toward terminus: String,
+        lineNumber: Int,
+        maxCount: Int = 2
+    ) -> [String] {
+        guard let line = seoulLines.first(where: { $0.number == lineNumber }) else { return [] }
+        for route in line.routes {
+            guard route.isCircular,
+                  !route.directionLandmarks.isEmpty,
+                  let bi = route.stations.firstIndex(of: boarding) else { continue }
+            let n = route.stations.count
+            let goForward: Bool
+            if terminus == route.circularForwardLabel        { goForward = true  }
+            else if terminus == route.circularBackwardLabel  { goForward = false }
+            else { continue }
+
+            let landmarkSet = Set(route.directionLandmarks)
+            var result: [String] = []
+            var i = goForward ? (bi + 1) % n : (bi - 1 + n) % n
+            for _ in 0..<(n - 1) {
+                let station = route.stations[i]
+                if landmarkSet.contains(station) {
+                    result.append(station)
+                    if result.count == maxCount { break }
+                }
+                i = goForward ? (i + 1) % n : (i - 1 + n) % n
+            }
+            return result
+        }
+        return []
     }
 
     // MARK: - Transfer Routing
@@ -593,7 +706,11 @@ enum MetroLineData {
             if route.isCircular {
                 let n = route.stations.count
                 let goForward: Bool
-                if let ti = route.stations.firstIndex(of: terminus) {
+                if terminus == route.circularForwardLabel {
+                    goForward = true
+                } else if terminus == route.circularBackwardLabel {
+                    goForward = false
+                } else if let ti = route.stations.firstIndex(of: terminus) {
                     let fwd = (ti - bi + n) % n
                     goForward = fwd <= n - fwd
                 } else { goForward = true }
@@ -654,18 +771,15 @@ enum MetroLineData {
                 let forwardSlice = buildCircularSlice(route.stations, from: fi, to: ti, forward: true)
                 let backwardSlice = buildCircularSlice(route.stations, from: fi, to: ti, forward: false)
 
-                // For circular trains the "terminus" sign typically displays the next
-                // major arrival station — use the destination station itself as that
-                // proxy so the user can match it to in-car signage.
                 let forwardSeg = JourneySegment(
                     line: line,
                     stations: forwardSlice,
-                    terminus: forwardSlice.last ?? route.terminusA
+                    terminus: route.circularForwardLabel ?? (forwardSlice.last ?? route.terminusA)
                 )
                 let backwardSeg = JourneySegment(
                     line: line,
                     stations: backwardSlice,
-                    terminus: backwardSlice.last ?? route.terminusB
+                    terminus: route.circularBackwardLabel ?? (backwardSlice.last ?? route.terminusB)
                 )
                 candidates = forwardLen <= backwardLen
                     ? [forwardSeg, backwardSeg]
@@ -676,7 +790,8 @@ enum MetroLineData {
                     ? Array(route.stations[ti...fi].reversed())
                     : Array(route.stations[fi...ti])
                 let terminus = reversed ? route.terminusA : route.terminusB
-                candidates = [JourneySegment(line: line, stations: slice, terminus: terminus)]
+                let alts = validAlternativeTermini(route: route, destinationIdx: ti, reversed: reversed, primaryTerminus: terminus)
+                candidates = [JourneySegment(line: line, stations: slice, terminus: terminus, alternativeTermini: alts)]
             }
 
             for segment in candidates {
@@ -710,7 +825,7 @@ enum MetroLineData {
         // 0-transfer (direct)
         let direct = findJourneys(from: from, to: to).map { d in
             TransferJourney(segments: [
-                JourneySegment(line: d.line, stations: d.stations, terminus: d.terminus)
+                JourneySegment(line: d.line, stations: d.stations, terminus: d.terminus, alternativeTermini: d.alternativeTermini)
             ])
         }
         if !direct.isEmpty {
@@ -777,6 +892,7 @@ struct JourneyResult {
     let route: MetroRoute
     let stations: [String]   // Korean names, from→to direction
     let terminus: String     // Korean terminus (matches in-train/platform display)
+    let alternativeTermini: [String]   // other valid "행" signs that also serve this segment
 }
 
 /// One single-line leg within a (possibly multi-line) journey.
@@ -785,7 +901,17 @@ struct JourneySegment: Identifiable {
     let line: SeoulMetroLineInfo
     let stations: [String]   // [boarding, ..., disembark/transfer]
     let terminus: String
+    /// Other valid "행" signs for the same direction — e.g. at 사당 going south:
+    /// primary="오이도행", alternatives=["안산행","한대앞행","금정행"].
+    let alternativeTermini: [String]
     var stopCount: Int { max(stations.count - 1, 0) }
+
+    init(line: SeoulMetroLineInfo, stations: [String], terminus: String, alternativeTermini: [String] = []) {
+        self.line = line
+        self.stations = stations
+        self.terminus = terminus
+        self.alternativeTermini = alternativeTermini
+    }
 }
 
 /// A complete journey, possibly with transfers. `segments.count == 1` is a direct route.

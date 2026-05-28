@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "ja",
   "strings" : {
-    "  %@" : {
+    "" : {
 
     },
     "〜" : {
@@ -76,6 +76,26 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@ %2$@"
+          }
+        }
+      }
+    },
+    "%@ → %@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ → %2$@"
+          }
+        }
+      }
+    },
+    "%@역 출발, 다음 정거장 %@역" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@역 출발, 다음 정거장 %2$@역"
           }
         }
       }
@@ -203,6 +223,9 @@
     "%lldm" : {
 
     },
+    "%lld개 결과" : {
+
+    },
     "%lld호선 막차까지 %lld분 남았습니다. 서둘러 주세요." : {
       "localizations" : {
         "ja" : {
@@ -224,6 +247,7 @@
       }
     },
     "%lld分待ち" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -464,6 +488,12 @@
         }
       }
     },
+    "Add from Screenshot" : {
+
+    },
+    "Add from URL" : {
+
+    },
     "Appleマップで案内を開始" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -475,6 +505,15 @@
         }
       }
     },
+    "Back" : {
+
+    },
+    "Detected from image" : {
+
+    },
+    "Edit" : {
+
+    },
     "English" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -485,6 +524,12 @@
           }
         }
       }
+    },
+    "Filter by name..." : {
+
+    },
+    "From caption" : {
+
     },
     "Get off at %@" : {
       "extractionState" : "stale",
@@ -542,7 +587,7 @@
         }
       }
     },
-    "https://instagram.com/p/..." : {
+    "https://..." : {
 
     },
     "Instagram、YouTube、XのURLに対応しています" : {
@@ -556,6 +601,7 @@
       }
     },
     "InstagramのURLを貼り付ける" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -609,6 +655,7 @@
       }
     },
     "Save" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -617,6 +664,9 @@
           }
         }
       }
+    },
+    "Saved" : {
+
     },
     "Saveタブでスポットを保存すると\nここから直接ルートを引けます" : {
       "extractionState" : "stale",
@@ -671,6 +721,12 @@
         }
       }
     },
+    "URL로 추가하기" : {
+
+    },
+    "URLから追加" : {
+
+    },
     "URLの生成に失敗しました" : {
       "localizations" : {
         "ko" : {
@@ -692,6 +748,9 @@
         }
       }
     },
+    "가고 싶은" : {
+
+    },
     "길게 누르면 언어를 바꿀 수 있어요" : {
 
     },
@@ -706,7 +765,7 @@
         }
       }
     },
-    "다음 정거장 %@역" : {
+    "돌아가기" : {
 
     },
     "뚝섬ナルター" : {
@@ -719,6 +778,15 @@
           }
         }
       }
+    },
+    "성심당, 홍대 카페, 경복궁..." : {
+
+    },
+    "수정" : {
+
+    },
+    "스크린샷에서 추가" : {
+
     },
     "언어 변경" : {
 
@@ -734,6 +802,15 @@
         }
       }
     },
+    "이름으로 검색..." : {
+
+    },
+    "이미지에서 감지된 텍스트" : {
+
+    },
+    "저장" : {
+
+    },
     "지금 어느 역에 계신가요?" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -745,8 +822,21 @@
         }
       }
     },
-    "현재 %@역 근처" : {
+    "취소" : {
 
+    },
+    "캡션에서 감지됨" : {
+
+    },
+    "현재 %@역 근처, 다음 %@역" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "현재 %1$@역 근처, 다음 %2$@역"
+          }
+        }
+      }
     },
     "アプリ「漢江バス」で予約・決済が便利" : {
       "extractionState" : "stale",
@@ -815,6 +905,7 @@
       }
     },
     "キーワードで場所を検索" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -823,6 +914,9 @@
           }
         }
       }
+    },
+    "キャプションから検出" : {
+
     },
     "キャンセル" : {
       "localizations" : {
@@ -868,6 +962,7 @@
       }
     },
     "ここへ向かう" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -931,6 +1026,9 @@
         }
       }
     },
+    "スクリーンショットから追加" : {
+
+    },
     "すべて" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -943,6 +1041,7 @@
       }
     },
     "スポットを確認" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -963,6 +1062,7 @@
       }
     },
     "スポット情報を取得しました！" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -973,6 +1073,7 @@
       }
     },
     "スポット情報を取得中..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1207,6 +1308,7 @@
       }
     },
     "リンクが見つかりました" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1565,6 +1667,18 @@
         }
       }
     },
+    "从URL添加" : {
+
+    },
+    "从图片中检测到" : {
+
+    },
+    "从截图添加" : {
+
+    },
+    "从标题检测" : {
+
+    },
     "件" : {
       "localizations" : {
         "ko" : {
@@ -1704,6 +1818,7 @@
       }
     },
     "最寄り駅を解析中…" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1823,6 +1938,7 @@
       }
     },
     "削除" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1893,6 +2009,7 @@
       }
     },
     "営業中" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1957,6 +2074,7 @@
       }
     },
     "城心堂、弘大カフェ..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1976,6 +2094,9 @@
           }
         }
       }
+    },
+    "場所名で絞り込む" : {
+
     },
     "変更" : {
       "extractionState" : "stale",
@@ -2139,6 +2260,12 @@
         }
       }
     },
+    "想去的" : {
+
+    },
+    "戻る" : {
+
+    },
     "所要時間" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2160,6 +2287,9 @@
           }
         }
       }
+    },
+    "按名称筛选" : {
+
     },
     "料金・時間" : {
       "extractionState" : "stale",
@@ -2258,6 +2388,7 @@
       }
     },
     "検索結果" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2268,6 +2399,7 @@
       }
     },
     "検索結果がありません" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2355,6 +2487,7 @@
       }
     },
     "準備中" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2563,6 +2696,9 @@
         }
       }
     },
+    "画像から検出したテキスト" : {
+
+    },
     "目的地" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2739,6 +2875,12 @@
         }
       }
     },
+    "編集" : {
+
+    },
+    "编辑" : {
+
+    },
     "自転車持ち込み可能（1台）" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -2771,6 +2913,9 @@
           }
         }
       }
+    },
+    "行きたい" : {
+
     },
     "観光スポット" : {
       "extractionState" : "stale",
@@ -2941,7 +3086,11 @@
         }
       }
     },
+    "返回" : {
+
+    },
     "追加" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -3046,6 +3195,7 @@
       }
     },
     "閉じる" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {

@@ -29,13 +29,13 @@ struct MainTabView: View {
 
     var body: some View {
         TabView {
-            SubwayView()
-                .tabItem {
-                    Label(subwayLabel, systemImage: "tram.fill")
-                }
             SaveView()
                 .tabItem {
                     Label(savedLabel, systemImage: "bookmark.fill")
+                }
+            SubwayView()
+                .tabItem {
+                    Label(subwayLabel, systemImage: "tram.fill")
                 }
         }
         .tint(KORATheme.accent)

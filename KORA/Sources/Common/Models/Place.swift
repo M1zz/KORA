@@ -20,6 +20,8 @@ struct Place: Identifiable, Codable, Hashable {
     var waitMinutes: Int?
     var isOpen: Bool
     var savedAt: Date
+    var phone: String?
+    var kakaoMapURL: String?
 
     init(
         id: UUID = UUID(),
@@ -37,7 +39,9 @@ struct Place: Identifiable, Codable, Hashable {
         imageURL: String? = nil,
         waitMinutes: Int? = nil,
         isOpen: Bool = true,
-        savedAt: Date = Date()
+        savedAt: Date = Date(),
+        phone: String? = nil,
+        kakaoMapURL: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -55,6 +59,8 @@ struct Place: Identifiable, Codable, Hashable {
         self.waitMinutes = waitMinutes
         self.isOpen = isOpen
         self.savedAt = savedAt
+        self.phone = phone
+        self.kakaoMapURL = kakaoMapURL
     }
 }
 

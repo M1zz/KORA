@@ -1,4 +1,6 @@
 import SwiftUI
+import PhotosUI
+import Vision
 
 // MARK: - Localized strings for Save section
 
@@ -25,13 +27,13 @@ private enum SaveLoc {
         switch l { case .korean: return "전체"; case .japanese: return "すべて"; case .english: return "All"; case .chinese: return "全部" }
     }
     static func emptyTitle(_ l: StationLanguage) -> String {
-        switch l { case .korean: return "아직 저장된 장소가 없습니다"; case .japanese: return "まだ保存したスポットがありません"; case .english: return "No saved places yet"; case .chinese: return "还没有保存的地点" }
+        switch l { case .korean: return "가고 싶은 장소를 모아보세요"; case .japanese: return "行きたいスポットを集めよう"; case .english: return "Start collecting places"; case .chinese: return "收集想去的地方" }
     }
     static func emptySubtitle(_ l: StationLanguage) -> String {
-        switch l { case .korean: return "Instagram URL을 붙여넣으면\n자동으로 장소 정보가 추가됩니다"; case .japanese: return "InstagramのURLを貼り付けると\n自動でスポット情報が追加されます"; case .english: return "Paste an Instagram URL\nto automatically add a place"; case .chinese: return "粘贴Instagram URL\n可自动添加地点信息" }
+        switch l { case .korean: return "장소명으로 검색하거나\nURL을 붙여넣어 추가할 수 있어요"; case .japanese: return "場所名で検索するか\nURLを貼り付けて追加できます"; case .english: return "Search by name or paste\na URL to add a place"; case .chinese: return "搜索地点名称或粘贴URL来添加" }
     }
     static func pasteURL(_ l: StationLanguage) -> String {
-        switch l { case .korean: return "URL 붙여넣기"; case .japanese: return "URLを貼り付ける"; case .english: return "Paste URL"; case .chinese: return "粘贴URL" }
+        switch l { case .korean: return "장소 추가하기"; case .japanese: return "スポットを追加"; case .english: return "Add a Place"; case .chinese: return "添加地点" }
     }
     static func delete(_ l: StationLanguage) -> String {
         switch l { case .korean: return "삭제"; case .japanese: return "削除"; case .english: return "Delete"; case .chinese: return "删除" }
@@ -41,10 +43,10 @@ private enum SaveLoc {
     }
     static func instagramHint(_ l: StationLanguage) -> String {
         switch l {
-        case .korean:   return "Instagram 링크를 저장했어요.\n장소명으로 검색해서 저장할 장소를 찾아주세요."
-        case .japanese: return "Instagramリンクを保存しました。\n場所名で検索して保存するスポットを探してください。"
-        case .english:  return "Instagram link saved.\nSearch by place name to find the spot."
-        case .chinese:  return "已保存Instagram链接。\n请用地点名称搜索要保存的地点。"
+        case .korean:   return "링크를 저장했어요.\n장소명으로 검색해서 저장할 장소를 찾아주세요."
+        case .japanese: return "リンクを保存しました。\n場所名で検索して保存するスポットを探してください。"
+        case .english:  return "Link saved.\nSearch by place name to find the spot."
+        case .chinese:  return "已保存链接。\n请用地点名称搜索要保存的地点。"
         }
     }
     static func placeName(_ l: StationLanguage) -> String {
@@ -60,7 +62,7 @@ private enum SaveLoc {
         switch l { case .korean: return "링크 열기"; case .japanese: return "リンクを開く"; case .english: return "Open link"; case .chinese: return "打开链接" }
     }
     static func addSheetTitle(_ l: StationLanguage) -> String {
-        switch l { case .korean: return "Instagram URL 붙여넣기"; case .japanese: return "InstagramのURLを貼り付ける"; case .english: return "Paste Instagram URL"; case .chinese: return "粘贴Instagram URL" }
+        switch l { case .korean: return "장소 추가"; case .japanese: return "スポットを追加"; case .english: return "Add Place"; case .chinese: return "添加地点" }
     }
     static func close(_ l: StationLanguage) -> String {
         switch l { case .korean: return "닫기"; case .japanese: return "閉じる"; case .english: return "Close"; case .chinese: return "关闭" }
@@ -96,6 +98,9 @@ struct SaveView: View {
     @State private var showAddSheet: Bool = false
     @State private var showMap: Bool = false
     @State private var selectedMapPlace: Place? = nil
+    @State private var listSearchText: String = ""
+    @State private var editingPlace: Place? = nil
+    @State private var detailPlace: Place? = nil
     @State private var coordinator = NavigationCoordinator.shared
 
     @AppStorage("kora.display_language") private var languagePref: String = ""
@@ -110,72 +115,25 @@ struct SaveView: View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
                 VStack(spacing: 0) {
-                    Picker("", selection: $showMap) {
-                        Text(SaveLoc.listTab(lang)).tag(false)
-                        Text(SaveLoc.mapTab(lang)).tag(true)
-                    }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal)
-                    .padding(.vertical, 8)
-                    .background(Color(UIColor.systemGroupedBackground))
-
-                    if showMap {
-                        PlaceMapView(
-                            places: viewModel.places(for: selectedCategory),
-                            selectedPlace: $selectedMapPlace
-                        )
-                    } else {
-                        ScrollView {
-                            VStack(spacing: 0) {
-                                if viewModel.showClipboardPrompt {
-                                    clipboardBanner
-                                        .padding(.horizontal)
-                                        .padding(.top, 12)
-                                        .padding(.bottom, 4)
-                                        .transition(.move(edge: .top).combined(with: .opacity))
-                                }
-                                categoryFilterSection
-                                    .padding(.top, 8)
-                                    .padding(.bottom, 8)
-                                placesSection
+                    ScrollView {
+                        VStack(spacing: 0) {
+                            if viewModel.showClipboardPrompt {
+                                clipboardBanner
                                     .padding(.horizontal)
+                                    .padding(.top, 12)
+                                    .padding(.bottom, 4)
+                                    .transition(.move(edge: .top).combined(with: .opacity))
                             }
+                            listHeader
+                            placesSection
+                                .padding(.horizontal)
+                                .padding(.top, 8)
                         }
-                        .background(Color(UIColor.systemGroupedBackground))
                     }
-                }
-                .navigationTitle(SaveLoc.navTitle(lang))
-                .navigationBarTitleDisplayMode(.inline)
-                .overlay {
-                    if viewModel.isLoading {
-                        loadingOverlay
-                    }
-                }
-                .sheet(item: $viewModel.parsedPlace) { place in
-                    ParsedPlaceSheet(place: place) {
-                        viewModel.confirmSave()
-                    } onDismiss: {
-                        viewModel.dismissParsed()
-                    }
-                }
-                .sheet(isPresented: $viewModel.showSearchResults) {
-                    KakaoSearchResultsSheet(viewModel: viewModel)
-                }
-                .sheet(isPresented: $showAddSheet) {
-                    AddPlaceSheet(viewModel: viewModel)
-                }
-                .onAppear {
-                    viewModel.checkClipboard()
-                    consumePendingShare()
-                }
-                .onChange(of: coordinator.shareRequestNonce) { _, _ in
-                    consumePendingShare()
-                }
-                .onChange(of: viewModel.showManualNamePrompt) { _, shown in
-                    if shown { showAddSheet = true }
+                    .background(Color(UIColor.systemGroupedBackground))
                 }
 
-                if !viewModel.showClipboardPrompt || showMap {
+                if !viewModel.showClipboardPrompt {
                     Button {
                         showAddSheet = true
                     } label: {
@@ -189,19 +147,119 @@ struct SaveView: View {
                     }
                     .padding(.trailing, 20)
                     .padding(.bottom, 28)
-                    .transition(.scale.combined(with: .opacity))
                 }
+            }
+            .overlay {
+                if viewModel.isLoading {
+                    loadingOverlay
+                }
+            }
+            .navigationDestination(isPresented: $showMap) {
+                PlaceMapView(
+                    places: viewModel.places(for: selectedCategory),
+                    selectedPlace: $selectedMapPlace,
+                    onSaveDoc: { doc in viewModel.saveFromKakao(doc) }
+                )
+                .navigationTitle(mapTitle)
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar(.visible, for: .navigationBar)
+                .ignoresSafeArea(edges: .bottom)
+            }
+            .sheet(item: $viewModel.parsedPlace) { place in
+                ParsedPlaceSheet(place: place) {
+                    viewModel.confirmSave()
+                } onDismiss: {
+                    viewModel.dismissParsed()
+                }
+            }
+            .sheet(isPresented: $viewModel.showSearchResults) {
+                KakaoSearchResultsSheet(viewModel: viewModel)
+            }
+            .sheet(isPresented: $showAddSheet) {
+                AddPlaceSheet(viewModel: viewModel)
+            }
+            .sheet(item: $editingPlace) { place in
+                EditPlaceSheet(place: place, lang: lang, viewModel: viewModel)
+            }
+            .sheet(item: $detailPlace) { place in
+                PlaceDetailSheet(
+                    place: place,
+                    lang: lang,
+                    onUpdate: { updated in viewModel.update(updated) },
+                    onRoute: { p in
+                        guard !p.nearestStation.isEmpty else { return }
+                        NavigationCoordinator.shared.routeTo(station: p.nearestStation)
+                    }
+                )
+            }
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar(.hidden, for: .navigationBar)
+            .onAppear {
+                viewModel.checkClipboard()
+                consumePendingShare()
+            }
+            .onChange(of: coordinator.shareRequestNonce) { _, _ in
+                consumePendingShare()
+            }
+            .onChange(of: viewModel.showManualNamePrompt) { _, shown in
+                if shown { showAddSheet = true }
             }
         }
         .animation(.spring(response: 0.25), value: viewModel.showClipboardPrompt)
-        .animation(.easeInOut(duration: 0.2), value: showMap)
+    }
+
+    private var listHeader: some View {
+        HStack(alignment: .center) {
+            Text(lang == .japanese ? "行きたい" : lang == .english ? "Saved" : lang == .chinese ? "想去的" : "가고 싶은")
+                .font(.title2).fontWeight(.bold)
+                .foregroundStyle(KORATheme.labelPrimary)
+            Spacer()
+            Button {
+                showMap = true
+            } label: {
+                Image(systemName: "map")
+                    .font(.body).fontWeight(.semibold)
+                    .foregroundStyle(KORATheme.accent)
+                    .padding(9)
+                    .background(KORATheme.accent.opacity(0.1))
+                    .clipShape(Circle())
+            }
+        }
+        .padding(.horizontal)
+        .padding(.top, 12)
+        .padding(.bottom, 4)
+    }
+
+    private var mapTitle: String {
+        switch lang {
+        case .korean:   return "지도"
+        case .japanese: return "マップ"
+        case .english:  return "Map"
+        case .chinese:  return "地图"
+        }
     }
 
     private func consumePendingShare() {
-        guard let url = coordinator.pendingShareURL, !url.isEmpty else { return }
+        let url = coordinator.pendingShareURL ?? ""
+        let sharedText = coordinator.pendingShareText
+        guard !url.isEmpty || (sharedText != nil && !sharedText!.isEmpty) else { return }
         coordinator.clearShare()
-        viewModel.urlInput = url
-        Task { await viewModel.parseURL() }
+
+        // Caption text from extension → show as suggestion chips in the name prompt
+        if let caption = sharedText, !caption.isEmpty {
+            viewModel.pendingCaptionText = caption
+        }
+
+        if url.isEmpty {
+            // No URL extracted (Instagram didn't pass one) — go straight to
+            // manual name entry using the caption as suggestions.
+            viewModel.showManualNamePrompt = true
+            showAddSheet = true
+        } else {
+            viewModel.urlInput = url
+            Task { await viewModel.parseURL() }
+        }
     }
 
     // MARK: - Clipboard Banner
@@ -255,6 +313,28 @@ struct SaveView: View {
         .shadow(color: .black.opacity(0.08), radius: 8, y: 2)
     }
 
+    // MARK: - List Search Bar
+
+    private var listSearchBar: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "magnifyingglass")
+                .font(.body)
+                .foregroundStyle(KORATheme.labelTertiary)
+            TextField(lang == .japanese ? "場所名で絞り込む" : lang == .english ? "Filter by name..." : lang == .chinese ? "按名称筛选" : "이름으로 검색...", text: $listSearchText)
+                .font(.body)
+            if !listSearchText.isEmpty {
+                Button { listSearchText = "" } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(KORATheme.labelTertiary)
+                }
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
+        .background(KORATheme.surface)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
     // MARK: - Category Filter
 
     private var categoryFilterSection: some View {
@@ -278,13 +358,13 @@ struct SaveView: View {
         }
     }
 
-    // MARK: - Places List
+    // MARK: - Places List (grouped by station)
 
     private var placesSection: some View {
-        let places = viewModel.places(for: selectedCategory)
+        let groups = viewModel.placesGrouped(for: nil, filter: "")
 
         return Group {
-            if places.isEmpty {
+            if groups.isEmpty {
                 EmptyStateView(
                     systemImage: "bookmark",
                     title: SaveLoc.emptyTitle(lang),
@@ -295,24 +375,95 @@ struct SaveView: View {
                 }
                 .frame(minHeight: 300)
             } else {
-                LazyVStack(spacing: 12) {
-                    ForEach(places) { place in
-                        PlaceCardView(place: place, onRoute: { p in
-                            guard !p.nearestStation.isEmpty else { return }
-                            NavigationCoordinator.shared.routeTo(station: p.nearestStation)
-                        })
-                        .swipeActions(edge: .trailing) {
-                            Button(role: .destructive) {
-                                viewModel.delete(place)
-                            } label: {
-                                Label(SaveLoc.delete(lang), systemImage: "trash")
-                            }
-                        }
+                LazyVStack(alignment: .leading, spacing: 20) {
+                    ForEach(groups, id: \.station) { group in
+                        stationGroupSection(station: group.station, places: group.places)
                     }
                 }
                 .padding(.bottom, 88)
             }
         }
+    }
+
+    private func stationGroupSection(station: String, places: [Place]) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            if !station.isEmpty {
+                stationGroupHeader(station: station, count: places.count)
+            }
+
+            ForEach(places) { place in
+                PlaceCardView(
+                    place: place,
+                    onRoute: { p in
+                        guard !p.nearestStation.isEmpty else { return }
+                        NavigationCoordinator.shared.routeTo(station: p.nearestStation)
+                    },
+                    onTap: { detailPlace = place }
+                )
+                .contextMenu {
+                    Button {
+                        editingPlace = place
+                    } label: {
+                        Label(lang == .japanese ? "編集" : lang == .english ? "Edit" : lang == .chinese ? "编辑" : "수정", systemImage: "pencil")
+                    }
+                    Divider()
+                    Button(role: .destructive) {
+                        viewModel.delete(place)
+                    } label: {
+                        Label(SaveLoc.delete(lang), systemImage: "trash")
+                    }
+                }
+            }
+        }
+    }
+
+    private func stationGroupHeader(station: String, count: Int) -> some View {
+        let display = MetroLineData.displayName(for: station, language: lang)
+        let lines = MetroLineData.linesContaining(station)
+        let suffix: String = {
+            switch lang {
+            case .korean: return "역"
+            case .japanese: return "駅"
+            case .english: return " Stn."
+            case .chinese: return "站"
+            }
+        }()
+        return Button {
+            // Tap station header → switch to subway tab with this station as destination
+            NavigationCoordinator.shared.routeTo(station: station)
+        } label: {
+            HStack(spacing: 8) {
+                ForEach(lines, id: \.self) { num in
+                    Text(MetroLineData.lineBadgeText(num))
+                        .font(.caption2).fontWeight(.black)
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 7).padding(.vertical, 4)
+                        .background(MetroLineData.lineColor(num))
+                        .clipShape(Capsule())
+                }
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(display + suffix)
+                        .font(.body).fontWeight(.bold)
+                        .foregroundStyle(KORATheme.labelPrimary)
+                    if lang != .korean && display != station {
+                        Text(station + (lang == .japanese ? "駅" : lang == .chinese ? "站" : ""))
+                            .font(.caption)
+                            .foregroundStyle(KORATheme.labelTertiary)
+                    }
+                }
+                Spacer()
+                HStack(spacing: 4) {
+                    Text("\(count)")
+                        .font(.caption).fontWeight(.semibold)
+                        .foregroundStyle(KORATheme.labelSecondary)
+                    Image(systemName: "arrow.right.circle.fill")
+                        .font(.body)
+                        .foregroundStyle(KORATheme.accent.opacity(0.5))
+                }
+            }
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
     }
 
     // MARK: - Loading Overlay
@@ -350,16 +501,49 @@ struct AddPlaceSheet: View {
         return e
     }
 
+    @State private var showURLInput = false
+
+    // OCR
+    @State private var photoPickerItem: PhotosPickerItem? = nil
+    @State private var isProcessingOCR = false
+    @State private var ocrCandidates: [String] = []
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 16) {
-                    urlInputSection
+                    // Hero: keyword search on map
+                    if !showURLInput && !viewModel.showManualNamePrompt {
+                        heroSearchSection
+                    }
+
+                    // Shown after Instagram URL triggers manual name prompt
                     if viewModel.showManualNamePrompt {
                         manualNameSection
                     }
-                    if !viewModel.showManualNamePrompt {
+
+                    // Secondary: keyword-only Kakao search (no map)
+                    if !viewModel.showManualNamePrompt && showURLInput {
+                        urlInputSection
                         kakaoSearchSection
+                    }
+
+                    // Toggle between hero and URL-paste view
+                    if !viewModel.showManualNamePrompt {
+                        Button {
+                            withAnimation(.spring(response: 0.25)) { showURLInput.toggle() }
+                        } label: {
+                            HStack(spacing: 6) {
+                                Image(systemName: showURLInput ? "arrow.left.circle" : "link")
+                                    .font(.body)
+                                Text(showURLInput
+                                     ? (lang == .japanese ? "戻る" : lang == .english ? "Back" : lang == .chinese ? "返回" : "돌아가기")
+                                     : (lang == .japanese ? "URLから追加" : lang == .english ? "Add from URL" : lang == .chinese ? "从URL添加" : "URL로 추가하기"))
+                                    .font(.body).fontWeight(.medium)
+                            }
+                            .foregroundStyle(KORATheme.labelTertiary)
+                            .frame(maxWidth: .infinity)
+                        }
                     }
                 }
                 .padding()
@@ -380,6 +564,153 @@ struct AddPlaceSheet: View {
         .onChange(of: viewModel.showSearchResults) { _, shown in
             if shown { dismiss() }
         }
+        .onChange(of: photoPickerItem) { _, item in
+            guard let item else { return }
+            Task { await processPickedPhoto(item) }
+        }
+    }
+
+    private var heroSearchSection: some View {
+        VStack(spacing: 12) {
+            // Search field row
+            HStack(spacing: 10) {
+                HStack(spacing: 8) {
+                    Image(systemName: "magnifyingglass")
+                        .font(.body)
+                        .foregroundStyle(KORATheme.labelTertiary)
+                    TextField(SaveLoc.searchPlaceholder(lang), text: $viewModel.searchQuery)
+                        .font(.body)
+                        .focused($isURLFieldFocused)
+                        .submitLabel(.search)
+                        .onSubmit { Task { await viewModel.searchKakao() } }
+                    if !viewModel.searchQuery.isEmpty {
+                        Button { viewModel.searchQuery = "" } label: {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundStyle(KORATheme.labelTertiary)
+                        }
+                    }
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 11)
+                .background(KORATheme.surface)
+                .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusMD))
+
+                Button {
+                    Task { await viewModel.searchKakao() }
+                } label: {
+                    if viewModel.isSearching {
+                        ProgressView().tint(KORATheme.accent).frame(width: 36, height: 36)
+                    } else {
+                        Image(systemName: "magnifyingglass.circle.fill")
+                            .font(.largeTitle)
+                            .foregroundStyle(viewModel.searchQuery.isEmpty
+                                ? KORATheme.accent.opacity(0.3)
+                                : KORATheme.accent
+                            )
+                    }
+                }
+                .disabled(viewModel.searchQuery.isEmpty || viewModel.isSearching)
+            }
+
+            // Screenshot OCR button
+            PhotosPicker(selection: $photoPickerItem, matching: .screenshots) {
+                HStack(spacing: 6) {
+                    if isProcessingOCR {
+                        ProgressView().scaleEffect(0.8).frame(width: 16, height: 16)
+                    } else {
+                        Image(systemName: "camera.viewfinder")
+                            .font(.body).fontWeight(.semibold)
+                    }
+                    Text(lang == .japanese ? "スクリーンショットから追加"
+                         : lang == .english ? "Add from Screenshot"
+                         : lang == .chinese ? "从截图添加"
+                         : "스크린샷에서 추가")
+                        .font(.body).fontWeight(.semibold)
+                }
+                .foregroundStyle(KORATheme.accent)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 11)
+                .background(KORATheme.accent.opacity(0.08))
+                .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusMD))
+            }
+            .disabled(isProcessingOCR)
+
+            // OCR candidate chips
+            if !ocrCandidates.isEmpty {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text(lang == .japanese ? "画像から検出したテキスト"
+                         : lang == .english ? "Detected from image"
+                         : lang == .chinese ? "从图片中检测到"
+                         : "이미지에서 감지된 텍스트")
+                        .font(.caption).fontWeight(.semibold)
+                        .foregroundStyle(KORATheme.labelTertiary)
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 8) {
+                            ForEach(ocrCandidates, id: \.self) { candidate in
+                                Button {
+                                    viewModel.searchQuery = candidate
+                                    ocrCandidates = []
+                                } label: {
+                                    Text(candidate)
+                                        .font(.body).fontWeight(.medium)
+                                        .foregroundStyle(KORATheme.labelPrimary)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 7)
+                                        .background(KORATheme.surface)
+                                        .clipShape(Capsule())
+                                        .overlay(Capsule().strokeBorder(KORATheme.accent.opacity(0.3), lineWidth: 1))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .padding(KORATheme.spacing16)
+        .background(KORATheme.background)
+        .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusLG))
+    }
+
+    // MARK: - OCR
+
+    private func processPickedPhoto(_ item: PhotosPickerItem) async {
+        isProcessingOCR = true
+        ocrCandidates = []
+        defer { isProcessingOCR = false; photoPickerItem = nil }
+
+        guard let data = try? await item.loadTransferable(type: Data.self),
+              let uiImage = UIImage(data: data),
+              let cgImage = uiImage.cgImage else { return }
+
+        let request = VNRecognizeTextRequest()
+        request.recognitionLanguages = ["ko-KR", "ja-JP", "en-US", "zh-Hans"]
+        request.recognitionLevel = .accurate
+        request.usesLanguageCorrection = true
+
+        let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+        guard (try? handler.perform([request])) != nil,
+              let observations = request.results as? [VNRecognizedTextObservation]
+        else { return }
+
+        let lines = observations.compactMap { $0.topCandidates(1).first?.string }
+        let candidates = extractPlaceCandidates(from: lines)
+        await MainActor.run { ocrCandidates = candidates }
+    }
+
+    private func extractPlaceCandidates(from lines: [String]) -> [String] {
+        var seen = Set<String>()
+        return lines.compactMap { line -> String? in
+            let t = line.trimmingCharacters(in: .whitespacesAndNewlines)
+            // Skip hashtags, @mentions, URLs, very long/short strings
+            guard !t.hasPrefix("#"), !t.hasPrefix("@"), !t.hasPrefix("http") else { return nil }
+            guard t.count >= 2 && t.count <= 20 else { return nil }
+            // Skip lines that are purely numbers or punctuation
+            let letterCount = t.unicodeScalars.filter { $0.value > 0x20 && !CharacterSet.punctuationCharacters.contains($0) }.count
+            guard letterCount >= 2 else { return nil }
+            // Deduplicate
+            guard seen.insert(t).inserted else { return nil }
+            return t
+        }
     }
 
     private var manualNameSection: some View {
@@ -392,6 +723,36 @@ struct AddPlaceSheet: View {
                 Text(SaveLoc.instagramHint(lang))
                     .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
+            }
+
+            // Caption candidate chips (from Share Extension text)
+            if let caption = viewModel.pendingCaptionText, !caption.isEmpty {
+                let chips = extractPlaceCandidates(from: caption.components(separatedBy: .newlines))
+                if !chips.isEmpty {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(lang == .japanese ? "キャプションから検出" : lang == .english ? "From caption" : lang == .chinese ? "从标题检测" : "캡션에서 감지됨")
+                            .font(.caption).fontWeight(.semibold)
+                            .foregroundStyle(KORATheme.labelTertiary)
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 8) {
+                                ForEach(chips, id: \.self) { chip in
+                                    Button {
+                                        viewModel.manualNameInput = chip
+                                    } label: {
+                                        Text(chip)
+                                            .font(.body).fontWeight(.medium)
+                                            .foregroundStyle(KORATheme.labelPrimary)
+                                            .padding(.horizontal, 12)
+                                            .padding(.vertical, 7)
+                                            .background(KORATheme.surface)
+                                            .clipShape(Capsule())
+                                            .overlay(Capsule().strokeBorder(KORATheme.accent.opacity(0.3), lineWidth: 1))
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
 
             // Name input
@@ -477,7 +838,7 @@ struct AddPlaceSheet: View {
                         .font(.body)
                         .foregroundStyle(KORATheme.labelTertiary)
 
-                    TextField("https://instagram.com/p/...", text: $viewModel.urlInput)
+                    TextField("https://...", text: $viewModel.urlInput)
                         .font(.body)
                         .autocorrectionDisabled()
                         .textInputAutocapitalization(.never)
@@ -761,6 +1122,216 @@ struct KakaoResultRow: View {
         .padding(KORATheme.spacing12)
         .background(KORATheme.background)
         .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusMD))
+    }
+}
+
+// MARK: - Edit Place Sheet
+
+struct EditPlaceSheet: View {
+    @Environment(\.dismiss) private var dismiss
+    let lang: StationLanguage
+    let viewModel: SaveViewModel
+
+    @State private var name: String
+    @State private var category: PlaceCategory
+    @State private var nearestStation: String
+    @State private var linkedURL: String?
+    @State private var clipboardURL: String?
+
+    private let place: Place
+
+    init(place: Place, lang: StationLanguage, viewModel: SaveViewModel) {
+        self.place = place
+        self.lang = lang
+        self.viewModel = viewModel
+        _name = State(initialValue: place.name)
+        _category = State(initialValue: place.category)
+        _nearestStation = State(initialValue: place.nearestStation)
+        _linkedURL = State(initialValue: place.sourceURL)
+        _clipboardURL = State(initialValue: nil)
+    }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section(nameHeader) {
+                    TextField(nameHeader, text: $name)
+                        .autocorrectionDisabled()
+                }
+
+                Section(categoryHeader) {
+                    Picker(categoryHeader, selection: $category) {
+                        ForEach(PlaceCategory.allCases, id: \.self) { cat in
+                            Label(cat.displayName(language: lang), systemImage: cat.systemImage)
+                                .tag(cat)
+                        }
+                    }
+                }
+
+                Section(stationHeader) {
+                    TextField(stationPlaceholder, text: $nearestStation)
+                        .autocorrectionDisabled()
+                }
+
+                Section(linkHeader) {
+                    if let url = linkedURL {
+                        HStack {
+                            Text(url)
+                                .font(.body)
+                                .foregroundStyle(KORATheme.labelSecondary)
+                                .lineLimit(1)
+                                .truncationMode(.middle)
+                            Spacer()
+                            Button {
+                                linkedURL = nil
+                                detectClipboard()
+                            } label: {
+                                Image(systemName: "xmark.circle.fill")
+                                    .foregroundStyle(.secondary)
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    } else if let cbURL = clipboardURL {
+                        Button {
+                            linkedURL = cbURL
+                            clipboardURL = nil
+                        } label: {
+                            HStack(spacing: 10) {
+                                Image(systemName: "doc.on.clipboard")
+                                    .font(.body)
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(pasteLinkLabel)
+                                        .fontWeight(.medium)
+                                    Text(cbURL)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                        .lineLimit(1)
+                                        .truncationMode(.middle)
+                                }
+                                Spacer()
+                            }
+                            .foregroundStyle(KORATheme.accent)
+                        }
+                        .buttonStyle(.plain)
+                    } else {
+                        Text(noLinkLabel)
+                            .foregroundStyle(KORATheme.labelTertiary)
+                    }
+                }
+            }
+            .onAppear { detectClipboard() }
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button(cancelLabel) { dismiss() }
+                        .foregroundStyle(.secondary)
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button(saveLabel) {
+                        var updated = place
+                        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+                        updated.name = trimmed
+                        updated.nameJP = trimmed
+                        updated.category = category
+                        updated.nearestStation = nearestStation.trimmingCharacters(in: .whitespacesAndNewlines)
+                        updated.sourceURL = linkedURL
+                        viewModel.update(updated)
+                        dismiss()
+                    }
+                    .fontWeight(.semibold)
+                    .disabled(name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                }
+            }
+        }
+    }
+
+    private func detectClipboard() {
+        guard linkedURL == nil else { return }
+        let pb = (UIPasteboard.general.string ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !pb.isEmpty, pb.hasPrefix("http"), URL(string: pb) != nil else { return }
+        clipboardURL = pb
+    }
+
+    private var title: String {
+        switch lang {
+        case .korean: return "장소 수정"
+        case .japanese: return "スポットを編集"
+        case .english: return "Edit Place"
+        case .chinese: return "编辑地点"
+        }
+    }
+    private var nameHeader: String {
+        switch lang {
+        case .korean: return "장소 이름"
+        case .japanese: return "スポット名"
+        case .english: return "Place Name"
+        case .chinese: return "地点名称"
+        }
+    }
+    private var categoryHeader: String {
+        switch lang {
+        case .korean: return "카테고리"
+        case .japanese: return "カテゴリ"
+        case .english: return "Category"
+        case .chinese: return "类别"
+        }
+    }
+    private var stationHeader: String {
+        switch lang {
+        case .korean: return "가까운 역"
+        case .japanese: return "最寄り駅"
+        case .english: return "Nearest Station"
+        case .chinese: return "最近车站"
+        }
+    }
+    private var stationPlaceholder: String {
+        switch lang {
+        case .korean: return "강남, 홍대입구..."
+        case .japanese: return "江南、弘大入口..."
+        case .english: return "Gangnam, Hongik Univ..."
+        case .chinese: return "江南、弘大入口..."
+        }
+    }
+    private var saveLabel: String {
+        switch lang {
+        case .korean: return "저장"
+        case .japanese: return "保存"
+        case .english: return "Save"
+        case .chinese: return "保存"
+        }
+    }
+    private var linkHeader: String {
+        switch lang {
+        case .korean: return "링크"
+        case .japanese: return "リンク"
+        case .english: return "Link"
+        case .chinese: return "链接"
+        }
+    }
+    private var cancelLabel: String {
+        switch lang {
+        case .korean: return "취소"
+        case .japanese: return "キャンセル"
+        case .english: return "Cancel"
+        case .chinese: return "取消"
+        }
+    }
+    private var pasteLinkLabel: String {
+        switch lang {
+        case .korean: return "클립보드 링크 연결"
+        case .japanese: return "クリップボードのリンクを追加"
+        case .english: return "Attach clipboard link"
+        case .chinese: return "添加剪贴板链接"
+        }
+    }
+    private var noLinkLabel: String {
+        switch lang {
+        case .korean: return "링크 없음"
+        case .japanese: return "リンクなし"
+        case .english: return "No link"
+        case .chinese: return "无链接"
+        }
     }
 }
 

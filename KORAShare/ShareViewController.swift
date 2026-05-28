@@ -1,79 +1,116 @@
 import UIKit
-import Social
+import SwiftUI
 import UniformTypeIdentifiers
 
-/// Receives a URL (and optional caption text) from the iOS share sheet —
-/// stores it into the App Group inbox so the host app can pick it up next time
-/// it becomes active.
-class ShareViewController: SLComposeServiceViewController {
+class ShareViewController: UIViewController {
 
-    private static let appGroupID = "group.com.kora.leeo"
-    private static let urlKey  = "pending_share_url"
-    private static let textKey = "pending_share_text"
-    private static let dateKey = "pending_share_at"
-
-    override func presentationAnimationDidFinish() {
-        super.presentationAnimationDidFinish()
-        title = NSLocalizedString("share.title", value: "KORAに保存", comment: "Share sheet title")
-        placeholder = NSLocalizedString("share.memo_placeholder", value: "メモ（任意・後で編集可）", comment: "Memo input placeholder")
-    }
-
-    override func isContentValid() -> Bool {
-        // The URL comes from the share extension's attachments, not from
-        // the editable text field, so the "Post" button should always be
-        // enabled regardless of whether the user types a memo.
-        return true
-    }
-
-    override func didSelectPost() {
-        Task {
-            await self.extractAndStore()
-            self.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .systemBackground
+        extractContent { [weak self] sourceURL, candidates, imageData in
+            self?.embedRootView(sourceURL: sourceURL, captionCandidates: candidates, imageData: imageData)
         }
     }
 
-    override func configurationItems() -> [Any]! { [] }
+    // MARK: - Embed SwiftUI root
 
-    // MARK: - Extraction
+    private func embedRootView(sourceURL: String?, captionCandidates: [String], imageData: Data?) {
+        let rootView = ExtensionRootView(
+            sourceURL: sourceURL,
+            captionCandidates: captionCandidates,
+            imageData: imageData,
+            onDismiss: { [weak self] in
+                self?.extensionContext?.completeRequest(returningItems: [], completionHandler: nil)
+            }
+        )
+        let hostVC = UIHostingController(rootView: rootView)
+        addChild(hostVC)
+        hostVC.view.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(hostVC.view)
+        NSLayoutConstraint.activate([
+            hostVC.view.topAnchor.constraint(equalTo: view.topAnchor),
+            hostVC.view.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            hostVC.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            hostVC.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+        ])
+        hostVC.didMove(toParent: self)
+    }
 
-    private func extractAndStore() async {
-        let memo = self.contentText?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        var foundURL: String? = nil
-        var captionText: String? = nil
+    // MARK: - Content extraction
 
-        guard let items = extensionContext?.inputItems as? [NSExtensionItem] else { return }
+    private func extractContent(completion: @escaping (String?, [String], Data?) -> Void) {
+        let items = extensionContext?.inputItems as? [NSExtensionItem] ?? []
+        let group = DispatchGroup()
+        var foundURL: String?
+        var captionText: String?
+        var imageData: Data?
+
         for item in items {
+            if let attrText = item.attributedContentText?.string, !attrText.isEmpty {
+                if foundURL == nil { foundURL = Self.firstURL(in: attrText) }
+                if captionText == nil { captionText = attrText }
+            }
             for provider in item.attachments ?? [] {
-                if provider.hasItemConformingToTypeIdentifier(UTType.url.identifier),
-                   let res = try? await provider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) {
-                    if let u = res as? URL { foundURL = u.absoluteString }
-                    else if let s = res as? String { foundURL = s }
-                } else if provider.hasItemConformingToTypeIdentifier(UTType.plainText.identifier),
-                          let res = try? await provider.loadItem(forTypeIdentifier: UTType.plainText.identifier, options: nil),
-                          let s = res as? String {
-                    captionText = s
+                // Image (screenshots shared from Photos)
+                if imageData == nil && provider.hasItemConformingToTypeIdentifier(UTType.image.identifier) {
+                    group.enter()
+                    provider.loadDataRepresentation(forTypeIdentifier: UTType.image.identifier) { data, _ in
+                        defer { group.leave() }
+                        if imageData == nil { imageData = data }
+                    }
+                }
+
+                // URL
+                if provider.hasItemConformingToTypeIdentifier(UTType.url.identifier) {
+                    group.enter()
+                    provider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { result, _ in
+                        defer { group.leave() }
+                        if let u = result as? URL, foundURL == nil { foundURL = u.absoluteString }
+                        else if let s = result as? String, foundURL == nil { foundURL = s }
+                    }
+                }
+
+                // Plain text
+                let textTypes = [UTType.plainText.identifier, "public.text", "com.apple.social.mention"]
+                for type in textTypes {
+                    if provider.hasItemConformingToTypeIdentifier(type) {
+                        group.enter()
+                        provider.loadItem(forTypeIdentifier: type, options: nil) { result, _ in
+                            defer { group.leave() }
+                            let s: String?
+                            if let str = result as? String { s = str }
+                            else if let data = result as? Data { s = String(data: data, encoding: .utf8) }
+                            else { s = nil }
+                            if let s, !s.isEmpty {
+                                if foundURL == nil { foundURL = Self.firstURL(in: s) }
+                                if captionText == nil { captionText = s }
+                            }
+                        }
+                        break
+                    }
                 }
             }
         }
 
-        // Fallback: try to find a URL inside the caption/memo.
-        if foundURL == nil {
-            foundURL = Self.firstURL(in: captionText) ?? Self.firstURL(in: memo)
+        group.notify(queue: .main) { [weak self] in
+            guard let self else { return }
+            // When an image is shared, skip text candidates — OCR will provide them
+            let candidates = imageData != nil ? [] : self.placeCandidates(from: captionText)
+            completion(foundURL, candidates, imageData)
         }
+    }
 
-        guard let url = foundURL, !url.isEmpty,
-              let defaults = UserDefaults(suiteName: Self.appGroupID) else { return }
-
-        let combinedText: String? = {
-            var parts: [String] = []
-            if !memo.isEmpty { parts.append(memo) }
-            if let c = captionText, !c.isEmpty { parts.append(c) }
-            return parts.isEmpty ? nil : parts.joined(separator: "\n\n")
-        }()
-
-        defaults.set(url, forKey: Self.urlKey)
-        defaults.set(combinedText, forKey: Self.textKey)
-        defaults.set(Date(), forKey: Self.dateKey)
+    private func placeCandidates(from text: String?) -> [String] {
+        guard let text, !text.isEmpty else { return [] }
+        let lines: [String] = text
+            .components(separatedBy: .newlines)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+        let filtered: [String] = lines.filter { line in
+            guard line.count >= 2, line.count <= 40 else { return false }
+            guard !line.hasPrefix("http"), !line.hasPrefix("#"), !line.hasPrefix("@") else { return false }
+            return line.rangeOfCharacter(from: .letters) != nil
+        }
+        return Array(filtered.prefix(5))
     }
 
     private static func firstURL(in text: String?) -> String? {

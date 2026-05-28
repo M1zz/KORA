@@ -16,16 +16,19 @@ enum SharedInbox {
     }
 
     /// Atomically reads and clears the pending share payload, if any.
+    /// Accepts payloads with an empty URL if caption text is present — the
+    /// extension may have received only text from Instagram, not a URL.
     static func consume() -> Payload? {
-        guard let d = UserDefaults(suiteName: appGroupID),
-              let url = d.string(forKey: urlKey),
-              !url.isEmpty
-        else { return nil }
-        let text = d.string(forKey: textKey)
-        let at = (d.object(forKey: dateKey) as? Date) ?? Date()
+        guard let d = UserDefaults(suiteName: appGroupID) else { return nil }
+        let url    = d.string(forKey: urlKey) ?? ""
+        let text   = d.string(forKey: textKey)
+        let at     = (d.object(forKey: dateKey) as? Date) ?? Date()
+        let hasContent = !url.isEmpty || (text != nil && !(text!.isEmpty))
+        guard hasContent, d.object(forKey: dateKey) != nil else { return nil }
         d.removeObject(forKey: urlKey)
         d.removeObject(forKey: textKey)
         d.removeObject(forKey: dateKey)
+        d.removeObject(forKey: "debug_status")
         return Payload(url: url, text: text, receivedAt: at)
     }
 }

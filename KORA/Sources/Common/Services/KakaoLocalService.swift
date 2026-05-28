@@ -50,7 +50,9 @@ struct KakaoDocument: Decodable, Identifiable {
             coordinate: coordinate,
             nearestStation: "",
             sourceURL: sourceURL,
-            imageURL:  imageURL
+            imageURL:  imageURL,
+            phone:     phone.isEmpty ? nil : phone,
+            kakaoMapURL: placeUrl.isEmpty ? nil : placeUrl
         )
     }
 }

@@ -16,6 +16,8 @@ final class SaveViewModel {
     // MARK: Manual Name Prompt (Instagram can't be scraped)
     var showManualNamePrompt: Bool = false
     var manualNameInput: String = ""
+    /// Caption text received from Share Extension — shown as suggestion chips
+    var pendingCaptionText: String? = nil
 
     // MARK: Kakao Search State
     var searchQuery: String = ""
@@ -217,15 +219,43 @@ final class SaveViewModel {
         clipboardURL = nil
     }
 
-    // MARK: - Delete
+    // MARK: - Delete / Update
 
     func delete(at offsets: IndexSet) { store.delete(at: offsets) }
     func delete(_ place: Place)       { store.delete(place) }
+    func update(_ place: Place)       { store.update(place) }
 
     // MARK: - Filter
 
     func places(for category: PlaceCategory?) -> [Place] {
         store.filtered(by: category)
+    }
+
+    /// Groups places by nearest station for the list view.
+    /// Sorted by metro line number then station name; places with no station go last.
+    func placesGrouped(for category: PlaceCategory?, filter: String = "") -> [(station: String, places: [Place])] {
+        var base = places(for: category)
+        if !filter.isEmpty {
+            base = base.filter {
+                $0.name.localizedCaseInsensitiveContains(filter) ||
+                $0.address.localizedCaseInsensitiveContains(filter) ||
+                $0.nearestStation.localizedCaseInsensitiveContains(filter)
+            }
+        }
+        var groups: [String: [Place]] = [:]
+        for place in base {
+            groups[place.nearestStation, default: []].append(place)
+        }
+        let sortedKeys = groups.keys.sorted { a, b in
+            if a.isEmpty && b.isEmpty { return false }
+            if a.isEmpty { return false }
+            if b.isEmpty { return true }
+            let aLine = MetroLineData.linesContaining(a).first ?? 99
+            let bLine = MetroLineData.linesContaining(b).first ?? 99
+            if aLine != bLine { return aLine < bLine }
+            return a < b
+        }
+        return sortedKeys.map { ($0, groups[$0]!) }
     }
 
     // MARK: - Private

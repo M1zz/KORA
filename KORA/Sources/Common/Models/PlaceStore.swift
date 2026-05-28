@@ -45,9 +45,25 @@ final class PlaceStore {
     }
 
     private func load() {
-        guard let data = UserDefaults.standard.data(forKey: storageKey),
-              let decoded = try? JSONDecoder().decode([Place].self, from: data)
-        else { return }
-        places = decoded
+        if let data = UserDefaults.standard.data(forKey: storageKey),
+           let decoded = try? JSONDecoder().decode([Place].self, from: data) {
+            places = decoded
+        }
+    }
+
+    /// Reads places saved by the Share Extension from the App Group JSON queue,
+    /// merges them into the store, and deletes the queue file.
+    func drainExtensionQueue() {
+        guard let dir = FileManager.default
+            .containerURL(forSecurityApplicationGroupIdentifier: "group.com.kora.leeo") else { return }
+        let fileURL = dir.appendingPathComponent("pending_places.json")
+        guard let data = try? Data(contentsOf: fileURL) else { return }
+        let queued = (try? JSONDecoder().decode([Place].self, from: data)) ?? []
+        try? FileManager.default.removeItem(at: fileURL)
+        guard !queued.isEmpty else { return }
+        let existingIDs = Set(places.map(\.id))
+        let toAdd = queued.filter { !existingIDs.contains($0.id) }
+        guard !toAdd.isEmpty else { return }
+        places.insert(contentsOf: toAdd, at: 0)
     }
 }

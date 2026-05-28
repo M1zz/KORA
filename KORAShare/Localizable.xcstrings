@@ -1,8 +1,15 @@
 {
   "sourceLanguage" : "ja",
   "strings" : {
+    "—" : {
+
+    },
+    "KORA에 저장" : {
+
+    },
     "share.memo_placeholder" : {
       "comment" : "Memo input placeholder",
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -20,6 +27,7 @@
     },
     "share.title" : {
       "comment" : "Share sheet title",
+      "extractionState" : "stale",
       "localizations" : {
         "ja" : {
           "stringUnit" : {
@@ -34,6 +42,39 @@
           }
         }
       }
+    },
+    "검색 결과가 없습니다" : {
+
+    },
+    "검색 닫기" : {
+
+    },
+    "위치 칸에 입력 중" : {
+
+    },
+    "인식된 텍스트" : {
+
+    },
+    "장소 검색해서 좌표까지 저장" : {
+
+    },
+    "장소 이름 검색..." : {
+
+    },
+    "장소 이름 칸에 입력 중" : {
+
+    },
+    "저장" : {
+
+    },
+    "저장되었습니다" : {
+
+    },
+    "취소" : {
+
+    },
+    "캡션에서 감지됨" : {
+
     }
   },
   "version" : "1.0"
