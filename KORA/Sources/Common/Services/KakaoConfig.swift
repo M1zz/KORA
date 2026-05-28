@@ -3,5 +3,5 @@
 // [앱 키] → [REST API 키]를 복사해서 아래에 붙여넣으세요.
 
 enum KakaoConfig {
-    static let restAPIKey = "f3f1851b0e08e1220c3cd3ed23b7462e"
+    static let restAPIKey = "d92509157e9c1f8c829412463d810fdd"
 }

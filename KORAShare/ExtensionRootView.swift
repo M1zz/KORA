@@ -468,15 +468,23 @@ struct KDoc: Identifiable {
 
 enum KakaoSearch {
     static func search(query: String) async -> [KDoc] {
-        guard var comps = URLComponents(string: "https://dapi.kakao.com/v2/local/search/keyword.json") else { return [] }
+        if let docs = await kakao(query: query), !docs.isEmpty { return docs }
+        return await naver(query: query)
+    }
+
+    private static func kakao(query: String) async -> [KDoc]? {
+        guard var comps = URLComponents(string: "https://dapi.kakao.com/v2/local/search/keyword.json") else { return nil }
         comps.queryItems = [
             URLQueryItem(name: "query", value: query),
             URLQueryItem(name: "size", value: "10")
         ]
-        guard let url = comps.url else { return [] }
+        guard let url = comps.url else { return nil }
         var req = URLRequest(url: url, timeoutInterval: 8)
         req.setValue("KakaoAK f3f1851b0e08e1220c3cd3ed23b7462e", forHTTPHeaderField: "Authorization")
-        guard let (data, _) = try? await URLSession.shared.data(for: req) else { return [] }
+        guard let (data, response) = try? await URLSession.shared.data(for: req),
+              let http = response as? HTTPURLResponse,
+              (200..<300).contains(http.statusCode)
+        else { return nil }
         struct Resp: Decodable {
             struct Doc: Decodable {
                 let place_name: String
@@ -488,12 +496,60 @@ enum KakaoSearch {
             }
             let documents: [Doc]
         }
-        guard let r = try? JSONDecoder().decode(Resp.self, from: data) else { return [] }
+        guard let r = try? JSONDecoder().decode(Resp.self, from: data) else { return nil }
         return r.documents.map {
             KDoc(placeName: $0.place_name, addressName: $0.address_name,
                  roadAddressName: $0.road_address_name,
                  categoryGroupCode: $0.category_group_code,
                  lat: Double($0.y) ?? 0, lon: Double($0.x) ?? 0)
+        }
+    }
+
+    private static func naver(query: String) async -> [KDoc] {
+        guard var comps = URLComponents(string: "https://openapi.naver.com/v1/search/local.json") else { return [] }
+        comps.queryItems = [
+            URLQueryItem(name: "query", value: query),
+            URLQueryItem(name: "display", value: "5"),
+            URLQueryItem(name: "sort", value: "random")
+        ]
+        guard let url = comps.url else { return [] }
+        var req = URLRequest(url: url, timeoutInterval: 8)
+        req.setValue("mLZQrzzj6WCXP_FyQZOX", forHTTPHeaderField: "X-Naver-Client-Id")
+        req.setValue("HgvkH5Sjq9",           forHTTPHeaderField: "X-Naver-Client-Secret")
+        guard let (data, response) = try? await URLSession.shared.data(for: req),
+              let http = response as? HTTPURLResponse,
+              (200..<300).contains(http.statusCode)
+        else { return [] }
+        struct Resp: Decodable {
+            struct Item: Decodable {
+                let title: String
+                let category: String
+                let address: String
+                let roadAddress: String
+                let mapx: String
+                let mapy: String
+            }
+            let items: [Item]
+        }
+        guard let r = try? JSONDecoder().decode(Resp.self, from: data) else { return [] }
+        return r.items.map { item in
+            let cleanName = item.title
+                .replacingOccurrences(of: "<b>", with: "")
+                .replacingOccurrences(of: "</b>", with: "")
+            let lng = (Double(item.mapx) ?? 0) / 10_000_000.0
+            let lat = (Double(item.mapy) ?? 0) / 10_000_000.0
+            let code: String = {
+                if item.category.contains("카페") { return "CE7" }
+                if item.category.contains("음식") || item.category.contains("맛집") { return "FD6" }
+                if item.category.contains("마트") || item.category.contains("편의점") || item.category.contains("쇼핑") { return "MT1" }
+                if item.category.contains("관광") || item.category.contains("여행") || item.category.contains("공원") || item.category.contains("박물관") { return "AT4" }
+                if item.category.contains("문화") || item.category.contains("공연") || item.category.contains("영화") { return "CT1" }
+                return ""
+            }()
+            return KDoc(placeName: cleanName, addressName: item.address,
+                        roadAddressName: item.roadAddress,
+                        categoryGroupCode: code,
+                        lat: lat, lon: lng)
         }
     }
 }

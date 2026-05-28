@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		586CF42B2FC87E6B00D2A003 /* NaverConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CF42A2FC87E6B00D2A003 /* NaverConfig.swift */; };
+		586CF42D2FC87E6B00D2A003 /* NaverLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CF42C2FC87E6B00D2A003 /* NaverLocalService.swift */; };
+		586CF42F2FC87E6B00D2A003 /* PlaceSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CF42E2FC87E6B00D2A003 /* PlaceSearchService.swift */; };
 		58FF4F012FC47AC600DF7156 /* KORAShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 58FF4EF72FC47AC600DF7156 /* KORAShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9C8F74612FC6E3A000B6DA22 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */; };
 		9C8F74632FC6E3A000B6DA22 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */; };
@@ -33,7 +36,6 @@
 		AA020 /* PlaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA120 /* PlaceStore.swift */; };
 		AA021 /* KakaoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA121 /* KakaoConfig.swift */; };
 		AA022 /* KakaoLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA122 /* KakaoLocalService.swift */; };
-		AA048 /* KakaoPlaceDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA148 /* KakaoPlaceDetailService.swift */; };
 		AA023 /* SubwayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA123 /* SubwayView.swift */; };
 		AA024 /* seoul_metro.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AA124 /* seoul_metro.pdf */; };
 		AA025 /* SubwayLineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA125 /* SubwayLineData.swift */; };
@@ -50,10 +52,11 @@
 		AA041 /* SubwayStationChineseNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA141 /* SubwayStationChineseNames.swift */; };
 		AA042 /* SubwayNavigatorStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA142 /* SubwayNavigatorStrings.swift */; };
 		AA043 /* PlaceMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA143 /* PlaceMapView.swift */; };
-		AA046 /* PlaceDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA146 /* PlaceDetailSheet.swift */; };
-		AA047 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA147 /* SafariView.swift */; };
 		AA044 /* KORALiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA144 /* KORALiveActivityManager.swift */; };
 		AA045 /* TransitPositionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA145 /* TransitPositionTracker.swift */; };
+		AA046 /* PlaceDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA146 /* PlaceDetailSheet.swift */; };
+		AA047 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA147 /* SafariView.swift */; };
+		AA048 /* KakaoPlaceDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA148 /* KakaoPlaceDetailService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +92,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		586CF42A2FC87E6B00D2A003 /* NaverConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverConfig.swift; sourceTree = "<group>"; };
+		586CF42C2FC87E6B00D2A003 /* NaverLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverLocalService.swift; sourceTree = "<group>"; };
+		586CF42E2FC87E6B00D2A003 /* PlaceSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchService.swift; sourceTree = "<group>"; };
 		58FF4EF72FC47AC600DF7156 /* KORAShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KORAShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		58FF4F082FC47ADC00DF7156 /* KORA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KORA.entitlements; sourceTree = "<group>"; };
 		9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +122,6 @@
 		AA120 /* PlaceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceStore.swift; sourceTree = "<group>"; };
 		AA121 /* KakaoConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConfig.swift; sourceTree = "<group>"; };
 		AA122 /* KakaoLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLocalService.swift; sourceTree = "<group>"; };
-		AA148 /* KakaoPlaceDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceDetailService.swift; sourceTree = "<group>"; };
 		AA123 /* SubwayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayView.swift; sourceTree = "<group>"; };
 		AA124 /* seoul_metro.pdf */ = {isa = PBXFileReference; lastKnownFileType = com.adobe.pdf; path = seoul_metro.pdf; sourceTree = "<group>"; };
 		AA125 /* SubwayLineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineData.swift; sourceTree = "<group>"; };
@@ -133,10 +138,11 @@
 		AA141 /* SubwayStationChineseNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationChineseNames.swift; sourceTree = "<group>"; };
 		AA142 /* SubwayNavigatorStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayNavigatorStrings.swift; sourceTree = "<group>"; };
 		AA143 /* PlaceMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMapView.swift; sourceTree = "<group>"; };
-		AA146 /* PlaceDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailSheet.swift; sourceTree = "<group>"; };
-		AA147 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		AA144 /* KORALiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORALiveActivityManager.swift; sourceTree = "<group>"; };
 		AA145 /* TransitPositionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitPositionTracker.swift; sourceTree = "<group>"; };
+		AA146 /* PlaceDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailSheet.swift; sourceTree = "<group>"; };
+		AA147 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		AA148 /* KakaoPlaceDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceDetailService.swift; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -355,6 +361,9 @@
 		AA433 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				586CF42A2FC87E6B00D2A003 /* NaverConfig.swift */,
+				586CF42C2FC87E6B00D2A003 /* NaverLocalService.swift */,
+				586CF42E2FC87E6B00D2A003 /* PlaceSearchService.swift */,
 				AA121 /* KakaoConfig.swift */,
 				AA122 /* KakaoLocalService.swift */,
 				AA148 /* KakaoPlaceDetailService.swift */,
@@ -537,6 +546,9 @@
 				AA010 /* Place.swift in Sources */,
 				AA011 /* Review.swift in Sources */,
 				AA012 /* KORATheme.swift in Sources */,
+				586CF42B2FC87E6B00D2A003 /* NaverConfig.swift in Sources */,
+				586CF42D2FC87E6B00D2A003 /* NaverLocalService.swift in Sources */,
+				586CF42F2FC87E6B00D2A003 /* PlaceSearchService.swift in Sources */,
 				AA013 /* KORAButton.swift in Sources */,
 				AA014 /* LinkParserService.swift in Sources */,
 				AA015 /* NowViewModel.swift in Sources */,

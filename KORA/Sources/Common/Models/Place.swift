@@ -17,6 +17,10 @@ struct Place: Identifiable, Codable, Hashable {
     var tags: [String]
     var sourceURL: String?
     var imageURL: String?
+    /// Full gallery — Kakao official photos first, Naver image-search photos
+    /// after. `imageURL` (the cover) is always `photoURLs.first` when this is
+    /// populated. nil on legacy saves until backfill runs.
+    var photoURLs: [String]?
     var waitMinutes: Int?
     var isOpen: Bool
     var savedAt: Date
@@ -37,6 +41,7 @@ struct Place: Identifiable, Codable, Hashable {
         tags: [String] = [],
         sourceURL: String? = nil,
         imageURL: String? = nil,
+        photoURLs: [String]? = nil,
         waitMinutes: Int? = nil,
         isOpen: Bool = true,
         savedAt: Date = Date(),
@@ -56,6 +61,7 @@ struct Place: Identifiable, Codable, Hashable {
         self.tags = tags
         self.sourceURL = sourceURL
         self.imageURL = imageURL
+        self.photoURLs = photoURLs
         self.waitMinutes = waitMinutes
         self.isOpen = isOpen
         self.savedAt = savedAt

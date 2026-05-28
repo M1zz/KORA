@@ -1,23 +1,21 @@
 import SwiftUI
+import MapKit
 
 struct PlaceDetailSheet: View {
     let lang: StationLanguage
     let onUpdate: (Place) -> Void
-    let onRoute: ((Place) -> Void)?
 
     @State private var current: Place
     @State private var detail: KakaoPlaceDetail? = nil
     @State private var isFetchingBasic  = false
     @State private var isFetchingDetail = false
-    @State private var showKakaoMap     = false
 
-    private let kakao       = KakaoLocalService()
+    private let search      = PlaceSearchService()
     private let detailSvc   = KakaoPlaceDetailService()
 
-    init(place: Place, lang: StationLanguage, onUpdate: @escaping (Place) -> Void, onRoute: ((Place) -> Void)? = nil) {
+    init(place: Place, lang: StationLanguage, onUpdate: @escaping (Place) -> Void) {
         self.lang     = lang
         self.onUpdate = onUpdate
-        self.onRoute  = onRoute
         _current = State(initialValue: place)
     }
 
@@ -44,18 +42,17 @@ struct PlaceDetailSheet: View {
         .presentationDetents([.medium, .large])
         .presentationDragIndicator(.visible)
         .task { await fetchAll() }
-        .fullScreenCover(isPresented: $showKakaoMap) {
-            if let urlStr = current.kakaoMapURL, let url = URL(string: urlStr) {
-                SafariView(url: url).ignoresSafeArea()
-            }
-        }
     }
 
     // MARK: - Photo strip
 
     @ViewBuilder
     private var photoSection: some View {
-        let photos = detail?.photos ?? []
+        // Prefer the stored gallery (Kakao + Naver, populated at save time)
+        // and fall back to the freshly-fetched Kakao-only photos for places
+        // saved before the gallery field existed.
+        let stored = current.photoURLs ?? []
+        let photos = stored.isEmpty ? (detail?.photos ?? []) : stored
         if isFetchingDetail && photos.isEmpty {
             Rectangle()
                 .fill(Color(UIColor.systemFill))
@@ -134,21 +131,7 @@ struct PlaceDetailSheet: View {
 
             if !current.nearestStation.isEmpty {
                 infoRow(icon: "tram.circle.fill", color: KORATheme.accent) {
-                    HStack(spacing: 10) {
-                        Text(stationDisplay).font(.callout).foregroundStyle(.primary)
-                        if let route = onRoute {
-                            Button {
-                                route(current); dismiss()
-                            } label: {
-                                Text(routeLabel)
-                                    .font(.caption2).fontWeight(.semibold)
-                                    .foregroundStyle(KORATheme.accent)
-                                    .padding(.horizontal, 9).padding(.vertical, 5)
-                                    .background(KORATheme.accent.opacity(0.1))
-                                    .clipShape(Capsule())
-                            }
-                        }
-                    }
+                    Text(stationDisplay).font(.callout).foregroundStyle(.primary)
                 }
             }
         }
@@ -184,25 +167,20 @@ struct PlaceDetailSheet: View {
 
     private var buttonSection: some View {
         VStack(spacing: 10) {
-            if let kakaoURLStr = current.kakaoMapURL, URL(string: kakaoURLStr) != nil {
-                Button { showKakaoMap = true } label: {
+            if current.hasLocation || !current.name.isEmpty {
+                Button { openInAppleMaps() } label: {
                     HStack(spacing: 8) {
                         Image(systemName: "map.fill").font(.body)
-                        Text(kakaoMapLabel).font(.body).fontWeight(.bold)
+                        Text(appleMapLabel).font(.body).fontWeight(.bold)
                         Spacer()
-                        Image(systemName: "chevron.right").font(.caption).fontWeight(.semibold)
+                        Image(systemName: "arrow.up.right.square").font(.caption).fontWeight(.semibold)
                     }
-                    .foregroundStyle(Color(hex: "#3A1A00"))
+                    .foregroundStyle(.white)
                     .padding(.horizontal, 18).padding(.vertical, 16)
-                    .background(Color(hex: "#FEE500"))
+                    .background(KORATheme.accent)
                     .clipShape(RoundedRectangle(cornerRadius: 14))
                 }
                 .buttonStyle(.plain)
-            } else if isFetchingBasic {
-                RoundedRectangle(cornerRadius: 14)
-                    .fill(Color(UIColor.systemFill))
-                    .frame(maxWidth: .infinity, minHeight: 54)
-                    .overlay(ProgressView())
             }
 
             if let src = current.sourceURL,
@@ -256,8 +234,8 @@ struct PlaceDetailSheet: View {
         defer { isFetchingBasic = false }
         do {
             let docs: [KakaoDocument] = current.hasLocation
-                ? try await kakao.searchKeyword(current.name, latitude: current.coordinate.latitude, longitude: current.coordinate.longitude, size: 5)
-                : try await kakao.searchKeyword(current.name, size: 5)
+                ? try await search.searchKeyword(current.name, latitude: current.coordinate.latitude, longitude: current.coordinate.longitude, size: 5)
+                : try await search.searchKeyword(current.name, size: 5)
             let best = docs.first { $0.placeName == current.name } ?? docs.first
             guard let doc = best else { return }
             var updated = current
@@ -299,23 +277,39 @@ struct PlaceDetailSheet: View {
         case .english: return "\(n) Stn."; case .chinese: return "\(n)站"
         }
     }
-    private var routeLabel: String {
-        switch lang {
-        case .korean: return "경로 보기"; case .japanese: return "経路を見る"
-        case .english: return "Directions"; case .chinese: return "查看路线"
-        }
-    }
     private var hoursLabel: String {
         switch lang {
         case .korean: return "영업시간"; case .japanese: return "営業時間"
         case .english: return "Hours"; case .chinese: return "营业时间"
         }
     }
-    private var kakaoMapLabel: String {
+    private var appleMapLabel: String {
         switch lang {
-        case .korean: return "카카오맵에서 더 보기"; case .japanese: return "カカオマップで詳細を見る"
-        case .english: return "More on KakaoMap"; case .chinese: return "在KakaoMap查看更多"
+        case .korean: return "지도에서 보기"; case .japanese: return "マップで見る"
+        case .english: return "Open in Maps"; case .chinese: return "在地图中查看"
         }
+    }
+
+    /// Hands the place off to Apple Maps. When we have real coordinates we
+    /// hand over an `MKMapItem` (with the pin titled) for the most accurate
+    /// drop; otherwise we fall back to a query URL so the Maps app at least
+    /// runs a search for the name.
+    private func openInAppleMaps() {
+        if current.hasLocation {
+            let coord = CLLocationCoordinate2D(
+                latitude: current.coordinate.latitude,
+                longitude: current.coordinate.longitude
+            )
+            let item = MKMapItem(placemark: MKPlacemark(coordinate: coord))
+            item.name = current.name
+            item.openInMaps()
+            return
+        }
+        let q = current.name
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+            .addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        guard !q.isEmpty, let url = URL(string: "http://maps.apple.com/?q=\(q)") else { return }
+        UIApplication.shared.open(url)
     }
     private var sourceLinkLabel: String {
         switch lang {

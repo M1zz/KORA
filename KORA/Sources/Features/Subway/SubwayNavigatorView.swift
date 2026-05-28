@@ -1688,7 +1688,17 @@ struct SubwayNavigatorView: View {
         guard let dest = coordinator.pendingDestination, !dest.isEmpty else { return }
         toStation = dest
         selectedJourneyIdx = 0
+        let needsAutoFrom = coordinator.autoFromCurrentLocation
         coordinator.clearPending()
+        if needsAutoFrom {
+            Task { await detectCurrentStation() }
+        } else {
+            // User picked "출발역 직접 선택" on the card — drop any persisted
+            // from-station so the welcomeGate (first screen) shows, and open
+            // the picker straight away to skip the extra tap.
+            fromStation = nil
+            showFromPicker = true
+        }
     }
 
     // MARK: Setup bar

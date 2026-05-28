@@ -73,15 +73,6 @@ private enum SaveLoc {
     static func searchPlaceholder(_ l: StationLanguage) -> String {
         switch l { case .korean: return "성심당, 홍대 카페..."; case .japanese: return "城心堂、弘大カフェ..."; case .english: return "Sungsimdang, Hongdae cafe..."; case .chinese: return "圣心堂、弘大咖啡..." }
     }
-    static func placeInfoFetched(_ l: StationLanguage) -> String {
-        switch l { case .korean: return "장소 정보를 가져왔습니다!"; case .japanese: return "スポット情報を取得しました！"; case .english: return "Place info retrieved!"; case .chinese: return "已获取地点信息！" }
-    }
-    static func saveToList(_ l: StationLanguage) -> String {
-        switch l { case .korean: return "목록에 저장하기"; case .japanese: return "リストに保存する"; case .english: return "Save to list"; case .chinese: return "保存到列表" }
-    }
-    static func checkPlace(_ l: StationLanguage) -> String {
-        switch l { case .korean: return "장소 확인"; case .japanese: return "スポットを確認"; case .english: return "Confirm Place"; case .chinese: return "确认地点" }
-    }
     static func noResults(_ l: StationLanguage) -> String {
         switch l { case .korean: return "검색 결과가 없습니다"; case .japanese: return "検索結果がありません"; case .english: return "No results found"; case .chinese: return "没有搜索结果" }
     }
@@ -94,9 +85,8 @@ private enum SaveLoc {
 
 struct SaveView: View {
     @State private var viewModel = SaveViewModel()
-    @State private var selectedCategory: PlaceCategory? = nil
     @State private var showAddSheet: Bool = false
-    @State private var showMap: Bool = false
+    @State private var showListSheet: Bool = false
     @State private var selectedMapPlace: Place? = nil
     @State private var listSearchText: String = ""
     @State private var editingPlace: Place? = nil
@@ -114,39 +104,31 @@ struct SaveView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottomTrailing) {
-                VStack(spacing: 0) {
-                    ScrollView {
-                        VStack(spacing: 0) {
-                            if viewModel.showClipboardPrompt {
-                                clipboardBanner
-                                    .padding(.horizontal)
-                                    .padding(.top, 12)
-                                    .padding(.bottom, 4)
-                                    .transition(.move(edge: .top).combined(with: .opacity))
-                            }
-                            listHeader
-                            placesSection
-                                .padding(.horizontal)
-                                .padding(.top, 8)
-                        }
+                PlaceMapView(
+                    places: viewModel.savedPlaces,
+                    selectedPlace: $selectedMapPlace,
+                    onSaveDoc: { doc in viewModel.saveFromKakao(doc) }
+                )
+                .ignoresSafeArea(edges: .bottom)
+
+                // Clipboard banner overlays from the top
+                if viewModel.showClipboardPrompt {
+                    VStack {
+                        clipboardBanner
+                            .padding(.horizontal)
+                            .padding(.top, 8)
+                        Spacer()
                     }
-                    .background(Color(UIColor.systemGroupedBackground))
+                    .transition(.move(edge: .top).combined(with: .opacity))
                 }
 
-                if !viewModel.showClipboardPrompt {
-                    Button {
-                        showAddSheet = true
-                    } label: {
-                        Image(systemName: "plus")
-                            .font(.title2).fontWeight(.semibold)
-                            .foregroundStyle(.white)
-                            .frame(width: 56, height: 56)
-                            .background(KORATheme.accent)
-                            .clipShape(Circle())
-                            .shadow(color: KORATheme.accent.opacity(0.4), radius: 8, y: 4)
-                    }
-                    .padding(.trailing, 20)
-                    .padding(.bottom, 28)
+                // Floating list button — hidden while a saved-pin's bottom
+                // card is showing so they don't overlap.
+                if selectedMapPlace == nil {
+                    listFloatingButton
+                        .padding(.trailing, 16)
+                        .padding(.bottom, 16)
+                        .transition(.scale.combined(with: .opacity))
                 }
             }
             .overlay {
@@ -154,26 +136,17 @@ struct SaveView: View {
                     loadingOverlay
                 }
             }
-            .navigationDestination(isPresented: $showMap) {
-                PlaceMapView(
-                    places: viewModel.places(for: selectedCategory),
-                    selectedPlace: $selectedMapPlace,
-                    onSaveDoc: { doc in viewModel.saveFromKakao(doc) }
-                )
-                .navigationTitle(mapTitle)
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar(.visible, for: .navigationBar)
-                .ignoresSafeArea(edges: .bottom)
-            }
-            .sheet(item: $viewModel.parsedPlace) { place in
-                ParsedPlaceSheet(place: place) {
-                    viewModel.confirmSave()
-                } onDismiss: {
-                    viewModel.dismissParsed()
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showAddSheet = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
+                    .accessibilityLabel(addPlaceA11y)
                 }
-            }
-            .sheet(isPresented: $viewModel.showSearchResults) {
-                KakaoSearchResultsSheet(viewModel: viewModel)
             }
             .sheet(isPresented: $showAddSheet) {
                 AddPlaceSheet(viewModel: viewModel)
@@ -185,18 +158,15 @@ struct SaveView: View {
                 PlaceDetailSheet(
                     place: place,
                     lang: lang,
-                    onUpdate: { updated in viewModel.update(updated) },
-                    onRoute: { p in
-                        guard !p.nearestStation.isEmpty else { return }
-                        NavigationCoordinator.shared.routeTo(station: p.nearestStation)
-                    }
+                    onUpdate: { updated in viewModel.update(updated) }
                 )
             }
-            .navigationTitle("")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar(.hidden, for: .navigationBar)
+            .sheet(isPresented: $showListSheet) {
+                listSheet
+            }
             .onAppear {
                 viewModel.checkClipboard()
+                viewModel.backfillMissingImages()
                 consumePendingShare()
             }
             .onChange(of: coordinator.shareRequestNonce) { _, _ in
@@ -207,36 +177,76 @@ struct SaveView: View {
             }
         }
         .animation(.spring(response: 0.25), value: viewModel.showClipboardPrompt)
+        .animation(.spring(response: 0.25), value: selectedMapPlace == nil)
     }
 
-    private var listHeader: some View {
-        HStack(alignment: .center) {
-            Text(lang == .japanese ? "行きたい" : lang == .english ? "Saved" : lang == .chinese ? "想去的" : "가고 싶은")
-                .font(.title2).fontWeight(.bold)
-                .foregroundStyle(KORATheme.labelPrimary)
-            Spacer()
-            Button {
-                showMap = true
-            } label: {
-                Image(systemName: "map")
+    // MARK: - Floating List Button
+
+    private var listFloatingButton: some View {
+        Button {
+            showListSheet = true
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: "list.bullet")
                     .font(.body).fontWeight(.semibold)
-                    .foregroundStyle(KORATheme.accent)
-                    .padding(9)
-                    .background(KORATheme.accent.opacity(0.1))
-                    .clipShape(Circle())
+                Text("\(viewModel.savedPlaces.count)")
+                    .font(.body).fontWeight(.bold)
+                    .monospacedDigit()
+            }
+            .foregroundStyle(.white)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
+            .background(KORATheme.accent)
+            .clipShape(Capsule())
+            .shadow(color: .black.opacity(0.25), radius: 10, y: 3)
+        }
+        .accessibilityLabel(listButtonA11y)
+    }
+
+    private var listButtonA11y: String {
+        let count = viewModel.savedPlaces.count
+        switch lang {
+        case .korean:   return "저장한 장소 \(count)개 보기"
+        case .japanese: return "保存したスポット \(count)件を見る"
+        case .english:  return "View \(count) saved places"
+        case .chinese:  return "查看已保存的 \(count) 个地点"
+        }
+    }
+
+    // MARK: - List Sheet
+
+    private var listSheet: some View {
+        NavigationStack {
+            ScrollView {
+                placesSection
+                    .padding(.horizontal)
+                    .padding(.top, 12)
+            }
+            .background(Color(UIColor.systemGroupedBackground))
+            .navigationTitle("")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showListSheet = false
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .foregroundStyle(.secondary)
+                    }
+                    .accessibilityLabel(SaveLoc.close(lang))
+                }
             }
         }
-        .padding(.horizontal)
-        .padding(.top, 12)
-        .padding(.bottom, 4)
+        .presentationDetents([.medium, .large])
+        .presentationDragIndicator(.visible)
     }
 
-    private var mapTitle: String {
+    private var addPlaceA11y: String {
         switch lang {
-        case .korean:   return "지도"
-        case .japanese: return "マップ"
-        case .english:  return "Map"
-        case .chinese:  return "地图"
+        case .korean:   return "장소 추가"
+        case .japanese: return "スポット追加"
+        case .english:  return "Add place"
+        case .chinese:  return "添加地点"
         }
     }
 
@@ -335,36 +345,11 @@ struct SaveView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
-    // MARK: - Category Filter
-
-    private var categoryFilterSection: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 8) {
-                FilterChip(title: SaveLoc.allFilter(lang), isSelected: selectedCategory == nil) {
-                    selectedCategory = nil
-                }
-                ForEach(PlaceCategory.allCases, id: \.self) { cat in
-                    FilterChip(
-                        title: cat.displayName(language: lang),
-                        systemImage: cat.systemImage,
-                        isSelected: selectedCategory == cat
-                    ) {
-                        selectedCategory = cat
-                    }
-                }
-            }
-            .padding(.horizontal)
-            .padding(.vertical, 4)
-        }
-    }
-
-    // MARK: - Places List (grouped by station)
+    // MARK: - Places (flat 2-col grid, sorted by recency)
 
     private var placesSection: some View {
-        let groups = viewModel.placesGrouped(for: nil, filter: "")
-
-        return Group {
-            if groups.isEmpty {
+        Group {
+            if viewModel.savedPlaces.isEmpty {
                 EmptyStateView(
                     systemImage: "bookmark",
                     title: SaveLoc.emptyTitle(lang),
@@ -375,9 +360,45 @@ struct SaveView: View {
                 }
                 .frame(minHeight: 300)
             } else {
-                LazyVStack(alignment: .leading, spacing: 20) {
-                    ForEach(groups, id: \.station) { group in
-                        stationGroupSection(station: group.station, places: group.places)
+                let sorted = viewModel.savedPlaces.sorted { $0.savedAt > $1.savedAt }
+                VStack(alignment: .leading, spacing: 0) {
+                    voiceOverHeading(count: sorted.count)
+                    LazyVGrid(
+                        columns: [
+                            GridItem(.flexible(), spacing: 12),
+                            GridItem(.flexible(), spacing: 12)
+                        ],
+                        spacing: 12
+                    ) {
+                        ForEach(sorted) { place in
+                            PlaceCardView(
+                                place: place,
+                                onDelete: { viewModel.delete(place) },
+                                onEdit:   { editingPlace = place },
+                                onTap:    {
+                                    // Dismiss the list sheet first so the detail
+                                    // sheet doesn't fight it for presentation.
+                                    showListSheet = false
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                                        detailPlace = place
+                                    }
+                                }
+                            )
+                            .contextMenu {
+                                Button {
+                                    editingPlace = place
+                                } label: {
+                                    Label(lang == .japanese ? "編集" : lang == .english ? "Edit" : lang == .chinese ? "编辑" : "수정",
+                                          systemImage: "pencil")
+                                }
+                                Divider()
+                                Button(role: .destructive) {
+                                    viewModel.delete(place)
+                                } label: {
+                                    Label(SaveLoc.delete(lang), systemImage: "trash")
+                                }
+                            }
+                        }
                     }
                 }
                 .padding(.bottom, 88)
@@ -385,85 +406,24 @@ struct SaveView: View {
         }
     }
 
-    private func stationGroupSection(station: String, places: [Place]) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            if !station.isEmpty {
-                stationGroupHeader(station: station, count: places.count)
-            }
-
-            ForEach(places) { place in
-                PlaceCardView(
-                    place: place,
-                    onRoute: { p in
-                        guard !p.nearestStation.isEmpty else { return }
-                        NavigationCoordinator.shared.routeTo(station: p.nearestStation)
-                    },
-                    onTap: { detailPlace = place }
-                )
-                .contextMenu {
-                    Button {
-                        editingPlace = place
-                    } label: {
-                        Label(lang == .japanese ? "編集" : lang == .english ? "Edit" : lang == .chinese ? "编辑" : "수정", systemImage: "pencil")
-                    }
-                    Divider()
-                    Button(role: .destructive) {
-                        viewModel.delete(place)
-                    } label: {
-                        Label(SaveLoc.delete(lang), systemImage: "trash")
-                    }
-                }
-            }
-        }
+    /// Invisible zero-height heading that gives VoiceOver an anchor for the
+    /// screen ("저장한 장소 N개") and shows up in the heading rotor. The
+    /// visible layout is unaffected — sighted users see only cards.
+    private func voiceOverHeading(count: Int) -> some View {
+        Color.clear
+            .frame(height: 0.5)
+            .accessibilityElement()
+            .accessibilityLabel(savedHeadingLabel(count))
+            .accessibilityAddTraits(.isHeader)
     }
 
-    private func stationGroupHeader(station: String, count: Int) -> some View {
-        let display = MetroLineData.displayName(for: station, language: lang)
-        let lines = MetroLineData.linesContaining(station)
-        let suffix: String = {
-            switch lang {
-            case .korean: return "역"
-            case .japanese: return "駅"
-            case .english: return " Stn."
-            case .chinese: return "站"
-            }
-        }()
-        return Button {
-            // Tap station header → switch to subway tab with this station as destination
-            NavigationCoordinator.shared.routeTo(station: station)
-        } label: {
-            HStack(spacing: 8) {
-                ForEach(lines, id: \.self) { num in
-                    Text(MetroLineData.lineBadgeText(num))
-                        .font(.caption2).fontWeight(.black)
-                        .foregroundStyle(.white)
-                        .padding(.horizontal, 7).padding(.vertical, 4)
-                        .background(MetroLineData.lineColor(num))
-                        .clipShape(Capsule())
-                }
-                VStack(alignment: .leading, spacing: 0) {
-                    Text(display + suffix)
-                        .font(.body).fontWeight(.bold)
-                        .foregroundStyle(KORATheme.labelPrimary)
-                    if lang != .korean && display != station {
-                        Text(station + (lang == .japanese ? "駅" : lang == .chinese ? "站" : ""))
-                            .font(.caption)
-                            .foregroundStyle(KORATheme.labelTertiary)
-                    }
-                }
-                Spacer()
-                HStack(spacing: 4) {
-                    Text("\(count)")
-                        .font(.caption).fontWeight(.semibold)
-                        .foregroundStyle(KORATheme.labelSecondary)
-                    Image(systemName: "arrow.right.circle.fill")
-                        .font(.body)
-                        .foregroundStyle(KORATheme.accent.opacity(0.5))
-                }
-            }
-            .contentShape(Rectangle())
+    private func savedHeadingLabel(_ count: Int) -> String {
+        switch lang {
+        case .korean:   return "저장한 장소 \(count)개"
+        case .japanese: return "保存したスポット \(count)件"
+        case .english:  return "\(count) saved places"
+        case .chinese:  return "已保存 \(count) 个地点"
         }
-        .buttonStyle(.plain)
     }
 
     // MARK: - Loading Overlay
@@ -528,8 +488,13 @@ struct AddPlaceSheet: View {
                         kakaoSearchSection
                     }
 
+                    // Inline Kakao search results
+                    if viewModel.showSearchResults {
+                        searchResultsInlineSection
+                    }
+
                     // Toggle between hero and URL-paste view
-                    if !viewModel.showManualNamePrompt {
+                    if !viewModel.showManualNamePrompt && !viewModel.showSearchResults {
                         Button {
                             withAnimation(.spring(response: 0.25)) { showURLInput.toggle() }
                         } label: {
@@ -555,15 +520,13 @@ struct AddPlaceSheet: View {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(SaveLoc.close(lang)) {
                         viewModel.dismissManualPrompt()
+                        viewModel.dismissSearch()
                         dismiss()
                     }
                 }
             }
         }
         .onAppear { isURLFieldFocused = true }
-        .onChange(of: viewModel.showSearchResults) { _, shown in
-            if shown { dismiss() }
-        }
         .onChange(of: photoPickerItem) { _, item in
             guard let item else { return }
             Task { await processPickedPhoto(item) }
@@ -610,6 +573,12 @@ struct AddPlaceSheet: View {
                     }
                 }
                 .disabled(viewModel.searchQuery.isEmpty || viewModel.isSearching)
+            }
+
+            if let error = viewModel.errorMessage {
+                Label(error, systemImage: "exclamationmark.triangle.fill")
+                    .font(.body)
+                    .foregroundStyle(Color.red)
             }
 
             // Screenshot OCR button
@@ -662,6 +631,54 @@ struct AddPlaceSheet: View {
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+        .padding(KORATheme.spacing16)
+        .background(KORATheme.background)
+        .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusLG))
+    }
+
+    // MARK: - Inline Kakao Results
+
+    private var searchResultsInlineSection: some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Text(SaveLoc.searchResults(lang))
+                    .font(.body).fontWeight(.semibold)
+                    .foregroundStyle(KORATheme.labelSecondary)
+                Spacer()
+                Button {
+                    viewModel.dismissSearch()
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.body)
+                        .foregroundStyle(KORATheme.labelTertiary)
+                }
+            }
+
+            if viewModel.searchResults.isEmpty {
+                VStack(spacing: 10) {
+                    Image(systemName: "magnifyingglass")
+                        .font(.title2).fontWeight(.thin)
+                        .foregroundStyle(KORATheme.labelTertiary)
+                    Text(SaveLoc.noResults(lang))
+                        .font(.body)
+                        .foregroundStyle(KORATheme.labelSecondary)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 24)
+            } else {
+                VStack(spacing: 8) {
+                    ForEach(viewModel.searchResults) { doc in
+                        Button {
+                            viewModel.saveFromKakao(doc)
+                            dismiss()
+                        } label: {
+                            KakaoResultRow(doc: doc)
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
             }
@@ -969,114 +986,7 @@ struct FilterChip: View {
     }
 }
 
-// MARK: - Parsed Place Confirmation Sheet
-
-struct ParsedPlaceSheet: View {
-    let place: Place
-    let onSave: () -> Void
-    let onDismiss: () -> Void
-
-    @AppStorage("kora.display_language") private var languagePref: String = ""
-    private var lang: StationLanguage {
-        guard !languagePref.isEmpty, let e = StationLanguage(rawValue: languagePref)
-        else { return StationLanguage.resolveFromSystemLocale() }
-        return e
-    }
-
-    var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 20) {
-                    HStack(spacing: 10) {
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.title3)
-                            .foregroundStyle(Color(hex: "#1D9E75"))
-                        Text(SaveLoc.placeInfoFetched(lang))
-                            .font(.body).fontWeight(.semibold)
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color(hex: "#E1F5EE"))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-
-                    PlaceCardView(place: place)
-
-                    VStack(spacing: 12) {
-                        KORAPrimaryButton(SaveLoc.saveToList(lang), icon: "bookmark.fill") {
-                            onSave()
-                        }
-                        KORASecondaryButton(SaveLoc.cancel(lang)) {
-                            onDismiss()
-                        }
-                    }
-                }
-                .padding()
-            }
-            .navigationTitle(SaveLoc.checkPlace(lang))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(SaveLoc.close(lang)) { onDismiss() }
-                }
-            }
-        }
-    }
-}
-
-// MARK: - Kakao Search Results Sheet
-
-struct KakaoSearchResultsSheet: View {
-    @Environment(\.dismiss) private var dismiss
-    let viewModel: SaveViewModel
-
-    @AppStorage("kora.display_language") private var languagePref: String = ""
-    private var lang: StationLanguage {
-        guard !languagePref.isEmpty, let e = StationLanguage(rawValue: languagePref)
-        else { return StationLanguage.resolveFromSystemLocale() }
-        return e
-    }
-
-    var body: some View {
-        NavigationStack {
-            Group {
-                if viewModel.searchResults.isEmpty {
-                    VStack(spacing: 16) {
-                        Image(systemName: "magnifyingglass")
-                            .font(.largeTitle).fontWeight(.thin)
-                            .foregroundStyle(KORATheme.labelTertiary)
-                        Text(SaveLoc.noResults(lang))
-                            .font(.body)
-                            .foregroundStyle(KORATheme.labelSecondary)
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                } else {
-                    List(viewModel.searchResults) { doc in
-                        KakaoResultRow(doc: doc)
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                viewModel.saveFromKakao(doc)
-                                dismiss()
-                            }
-                            .listRowSeparator(.hidden)
-                            .listRowBackground(Color.clear)
-                    }
-                    .listStyle(.plain)
-                }
-            }
-            .background(Color(UIColor.systemGroupedBackground))
-            .navigationTitle(SaveLoc.searchResults(lang))
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(SaveLoc.cancel(lang)) {
-                        viewModel.dismissSearch()
-                        dismiss()
-                    }
-                }
-            }
-        }
-    }
-}
+// MARK: - Kakao Result Row
 
 struct KakaoResultRow: View {
     let doc: KakaoDocument

@@ -17,9 +17,10 @@ struct PlaceMapView: View {
     @State private var searchText: String = ""
     @State private var searchResults: [KakaoDocument] = []
     @State private var isSearching: Bool = false
+    @State private var searchBarExpanded: Bool = false
     @FocusState private var searchFocused: Bool
 
-    private let kakao = KakaoLocalService()
+    private let search = PlaceSearchService()
     private var locatablePlaces: [Place] { places.filter { $0.hasLocation } }
 
     // Decode which type is selected from the prefixed String tag
@@ -134,53 +135,84 @@ struct PlaceMapView: View {
         }
     }
 
-    // MARK: - Floating Search Bar
+    // MARK: - Floating Search Bar (collapsible)
 
+    @ViewBuilder
     private var floatingSearchBar: some View {
-        HStack(spacing: 8) {
+        if searchBarExpanded {
             HStack(spacing: 8) {
-                if isSearching {
-                    ProgressView()
-                        .scaleEffect(0.8)
-                        .frame(width: 20, height: 20)
-                } else {
-                    Image(systemName: searchResults.isEmpty ? "magnifyingglass" : "magnifyingglass.circle.fill")
-                        .font(.body)
-                        .foregroundStyle(searchResults.isEmpty ? KORATheme.labelTertiary : KORATheme.accent)
-                }
-
-                TextField("성심당, 홍대 카페, 경복궁...", text: $searchText)
-                    .font(.body)
-                    .focused($searchFocused)
-                    .submitLabel(.search)
-                    .onSubmit { Task { await performSearch() } }
-
-                if !searchText.isEmpty {
-                    Button {
-                        withAnimation { clearSearch() }
-                    } label: {
-                        Image(systemName: "xmark.circle.fill")
-                            .foregroundStyle(KORATheme.labelTertiary)
-                    }
-                }
-            }
-            .padding(.horizontal, 12)
-            .padding(.vertical, 10)
-            .background(.ultraThinMaterial)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
-            .shadow(color: .black.opacity(0.12), radius: 8, y: 2)
-
-            if searchFocused {
+                expandedSearchField
                 Button("취소") {
                     searchFocused = false
+                    withAnimation(.spring(response: 0.3)) {
+                        searchBarExpanded = false
+                    }
                     clearSearch()
                 }
                 .font(.body)
                 .foregroundStyle(KORATheme.accent)
                 .transition(.move(edge: .trailing).combined(with: .opacity))
             }
+        } else {
+            HStack {
+                Spacer()
+                Button {
+                    withAnimation(.spring(response: 0.3)) {
+                        searchBarExpanded = true
+                    }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
+                        searchFocused = true
+                    }
+                } label: {
+                    Image(systemName: "magnifyingglass")
+                        .font(.body).fontWeight(.semibold)
+                        .foregroundStyle(KORATheme.labelPrimary)
+                        .frame(width: 44, height: 44)
+                        .background(.ultraThinMaterial)
+                        .clipShape(Circle())
+                        .shadow(color: .black.opacity(0.15), radius: 6, y: 2)
+                }
+                .accessibilityLabel("검색")
+                .transition(.scale.combined(with: .opacity))
+            }
         }
-        .animation(.spring(response: 0.25), value: searchFocused)
+    }
+
+    private var expandedSearchField: some View {
+        HStack(spacing: 8) {
+            if isSearching {
+                ProgressView()
+                    .scaleEffect(0.8)
+                    .frame(width: 20, height: 20)
+            } else {
+                Image(systemName: searchResults.isEmpty ? "magnifyingglass" : "magnifyingglass.circle.fill")
+                    .font(.body)
+                    .foregroundStyle(searchResults.isEmpty ? KORATheme.labelTertiary : KORATheme.accent)
+            }
+
+            TextField("성심당, 홍대 카페, 경복궁...", text: $searchText)
+                .font(.body)
+                .focused($searchFocused)
+                .submitLabel(.search)
+                .onSubmit { Task { await performSearch() } }
+
+            if !searchText.isEmpty {
+                Button {
+                    searchText = ""
+                    searchResults = []
+                    mapSelection = nil
+                    selectedPlace = nil
+                } label: {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundStyle(KORATheme.labelTertiary)
+                }
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
+        .background(.ultraThinMaterial)
+        .clipShape(RoundedRectangle(cornerRadius: 12))
+        .shadow(color: .black.opacity(0.12), radius: 8, y: 2)
     }
 
     // MARK: - Search Result Bottom Card
@@ -259,10 +291,7 @@ struct PlaceMapView: View {
                 .frame(width: 40, height: 4)
                 .padding(.top, 10)
                 .padding(.bottom, 4)
-            PlaceCardView(place: place, onRoute: { p in
-                guard !p.nearestStation.isEmpty else { return }
-                NavigationCoordinator.shared.routeTo(station: p.nearestStation)
-            })
+            PlaceCardView(place: place)
             .padding(.horizontal, 12)
             .padding(.bottom, 8)
         }
@@ -283,7 +312,7 @@ struct PlaceMapView: View {
         mapSelection = nil
         defer { isSearching = false }
 
-        if let docs = try? await kakao.searchKeyword(q, size: 15) {
+        if let docs = try? await search.searchKeyword(q, size: 15) {
             withAnimation {
                 searchResults = docs
                 if let first = docs.first {

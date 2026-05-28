@@ -9,7 +9,6 @@ final class SaveViewModel {
     var urlInput: String = ""
     var isLoading: Bool = false
     var errorMessage: String? = nil
-    var parsedPlace: Place? = nil
     var showClipboardPrompt: Bool = false
     var clipboardURL: String? = nil
 
@@ -26,7 +25,7 @@ final class SaveViewModel {
     var showSearchResults: Bool = false
 
     private let parser = LinkParserService()
-    private let kakao  = KakaoLocalService()
+    private let search = PlaceSearchService()
     private let store  = PlaceStore.shared
 
     // MARK: - Computed
@@ -50,7 +49,6 @@ final class SaveViewModel {
 
         isLoading = true
         errorMessage = nil
-        parsedPlace = nil
 
         do {
             let place = try await parser.parse(urlString: url)
@@ -112,9 +110,8 @@ final class SaveViewModel {
         errorMessage = nil
 
         do {
-            searchResults = try await kakao.searchKeyword(query)
+            searchResults = try await search.searchKeyword(query)
             showSearchResults = true
-            // imageURL / sourceURL을 임시 저장해서 저장 시 사용
             pendingImageURL = imageURLFallback
             pendingSourceURL = sourceURL
         } catch {
@@ -130,6 +127,36 @@ final class SaveViewModel {
         dismissSearch()
         urlInput = ""
         Task { await self.attachNearestStation(for: place) }
+        Task { await self.attachPhotos(for: place) }
+    }
+
+    /// Fetches the full photo gallery (Kakao official photos + Naver image
+    /// search) and stores it on the place. Also sets `imageURL` (the cover)
+    /// to the first photo when it isn't already set. Silent on failure.
+    private func attachPhotos(for place: Place) async {
+        if let list = place.photoURLs, !list.isEmpty { return }
+        let photos = await search.allPhotos(for: place)
+        guard !photos.isEmpty else { return }
+        guard let stillCurrent = store.places.first(where: { $0.id == place.id }) else { return }
+        var updated = stillCurrent
+        updated.photoURLs = photos
+        if updated.imageURL == nil || updated.imageURL?.isEmpty == true {
+            updated.imageURL = photos.first
+        }
+        store.update(updated)
+    }
+
+    /// One-shot: for every saved place missing a gallery, fetch one in the
+    /// background. Staggered so we don't hit Naver's rate limit.
+    func backfillMissingImages() {
+        let candidates = store.places.filter { ($0.photoURLs ?? []).isEmpty }
+        guard !candidates.isEmpty else { return }
+        Task {
+            for place in candidates {
+                await self.attachPhotos(for: place)
+                try? await Task.sleep(for: .milliseconds(300))
+            }
+        }
     }
 
     /// Resolves the closest subway station and updates the Place in the store.
@@ -148,18 +175,15 @@ final class SaveViewModel {
             return
         }
 
-        // 2. Fallback for places outside the local table's coverage
-        do {
-            guard let doc = try await kakao.searchNearestSubway(
-                latitude: place.coordinate.latitude,
-                longitude: place.coordinate.longitude
-            ) else { return }
-            var updated = place
-            updated.nearestStation = Self.normalizeStationName(doc.placeName)
-            store.update(updated)
-        } catch {
-            // ignore — display will fall back to empty
-        }
+        // 2. Fallback for places outside the local table's coverage.
+        // Silent on Kakao failure (e.g., service disabled) — station stays empty.
+        guard let doc = await search.nearestSubway(
+            latitude: place.coordinate.latitude,
+            longitude: place.coordinate.longitude
+        ) else { return }
+        var updated = place
+        updated.nearestStation = Self.normalizeStationName(doc.placeName)
+        store.update(updated)
     }
 
     /// Kakao returns names like "강남역", "잠실(송파구청)역". Strip the trailing
@@ -182,20 +206,6 @@ final class SaveViewModel {
         searchResults = []
         pendingImageURL = nil
         pendingSourceURL = nil
-    }
-
-    // MARK: - Direct Save (기존 OG 파싱 결과 직접 저장)
-
-    func confirmSave() {
-        guard let place = parsedPlace else { return }
-        store.add(place)
-        parsedPlace = nil
-        urlInput = ""
-    }
-
-    func dismissParsed() {
-        parsedPlace = nil
-        urlInput = ""
     }
 
     // MARK: - Clipboard
@@ -231,10 +241,10 @@ final class SaveViewModel {
         store.filtered(by: category)
     }
 
-    /// Groups places by nearest station for the list view.
-    /// Sorted by metro line number then station name; places with no station go last.
-    func placesGrouped(for category: PlaceCategory?, filter: String = "") -> [(station: String, places: [Place])] {
-        var base = places(for: category)
+    /// Groups places by category for the list view. Within each category,
+    /// places are ordered by most-recently saved first.
+    func placesGroupedByCategory(filter: String = "") -> [(category: PlaceCategory, places: [Place])] {
+        var base = store.places
         if !filter.isEmpty {
             base = base.filter {
                 $0.name.localizedCaseInsensitiveContains(filter) ||
@@ -242,20 +252,12 @@ final class SaveViewModel {
                 $0.nearestStation.localizedCaseInsensitiveContains(filter)
             }
         }
-        var groups: [String: [Place]] = [:]
-        for place in base {
-            groups[place.nearestStation, default: []].append(place)
+        var groups: [PlaceCategory: [Place]] = [:]
+        for place in base { groups[place.category, default: []].append(place) }
+        return PlaceCategory.allCases.compactMap { cat in
+            guard let list = groups[cat], !list.isEmpty else { return nil }
+            return (cat, list.sorted { $0.savedAt > $1.savedAt })
         }
-        let sortedKeys = groups.keys.sorted { a, b in
-            if a.isEmpty && b.isEmpty { return false }
-            if a.isEmpty { return false }
-            if b.isEmpty { return true }
-            let aLine = MetroLineData.linesContaining(a).first ?? 99
-            let bLine = MetroLineData.linesContaining(b).first ?? 99
-            if aLine != bLine { return aLine < bLine }
-            return a < b
-        }
-        return sortedKeys.map { ($0, groups[$0]!) }
     }
 
     // MARK: - Private

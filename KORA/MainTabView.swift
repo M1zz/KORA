@@ -2,6 +2,10 @@ import SwiftUI
 
 struct MainTabView: View {
     @AppStorage("kora.display_language") private var languagePref: String = ""
+    @State private var selectedTab: Int = 0
+    @State private var coordinator = NavigationCoordinator.shared
+
+    private enum Tab: Int { case saved = 0, subway = 1 }
 
     private var lang: StationLanguage {
         guard !languagePref.isEmpty, let e = StationLanguage(rawValue: languagePref)
@@ -28,17 +32,24 @@ struct MainTabView: View {
     }
 
     var body: some View {
-        TabView {
+        TabView(selection: $selectedTab) {
             SaveView()
                 .tabItem {
                     Label(savedLabel, systemImage: "bookmark.fill")
                 }
+                .tag(Tab.saved.rawValue)
             SubwayView()
                 .tabItem {
                     Label(subwayLabel, systemImage: "tram.fill")
                 }
+                .tag(Tab.subway.rawValue)
         }
         .tint(KORATheme.accent)
+        .onChange(of: coordinator.routeRequestNonce) { _, _ in
+            if coordinator.pendingDestination != nil {
+                selectedTab = Tab.subway.rawValue
+            }
+        }
     }
 }
 
