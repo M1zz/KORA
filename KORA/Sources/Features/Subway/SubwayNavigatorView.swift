@@ -187,7 +187,6 @@ struct SubwayNavigatorView: View {
         }
         .onChange(of: fromStation) { _, new in
             persistedFromStation = new ?? ""
-            fetchExitInfoIfNeeded()
         }
         .onChange(of: toStation) { _, new in
             persistedToStation = new ?? ""
@@ -1784,13 +1783,12 @@ struct SubwayNavigatorView: View {
         exitInfo = nil
         destinationCoordinate = coordinator.destinationCoordinate
         destinationPlaceName = coordinator.destinationPlaceName
-        let needsAutoFrom = coordinator.autoFromCurrentLocation
         coordinator.clearPending()
+        // toStation + destinationCoordinate are both set — fetch exit now.
+        fetchExitInfoIfNeeded()
+        let needsAutoFrom = coordinator.autoFromCurrentLocation
         if needsAutoFrom {
-            Task {
-                await detectCurrentStation()
-                fetchExitInfoIfNeeded()
-            }
+            Task { await detectCurrentStation() }
         } else {
             fromStation = nil
             showFromPicker = true
@@ -1798,14 +1796,16 @@ struct SubwayNavigatorView: View {
     }
 
     private func fetchExitInfoIfNeeded() {
-        guard let fromKo = fromStation,
+        guard let toKo = toStation,
               let destCoord = destinationCoordinate,
-              let fromCoords = MetroLineData.stationCoordinates[fromKo],
+              let toCoords = MetroLineData.stationCoordinates[toKo],
               !isFetchingExit else { return }
         isFetchingExit = true
         Task {
+            // Start = destination subway station, End = saved place coords.
+            // Odsay returns which exit of toStation leads toward the place.
             exitInfo = try? await odsayService.fetchExitInfo(
-                fromLat: fromCoords.lat, fromLon: fromCoords.lng,
+                fromLat: toCoords.lat, fromLon: toCoords.lng,
                 toLat: destCoord.latitude, toLon: destCoord.longitude
             )
             isFetchingExit = false
