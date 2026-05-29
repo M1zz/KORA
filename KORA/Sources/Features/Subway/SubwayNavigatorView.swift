@@ -1325,8 +1325,11 @@ struct SubwayNavigatorView: View {
                         }
 
                         if !savedPlacesNearby.isEmpty {
+                            let fromName = fromStation.map {
+                                MetroLineData.displayName(for: $0, language: displayLanguage)
+                            } ?? ""
                             savedSection(
-                                title: NavLoc.savedGoTo.resolved(displayLanguage),
+                                title: NavLoc.savedGoToFrom(station: fromName, lang: displayLanguage),
                                 places: savedPlacesNearby,
                                 atStation: false
                             )

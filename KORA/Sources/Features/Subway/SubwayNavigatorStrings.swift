@@ -399,12 +399,14 @@ extension NavLoc {
         en: "Saved spots at this station",
         zh: "本站的保存地点"
     )
-    static let savedGoTo = NavLoc(
-        ko: "현재 위치에서 저장한 장소로 이동",
-        ja: "現在地から保存スポットへ",
-        en: "Go to a saved spot from here",
-        zh: "从当前位置前往保存的地点"
-    )
+    static func savedGoToFrom(station: String, lang: StationLanguage) -> String {
+        switch lang {
+        case .korean:   return "\(station)역에서 저장한 장소로 이동"
+        case .japanese: return "\(station)駅から保存スポットへ"
+        case .english:  return "Saved spots from \(station) Stn."
+        case .chinese:  return "从\(station)站前往保存的地点"
+        }
+    }
 
     // Location errors
     static let locationErrorNoStation = NavLoc(
