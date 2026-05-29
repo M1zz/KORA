@@ -243,7 +243,13 @@ struct PlaceCardView: View {
     private func routeTo(fromCurrentLocation: Bool) {
         let dest = resolvedStationName
         guard !dest.isEmpty else { return }
-        NavigationCoordinator.shared.routeTo(station: dest, fromCurrentLocation: fromCurrentLocation)
+        let coord = place.hasLocation ? place.coordinate : nil
+        NavigationCoordinator.shared.routeTo(
+            station: dest,
+            fromCurrentLocation: fromCurrentLocation,
+            destinationCoordinate: coord,
+            destinationPlaceName: place.name
+        )
     }
 
     // MARK: - Accessibility text

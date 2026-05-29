@@ -102,6 +102,13 @@ struct SubwayNavigatorView: View {
     @State private var coordinator = NavigationCoordinator.shared
     @State private var placeStore = PlaceStore.shared
 
+    // Odsay exit info for saved-place routing
+    private let odsayService = OdsayTransitService()
+    @State private var destinationCoordinate: Coordinate? = nil
+    @State private var destinationPlaceName: String? = nil
+    @State private var exitInfo: OdsayExitInfo? = nil
+    @State private var isFetchingExit = false
+
     private var journeys: [TransferJourney] {
         guard let f = fromStation, let t = toStation else { return [] }
         return MetroLineData.findAnyJourneys(from: f, to: t)
@@ -180,6 +187,7 @@ struct SubwayNavigatorView: View {
         }
         .onChange(of: fromStation) { _, new in
             persistedFromStation = new ?? ""
+            fetchExitInfoIfNeeded()
         }
         .onChange(of: toStation) { _, new in
             persistedToStation = new ?? ""
@@ -689,6 +697,20 @@ struct SubwayNavigatorView: View {
                     .font(.title3).fontWeight(.semibold)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
+
+            if let info = exitInfo {
+                HStack(spacing: 8) {
+                    Text(info.exitNo)
+                        .font(.footnote).fontWeight(.black)
+                        .foregroundStyle(.white)
+                        .frame(width: 28, height: 28)
+                        .background(lineColor)
+                        .clipShape(Circle())
+                    Text(exitLabel(no: info.exitNo))
+                        .font(.callout).fontWeight(.semibold)
+                        .foregroundStyle(KORATheme.labelPrimary)
+                }
+            }
         }
         .padding(level.padding)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -761,12 +783,75 @@ struct SubwayNavigatorView: View {
             Text(destKo)
                 .font(.body)
                 .foregroundStyle(KORATheme.labelSecondary)
+
+            exitInfoBanner(color: color)
         }
         .frame(maxWidth: .infinity)
         .padding(30)
         .background(color.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 18))
         .overlay(RoundedRectangle(cornerRadius: 18).stroke(color.opacity(0.25), lineWidth: 1.2))
+    }
+
+    @ViewBuilder
+    private func exitInfoBanner(color: Color) -> some View {
+        if isFetchingExit {
+            HStack(spacing: 8) {
+                ProgressView().scaleEffect(0.8)
+                Text(exitLoadingLabel)
+                    .font(.callout).foregroundStyle(.secondary)
+            }
+            .padding(.top, 4)
+        } else if let info = exitInfo {
+            VStack(spacing: 6) {
+                HStack(spacing: 10) {
+                    Text(info.exitNo)
+                        .font(.title2).fontWeight(.black)
+                        .foregroundStyle(.white)
+                        .frame(width: 44, height: 44)
+                        .background(color)
+                        .clipShape(Circle())
+                    Text(exitLabel(no: info.exitNo))
+                        .font(.title3).fontWeight(.bold)
+                        .foregroundStyle(KORATheme.labelPrimary)
+                }
+                if let walk = info.walkMinutes, walk > 0 {
+                    Text(walkLabel(minutes: walk))
+                        .font(.callout)
+                        .foregroundStyle(KORATheme.labelSecondary)
+                }
+            }
+            .padding(.vertical, 12).padding(.horizontal, 20)
+            .background(color.opacity(0.12))
+            .clipShape(RoundedRectangle(cornerRadius: 14))
+        }
+    }
+
+    private func exitLabel(no: String) -> String {
+        switch displayLanguage {
+        case .korean:   return "\(no)번 출구로 나가세요"
+        case .japanese: return "\(no)番出口から出てください"
+        case .english:  return "Use Exit \(no)"
+        case .chinese:  return "请走\(no)号出口"
+        }
+    }
+
+    private func walkLabel(minutes: Int) -> String {
+        switch displayLanguage {
+        case .korean:   return "출구에서 도보 약 \(minutes)분"
+        case .japanese: return "出口から徒歩約\(minutes)分"
+        case .english:  return "~\(minutes) min walk from exit"
+        case .chinese:  return "出口步行约\(minutes)分钟"
+        }
+    }
+
+    private var exitLoadingLabel: String {
+        switch displayLanguage {
+        case .korean:   return "출구 정보 가져오는 중..."
+        case .japanese: return "出口情報を取得中..."
+        case .english:  return "Getting exit info..."
+        case .chinese:  return "获取出口信息..."
+        }
     }
 
     // MARK: Arrival badge
@@ -1692,6 +1777,9 @@ struct SubwayNavigatorView: View {
         guard let dest = coordinator.pendingDestination, !dest.isEmpty else { return }
         toStation = dest
         selectedJourneyIdx = 0
+        exitInfo = nil
+        destinationCoordinate = coordinator.destinationCoordinate
+        destinationPlaceName = coordinator.destinationPlaceName
         let needsAutoFrom = coordinator.autoFromCurrentLocation
         coordinator.clearPending()
         if needsAutoFrom {
@@ -1699,6 +1787,21 @@ struct SubwayNavigatorView: View {
         } else {
             fromStation = nil
             showFromPicker = true
+        }
+    }
+
+    private func fetchExitInfoIfNeeded() {
+        guard let fromKo = fromStation,
+              let destCoord = destinationCoordinate,
+              let fromCoords = MetroLineData.stationCoordinates[fromKo],
+              !isFetchingExit else { return }
+        isFetchingExit = true
+        Task {
+            exitInfo = try? await odsayService.fetchExitInfo(
+                fromLat: fromCoords.lat, fromLon: fromCoords.lng,
+                toLat: destCoord.latitude, toLon: destCoord.longitude
+            )
+            isFetchingExit = false
         }
     }
 

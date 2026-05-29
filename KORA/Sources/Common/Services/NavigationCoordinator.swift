@@ -15,6 +15,10 @@ final class NavigationCoordinator {
     /// When true, Subway tab should auto-detect the user's current location and
     /// use the nearest station as the journey's `from`.
     var autoFromCurrentLocation: Bool = false
+    /// Real-world coordinates of the destination place (not the subway station).
+    /// Used to fetch exit number from Odsay API.
+    var destinationCoordinate: Coordinate? = nil
+    var destinationPlaceName: String? = nil
     private(set) var routeRequestNonce: Int = 0
 
     /// URL handed off from the Share Extension. When set, MainTabView switches
@@ -25,15 +29,20 @@ final class NavigationCoordinator {
 
     private init() {}
 
-    func routeTo(station: String, fromCurrentLocation: Bool = false) {
+    func routeTo(station: String, fromCurrentLocation: Bool = false,
+                 destinationCoordinate: Coordinate? = nil, destinationPlaceName: String? = nil) {
         pendingDestination = station
         autoFromCurrentLocation = fromCurrentLocation
+        self.destinationCoordinate = destinationCoordinate
+        self.destinationPlaceName = destinationPlaceName
         routeRequestNonce &+= 1
     }
 
     func clearPending() {
         pendingDestination = nil
         autoFromCurrentLocation = false
+        destinationCoordinate = nil
+        destinationPlaceName = nil
     }
 
     func receiveSharedURL(_ url: String, text: String? = nil) {

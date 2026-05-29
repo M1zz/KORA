@@ -57,6 +57,7 @@
 		AA046 /* PlaceDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA146 /* PlaceDetailSheet.swift */; };
 		AA047 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA147 /* SafariView.swift */; };
 		AA048 /* KakaoPlaceDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA148 /* KakaoPlaceDetailService.swift */; };
+		AA049 /* OdsayTransitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA149 /* OdsayTransitService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,7 @@
 		AA146 /* PlaceDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailSheet.swift; sourceTree = "<group>"; };
 		AA147 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		AA148 /* KakaoPlaceDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceDetailService.swift; sourceTree = "<group>"; };
+		AA149 /* OdsayTransitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdsayTransitService.swift; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -367,6 +369,7 @@
 				AA121 /* KakaoConfig.swift */,
 				AA122 /* KakaoLocalService.swift */,
 				AA148 /* KakaoPlaceDetailService.swift */,
+				AA149 /* OdsayTransitService.swift */,
 				AA130 /* NavigationCoordinator.swift */,
 				AA131 /* LocationService.swift */,
 				AA132 /* SharedInbox.swift */,
@@ -559,6 +562,7 @@
 				AA021 /* KakaoConfig.swift in Sources */,
 				AA022 /* KakaoLocalService.swift in Sources */,
 				AA048 /* KakaoPlaceDetailService.swift in Sources */,
+				AA049 /* OdsayTransitService.swift in Sources */,
 				AA030 /* NavigationCoordinator.swift in Sources */,
 				AA031 /* LocationService.swift in Sources */,
 				AA032 /* SharedInbox.swift in Sources */,
