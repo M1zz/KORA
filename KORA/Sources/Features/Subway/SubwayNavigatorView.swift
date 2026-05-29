@@ -187,6 +187,8 @@ struct SubwayNavigatorView: View {
         }
         .onChange(of: fromStation) { _, new in
             persistedFromStation = new ?? ""
+            // fromStation just became available — retry exit fetch if we have a destination
+            if new != nil { fetchExitInfoIfNeeded() }
         }
         .onChange(of: toStation) { _, new in
             persistedToStation = new ?? ""
@@ -1783,29 +1785,33 @@ struct SubwayNavigatorView: View {
         exitInfo = nil
         destinationCoordinate = coordinator.destinationCoordinate
         destinationPlaceName = coordinator.destinationPlaceName
-        coordinator.clearPending()
-        // toStation + destinationCoordinate are both set — fetch exit now.
-        fetchExitInfoIfNeeded()
         let needsAutoFrom = coordinator.autoFromCurrentLocation
+        coordinator.clearPending()
         if needsAutoFrom {
-            Task { await detectCurrentStation() }
+            Task {
+                await detectCurrentStation()
+                fetchExitInfoIfNeeded()
+            }
         } else {
+            // fromStation = nil triggers onChange → picker → user picks → onChange → fetchExitInfoIfNeeded
+            // If fromStation is already set (previous session), fetch now.
+            if fromStation != nil { fetchExitInfoIfNeeded() }
             fromStation = nil
             showFromPicker = true
         }
     }
 
     private func fetchExitInfoIfNeeded() {
-        guard let toKo = toStation,
+        guard let fromKo = fromStation,
               let destCoord = destinationCoordinate,
-              let toCoords = MetroLineData.stationCoordinates[toKo],
+              let fromCoords = MetroLineData.stationCoordinates[fromKo],
               !isFetchingExit else { return }
         isFetchingExit = true
         Task {
-            // Start = destination subway station, End = saved place coords.
-            // Odsay returns which exit of toStation leads toward the place.
+            // Full route: fromStation → saved place.
+            // Odsay returns the exit number at the LAST transit station (= our destination station).
             exitInfo = try? await odsayService.fetchExitInfo(
-                fromLat: toCoords.lat, fromLon: toCoords.lng,
+                fromLat: fromCoords.lat, fromLon: fromCoords.lng,
                 toLat: destCoord.latitude, toLon: destCoord.longitude
             )
             isFetchingExit = false
