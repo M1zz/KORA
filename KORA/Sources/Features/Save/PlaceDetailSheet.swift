@@ -62,7 +62,7 @@ struct PlaceDetailSheet: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 2) {
                     ForEach(photos, id: \.self) { urlStr in
-                        AsyncImage(url: URL(string: urlStr)) { phase in
+                        CachedAsyncImage(urlString: urlStr) { phase in
                             switch phase {
                             case .success(let img):
                                 img.resizable().scaledToFill()
@@ -70,7 +70,7 @@ struct PlaceDetailSheet: View {
                                     .clipped()
                             case .failure:
                                 EmptyView()
-                            default:
+                            case .loading:
                                 Rectangle()
                                     .fill(Color(UIColor.systemFill))
                                     .frame(width: 220, height: 200)

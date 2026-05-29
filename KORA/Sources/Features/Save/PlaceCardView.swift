@@ -192,21 +192,15 @@ struct PlaceCardView: View {
 
     @ViewBuilder
     private func asyncImage(_ urlString: String) -> some View {
-        if let url = URL(string: urlString) {
-            AsyncImage(url: url) { phase in
-                switch phase {
-                case .success(let image):
-                    image.resizable().scaledToFill()
-                case .failure:
-                    placeholderHero
-                case .empty:
-                    placeholderHero.overlay(ProgressView().tint(KORATheme.labelTertiary))
-                @unknown default:
-                    placeholderHero
-                }
+        CachedAsyncImage(urlString: urlString) { phase in
+            switch phase {
+            case .success(let image):
+                image.resizable().scaledToFill()
+            case .failure:
+                placeholderHero
+            case .loading:
+                placeholderHero.overlay(ProgressView().tint(KORATheme.labelTertiary))
             }
-        } else {
-            placeholderHero
         }
     }
 

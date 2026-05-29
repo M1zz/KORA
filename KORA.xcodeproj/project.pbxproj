@@ -56,6 +56,7 @@
 		AA045 /* TransitPositionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA145 /* TransitPositionTracker.swift */; };
 		AA046 /* PlaceDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA146 /* PlaceDetailSheet.swift */; };
 		AA047 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA147 /* SafariView.swift */; };
+		AA04A /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA14A /* CachedAsyncImage.swift */; };
 		AA048 /* KakaoPlaceDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA148 /* KakaoPlaceDetailService.swift */; };
 		AA049 /* OdsayTransitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA149 /* OdsayTransitService.swift */; };
 /* End PBXBuildFile section */
@@ -143,6 +144,7 @@
 		AA145 /* TransitPositionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitPositionTracker.swift; sourceTree = "<group>"; };
 		AA146 /* PlaceDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailSheet.swift; sourceTree = "<group>"; };
 		AA147 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
+		AA14A /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		AA148 /* KakaoPlaceDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceDetailService.swift; sourceTree = "<group>"; };
 		AA149 /* OdsayTransitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdsayTransitService.swift; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -348,6 +350,7 @@
 				AA113 /* KORAButton.swift */,
 				AA117 /* EmptyStateView.swift */,
 				AA147 /* SafariView.swift */,
+				AA14A /* CachedAsyncImage.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -558,6 +561,7 @@
 				AA016 /* GoViewModel.swift in Sources */,
 				AA017 /* EmptyStateView.swift in Sources */,
 				AA047 /* SafariView.swift in Sources */,
+				AA04A /* CachedAsyncImage.swift in Sources */,
 				AA020 /* PlaceStore.swift in Sources */,
 				AA021 /* KakaoConfig.swift in Sources */,
 				AA022 /* KakaoLocalService.swift in Sources */,
