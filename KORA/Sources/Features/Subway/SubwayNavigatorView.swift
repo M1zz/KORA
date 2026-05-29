@@ -1785,7 +1785,6 @@ struct SubwayNavigatorView: View {
         exitInfo = nil
         destinationCoordinate = coordinator.destinationCoordinate
         destinationPlaceName = coordinator.destinationPlaceName
-        print("[Exit] consumePending — toStation=\(dest), destCoord=\(coordinator.destinationCoordinate.map { "\($0.latitude),\($0.longitude)" } ?? "nil"), placeName=\(coordinator.destinationPlaceName ?? "nil")")
         let needsAutoFrom = coordinator.autoFromCurrentLocation
         coordinator.clearPending()
         if needsAutoFrom {
@@ -1803,19 +1802,26 @@ struct SubwayNavigatorView: View {
     }
 
     private func fetchExitInfoIfNeeded() {
-        print("[Exit] called — fromStation=\(fromStation ?? "nil"), destCoord=\(destinationCoordinate.map { "\($0.latitude),\($0.longitude)" } ?? "nil"), isFetching=\(isFetchingExit)")
         guard let fromKo = fromStation,
-              let destCoord = destinationCoordinate,
+              let toKo = toStation,
               let fromCoords = MetroLineData.stationCoordinates[fromKo],
-              !isFetchingExit else {
-            print("[Exit] guard failed — fromStation=\(fromStation ?? "nil") destCoord=\(destinationCoordinate == nil ? "nil" : "ok") stationInDict=\(fromStation.flatMap { MetroLineData.stationCoordinates[$0] } != nil) isFetching=\(isFetchingExit)")
-            return
-        }
+              !isFetchingExit else { return }
+
+        // Prefer exact place coordinates; fall back to destination station coords
+        // so we always get a meaningful exit number even without stored place coords.
+        let toLat: Double
+        let toLon: Double
+        if let c = destinationCoordinate {
+            toLat = c.latitude; toLon = c.longitude
+        } else if let c = MetroLineData.stationCoordinates[toKo] {
+            toLat = c.lat; toLon = c.lng
+        } else { return }
+
         isFetchingExit = true
         Task {
             exitInfo = try? await odsayService.fetchExitInfo(
                 fromLat: fromCoords.lat, fromLon: fromCoords.lng,
-                toLat: destCoord.latitude, toLon: destCoord.longitude
+                toLat: toLat, toLon: toLon
             )
             isFetchingExit = false
         }
