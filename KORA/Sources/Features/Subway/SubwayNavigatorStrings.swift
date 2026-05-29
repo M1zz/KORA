@@ -408,6 +408,14 @@ extension NavLoc {
         }
     }
 
+    /// Suffix appended after the colored station name in the saved-spots section header.
+    static let savedGoToSuffix = NavLoc(
+        ko: "역에서 저장한 장소로 이동",
+        ja: "駅から保存スポットへ",
+        en: " Stn. — saved spots",
+        zh: "站 — 保存地点"
+    )
+
     // Location errors
     static let locationErrorNoStation = NavLoc(
         ko: "근처에서 역을 찾을 수 없어요",

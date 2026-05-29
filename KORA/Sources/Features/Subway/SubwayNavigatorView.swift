@@ -1404,18 +1404,23 @@ struct SubwayNavigatorView: View {
                     VStack(spacing: 16) {
                         if !savedPlacesAtFromStation.isEmpty {
                             savedSection(
-                                title: NavLoc.savedAtThisStation.resolved(displayLanguage),
+                                titleText: Text(NavLoc.savedAtThisStation.resolved(displayLanguage))
+                                    .foregroundStyle(KORATheme.labelSecondary),
                                 places: savedPlacesAtFromStation,
                                 atStation: true
                             )
                         }
 
                         if !savedPlacesNearby.isEmpty {
-                            let fromName = fromStation.map {
-                                MetroLineData.displayName(for: $0, language: displayLanguage)
-                            } ?? ""
+                            let fromKo = fromStation ?? ""
+                            let fromName = MetroLineData.displayName(for: fromKo, language: displayLanguage)
+                            let lines = MetroLineData.linesContaining(fromKo)
+                            let lineColor = lines.first.map { MetroLineData.lineColor($0) } ?? KORATheme.accent
+                            let suffix = NavLoc.savedGoToSuffix.resolved(displayLanguage)
+                            let titleText = Text(fromName).foregroundStyle(lineColor)
+                                + Text(suffix).foregroundStyle(KORATheme.labelSecondary)
                             savedSection(
-                                title: NavLoc.savedGoToFrom(station: fromName, lang: displayLanguage),
+                                titleText: titleText,
                                 places: savedPlacesNearby,
                                 atStation: false
                             )
@@ -1495,12 +1500,11 @@ struct SubwayNavigatorView: View {
         .accessibilityAction(named: "언어 변경") { showLanguagePicker = true }
     }
 
-    private func savedSection(title: String, places: [Place], atStation: Bool) -> some View {
+    private func savedSection(titleText: Text, places: [Place], atStation: Bool) -> some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
-                Text(LocalizedStringKey(title))
+                titleText
                     .font(.body).fontWeight(.semibold)
-                    .foregroundStyle(KORATheme.labelSecondary)
                 Text("\(places.count)")
                     .font(.body).fontWeight(.bold)
                     .foregroundStyle(KORATheme.accent)
@@ -1783,7 +1787,10 @@ struct SubwayNavigatorView: View {
         let needsAutoFrom = coordinator.autoFromCurrentLocation
         coordinator.clearPending()
         if needsAutoFrom {
-            Task { await detectCurrentStation() }
+            Task {
+                await detectCurrentStation()
+                fetchExitInfoIfNeeded()
+            }
         } else {
             fromStation = nil
             showFromPicker = true
