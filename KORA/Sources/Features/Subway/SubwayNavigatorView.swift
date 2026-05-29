@@ -1193,11 +1193,12 @@ struct SubwayNavigatorView: View {
             HStack(alignment: .center, spacing: 12) {
                 VStack(spacing: 4) {
                     ForEach(lines, id: \.self) { num in
+                        let compact = lines.count >= 3
                         Text(MetroLineData.lineBadgeText(num))
-                            .font(.body).fontWeight(.black)
+                            .font(compact ? .subheadline : .body).fontWeight(.black)
                             .foregroundStyle(.white)
                             .padding(.horizontal, 4)
-                            .frame(minWidth: 36, minHeight: 36)
+                            .frame(minWidth: compact ? 30 : 36, minHeight: compact ? 30 : 36)
                             .background(MetroLineData.lineColor(num))
                             .clipShape(Capsule())
                             .accessibilityLabel(MetroLineData.lineBadgeText(num))
@@ -1239,14 +1240,14 @@ struct SubwayNavigatorView: View {
             .padding(.leading, 10)
             .padding(.trailing, 20)
             .background(
-                Capsule()
+                RoundedRectangle(cornerRadius: 20)
                     .fill(Color(.systemBackground))
             )
             .overlay(
-                Capsule()
+                RoundedRectangle(cornerRadius: 20)
                     .strokeBorder(primaryColor, lineWidth: 4)
             )
-            .contentShape(Capsule())
+            .contentShape(RoundedRectangle(cornerRadius: 20))
         }
         .buttonStyle(.plain)
         .padding(.horizontal, 16)
