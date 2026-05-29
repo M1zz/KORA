@@ -1695,9 +1695,10 @@ struct SubwayNavigatorView: View {
         coordinator.clearPending()
         if needsAutoFrom {
             Task { await detectCurrentStation() }
+        } else {
+            fromStation = nil
+            showFromPicker = true
         }
-        // Otherwise keep the currently set departure station as-is.
-        // If none is set, the welcome gate will prompt the user naturally.
     }
 
     // MARK: Setup bar
