@@ -1785,6 +1785,7 @@ struct SubwayNavigatorView: View {
         exitInfo = nil
         destinationCoordinate = coordinator.destinationCoordinate
         destinationPlaceName = coordinator.destinationPlaceName
+        print("[Exit] consumePending — toStation=\(dest), destCoord=\(coordinator.destinationCoordinate.map { "\($0.latitude),\($0.longitude)" } ?? "nil"), placeName=\(coordinator.destinationPlaceName ?? "nil")")
         let needsAutoFrom = coordinator.autoFromCurrentLocation
         coordinator.clearPending()
         if needsAutoFrom {
@@ -1802,14 +1803,16 @@ struct SubwayNavigatorView: View {
     }
 
     private func fetchExitInfoIfNeeded() {
+        print("[Exit] called — fromStation=\(fromStation ?? "nil"), destCoord=\(destinationCoordinate.map { "\($0.latitude),\($0.longitude)" } ?? "nil"), isFetching=\(isFetchingExit)")
         guard let fromKo = fromStation,
               let destCoord = destinationCoordinate,
               let fromCoords = MetroLineData.stationCoordinates[fromKo],
-              !isFetchingExit else { return }
+              !isFetchingExit else {
+            print("[Exit] guard failed — fromStation=\(fromStation ?? "nil") destCoord=\(destinationCoordinate == nil ? "nil" : "ok") stationInDict=\(fromStation.flatMap { MetroLineData.stationCoordinates[$0] } != nil) isFetching=\(isFetchingExit)")
+            return
+        }
         isFetchingExit = true
         Task {
-            // Full route: fromStation → saved place.
-            // Odsay returns the exit number at the LAST transit station (= our destination station).
             exitInfo = try? await odsayService.fetchExitInfo(
                 fromLat: fromCoords.lat, fromLon: fromCoords.lng,
                 toLat: destCoord.latitude, toLon: destCoord.longitude
