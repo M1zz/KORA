@@ -400,10 +400,10 @@ extension NavLoc {
         zh: "本站的保存地点"
     )
     static let savedGoTo = NavLoc(
-        ko: "저장한 장소로 이동",
-        ja: "保存スポットへ行く",
-        en: "Go to a saved spot",
-        zh: "前往保存的地点"
+        ko: "현재 위치에서 저장한 장소로 이동",
+        ja: "現在地から保存スポットへ",
+        en: "Go to a saved spot from here",
+        zh: "从当前位置前往保存的地点"
     )
 
     // Location errors
