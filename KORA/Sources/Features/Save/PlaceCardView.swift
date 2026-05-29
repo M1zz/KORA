@@ -11,7 +11,6 @@ struct PlaceCardView: View {
     @Environment(\.openURL) private var openURL
     @AppStorage("kora.display_language") private var languagePref: String = ""
 
-    @State private var showDepartureDialog: Bool = false
 
     private var lang: StationLanguage {
         guard !languagePref.isEmpty, let e = StationLanguage(rawValue: languagePref)
@@ -57,28 +56,11 @@ struct PlaceCardView: View {
         .accessibilityLabel(accessibilityCardLabel)
         .accessibilityHint(detailHint)
         .accessibilityAddTraits(.isButton)
-        .accessibilityAction(named: Text(directionsLabel)) { showDepartureDialog = true }
+        .accessibilityAction(named: Text(directionsLabel)) { routeTo() }
         .accessibilityActions {
             if let onEdit   { Button(editLabel,   action: onEdit) }
             if let onDelete { Button(deleteLabel, action: onDelete) }
             if let url = linkURL { Button(linkLabel) { openURL(url) } }
-        }
-        .confirmationDialog(
-            directionsLabel,
-            isPresented: $showDepartureDialog,
-            titleVisibility: .visible
-        ) {
-            Button {
-                routeTo(fromCurrentLocation: true)
-            } label: {
-                Text(fromCurrentLocationLabel)
-            }
-            Button {
-                routeTo(fromCurrentLocation: false)
-            } label: {
-                Text(chooseDepartureLabel)
-            }
-            Button(cancelLabel, role: .cancel) {}
         }
     }
 
@@ -101,7 +83,7 @@ struct PlaceCardView: View {
                 HStack(spacing: 6) {
                     if canDirect {
                         Button {
-                            showDepartureDialog = true
+                            routeTo()
                         } label: {
                             HStack(spacing: 4) {
                                 Image(systemName: "tram.fill")
@@ -244,10 +226,10 @@ struct PlaceCardView: View {
         return local.name
     }
 
-    private func routeTo(fromCurrentLocation: Bool) {
+    private func routeTo() {
         let dest = resolvedStationName
         guard !dest.isEmpty else { return }
-        NavigationCoordinator.shared.routeTo(station: dest, fromCurrentLocation: fromCurrentLocation)
+        NavigationCoordinator.shared.routeTo(station: dest)
     }
 
     // MARK: - Accessibility text
@@ -283,33 +265,6 @@ struct PlaceCardView: View {
         case .japanese: return "経路案内"
         case .english:  return "Directions"
         case .chinese:  return "导航"
-        }
-    }
-
-    private var fromCurrentLocationLabel: String {
-        switch lang {
-        case .korean:   return "현재 위치에서 출발"
-        case .japanese: return "現在地から出発"
-        case .english:  return "From current location"
-        case .chinese:  return "从当前位置出发"
-        }
-    }
-
-    private var chooseDepartureLabel: String {
-        switch lang {
-        case .korean:   return "출발역 직접 선택"
-        case .japanese: return "出発駅を選ぶ"
-        case .english:  return "Choose departure station"
-        case .chinese:  return "选择出发站"
-        }
-    }
-
-    private var cancelLabel: String {
-        switch lang {
-        case .korean:   return "취소"
-        case .japanese: return "キャンセル"
-        case .english:  return "Cancel"
-        case .chinese:  return "取消"
         }
     }
 
