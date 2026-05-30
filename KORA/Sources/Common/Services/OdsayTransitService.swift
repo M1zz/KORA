@@ -26,7 +26,9 @@ final class OdsayTransitService {
         ]
         guard let url = comps.url else { return nil }
 
+        print("[Odsay] URL: \(url)")
         let (data, _) = try await session.data(from: url)
+        print("[Odsay] raw: \(String(data: data, encoding: .utf8) ?? "nil")")
 
         guard let root = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
             print("[Odsay] JSON parse failed")

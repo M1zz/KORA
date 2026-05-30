@@ -1802,6 +1802,7 @@ struct SubwayNavigatorView: View {
     }
 
     private func fetchExitInfoIfNeeded() {
+        print("[Exit] fetch — from=\(fromStation ?? "nil") to=\(toStation ?? "nil") destCoord=\(destinationCoordinate != nil) fetching=\(isFetchingExit)")
         guard let fromKo = fromStation,
               let toKo = toStation,
               let fromCoords = MetroLineData.stationCoordinates[fromKo],
