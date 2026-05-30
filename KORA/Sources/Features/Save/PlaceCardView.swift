@@ -242,7 +242,8 @@ struct PlaceCardView: View {
             station: dest,
             fromCurrentLocation: fromCurrentLocation,
             destinationCoordinate: coord,
-            destinationPlaceName: place.name
+            destinationPlaceName: place.name,
+            destinationPlaceID: place.id
         )
     }
 

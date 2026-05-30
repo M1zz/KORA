@@ -26,6 +26,8 @@ struct Place: Identifiable, Codable, Hashable {
     var savedAt: Date
     var phone: String?
     var kakaoMapURL: String?
+    /// User-confirmed exit number at the nearest station. Overrides Odsay suggestion.
+    var exitNo: String?
 
     init(
         id: UUID = UUID(),
@@ -46,7 +48,8 @@ struct Place: Identifiable, Codable, Hashable {
         isOpen: Bool = true,
         savedAt: Date = Date(),
         phone: String? = nil,
-        kakaoMapURL: String? = nil
+        kakaoMapURL: String? = nil,
+        exitNo: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -67,6 +70,7 @@ struct Place: Identifiable, Codable, Hashable {
         self.savedAt = savedAt
         self.phone = phone
         self.kakaoMapURL = kakaoMapURL
+        self.exitNo = exitNo
     }
 }
 

@@ -19,6 +19,7 @@ final class NavigationCoordinator {
     /// Used to fetch exit number from Odsay API.
     var destinationCoordinate: Coordinate? = nil
     var destinationPlaceName: String? = nil
+    var destinationPlaceID: UUID? = nil
     private(set) var routeRequestNonce: Int = 0
 
     /// URL handed off from the Share Extension. When set, MainTabView switches
@@ -30,11 +31,13 @@ final class NavigationCoordinator {
     private init() {}
 
     func routeTo(station: String, fromCurrentLocation: Bool = false,
-                 destinationCoordinate: Coordinate? = nil, destinationPlaceName: String? = nil) {
+                 destinationCoordinate: Coordinate? = nil, destinationPlaceName: String? = nil,
+                 destinationPlaceID: UUID? = nil) {
         pendingDestination = station
         autoFromCurrentLocation = fromCurrentLocation
         self.destinationCoordinate = destinationCoordinate
         self.destinationPlaceName = destinationPlaceName
+        self.destinationPlaceID = destinationPlaceID
         routeRequestNonce &+= 1
     }
 
@@ -43,6 +46,7 @@ final class NavigationCoordinator {
         autoFromCurrentLocation = false
         destinationCoordinate = nil
         destinationPlaceName = nil
+        destinationPlaceID = nil
     }
 
     func receiveSharedURL(_ url: String, text: String? = nil) {
