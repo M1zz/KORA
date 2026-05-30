@@ -1045,6 +1045,7 @@ struct EditPlaceSheet: View {
     @State private var name: String
     @State private var category: PlaceCategory
     @State private var nearestStation: String
+    @State private var exitNo: String
     @State private var linkedURL: String?
     @State private var clipboardURL: String?
 
@@ -1057,6 +1058,7 @@ struct EditPlaceSheet: View {
         _name = State(initialValue: place.name)
         _category = State(initialValue: place.category)
         _nearestStation = State(initialValue: place.nearestStation)
+        _exitNo = State(initialValue: place.exitNo ?? "")
         _linkedURL = State(initialValue: place.sourceURL)
         _clipboardURL = State(initialValue: nil)
     }
@@ -1081,6 +1083,11 @@ struct EditPlaceSheet: View {
                 Section(stationHeader) {
                     TextField(stationPlaceholder, text: $nearestStation)
                         .autocorrectionDisabled()
+                }
+
+                Section(exitNoHeader) {
+                    TextField(exitNoPlaceholder, text: $exitNo)
+                        .keyboardType(.numberPad)
                 }
 
                 Section(linkHeader) {
@@ -1145,6 +1152,8 @@ struct EditPlaceSheet: View {
                         updated.nameJP = trimmed
                         updated.category = category
                         updated.nearestStation = nearestStation.trimmingCharacters(in: .whitespacesAndNewlines)
+                        let exitTrimmed = exitNo.trimmingCharacters(in: .whitespacesAndNewlines)
+                        updated.exitNo = exitTrimmed.isEmpty ? nil : exitTrimmed
                         updated.sourceURL = linkedURL
                         viewModel.update(updated)
                         dismiss()
@@ -1201,6 +1210,22 @@ struct EditPlaceSheet: View {
         case .japanese: return "江南、弘大入口..."
         case .english: return "Gangnam, Hongik Univ..."
         case .chinese: return "江南、弘大入口..."
+        }
+    }
+    private var exitNoHeader: String {
+        switch lang {
+        case .korean: return "출구 번호"
+        case .japanese: return "出口番号"
+        case .english: return "Exit Number"
+        case .chinese: return "出口号"
+        }
+    }
+    private var exitNoPlaceholder: String {
+        switch lang {
+        case .korean: return "예: 4번 출구면 4 입력"
+        case .japanese: return "例：4番出口なら4を入力"
+        case .english: return "e.g. 4"
+        case .chinese: return "例：4号出口填4"
         }
     }
     private var saveLabel: String {

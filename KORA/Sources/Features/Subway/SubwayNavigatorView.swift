@@ -109,8 +109,6 @@ struct SubwayNavigatorView: View {
     @State private var destinationPlaceID: UUID? = nil
     @State private var exitInfo: OdsayExitInfo? = nil
     @State private var isFetchingExit = false
-    @State private var showExitEditor = false
-    @State private var editingExitNo = ""
 
     private var journeys: [TransferJourney] {
         guard let f = fromStation, let t = toStation else { return [] }
@@ -806,109 +804,28 @@ struct SubwayNavigatorView: View {
                     .font(.callout).foregroundStyle(.secondary)
             }
             .padding(.top, 4)
-        } else {
-            let currentNo = exitInfo?.exitNo ?? ""
+        } else if let info = exitInfo, !info.exitNo.isEmpty {
             VStack(spacing: 6) {
-                if !currentNo.isEmpty {
-                    HStack(spacing: 10) {
-                        Text(currentNo)
-                            .font(.title2).fontWeight(.black)
-                            .foregroundStyle(.white)
-                            .frame(width: 44, height: 44)
-                            .background(color)
-                            .clipShape(Circle())
-                        Text(exitLabel(no: currentNo))
-                            .font(.title3).fontWeight(.bold)
-                            .foregroundStyle(KORATheme.labelPrimary)
-                    }
-                    if let walk = exitInfo?.walkMinutes, walk > 0 {
-                        Text(walkLabel(minutes: walk))
-                            .font(.callout)
-                            .foregroundStyle(KORATheme.labelSecondary)
-                    }
+                HStack(spacing: 10) {
+                    Text(info.exitNo)
+                        .font(.title2).fontWeight(.black)
+                        .foregroundStyle(.white)
+                        .frame(width: 44, height: 44)
+                        .background(color)
+                        .clipShape(Circle())
+                    Text(exitLabel(no: info.exitNo))
+                        .font(.title3).fontWeight(.bold)
+                        .foregroundStyle(KORATheme.labelPrimary)
                 }
-                // Edit button — always visible when routing to a saved place
-                if destinationPlaceID != nil {
-                    Button {
-                        editingExitNo = currentNo
-                        showExitEditor = true
-                    } label: {
-                        HStack(spacing: 6) {
-                            Image(systemName: "pencil")
-                            Text(exitEditLabel)
-                        }
-                        .font(.callout).fontWeight(.semibold)
-                        .foregroundStyle(color)
-                    }
-                    .buttonStyle(.plain)
-                    .padding(.top, currentNo.isEmpty ? 0 : 4)
+                if let walk = info.walkMinutes, walk > 0 {
+                    Text(walkLabel(minutes: walk))
+                        .font(.callout)
+                        .foregroundStyle(KORATheme.labelSecondary)
                 }
             }
             .padding(.vertical, 12).padding(.horizontal, 20)
-            .background(color.opacity(0.08))
+            .background(color.opacity(0.12))
             .clipShape(RoundedRectangle(cornerRadius: 14))
-            .alert(exitEditLabel, isPresented: $showExitEditor) {
-                TextField(exitNoPlaceholder, text: $editingExitNo)
-                    .keyboardType(.numberPad)
-                Button(saveLabel) { saveCustomExitNo() }
-                Button(cancelLabel, role: .cancel) {}
-            } message: {
-                Text(exitEditMessage)
-            }
-        }
-    }
-
-    private func saveCustomExitNo() {
-        let no = editingExitNo.trimmingCharacters(in: .whitespaces)
-        guard let pid = destinationPlaceID,
-              var place = placeStore.places.first(where: { $0.id == pid }) else { return }
-        place.exitNo = no.isEmpty ? nil : no
-        placeStore.update(place)
-        if let no = place.exitNo, !no.isEmpty {
-            exitInfo = OdsayExitInfo(exitNo: no, stationName: exitInfo?.stationName ?? "", walkMinutes: exitInfo?.walkMinutes)
-        } else {
-            exitInfo = nil
-        }
-    }
-
-    private var exitEditLabel: String {
-        switch displayLanguage {
-        case .korean:   return "출구 번호 수정"
-        case .japanese: return "出口番号を変更"
-        case .english:  return "Edit Exit No."
-        case .chinese:  return "修改出口号"
-        }
-    }
-    private var exitNoPlaceholder: String {
-        switch displayLanguage {
-        case .korean:   return "출구 번호 (예: 4)"
-        case .japanese: return "出口番号（例：4）"
-        case .english:  return "Exit number (e.g. 4)"
-        case .chinese:  return "出口号（例如：4）"
-        }
-    }
-    private var exitEditMessage: String {
-        switch displayLanguage {
-        case .korean:   return "직접 조사한 출구 번호를 입력하면 다음부터 바로 안내돼요"
-        case .japanese: return "正しい出口番号を入力すると次回から自動表示されます"
-        case .english:  return "Enter the correct exit. It will be saved for next time."
-        case .chinese:  return "输入正确的出口号，下次将直接显示"
-        }
-    }
-    private var saveLabel: String {
-        switch displayLanguage {
-        case .korean:   return "저장"
-        case .japanese: return "保存"
-        case .english:  return "Save"
-        case .chinese:  return "保存"
-        }
-    }
-    private var cancelLabel: String {
-        switch displayLanguage {
-        case .korean:   return "취소"
-        case .japanese: return "キャンセル"
-        case .english:  return "Cancel"
-        case .chinese:  return "取消"
         }
     }
 
