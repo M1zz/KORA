@@ -4,5 +4,17 @@
 <dict>
 	<key>NSSupportsLiveActivities</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>현재 위치에서 가장 가까운 지하철 역을 찾기 위해 위치 정보를 사용합니다.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>스크린샷이나 사진에서 장소 정보를 추출하기 위해 사진 라이브러리에 접근합니다.</string>
+	<key>KakaoRestAPIKey</key>
+	<string>$(KAKAO_REST_API_KEY)</string>
+	<key>NaverClientID</key>
+	<string>$(NAVER_CLIENT_ID)</string>
+	<key>NaverClientSecret</key>
+	<string>$(NAVER_CLIENT_SECRET)</string>
+	<key>OdsayAPIKey</key>
+	<string>$(ODSAY_API_KEY)</string>
 </dict>
 </plist>

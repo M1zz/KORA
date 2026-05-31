@@ -102,12 +102,16 @@ struct SubwayNavigatorView: View {
     @State private var coordinator = NavigationCoordinator.shared
     @State private var placeStore = PlaceStore.shared
 
-    // Odsay exit info for saved-place routing
-    private let odsayService = OdsayTransitService()
+    // Offline nearest-exit lookup (bundled SubwayExits.json)
+    private let exitService = SubwayExitService.shared
     @State private var destinationCoordinate: Coordinate? = nil
     @State private var destinationPlaceName: String? = nil
+    /// Place id of the routing target — used to honour a user-confirmed
+    /// `place.exitNo` override that takes priority over the auto lookup.
     @State private var destinationPlaceID: UUID? = nil
-    @State private var exitInfo: OdsayExitInfo? = nil
+    @State private var exitInfo: NearestExit? = nil
+    // Kept so the UI's loading branch still compiles; offline lookup is
+    // synchronous, so this is effectively always false now.
     @State private var isFetchingExit = false
 
     private var journeys: [TransferJourney] {
@@ -188,11 +192,17 @@ struct SubwayNavigatorView: View {
         }
         .onChange(of: fromStation) { _, new in
             persistedFromStation = new ?? ""
-            // fromStation just became available — retry exit fetch if we have a destination
+            // Exit fetch depends on fromStation (Odsay needs a real
+            // journey), so re-request when it becomes available.
             if new != nil { fetchExitInfoIfNeeded() }
         }
         .onChange(of: toStation) { _, new in
             persistedToStation = new ?? ""
+            // Destination changed — clear stale exit and refetch when both
+            // endpoints are known. fetchExitInfoIfNeeded handles the case
+            // where fromStation is still nil by returning early.
+            exitInfo = nil
+            if new != nil { fetchExitInfoIfNeeded() }
         }
         .onChange(of: coordinator.routeRequestNonce) { _, _ in consumePendingDestination() }
         .onChange(of: journey?.id) { _, _ in
@@ -702,13 +712,13 @@ struct SubwayNavigatorView: View {
 
             if let info = exitInfo {
                 HStack(spacing: 8) {
-                    Text(info.exitNo)
+                    Text(info.no)
                         .font(.footnote).fontWeight(.black)
                         .foregroundStyle(.white)
                         .frame(width: 28, height: 28)
                         .background(lineColor)
                         .clipShape(Circle())
-                    Text(exitLabel(no: info.exitNo))
+                    Text(exitLabel(no: info.no))
                         .font(.callout).fontWeight(.semibold)
                         .foregroundStyle(KORATheme.labelPrimary)
                 }
@@ -804,20 +814,21 @@ struct SubwayNavigatorView: View {
                     .font(.callout).foregroundStyle(.secondary)
             }
             .padding(.top, 4)
-        } else if let info = exitInfo, !info.exitNo.isEmpty {
+        } else if let info = exitInfo, !info.no.isEmpty {
             VStack(spacing: 6) {
                 HStack(spacing: 10) {
-                    Text(info.exitNo)
+                    Text(info.no)
                         .font(.title2).fontWeight(.black)
                         .foregroundStyle(.white)
                         .frame(width: 44, height: 44)
                         .background(color)
                         .clipShape(Circle())
-                    Text(exitLabel(no: info.exitNo))
+                    Text(exitLabel(no: info.no))
                         .font(.title3).fontWeight(.bold)
                         .foregroundStyle(KORATheme.labelPrimary)
                 }
-                if let walk = info.walkMinutes, walk > 0 {
+                if info.walkMinutes > 0 {
+                    let walk = info.walkMinutes
                     Text(walkLabel(minutes: walk))
                         .font(.callout)
                         .foregroundStyle(KORATheme.labelSecondary)
@@ -1781,60 +1792,60 @@ struct SubwayNavigatorView: View {
 
     private func consumePendingDestination() {
         guard let dest = coordinator.pendingDestination, !dest.isEmpty else { return }
-        toStation = dest
-        selectedJourneyIdx = 0
+        // Order matters: write the destination coords *before* `toStation`
+        // so the toStation onChange handler reads the fresh values when it
+        // triggers `fetchExitInfoIfNeeded`.
         exitInfo = nil
         destinationCoordinate = coordinator.destinationCoordinate
         destinationPlaceName = coordinator.destinationPlaceName
         destinationPlaceID = coordinator.destinationPlaceID
+        toStation = dest
+        selectedJourneyIdx = 0
         let needsAutoFrom = coordinator.autoFromCurrentLocation
         coordinator.clearPending()
-        // If user already saved a custom exit for this place, use it immediately
+        // If user saved a custom exit for this place, use it immediately
+        // and skip the auto lookup.
         if let pid = destinationPlaceID,
            let saved = placeStore.places.first(where: { $0.id == pid })?.exitNo,
            !saved.isEmpty {
-            exitInfo = OdsayExitInfo(exitNo: saved, stationName: "", walkMinutes: nil)
+            exitInfo = NearestExit(no: saved, distanceMeters: 0, walkMinutes: 0)
             return
         }
         if needsAutoFrom {
-            Task {
-                await detectCurrentStation()
-                fetchExitInfoIfNeeded()
-            }
+            // detectCurrentStation will set fromStation → fromStation
+            // onChange → fetchExitInfoIfNeeded.
+            Task { await detectCurrentStation() }
         } else {
-            // fromStation = nil triggers onChange → picker → user picks → onChange → fetchExitInfoIfNeeded
-            // If fromStation is already set (previous session), fetch now.
-            if fromStation != nil { fetchExitInfoIfNeeded() }
+            // User picked "출발역 직접 선택" — drop the persisted from-station
+            // and open the picker. When they pick, fromStation onChange runs
+            // the fetch.
             fromStation = nil
             showFromPicker = true
         }
     }
 
     private func fetchExitInfoIfNeeded() {
-        print("[Exit] fetch — from=\(fromStation ?? "nil") to=\(toStation ?? "nil") destCoord=\(destinationCoordinate != nil) fetching=\(isFetchingExit)")
-        guard let fromKo = fromStation,
-              let toKo = toStation,
-              let fromCoords = MetroLineData.stationCoordinates[fromKo],
-              !isFetchingExit else { return }
-
-        // Prefer exact place coordinates; fall back to destination station coords
-        // so we always get a meaningful exit number even without stored place coords.
-        let toLat: Double
-        let toLon: Double
-        if let c = destinationCoordinate {
-            toLat = c.latitude; toLon = c.longitude
-        } else if let c = MetroLineData.stationCoordinates[toKo] {
-            toLat = c.lat; toLon = c.lng
-        } else { return }
-
-        isFetchingExit = true
-        Task {
-            exitInfo = try? await odsayService.fetchExitInfo(
-                fromLat: fromCoords.lat, fromLon: fromCoords.lng,
-                toLat: toLat, toLon: toLon
-            )
-            isFetchingExit = false
+        // User-confirmed override takes priority over auto lookup. We
+        // re-check here (not just in consumePendingDestination) so the
+        // value also surfaces when toStation changes through onChange
+        // without going through the cross-tab consume path.
+        if let pid = destinationPlaceID,
+           let saved = placeStore.places.first(where: { $0.id == pid })?.exitNo,
+           !saved.isEmpty {
+            exitInfo = NearestExit(no: saved, distanceMeters: 0, walkMinutes: 0)
+            return
         }
+        guard let toKo = toStation else {
+            debugLog("[ExitFetch] skip — toStation nil")
+            return
+        }
+        guard let destCoord = destinationCoordinate else {
+            debugLog("[ExitFetch] skip — destinationCoordinate nil (place has no GPS)")
+            exitInfo = nil
+            return
+        }
+        debugLog("[ExitFetch] toStation='\(toKo)', dest=(\(destCoord.latitude),\(destCoord.longitude))")
+        exitInfo = exitService.nearestExit(station: toKo, to: destCoord)
     }
 
     // MARK: Setup bar

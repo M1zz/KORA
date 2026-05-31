@@ -159,6 +159,70 @@ final class SaveViewModel {
         }
     }
 
+    /// Resolves coordinates / address / Kakao Map URL for places that were
+    /// saved without them (typically Instagram quick-links). One-shot Kakao
+    /// keyword search: name (+ nearestStation if set) → first hit. Silent
+    /// on no match. Side effect: also computes nearestStation if it's empty
+    /// once coords are in place.
+    private func attachCoordinatesIfMissing(for place: Place) async {
+        guard !place.hasLocation else { return }
+        let name = place.name.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !name.isEmpty else {
+            debugLog("[CoordBackfill] skip '\(place.name)' — no name to search")
+            return
+        }
+
+        // Fold the user-tagged station into the query when present —
+        // "가게이름 청담" is far more specific than the bare name and avoids
+        // matching a same-named venue in a different neighborhood.
+        let parts = [name, place.nearestStation.trimmingCharacters(in: .whitespacesAndNewlines)]
+        let query = parts.filter { !$0.isEmpty }.joined(separator: " ")
+        debugLog("[CoordBackfill] searching '\(query)' for place id=\(place.id.uuidString.prefix(8))")
+
+        let docs = (try? await search.searchKeyword(query, size: 5)) ?? []
+        debugLog("[CoordBackfill] got \(docs.count) results")
+        guard let best = docs.first else {
+            debugLog("[CoordBackfill] no result for '\(query)' — exit info will stay unavailable")
+            return
+        }
+        guard best.coordinate.latitude != 0 || best.coordinate.longitude != 0 else {
+            debugLog("[CoordBackfill] first result has empty coords — skip")
+            return
+        }
+
+        guard let current = store.places.first(where: { $0.id == place.id }) else { return }
+        var updated = current
+        updated.coordinate = best.coordinate
+        debugLog("[CoordBackfill] backfilled '\(name)' → (\(best.coordinate.latitude),\(best.coordinate.longitude)) station=\(updated.nearestStation)")
+        if updated.address.isEmpty {
+            updated.address = best.displayAddress
+            updated.addressJP = best.displayAddress
+        }
+        if updated.kakaoMapURL == nil, !best.placeUrl.isEmpty {
+            updated.kakaoMapURL = best.placeUrl
+        }
+        store.update(updated)
+
+        if updated.nearestStation.isEmpty {
+            await attachNearestStation(for: updated)
+        }
+    }
+
+    /// One-shot: for every saved place with a name but no GPS coords, try
+    /// to resolve them via Kakao so exit recommendations / map pins work.
+    /// Staggered to stay within rate limits.
+    func backfillMissingCoordinates() {
+        let candidates = store.places.filter { !$0.hasLocation && !$0.name.isEmpty }
+        debugLog("[CoordBackfill] running — \(candidates.count) candidate(s)")
+        guard !candidates.isEmpty else { return }
+        Task {
+            for place in candidates {
+                await self.attachCoordinatesIfMissing(for: place)
+                try? await Task.sleep(for: .milliseconds(400))
+            }
+        }
+    }
+
     /// Resolves the closest subway station and updates the Place in the store.
     /// Tries the bundled local coordinate table first (instant, offline) and
     /// falls back to Kakao SW8 search only when nothing's nearby locally.

@@ -237,14 +237,47 @@ struct PlaceCardView: View {
     private func routeTo(fromCurrentLocation: Bool) {
         let dest = resolvedStationName
         guard !dest.isEmpty else { return }
-        let coord = place.hasLocation ? place.coordinate : nil
-        NavigationCoordinator.shared.routeTo(
-            station: dest,
-            fromCurrentLocation: fromCurrentLocation,
-            destinationCoordinate: coord,
-            destinationPlaceName: place.name,
-            destinationPlaceID: place.id
-        )
+
+        // Fast path: place already has GPS — route immediately. Pass the
+        // place id so SubwayNavigatorView can honour a user-confirmed
+        // `place.exitNo` override if one was set.
+        if place.hasLocation {
+            NavigationCoordinator.shared.routeTo(
+                station: dest,
+                fromCurrentLocation: fromCurrentLocation,
+                destinationCoordinate: place.coordinate,
+                destinationPlaceName: place.name,
+                destinationPlaceID: place.id
+            )
+            return
+        }
+
+        // Slow path: no GPS (Instagram quick-link save, etc). Resolve via
+        // Kakao right now so the destination view gets a meaningful exit
+        // recommendation. Blocks routing by 300–800ms — acceptable since
+        // this only fires once for un-enriched saves.
+        Task { @MainActor in
+            let svc = PlaceSearchService()
+            let parts = [place.name, place.nearestStation]
+                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
+                .filter { !$0.isEmpty }
+            let query = parts.joined(separator: " ")
+            debugLog("[InlineResolve] querying '\(query)'")
+            let docs = (try? await svc.searchKeyword(query, size: 1)) ?? []
+            let resolved: Coordinate? = {
+                guard let c = docs.first?.coordinate, c.latitude != 0 || c.longitude != 0
+                else { return nil }
+                return c
+            }()
+            debugLog("[InlineResolve] resolved=\(resolved.map { "(\($0.latitude),\($0.longitude))" } ?? "nil")")
+            NavigationCoordinator.shared.routeTo(
+                station: dest,
+                fromCurrentLocation: fromCurrentLocation,
+                destinationCoordinate: resolved,
+                destinationPlaceName: place.name,
+                destinationPlaceID: place.id
+            )
+        }
     }
 
     // MARK: - Accessibility text

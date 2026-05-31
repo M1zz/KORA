@@ -167,6 +167,7 @@ struct SaveView: View {
             .onAppear {
                 viewModel.checkClipboard()
                 viewModel.backfillMissingImages()
+                viewModel.backfillMissingCoordinates()
                 consumePendingShare()
             }
             .onChange(of: coordinator.shareRequestNonce) { _, _ in

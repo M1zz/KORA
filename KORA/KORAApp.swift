@@ -1,6 +1,17 @@
 import SwiftUI
 import TipKit
 
+/// Print only in debug builds. Release builds compile the call site away.
+/// Tagged logs throughout the app (`[Exit]`, `[ExitFetch]`, `[InlineResolve]`,
+/// `[CoordBackfill]`, `[Odsay]`) all funnel through this so production users
+/// never see them in os_log either.
+@inline(__always)
+func debugLog(_ message: @autoclosure () -> String) {
+    #if DEBUG
+    print(message())
+    #endif
+}
+
 @main
 struct KORAApp: App {
     @Environment(\.scenePhase) private var scenePhase

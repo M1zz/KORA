@@ -1,10 +1,14 @@
+import Foundation
+
 // MARK: - Naver API 설정
-// https://developers.naver.com 에서 애플리케이션을 등록하고
-// "검색" API를 사용으로 설정한 뒤
-// [Application] → [내 애플리케이션] → 해당 앱 선택 → [Overview]에서
-// Client ID 와 Client Secret 을 복사해서 아래에 붙여넣으세요.
+// 키는 `KORA/Config/Secrets.xcconfig`에 정의하면 빌드 시 Info.plist로
+// 주입됩니다. 자세한 안내는 `Secrets.sample.xcconfig`를 보세요.
 
 enum NaverConfig {
-    static let clientID     = "mLZQrzzj6WCXP_FyQZOX"
-    static let clientSecret = "HgvkH5Sjq9"
+    static var clientID: String {
+        Bundle.main.object(forInfoDictionaryKey: "NaverClientID") as? String ?? ""
+    }
+    static var clientSecret: String {
+        Bundle.main.object(forInfoDictionaryKey: "NaverClientSecret") as? String ?? ""
+    }
 }

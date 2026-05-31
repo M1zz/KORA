@@ -7,7 +7,10 @@ struct OdsayExitInfo {
 }
 
 final class OdsayTransitService {
-    private let apiKey = "6SPMs6H1JkwUam4FLo2PJA"
+    /// Read from Info.plist (injected from Secrets.xcconfig at build time).
+    private var apiKey: String {
+        Bundle.main.object(forInfoDictionaryKey: "OdsayAPIKey") as? String ?? ""
+    }
     private let session: URLSession = {
         let cfg = URLSessionConfiguration.default
         cfg.timeoutIntervalForRequest = 10
@@ -26,54 +29,73 @@ final class OdsayTransitService {
         ]
         guard let url = comps.url else { return nil }
 
-        print("[Odsay] URL: \(url)")
+        debugLog("[Odsay] URL: \(url)")
         let (data, _) = try await session.data(from: url)
-        print("[Odsay] raw: \(String(data: data, encoding: .utf8) ?? "nil")")
+        debugLog("[Odsay] raw: \(String(data: data, encoding: .utf8) ?? "nil")")
 
         guard let root = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-            print("[Odsay] JSON parse failed")
+            debugLog("[Odsay] JSON parse failed")
             return nil
         }
 
         // Surface API-level errors
         if let errors = root["error"] as? [[String: Any]], let first = errors.first {
-            print("[Odsay] API error: \(first["message"] ?? first)")
+            debugLog("[Odsay] API error: \(first["message"] ?? first)")
             return nil
         }
 
         guard let result = root["result"] as? [String: Any],
               let paths = result["path"] as? [[String: Any]],
-              let firstPath = paths.first else {
-            print("[Odsay] No paths in response: \(root.keys.joined(separator: ", "))")
+              !paths.isEmpty else {
+            debugLog("[Odsay] No paths in response: \(root.keys.joined(separator: ", "))")
             return nil
         }
 
-        let info = firstPath["info"] as? [String: Any]
-        let subPaths = firstPath["subPath"] as? [[String: Any]] ?? []
+        // Prefer the first path that actually uses subway. Odsay sometimes
+        // ranks a faster bus-only option (pathType 2) above a subway path
+        // (pathType 1) or mixed (pathType 3); for the Subway tab we only
+        // care about subway paths since that's what the user is taking.
+        let chosenPath: [String: Any] = {
+            if let subwayPath = paths.first(where: { p in
+                let t = p["pathType"] as? Int ?? 0
+                return t == 1 || t == 3
+            }) { return subwayPath }
+            return paths[0]
+        }()
+        let info = chosenPath["info"] as? [String: Any]
+        let subPaths = chosenPath["subPath"] as? [[String: Any]] ?? []
 
-        print("[Odsay] info keys: \(info?.keys.sorted().joined(separator: ", ") ?? "nil")")
-        print("[Odsay] info: exNo=\(info?["exNo"] ?? "nil"), exName=\(info?["exName"] ?? "nil")")
+        debugLog("[Odsay] chosen pathType=\(chosenPath["pathType"] ?? "?"), subPaths=\(subPaths.count)")
+        debugLog("[Odsay] info: exNo=\(info?["exNo"] ?? "nil"), exName=\(info?["exName"] ?? "nil")")
 
-        // exNo can come back as String "4" or Int 4 — handle both
+        // Prefer the last subway segment's `endExitNo` — that's the actual
+        // alighting exit at the destination station, picked by Odsay using
+        // the place coords we passed as `EY/EX`. The path-level `info.exNo`
+        // is sometimes empty when the journey doesn't end on subway.
+        let lastSubway = subPaths.last(where: { ($0["trafficType"] as? Int) == 1 })
+
         let exNo: String = {
-            if let s = info?["exNo"] as? String, !s.trimmingCharacters(in: .whitespaces).isEmpty {
+            if let s = lastSubway?["endExitNo"] as? String,
+               !s.trimmingCharacters(in: .whitespaces).isEmpty {
+                return s.trimmingCharacters(in: .whitespaces)
+            }
+            if let n = lastSubway?["endExitNo"] as? Int, n > 0 { return "\(n)" }
+            // Path-level fallback
+            if let s = info?["exNo"] as? String,
+               !s.trimmingCharacters(in: .whitespaces).isEmpty {
                 return s.trimmingCharacters(in: .whitespaces)
             }
             if let n = info?["exNo"] as? Int, n > 0 { return "\(n)" }
-            // Fallback: last subway subPath's endExitNo
-            let lastSubway = subPaths.last(where: { ($0["trafficType"] as? Int) == 1 })
-            if let s = lastSubway?["endExitNo"] as? String, !s.isEmpty { return s }
-            if let n = lastSubway?["endExitNo"] as? Int, n > 0 { return "\(n)" }
             return ""
         }()
 
         let exName: String = {
+            if let s = lastSubway?["endName"] as? String, !s.isEmpty { return s }
             if let s = info?["exName"] as? String, !s.isEmpty { return s }
-            let lastSubway = subPaths.last(where: { ($0["trafficType"] as? Int) == 1 })
-            return lastSubway?["endName"] as? String ?? ""
+            return ""
         }()
 
-        print("[Odsay] resolved exNo=\(exNo), exName=\(exName)")
+        debugLog("[Odsay] resolved exNo=\(exNo), exName=\(exName)")
 
         guard !exNo.isEmpty else { return nil }
 

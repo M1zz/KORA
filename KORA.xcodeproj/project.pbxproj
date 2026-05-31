@@ -59,6 +59,9 @@
 		AA04A /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA14A /* CachedAsyncImage.swift */; };
 		AA048 /* KakaoPlaceDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA148 /* KakaoPlaceDetailService.swift */; };
 		AA049 /* OdsayTransitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA149 /* OdsayTransitService.swift */; };
+		AA050 /* SubwayExitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA150 /* SubwayExitService.swift */; };
+		AA051 /* SubwayExits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA151 /* SubwayExits.json */; };
+		AA052 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AA154 /* PrivacyInfo.xcprivacy */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,6 +150,11 @@
 		AA14A /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		AA148 /* KakaoPlaceDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceDetailService.swift; sourceTree = "<group>"; };
 		AA149 /* OdsayTransitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdsayTransitService.swift; sourceTree = "<group>"; };
+		AA150 /* SubwayExitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayExitService.swift; sourceTree = "<group>"; };
+		AA151 /* SubwayExits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SubwayExits.json; sourceTree = "<group>"; };
+		AA152 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
+		AA153 /* Secrets.sample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.sample.xcconfig; sourceTree = "<group>"; };
+		AA154 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -226,13 +234,24 @@
 				AA101 /* KORAApp.swift */,
 				AA102 /* ContentView.swift */,
 				AA103 /* MainTabView.swift */,
+				AA425 /* Config */,
 				AA410 /* Sources */,
 				AA118 /* Assets.xcassets */,
 				AA119 /* Localizable.xcstrings */,
 				AA124 /* seoul_metro.pdf */,
 				AA128 /* subway_jp.pdf */,
+				AA154 /* PrivacyInfo.xcprivacy */,
 			);
 			path = KORA;
+			sourceTree = "<group>";
+		};
+		AA425 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				AA152 /* Secrets.xcconfig */,
+				AA153 /* Secrets.sample.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		AA402 /* Products */ = {
@@ -330,6 +349,8 @@
 				AA134 /* SubwayScheduleService.swift */,
 				AA135 /* RealtimeArrivalService.swift */,
 				AA145 /* TransitPositionTracker.swift */,
+				AA150 /* SubwayExitService.swift */,
+				AA151 /* SubwayExits.json */,
 			);
 			path = Subway;
 			sourceTree = "<group>";
@@ -513,6 +534,8 @@
 				AA018 /* Assets.xcassets in Resources */,
 				AA019 /* Localizable.xcstrings in Resources */,
 				AA024 /* seoul_metro.pdf in Resources */,
+				AA051 /* SubwayExits.json in Resources */,
+				AA052 /* PrivacyInfo.xcprivacy in Resources */,
 				AA028 /* subway_jp.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,6 +605,7 @@
 				AA034 /* SubwayScheduleService.swift in Sources */,
 				AA035 /* RealtimeArrivalService.swift in Sources */,
 				AA045 /* TransitPositionTracker.swift in Sources */,
+				AA050 /* SubwayExitService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,7 +642,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.KORAShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -648,7 +672,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.KORAShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -680,7 +704,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -711,7 +735,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -849,6 +873,7 @@
 		};
 		AA603 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA152 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -868,9 +893,9 @@
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -882,6 +907,7 @@
 		};
 		AA604 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AA152 /* Secrets.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -901,9 +927,9 @@
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

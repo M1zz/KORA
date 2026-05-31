@@ -29,3 +29,6 @@ Pods/
 .DS_Store
 .AppleDouble
 .LSOverride
+
+# Secrets — keys live in Secrets.xcconfig, never committed
+KORA/Config/Secrets.xcconfig
