@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>KORA — 가고 싶은 곳을 모아 서울 지하철로 안내</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="저장한 장소까지 서울 지하철로 안내하는 앱. 가까운 출구, 노선별 환승, 실시간 위치 추적.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+
+  <header class="site">
+    <img src="icon.png" alt="KORA 앱 아이콘">
+    <div>
+      <div class="title">KORA</div>
+      <div class="subtitle">가고 싶은 곳을 모아 서울 지하철로 안내</div>
+    </div>
+  </header>
+
+  <nav class="langs" aria-label="언어 선택">
+    <button data-lang="ko" class="active">한국어</button>
+    <button data-lang="ja">日本語</button>
+    <button data-lang="en">English</button>
+  </nav>
+
+  <nav class="pages">
+    <a href="index.html" class="current">홈 / Home</a>
+    <a href="support.html">지원 / Support</a>
+    <a href="privacy.html">개인정보 / Privacy</a>
+  </nav>
+
+  <!-- ========== KOREAN ========== -->
+  <section class="lang-section active" data-lang="ko">
+    <h1>가고 싶은 곳을 한 번에 정리</h1>
+    <p class="lead">
+      인스타그램, 카카오맵, 사진 한 장만 있어도 저장됩니다.
+      탭 한 번으로 지하철 길찾기 + 가까운 출구까지 알려줍니다.
+    </p>
+
+    <h2>이런 게 됩니다</h2>
+    <ul>
+      <li>인스타 링크 · 카카오 검색 · 스크린샷 OCR로 장소 저장</li>
+      <li>저장한 카드 → 길찾기 탭 → 출발역 자동/직접 선택</li>
+      <li>도착역의 추천 출구 번호 표시 (오프라인, 즉시)</li>
+      <li>다국어 (한국어 · 日本語 · English · 中文)</li>
+      <li>접근성: 색맹 친화 도형 인코딩, VoiceOver 지원</li>
+    </ul>
+
+    <div class="contact">
+      문제가 있거나 제안이 있으신가요? <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> 으로 보내주세요.
+    </div>
+  </section>
+
+  <!-- ========== JAPANESE ========== -->
+  <section class="lang-section" data-lang="ja" hidden>
+    <h1>行きたいスポットを1つにまとめて</h1>
+    <p class="lead">
+      Instagram、カカオマップ、スクリーンショット1枚から保存できます。
+      タップ1つでソウルの地下鉄案内と、最寄り出口番号まで表示。
+    </p>
+
+    <h2>できること</h2>
+    <ul>
+      <li>Instagramリンク・カカオ検索・スクリーンショットOCRで保存</li>
+      <li>保存したカード → 経路案内 → 出発駅は自動/手動選択</li>
+      <li>到着駅のおすすめ出口番号(オフライン、即時)</li>
+      <li>多言語(한국어・日本語・English・中文)</li>
+      <li>アクセシビリティ: 色覚特性配慮の図形エンコード、VoiceOver対応</li>
+    </ul>
+
+    <div class="contact">
+      問題やご要望は <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> までお気軽にどうぞ。
+    </div>
+  </section>
+
+  <!-- ========== ENGLISH ========== -->
+  <section class="lang-section" data-lang="en" hidden>
+    <h1>Save your places, take Seoul metro to them</h1>
+    <p class="lead">
+      Save spots from Instagram, KakaoMap, or a screenshot.
+      Tap to get a subway route and the recommended exit at your destination.
+    </p>
+
+    <h2>What you get</h2>
+    <ul>
+      <li>Save places via Instagram links, Kakao search, or screenshot OCR</li>
+      <li>From a saved card, tap directions — auto or manual departure station</li>
+      <li>Recommended exit number at the destination (offline, instant)</li>
+      <li>Localised in Korean · Japanese · English · Chinese</li>
+      <li>Accessibility: color-blind-friendly shape encoding, full VoiceOver</li>
+    </ul>
+
+    <div class="contact">
+      Bug reports or suggestions? Email <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a>.
+    </div>
+  </section>
+
+  <footer class="site">
+    © KORA. <a href="support.html">Support</a> · <a href="privacy.html">Privacy</a>
+  </footer>
+</div>
+
+<script src="lang.js"></script>
+</body>
+</html>
