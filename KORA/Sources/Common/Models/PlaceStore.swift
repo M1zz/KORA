@@ -14,6 +14,7 @@ final class PlaceStore {
 
     private init() {
         load()
+        migrateLowResPhotos()
     }
 
     func add(_ place: Place) {
@@ -49,6 +50,31 @@ final class PlaceStore {
            let decoded = try? JSONDecoder().decode([Place].self, from: data) {
             places = decoded
         }
+    }
+
+    /// One-time migration: clear `photoURLs` and `imageURL` for every saved
+    /// place so the backfill (`SaveViewModel.backfillMissingImages`) re-runs
+    /// on next launch and pulls full-resolution images instead of the small
+    /// Naver thumbnails / Kakao `smallurl` we used to store. Runs at most
+    /// once per device, gated by a UserDefaults flag.
+    private func migrateLowResPhotos() {
+        let key = "kora_did_clear_lowres_photos_v1"
+        let defaults = UserDefaults.standard
+        guard !defaults.bool(forKey: key) else { return }
+
+        var copy = places
+        var changed = false
+        for i in copy.indices {
+            if copy[i].photoURLs != nil || copy[i].imageURL != nil {
+                copy[i].photoURLs = nil
+                copy[i].imageURL = nil
+                changed = true
+            }
+        }
+        if changed {
+            places = copy   // batched: single didSet → single persist
+        }
+        defaults.set(true, forKey: key)
     }
 
     /// Reads places saved by the Share Extension from the App Group JSON queue,

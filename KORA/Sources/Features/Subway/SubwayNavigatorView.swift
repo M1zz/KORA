@@ -310,13 +310,9 @@ struct SubwayNavigatorView: View {
     /// Self-contained block for ONE subway ride: direction + next station +
     /// where to get off (with transfer hint or destination indicator).
     private func rideBlock(seg: JourneySegment, isLast: Bool) -> some View {
-        let alightKo = seg.stations.last ?? ""
-        let alightDisplay = MetroLineData.displayName(for: alightKo, language: displayLanguage)
         let nextKo: String? = seg.stations.count > 1 ? seg.stations[1] : nil
         let nextDisplay = nextKo.map { MetroLineData.displayName(for: $0, language: displayLanguage) } ?? ""
         let timing = SubwayScheduleService.timing(for: seg, at: Date())
-        let alightLineColor = seg.line.color
-        let nextLines = MetroLineData.linesContaining(alightKo)
 
         return VStack(spacing: 18) {
             // Direction header — hidden after boarding so the focus shifts to
@@ -418,7 +414,6 @@ struct SubwayNavigatorView: View {
     // MARK: Pre-boarding verification (wrong-direction defense)
 
     /// Current station → next station card shown vertically before boarding.
-    @ViewBuilder
     private func verifyNextStopCard(currentKo: String, nextKo: String, nextDisplay: String, lineColor: Color) -> some View {
         let currentDisplay = MetroLineData.displayName(for: currentKo, language: displayLanguage)
         let showCurrentTranslation = displayLanguage != .korean && currentDisplay != currentKo
@@ -1430,8 +1425,7 @@ struct SubwayNavigatorView: View {
                             let lines = MetroLineData.linesContaining(fromKo)
                             let lineColor = lines.first.map { MetroLineData.lineColor($0) } ?? KORATheme.accent
                             let suffix = NavLoc.savedGoToSuffix.resolved(displayLanguage)
-                            let titleText = Text(fromName).foregroundStyle(lineColor)
-                                + Text(suffix).foregroundStyle(KORATheme.labelSecondary)
+                            let titleText = Text("\(Text(fromName).foregroundStyle(lineColor))\(Text(suffix).foregroundStyle(KORATheme.labelSecondary))")
                             savedSection(
                                 titleText: titleText,
                                 places: savedPlacesNearby,

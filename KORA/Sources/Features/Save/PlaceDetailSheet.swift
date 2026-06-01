@@ -5,6 +5,14 @@ struct PlaceDetailSheet: View {
     let lang: StationLanguage
     let onUpdate: (Place) -> Void
 
+    /// Replacement for the iOS 26-deprecated `UIScreen.main.bounds.width`.
+    /// Pulls the active window scene's screen width instead.
+    private static var currentScreenWidth: CGFloat {
+        UIApplication.shared.connectedScenes
+            .compactMap { ($0 as? UIWindowScene)?.screen.bounds.width }
+            .first ?? 393
+    }
+
     @State private var current: Place
     @State private var detail: KakaoPlaceDetail? = nil
     @State private var isFetchingBasic  = false
@@ -66,7 +74,7 @@ struct PlaceDetailSheet: View {
                             switch phase {
                             case .success(let img):
                                 img.resizable().scaledToFill()
-                                    .frame(width: photos.count == 1 ? UIScreen.main.bounds.width : 220, height: 200)
+                                    .frame(width: photos.count == 1 ? Self.currentScreenWidth : 220, height: 200)
                                     .clipped()
                             case .failure:
                                 EmptyView()
@@ -296,11 +304,13 @@ struct PlaceDetailSheet: View {
     /// runs a search for the name.
     private func openInAppleMaps() {
         if current.hasLocation {
-            let coord = CLLocationCoordinate2D(
+            let location = CLLocation(
                 latitude: current.coordinate.latitude,
                 longitude: current.coordinate.longitude
             )
-            let item = MKMapItem(placemark: MKPlacemark(coordinate: coord))
+            let addrText = current.address.isEmpty ? current.name : current.address
+            let address = MKAddress(fullAddress: addrText, shortAddress: current.name)
+            let item = MKMapItem(location: location, address: address)
             item.name = current.name
             item.openInMaps()
             return

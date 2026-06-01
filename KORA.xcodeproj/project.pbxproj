@@ -882,7 +882,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORA/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = KoreaWay;
+				INFOPLIST_KEY_CFBundleDisplayName = "한국 길찾기";
 				INFOPLIST_KEY_NSCameraUsageDescription = "カメラでQRコードをスキャンします。";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "周辺のホットプレイスとリアルタイム情報を提供します。";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "スポットの写真を保存します。";
@@ -916,7 +916,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORA/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = KoreaWay;
+				INFOPLIST_KEY_CFBundleDisplayName = "한국 길찾기";
 				INFOPLIST_KEY_NSCameraUsageDescription = "カメラでQRコードをスキャンします。";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "周辺のホットプレイスとリアルタイム情報を提供します。";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "スポットの写真を保存します。";

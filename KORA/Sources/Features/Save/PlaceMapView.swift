@@ -84,6 +84,7 @@ struct PlaceMapView: View {
                 }
             }
             .mapStyle(.standard)
+            .ignoresSafeArea(.all)  // map extends edge-to-edge; overlays below respect insets
             .onChange(of: mapSelection) { _, sel in
                 if let sel, sel.hasPrefix("p:") {
                     let id = String(sel.dropFirst(2))

@@ -185,7 +185,7 @@ struct ReviewCardView: View {
                                 .foregroundStyle(Color(hex: "#185FA5"))
                         }
                     }
-                    Text(review.authorRegion) + Text("出身")
+                    Text("\(review.authorRegion)出身")
                         .font(.body)
                         .foregroundStyle(KORATheme.labelSecondary)
                 }
@@ -206,7 +206,7 @@ struct ReviewCardView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 6) {
                         ForEach(review.tags, id: \.self) { tag in
-                            (Text(verbatim: tag.emoji + " ") + Text(LocalizedStringKey(tag.rawValue)))
+                            Text("\(Text(verbatim: tag.emoji + " "))\(Text(LocalizedStringKey(tag.rawValue)))")
                                 .font(.body)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 4)
@@ -280,7 +280,7 @@ struct WriteReviewSheet: View {
                                         selectedTags.insert(tag)
                                     }
                                 } label: {
-                                    (Text(verbatim: tag.emoji + " ") + Text(LocalizedStringKey(tag.rawValue)))
+                                    Text("\(Text(verbatim: tag.emoji + " "))\(Text(LocalizedStringKey(tag.rawValue)))")
                                         .font(.body)
                                         .padding(.horizontal, 12)
                                         .padding(.vertical, 6)

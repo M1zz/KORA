@@ -67,7 +67,13 @@ final class NaverLocalService {
             URLQueryItem(name: "filter", value: "medium")
         ]
         let raw: NaverImageResponse = try await fetch(base: imageBase, queryItems: items)
-        return raw.items.map { $0.thumbnail }
+        // Prefer `link` (the source image URL — typically 500–1500px wide)
+        // over `thumbnail` (~150px), which used to render fuzzy in card-sized
+        // hero shots. Fall back to thumbnail when link is missing.
+        return raw.items.map { item in
+            let link = item.link.trimmingCharacters(in: .whitespacesAndNewlines)
+            return link.isEmpty ? item.thumbnail : link
+        }
     }
 
     // MARK: - Private
@@ -169,5 +175,6 @@ private struct NaverImageResponse: Decodable {
 }
 
 private struct NaverImageItem: Decodable {
+    let link: String
     let thumbnail: String
 }

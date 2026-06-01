@@ -11,6 +11,7 @@ struct PlaceCardView: View {
     @Environment(\.openURL) private var openURL
     @AppStorage("kora.display_language") private var languagePref: String = ""
     @State private var showDepartureDialog: Bool = false
+    @State private var carouselPage: Int? = 0
 
 
     private var lang: StationLanguage {
@@ -176,18 +177,46 @@ struct PlaceCardView: View {
                 .clipped()
                 .accessibilityHidden(true)
         } else {
-            TabView {
+            photoCarousel(photos)
+        }
+    }
+
+    @ViewBuilder
+    private func photoCarousel(_ photos: [String]) -> some View {
+        // ScrollView with paging behaviour, replacing TabView. TabView's
+        // page style inside a LazyVGrid swallows / fights touches at the
+        // card edges, so swipes weren't reliably advancing pages. The
+        // ScrollView path uses native horizontal paging that coexists
+        // cleanly with the parent's vertical scroll and tap gesture.
+        ZStack(alignment: .bottom) {
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack(spacing: 0) {
+                    ForEach(photos.indices, id: \.self) { i in
+                        asyncImage(photos[i])
+                            .containerRelativeFrame(.horizontal)
+                            .frame(height: 160)
+                            .clipped()
+                            .id(i)
+                    }
+                }
+                .scrollTargetLayout()
+            }
+            .scrollTargetBehavior(.paging)
+            .scrollPosition(id: $carouselPage)
+
+            // Page indicator dots
+            HStack(spacing: 5) {
                 ForEach(photos.indices, id: \.self) { i in
-                    asyncImage(photos[i])
-                        .clipped()
+                    Circle()
+                        .fill(Color.white.opacity(i == (carouselPage ?? 0) ? 0.95 : 0.45))
+                        .frame(width: 6, height: 6)
+                        .shadow(color: .black.opacity(0.25), radius: 1.5, y: 0.5)
                 }
             }
-            .tabViewStyle(.page(indexDisplayMode: .always))
-            .indexViewStyle(.page(backgroundDisplayMode: .interactive))
-            .frame(height: 160)
-            .frame(maxWidth: .infinity)
-            .accessibilityHidden(true)
+            .padding(.bottom, 8)
         }
+        .frame(height: 160).frame(maxWidth: .infinity)
+        .accessibilityHidden(true)
     }
 
     @ViewBuilder

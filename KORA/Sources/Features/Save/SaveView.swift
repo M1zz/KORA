@@ -109,7 +109,9 @@ struct SaveView: View {
                     selectedPlace: $selectedMapPlace,
                     onSaveDoc: { doc in viewModel.saveFromKakao(doc) }
                 )
-                .ignoresSafeArea(edges: .bottom)
+                // PlaceMapView handles its own safe-area edge cases internally
+                // — the Map fills to the edge but bottom cards sit above the
+                // tab bar.
 
                 // Clipboard banner overlays from the top
                 if viewModel.showClipboardPrompt {
@@ -707,7 +709,7 @@ struct AddPlaceSheet: View {
 
         let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
         guard (try? handler.perform([request])) != nil,
-              let observations = request.results as? [VNRecognizedTextObservation]
+              let observations = request.results
         else { return }
 
         let lines = observations.compactMap { $0.topCandidates(1).first?.string }

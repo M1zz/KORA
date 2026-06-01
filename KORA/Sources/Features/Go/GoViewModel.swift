@@ -20,6 +20,18 @@ final class GoViewModel {
 
     private let store = PlaceStore.shared
 
+    /// Builds an `MKMapItem` via the iOS 26 `init(location:address:)` API,
+    /// replacing the deprecated `MKMapItem(placemark:)` path.
+    private static func mapItem(for place: Place) -> MKMapItem {
+        let loc = CLLocation(
+            latitude: place.coordinate.latitude,
+            longitude: place.coordinate.longitude
+        )
+        let addrText = place.address.isEmpty ? place.name : place.address
+        let address = MKAddress(fullAddress: addrText, shortAddress: place.name)
+        return MKMapItem(location: loc, address: address)
+    }
+
     var places: [Place] {
         store.places.filter { $0.coordinate.latitude != 0 || $0.coordinate.longitude != 0 }
     }
@@ -33,7 +45,7 @@ final class GoViewModel {
 
         let request = MKDirections.Request()
         request.source = .forCurrentLocation()
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: place.coordinate.clLocation))
+        request.destination = Self.mapItem(for: place)
         request.transportType = transportType
 
         do {
@@ -55,7 +67,7 @@ final class GoViewModel {
     // MARK: - Apple Maps App (외부)
 
     func openInAppleMaps(_ place: Place) {
-        let item = MKMapItem(placemark: MKPlacemark(coordinate: place.coordinate.clLocation))
+        let item = Self.mapItem(for: place)
         item.name = place.nameJP
         item.openInMaps(launchOptions: [
             MKLaunchOptionsDirectionsModeKey: transportType == .walking

@@ -5,9 +5,9 @@ struct SafariView: UIViewControllerRepresentable {
     let url: URL
 
     func makeUIViewController(context: Context) -> SFSafariViewController {
-        let vc = SFSafariViewController(url: url)
-        vc.preferredControlTintColor = UIColor(named: "AccentColor")
-        return vc
+        // iOS 26 deprecates explicit control tinting on SFSafariViewController
+        // — system effects pick the appropriate colour from context.
+        SFSafariViewController(url: url)
     }
 
     func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}

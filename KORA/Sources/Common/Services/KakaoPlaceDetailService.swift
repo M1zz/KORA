@@ -76,14 +76,27 @@ final class KakaoPlaceDetailService {
             }
         }
 
-        // Photos (smallurl)
+        // Photos — prefer the largest available size that's still safe to
+        // download in a card-sized hero. Order: largeurl → orgurl → smallurl.
+        // Card carousels at 170×160pt need ~340×320 minimum, and `smallurl`
+        // tops out around 150px which renders fuzzy.
+        func bestURL(_ item: [String: Any]) -> String? {
+            for key in ["largeurl", "orgurl", "smallurl"] {
+                if let url = item[key] as? String,
+                   !url.trimmingCharacters(in: .whitespaces).isEmpty {
+                    return url
+                }
+            }
+            return nil
+        }
+
         var photoURLs: [String] = []
         if let main = mainPhoto { photoURLs.append(main) }
         if let photoSection = json["photo"] as? [String: Any],
            let photoList = photoSection["photoList"] as? [[String: Any]] {
             for item in photoList {
-                if let small = item["smallurl"] as? String, !photoURLs.contains(small) {
-                    photoURLs.append(small)
+                if let url = bestURL(item), !photoURLs.contains(url) {
+                    photoURLs.append(url)
                 }
                 if photoURLs.count >= 8 { break }
             }

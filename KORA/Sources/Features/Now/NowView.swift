@@ -69,7 +69,7 @@ struct NowView: View {
                 Text("今日のイベント")
                     .font(.body).fontWeight(.semibold)
                 Spacer()
-                Text("\(viewModel.events.count)") + Text("件")
+                Text("\(viewModel.events.count)件")
                     .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
@@ -146,7 +146,7 @@ struct EventCard: View {
             HStack(spacing: 4) {
                 Image(systemName: "clock")
                     .font(.body)
-                Text(event.startTime) + Text("〜") + Text(event.endTime)
+                Text("\(event.startTime)〜\(event.endTime)")
                     .font(.body).fontWeight(.medium)
             }
             .foregroundStyle(KORATheme.accent)
@@ -189,7 +189,7 @@ struct NearbyPlaceRow: View {
                 if let wait = place.waitMinutes {
                     Group {
                         if wait > 0 {
-                            Text("\(wait)") + Text("分待ち")
+                            Text("\(wait)分待ち")
                         } else {
                             Text("待ちなし")
                         }
