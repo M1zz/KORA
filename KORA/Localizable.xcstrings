@@ -5,6 +5,7 @@
 
     },
     "〜" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -90,6 +91,26 @@
         }
       }
     },
+    "%@〜%@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@〜%2$@"
+          }
+        }
+      }
+    },
+    "%@%@" : {
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@%2$@"
+          }
+        }
+      }
+    },
     "%@역 출발, 다음 정거장 %@역" : {
       "localizations" : {
         "ja" : {
@@ -155,6 +176,9 @@
           }
         }
       }
+    },
+    "%@出身" : {
+
     },
     "%@号線" : {
       "extractionState" : "stale",
@@ -246,8 +270,10 @@
         }
       }
     },
+    "%lld件" : {
+
+    },
     "%lld分待ち" : {
-      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1677,6 +1703,7 @@
 
     },
     "件" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1848,6 +1875,7 @@
       }
     },
     "出身" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1858,6 +1886,7 @@
       }
     },
     "分待ち" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {

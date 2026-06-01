@@ -29,9 +29,17 @@ struct EmptyStateView: View {
             }
 
             if let actionTitle, let action {
-                KORAPrimaryButton(actionTitle, action: action)
-                    .frame(maxWidth: 240)
-                    .padding(.top, 8)
+                Button(action: action) {
+                    Text(LocalizedStringKey(actionTitle))
+                        .font(.body).fontWeight(.semibold)
+                        .foregroundStyle(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 14)
+                        .background(KORATheme.accent)
+                        .clipShape(RoundedRectangle(cornerRadius: KORATheme.radiusMD))
+                }
+                .frame(maxWidth: 240)
+                .padding(.top, 8)
             }
 
             Spacer()

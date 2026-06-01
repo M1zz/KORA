@@ -192,8 +192,10 @@ struct SubwayNavigatorView: View {
         }
         .onChange(of: fromStation) { _, new in
             persistedFromStation = new ?? ""
-            // Exit fetch depends on fromStation (Odsay needs a real
-            // journey), so re-request when it becomes available.
+            // Retry exit lookup once we know the journey is real. The offline
+            // service doesn't actually need `fromStation`, but kicking the
+            // fetch here is a no-op when nothing's changed and surfaces a
+            // result faster on the welcomeGate → picker → first journey path.
             if new != nil { fetchExitInfoIfNeeded() }
         }
         .onChange(of: toStation) { _, new in

@@ -15,21 +15,13 @@
 		9C8F74632FC6E3A000B6DA22 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */; };
 		9C8F74722FC6E3A100B6DA22 /* widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		AA001 /* KORAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA101 /* KORAApp.swift */; };
-		AA002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA102 /* ContentView.swift */; };
 		AA003 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA103 /* MainTabView.swift */; };
 		AA004 /* SaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA104 /* SaveView.swift */; };
 		AA005 /* SaveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA105 /* SaveViewModel.swift */; };
 		AA006 /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA106 /* PlaceCardView.swift */; };
-		AA007 /* GoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA107 /* GoView.swift */; };
-		AA008 /* NowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA108 /* NowView.swift */; };
-		AA009 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA109 /* ShareView.swift */; };
 		AA010 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA110 /* Place.swift */; };
-		AA011 /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA111 /* Review.swift */; };
 		AA012 /* KORATheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA112 /* KORATheme.swift */; };
-		AA013 /* KORAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA113 /* KORAButton.swift */; };
 		AA014 /* LinkParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA114 /* LinkParserService.swift */; };
-		AA015 /* NowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA115 /* NowViewModel.swift */; };
-		AA016 /* GoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA116 /* GoViewModel.swift */; };
 		AA017 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA117 /* EmptyStateView.swift */; };
 		AA018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA118 /* Assets.xcassets */; };
 		AA019 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AA119 /* Localizable.xcstrings */; };
@@ -58,7 +50,6 @@
 		AA047 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA147 /* SafariView.swift */; };
 		AA04A /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA14A /* CachedAsyncImage.swift */; };
 		AA048 /* KakaoPlaceDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA148 /* KakaoPlaceDetailService.swift */; };
-		AA049 /* OdsayTransitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA149 /* OdsayTransitService.swift */; };
 		AA050 /* SubwayExitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA150 /* SubwayExitService.swift */; };
 		AA051 /* SubwayExits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA151 /* SubwayExits.json */; };
 		AA052 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AA154 /* PrivacyInfo.xcprivacy */; };
@@ -106,21 +97,13 @@
 		9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		AA101 /* KORAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAApp.swift; sourceTree = "<group>"; };
-		AA102 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AA103 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		AA104 /* SaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveView.swift; sourceTree = "<group>"; };
 		AA105 /* SaveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveViewModel.swift; sourceTree = "<group>"; };
 		AA106 /* PlaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
-		AA107 /* GoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoView.swift; sourceTree = "<group>"; };
-		AA108 /* NowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowView.swift; sourceTree = "<group>"; };
-		AA109 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		AA110 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
-		AA111 /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		AA112 /* KORATheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORATheme.swift; sourceTree = "<group>"; };
-		AA113 /* KORAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAButton.swift; sourceTree = "<group>"; };
 		AA114 /* LinkParserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkParserService.swift; sourceTree = "<group>"; };
-		AA115 /* NowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowViewModel.swift; sourceTree = "<group>"; };
-		AA116 /* GoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoViewModel.swift; sourceTree = "<group>"; };
 		AA117 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		AA118 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AA119 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -149,7 +132,6 @@
 		AA147 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		AA14A /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		AA148 /* KakaoPlaceDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceDetailService.swift; sourceTree = "<group>"; };
-		AA149 /* OdsayTransitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdsayTransitService.swift; sourceTree = "<group>"; };
 		AA150 /* SubwayExitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayExitService.swift; sourceTree = "<group>"; };
 		AA151 /* SubwayExits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SubwayExits.json; sourceTree = "<group>"; };
 		AA152 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
@@ -232,7 +214,6 @@
 			children = (
 				58FF4F082FC47ADC00DF7156 /* KORA.entitlements */,
 				AA101 /* KORAApp.swift */,
-				AA102 /* ContentView.swift */,
 				AA103 /* MainTabView.swift */,
 				AA425 /* Config */,
 				AA410 /* Sources */,
@@ -312,8 +293,6 @@
 		AA421 /* Go */ = {
 			isa = PBXGroup;
 			children = (
-				AA107 /* GoView.swift */,
-				AA116 /* GoViewModel.swift */,
 			);
 			path = Go;
 			sourceTree = "<group>";
@@ -321,8 +300,6 @@
 		AA422 /* Now */ = {
 			isa = PBXGroup;
 			children = (
-				AA108 /* NowView.swift */,
-				AA115 /* NowViewModel.swift */,
 			);
 			path = Now;
 			sourceTree = "<group>";
@@ -330,7 +307,6 @@
 		AA423 /* Share */ = {
 			isa = PBXGroup;
 			children = (
-				AA109 /* ShareView.swift */,
 			);
 			path = Share;
 			sourceTree = "<group>";
@@ -359,7 +335,6 @@
 			isa = PBXGroup;
 			children = (
 				AA110 /* Place.swift */,
-				AA111 /* Review.swift */,
 				AA120 /* PlaceStore.swift */,
 			);
 			path = Models;
@@ -368,7 +343,6 @@
 		AA431 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				AA113 /* KORAButton.swift */,
 				AA117 /* EmptyStateView.swift */,
 				AA147 /* SafariView.swift */,
 				AA14A /* CachedAsyncImage.swift */,
@@ -393,7 +367,6 @@
 				AA121 /* KakaoConfig.swift */,
 				AA122 /* KakaoLocalService.swift */,
 				AA148 /* KakaoPlaceDetailService.swift */,
-				AA149 /* OdsayTransitService.swift */,
 				AA130 /* NavigationCoordinator.swift */,
 				AA131 /* LocationService.swift */,
 				AA132 /* SharedInbox.swift */,
@@ -562,26 +535,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA001 /* KORAApp.swift in Sources */,
-				AA002 /* ContentView.swift in Sources */,
 				AA003 /* MainTabView.swift in Sources */,
 				AA004 /* SaveView.swift in Sources */,
 				AA005 /* SaveViewModel.swift in Sources */,
 				AA006 /* PlaceCardView.swift in Sources */,
 				AA043 /* PlaceMapView.swift in Sources */,
 				AA046 /* PlaceDetailSheet.swift in Sources */,
-				AA007 /* GoView.swift in Sources */,
-				AA008 /* NowView.swift in Sources */,
-				AA009 /* ShareView.swift in Sources */,
 				AA010 /* Place.swift in Sources */,
-				AA011 /* Review.swift in Sources */,
 				AA012 /* KORATheme.swift in Sources */,
 				586CF42B2FC87E6B00D2A003 /* NaverConfig.swift in Sources */,
 				586CF42D2FC87E6B00D2A003 /* NaverLocalService.swift in Sources */,
 				586CF42F2FC87E6B00D2A003 /* PlaceSearchService.swift in Sources */,
-				AA013 /* KORAButton.swift in Sources */,
 				AA014 /* LinkParserService.swift in Sources */,
-				AA015 /* NowViewModel.swift in Sources */,
-				AA016 /* GoViewModel.swift in Sources */,
 				AA017 /* EmptyStateView.swift in Sources */,
 				AA047 /* SafariView.swift in Sources */,
 				AA04A /* CachedAsyncImage.swift in Sources */,
@@ -589,7 +554,6 @@
 				AA021 /* KakaoConfig.swift in Sources */,
 				AA022 /* KakaoLocalService.swift in Sources */,
 				AA048 /* KakaoPlaceDetailService.swift in Sources */,
-				AA049 /* OdsayTransitService.swift in Sources */,
 				AA030 /* NavigationCoordinator.swift in Sources */,
 				AA031 /* LocationService.swift in Sources */,
 				AA032 /* SharedInbox.swift in Sources */,

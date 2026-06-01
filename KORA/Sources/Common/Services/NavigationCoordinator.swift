@@ -16,7 +16,8 @@ final class NavigationCoordinator {
     /// use the nearest station as the journey's `from`.
     var autoFromCurrentLocation: Bool = false
     /// Real-world coordinates of the destination place (not the subway station).
-    /// Used to fetch exit number from Odsay API.
+    /// Used by SubwayExitService to pick the closest exit at the alighting
+    /// station.
     var destinationCoordinate: Coordinate? = nil
     var destinationPlaceName: String? = nil
     var destinationPlaceID: UUID? = nil

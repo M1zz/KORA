@@ -11,22 +11,18 @@ struct Place: Identifiable, Codable, Hashable {
     var address: String
     var addressJP: String
     var coordinate: Coordinate
-    var openingHours: OpeningHours?
-    var priceRange: PriceRange
     var nearestStation: String
-    var tags: [String]
     var sourceURL: String?
     var imageURL: String?
     /// Full gallery — Kakao official photos first, Naver image-search photos
     /// after. `imageURL` (the cover) is always `photoURLs.first` when this is
     /// populated. nil on legacy saves until backfill runs.
     var photoURLs: [String]?
-    var waitMinutes: Int?
-    var isOpen: Bool
     var savedAt: Date
     var phone: String?
     var kakaoMapURL: String?
-    /// User-confirmed exit number at the nearest station. Overrides Odsay suggestion.
+    /// User-confirmed exit number at the nearest station. Overrides the auto
+    /// `SubwayExitService` lookup when present.
     var exitNo: String?
 
     init(
@@ -37,15 +33,10 @@ struct Place: Identifiable, Codable, Hashable {
         address: String,
         addressJP: String,
         coordinate: Coordinate,
-        openingHours: OpeningHours? = nil,
-        priceRange: PriceRange = .moderate,
         nearestStation: String = "",
-        tags: [String] = [],
         sourceURL: String? = nil,
         imageURL: String? = nil,
         photoURLs: [String]? = nil,
-        waitMinutes: Int? = nil,
-        isOpen: Bool = true,
         savedAt: Date = Date(),
         phone: String? = nil,
         kakaoMapURL: String? = nil,
@@ -58,15 +49,10 @@ struct Place: Identifiable, Codable, Hashable {
         self.address = address
         self.addressJP = addressJP
         self.coordinate = coordinate
-        self.openingHours = openingHours
-        self.priceRange = priceRange
         self.nearestStation = nearestStation
-        self.tags = tags
         self.sourceURL = sourceURL
         self.imageURL = imageURL
         self.photoURLs = photoURLs
-        self.waitMinutes = waitMinutes
-        self.isOpen = isOpen
         self.savedAt = savedAt
         self.phone = phone
         self.kakaoMapURL = kakaoMapURL
@@ -154,34 +140,6 @@ enum PlaceCategory: String, Codable, CaseIterable {
         case .attraction:   return "camera.fill"
         case .entertainment: return "music.note"
         case .beauty:       return "sparkles"
-        }
-    }
-}
-
-// MARK: - Opening Hours
-
-struct OpeningHours: Codable, Hashable {
-    let open: String
-    let close: String
-    let closedDays: [String]
-
-    var displayJP: String {
-        "\(open) 〜 \(close)"
-    }
-}
-
-// MARK: - Price Range
-
-enum PriceRange: String, Codable, CaseIterable {
-    case budget = "budget"
-    case moderate = "moderate"
-    case expensive = "expensive"
-
-    var symbolJP: String {
-        switch self {
-        case .budget:    return "₩"
-        case .moderate:  return "₩₩"
-        case .expensive: return "₩₩₩"
         }
     }
 }
