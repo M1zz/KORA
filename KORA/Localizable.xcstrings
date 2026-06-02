@@ -91,16 +91,6 @@
         }
       }
     },
-    "%@〜%@" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@〜%2$@"
-          }
-        }
-      }
-    },
     "%@%@" : {
       "localizations" : {
         "ja" : {
@@ -177,9 +167,6 @@
         }
       }
     },
-    "%@出身" : {
-
-    },
     "%@号線" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -244,9 +231,6 @@
     "%lld" : {
 
     },
-    "%lldm" : {
-
-    },
     "%lld개 결과" : {
 
     },
@@ -261,6 +245,7 @@
       }
     },
     "%lld人が参考になった" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -270,10 +255,8 @@
         }
       }
     },
-    "%lld件" : {
-
-    },
     "%lld分待ち" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -328,9 +311,6 @@
         }
       }
     },
-    "⛩️" : {
-
-    },
     "📍 GPSで自動取得" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -358,12 +338,6 @@
           }
         }
       }
-    },
-    "🗼" : {
-
-    },
-    "🦌" : {
-
     },
     "🚉 駅を手動で選ぶ" : {
       "extractionState" : "stale",
@@ -671,6 +645,7 @@
       }
     },
     "Now" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -703,6 +678,7 @@
       }
     },
     "Saveタブでスポットを保存すると\nここでレビューを書けます" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -713,6 +689,7 @@
       }
     },
     "Share" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -942,6 +919,7 @@
 
     },
     "キャンセル" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1007,6 +985,7 @@
       }
     },
     "このスポットのレビューはまだありません" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1140,6 +1119,7 @@
       }
     },
     "タグを選ぶ" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1260,6 +1240,7 @@
       }
     },
     "まだレビューがありません" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1364,6 +1345,7 @@
       }
     },
     "レビューを書く" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1660,6 +1642,7 @@
       }
     },
     "今すぐ行ける" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -1681,6 +1664,7 @@
       }
     },
     "今日のイベント" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2025,6 +2009,7 @@
       }
     },
     "周辺 2km 以内のスポットとイベントを表示中" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2046,6 +2031,7 @@
       }
     },
     "営業中のみ" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2224,6 +2210,7 @@
       }
     },
     "実際に行った人だけが書けるレビュー" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2245,6 +2232,7 @@
       }
     },
     "弘大エリア付近" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2255,6 +2243,7 @@
       }
     },
     "待ちなし" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2337,6 +2326,7 @@
       }
     },
     "日本人旅行者のリアルな声" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2380,6 +2370,7 @@
       }
     },
     "更新" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2878,6 +2869,7 @@
       }
     },
     "経路を計算中..." : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2960,6 +2952,7 @@
       }
     },
     "訪問済み" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
@@ -2970,6 +2963,7 @@
       }
     },
     "評価" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ko" : {
           "stringUnit" : {
