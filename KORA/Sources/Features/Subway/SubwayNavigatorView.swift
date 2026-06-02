@@ -775,7 +775,8 @@ struct SubwayNavigatorView: View {
 
     private func finishedBlock(j: TransferJourney) -> some View {
         let destKo = j.segments.last?.stations.last ?? ""
-        let destDisplay = MetroLineData.displayName(for: destKo, language: displayLanguage)
+        // Bilingual on the arrival hero — Hangul is the platform sign anchor.
+        let destDisplay = MetroLineData.displayBilingual(for: destKo, language: displayLanguage)
         let color = j.segments.last?.line.color ?? .green
 
         return VStack(spacing: 18) {
@@ -1273,7 +1274,8 @@ struct SubwayNavigatorView: View {
     /// affordance on the right.
     private var currentStationHeader: some View {
         let ko = fromStation ?? ""
-        let display = MetroLineData.displayName(for: ko, language: displayLanguage)
+        // Bilingual on the prominent current-station header.
+        let display = MetroLineData.displayBilingual(for: ko, language: displayLanguage)
         let lines = MetroLineData.linesContaining(ko)
         let primaryColor = lines.first.map { MetroLineData.lineColor($0) } ?? KORATheme.accent
 
@@ -1938,7 +1940,7 @@ struct SubwayNavigatorView: View {
                     HStack(spacing: 4) {
                         Image(systemName: "tram.fill")
                             .font(.body)
-                        Text(MetroLineData.displayName(for: place.nearestStation, language: displayLanguage))
+                        Text(MetroLineData.displayBilingual(for: place.nearestStation, language: displayLanguage))
                     }
                     .font(.body)
                     .foregroundStyle(KORATheme.labelSecondary)

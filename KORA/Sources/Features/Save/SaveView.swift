@@ -92,6 +92,8 @@ struct SaveView: View {
     @State private var editingPlace: Place? = nil
     @State private var detailPlace: Place? = nil
     @State private var coordinator = NavigationCoordinator.shared
+    // Drives a wider grid on iPad without touching the iPhone path.
+    @Environment(\.horizontalSizeClass) private var sizeClass
 
     @AppStorage("kora.display_language") private var languagePref: String = ""
 
@@ -366,13 +368,15 @@ struct SaveView: View {
                 let sorted = viewModel.savedPlaces.sorted { $0.savedAt > $1.savedAt }
                 VStack(alignment: .leading, spacing: 0) {
                     voiceOverHeading(count: sorted.count)
-                    LazyVGrid(
-                        columns: [
-                            GridItem(.flexible(), spacing: 12),
-                            GridItem(.flexible(), spacing: 12)
-                        ],
-                        spacing: 12
-                    ) {
+                    // iPhone: keep the existing 2-col layout untouched.
+                    // iPad (regular size class): adaptive columns so the
+                    // grid widens with the screen instead of producing two
+                    // gigantic cards on a 13-inch device.
+                    let columns: [GridItem] = sizeClass == .regular
+                        ? [GridItem(.adaptive(minimum: 180, maximum: 240), spacing: 14)]
+                        : [GridItem(.flexible(), spacing: 12),
+                           GridItem(.flexible(), spacing: 12)]
+                    LazyVGrid(columns: columns, spacing: 12) {
                         ForEach(sorted) { place in
                             PlaceCardView(
                                 place: place,

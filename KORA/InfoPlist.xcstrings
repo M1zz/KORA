@@ -1,0 +1,57 @@
+{
+  "sourceLanguage" : "ko",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "한국 길찾기" }
+        },
+        "ja" : {
+          "stringUnit" : { "state" : "translated", "value" : "韓国ナビ" }
+        },
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Korea Wayfinder" }
+        },
+        "zh-Hans" : {
+          "stringUnit" : { "state" : "translated", "value" : "韩国导航" }
+        }
+      }
+    },
+    "NSLocationWhenInUseUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "현재 위치에서 가장 가까운 지하철 역을 찾기 위해 위치 정보를 사용합니다." }
+        },
+        "ja" : {
+          "stringUnit" : { "state" : "translated", "value" : "現在地から最寄りの地下鉄駅を見つけるために位置情報を使用します。" }
+        },
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Used to find the nearest subway station from your current location." }
+        },
+        "zh-Hans" : {
+          "stringUnit" : { "state" : "translated", "value" : "用于查找距您当前位置最近的地铁站。" }
+        }
+      }
+    },
+    "NSPhotoLibraryUsageDescription" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : { "state" : "translated", "value" : "스크린샷이나 사진에서 장소 이름을 추출하기 위해 선택한 이미지에 접근합니다." }
+        },
+        "ja" : {
+          "stringUnit" : { "state" : "translated", "value" : "スクリーンショットや写真からスポット名を抽出するため、選択した画像にアクセスします。" }
+        },
+        "en" : {
+          "stringUnit" : { "state" : "translated", "value" : "Accesses screenshots or photos you select to extract place names via on-device text recognition." }
+        },
+        "zh-Hans" : {
+          "stringUnit" : { "state" : "translated", "value" : "访问您选择的截图或照片，用于设备本地的文本识别以提取地点名称。" }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -14,7 +14,5 @@
 	<string>$(NAVER_CLIENT_ID)</string>
 	<key>NaverClientSecret</key>
 	<string>$(NAVER_CLIENT_SECRET)</string>
-	<key>OdsayAPIKey</key>
-	<string>$(ODSAY_API_KEY)</string>
 </dict>
 </plist>

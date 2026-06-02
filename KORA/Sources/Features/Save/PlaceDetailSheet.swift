@@ -279,11 +279,10 @@ struct PlaceDetailSheet: View {
     private var primaryAddress: String { lang == .korean ? current.address  : current.addressJP }
 
     private var stationDisplay: String {
-        let n = MetroLineData.displayName(for: current.nearestStation, language: lang)
-        switch lang {
-        case .korean: return "\(n)역"; case .japanese: return "\(n)駅"
-        case .english: return "\(n) Stn."; case .chinese: return "\(n)站"
-        }
+        // Keep Hangul as the anchor; append the localised reading in parens
+        // so non-Korean speakers can still match a Seoul platform sign.
+        if lang == .korean { return "\(current.nearestStation)역" }
+        return MetroLineData.displayBilingual(for: current.nearestStation, language: lang)
     }
     private var hoursLabel: String {
         switch lang {

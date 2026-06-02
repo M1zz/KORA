@@ -327,13 +327,13 @@ struct PlaceCardView: View {
     // MARK: - Computed labels
 
     private func stationDisplay(for station: String) -> String {
-        let name = MetroLineData.displayName(for: station, language: lang)
-        switch lang {
-        case .korean:   return "\(name)역"
-        case .japanese: return "\(name)駅"
-        case .english:  return "\(name) Stn."
-        case .chinese:  return "\(name)站"
+        // Station names are proper nouns — keep the Hangul as the anchor so
+        // users on any platform sign can match it; the localised reading
+        // rides along in parentheses in non-Korean modes.
+        if lang == .korean {
+            return "\(station)역"
         }
+        return MetroLineData.displayBilingual(for: station, language: lang)
     }
 
     private var directionsLabel: String {

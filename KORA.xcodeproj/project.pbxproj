@@ -53,6 +53,7 @@
 		AA050 /* SubwayExitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA150 /* SubwayExitService.swift */; };
 		AA051 /* SubwayExits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA151 /* SubwayExits.json */; };
 		AA052 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AA154 /* PrivacyInfo.xcprivacy */; };
+		AA053 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AA155 /* InfoPlist.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -137,6 +138,7 @@
 		AA152 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		AA153 /* Secrets.sample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.sample.xcconfig; sourceTree = "<group>"; };
 		AA154 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		AA155 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -222,6 +224,7 @@
 				AA124 /* seoul_metro.pdf */,
 				AA128 /* subway_jp.pdf */,
 				AA154 /* PrivacyInfo.xcprivacy */,
+				AA155 /* InfoPlist.xcstrings */,
 			);
 			path = KORA;
 			sourceTree = "<group>";
@@ -509,6 +512,7 @@
 				AA024 /* seoul_metro.pdf in Resources */,
 				AA051 /* SubwayExits.json in Resources */,
 				AA052 /* PrivacyInfo.xcprivacy in Resources */,
+				AA053 /* InfoPlist.xcstrings in Resources */,
 				AA028 /* subway_jp.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -847,9 +851,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "한국 길찾기";
-				INFOPLIST_KEY_NSCameraUsageDescription = "カメラでQRコードをスキャンします。";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "周辺のホットプレイスとリアルタイム情報を提供します。";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "スポットの写真を保存します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -865,7 +866,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -881,9 +882,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "한국 길찾기";
-				INFOPLIST_KEY_NSCameraUsageDescription = "カメラでQRコードをスキャンします。";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "周辺のホットプレイスとリアルタイム情報を提供します。";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "スポットの写真を保存します。";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -899,7 +897,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

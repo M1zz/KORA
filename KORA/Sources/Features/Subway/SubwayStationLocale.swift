@@ -579,6 +579,25 @@ extension MetroLineData {
         language == .korean ? nil : ko
     }
 
+    /// Korean original kept as the primary identifier, with the localised
+    /// reading appended in parentheses for non-Korean modes. We do this
+    /// rather than just translating because station names are proper
+    /// nouns — Japanese tourists also need the Hangul form to read off
+    /// the platform signs in Seoul.
+    ///
+    ///   "강남" (.korean)   → "강남"
+    ///   "강남" (.japanese) → "강남 (江南)"
+    ///   "강남" (.english)  → "강남 (Gangnam)"
+    ///   "강남" (.chinese)  → "강남 (江南)"
+    ///
+    /// When the translation is identical to the Korean (or missing), just
+    /// returns the Korean.
+    static func displayBilingual(for ko: String, language: StationLanguage) -> String {
+        guard language != .korean else { return ko }
+        let translated = displayName(for: ko, language: language)
+        return translated == ko ? ko : "\(ko) (\(translated))"
+    }
+
     // MARK: - Kana sectioning
 
     /// Canonical order of kana row headers used for sectioned station lists.
