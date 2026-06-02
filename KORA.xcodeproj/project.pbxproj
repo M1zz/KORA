@@ -48,8 +48,8 @@
 		AA045 /* TransitPositionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA145 /* TransitPositionTracker.swift */; };
 		AA046 /* PlaceDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA146 /* PlaceDetailSheet.swift */; };
 		AA047 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA147 /* SafariView.swift */; };
-		AA04A /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA14A /* CachedAsyncImage.swift */; };
 		AA048 /* KakaoPlaceDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA148 /* KakaoPlaceDetailService.swift */; };
+		AA04A /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA14A /* CachedAsyncImage.swift */; };
 		AA050 /* SubwayExitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA150 /* SubwayExitService.swift */; };
 		AA051 /* SubwayExits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA151 /* SubwayExits.json */; };
 		AA052 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AA154 /* PrivacyInfo.xcprivacy */; };
@@ -131,8 +131,8 @@
 		AA145 /* TransitPositionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitPositionTracker.swift; sourceTree = "<group>"; };
 		AA146 /* PlaceDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailSheet.swift; sourceTree = "<group>"; };
 		AA147 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
-		AA14A /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		AA148 /* KakaoPlaceDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceDetailService.swift; sourceTree = "<group>"; };
+		AA14A /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		AA150 /* SubwayExitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayExitService.swift; sourceTree = "<group>"; };
 		AA151 /* SubwayExits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SubwayExits.json; sourceTree = "<group>"; };
 		AA152 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
@@ -229,15 +229,6 @@
 			path = KORA;
 			sourceTree = "<group>";
 		};
-		AA425 /* Config */ = {
-			isa = PBXGroup;
-			children = (
-				AA152 /* Secrets.xcconfig */,
-				AA153 /* Secrets.sample.xcconfig */,
-			);
-			path = Config;
-			sourceTree = "<group>";
-		};
 		AA402 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +323,15 @@
 				AA151 /* SubwayExits.json */,
 			);
 			path = Subway;
+			sourceTree = "<group>";
+		};
+		AA425 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				AA152 /* Secrets.xcconfig */,
+				AA153 /* Secrets.sample.xcconfig */,
+			);
+			path = Config;
 			sourceTree = "<group>";
 		};
 		AA430 /* Models */ = {
@@ -864,9 +864,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -895,9 +897,11 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
