@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import WidgetKit
 
 @MainActor
 @Observable
@@ -43,6 +44,25 @@ final class PlaceStore {
         if let data = try? JSONEncoder().encode(places) {
             UserDefaults.standard.set(data, forKey: storageKey)
         }
+        syncWidgetData()
+    }
+
+    private func syncWidgetData() {
+        struct WidgetPlace: Codable {
+            let name: String
+            let nameJP: String
+            let nearestStation: String
+            let categoryRaw: String
+        }
+        let recent = places.prefix(3).map {
+            WidgetPlace(name: $0.name, nameJP: $0.nameJP,
+                        nearestStation: $0.nearestStation, categoryRaw: $0.category.rawValue)
+        }
+        if let defaults = UserDefaults(suiteName: "group.com.kora.leeo"),
+           let data = try? JSONEncoder().encode(recent) {
+            defaults.set(data, forKey: "kora.widget.recentPlaces")
+        }
+        WidgetCenter.shared.reloadTimelines(ofKind: "KoreaWayWidget")
     }
 
     private func load() {

@@ -1,54 +1,37 @@
-//
-//  widgetControl.swift
-//  widget
-//
-//  Created by Leeo on 5/27/26.
-//
-
 import AppIntents
 import SwiftUI
 import WidgetKit
 
-struct widgetControl: ControlWidget {
+/// Control Centre button that opens the KoreaWay subway navigator directly.
+@available(iOS 18.0, *)
+struct KoreaWayNavigatorControl: ControlWidget {
     var body: some ControlWidgetConfiguration {
         StaticControlConfiguration(
-            kind: "com.kora.leeo.widget",
+            kind: "com.kora.leeo.widget.navigator",
             provider: Provider()
-        ) { value in
-            ControlWidgetToggle(
-                "Start Timer",
-                isOn: value,
-                action: StartTimerIntent()
-            ) { isRunning in
-                Label(isRunning ? "On" : "Off", systemImage: "timer")
+        ) { _ in
+            ControlWidgetButton(action: OpenNavigatorIntent()) {
+                Label("지하철 안내", systemImage: "tram.fill")
             }
         }
-        .displayName("Timer")
-        .description("A an example control that runs a timer.")
+        .displayName("지하철 안내")
+        .description("KoreaWay 지하철 네비게이터를 바로 엽니다.")
     }
 }
 
-extension widgetControl {
+@available(iOS 18.0, *)
+extension KoreaWayNavigatorControl {
     struct Provider: ControlValueProvider {
-        var previewValue: Bool {
-            false
-        }
-
-        func currentValue() async throws -> Bool {
-            let isRunning = true // Check if the timer is running
-            return isRunning
-        }
+        var previewValue: Bool { true }
+        func currentValue() async throws -> Bool { true }
     }
 }
 
-struct StartTimerIntent: SetValueIntent {
-    static let title: LocalizedStringResource = "Start a timer"
-
-    @Parameter(title: "Timer is running")
-    var value: Bool
+struct OpenNavigatorIntent: AppIntent {
+    static let title: LocalizedStringResource = "지하철 안내 열기"
+    static let openAppWhenRun: Bool = true
 
     func perform() async throws -> some IntentResult {
-        // Start / stop the timer based on `value`.
         return .result()
     }
 }
