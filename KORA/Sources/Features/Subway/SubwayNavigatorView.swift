@@ -245,16 +245,31 @@ struct SubwayNavigatorView: View {
                 if let j = journey {
                     if journeyConfirmed {
                         activeStepHost(for: j)
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .trailing).combined(with: .opacity),
+                                removal:   .move(edge: .leading).combined(with: .opacity)
+                            ))
                     } else {
                         journeyConfirmView(for: j)
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .bottom).combined(with: .opacity),
+                                removal:   .move(edge: .bottom).combined(with: .opacity)
+                            ))
                     }
                 } else if fromStation != nil && toStation != nil {
-                    currentStationHeader
-                    noRouteView
+                    VStack(spacing: 0) {
+                        currentStationHeader
+                        noRouteView
+                    }
+                    .transition(.opacity)
                 } else {
                     destinationFocusBody
+                        .transition(.opacity)
                 }
             }
+            .animation(.spring(response: 0.38, dampingFraction: 0.82), value: journey == nil)
+            .animation(.spring(response: 0.38, dampingFraction: 0.82), value: journeyConfirmed)
+
             if let j = journey, journeyConfirmed {
                 boardingActionBar(for: j)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
@@ -1354,19 +1369,19 @@ struct SubwayNavigatorView: View {
                 fromInputCard
 
                 // Vertical arrow connector between departure and destination
-                VStack(spacing: 0) {
+                VStack(spacing: 2) {
                     Rectangle()
-                        .fill(KORATheme.labelTertiary.opacity(0.3))
-                        .frame(width: 2, height: 10)
-                    Image(systemName: "arrow.down")
-                        .font(.footnote).fontWeight(.bold)
-                        .foregroundStyle(KORATheme.labelTertiary.opacity(0.7))
+                        .fill(KORATheme.accent.opacity(0.35))
+                        .frame(width: 2.5, height: 14)
+                    Image(systemName: "arrow.down.circle.fill")
+                        .font(.title2)
+                        .foregroundStyle(KORATheme.accent.opacity(0.6))
                     Rectangle()
-                        .fill(KORATheme.labelTertiary.opacity(0.3))
-                        .frame(width: 2, height: 10)
+                        .fill(KORATheme.accent.opacity(0.35))
+                        .frame(width: 2.5, height: 14)
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
-                .padding(.vertical, 2)
+                .padding(.vertical, 4)
 
                 destinationCTA
             }
