@@ -1371,14 +1371,14 @@ struct SubwayNavigatorView: View {
                 // Vertical arrow connector between departure and destination
                 VStack(spacing: 2) {
                     Rectangle()
-                        .fill(KORATheme.accent.opacity(0.35))
-                        .frame(width: 2.5, height: 14)
+                        .fill(KORATheme.accent.opacity(0.6))
+                        .frame(width: 3, height: 16)
                     Image(systemName: "arrow.down.circle.fill")
-                        .font(.title2)
-                        .foregroundStyle(KORATheme.accent.opacity(0.6))
+                        .font(.title)
+                        .foregroundStyle(KORATheme.accent)
                     Rectangle()
-                        .fill(KORATheme.accent.opacity(0.35))
-                        .frame(width: 2.5, height: 14)
+                        .fill(KORATheme.accent.opacity(0.6))
+                        .frame(width: 3, height: 16)
                 }
                 .frame(maxWidth: .infinity, alignment: .center)
                 .padding(.vertical, 4)
@@ -1471,7 +1471,7 @@ struct SubwayNavigatorView: View {
             .background(RoundedRectangle(cornerRadius: 20).fill(Color(.systemBackground)))
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
-                    .strokeBorder(ko != nil ? primaryColor : KORATheme.accent.opacity(0.4),
+                    .strokeBorder(ko != nil ? primaryColor : KORATheme.accent,
                                   lineWidth: 4)
             )
             .contentShape(RoundedRectangle(cornerRadius: 20))
@@ -1824,8 +1824,8 @@ struct SubwayNavigatorView: View {
         let toKo   = toStation   ?? ""
         let fromDisplay = MetroLineData.displayBilingual(for: fromKo, language: displayLanguage)
         let toDisplay   = MetroLineData.displayBilingual(for: toKo,   language: displayLanguage)
-        let fromLines   = MetroLineData.linesContaining(fromKo)
-        let toLines     = MetroLineData.linesContaining(toKo)
+        let fromRelevantLines = j.segments.isEmpty ? [] : [j.segments[0].line.number]
+        let toRelevantLines   = j.segments.isEmpty ? [] : [j.segments.last!.line.number]
         let transfers   = max(j.segments.count - 1, 0)
         let totalStops  = j.segments.reduce(0) { $0 + $1.stopCount }
 
@@ -1835,8 +1835,8 @@ struct SubwayNavigatorView: View {
                 // ── Route summary card ────────────────────────────────
                 VStack(spacing: 0) {
                     // Departure
-                    routeStationRow(ko: fromKo, display: fromDisplay, lines: fromLines,
-                                    badge: departureLabel, badgeColor: KORATheme.accent.opacity(0.85))
+                    routeStationRow(ko: fromKo, display: fromDisplay, lines: fromRelevantLines,
+                                    badge: departureLabel, badgeColor: KORATheme.accent)
 
                     // Per-segment: connector rail then transfer station (except last)
                     ForEach(j.segments.indices, id: \.self) { idx in
@@ -1844,15 +1844,15 @@ struct SubwayNavigatorView: View {
                         routeSegmentRail(seg: seg)
                         if idx < j.segments.count - 1, let xfrKo = seg.stations.last {
                             let xfrDisplay = MetroLineData.displayBilingual(for: xfrKo, language: displayLanguage)
-                            let xfrLines   = MetroLineData.linesContaining(xfrKo)
+                            let xfrLines   = [seg.line.number, j.segments[idx + 1].line.number]
                             routeStationRow(ko: xfrKo, display: xfrDisplay, lines: xfrLines,
-                                            badge: transferLabel, badgeColor: .orange.opacity(0.85))
+                                            badge: transferLabel, badgeColor: .orange)
                         }
                     }
 
                     // Destination
-                    routeStationRow(ko: toKo, display: toDisplay, lines: toLines,
-                                    badge: arrivalLabel, badgeColor: .green.opacity(0.8))
+                    routeStationRow(ko: toKo, display: toDisplay, lines: toRelevantLines,
+                                    badge: arrivalLabel, badgeColor: .green)
                 }
                 .background(Color(.systemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 18))
@@ -1912,64 +1912,69 @@ struct SubwayNavigatorView: View {
 
     private func routeStationRow(ko: String, display: String, lines: [Int],
                                   badge: String, badgeColor: Color) -> some View {
-        HStack(alignment: .center, spacing: 12) {
-            VStack(spacing: 3) {
+        HStack(alignment: .center, spacing: 14) {
+            // Line badges — fixed-size circles
+            HStack(spacing: 5) {
                 ForEach(lines.prefix(3), id: \.self) { num in
                     Text(MetroLineData.lineBadgeText(num))
-                        .font(.caption2).fontWeight(.black)
+                        .font(.callout).fontWeight(.black)
                         .foregroundStyle(.white)
-                        .padding(.horizontal, 5).padding(.vertical, 3)
+                        .minimumScaleFactor(0.45)
+                        .lineLimit(1)
+                        .frame(width: 36, height: 36)
                         .background(MetroLineData.lineColor(num))
-                        .clipShape(Capsule())
+                        .clipShape(Circle())
                 }
             }
-            .frame(minWidth: 32)
-            VStack(alignment: .leading, spacing: 1) {
+            .frame(minWidth: 40)
+            VStack(alignment: .leading, spacing: 3) {
                 Text(display)
-                    .font(.title3).fontWeight(.black)
+                    .font(.title2).fontWeight(.black)
                     .foregroundStyle(KORATheme.labelPrimary)
                     .lineLimit(2)
                 if displayLanguage != .korean {
                     Text(ko)
-                        .font(.callout)
+                        .font(.body)
                         .foregroundStyle(KORATheme.labelSecondary)
                 }
             }
             Spacer()
             Text(badge)
-                .font(.caption2).fontWeight(.semibold)
+                .font(.callout).fontWeight(.bold)
                 .foregroundStyle(.white)
-                .padding(.horizontal, 7).padding(.vertical, 3)
+                .padding(.horizontal, 11).padding(.vertical, 5)
                 .background(badgeColor)
                 .clipShape(Capsule())
         }
-        .padding(.horizontal, 18).padding(.vertical, 14)
+        .padding(.horizontal, 18).padding(.vertical, 16)
     }
 
     private func routeSegmentRail(seg: JourneySegment) -> some View {
         HStack(spacing: 0) {
-            // Vertical colored rail — aligns with badge column center
-            seg.line.color.opacity(0.45)
+            // Vertical colored rail — aligns with circle badge center (18px leading + 18px half of 36px circle)
+            seg.line.color.opacity(0.5)
                 .frame(width: 3)
-                .padding(.leading, 32)
+                .padding(.leading, 35)
             HStack(spacing: 6) {
                 Text(MetroLineData.lineBadgeText(seg.line.number))
-                    .font(.caption2).fontWeight(.black)
+                    .font(.caption).fontWeight(.black)
                     .foregroundStyle(.white)
-                    .padding(.horizontal, 6).padding(.vertical, 2)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
+                    .frame(width: 26, height: 26)
                     .background(seg.line.color)
-                    .clipShape(Capsule())
+                    .clipShape(Circle())
                 Image(systemName: "arrow.down")
-                    .font(.system(size: 9)).fontWeight(.bold)
-                    .foregroundStyle(seg.line.color.opacity(0.7))
+                    .font(.caption2).fontWeight(.bold)
+                    .foregroundStyle(seg.line.color.opacity(0.8))
                 Text("\(seg.stopCount)\(stopsUnit)")
-                    .font(.caption).fontWeight(.medium)
+                    .font(.callout).fontWeight(.medium)
                     .foregroundStyle(KORATheme.labelSecondary)
             }
             .padding(.leading, 14)
             Spacer()
         }
-        .frame(height: 34)
+        .frame(height: 40)
     }
 
     private var transferLabel: String {
