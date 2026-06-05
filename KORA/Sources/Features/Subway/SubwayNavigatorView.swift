@@ -122,27 +122,8 @@ struct SubwayNavigatorView: View {
         journeys.indices.contains(selectedJourneyIdx) ? journeys[selectedJourneyIdx] : nil
     }
 
-    // Saved places attached to the current "from" station — quick destination suggestions.
-    private var savedPlacesNearby: [Place] {
-        guard let f = fromStation else { return [] }
-        return placeStore.places.filter { !$0.nearestStation.isEmpty && $0.nearestStation != f }
-    }
-    private var savedPlacesAtFromStation: [Place] {
-        guard let f = fromStation else { return [] }
-        return placeStore.places.filter { $0.nearestStation == f }
-    }
-
     var body: some View {
-        Group {
-            if fromStation == nil {
-                welcomeGate
-                    .transition(.opacity)
-            } else {
-                navigatorBody
-                    .transition(.opacity)
-            }
-        }
-        .animation(.easeInOut(duration: 0.25), value: fromStation == nil)
+        navigatorBody
         .sheet(isPresented: $showFromPicker) {
             StationSearchSheet(
                 title: NavLoc.currentStationTitle.resolved(displayLanguage),
@@ -195,7 +176,7 @@ struct SubwayNavigatorView: View {
             // Retry exit lookup once we know the journey is real. The offline
             // service doesn't actually need `fromStation`, but kicking the
             // fetch here is a no-op when nothing's changed and surfaces a
-            // result faster on the welcomeGate → picker → first journey path.
+            // result faster on the picker → first journey path.
             if new != nil { fetchExitInfoIfNeeded() }
         }
         .onChange(of: toStation) { _, new in
@@ -1324,7 +1305,6 @@ struct SubwayNavigatorView: View {
                             .foregroundStyle(KORATheme.labelSecondary)
                             .autoFitLine()
                     }
-                    neighboringStationsLabel(for: ko)
                 }
 
                 Spacer()
@@ -1363,87 +1343,155 @@ struct SubwayNavigatorView: View {
         .popoverTip(LanguageLongPressTip(lang: displayLanguage), arrowEdge: .top)
     }
 
-    // MARK: Neighboring stations
-
-    /// Returns (prev, next) Korean station names for the primary line at `stationKo`.
-    private func neighboringStations(for stationKo: String) -> (prev: String?, next: String?) {
-        let lineNums = MetroLineData.linesContaining(stationKo)
-        guard let lineNum = lineNums.first,
-              let line = MetroLineData.seoulLines.first(where: { $0.number == lineNum }),
-              let route = line.routes.first(where: { $0.stations.contains(stationKo) }),
-              let idx = route.stations.firstIndex(of: stationKo)
-        else { return (nil, nil) }
-        let count = route.stations.count
-        let prev: String? = idx > 0 ? route.stations[idx - 1]
-            : (route.isCircular ? route.stations[count - 1] : nil)
-        let next: String? = idx < count - 1 ? route.stations[idx + 1]
-            : (route.isCircular ? route.stations[0] : nil)
-        return (prev, next)
-    }
-
-    /// "강남 → 역삼" style label: current station name → next station.
-    @ViewBuilder
-    private func neighboringStationsLabel(for stationKo: String) -> some View {
-        let (_, next) = neighboringStations(for: stationKo)
-        if let nextKo = next {
-            let current = MetroLineData.displayName(for: stationKo, language: displayLanguage)
-            let nextName = MetroLineData.displayName(for: nextKo, language: displayLanguage)
-            Text("\(current) → \(nextName)")
-                .font(.callout).fontWeight(.medium)
-                .foregroundStyle(KORATheme.labelSecondary)
-                .lineLimit(1)
-                .minimumScaleFactor(0.38)
-        }
-    }
-
     // MARK: Destination-focused body (no journey yet)
 
-    /// From + To capsules centered vertically as one hero pair, with optional
-    /// saved-place quick routes pinned to the bottom.
+    /// From + To capsules centered vertically with a directional arrow connector.
     private var destinationFocusBody: some View {
-        let hasSaved = !savedPlacesAtFromStation.isEmpty || !savedPlacesNearby.isEmpty
-
-        return VStack(spacing: 0) {
+        VStack(spacing: 0) {
             Spacer(minLength: 0)
+
             VStack(spacing: 0) {
-                currentStationHeader
+                fromInputCard
+
+                // Vertical arrow connector between departure and destination
+                VStack(spacing: 0) {
+                    Rectangle()
+                        .fill(KORATheme.labelTertiary.opacity(0.3))
+                        .frame(width: 2, height: 10)
+                    Image(systemName: "arrow.down")
+                        .font(.footnote).fontWeight(.bold)
+                        .foregroundStyle(KORATheme.labelTertiary.opacity(0.7))
+                    Rectangle()
+                        .fill(KORATheme.labelTertiary.opacity(0.3))
+                        .frame(width: 2, height: 10)
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .padding(.vertical, 2)
+
                 destinationCTA
             }
+
             Spacer(minLength: 0)
-
-            if hasSaved {
-                ScrollView {
-                    VStack(spacing: 16) {
-                        if !savedPlacesAtFromStation.isEmpty {
-                            savedSection(
-                                titleText: Text(NavLoc.savedAtThisStation.resolved(displayLanguage))
-                                    .foregroundStyle(KORATheme.labelSecondary),
-                                places: savedPlacesAtFromStation,
-                                atStation: true
-                            )
-                        }
-
-                        if !savedPlacesNearby.isEmpty {
-                            let fromKo = fromStation ?? ""
-                            let fromName = MetroLineData.displayName(for: fromKo, language: displayLanguage)
-                            let lines = MetroLineData.linesContaining(fromKo)
-                            let lineColor = lines.first.map { MetroLineData.lineColor($0) } ?? KORATheme.accent
-                            let suffix = NavLoc.savedGoToSuffix.resolved(displayLanguage)
-                            let titleText = Text("\(Text(fromName).foregroundStyle(lineColor))\(Text(suffix).foregroundStyle(KORATheme.labelSecondary))")
-                            savedSection(
-                                titleText: titleText,
-                                places: savedPlacesNearby,
-                                atStation: false
-                            )
-                        }
-                    }
-                    .padding(16)
-                    .padding(.bottom, 32)
-                }
-                .frame(maxHeight: 320)
-            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    /// Departure input card — shows selected station or a placeholder when nil.
+    @ViewBuilder
+    private var fromInputCard: some View {
+        let ko = fromStation
+        let lines = ko.map { MetroLineData.linesContaining($0) } ?? []
+        let primaryColor = lines.first.map { MetroLineData.lineColor($0) } ?? KORATheme.accent
+
+        Button {
+            showFromPicker = true
+        } label: {
+            HStack(alignment: .center, spacing: 12) {
+                if let ko = ko {
+                    VStack(spacing: 4) {
+                        ForEach(lines, id: \.self) { num in
+                            let compact = lines.count >= 3
+                            Text(MetroLineData.lineBadgeText(num))
+                                .font(compact ? .subheadline : .body).fontWeight(.black)
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 4)
+                                .frame(minWidth: compact ? 30 : 36, minHeight: compact ? 30 : 36)
+                                .background(MetroLineData.lineColor(num))
+                                .clipShape(Capsule())
+                        }
+                    }
+                    VStack(alignment: .leading, spacing: 2) {
+                        let display = MetroLineData.displayBilingual(for: ko, language: displayLanguage)
+                        ViewThatFits {
+                            Text(display)
+                                .font(.title).fontWeight(.black)
+                                .foregroundStyle(KORATheme.labelPrimary)
+                                .lineLimit(1).minimumScaleFactor(0.72)
+                            Text(display)
+                                .font(.title).fontWeight(.black)
+                                .foregroundStyle(KORATheme.labelPrimary)
+                                .lineLimit(2).fixedSize(horizontal: false, vertical: true)
+                        }
+                        if displayLanguage != .korean {
+                            Text(ko)
+                                .font(.body).fontWeight(.medium)
+                                .foregroundStyle(KORATheme.labelSecondary)
+                                .autoFitLine()
+                        }
+                    }
+                } else {
+                    ZStack {
+                        Circle()
+                            .fill(KORATheme.accent.opacity(0.12))
+                            .frame(width: 36, height: 36)
+                        if isLocating {
+                            ProgressView().tint(KORATheme.accent).scaleEffect(0.8)
+                        } else {
+                            Image(systemName: "location.fill")
+                                .font(.body).fontWeight(.black)
+                                .foregroundStyle(KORATheme.accent)
+                        }
+                    }
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(departurePlaceholderLabel)
+                            .font(.title).fontWeight(.black)
+                            .foregroundStyle(isLocating ? KORATheme.labelSecondary : KORATheme.labelPrimary)
+                        if isLocating {
+                            Text(locatingLabel)
+                                .font(.body)
+                                .foregroundStyle(KORATheme.labelSecondary)
+                        }
+                    }
+                }
+
+                Spacer()
+
+                Image(systemName: "chevron.right")
+                    .font(.body).fontWeight(.bold)
+                    .foregroundStyle(primaryColor.opacity(0.6))
+            }
+            .padding(.vertical, 12)
+            .padding(.leading, 10)
+            .padding(.trailing, 20)
+            .background(RoundedRectangle(cornerRadius: 20).fill(Color(.systemBackground)))
+            .overlay(
+                RoundedRectangle(cornerRadius: 20)
+                    .strokeBorder(ko != nil ? primaryColor : KORATheme.accent.opacity(0.4),
+                                  lineWidth: ko != nil ? 4 : 2)
+            )
+            .contentShape(RoundedRectangle(cornerRadius: 20))
+        }
+        .buttonStyle(.plain)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 6)
+        .highPriorityGesture(
+            LongPressGesture(minimumDuration: 0.6).onEnded { _ in
+                let haptic = UIImpactFeedbackGenerator(style: .medium)
+                haptic.impactOccurred()
+                showLanguagePicker = true
+                Task { await LanguageLongPressTip.didLongPress.donate() }
+            }
+        )
+        .accessibilityAction(named: "언어 변경") { showLanguagePicker = true }
+        .popoverTip(LanguageLongPressTip(lang: displayLanguage), arrowEdge: .top)
+    }
+
+    private var departurePlaceholderLabel: String {
+        switch displayLanguage {
+        case .korean:   return "출발역을 선택해주세요"
+        case .japanese: return "出発駅を選択してください"
+        case .english:  return "Select departure station"
+        case .chinese:  return "请选择出发站"
+        }
+    }
+
+    private var locatingLabel: String {
+        switch displayLanguage {
+        case .korean:   return "현재 위치 확인 중..."
+        case .japanese: return "現在地を確認中..."
+        case .english:  return "Detecting location..."
+        case .chinese:  return "正在定位..."
+        }
     }
 
     /// Destination capsule — visual twin of `currentStationHeader` styled
@@ -1509,132 +1557,6 @@ struct SubwayNavigatorView: View {
             }
         )
         .accessibilityAction(named: "언어 변경") { showLanguagePicker = true }
-    }
-
-    private func savedSection(titleText: Text, places: [Place], atStation: Bool) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                titleText
-                    .font(.body).fontWeight(.semibold)
-                Text("\(places.count)")
-                    .font(.body).fontWeight(.bold)
-                    .foregroundStyle(KORATheme.accent)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 2)
-                    .background(KORATheme.accent.opacity(0.12))
-                    .clipShape(Capsule())
-                Spacer()
-            }
-            ForEach(places) { place in
-                if atStation {
-                    atStationRow(place)
-                } else {
-                    quickRouteRow(place)
-                }
-            }
-        }
-    }
-
-    // MARK: Welcome gate (first launch / no current station)
-
-    private var welcomeGate: some View {
-        ZStack {
-            LinearGradient(
-                colors: [KORATheme.accent.opacity(0.12), Color(.systemBackground)],
-                startPoint: .top, endPoint: .bottom
-            )
-            .ignoresSafeArea()
-
-            VStack(spacing: 28) {
-                Spacer()
-
-                VStack(spacing: 18) {
-                    ZStack {
-                        Circle()
-                            .fill(KORATheme.accent.opacity(0.12))
-                            .frame(width: 120, height: 120)
-                        Image(systemName: "location.viewfinder")
-                            .font(.largeTitle).fontWeight(.light)
-                            .foregroundStyle(KORATheme.accent)
-                    }
-                    VStack(spacing: 6) {
-                        Text(NavLoc.welcomeTitle.resolved(displayLanguage))
-                            .font(.title).fontWeight(.bold)
-                            .multilineTextAlignment(.center)
-                        Text(locationError != nil
-                             ? NavLoc.welcomeHintNoGPS.resolved(displayLanguage)
-                             : NavLoc.welcomeHintDefault.resolved(displayLanguage))
-                            .font(.body)
-                            .foregroundStyle(KORATheme.labelSecondary)
-                            .multilineTextAlignment(.center)
-                            .padding(.horizontal, 32)
-                    }
-                    .accessibilityElement(children: .combine)
-                    .accessibilityHint("길게 누르면 언어를 바꿀 수 있어요")
-                    .simultaneousGesture(
-                        LongPressGesture(minimumDuration: 0.5).onEnded { _ in
-                            let haptic = UIImpactFeedbackGenerator(style: .medium)
-                            haptic.impactOccurred()
-                            showLanguagePicker = true
-                            Task { await LanguageLongPressTip.didLongPress.donate() }
-                        }
-                    )
-                    .accessibilityAction(named: "언어 변경") { showLanguagePicker = true }
-                    .popoverTip(LanguageLongPressTip(lang: displayLanguage), arrowEdge: .top)
-                }
-
-                VStack(spacing: 12) {
-                    Button {
-                        Task { await detectCurrentStation() }
-                    } label: {
-                        HStack(spacing: 8) {
-                            Image(systemName: "location.fill")
-                                .font(.body).fontWeight(.semibold)
-                            Text(NavLoc.useGPS.resolved(displayLanguage))
-                                .font(.body).fontWeight(.semibold)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(isLocating ? KORATheme.accent.opacity(0.5) : KORATheme.accent)
-                        .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                    }
-                    .disabled(isLocating)
-
-                    Button {
-                        showFromPicker = true
-                    } label: {
-                        HStack(spacing: 8) {
-                            Image(systemName: "magnifyingglass")
-                                .font(.body).fontWeight(.semibold)
-                            Text(NavLoc.pickStationManually.resolved(displayLanguage))
-                                .font(.body).fontWeight(.semibold)
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 14)
-                        .background(KORATheme.accent.opacity(0.12))
-                        .foregroundStyle(KORATheme.accent)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                    }
-                }
-                .padding(.horizontal, 24)
-
-                if let err = locationError {
-                    Label(err, systemImage: "exclamationmark.triangle.fill")
-                        .font(.body)
-                        .foregroundStyle(.orange)
-                        .padding(.horizontal, 24)
-                        .multilineTextAlignment(.center)
-                }
-
-                Spacer()
-
-                Text(NavLoc.footerNote.resolved(displayLanguage))
-                    .font(.body)
-                    .foregroundStyle(KORATheme.labelTertiary)
-                    .padding(.bottom, 24)
-            }
-        }
     }
 
     private func autoLocateIfNeeded() {
@@ -1878,87 +1800,6 @@ struct SubwayNavigatorView: View {
         } catch {
             locationError = NavLoc.locationErrorFetchFailed.resolved(displayLanguage)
         }
-    }
-
-    // MARK: Summary header (covers direct + transfer journeys)
-
-    // MARK: Journey cards — strictly direction + next station + transfer + destination.
-
-
-    private func atStationRow(_ place: Place) -> some View {
-        HStack(spacing: 12) {
-            Image(systemName: place.category.systemImage)
-                .font(.body)
-                .foregroundStyle(KORATheme.categoryColor(place.category))
-                .frame(width: 32, height: 32)
-                .background(KORATheme.categoryColor(place.category).opacity(0.12))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-
-            VStack(alignment: .leading, spacing: 2) {
-                Text(displayLanguage == .korean ? place.name : place.nameJP)
-                    .font(.body).fontWeight(.semibold)
-                Text(displayLanguage == .korean ? place.nameJP : place.name)
-                    .font(.body)
-                    .foregroundStyle(KORATheme.labelSecondary)
-            }
-            Spacer()
-
-            Text(NavLoc.walkingArrived.resolved(displayLanguage))
-                .font(.body).fontWeight(.semibold)
-                .foregroundStyle(KORATheme.accent)
-                .padding(.horizontal, 8)
-                .padding(.vertical, 4)
-                .background(KORATheme.accent.opacity(0.12))
-                .clipShape(Capsule())
-        }
-        .padding(10)
-        .background(Color(.systemBackground))
-        .overlay(
-            RoundedRectangle(cornerRadius: 10)
-                .stroke(KORATheme.separator, lineWidth: 0.5)
-        )
-        .clipShape(RoundedRectangle(cornerRadius: 10))
-    }
-
-    private func quickRouteRow(_ place: Place) -> some View {
-        Button {
-            toStation = place.nearestStation
-            selectedJourneyIdx = 0
-        } label: {
-            HStack(spacing: 12) {
-                Image(systemName: place.category.systemImage)
-                    .font(.body)
-                    .foregroundStyle(KORATheme.categoryColor(place.category))
-                    .frame(width: 32, height: 32)
-                    .background(KORATheme.categoryColor(place.category).opacity(0.12))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(displayLanguage == .korean ? place.name : place.nameJP)
-                        .font(.body).fontWeight(.semibold)
-                        .foregroundStyle(KORATheme.labelPrimary)
-                    HStack(spacing: 4) {
-                        Image(systemName: "tram.fill")
-                            .font(.body)
-                        Text(MetroLineData.displayBilingual(for: place.nearestStation, language: displayLanguage))
-                    }
-                    .font(.body)
-                    .foregroundStyle(KORATheme.labelSecondary)
-                }
-                Spacer()
-                Image(systemName: "arrow.right.circle.fill")
-                    .font(.title2)
-                    .foregroundStyle(KORATheme.accent)
-            }
-            .padding(10)
-            .background(Color(.systemBackground))
-            .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(KORATheme.separator, lineWidth: 0.5)
-            )
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-        }
-        .buttonStyle(.plain)
     }
 
     private var noRouteView: some View {
