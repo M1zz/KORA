@@ -162,13 +162,6 @@ struct SubwayNavigatorView: View {
             }
         }
         .onAppear {
-            if fromStation == nil, !persistedFromStation.isEmpty {
-                fromStation = persistedFromStation
-            }
-            if toStation == nil, !persistedToStation.isEmpty {
-                toStation = persistedToStation
-                selectedJourneyIdx = 0
-            }
             consumePendingDestination()
             autoLocateIfNeeded()
         }
@@ -1485,10 +1478,10 @@ struct SubwayNavigatorView: View {
 
     private var departurePlaceholderLabel: String {
         switch displayLanguage {
-        case .korean:   return "출발역을 선택해주세요"
-        case .japanese: return "出発駅を選択してください"
-        case .english:  return "Select departure station"
-        case .chinese:  return "请选择出发站"
+        case .korean:   return "어디서 출발하시나요?"
+        case .japanese: return "どこから出発しますか？"
+        case .english:  return "Where are you departing from?"
+        case .chinese:  return "从哪里出发？"
         }
     }
 
