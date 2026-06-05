@@ -113,6 +113,7 @@ struct SubwayNavigatorView: View {
     // Kept so the UI's loading branch still compiles; offline lookup is
     // synchronous, so this is effectively always false now.
     @State private var isFetchingExit = false
+    @State private var journeyConfirmed = false
 
     private var journeys: [TransferJourney] {
         guard let f = fromStation, let t = toStation else { return [] }
@@ -185,12 +186,14 @@ struct SubwayNavigatorView: View {
             // endpoints are known. fetchExitInfoIfNeeded handles the case
             // where fromStation is still nil by returning early.
             exitInfo = nil
+            journeyConfirmed = false
             if new != nil { fetchExitInfoIfNeeded() }
         }
         .onChange(of: coordinator.routeRequestNonce) { _, _ in consumePendingDestination() }
         .onChange(of: journey?.id) { _, _ in
             currentBlockIdx = 0
             boardedAt = nil
+            journeyConfirmed = false
         }
     }
 
@@ -247,7 +250,11 @@ struct SubwayNavigatorView: View {
         ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
                 if let j = journey {
-                    activeStepHost(for: j)
+                    if journeyConfirmed {
+                        activeStepHost(for: j)
+                    } else {
+                        journeyConfirmView(for: j)
+                    }
                 } else if fromStation != nil && toStation != nil {
                     currentStationHeader
                     noRouteView
@@ -255,7 +262,7 @@ struct SubwayNavigatorView: View {
                     destinationFocusBody
                 }
             }
-            if let j = journey {
+            if let j = journey, journeyConfirmed {
                 boardingActionBar(for: j)
                     .transition(.move(edge: .bottom).combined(with: .opacity))
             }
@@ -1799,6 +1806,253 @@ struct SubwayNavigatorView: View {
             locationError = e.errorDescription
         } catch {
             locationError = NavLoc.locationErrorFetchFailed.resolved(displayLanguage)
+        }
+    }
+
+    // MARK: - Journey confirmation
+
+    private func journeyConfirmView(for j: TransferJourney) -> some View {
+        let fromKo = fromStation ?? ""
+        let toKo   = toStation   ?? ""
+        let fromDisplay = MetroLineData.displayBilingual(for: fromKo, language: displayLanguage)
+        let toDisplay   = MetroLineData.displayBilingual(for: toKo,   language: displayLanguage)
+        let fromLines   = MetroLineData.linesContaining(fromKo)
+        let toLines     = MetroLineData.linesContaining(toKo)
+        let transfers   = max(j.segments.count - 1, 0)
+        let totalStops  = j.segments.reduce(0) { $0 + $1.stopCount }
+
+        return ScrollView {
+            VStack(spacing: 20) {
+
+                // ── Route summary card ────────────────────────────────
+                VStack(spacing: 0) {
+
+                    // Departure row
+                    HStack(spacing: 12) {
+                        // Line badges
+                        VStack(spacing: 3) {
+                            ForEach(fromLines.prefix(3), id: \.self) { num in
+                                Text(MetroLineData.lineBadgeText(num))
+                                    .font(.caption2).fontWeight(.black)
+                                    .foregroundStyle(.white)
+                                    .padding(.horizontal, 5).padding(.vertical, 3)
+                                    .background(MetroLineData.lineColor(num))
+                                    .clipShape(Capsule())
+                            }
+                        }
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(fromDisplay)
+                                .font(.title3).fontWeight(.black)
+                                .foregroundStyle(KORATheme.labelPrimary)
+                                .lineLimit(2)
+                            if displayLanguage != .korean {
+                                Text(fromKo)
+                                    .font(.callout)
+                                    .foregroundStyle(KORATheme.labelSecondary)
+                            }
+                        }
+                        Spacer()
+                        Text(departureLabel)
+                            .font(.caption2).fontWeight(.semibold)
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 7).padding(.vertical, 3)
+                            .background(KORATheme.accent.opacity(0.8))
+                            .clipShape(Capsule())
+                    }
+                    .padding(.horizontal, 18).padding(.vertical, 14)
+
+                    // Connector line + segments chips
+                    HStack(spacing: 0) {
+                        // Left rail line
+                        Rectangle()
+                            .fill(KORATheme.labelTertiary.opacity(0.25))
+                            .frame(width: 2)
+                            .padding(.leading, 29)
+
+                        // Segment line chips
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack(spacing: 6) {
+                                ForEach(j.segments.indices, id: \.self) { idx in
+                                    let seg = j.segments[idx]
+                                    HStack(spacing: 4) {
+                                        Text(MetroLineData.lineBadgeText(seg.line.number))
+                                            .font(.caption2).fontWeight(.black)
+                                            .foregroundStyle(.white)
+                                            .padding(.horizontal, 5).padding(.vertical, 2)
+                                            .background(seg.line.color)
+                                            .clipShape(Capsule())
+                                        Text("\(seg.stopCount)\(stopsUnit)")
+                                            .font(.caption2).fontWeight(.medium)
+                                            .foregroundStyle(KORATheme.labelSecondary)
+                                    }
+                                    if idx < j.segments.count - 1 {
+                                        Image(systemName: "arrow.right")
+                                            .font(.system(size: 9)).fontWeight(.semibold)
+                                            .foregroundStyle(KORATheme.labelTertiary)
+                                    }
+                                }
+                            }
+                            .padding(.horizontal, 14).padding(.vertical, 10)
+                        }
+                    }
+                    .frame(height: 40)
+
+                    Divider().padding(.horizontal, 18)
+
+                    // Destination row
+                    HStack(spacing: 12) {
+                        VStack(spacing: 3) {
+                            ForEach(toLines.prefix(3), id: \.self) { num in
+                                Text(MetroLineData.lineBadgeText(num))
+                                    .font(.caption2).fontWeight(.black)
+                                    .foregroundStyle(.white)
+                                    .padding(.horizontal, 5).padding(.vertical, 3)
+                                    .background(MetroLineData.lineColor(num))
+                                    .clipShape(Capsule())
+                            }
+                        }
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(toDisplay)
+                                .font(.title3).fontWeight(.black)
+                                .foregroundStyle(KORATheme.labelPrimary)
+                                .lineLimit(2)
+                            if displayLanguage != .korean {
+                                Text(toKo)
+                                    .font(.callout)
+                                    .foregroundStyle(KORATheme.labelSecondary)
+                            }
+                        }
+                        Spacer()
+                        Text(arrivalLabel)
+                            .font(.caption2).fontWeight(.semibold)
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 7).padding(.vertical, 3)
+                            .background(Color.green.opacity(0.75))
+                            .clipShape(Capsule())
+                    }
+                    .padding(.horizontal, 18).padding(.vertical, 14)
+                }
+                .background(Color(.systemBackground))
+                .clipShape(RoundedRectangle(cornerRadius: 18))
+                .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+
+                // ── Summary chips ─────────────────────────────────────
+                HStack(spacing: 10) {
+                    summaryChip(
+                        icon: transfers == 0 ? "tram.fill" : "arrow.triangle.2.circlepath",
+                        label: transferSummary(transfers)
+                    )
+                    summaryChip(icon: "mappin.and.ellipse", label: "\(totalStops)\(stopsUnit)")
+                }
+
+                // ── Action buttons ────────────────────────────────────
+                VStack(spacing: 10) {
+                    Button {
+                        withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
+                            journeyConfirmed = true
+                        }
+                    } label: {
+                        HStack(spacing: 8) {
+                            Image(systemName: "tram.fill")
+                                .font(.body).fontWeight(.semibold)
+                            Text(startJourneyLabel)
+                                .font(.body).fontWeight(.bold)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(KORATheme.accent)
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                    }
+                    .buttonStyle(.plain)
+
+                    Button {
+                        toStation = nil
+                        selectedJourneyIdx = 0
+                    } label: {
+                        Text(changeDestinationLabel)
+                            .font(.body).fontWeight(.semibold)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 14)
+                            .background(KORATheme.accent.opacity(0.1))
+                            .foregroundStyle(KORATheme.accent)
+                            .clipShape(RoundedRectangle(cornerRadius: 14))
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 24)
+            .padding(.bottom, 40)
+        }
+        .scrollIndicators(.hidden)
+    }
+
+    private func summaryChip(icon: String, label: String) -> some View {
+        HStack(spacing: 5) {
+            Image(systemName: icon)
+                .font(.caption).fontWeight(.semibold)
+                .foregroundStyle(KORATheme.accent)
+            Text(label)
+                .font(.callout).fontWeight(.semibold)
+                .foregroundStyle(KORATheme.labelPrimary)
+        }
+        .padding(.horizontal, 14).padding(.vertical, 8)
+        .background(KORATheme.accent.opacity(0.08))
+        .clipShape(Capsule())
+    }
+
+    private var departureLabel: String {
+        switch displayLanguage {
+        case .korean:   return "출발"
+        case .japanese: return "出発"
+        case .english:  return "From"
+        case .chinese:  return "出发"
+        }
+    }
+
+    private var arrivalLabel: String {
+        switch displayLanguage {
+        case .korean:   return "도착"
+        case .japanese: return "到着"
+        case .english:  return "To"
+        case .chinese:  return "到达"
+        }
+    }
+
+    private var stopsUnit: String {
+        switch displayLanguage {
+        case .korean:   return "정거장"
+        case .japanese: return "駅"
+        case .english:  return " stops"
+        case .chinese:  return "站"
+        }
+    }
+
+    private func transferSummary(_ count: Int) -> String {
+        switch displayLanguage {
+        case .korean:   return count == 0 ? "환승 없음" : "\(count)회 환승"
+        case .japanese: return count == 0 ? "乗換なし" : "\(count)回乗換"
+        case .english:  return count == 0 ? "No transfer" : "\(count) transfer\(count > 1 ? "s" : "")"
+        case .chinese:  return count == 0 ? "无换乘" : "换乘\(count)次"
+        }
+    }
+
+    private var startJourneyLabel: String {
+        switch displayLanguage {
+        case .korean:   return "출발하기"
+        case .japanese: return "出発する"
+        case .english:  return "Start Journey"
+        case .chinese:  return "开始导航"
+        }
+    }
+
+    private var changeDestinationLabel: String {
+        switch displayLanguage {
+        case .korean:   return "목적지 다시 선택"
+        case .japanese: return "目的地を変更"
+        case .english:  return "Change destination"
+        case .chinese:  return "重新选择目的地"
         }
     }
 
