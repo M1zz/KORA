@@ -1457,7 +1457,7 @@ struct SubwayNavigatorView: View {
             .overlay(
                 RoundedRectangle(cornerRadius: 20)
                     .strokeBorder(ko != nil ? primaryColor : KORATheme.accent.opacity(0.4),
-                                  lineWidth: ko != nil ? 4 : 2)
+                                  lineWidth: 4)
             )
             .contentShape(RoundedRectangle(cornerRadius: 20))
         }
@@ -1819,111 +1819,25 @@ struct SubwayNavigatorView: View {
 
                 // ── Route summary card ────────────────────────────────
                 VStack(spacing: 0) {
+                    // Departure
+                    routeStationRow(ko: fromKo, display: fromDisplay, lines: fromLines,
+                                    badge: departureLabel, badgeColor: KORATheme.accent.opacity(0.85))
 
-                    // Departure row
-                    HStack(spacing: 12) {
-                        // Line badges
-                        VStack(spacing: 3) {
-                            ForEach(fromLines.prefix(3), id: \.self) { num in
-                                Text(MetroLineData.lineBadgeText(num))
-                                    .font(.caption2).fontWeight(.black)
-                                    .foregroundStyle(.white)
-                                    .padding(.horizontal, 5).padding(.vertical, 3)
-                                    .background(MetroLineData.lineColor(num))
-                                    .clipShape(Capsule())
-                            }
-                        }
-                        VStack(alignment: .leading, spacing: 1) {
-                            Text(fromDisplay)
-                                .font(.title3).fontWeight(.black)
-                                .foregroundStyle(KORATheme.labelPrimary)
-                                .lineLimit(2)
-                            if displayLanguage != .korean {
-                                Text(fromKo)
-                                    .font(.callout)
-                                    .foregroundStyle(KORATheme.labelSecondary)
-                            }
-                        }
-                        Spacer()
-                        Text(departureLabel)
-                            .font(.caption2).fontWeight(.semibold)
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 7).padding(.vertical, 3)
-                            .background(KORATheme.accent.opacity(0.8))
-                            .clipShape(Capsule())
-                    }
-                    .padding(.horizontal, 18).padding(.vertical, 14)
-
-                    // Connector line + segments chips
-                    HStack(spacing: 0) {
-                        // Left rail line
-                        Rectangle()
-                            .fill(KORATheme.labelTertiary.opacity(0.25))
-                            .frame(width: 2)
-                            .padding(.leading, 29)
-
-                        // Segment line chips
-                        ScrollView(.horizontal, showsIndicators: false) {
-                            HStack(spacing: 6) {
-                                ForEach(j.segments.indices, id: \.self) { idx in
-                                    let seg = j.segments[idx]
-                                    HStack(spacing: 4) {
-                                        Text(MetroLineData.lineBadgeText(seg.line.number))
-                                            .font(.caption2).fontWeight(.black)
-                                            .foregroundStyle(.white)
-                                            .padding(.horizontal, 5).padding(.vertical, 2)
-                                            .background(seg.line.color)
-                                            .clipShape(Capsule())
-                                        Text("\(seg.stopCount)\(stopsUnit)")
-                                            .font(.caption2).fontWeight(.medium)
-                                            .foregroundStyle(KORATheme.labelSecondary)
-                                    }
-                                    if idx < j.segments.count - 1 {
-                                        Image(systemName: "arrow.right")
-                                            .font(.system(size: 9)).fontWeight(.semibold)
-                                            .foregroundStyle(KORATheme.labelTertiary)
-                                    }
-                                }
-                            }
-                            .padding(.horizontal, 14).padding(.vertical, 10)
+                    // Per-segment: connector rail then transfer station (except last)
+                    ForEach(j.segments.indices, id: \.self) { idx in
+                        let seg = j.segments[idx]
+                        routeSegmentRail(seg: seg)
+                        if idx < j.segments.count - 1, let xfrKo = seg.stations.last {
+                            let xfrDisplay = MetroLineData.displayBilingual(for: xfrKo, language: displayLanguage)
+                            let xfrLines   = MetroLineData.linesContaining(xfrKo)
+                            routeStationRow(ko: xfrKo, display: xfrDisplay, lines: xfrLines,
+                                            badge: transferLabel, badgeColor: .orange.opacity(0.85))
                         }
                     }
-                    .frame(height: 40)
 
-                    Divider().padding(.horizontal, 18)
-
-                    // Destination row
-                    HStack(spacing: 12) {
-                        VStack(spacing: 3) {
-                            ForEach(toLines.prefix(3), id: \.self) { num in
-                                Text(MetroLineData.lineBadgeText(num))
-                                    .font(.caption2).fontWeight(.black)
-                                    .foregroundStyle(.white)
-                                    .padding(.horizontal, 5).padding(.vertical, 3)
-                                    .background(MetroLineData.lineColor(num))
-                                    .clipShape(Capsule())
-                            }
-                        }
-                        VStack(alignment: .leading, spacing: 1) {
-                            Text(toDisplay)
-                                .font(.title3).fontWeight(.black)
-                                .foregroundStyle(KORATheme.labelPrimary)
-                                .lineLimit(2)
-                            if displayLanguage != .korean {
-                                Text(toKo)
-                                    .font(.callout)
-                                    .foregroundStyle(KORATheme.labelSecondary)
-                            }
-                        }
-                        Spacer()
-                        Text(arrivalLabel)
-                            .font(.caption2).fontWeight(.semibold)
-                            .foregroundStyle(.white)
-                            .padding(.horizontal, 7).padding(.vertical, 3)
-                            .background(Color.green.opacity(0.75))
-                            .clipShape(Capsule())
-                    }
-                    .padding(.horizontal, 18).padding(.vertical, 14)
+                    // Destination
+                    routeStationRow(ko: toKo, display: toDisplay, lines: toLines,
+                                    badge: arrivalLabel, badgeColor: .green.opacity(0.8))
                 }
                 .background(Color(.systemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 18))
@@ -1979,6 +1893,77 @@ struct SubwayNavigatorView: View {
             .padding(.bottom, 40)
         }
         .scrollIndicators(.hidden)
+    }
+
+    private func routeStationRow(ko: String, display: String, lines: [Int],
+                                  badge: String, badgeColor: Color) -> some View {
+        HStack(alignment: .center, spacing: 12) {
+            VStack(spacing: 3) {
+                ForEach(lines.prefix(3), id: \.self) { num in
+                    Text(MetroLineData.lineBadgeText(num))
+                        .font(.caption2).fontWeight(.black)
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 5).padding(.vertical, 3)
+                        .background(MetroLineData.lineColor(num))
+                        .clipShape(Capsule())
+                }
+            }
+            .frame(minWidth: 32)
+            VStack(alignment: .leading, spacing: 1) {
+                Text(display)
+                    .font(.title3).fontWeight(.black)
+                    .foregroundStyle(KORATheme.labelPrimary)
+                    .lineLimit(2)
+                if displayLanguage != .korean {
+                    Text(ko)
+                        .font(.callout)
+                        .foregroundStyle(KORATheme.labelSecondary)
+                }
+            }
+            Spacer()
+            Text(badge)
+                .font(.caption2).fontWeight(.semibold)
+                .foregroundStyle(.white)
+                .padding(.horizontal, 7).padding(.vertical, 3)
+                .background(badgeColor)
+                .clipShape(Capsule())
+        }
+        .padding(.horizontal, 18).padding(.vertical, 14)
+    }
+
+    private func routeSegmentRail(seg: JourneySegment) -> some View {
+        HStack(spacing: 0) {
+            // Vertical colored rail — aligns with badge column center
+            seg.line.color.opacity(0.45)
+                .frame(width: 3)
+                .padding(.leading, 32)
+            HStack(spacing: 6) {
+                Text(MetroLineData.lineBadgeText(seg.line.number))
+                    .font(.caption2).fontWeight(.black)
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 6).padding(.vertical, 2)
+                    .background(seg.line.color)
+                    .clipShape(Capsule())
+                Image(systemName: "arrow.down")
+                    .font(.system(size: 9)).fontWeight(.bold)
+                    .foregroundStyle(seg.line.color.opacity(0.7))
+                Text("\(seg.stopCount)\(stopsUnit)")
+                    .font(.caption).fontWeight(.medium)
+                    .foregroundStyle(KORATheme.labelSecondary)
+            }
+            .padding(.leading, 14)
+            Spacer()
+        }
+        .frame(height: 34)
+    }
+
+    private var transferLabel: String {
+        switch displayLanguage {
+        case .korean:   return "환승"
+        case .japanese: return "乗換"
+        case .english:  return "Transfer"
+        case .chinese:  return "换乘"
+        }
     }
 
     private func summaryChip(icon: String, label: String) -> some View {
