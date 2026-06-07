@@ -156,10 +156,10 @@ extension NavLoc {
         zh: "等待发车"
     )
     static let startOver = NavLoc(
-        ko: "처음부터 다시",
-        ja: "最初からもう一度",
-        en: "Start over",
-        zh: "重新开始"
+        ko: "다른 곳 찾아가기",
+        ja: "別の場所へ行く",
+        en: "Find another place",
+        zh: "去往其他地方"
     )
     static let didYouBoard = NavLoc(
         ko: "탑승했어요?",

@@ -81,26 +81,6 @@
         }
       }
     },
-    "%@ → %@" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ → %2$@"
-          }
-        }
-      }
-    },
-    "%@%@" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@%2$@"
-          }
-        }
-      }
-    },
     "%@역 출발, 다음 정거장 %@역" : {
       "localizations" : {
         "ja" : {
@@ -231,18 +211,18 @@
     "%lld" : {
 
     },
-    "%lld개 결과" : {
-
-    },
-    "%lld호선 막차까지 %lld분 남았습니다. 서둘러 주세요." : {
+    "%lld%@" : {
       "localizations" : {
         "ja" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "%1$lld호선 막차까지 %2$lld분 남았습니다. 서둘러 주세요."
+            "value" : "%1$lld%2$@"
           }
         }
       }
+    },
+    "%lld개 결과" : {
+
     },
     "%lld人が参考になった" : {
       "extractionState" : "stale",
@@ -310,6 +290,9 @@
           }
         }
       }
+    },
+    "+%lld" : {
+
     },
     "📍 GPSで自動取得" : {
       "extractionState" : "stale",
@@ -821,6 +804,9 @@
           }
         }
       }
+    },
+    "출발역 변경" : {
+
     },
     "취소" : {
 

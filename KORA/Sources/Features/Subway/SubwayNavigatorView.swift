@@ -110,10 +110,25 @@ struct SubwayNavigatorView: View {
     /// `place.exitNo` override that takes priority over the auto lookup.
     @State private var destinationPlaceID: UUID? = nil
     @State private var exitInfo: NearestExit? = nil
-    // Kept so the UI's loading branch still compiles; offline lookup is
-    // synchronous, so this is effectively always false now.
-    @State private var isFetchingExit = false
     @State private var journeyConfirmed = false
+    @State private var inTransitTramY: CGFloat = 0
+    @State private var alightShakeCount: Int = 0
+    @State private var maxCompletedIdx: Int = -1
+    @State private var showRevisitAlert = false
+    @State private var revisitFromIdx: Int? = nil
+    @State private var terminiOverride: [Int: String] = [:]
+    @State private var boardDragOffset: CGFloat = 0
+    @State private var boardHapticPhase: Int = 0
+    @State private var transferDragOffset: CGFloat = 0
+    @State private var transferHapticPhase: Int = 0
+    @State private var alightDragOffset: CGFloat = 0
+    @State private var alightHapticPhase: Int = 0
+    /// Which segment index is currently "boarded" (-1 = none). Separate from
+    /// boardedAt so that the old page keeps showing in-transit content while
+    /// the new page slides in during the transfer animation.
+    @State private var boardedSegmentIdx: Int = -1
+    /// Direction of the last page change: true = forward (trailing→leading), false = backward.
+    @State private var pageTransitionForward: Bool = true
 
     private var journeys: [TransferJourney] {
         guard let f = fromStation, let t = toStation else { return [] }
@@ -175,67 +190,22 @@ struct SubwayNavigatorView: View {
         }
         .onChange(of: toStation) { _, new in
             persistedToStation = new ?? ""
-            // Destination changed — clear stale exit and refetch when both
-            // endpoints are known. fetchExitInfoIfNeeded handles the case
-            // where fromStation is still nil by returning early.
             exitInfo = nil
             journeyConfirmed = false
+            maxCompletedIdx = -1
+            revisitFromIdx = nil
+            terminiOverride = [:]
             if new != nil { fetchExitInfoIfNeeded() }
         }
         .onChange(of: coordinator.routeRequestNonce) { _, _ in consumePendingDestination() }
         .onChange(of: journey?.id) { _, _ in
             currentBlockIdx = 0
             boardedAt = nil
+            boardedSegmentIdx = -1
             journeyConfirmed = false
-        }
-    }
-
-    // MARK: - Boarding state machine (one tap = one segment)
-
-    /// Two-tap boarding flow:
-    ///   tap 1 → mark `boardedAt` (now shows in-transit view)
-    ///   tap 2 → user has alighted, advance to next segment, clear `boardedAt`
-    /// On the finished card, tap = reset for a re-do.
-    private func advanceBoarding(in j: TransferJourney) {
-        withAnimation(.spring(response: 0.4, dampingFraction: 0.75)) {
-            if currentBlockIdx >= j.segments.count {
-                currentBlockIdx = 0
-                boardedAt = nil
-                resetJourney()
-                if #available(iOS 16.1, *) {
-                    Task { await KORALiveActivityManager.shared.end() }
-                }
-            } else if boardedAt == nil {
-                boardedAt = Date()
-                let haptic = UIImpactFeedbackGenerator(style: .light)
-                haptic.impactOccurred()
-                Task { await NextStopVerifyTip.didBoardOnce.donate() }
-                if #available(iOS 16.1, *) {
-                    let seg = j.segments[currentBlockIdx]
-                    let dest = j.segments.last?.stations.last ?? ""
-                    let currentKo = seg.stations.first ?? ""
-                    let nextKo = seg.stations.count > 1 ? seg.stations[1] : currentKo
-                    let stopsLeft = max(seg.stations.count - 1, 0)
-                    Task {
-                        await KORALiveActivityManager.shared.start(
-                            destination: dest,
-                            current: currentKo,
-                            next: nextKo,
-                            stopsRemaining: stopsLeft,
-                            lineColor: seg.line.color,
-                            lineName: seg.line.name
-                        )
-                    }
-                }
-            } else {
-                currentBlockIdx += 1
-                boardedAt = nil
-                let haptic = UIImpactFeedbackGenerator(style: .medium)
-                haptic.impactOccurred()
-                if #available(iOS 16.1, *) {
-                    Task { await KORALiveActivityManager.shared.end() }
-                }
-            }
+            maxCompletedIdx = -1
+            revisitFromIdx = nil
+            terminiOverride = [:]
         }
     }
 
@@ -270,10 +240,6 @@ struct SubwayNavigatorView: View {
             .animation(.spring(response: 0.38, dampingFraction: 0.82), value: journey == nil)
             .animation(.spring(response: 0.38, dampingFraction: 0.82), value: journeyConfirmed)
 
-            if let j = journey, journeyConfirmed {
-                boardingActionBar(for: j)
-                    .transition(.move(edge: .bottom).combined(with: .opacity))
-            }
         }
     }
 
@@ -283,114 +249,458 @@ struct SubwayNavigatorView: View {
     /// After the last ride is boarded, the arrived block is shown.
     @ViewBuilder
     private func activeStepHost(for j: TransferJourney) -> some View {
-        ScrollView {
-            VStack(spacing: 16) {
-                if currentBlockIdx < j.segments.count {
-                    rideBlock(
-                        seg: j.segments[currentBlockIdx],
-                        isLast: currentBlockIdx == j.segments.count - 1
-                    )
-                } else {
-                    finishedBlock(j: j)
-                }
+        let pageCount = j.segments.count + 1
+        let pageFwd = pageTransitionForward
+        let pageTransition: AnyTransition = pageFwd
+            ? .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
+            : .asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing))
+
+        ZStack(alignment: .top) {
+            if currentBlockIdx < j.segments.count {
+                rideBlock(seg: j.segments[currentBlockIdx],
+                          segIdx: currentBlockIdx,
+                          isLast: currentBlockIdx == j.segments.count - 1,
+                          j: j)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 14)
+                    .padding(.bottom, 16)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    .id(currentBlockIdx)
+                    .transition(pageTransition)
+            } else {
+                finishedBlock(j: j)
+                    .padding(.horizontal, 16)
+                    .padding(.top, 22)
+                    .padding(.bottom, 16)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                    .id("finished")
+                    .transition(pageTransition)
             }
-            .padding(.horizontal, 16)
-            .padding(.top, 22)
-            .padding(.bottom, 200) // sticky action bar clearance
-            .frame(maxWidth: .infinity)
         }
-        .scrollIndicators(.hidden)
-        .animation(.easeInOut(duration: 0.3), value: currentBlockIdx)
+        .animation(.spring(response: 0.42, dampingFraction: 0.9), value: currentBlockIdx)
+        .clipped()
+        .gesture(
+            DragGesture(minimumDistance: 40)
+                .onEnded { v in
+                    guard abs(v.translation.width) > abs(v.translation.height),
+                          v.translation.width > 80 else { return }
+                    let prev = currentBlockIdx - 1
+                    guard prev >= 0, prev <= maxCompletedIdx else { return }
+                    revisitFromIdx = prev
+                    showRevisitAlert = true
+                }
+        )
+        .safeAreaInset(edge: .bottom, spacing: 0) {
+            VStack(spacing: 0) {
+                let segIdx = currentBlockIdx
+                let isValidSeg = j.segments.indices.contains(segIdx)
+                let isLastSeg = segIdx == j.segments.count - 1
+                let segBoarded = boardedSegmentIdx == segIdx
+                if isValidSeg {
+                    if !segBoarded {
+                        boardSlider(seg: j.segments[segIdx], j: j)
+                            .padding(.horizontal, 16)
+                            .padding(.top, 10)
+                            .padding(.bottom, 4)
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .bottom).combined(with: .opacity),
+                                removal: .opacity))
+                    } else if !isLastSeg {
+                        transferSlider(seg: j.segments[segIdx], j: j)
+                            .padding(.horizontal, 16)
+                            .padding(.top, 10)
+                            .padding(.bottom, 4)
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .bottom).combined(with: .opacity),
+                                removal: .opacity))
+                    } else {
+                        alightSlider(seg: j.segments[segIdx], finishedIdx: j.segments.count)
+                            .padding(.horizontal, 16)
+                            .padding(.top, 10)
+                            .padding(.bottom, 4)
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .bottom).combined(with: .opacity),
+                                removal: .opacity))
+                    }
+                }
+                pageDotsIndicator(count: pageCount, current: currentBlockIdx, journey: j)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 12)
+            }
+            .background(.ultraThinMaterial)
+            .animation(.spring(response: 0.35, dampingFraction: 0.8), value: boardedAt != nil)
+            .animation(.spring(response: 0.35, dampingFraction: 0.8), value: currentBlockIdx)
+        }
+        .alert(revisitAlertTitle, isPresented: $showRevisitAlert) {
+            Button(revisitStayLabel) {
+                UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+                if let back = revisitFromIdx {
+                    pageTransitionForward = false
+                    withAnimation(.spring(response: 0.4, dampingFraction: 0.85)) {
+                        currentBlockIdx = back
+                    }
+                }
+                revisitFromIdx = nil
+            }
+            Button(revisitConfirmLabel, role: .cancel) {
+                revisitFromIdx = nil
+            }
+        } message: {
+            Text(revisitAlertMessage)
+        }
+    }
+
+    private func pageDotsIndicator(count: Int, current: Int, journey: TransferJourney) -> some View {
+        HStack(spacing: 6) {
+            ForEach(0..<count, id: \.self) { i in
+                let segIdx = min(i, journey.segments.count - 1)
+                let segColor = journey.segments[segIdx].line.color
+                let isActive = i == current
+                // Gradient when entering a new line segment (transfer boundary)
+                let isTransfer = isActive && i > 0 && i < journey.segments.count &&
+                    journey.segments[i - 1].line.number != journey.segments[i].line.number
+                let prevColor = i > 0
+                    ? journey.segments[min(i - 1, journey.segments.count - 1)].line.color
+                    : segColor
+
+                Capsule()
+                    .fill(isTransfer
+                        ? AnyShapeStyle(LinearGradient(
+                            colors: [prevColor, segColor],
+                            startPoint: .leading, endPoint: .trailing))
+                        : AnyShapeStyle(isActive
+                            ? segColor
+                            : (i <= maxCompletedIdx
+                                ? segColor.opacity(0.55)
+                                : Color.gray.opacity(0.3)))
+                    )
+                    .frame(width: isActive ? 20 : 8, height: 8)
+                    .animation(.spring(response: 0.3, dampingFraction: 0.8), value: current)
+            }
+        }
+    }
+
+    @ViewBuilder
+    private func boardSlider(seg: JourneySegment, j: TransferJourney) -> some View {
+        let thumbW: CGFloat = 60
+        GeometryReader { geo in
+            let maxX = max(geo.size.width - thumbW - 8, 1)
+            let progress = min(boardDragOffset / maxX, 1.0)
+            ZStack(alignment: .leading) {
+                Capsule().fill(seg.line.color.opacity(0.13 + 0.12 * progress))
+                Text(boardingSwipeHintLabel)
+                    .font(.callout).fontWeight(.bold)
+                    .foregroundStyle(seg.line.color.opacity(max(0, 1.0 - progress * 2.5)))
+                    .frame(maxWidth: .infinity, alignment: .center)
+                Capsule()
+                    .fill(seg.line.color)
+                    .frame(width: thumbW, height: geo.size.height - 10)
+                    .overlay(
+                        Image(systemName: "chevron.right.2")
+                            .font(.callout).fontWeight(.black)
+                            .foregroundStyle(.white)
+                    )
+                    .shadow(color: seg.line.color.opacity(0.4), radius: 6, y: 2)
+                    .offset(x: 4 + boardDragOffset)
+                    .gesture(
+                        DragGesture(minimumDistance: 4)
+                            .onChanged { v in
+                                let clamped = min(max(0, v.translation.width), maxX)
+                                boardDragOffset = clamped
+                                let newPhase = Int(clamped / maxX * 4)
+                                if newPhase != boardHapticPhase {
+                                    boardHapticPhase = newPhase
+                                    if newPhase > 0 {
+                                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                    }
+                                }
+                            }
+                            .onEnded { v in
+                                boardHapticPhase = 0
+                                if boardDragOffset >= maxX * 0.72 {
+                                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                                    boardCurrentTrain(seg: seg, in: j)
+                                    withAnimation(.spring(response: 0.35)) { boardDragOffset = 0 }
+                                } else {
+                                    withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                                        boardDragOffset = 0
+                                    }
+                                }
+                            }
+                    )
+            }
+        }
+        .frame(height: 50)
+        .clipShape(Capsule())
+        .overlay(Capsule().strokeBorder(seg.line.color.opacity(0.35), lineWidth: 1.5))
+    }
+
+    @ViewBuilder
+    private func transferSlider(seg: JourneySegment, j: TransferJourney) -> some View {
+        let thumbW: CGFloat = 60
+        GeometryReader { geo in
+            let maxX = max(geo.size.width - thumbW - 8, 1)
+            let progress = min(transferDragOffset / maxX, 1.0)
+            ZStack(alignment: .leading) {
+                Capsule().fill(seg.line.color.opacity(0.13 + 0.12 * progress))
+                Text(transferSwipeHintLabel)
+                    .font(.callout).fontWeight(.bold)
+                    .foregroundStyle(seg.line.color.opacity(max(0, 1.0 - progress * 2.5)))
+                    .frame(maxWidth: .infinity, alignment: .center)
+                Capsule()
+                    .fill(seg.line.color)
+                    .frame(width: thumbW, height: geo.size.height - 10)
+                    .overlay(
+                        Image(systemName: "arrow.right.circle.fill")
+                            .font(.callout).fontWeight(.black)
+                            .foregroundStyle(.white)
+                    )
+                    .shadow(color: seg.line.color.opacity(0.4), radius: 6, y: 2)
+                    .offset(x: 4 + transferDragOffset)
+                    .gesture(
+                        DragGesture(minimumDistance: 4)
+                            .onChanged { v in
+                                let clamped = min(max(0, v.translation.width), maxX)
+                                transferDragOffset = clamped
+                                let newPhase = Int(clamped / maxX * 4)
+                                if newPhase != transferHapticPhase {
+                                    transferHapticPhase = newPhase
+                                    if newPhase > 0 {
+                                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                    }
+                                }
+                            }
+                            .onEnded { _ in
+                                transferHapticPhase = 0
+                                if transferDragOffset >= maxX * 0.72 {
+                                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                                    let nextIdx = currentBlockIdx + 1
+                                    maxCompletedIdx = max(maxCompletedIdx, currentBlockIdx)
+                                    transferDragOffset = 0
+                                    boardDragOffset = 0
+                                    pageTransitionForward = true
+                                    withAnimation(.spring(response: 0.42, dampingFraction: 0.88)) {
+                                        currentBlockIdx = nextIdx
+                                    }
+                                    Task {
+                                        try? await Task.sleep(for: .seconds(0.5))
+                                        boardedAt = nil
+                                        boardedSegmentIdx = -1
+                                        if #available(iOS 16.1, *) {
+                                            await KORALiveActivityManager.shared.end()
+                                        }
+                                    }
+                                } else {
+                                    withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                                        transferDragOffset = 0
+                                    }
+                                }
+                            }
+                    )
+            }
+        }
+        .frame(height: 50)
+        .clipShape(Capsule())
+        .overlay(Capsule().strokeBorder(seg.line.color.opacity(0.35), lineWidth: 1.5))
+    }
+
+    @ViewBuilder
+    private func alightSlider(seg: JourneySegment, finishedIdx: Int) -> some View {
+        let thumbW: CGFloat = 60
+        GeometryReader { geo in
+            let maxX = max(geo.size.width - thumbW - 8, 1)
+            let progress = min(alightDragOffset / maxX, 1.0)
+            ZStack(alignment: .leading) {
+                Capsule().fill(seg.line.color.opacity(0.13 + 0.12 * progress))
+                Text(alightSliderLabel)
+                    .font(.callout).fontWeight(.bold)
+                    .foregroundStyle(seg.line.color.opacity(max(0, 1.0 - progress * 2.5)))
+                    .frame(maxWidth: .infinity, alignment: .center)
+                Capsule()
+                    .fill(seg.line.color)
+                    .frame(width: thumbW, height: geo.size.height - 10)
+                    .overlay(
+                        Image(systemName: "door.left.hand.open")
+                            .font(.callout).fontWeight(.black)
+                            .foregroundStyle(.white)
+                    )
+                    .shadow(color: seg.line.color.opacity(0.4), radius: 6, y: 2)
+                    .offset(x: 4 + alightDragOffset)
+                    .gesture(
+                        DragGesture(minimumDistance: 4)
+                            .onChanged { v in
+                                let clamped = min(max(0, v.translation.width), maxX)
+                                alightDragOffset = clamped
+                                let newPhase = Int(clamped / maxX * 4)
+                                if newPhase != alightHapticPhase {
+                                    alightHapticPhase = newPhase
+                                    if newPhase > 0 {
+                                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                    }
+                                }
+                            }
+                            .onEnded { _ in
+                                alightHapticPhase = 0
+                                if alightDragOffset >= maxX * 0.72 {
+                                    UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+                                    maxCompletedIdx = max(maxCompletedIdx, currentBlockIdx)
+                                    alightDragOffset = 0
+                                    pageTransitionForward = true
+                                    withAnimation(.spring(response: 0.42, dampingFraction: 0.88)) {
+                                        currentBlockIdx = finishedIdx
+                                    }
+                                    Task {
+                                        try? await Task.sleep(for: .seconds(0.5))
+                                        boardedAt = nil
+                                        boardedSegmentIdx = -1
+                                        if #available(iOS 16.1, *) {
+                                            await KORALiveActivityManager.shared.end()
+                                        }
+                                    }
+                                } else {
+                                    withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
+                                        alightDragOffset = 0
+                                    }
+                                }
+                            }
+                    )
+            }
+        }
+        .frame(height: 50)
+        .clipShape(Capsule())
+        .overlay(Capsule().strokeBorder(seg.line.color.opacity(0.35), lineWidth: 1.5))
+    }
+
+    private func boardCurrentTrain(seg: JourneySegment, in j: TransferJourney) {
+        guard boardedAt == nil else { return }
+        boardedAt = Date()
+        boardedSegmentIdx = currentBlockIdx
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        Task { await NextStopVerifyTip.didBoardOnce.donate() }
+        guard #available(iOS 16.1, *) else { return }
+        let dest = j.segments.last?.stations.last ?? ""
+        let currentKo = seg.stations.first ?? ""
+        let nextKo = seg.stations.count > 1 ? seg.stations[1] : currentKo
+        let stopsLeft = max(seg.stations.count - 1, 0)
+        Task {
+            await KORALiveActivityManager.shared.start(
+                destination: dest, current: currentKo, next: nextKo,
+                stopsRemaining: stopsLeft, lineColor: seg.line.color, lineName: seg.line.name
+            )
+        }
     }
 
     // MARK: One ride block
 
     /// Self-contained block for ONE subway ride: direction + next station +
     /// where to get off (with transfer hint or destination indicator).
-    private func rideBlock(seg: JourneySegment, isLast: Bool) -> some View {
+    private func rideBlock(seg: JourneySegment, segIdx: Int, isLast: Bool, j: TransferJourney) -> some View {
         let nextKo: String? = seg.stations.count > 1 ? seg.stations[1] : nil
         let nextDisplay = nextKo.map { MetroLineData.displayName(for: $0, language: displayLanguage) } ?? ""
         let timing = SubwayScheduleService.timing(for: seg, at: Date())
+        let displayedTerminus = terminiOverride[segIdx] ?? seg.terminus
+        let displayedAlts: [String] = {
+            if let ov = terminiOverride[segIdx] {
+                return ([seg.terminus] + seg.alternativeTermini).filter { $0 != ov }
+            }
+            return seg.alternativeTermini
+        }()
 
-        return VStack(spacing: 18) {
-            // Direction header — hidden after boarding so the focus shifts to
-            // current position + next station (the user only needs "am I going
-            // the right way?" feedback once aboard, not the departure label).
-            if boardedAt == nil {
-                HStack(spacing: 14) {
-                    Text(seg.line.badgeText)
-                        .font(.largeTitle).fontWeight(.black)
-                        .foregroundStyle(.white)
-                        .frame(minWidth: 44, idealWidth: 64, maxWidth: 64,
-                               minHeight: 44, idealHeight: 64, maxHeight: 64)
-                        .background(seg.line.color)
-                        .clipShape(Circle())
-                        .layoutPriority(0)
-                    VStack(alignment: .leading, spacing: 4) {
-                        let isCircularLabel = seg.terminus == "내선순환" || seg.terminus == "외선순환"
+        let isBoarded = boardedSegmentIdx == segIdx
 
-                        if isCircularLabel {
-                            // Circular routes: show landmark stations that match the
-                            // physical platform signs — skip the "내선순환" label
-                            // which tourists can't use to pick a platform.
-                            let landmarks = MetroLineData.aheadLandmarks(
-                                from: seg.stations.first ?? "",
-                                toward: seg.terminus,
-                                lineNumber: seg.line.number
-                            )
-                            if !landmarks.isEmpty {
-                                platformDirectionHint(landmarks: landmarks, lineColor: seg.line.color)
+        return ZStack(alignment: .top) {
+            if isBoarded, let bt = boardedAt {
+                VStack(spacing: 18) {
+                    inTransitSection(seg: seg, boardedAt: bt)
+                }
+                .frame(maxWidth: .infinity, alignment: .top)
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing).combined(with: .opacity),
+                    removal: .move(edge: .leading).combined(with: .opacity)
+                ))
+            } else {
+                VStack(spacing: 18) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "clock.fill")
+                            .font(.callout).fontWeight(.semibold)
+                            .foregroundStyle(seg.line.color)
+                        Text(preBoardingStatusLabel)
+                            .font(.callout).fontWeight(.bold)
+                            .foregroundStyle(seg.line.color)
+                        Spacer()
+                    }
+                    .padding(.horizontal, 14).padding(.vertical, 9)
+                    .background(seg.line.color.opacity(0.15))
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .frame(maxWidth: .infinity)
+
+                    HStack(spacing: 14) {
+                        Text(seg.line.badgeText)
+                            .font(.largeTitle).fontWeight(.black)
+                            .foregroundStyle(.white)
+                            .frame(minWidth: 44, idealWidth: 64, maxWidth: 64,
+                                   minHeight: 44, idealHeight: 64, maxHeight: 64)
+                            .background(seg.line.color)
+                            .clipShape(Circle())
+                            .layoutPriority(0)
+                        VStack(alignment: .leading, spacing: 4) {
+                            let isCircularLabel = displayedTerminus == "내선순환" || displayedTerminus == "외선순환"
+                            if isCircularLabel {
+                                let landmarks = MetroLineData.aheadLandmarks(
+                                    from: seg.stations.first ?? "",
+                                    toward: displayedTerminus,
+                                    lineNumber: seg.line.number
+                                )
+                                if !landmarks.isEmpty {
+                                    platformDirectionHint(landmarks: landmarks, lineColor: seg.line.color)
+                                } else {
+                                    Text(directionLabel(terminus: displayedTerminus))
+                                        .font(.largeTitle).fontWeight(.black)
+                                        .foregroundStyle(seg.line.color)
+                                }
                             } else {
-                                Text(directionLabel(terminus: seg.terminus))
+                                Text(directionLabel(terminus: displayedTerminus))
                                     .font(.largeTitle).fontWeight(.black)
                                     .foregroundStyle(seg.line.color)
-                            }
-                        } else {
-                            Text(directionLabel(terminus: seg.terminus))
-                                .font(.largeTitle).fontWeight(.black)
-                                .foregroundStyle(seg.line.color)
-                                .lineLimit(2)
-                                .minimumScaleFactor(0.65)
-                                .fixedSize(horizontal: false, vertical: true)
-                            if displayLanguage != .korean {
-                                Text("\(seg.terminus)행")
-                                    .font(.title3)
-                                    .foregroundStyle(KORATheme.labelSecondary)
-                                    .autoFitLine(minScale: 0.7)
-                            }
-                            if !seg.alternativeTermini.isEmpty {
-                                alternativeTerminiRow(alts: seg.alternativeTermini, lineColor: seg.line.color)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                if displayLanguage != .korean {
+                                    Text("\(displayedTerminus)행")
+                                        .font(.title3)
+                                        .foregroundStyle(KORATheme.labelSecondary)
+                                        .autoFitLine(minScale: 0.7)
+                                }
+                                if !displayedAlts.isEmpty {
+                                    alternativeTerminiRow(alts: displayedAlts, segIdx: segIdx, lineColor: seg.line.color)
+                                }
                             }
                         }
+                        .layoutPriority(1)
+                        Spacer(minLength: 0)
                     }
-                    .layoutPriority(1)
-                    Spacer(minLength: 0)
+
+                    Divider()
+
+                    if let nk = nextKo {
+                        verifyNextStopCard(currentKo: seg.stations.first ?? "", nextKo: nk,
+                                           nextDisplay: nextDisplay, lineColor: seg.line.color)
+                        Divider()
+                    }
+
+                    trainApproachVisual(seg: seg, timing: timing)
                 }
-
-                Divider()
-            }
-
-            // After "boarded" was tapped: show live in-transit position +
-            // stops remaining + ETA, refreshed every few seconds.
-            if let bt = boardedAt {
-                inTransitSection(seg: seg, boardedAt: bt)
-                Divider()
-            } else if let nk = nextKo {
-                verifyNextStopCard(currentKo: seg.stations.first ?? "", nextKo: nk, nextDisplay: nextDisplay, lineColor: seg.line.color)
-                Divider()
-            }
-
-            // Pre-boarding only: train approach visual.
-            // Destination info removed — the user only needs to know which train
-            // to board; where to get off is surfaced by inTransitSection after boarding.
-            if boardedAt == nil {
-                trainApproachVisual(seg: seg, timing: timing)
+                .frame(maxWidth: .infinity, alignment: .top)
+                .transition(.asymmetric(
+                    insertion: .move(edge: .leading).combined(with: .opacity),
+                    removal: .move(edge: .trailing).combined(with: .opacity)
+                ))
             }
         }
-        .padding(20)
+        .clipped()
+        .padding(16)
         .background(seg.line.color.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 18))
         .overlay(RoundedRectangle(cornerRadius: 18).stroke(seg.line.color.opacity(0.25), lineWidth: 1.2))
+        .animation(.spring(response: 0.38, dampingFraction: 0.88), value: isBoarded)
     }
 
     /// Two-line station label (display name + Korean Hangul). Single-line +
@@ -411,89 +721,113 @@ struct SubwayNavigatorView: View {
 
     // MARK: Pre-boarding verification (wrong-direction defense)
 
-    /// Current station → next station card shown vertically before boarding.
+    /// ---●──────────────────────────●──▶  horizontal track card.
     private func verifyNextStopCard(currentKo: String, nextKo: String, nextDisplay: String, lineColor: Color) -> some View {
         let currentDisplay = MetroLineData.displayName(for: currentKo, language: displayLanguage)
         let showCurrentTranslation = displayLanguage != .korean && currentDisplay != currentKo
         let showNextTranslation = displayLanguage != .korean && nextDisplay != nextKo
-        // Fixed width for the track column so circles, dots, and arrow all align
-        let trackW: CGFloat = 22
 
-        return VStack(alignment: .leading, spacing: 0) {
-            // ── Current station: big filled circle ─────────
-            HStack(alignment: .center, spacing: 14) {
-                Circle()
-                    .fill(lineColor)
-                    .frame(width: trackW, height: trackW)
-                VStack(alignment: .leading, spacing: 1) {
+        return VStack(spacing: 10) {
+            // ● —tram→→→— ○  track row
+            HStack(alignment: .center, spacing: 8) {
+                Circle().fill(lineColor).frame(width: 14, height: 14)
+                VerifyTrainTrack(lineColor: lineColor)
+                Circle().strokeBorder(lineColor, lineWidth: 2.5).frame(width: 14, height: 14)
+            }
+
+            // Station names: current (left, red border) ↔ next (right, line color)
+            HStack(alignment: .top, spacing: 0) {
+                VStack(alignment: .leading, spacing: 2) {
                     Text(currentKo)
-                        .font(.system(size: 28, weight: .black))
+                        .font(.system(size: 16, weight: .black))
                         .foregroundStyle(KORATheme.labelPrimary)
                     if showCurrentTranslation {
                         Text(currentDisplay)
-                            .font(.body).fontWeight(.medium)
+                            .font(.caption).fontWeight(.medium)
                             .foregroundStyle(KORATheme.labelSecondary)
                     }
                 }
-            }
+                .padding(.horizontal, 8).padding(.vertical, 4)
+                .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(.red, lineWidth: 2))
 
-            // ── Dotted vertical connector ───────────────────
-            Canvas { context, size in
-                let cx = size.width / 2
-                let r: CGFloat = 1.8
-                let step = r * 2 + 5.5
-                var y = r + 2
-                while y + r <= size.height - 2 {
-                    context.fill(
-                        Path(ellipseIn: CGRect(x: cx - r, y: y - r, width: r * 2, height: r * 2)),
-                        with: .color(lineColor.opacity(0.45))
-                    )
-                    y += step
-                }
-            }
-            .frame(width: trackW, height: 44)
-            .frame(maxWidth: .infinity, alignment: .leading)
+                Spacer()
 
-            // ── Next station: small outlined circle ─────────
-            HStack(alignment: .center, spacing: 14) {
-                Circle()
-                    .strokeBorder(lineColor, lineWidth: 2.5)
-                    .frame(width: 13, height: 13)
-                    .frame(width: trackW, height: trackW)
-                VStack(alignment: .leading, spacing: 1) {
+                VStack(alignment: .trailing, spacing: 2) {
                     Text(nextKo)
-                        .font(.system(size: 36, weight: .black))
+                        .font(.system(size: 16, weight: .black))
                         .foregroundStyle(lineColor)
                     if showNextTranslation {
                         Text(nextDisplay)
-                            .font(.body).fontWeight(.medium)
+                            .font(.caption).fontWeight(.medium)
                             .foregroundStyle(KORATheme.labelSecondary)
                     }
                 }
             }
-
-            // ── Down arrow ──────────────────────────────────
-            Image(systemName: "arrow.down")
-                .font(.callout).fontWeight(.bold)
-                .foregroundStyle(lineColor.opacity(0.6))
-                .frame(width: trackW)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.top, 5)
         }
-        .padding(18)
+        .padding(12)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(lineColor.opacity(0.06))
         .clipShape(RoundedRectangle(cornerRadius: 16))
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .strokeBorder(lineColor.opacity(0.45), lineWidth: 2)
-        )
+        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(lineColor.opacity(0.45), lineWidth: 2))
         .accessibilityElement(children: .combine)
         .accessibilityLabel("\(currentKo)역 출발, 다음 정거장 \(nextKo)역")
         .popoverTip(NextStopVerifyTip(lang: displayLanguage), arrowEdge: .top)
     }
 
     // MARK: In-transit section (post-boarding)
+
+    /// Animated track row: slow chevron wave + tram icon that travels left→right over 7 s.
+    private struct VerifyTrainTrack: View {
+        let lineColor: Color
+        var body: some View {
+            TimelineView(.animation(minimumInterval: 0.04)) { ctx in
+                let t = ctx.date.timeIntervalSinceReferenceDate
+                VerifyTrainCanvas(
+                    phase: t * 0.35,
+                    trainProgress: CGFloat(t.truncatingRemainder(dividingBy: 7.0) / 7.0),
+                    lineColor: lineColor
+                )
+            }
+            .frame(height: 20)
+        }
+    }
+
+    private struct VerifyTrainCanvas: View {
+        let phase: Double
+        let trainProgress: CGFloat
+        let lineColor: Color
+        var body: some View {
+            GeometryReader { geo in
+                ZStack(alignment: .leading) {
+                    VerifyChevronRow(phase: phase, lineColor: lineColor)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    Image(systemName: "tram.fill")
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundStyle(lineColor)
+                        .frame(maxHeight: .infinity, alignment: .center)
+                        .offset(x: trainProgress * max(0, geo.size.width - 14))
+                }
+            }
+        }
+    }
+
+    private struct VerifyChevronRow: View {
+        let phase: Double
+        let lineColor: Color
+        var body: some View {
+            HStack(spacing: 0) {
+                ForEach(0..<6, id: \.self) { i in
+                    Spacer(minLength: 0)
+                    let angle: Double = phase * .pi * 2 - Double(i) * .pi * 2.0 / 6.0
+                    let opacity: Double = 0.12 + 0.5 * max(0.0, sin(angle))
+                    Image(systemName: "chevron.right")
+                        .font(.system(size: 8, weight: .semibold))
+                        .foregroundStyle(lineColor.opacity(opacity))
+                }
+                Spacer(minLength: 0)
+            }
+        }
+    }
 
     /// Estimates current train position from `boardedAt` and shows: current
     /// station, stops to alight, and minutes remaining. Refreshes every 5s
@@ -511,126 +845,44 @@ struct SubwayNavigatorView: View {
             let stopsRemaining = max(totalStops - stopsTraveled, 0)
             let currentStationIdx = min(stopsTraveled, seg.stations.count - 1)
             let currentKo = seg.stations[currentStationIdx]
-            let currentDisplay = MetroLineData.displayName(for: currentKo, language: displayLanguage)
             let alightKo = seg.stations.last ?? ""
             let alightDisplay = MetroLineData.displayName(for: alightKo, language: displayLanguage)
             let secsRemaining = max((totalStops - stopsTraveled) * secsPerStop - (elapsed % secsPerStop), 0)
             let minsRemaining = (secsRemaining + 30) / 60
 
-            VStack(alignment: .leading, spacing: 14) {
-                // Station-sign card: same visual style as the pre-boarding
-                // verify card — filled circle (current) → dotted line → outlined
-                // circle (next). Tap anywhere to correct the position estimate.
+            VStack(alignment: .leading, spacing: 10) {
+                // Station-sign card — tap to correct position estimate.
                 let nextStIdx = currentStationIdx + 1
                 let nextStKo = nextStIdx < seg.stations.count ? seg.stations[nextStIdx] : nil
                 let nextStDisplay = nextStKo.map { MetroLineData.displayName(for: $0, language: displayLanguage) } ?? ""
-                let showCurrentTrans = displayLanguage != .korean && currentDisplay != currentKo
                 let showNextTrans = nextStKo != nil && displayLanguage != .korean && nextStDisplay != (nextStKo ?? "")
-                let trackW: CGFloat = 22
+                inTransitStationCard(
+                    seg: seg,
+                    currentKo: currentKo,
+                    nextStKo: nextStKo,
+                    nextStDisplay: nextStDisplay,
+                    showNextTrans: showNextTrans
+                )
 
-                Button {
-                    showPositionCorrection = true
-                } label: {
-                    VStack(alignment: .leading, spacing: 0) {
-                        // Current station — big filled circle
-                        HStack(alignment: .center, spacing: 14) {
-                            Circle()
-                                .fill(seg.line.color)
-                                .frame(width: trackW, height: trackW)
-                            VStack(alignment: .leading, spacing: 1) {
-                                HStack(spacing: 5) {
-                                    Text(currentKo)
-                                        .font(.system(size: 28, weight: .black))
-                                        .foregroundStyle(KORATheme.labelPrimary)
-                                    Image(systemName: "location.circle.fill")
-                                        .font(.callout)
-                                        .foregroundStyle(KORATheme.labelTertiary)
-                                }
-                                if showCurrentTrans {
-                                    Text(currentDisplay)
-                                        .font(.body).fontWeight(.medium)
-                                        .foregroundStyle(KORATheme.labelSecondary)
-                                }
-                            }
-                        }
-
-                        if let nk = nextStKo {
-                            // Dotted connector
-                            Canvas { context, size in
-                                let cx = size.width / 2
-                                let r: CGFloat = 1.8
-                                let step = r * 2 + 5.5
-                                var y = r + 2
-                                while y + r <= size.height - 2 {
-                                    context.fill(
-                                        Path(ellipseIn: CGRect(x: cx - r, y: y - r, width: r * 2, height: r * 2)),
-                                        with: .color(seg.line.color.opacity(0.45))
-                                    )
-                                    y += step
-                                }
-                            }
-                            .frame(width: trackW, height: 44)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-
-                            // Next station — small outlined circle
-                            HStack(alignment: .center, spacing: 14) {
-                                Circle()
-                                    .strokeBorder(seg.line.color, lineWidth: 2.5)
-                                    .frame(width: 13, height: 13)
-                                    .frame(width: trackW, height: trackW)
-                                VStack(alignment: .leading, spacing: 1) {
-                                    Text(nk)
-                                        .font(.system(size: 36, weight: .black))
-                                        .foregroundStyle(seg.line.color)
-                                    if showNextTrans {
-                                        Text(nextStDisplay)
-                                            .font(.body).fontWeight(.medium)
-                                            .foregroundStyle(KORATheme.labelSecondary)
-                                    }
-                                }
-                            }
-
-                            // Down arrow
-                            Image(systemName: "arrow.down")
-                                .font(.callout).fontWeight(.bold)
-                                .foregroundStyle(seg.line.color.opacity(0.6))
-                                .frame(width: trackW)
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.top, 5)
-                        }
-                    }
-                    .padding(18)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-                .background(seg.line.color.opacity(0.06))
-                .clipShape(RoundedRectangle(cornerRadius: 16))
-                .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(seg.line.color.opacity(0.45), lineWidth: 2))
-                .accessibilityElement(children: .combine)
-                .accessibilityLabel("현재 \(currentKo)역 근처, 다음 \(nextStKo ?? "")역")
-                .accessibilityHint(NavLoc.correctPosition.resolved(displayLanguage))
-                .accessibilityAddTraits(.isButton)
-
-                // Stops remaining + ETA
-                HStack(alignment: .firstTextBaseline) {
-                    VStack(alignment: .leading, spacing: 2) {
+                // Stops remaining + ETA — compact single row
+                HStack(alignment: .center) {
+                    VStack(alignment: .leading, spacing: 1) {
                         Text(NavLoc.stopsToAlight.resolved(displayLanguage))
-                            .font(.body)
+                            .font(.callout)
                             .foregroundStyle(KORATheme.labelSecondary)
                         Text(NavLoc.stopsRemaining(stopsRemaining, displayLanguage))
-                            .font(.title).fontWeight(.black)
+                            .font(.title2).fontWeight(.black)
                             .foregroundStyle(KORATheme.labelPrimary)
                     }
                     Spacer()
-                    VStack(alignment: .trailing, spacing: 2) {
+                    VStack(alignment: .trailing, spacing: 1) {
                         Text(NavLoc.etaLabel.resolved(displayLanguage))
-                            .font(.body)
+                            .font(.callout)
                             .foregroundStyle(KORATheme.labelSecondary)
                         Text(minsRemaining == 0
                              ? NavLoc.arrivingSoon.resolved(displayLanguage)
                              : NavLoc.aboutMinutes(minsRemaining, displayLanguage))
-                            .font(.title2).fontWeight(.bold)
+                            .font(.title3).fontWeight(.bold)
                             .foregroundStyle(seg.line.color)
                     }
                 }
@@ -639,17 +891,21 @@ struct SubwayNavigatorView: View {
 
                 inTransitProgressVisual(seg: seg, currentKo: currentKo, alightKo: alightKo)
 
-                // Alight target — escalates as we approach.
-                //   > 3 stops away: calm informational card
-                //   2-3 stops:      orange "prepare" warning
-                //   1 stop:         red "next stop!" alert
-                //   0 stops:        green "get off NOW!" arrival
+                // Alight target card — escalates as we approach.
                 alightTargetCard(
                     alightKo: alightKo,
                     alightDisplay: alightDisplay,
                     stopsRemaining: stopsRemaining,
                     lineColor: seg.line.color
                 )
+                .modifier(ShakeEffect(animatableData: CGFloat(alightShakeCount)))
+            }
+            .animation(.spring(response: 0.5, dampingFraction: 0.8), value: currentKo)
+            .onChange(of: stopsRemaining) { old, new in
+                if old != 1 && new == 1 {
+                    UINotificationFeedbackGenerator().notificationOccurred(.warning)
+                    withAnimation(.linear(duration: 0.5)) { alightShakeCount += 1 }
+                }
             }
         }
         .task(id: boardedAt) {
@@ -676,6 +932,116 @@ struct SubwayNavigatorView: View {
                 try? await Task.sleep(for: .seconds(30))
             }
         }
+        .task(id: boardedAt) {
+            // Drive inTransitTramY: jump to current interval progress, then animate smoothly
+            let sps = Double(secondsPerStop(for: seg))
+            let elapsedSecs = max(Date().timeIntervalSince(boardedAt), 0)
+            let posInInterval = (elapsedSecs.truncatingRemainder(dividingBy: sps)) / sps
+            let remainingInInterval = sps * (1.0 - posInInterval)
+
+            inTransitTramY = CGFloat(posInInterval)
+            withAnimation(.linear(duration: remainingInInterval)) {
+                inTransitTramY = 1.0
+            }
+            try? await Task.sleep(for: .seconds(remainingInInterval))
+
+            while !Task.isCancelled {
+                inTransitTramY = 0.0
+                withAnimation(.linear(duration: sps)) { inTransitTramY = 1.0 }
+                try? await Task.sleep(for: .seconds(sps))
+            }
+        }
+    }
+
+    /// Station-sign card shown while in-transit: tram + circles + next-station name.
+    @ViewBuilder
+    private func inTransitStationCard(
+        seg: JourneySegment,
+        currentKo: String,
+        nextStKo: String?,
+        nextStDisplay: String,
+        showNextTrans: Bool
+    ) -> some View {
+        let trackW: CGFloat = 22
+        let tramW: CGFloat = 28
+        let connectorH: CGFloat = 28
+        let totalH: CGFloat = trackW * 2 + connectorH
+
+        Button { showPositionCorrection = true } label: {
+            HStack(alignment: .top, spacing: 8) {
+                ZStack(alignment: .top) {
+                    Color.clear.frame(width: tramW, height: totalH)
+                    Image(systemName: "tram.fill")
+                        .font(.system(size: 15, weight: .bold))
+                        .foregroundStyle(seg.line.color)
+                        .frame(width: tramW)
+                        .offset(y: inTransitTramY * (connectorH + trackW))
+                }
+                VStack(alignment: .center, spacing: 0) {
+                    Circle().fill(seg.line.color).frame(width: trackW, height: trackW)
+                    inTransitWaveConnector(lineColor: seg.line.color, width: trackW, height: connectorH)
+                    Circle().strokeBorder(seg.line.color, lineWidth: 2.5)
+                        .frame(width: 13, height: 13).frame(width: trackW, height: trackW)
+                }
+                .frame(width: trackW)
+                VStack(alignment: .leading, spacing: 0) {
+                    // Current station — aligns with top filled circle
+                    Text(currentKo)
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(seg.line.color.opacity(0.85))
+                        .frame(height: trackW, alignment: .center)
+                    Color.clear.frame(height: connectorH)
+                    if let nk = nextStKo {
+                        VStack(alignment: .leading, spacing: 1) {
+                            Text(nk)
+                                .font(.system(size: 26, weight: .black))
+                                .foregroundStyle(seg.line.color)
+                                .fixedSize(horizontal: false, vertical: true)
+                            if showNextTrans {
+                                Text(nextStDisplay)
+                                    .font(.callout).fontWeight(.medium)
+                                    .foregroundStyle(KORATheme.labelSecondary)
+                            }
+                        }
+                        .id(nk)
+                        .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
+                    }
+                }
+                .clipped()
+            }
+            .padding(14)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .background(seg.line.color.opacity(0.06))
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(seg.line.color.opacity(0.45), lineWidth: 2))
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("현재 \(currentKo)역 근처, 다음 \(nextStKo ?? "")역")
+        .accessibilityHint(NavLoc.correctPosition.resolved(displayLanguage))
+        .accessibilityAddTraits(.isButton)
+    }
+
+    /// Downward-flowing wave chevron connector used between station circles.
+    @ViewBuilder
+    private func inTransitWaveConnector(lineColor: Color, width: CGFloat, height: CGFloat) -> some View {
+        TimelineView(.animation(minimumInterval: 0.05)) { ctx in
+            let phase = ctx.date.timeIntervalSinceReferenceDate * 1.2
+            VStack(spacing: 3) {
+                ForEach(0..<4, id: \.self) { i in
+                    Image(systemName: "chevron.down")
+                        .font(.system(size: 8, weight: .semibold))
+                        .foregroundStyle(lineColor.opacity(
+                            0.15 + 0.8 * max(0.0, sin(
+                                phase * .pi * 2 - Double(i) * .pi * 2.0 / 4.0
+                            ))
+                        ))
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .center)
+        }
+        .frame(width: width, height: height)
     }
 
     /// Visual representation of how urgent it is to get off. Color/size/copy
@@ -791,6 +1157,22 @@ struct SubwayNavigatorView: View {
                 .foregroundStyle(KORATheme.labelSecondary)
 
             exitInfoBanner(color: color)
+
+            Button {
+                withAnimation(.easeInOut(duration: 0.3)) { resetJourney() }
+            } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "arrow.counterclockwise").font(.body)
+                    Text(NavLoc.startOver.resolved(displayLanguage)).font(.body).fontWeight(.semibold)
+                }
+                .foregroundStyle(color)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 12)
+                .background(color.opacity(0.1))
+                .clipShape(RoundedRectangle(cornerRadius: 12))
+            }
+            .buttonStyle(.plain)
+            .padding(.top, 8)
         }
         .frame(maxWidth: .infinity)
         .padding(30)
@@ -801,14 +1183,7 @@ struct SubwayNavigatorView: View {
 
     @ViewBuilder
     private func exitInfoBanner(color: Color) -> some View {
-        if isFetchingExit {
-            HStack(spacing: 8) {
-                ProgressView().scaleEffect(0.8)
-                Text(exitLoadingLabel)
-                    .font(.callout).foregroundStyle(.secondary)
-            }
-            .padding(.top, 4)
-        } else if let info = exitInfo, !info.no.isEmpty {
+        if let info = exitInfo, !info.no.isEmpty {
             VStack(spacing: 6) {
                 HStack(spacing: 10) {
                     Text(info.no)
@@ -952,7 +1327,8 @@ struct SubwayNavigatorView: View {
                         station: boarding,
                         isBoarding: true,
                         isTrainHere: false,
-                        lineColor: seg.line.color
+                        lineColor: seg.line.color,
+                        showLabel: false
                     )
                 }
             } else {
@@ -962,7 +1338,8 @@ struct SubwayNavigatorView: View {
                             station: st,
                             isBoarding: idx == allStops.count - 1,
                             isTrainHere: trainIdx == idx,
-                            lineColor: seg.line.color
+                            lineColor: seg.line.color,
+                            showLabel: idx < allStops.count - 1
                         )
                         if idx < allStops.count - 1 {
                             Rectangle()
@@ -979,7 +1356,7 @@ struct SubwayNavigatorView: View {
         .accessibilityLabel(approachAccessibility(seg: seg, trainAt: trainAt))
     }
 
-    private func visualStationDot(station: String, isBoarding: Bool, isTrainHere: Bool, lineColor: Color) -> some View {
+    private func visualStationDot(station: String, isBoarding: Bool, isTrainHere: Bool, lineColor: Color, showLabel: Bool = true) -> some View {
         VStack(spacing: 4) {
             // Top slot: train icon if it's here, otherwise spacer for alignment
             if isTrainHere {
@@ -1000,11 +1377,15 @@ struct SubwayNavigatorView: View {
                         .stroke(.white, lineWidth: isBoarding ? 2 : 0)
                 )
 
-            Text(MetroLineData.displayName(for: station, language: displayLanguage))
-                .font(.system(size: 11)).fontWeight(isBoarding ? .bold : .regular)
-                .foregroundStyle(isBoarding ? KORATheme.labelPrimary : KORATheme.labelSecondary)
-                .multilineTextAlignment(.center)
-                .autoFitLine(minScale: 0.7)
+            if showLabel {
+                Text(MetroLineData.displayName(for: station, language: displayLanguage))
+                    .font(.system(size: 11)).fontWeight(isBoarding ? .bold : .regular)
+                    .foregroundStyle(isBoarding ? KORATheme.labelPrimary : KORATheme.labelSecondary)
+                    .multilineTextAlignment(.center)
+                    .autoFitLine(minScale: 0.7)
+            } else {
+                Color.clear.frame(height: 14)
+            }
         }
         .frame(maxWidth: .infinity)
     }
@@ -1034,9 +1415,9 @@ struct SubwayNavigatorView: View {
             }
         }()
 
-        return VStack(alignment: .leading, spacing: 12) {
+        return VStack(alignment: .leading, spacing: 8) {
             Text(towardLabel)
-                .font(.body).fontWeight(.semibold)
+                .font(.callout).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.labelSecondary)
 
             HStack(alignment: .center, spacing: 0) {
@@ -1055,33 +1436,52 @@ struct SubwayNavigatorView: View {
                 }
             }
         }
-        .padding(14)
+        .padding(10)
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
-    /// Compact chip row showing alternative valid "행" signs for the same direction.
-    private func alternativeTerminiRow(alts: [String], lineColor: Color) -> some View {
-        let prefix: String = {
+    /// Compact chip row showing alternative valid "행" signs — tap to switch displayed terminus.
+    private func alternativeTerminiRow(alts: [String], segIdx: Int, lineColor: Color) -> some View {
+        let orLabel: String = {
             switch displayLanguage {
-            case .korean:   return "또는"
-            case .japanese: return "または"
-            case .english:  return "or"
-            case .chinese:  return "或乘"
+            case .korean:   return "어느 방향이든 가능"
+            case .japanese: return "どちら方面でも可"
+            case .english:  return "Any of these work"
+            case .chinese:  return "以下方向均可"
             }
         }()
-        return ScrollView(.horizontal, showsIndicators: false) {
+        // Show at most 2 alternatives; collapse the rest behind a "+N" chip
+        let visible = Array(alts.prefix(2))
+        let hiddenCount = max(0, alts.count - 2)
+        return VStack(alignment: .leading, spacing: 4) {
+            Text(orLabel)
+                .font(.caption2).fontWeight(.medium)
+                .foregroundStyle(KORATheme.labelTertiary)
             HStack(spacing: 6) {
-                Text(prefix)
-                    .font(.caption).fontWeight(.medium)
-                    .foregroundStyle(KORATheme.labelTertiary)
-                ForEach(alts, id: \.self) { terminus in
-                    Text(self.terminusSign(terminus))
-                        .font(.caption).fontWeight(.semibold)
-                        .foregroundStyle(lineColor)
+                ForEach(visible, id: \.self) { terminus in
+                    Button {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                        terminiOverride[segIdx] = terminus
+                    } label: {
+                        Text(self.terminusSign(terminus))
+                            .font(.caption).fontWeight(.semibold)
+                            .foregroundStyle(lineColor)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 3)
+                            .background(lineColor.opacity(0.1))
+                            .clipShape(Capsule())
+                            .overlay(Capsule().strokeBorder(lineColor.opacity(0.4), lineWidth: 1))
+                    }
+                    .buttonStyle(.plain)
+                }
+                if hiddenCount > 0 {
+                    Text("+\(hiddenCount)")
+                        .font(.caption).fontWeight(.medium)
+                        .foregroundStyle(KORATheme.labelTertiary)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 3)
-                        .background(lineColor.opacity(0.1))
+                        .background(Color.secondary.opacity(0.08))
                         .clipShape(Capsule())
                 }
             }
@@ -1145,120 +1545,15 @@ struct SubwayNavigatorView: View {
         }
     }
 
-    /// Offline-computed arrival prediction.
-    private func arrivalBadge(timing: SegmentTiming, lineColor: Color) -> some View {
-        let m = timing.minutesUntilArrival
-        return HStack(spacing: 10) {
-            Image(systemName: m <= 1 ? "tram.fill" : "clock.fill")
-                .font(.title3)
-                .foregroundStyle(m <= 1 ? .orange : lineColor)
-            VStack(alignment: .leading, spacing: 1) {
-                if m <= 0 {
-                    Text(NavLoc.arrivingSoon.resolved(displayLanguage))
-                        .font(.title3).fontWeight(.bold)
-                        .foregroundStyle(.orange)
-                } else if m == 1 {
-                    Text(NavLoc.aboutMinutes(1, displayLanguage))
-                        .font(.title3).fontWeight(.bold)
-                        .foregroundStyle(.orange)
-                } else {
-                    Text(NavLoc.aboutMinutes(m, displayLanguage))
-                        .font(.title3).fontWeight(.bold)
-                        .foregroundStyle(lineColor)
-                }
-                Text(NavLoc.nextTrain.resolved(displayLanguage))
-                    .font(.body)
-                    .foregroundStyle(KORATheme.labelSecondary)
-            }
-            Spacer()
-        }
-        .padding(14)
-        .background(Color(.systemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-    }
-
     private func resetJourney() {
         withAnimation(.easeInOut(duration: 0.3)) {
             toStation = nil
             currentBlockIdx = 0
             selectedJourneyIdx = 0
             boardedAt = nil
-        }
-    }
-
-    // MARK: - Boarding action bar (sticky bottom)
-
-    @ViewBuilder
-    private func boardingActionBar(for j: TransferJourney) -> some View {
-        let isFinished = currentBlockIdx >= j.segments.count
-        let activeColor: Color = isFinished
-            ? .green
-            : (j.segments[safe: currentBlockIdx]?.line.color ?? KORATheme.accent)
-
-        VStack(spacing: 0) {
-            Button {
-                advanceBoarding(in: j)
-            } label: {
-                actionBarLabel(j: j, isFinished: isFinished)
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 18)
-                    .padding(.horizontal, 18)
-                    .background(activeColor)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .padding(.horizontal, 14)
-                    .padding(.top, 12)
-                    .padding(.bottom, 22)
-            }
-            .buttonStyle(.plain)
-        }
-        .background(
-            Rectangle()
-                .fill(.ultraThinMaterial)
-                .ignoresSafeArea(edges: .bottom)
-        )
-        .frame(maxWidth: .infinity, alignment: .bottom)
-        .frame(maxHeight: .infinity, alignment: .bottom)
-    }
-
-    @ViewBuilder
-    private func actionBarLabel(j: TransferJourney, isFinished: Bool) -> some View {
-        if isFinished {
-            HStack(spacing: 12) {
-                Image(systemName: "arrow.counterclockwise")
-                    .font(.title3)
-                    .foregroundStyle(.white)
-                Text(NavLoc.startOver.resolved(displayLanguage))
-                    .font(.title3).fontWeight(.bold)
-                    .foregroundStyle(.white)
-                Spacer()
-            }
-        } else {
-            let seg = j.segments[currentBlockIdx]
-            let terminus = MetroLineData.displayName(for: seg.terminus, language: displayLanguage)
-            let alight = MetroLineData.displayName(for: seg.stations.last ?? "", language: displayLanguage)
-            let isBoarded = boardedAt != nil
-            HStack(spacing: 12) {
-                Image(systemName: isBoarded ? "figure.walk" : "tram.fill")
-                    .font(.title3)
-                    .foregroundStyle(.white)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(isBoarded
-                         ? NavLoc.didYouGetOff.resolved(displayLanguage)
-                         : NavLoc.didYouBoard.resolved(displayLanguage))
-                        .font(.body).fontWeight(.semibold)
-                        .foregroundStyle(.white.opacity(0.85))
-                    Text(isBoarded
-                         ? "\(alight) — \(NavLoc.tapWhenOff.resolved(displayLanguage))"
-                         : NavLoc.tapWhenBoarded(terminus, displayLanguage))
-                        .font(.title3).fontWeight(.bold)
-                        .foregroundStyle(.white)
-                        .autoFitLine(minScale: 0.6)
-                }
-                Spacer()
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.title2)
-                    .foregroundStyle(.white.opacity(0.9))
-            }
+            boardedSegmentIdx = -1
+            maxCompletedIdx = -1
+            revisitFromIdx = nil
         }
     }
 
@@ -1324,9 +1619,11 @@ struct SubwayNavigatorView: View {
 
                 Spacer()
 
-                Image(systemName: "chevron.right")
-                    .font(.body).fontWeight(.bold)
-                    .foregroundStyle(primaryColor.opacity(0.6))
+                Text("출발역 변경")
+                    .font(.caption).fontWeight(.semibold)
+                    .foregroundStyle(primaryColor)
+                    .padding(.horizontal, 10).padding(.vertical, 5)
+                    .background(primaryColor.opacity(0.12), in: Capsule())
             }
             .padding(.vertical, 12)
             .padding(.leading, 10)
@@ -1447,7 +1744,7 @@ struct SubwayNavigatorView: View {
                                 .foregroundStyle(KORATheme.accent)
                         }
                     }
-                    VStack(alignment: .leading, spacing: 2) {
+                    VStack(alignment: .leading, spacing: 4) {
                         Text(departurePlaceholderLabel)
                             .font(.title).fontWeight(.black)
                             .foregroundStyle(isLocating ? KORATheme.labelSecondary : KORATheme.labelPrimary)
@@ -1455,6 +1752,10 @@ struct SubwayNavigatorView: View {
                             Text(locatingLabel)
                                 .font(.body)
                                 .foregroundStyle(KORATheme.labelSecondary)
+                        } else {
+                            Text(departureHintLabel)
+                                .font(.subheadline)
+                                .foregroundStyle(KORATheme.accent.opacity(0.75))
                         }
                     }
                 }
@@ -1474,9 +1775,10 @@ struct SubwayNavigatorView: View {
                     .strokeBorder(ko != nil ? primaryColor : KORATheme.accent,
                                   lineWidth: 4)
             )
+            .shadow(color: (ko != nil ? primaryColor : KORATheme.accent).opacity(0.18), radius: 10, x: 0, y: 4)
             .contentShape(RoundedRectangle(cornerRadius: 20))
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PressScaleButtonStyle())
         .padding(.horizontal, 16)
         .padding(.vertical, 6)
         .highPriorityGesture(
@@ -1500,6 +1802,15 @@ struct SubwayNavigatorView: View {
         }
     }
 
+    private var departureHintLabel: String {
+        switch displayLanguage {
+        case .korean:   return "탭 해서 출발지를 정해주세요"
+        case .japanese: return "タップして出発地を選んでください"
+        case .english:  return "Tap to set your departure"
+        case .chinese:  return "点击设定出发地"
+        }
+    }
+
     private var locatingLabel: String {
         switch displayLanguage {
         case .korean:   return "현재 위치 확인 중..."
@@ -1509,56 +1820,156 @@ struct SubwayNavigatorView: View {
         }
     }
 
-    /// Destination capsule — visual twin of `currentStationHeader` styled
-    /// after the Seoul subway station sign (thick accent border, white
-    /// capsule fill, circular leading badge).
+    private var preBoardingStatusLabel: String {
+        switch displayLanguage {
+        case .korean:   return "탑승 전"
+        case .japanese: return "乗車前"
+        case .english:  return "Before boarding"
+        case .chinese:  return "乘车前"
+        }
+    }
+
+    private var boardingSwipeHintLabel: String {
+        switch displayLanguage {
+        case .korean:   return "밀어서 탑승하기"
+        case .japanese: return "スワイプで乗車"
+        case .english:  return "Slide to board"
+        case .chinese:  return "滑动上车"
+        }
+    }
+
+    private var transferSwipeHintLabel: String {
+        switch displayLanguage {
+        case .korean:   return "밀어서 환승하기"
+        case .japanese: return "スワイプで乗換"
+        case .english:  return "Slide to transfer"
+        case .chinese:  return "滑动换乘"
+        }
+    }
+
+    private var alightSliderLabel: String {
+        switch displayLanguage {
+        case .korean:   return "밀어서 내리기"
+        case .japanese: return "スワイプで下車"
+        case .english:  return "Slide to alight"
+        case .chinese:  return "滑动下车"
+        }
+    }
+
+    private var revisitAlertTitle: String {
+        switch displayLanguage {
+        case .korean:   return "이미 지나간 단계예요"
+        case .japanese: return "完了済みのステップです"
+        case .english:  return "Already completed"
+        case .chinese:  return "已完成的步骤"
+        }
+    }
+
+    private var revisitAlertMessage: String {
+        switch displayLanguage {
+        case .korean:   return "이미 완료한 단계입니다. 다시 보시겠습니까?"
+        case .japanese: return "完了済みのステップです。戻りますか？"
+        case .english:  return "This step is already done. Do you want to go back to review it?"
+        case .chinese:  return "此步骤已完成，要返回查看吗？"
+        }
+    }
+
+    private var revisitConfirmLabel: String {
+        switch displayLanguage {
+        case .korean:   return "계속 진행"
+        case .japanese: return "続ける"
+        case .english:  return "Continue"
+        case .chinese:  return "继续"
+        }
+    }
+
+    private var revisitStayLabel: String {
+        switch displayLanguage {
+        case .korean:   return "돌아가서 보기"
+        case .japanese: return "戻って確認"
+        case .english:  return "Go back"
+        case .chinese:  return "返回查看"
+        }
+    }
+
     private var destinationCTA: some View {
-        let line2Color = MetroLineData.lineColor(2)
+        let ko = toStation
+        let lines = ko.map { MetroLineData.linesContaining($0) } ?? []
+        let primaryColor = lines.first.map { MetroLineData.lineColor($0) } ?? KORATheme.accent
+
         return Button {
             showToPicker = true
         } label: {
             HStack(alignment: .center, spacing: 12) {
-                ZStack {
-                    Circle()
-                        .fill(line2Color)
-                        .frame(width: 36, height: 36)
-                    Image(systemName: "magnifyingglass")
-                        .font(.body).fontWeight(.black)
-                        .foregroundStyle(.white)
-                }
-                .accessibilityHidden(true)
-
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(NavLoc.whereToGo.resolved(displayLanguage))
-                        .font(.title).fontWeight(.black)
-                        .foregroundStyle(KORATheme.labelPrimary)
-                        .autoFitLine(minScale: 0.6)
-                    Text(NavLoc.tapStationForRoute.resolved(displayLanguage))
-                        .font(.body).fontWeight(.medium)
-                        .foregroundStyle(KORATheme.labelSecondary)
-                        .autoFitLine()
+                if let ko = ko {
+                    VStack(spacing: 4) {
+                        ForEach(lines, id: \.self) { num in
+                            let compact = lines.count >= 3
+                            Text(MetroLineData.lineBadgeText(num))
+                                .font(compact ? .subheadline : .body).fontWeight(.black)
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 4)
+                                .frame(minWidth: compact ? 30 : 36, minHeight: compact ? 30 : 36)
+                                .background(MetroLineData.lineColor(num))
+                                .clipShape(Capsule())
+                        }
+                    }
+                    VStack(alignment: .leading, spacing: 2) {
+                        let display = MetroLineData.displayBilingual(for: ko, language: displayLanguage)
+                        ViewThatFits {
+                            Text(display)
+                                .font(.title).fontWeight(.black)
+                                .foregroundStyle(KORATheme.labelPrimary)
+                                .lineLimit(1).minimumScaleFactor(0.72)
+                            Text(display)
+                                .font(.title).fontWeight(.black)
+                                .foregroundStyle(KORATheme.labelPrimary)
+                                .lineLimit(2).fixedSize(horizontal: false, vertical: true)
+                        }
+                        if displayLanguage != .korean {
+                            Text(ko)
+                                .font(.body).fontWeight(.medium)
+                                .foregroundStyle(KORATheme.labelSecondary)
+                                .autoFitLine()
+                        }
+                    }
+                } else {
+                    ZStack {
+                        Circle()
+                            .fill(KORATheme.accent.opacity(0.12))
+                            .frame(width: 36, height: 36)
+                        Image(systemName: "magnifyingglass")
+                            .font(.body).fontWeight(.black)
+                            .foregroundStyle(KORATheme.accent)
+                    }
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(NavLoc.whereToGo.resolved(displayLanguage))
+                            .font(.title).fontWeight(.black)
+                            .foregroundStyle(KORATheme.labelPrimary)
+                        Text(NavLoc.tapStationForRoute.resolved(displayLanguage))
+                            .font(.body).fontWeight(.medium)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                    }
                 }
 
                 Spacer()
 
                 Image(systemName: "chevron.right")
                     .font(.body).fontWeight(.bold)
-                    .foregroundStyle(line2Color.opacity(0.6))
+                    .foregroundStyle(primaryColor.opacity(0.6))
             }
             .padding(.vertical, 12)
             .padding(.leading, 10)
             .padding(.trailing, 20)
-            .background(
-                Capsule()
-                    .fill(Color(.systemBackground))
-            )
+            .background(RoundedRectangle(cornerRadius: 20).fill(Color(.systemBackground)))
             .overlay(
-                Capsule()
-                    .strokeBorder(line2Color, lineWidth: 4)
+                RoundedRectangle(cornerRadius: 20)
+                    .strokeBorder(ko != nil ? primaryColor : KORATheme.accent, lineWidth: 4)
             )
-            .contentShape(Capsule())
+            .shadow(color: (ko != nil ? primaryColor : KORATheme.accent).opacity(0.18), radius: 10, x: 0, y: 4)
+            .contentShape(RoundedRectangle(cornerRadius: 20))
         }
-        .buttonStyle(.plain)
+        .buttonStyle(PressScaleButtonStyle())
         .padding(.horizontal, 16)
         .padding(.vertical, 6)
         .accessibilityLabel(NavLoc.whereToGo.resolved(displayLanguage))
@@ -1644,19 +2055,19 @@ struct SubwayNavigatorView: View {
 
         var padding: CGFloat {
             switch self {
-            case .calm:     return 14
-            case .prepare:  return 16
-            case .imminent: return 18
-            case .now:      return 20
+            case .calm:     return 12
+            case .prepare:  return 13
+            case .imminent: return 14
+            case .now:      return 16
             }
         }
 
         var koSize: CGFloat {
             switch self {
-            case .calm:     return 28
-            case .prepare:  return 36
-            case .imminent: return 44
-            case .now:      return 52
+            case .calm:     return 24
+            case .prepare:  return 30
+            case .imminent: return 36
+            case .now:      return 42
             }
         }
 
@@ -1668,61 +2079,6 @@ struct SubwayNavigatorView: View {
             case .now:      return NavLoc.getOffNow.resolved(lang)
             }
         }
-    }
-
-    // MARK: Last-train warning
-
-    private struct LastTrainWarning {
-        let line: Int
-        let lineColor: Color
-        let minutesRemaining: Int
-    }
-
-    /// If any line used by the current journey is within 60 minutes of its
-    /// approximate last train, surface a banner.
-    private var lastTrainWarning: LastTrainWarning? {
-        guard let j = journey else { return nil }
-        let now = MetroLineData.currentMinutesPastMidnight()
-        var tightest: LastTrainWarning? = nil
-        for seg in j.segments {
-            let last = MetroLineData.lastTrainMinutesPastMidnight(for: seg.line.number) + 24 * 60
-            let remaining = last - now
-            guard remaining > 0, remaining <= 60 else { continue }
-            if tightest == nil || remaining < tightest!.minutesRemaining {
-                tightest = LastTrainWarning(
-                    line: seg.line.number,
-                    lineColor: seg.line.color,
-                    minutesRemaining: remaining
-                )
-            }
-        }
-        return tightest
-    }
-
-    private func lastTrainBanner(_ w: LastTrainWarning) -> some View {
-        HStack(spacing: 10) {
-            Image(systemName: "clock.badge.exclamationmark.fill")
-                .font(.body).fontWeight(.bold)
-                .foregroundStyle(.white)
-                .frame(width: 28, height: 28)
-                .background(Color.orange)
-                .clipShape(Circle())
-            VStack(alignment: .leading, spacing: 2) {
-                Text(NavLoc.lastTrainRemaining(w.minutesRemaining, displayLanguage))
-                    .font(.body).fontWeight(.bold)
-                    .foregroundStyle(.orange)
-                Text(NavLoc.lastTrainApproaching(line: w.line, displayLanguage))
-                    .font(.body)
-                    .foregroundStyle(KORATheme.labelSecondary)
-            }
-            Spacer()
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 10)
-        .background(Color.orange.opacity(0.08))
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(w.line)호선 막차까지 \(w.minutesRemaining)분 남았습니다. 서둘러 주세요.")
-        .accessibilityAddTraits(.isStaticText)
     }
 
     private func consumePendingDestination() {
@@ -1826,8 +2182,6 @@ struct SubwayNavigatorView: View {
         let toDisplay   = MetroLineData.displayBilingual(for: toKo,   language: displayLanguage)
         let fromRelevantLines = j.segments.isEmpty ? [] : [j.segments[0].line.number]
         let toRelevantLines   = j.segments.isEmpty ? [] : [j.segments.last!.line.number]
-        let transfers   = max(j.segments.count - 1, 0)
-        let totalStops  = j.segments.reduce(0) { $0 + $1.stopCount }
 
         return ScrollView {
             VStack(spacing: 20) {
@@ -1835,8 +2189,7 @@ struct SubwayNavigatorView: View {
                 // ── Route summary card ────────────────────────────────
                 VStack(spacing: 0) {
                     // Departure
-                    routeStationRow(ko: fromKo, display: fromDisplay, lines: fromRelevantLines,
-                                    badge: departureLabel, badgeColor: KORATheme.accent)
+                    routeStationRow(ko: fromKo, display: fromDisplay, lines: fromRelevantLines)
 
                     // Per-segment: connector rail then transfer station (except last)
                     ForEach(j.segments.indices, id: \.self) { idx in
@@ -1845,27 +2198,16 @@ struct SubwayNavigatorView: View {
                         if idx < j.segments.count - 1, let xfrKo = seg.stations.last {
                             let xfrDisplay = MetroLineData.displayBilingual(for: xfrKo, language: displayLanguage)
                             let xfrLines   = [seg.line.number, j.segments[idx + 1].line.number]
-                            routeStationRow(ko: xfrKo, display: xfrDisplay, lines: xfrLines,
-                                            badge: transferLabel, badgeColor: .orange)
+                            routeStationRow(ko: xfrKo, display: xfrDisplay, lines: xfrLines)
                         }
                     }
 
                     // Destination
-                    routeStationRow(ko: toKo, display: toDisplay, lines: toRelevantLines,
-                                    badge: arrivalLabel, badgeColor: .green)
+                    routeStationRow(ko: toKo, display: toDisplay, lines: toRelevantLines)
                 }
                 .background(Color(.systemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 18))
                 .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
-
-                // ── Summary chips ─────────────────────────────────────
-                HStack(spacing: 10) {
-                    summaryChip(
-                        icon: transfers == 0 ? "tram.fill" : "arrow.triangle.2.circlepath",
-                        label: transferSummary(transfers)
-                    )
-                    summaryChip(icon: "mappin.and.ellipse", label: "\(totalStops)\(stopsUnit)")
-                }
 
                 // ── Action buttons ────────────────────────────────────
                 VStack(spacing: 10) {
@@ -1910,8 +2252,7 @@ struct SubwayNavigatorView: View {
         .scrollIndicators(.hidden)
     }
 
-    private func routeStationRow(ko: String, display: String, lines: [Int],
-                                  badge: String, badgeColor: Color) -> some View {
+    private func routeStationRow(ko: String, display: String, lines: [Int]) -> some View {
         HStack(alignment: .center, spacing: 14) {
             // Line badges — fixed-size circles
             HStack(spacing: 5) {
@@ -1939,42 +2280,22 @@ struct SubwayNavigatorView: View {
                 }
             }
             Spacer()
-            Text(badge)
-                .font(.callout).fontWeight(.bold)
-                .foregroundStyle(.white)
-                .padding(.horizontal, 11).padding(.vertical, 5)
-                .background(badgeColor)
-                .clipShape(Capsule())
         }
         .padding(.horizontal, 18).padding(.vertical, 16)
     }
 
     private func routeSegmentRail(seg: JourneySegment) -> some View {
         HStack(spacing: 0) {
-            // Vertical colored rail — aligns with circle badge center (18px leading + 18px half of 36px circle)
             seg.line.color.opacity(0.5)
                 .frame(width: 3)
                 .padding(.leading, 35)
-            HStack(spacing: 6) {
-                Text(MetroLineData.lineBadgeText(seg.line.number))
-                    .font(.caption).fontWeight(.black)
-                    .foregroundStyle(.white)
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(1)
-                    .frame(width: 26, height: 26)
-                    .background(seg.line.color)
-                    .clipShape(Circle())
-                Image(systemName: "arrow.down")
-                    .font(.caption2).fontWeight(.bold)
-                    .foregroundStyle(seg.line.color.opacity(0.8))
-                Text("\(seg.stopCount)\(stopsUnit)")
-                    .font(.callout).fontWeight(.medium)
-                    .foregroundStyle(KORATheme.labelSecondary)
-            }
-            .padding(.leading, 14)
+            Text("\(seg.stopCount)\(stopsUnit)")
+                .font(.body).fontWeight(.semibold)
+                .foregroundStyle(KORATheme.labelSecondary)
+                .padding(.leading, 10)
             Spacer()
         }
-        .frame(height: 40)
+        .frame(height: 32)
     }
 
     private var transferLabel: String {
@@ -2085,163 +2406,6 @@ struct SubwayNavigatorView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity)
-    }
-}
-
-// MARK: - Train Approach Card
-
-private struct TrainApproachCard: View {
-    let timing: SegmentTiming
-    let boardingStation: String
-    let terminus: String
-    let lineNumber: Int
-    let lineColor: Color
-    let displayLanguage: StationLanguage
-
-    private let dotSize: CGFloat = 40
-    private let iconH: CGFloat  = 22
-    private let trackH: CGFloat = 14
-
-    // VoiceOver: static description of train position (no live region — avoids
-    // second-by-second interruption). User re-focuses to get fresh countdown.
-    private var accessibilityPositionLabel: String {
-        let approach = MetroLineData.approachStations(before: boardingStation, toward: terminus, lineNumber: lineNumber)
-        let all = approach + [boardingStation]
-        if let trainStation = timing.currentTrainStation,
-           let trainIdx = all.firstIndex(of: trainStation) {
-            let stopsAway = all.count - 1 - trainIdx
-            return "\(boardingStation)역 열차 접근 정보. 현재 \(stopsAway)정거장 전 \(trainStation)역 통과 중."
-        } else if timing.currentTrainStation != nil {
-            return "\(boardingStation)역 열차 접근 정보. 열차 접근 중."
-        } else {
-            return "\(boardingStation)역 열차 접근 정보. \(timing.currentTrainTerminus)역에서 발차 대기 중."
-        }
-    }
-
-    // VoiceOver value: countdown at moment of focus (not live-announced)
-    private var accessibilityCountdownValue: String {
-        let secs = max(0, Int(timing.nextArrivalAtBoarding.timeIntervalSince(Date())))
-        let m = secs / 60; let s = secs % 60
-        return secs == 0 ? "곧 도착" : "\(m)분 \(s)초 후 도착"
-    }
-
-    var body: some View {
-        let approach = MetroLineData.approachStations(before: boardingStation, toward: terminus, lineNumber: lineNumber)
-        let all = approach + [boardingStation]
-        let trainIdx = timing.currentTrainStation.flatMap { all.firstIndex(of: $0) }
-
-        VStack(alignment: .leading, spacing: 10) {
-            // Track row
-            HStack(alignment: .top, spacing: 0) {
-                ForEach(0..<all.count, id: \.self) { idx in
-                    let isBoarding = idx == all.count - 1
-                    let isTrain   = idx == trainIdx
-                    let isPassed  = idx < (trainIdx ?? 0)
-
-                    // Station column (fixed width)
-                    VStack(spacing: 4) {
-                        // Train icon slot
-                        if isTrain {
-                            Image(systemName: "tram.fill")
-                                .font(.body).fontWeight(.bold)
-                                .foregroundStyle(lineColor)
-                                .frame(height: iconH)
-                        } else {
-                            Color.clear.frame(height: iconH)
-                        }
-                        // Dot
-                        if isBoarding {
-                            ZStack {
-                                Circle().strokeBorder(lineColor, lineWidth: 2.5)
-                                if trainIdx == nil || isTrain {
-                                    Circle().fill(lineColor.opacity(0.15))
-                                }
-                            }
-                            .frame(width: trackH, height: trackH)
-                        } else if isTrain {
-                            Circle()
-                                .fill(lineColor)
-                                .frame(width: 13, height: 13)
-                                .shadow(color: lineColor.opacity(0.45), radius: 4)
-                        } else {
-                            Circle()
-                                .fill(isPassed ? lineColor.opacity(0.35) : Color(.systemGray4))
-                                .frame(width: 9, height: 9)
-                        }
-                    }
-                    .frame(width: dotSize)
-
-                    // Connector between stations
-                    if idx < all.count - 1 {
-                        let passed = idx < (trainIdx ?? 0)
-                        Capsule()
-                            .fill(passed ? lineColor.opacity(0.5) : Color(.systemGray5))
-                            .frame(height: 2.5)
-                            // push connector down to dot center:
-                            // iconH(22) + spacing(4) + dot_center(7) - line_half(1.25) ≈ 31.75
-                            .padding(.top, iconH + 4 + 6.75)
-                            .frame(maxWidth: .infinity)
-                    }
-                }
-            }
-
-            // Station name row (same fixed-width cells)
-            HStack(spacing: 0) {
-                ForEach(0..<all.count, id: \.self) { idx in
-                    let isBoarding = idx == all.count - 1
-                    let stopsAway  = all.count - 1 - idx
-                    VStack(spacing: 2) {
-                        Text(MetroLineData.displayName(for: all[idx], language: displayLanguage))
-                            .font(.body).fontWeight(isBoarding ? .semibold : .regular)
-                            .foregroundStyle(isBoarding ? KORATheme.labelPrimary : KORATheme.labelTertiary)
-                        Text(isBoarding
-                             ? NavLoc.boardingShort.resolved(displayLanguage)
-                             : NavLoc.stopsBefore(stopsAway, displayLanguage))
-                            .font(.body)
-                            .foregroundStyle(KORATheme.labelTertiary)
-                    }
-                    .frame(width: dotSize)
-
-                    if idx < all.count - 1 { Spacer() }
-                }
-            }
-
-            // Countdown (TimelineView → only this part redraws each second)
-            HStack(alignment: .bottom) {
-                if trainIdx == nil {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(MetroLineData.displayName(for: timing.currentTrainTerminus, language: displayLanguage))
-                            .font(.body).fontWeight(.medium)
-                            .foregroundStyle(KORATheme.labelTertiary)
-                            .accessibilityHidden(true)
-                        Text(NavLoc.waitingToDepart.resolved(displayLanguage))
-                            .font(.body)
-                            .foregroundStyle(KORATheme.labelTertiary)
-                            .accessibilityHidden(true)
-                    }
-                }
-                Spacer()
-                TimelineView(.periodic(from: .now, by: 1)) { ctx in
-                    let secs = max(0, Int(timing.nextArrivalAtBoarding.timeIntervalSince(ctx.date)))
-                    let m = secs / 60
-                    let s = secs % 60
-                    Text(String(format: "%02d:%02d", m, s))
-                        .font(.system(.largeTitle, design: .monospaced).weight(.black))
-                        .foregroundStyle(secs < 60 ? .orange : lineColor)
-                        .contentTransition(.numericText(countsDown: true))
-                        .accessibilityHidden(true)  // value surfaced via card-level accessibilityValue
-                }
-            }
-        }
-        .padding(16)
-        .background(lineColor.opacity(0.06))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
-        .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(lineColor.opacity(0.2), lineWidth: 1))
-        // Single accessible element: position label + countdown value read together on focus.
-        // No live region — avoids interrupting the user every second.
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(accessibilityPositionLabel)
-        .accessibilityValue(accessibilityCountdownValue)
     }
 }
 
@@ -2544,14 +2708,6 @@ struct StationSearchSheet: View {
     }
 }
 
-// MARK: - Preview
-
-private extension Array {
-    subscript(safe index: Int) -> Element? {
-        indices.contains(index) ? self[index] : nil
-    }
-}
-
 #Preview {
     SubwayNavigatorView()
 }
@@ -2721,6 +2877,7 @@ struct PositionCorrectionSheet: View {
         guard metersSquared < 3_000 * 3_000 else { return nil }
         return bestKo
     }
+
 }
 
 struct LanguagePickerSheet: View {
@@ -2787,5 +2944,31 @@ struct LanguagePickerSheet: View {
                 }
             }
         }
+    }
+}
+
+// Horizontal shake — drives alightTargetCard warning animation.
+private struct PressScaleButtonStyle: ButtonStyle {
+    var scale: CGFloat = 0.96
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? scale : 1.0)
+            .animation(.spring(response: 0.22, dampingFraction: 0.6), value: configuration.isPressed)
+            .onChange(of: configuration.isPressed) { _, isPressed in
+                if isPressed {
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                }
+            }
+    }
+}
+
+private struct ShakeEffect: GeometryEffect {
+    var amount: CGFloat = 7
+    var shakesPerUnit: CGFloat = 3
+    var animatableData: CGFloat
+
+    func effectValue(size: CGSize) -> ProjectionTransform {
+        .init(.init(translationX: amount * sin(animatableData * .pi * shakesPerUnit), y: 0))
     }
 }
