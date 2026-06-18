@@ -64,6 +64,7 @@ struct SubwayNavigatorView: View {
     @State private var showFromPicker = false
     @State private var showToPicker = false
     @State private var showLanguagePicker = false
+    @State private var showDirectionScanner = false
     @State private var selectedJourneyIdx = 0
     /// "" = auto-detect from system locale; otherwise StationLanguage.rawValue
     @AppStorage("kora.display_language") private var languagePref: String = ""
@@ -161,6 +162,19 @@ struct SubwayNavigatorView: View {
             ) {
                 toStation = $0
                 selectedJourneyIdx = 0
+            }
+        }
+        .sheet(isPresented: $showDirectionScanner) {
+            if let j = journey, j.segments.indices.contains(currentBlockIdx) {
+                let seg = j.segments[currentBlockIdx]
+                let markers = directionMarkers(for: seg)
+                PlatformDirectionScanner(
+                    forwardMarkers: markers.forward,
+                    backwardMarkers: markers.backward,
+                    towardLabel: directionLabel(terminus: terminiOverride[currentBlockIdx] ?? seg.terminus),
+                    lineColor: seg.line.color,
+                    displayLanguage: displayLanguage
+                )
             }
         }
         .sheet(isPresented: $showLanguagePicker) {
@@ -658,17 +672,17 @@ struct SubwayNavigatorView: View {
                                     platformDirectionHint(landmarks: landmarks, lineColor: seg.line.color)
                                 } else {
                                     Text(directionLabel(terminus: displayedTerminus))
-                                        .font(.largeTitle).fontWeight(.black)
+                                        .font(.title3).fontWeight(.heavy)
                                         .foregroundStyle(seg.line.color)
                                 }
                             } else {
                                 Text(directionLabel(terminus: displayedTerminus))
-                                    .font(.largeTitle).fontWeight(.black)
+                                    .font(.title3).fontWeight(.heavy)
                                     .foregroundStyle(seg.line.color)
                                     .fixedSize(horizontal: false, vertical: true)
                                 if displayLanguage != .korean {
                                     Text("\(displayedTerminus)행")
-                                        .font(.title3)
+                                        .font(.subheadline)
                                         .foregroundStyle(KORATheme.labelSecondary)
                                         .autoFitLine(minScale: 0.7)
                                 }
@@ -686,6 +700,7 @@ struct SubwayNavigatorView: View {
                     if let nk = nextKo {
                         verifyNextStopCard(currentKo: seg.stations.first ?? "", nextKo: nk,
                                            nextDisplay: nextDisplay, lineColor: seg.line.color)
+                        directionScannerButton(lineColor: seg.line.color)
                         Divider()
                     }
 
@@ -724,6 +739,31 @@ struct SubwayNavigatorView: View {
 
     // MARK: Pre-boarding verification (wrong-direction defense)
 
+    /// "Point your camera at the sign" — opens the live OCR direction checker.
+    private func directionScannerButton(lineColor: Color) -> some View {
+        Button {
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            showDirectionScanner = true
+        } label: {
+            HStack(spacing: 8) {
+                Image(systemName: "camera.viewfinder")
+                    .font(.body).fontWeight(.bold)
+                Text(NavLoc.scanDirectionButton.resolved(displayLanguage))
+                    .font(.callout).fontWeight(.bold)
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.footnote).fontWeight(.bold)
+                    .foregroundStyle(lineColor.opacity(0.5))
+            }
+            .foregroundStyle(lineColor)
+            .padding(.horizontal, 14).padding(.vertical, 11)
+            .frame(maxWidth: .infinity)
+            .background(lineColor.opacity(0.12))
+            .clipShape(RoundedRectangle(cornerRadius: 14))
+        }
+        .buttonStyle(.plain)
+    }
+
     /// ---●──────────────────────────●──▶  horizontal track card.
     private func verifyNextStopCard(currentKo: String, nextKo: String, nextDisplay: String, lineColor: Color) -> some View {
         let currentDisplay = MetroLineData.displayName(for: currentKo, language: displayLanguage)
@@ -738,33 +778,43 @@ struct SubwayNavigatorView: View {
                 Circle().strokeBorder(lineColor, lineWidth: 2.5).frame(width: 14, height: 14)
             }
 
-            // Station names: current (left, red border) ↔ next (right, line color)
-            HStack(alignment: .top, spacing: 0) {
-                VStack(alignment: .leading, spacing: 2) {
+            // Current station is just the small reference; the NEXT station is the
+            // hero — that's the single thing the rider needs to read at a glance.
+            HStack(alignment: .bottom, spacing: 10) {
+                VStack(alignment: .leading, spacing: 1) {
                     Text(currentKo)
-                        .font(.system(size: 16, weight: .black))
-                        .foregroundStyle(KORATheme.labelPrimary)
+                        .font(.system(size: 13, weight: .bold))
+                        .foregroundStyle(KORATheme.labelSecondary)
                     if showCurrentTranslation {
                         Text(currentDisplay)
-                            .font(.caption).fontWeight(.medium)
-                            .foregroundStyle(KORATheme.labelSecondary)
+                            .font(.caption2)
+                            .foregroundStyle(KORATheme.labelTertiary)
                     }
                 }
-                .padding(.horizontal, 8).padding(.vertical, 4)
-                .overlay(RoundedRectangle(cornerRadius: 8).strokeBorder(.red, lineWidth: 2))
+                .padding(.horizontal, 6).padding(.vertical, 3)
+                .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(.red.opacity(0.7), lineWidth: 1.5))
 
-                Spacer()
+                Image(systemName: "arrow.right")
+                    .font(.subheadline).fontWeight(.black)
+                    .foregroundStyle(lineColor.opacity(0.7))
+                    .padding(.bottom, 8)
 
-                VStack(alignment: .trailing, spacing: 2) {
+                VStack(alignment: .leading, spacing: 1) {
+                    Text(NavLoc.nextStopShort.resolved(displayLanguage))
+                        .font(.caption2).fontWeight(.bold)
+                        .foregroundStyle(lineColor.opacity(0.8))
                     Text(nextKo)
-                        .font(.system(size: 16, weight: .black))
+                        .font(.system(size: 30, weight: .black))
                         .foregroundStyle(lineColor)
+                        .minimumScaleFactor(0.6)
+                        .lineLimit(1)
                     if showNextTranslation {
                         Text(nextDisplay)
-                            .font(.caption).fontWeight(.medium)
+                            .font(.subheadline).fontWeight(.semibold)
                             .foregroundStyle(KORATheme.labelSecondary)
                     }
                 }
+                Spacer(minLength: 0)
             }
         }
         .padding(12)
@@ -1622,6 +1672,32 @@ struct SubwayNavigatorView: View {
         case .english:  return "Toward \(display)"
         case .chinese:  return "开往\(display)"
         }
+    }
+
+    /// Station/terminus names that identify the rider's direction (forward) vs the
+    /// opposite platform (backward), used by the camera scanner to read a
+    /// destination sign and confirm which train to board.
+    private func directionMarkers(for seg: JourneySegment) -> (forward: Set<String>, backward: Set<String>) {
+        var forward = Set(seg.stations.dropFirst())   // everything our train will pass
+        forward.insert(seg.terminus)
+        forward.formUnion(seg.alternativeTermini)
+
+        var backward = Set<String>()
+        let boarding = seg.stations.first ?? ""
+        let next = seg.stations.count > 1 ? seg.stations[1] : seg.terminus
+        if let route = seg.line.routes.first(where: { $0.stations.contains(boarding) && $0.stations.contains(next) }),
+           let bi = route.stations.firstIndex(of: boarding),
+           let ni = route.stations.firstIndex(of: next) {
+            if ni >= bi {
+                backward.formUnion(route.stations.prefix(bi))      // stations behind us
+                backward.insert(route.terminusA)
+            } else {
+                backward.formUnion(route.stations.suffix(from: min(bi + 1, route.stations.count)))
+                backward.insert(route.terminusB)
+            }
+        }
+        backward.subtract(forward)   // a name can't mean both directions
+        return (forward, backward)
     }
 
     private func resetJourney() {

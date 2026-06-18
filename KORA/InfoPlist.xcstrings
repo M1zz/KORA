@@ -42,6 +42,18 @@
         }
       }
     },
+    "NSCameraUsageDescription" : {
+      "comment" : "Privacy - Camera Usage Description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "승강장·열차의 행선지 표시를 카메라로 비춰 어느 방향 열차를 타야 하는지 알려드리기 위해 카메라를 사용합니다."
+          }
+        }
+      }
+    },
     "NSLocationWhenInUseUsageDescription" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -67,6 +79,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "用于查找距您当前位置最近的地铁站。"
+          }
+        }
+      }
+    },
+    "NSMicrophoneUsageDescription" : {
+      "comment" : "Privacy - Microphone Usage Description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "지하철 안내방송을 인식해 현재 역과 내릴 문 방향을 정확히 알려드리기 위해 마이크를 사용합니다. 음성은 기기에서만 처리되며 저장·전송되지 않습니다."
           }
         }
       }
@@ -108,6 +132,18 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "访问您选择的截图或照片，用于设备本地的文本识别以提取地点名称。"
+          }
+        }
+      }
+    },
+    "NSSpeechRecognitionUsageDescription" : {
+      "comment" : "Privacy - Speech Recognition Usage Description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "지하철 안내방송에서 역 이름을 인식하기 위해 음성 인식을 사용합니다. 인식은 모두 기기 내에서 처리됩니다."
           }
         }
       }

@@ -48,6 +48,7 @@
 		AA044 /* KORALiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA144 /* KORALiveActivityManager.swift */; };
 		AA045 /* TransitPositionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA145 /* TransitPositionTracker.swift */; };
 		AA061 /* StationAnnouncementListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA161 /* StationAnnouncementListener.swift */; };
+		AA062 /* PlatformDirectionScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA162 /* PlatformDirectionScanner.swift */; };
 		AA046 /* PlaceDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA146 /* PlaceDetailSheet.swift */; };
 		AA047 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA147 /* SafariView.swift */; };
 		AA048 /* KakaoPlaceDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA148 /* KakaoPlaceDetailService.swift */; };
@@ -133,6 +134,7 @@
 		AA144 /* KORALiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORALiveActivityManager.swift; sourceTree = "<group>"; };
 		AA145 /* TransitPositionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitPositionTracker.swift; sourceTree = "<group>"; };
 		AA161 /* StationAnnouncementListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAnnouncementListener.swift; sourceTree = "<group>"; };
+		AA162 /* PlatformDirectionScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformDirectionScanner.swift; sourceTree = "<group>"; };
 		AA146 /* PlaceDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailSheet.swift; sourceTree = "<group>"; };
 		AA147 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		AA148 /* KakaoPlaceDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceDetailService.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				AA135 /* RealtimeArrivalService.swift */,
 				AA145 /* TransitPositionTracker.swift */,
 				AA161 /* StationAnnouncementListener.swift */,
+				AA162 /* PlatformDirectionScanner.swift */,
 				AA150 /* SubwayExitService.swift */,
 				AA151 /* SubwayExits.json */,
 			);
@@ -581,6 +584,7 @@
 				AA035 /* RealtimeArrivalService.swift in Sources */,
 				AA045 /* TransitPositionTracker.swift in Sources */,
 				AA061 /* StationAnnouncementListener.swift in Sources */,
+				AA062 /* PlatformDirectionScanner.swift in Sources */,
 				AA050 /* SubwayExitService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

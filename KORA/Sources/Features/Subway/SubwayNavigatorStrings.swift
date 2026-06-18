@@ -234,6 +234,43 @@ extension NavLoc {
         en: "Doors open: left",
         zh: "下车门：左侧"
     )
+    // Camera direction scanner
+    static let scanDirectionButton = NavLoc(
+        ko: "어느 쪽인지 카메라로 확인",
+        ja: "カメラで方向を確認",
+        en: "Check direction with camera",
+        zh: "用相机确认方向"
+    )
+    static let scanAimPrompt = NavLoc(
+        ko: "열차·승강장 행선지를 비춰주세요",
+        ja: "電車・ホームの行先を映してください",
+        en: "Point at the train/platform sign",
+        zh: "请对准列车·站台目的地标识"
+    )
+    static let scanCorrect = NavLoc(
+        ko: "이 방향이 맞아요 — 타세요",
+        ja: "この方向で合っています — 乗車OK",
+        en: "Correct direction — board here",
+        zh: "方向正确 — 可乘车"
+    )
+    static let scanWrong = NavLoc(
+        ko: "반대 방향이에요 — 타지 마세요",
+        ja: "逆方向です — 乗らないで",
+        en: "Wrong direction — don't board",
+        zh: "方向相反 — 请勿乘车"
+    )
+    static let scanSearching = NavLoc(
+        ko: "행선지를 찾는 중…",
+        ja: "行先を探しています…",
+        en: "Looking for a destination sign…",
+        zh: "正在识别目的地…"
+    )
+    static let scanNoCamera = NavLoc(
+        ko: "카메라 권한이 필요해요",
+        ja: "カメラの許可が必要です",
+        en: "Camera permission needed",
+        zh: "需要相机权限"
+    )
     static let gpsSuggestion = NavLoc(
         ko: "위치 기반 추천",
         ja: "位置情報からの候補",
