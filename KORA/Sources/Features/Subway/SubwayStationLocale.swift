@@ -247,6 +247,8 @@ extension MetroLineData {
 
         // ─── Line 4 ────────────────────────────────────────────────────
         "당고개":      .init(ja: "タンゴゲ",              en: "Danggogae"),
+        "오남":        .init(ja: "オナム",                en: "Onam"),
+        "진접":        .init(ja: "ジンジョプ",            en: "Jinjeop"),
         "상계":        .init(ja: "サンゲ",               en: "Sanggye"),
         "노원":        .init(ja: "ノウォン",              en: "Nowon"),
         "쌍문":        .init(ja: "サンムン",              en: "Ssangmun"),

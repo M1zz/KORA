@@ -74,8 +74,8 @@ enum SubwayScheduleService {
                 firstFromB_wd:335, firstFromB_sat:340, firstFromB_sun:345, secsPerStop:120,
                 weekdayHeadways:[h(300,420,7),h(420,540,4),h(540,1080,6),h(1080,1200,4),h(1200,1500,8)],
                 weekendHeadways:[h(300,540,9),h(540,1320,6),h(1320,1500,9)]),
-            // Line 4
-            RouteSchedule(lineNumber:4, terminusA:"당고개", terminusB:"오이도", isCircular:false,
+            // Line 4 (진접선 연장 반영: 진접 ↔ 오이도)
+            RouteSchedule(lineNumber:4, terminusA:"진접", terminusB:"오이도", isCircular:false,
                 firstFromA_wd:320, firstFromA_sat:325, firstFromA_sun:330,
                 firstFromB_wd:317, firstFromB_sat:325, firstFromB_sun:330, secsPerStop:125,
                 weekdayHeadways:[h(300,420,7),h(420,540,4),h(540,1080,6),h(1080,1200,4),h(1200,1500,8)],
