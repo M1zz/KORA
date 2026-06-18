@@ -216,6 +216,24 @@ extension NavLoc {
         en: "Approaching next station",
         zh: "即将到达下一站"
     )
+    static let heardFromAnnouncement = NavLoc(
+        ko: "안내방송으로 확인됨",
+        ja: "車内放送で確認",
+        en: "Confirmed by announcement",
+        zh: "已通过广播确认"
+    )
+    static let doorOpensRight = NavLoc(
+        ko: "내리실 문: 오른쪽",
+        ja: "降り口：右側",
+        en: "Doors open: right",
+        zh: "下车门：右侧"
+    )
+    static let doorOpensLeft = NavLoc(
+        ko: "내리실 문: 왼쪽",
+        ja: "降り口：左側",
+        en: "Doors open: left",
+        zh: "下车门：左侧"
+    )
     static let gpsSuggestion = NavLoc(
         ko: "위치 기반 추천",
         ja: "位置情報からの候補",

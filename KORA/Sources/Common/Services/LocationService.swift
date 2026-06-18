@@ -32,17 +32,38 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
     private let manager = CLLocationManager()
     private var continuation: CheckedContinuation<CLLocationCoordinate2D, Error>?
+    private var timeoutTask: Task<Void, Never>?
 
     override init() {
         super.init()
         manager.delegate = self
+        // Hundred-meter accuracy is plenty for nearest-station matching and gets
+        // a fix far faster than a navigation-grade fix.
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     }
 
-    func requestOnce() async throws -> CLLocationCoordinate2D {
-        try await withTaskCancellationHandler {
+    /// One-shot location.
+    /// - `maxAge`: if the OS already has a cached fix newer than this, return it
+    ///   immediately (no waiting for a fresh fix) — this is what makes repeat
+    ///   lookups feel instant.
+    /// - `timeout`: never hang; after this, fall back to any cached fix or fail.
+    func requestOnce(maxAge: TimeInterval = 60, timeout: TimeInterval = 4) async throws -> CLLocationCoordinate2D {
+        // Fast path: a recent cached fix.
+        if let cached = cachedCoordinate(maxAge: maxAge) { return cached }
+
+        return try await withTaskCancellationHandler {
             try await withCheckedThrowingContinuation { (cont: CheckedContinuation<CLLocationCoordinate2D, Error>) in
                 self.continuation = cont
+                self.timeoutTask = Task { @MainActor in
+                    try? await Task.sleep(for: .seconds(timeout))
+                    guard !Task.isCancelled else { return }
+                    // Timed out — settle for any cached fix, else surface timeout.
+                    if let cached = self.cachedCoordinate(maxAge: .infinity) {
+                        self.finish(.success(cached))
+                    } else {
+                        self.finish(.failure(LocationError.timeout))
+                    }
+                }
                 switch manager.authorizationStatus {
                 case .notDetermined:
                     manager.requestWhenInUseAuthorization()
@@ -55,6 +76,13 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         } onCancel: {
             Task { @MainActor in self.finish(.failure(CancellationError())) }
         }
+    }
+
+    /// The OS's last-known fix, if present and not older than `maxAge`.
+    private func cachedCoordinate(maxAge: TimeInterval) -> CLLocationCoordinate2D? {
+        guard let loc = manager.location, loc.horizontalAccuracy >= 0 else { return nil }
+        if maxAge.isFinite, abs(loc.timestamp.timeIntervalSinceNow) > maxAge { return nil }
+        return loc.coordinate
     }
 
     nonisolated func locationManagerDidChangeAuthorization(_ m: CLLocationManager) {
@@ -80,6 +108,8 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     }
 
     private func finish(_ result: Result<CLLocationCoordinate2D, Error>) {
+        timeoutTask?.cancel()
+        timeoutTask = nil
         guard let cont = continuation else { return }
         continuation = nil
         switch result {

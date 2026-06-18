@@ -36,22 +36,24 @@ import SwiftUI
 final class TransitPositionTracker: NSObject, ObservableObject {
 
     enum PositionSource {
-        case realtime, gps, motion, time
+        case announcement, realtime, gps, motion, time
 
         var icon: String {
             switch self {
-            case .realtime: return "dot.radiowaves.up.forward"
-            case .gps:      return "location.fill"
-            case .motion:   return "waveform.path"
-            case .time:     return "clock"
+            case .announcement: return "waveform.and.mic"
+            case .realtime:     return "dot.radiowaves.up.forward"
+            case .gps:          return "location.fill"
+            case .motion:       return "waveform.path"
+            case .time:         return "clock"
             }
         }
         var color: Color {
             switch self {
-            case .realtime: return .purple
-            case .gps:      return .green
-            case .motion:   return .blue
-            case .time:     return Color(.tertiaryLabel)
+            case .announcement: return .pink
+            case .realtime:     return .purple
+            case .gps:          return .green
+            case .motion:       return .blue
+            case .time:         return Color(.tertiaryLabel)
             }
         }
     }
@@ -102,6 +104,9 @@ final class TransitPositionTracker: NSObject, ObservableObject {
     private var lockedTrainNumber: String? = nil
     private var realtimeTask: Task<Void, Never>? = nil
     private var lastTimeIdx: Int = 0
+
+    // Announcement (heard via the train's PA — highest authority)
+    private var announcedConfirmedIdx: Int = 0
 
     // ── Tuning constants ──────────────────────────────────────────────────────
     private static let sampleInterval: TimeInterval = 0.04   // 25 Hz
@@ -156,6 +161,7 @@ final class TransitPositionTracker: NSObject, ObservableObject {
         realtimeLastConfirm = nil
         lockedTrainNumber = nil
         lastTimeIdx = 0
+        announcedConfirmedIdx = 0
         startGPS()
         startMotion()
         startRealtime()
@@ -169,46 +175,48 @@ final class TransitPositionTracker: NSObject, ObservableObject {
         segStations = []
     }
 
-    /// Called by the time loop so the time component advances the index when
-    /// the higher-priority sources haven't fired yet. Also runs the fusion +
-    /// all safety guards and publishes the resulting index/source/confidence.
+    /// Called periodically by the time loop to feed the schedule-based floor.
+    /// The actual index publish is event-driven (see `publishFusedIndex`), so a
+    /// stop detected by motion/realtime/GPS surfaces immediately — not on the
+    /// next loop tick.
     func integrate(timeBasedIdx: Int) {
-        lastTimeIdx = timeBasedIdx
+        lastTimeIdx = max(lastTimeIdx, timeBasedIdx)
+        publishFusedIndex()
+    }
+
+    /// Fuses all four sources and publishes `stationIndex`. Called both on the
+    /// periodic time tick and the instant a sensor/realtime event fires.
+    private func publishFusedIndex() {
         guard !segStations.isEmpty else { return }
         let lastIdx = max(segStations.count - 1, 0)
-
-        // ── Per-source candidate indices, each already monotonic by construction.
+        let timeIdx = lastTimeIdx
         let realtimeActive = isRealtimeFresh
         let gpsFresh = isGPSFresh
 
-        // Motion plausibility cap: never lead the schedule by more than maxMotionLead.
-        let cappedMotion = min(motionStopCount, timeBasedIdx + Self.maxMotionLead)
+        // Physical sensors (motion, GPS) are allowed to advance the index freely
+        // the moment they detect a stop. Only the *schedule estimate* is gated by
+        // realtime, so a delayed train can't be over-counted by the clock — yet a
+        // real, sensed arrival is never held back (no freeze).
+        let cappedMotion = min(motionStopCount, timeIdx + Self.maxMotionLead)
+        let effectiveTime = realtimeActive ? min(timeIdx, realtimeConfirmedIdx + 1) : timeIdx
 
-        // ── Pick the best source by priority, honouring stale/inactive rules.
-        var best = timeBasedIdx
+        // Priority: announcement ≥ realtime ≥ GPS ≥ motion ≥ time (ties go to the
+        // higher-authority source). The PA announcement is the train's own voice,
+        // so it outranks everything.
+        var best = effectiveTime
         var chosen: PositionSource = .time
-
-        if cappedMotion > best { best = cappedMotion; chosen = .motion }
-        if let g = gpsConfirmedIdx, gpsFresh, g >= best { best = g; chosen = .gps }
-        if realtimeActive, realtimeConfirmedIdx >= best { best = realtimeConfirmedIdx; chosen = .realtime }
-
-        // ── Realtime gate: cap drift so we never overshoot a delayed train.
-        if realtimeActive {
-            best = min(best, realtimeConfirmedIdx + 1)
-        }
-
-        // ── Floors that are always valid even when stale (they can't be wrong,
-        //    only old): a previously confirmed GPS/realtime index.
-        best = max(best, realtimeConfirmedIdx)
-        if let g = gpsConfirmedIdx { best = max(best, g) }
+        if motionStopCount > 0, cappedMotion >= best { best = cappedMotion; chosen = .motion }
+        if gpsFresh, let g = gpsConfirmedIdx, g >= best { best = g; chosen = .gps }
+        if realtimeConfirmedIdx > 0, realtimeConfirmedIdx >= best { best = realtimeConfirmedIdx; chosen = .realtime }
+        if announcedConfirmedIdx > 0, announcedConfirmedIdx >= best { best = announcedConfirmedIdx; chosen = .announcement }
 
         // ── Monotonic + destination clamp.
         let clamped = min(max(best, stationIndex), lastIdx)
-        if clamped > stationIndex { stationIndex = clamped }
+        if clamped != stationIndex { stationIndex = clamped }
         source = chosen
 
         if stationIndex > 0 { hasDeparted = true }
-        confidence = evaluateConfidence(timeIdx: timeBasedIdx, cappedMotion: cappedMotion,
+        confidence = evaluateConfidence(timeIdx: timeIdx, cappedMotion: cappedMotion,
                                         gpsFresh: gpsFresh, realtimeActive: realtimeActive)
     }
 
@@ -218,15 +226,38 @@ final class TransitPositionTracker: NSObject, ObservableObject {
         let clamped = min(max(idx, 0), lastIdx)
         stationIndex = clamped
         motionStopCount = clamped
+        // Reset the time floor too, otherwise a backward correction would be
+        // immediately overridden by the stale schedule estimate on the next tick.
+        lastTimeIdx = clamped
         gpsConfirmedIdx = nil
         lastGPSFix = nil
-        // Reset realtime baseline so the gate re-anchors around the corrected index.
+        // Reset realtime/announcement baselines around the corrected index.
         realtimeConfirmedIdx = clamped
+        announcedConfirmedIdx = clamped
         realtimeLastConfirm = nil
         lockedTrainNumber = nil
         arrivingAtNext = false
         if clamped > 0 { hasDeparted = true }
         confidence = .high   // the rider just told us — trust it for now.
+    }
+
+    /// Position confirmed by a heard PA announcement. `isCurrent` true =
+    /// "이번 역은 ○○" (we are AT this station); false = "다음 역은 ○○" (next stop).
+    func confirmAnnouncedStation(_ name: String, isCurrent: Bool) {
+        guard !segStations.isEmpty,
+              let idx = segStations.firstIndex(of: name) else { return }
+        if isCurrent {
+            // Accept only a plausible forward step (≤2 ahead) so a misheard far
+            // station can't teleport the index.
+            guard idx >= stationIndex, idx <= stationIndex + 2 else { return }
+            if idx > announcedConfirmedIdx { announcedConfirmedIdx = idx }
+            arrivingAtNext = false
+            hasDeparted = idx > 0 || hasDeparted
+            publishFusedIndex()
+        } else {
+            // "다음 역은 ○○" — arm the arrival of the immediately next station.
+            if idx == stationIndex + 1 { arrivingAtNext = true }
+        }
     }
 
     // MARK: - Confidence
@@ -243,6 +274,8 @@ final class TransitPositionTracker: NSObject, ObservableObject {
 
     private func evaluateConfidence(timeIdx: Int, cappedMotion: Int,
                                     gpsFresh: Bool, realtimeActive: Bool) -> Confidence {
+        // The train told us itself — nothing is more trustworthy.
+        if announcedConfirmedIdx > 0, announcedConfirmedIdx == stationIndex { return .high }
         if realtimeActive { return .high }
 
         // Count independent non-time sources that agree (within 1 stop) with the
@@ -279,6 +312,7 @@ final class TransitPositionTracker: NSObject, ObservableObject {
 
         if let idx = segStations.firstIndex(of: match.name), idx >= stationIndex {
             gpsConfirmedIdx = idx
+            publishFusedIndex()
         }
     }
 
@@ -337,6 +371,8 @@ final class TransitPositionTracker: NSObject, ObservableObject {
                     motionState = .stationary
                     stateEnteredAt = now
                     lowRmsSince = nil
+                    // Surface the arrival immediately — don't wait for the loop tick.
+                    publishFusedIndex()
                 }
             } else if rms > Self.moveRmsThreshold {
                 lowRmsSince = nil
@@ -377,7 +413,10 @@ final class TransitPositionTracker: NSObject, ObservableObject {
         case .arrivedAtNext(let trainNumber):
             // Honour the train lock so we don't latch onto a different train.
             if lockedTrainNumber == nil || trainNumber.isEmpty || lockedTrainNumber == trainNumber {
-                if nextIdx > realtimeConfirmedIdx { realtimeConfirmedIdx = nextIdx }
+                if nextIdx > realtimeConfirmedIdx {
+                    realtimeConfirmedIdx = nextIdx
+                    publishFusedIndex()          // surface the confirmed arrival now
+                }
                 realtimeLastConfirm = Date()
                 lockedTrainNumber = nil          // re-lock for the following hop
                 arrivingAtNext = false

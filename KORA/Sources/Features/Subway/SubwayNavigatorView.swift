@@ -95,8 +95,10 @@ struct SubwayNavigatorView: View {
     @State private var didAutoLocate = false
     private let locationService = LocationService()
 
-    // Transit position tracker (GPS + accelerometer + time)
+    // Transit position tracker (announcement + realtime + GPS + accelerometer + time)
     @StateObject private var positionTracker = TransitPositionTracker()
+    // Listens to the train's PA announcements ("이번 역은 …") for ground-truth position.
+    @StateObject private var announcer = StationAnnouncementListener()
 
     // Cross-tab navigation intent
     @State private var coordinator = NavigationCoordinator.shared
@@ -840,9 +842,11 @@ struct SubwayNavigatorView: View {
             let totalStops = max(seg.stopCount, 1)
             let secsPerStop = secondsPerStop(for: seg)
             let elapsed = max(Int(now.timeIntervalSince(boardedAt)), 0)
-            let timeIdx = min(elapsed / secsPerStop, totalStops)
-            // Smart index: GPS > accelerometer > time (never go backwards)
-            let stopsTraveled = max(positionTracker.stationIndex, timeIdx)
+            // Trust the fused tracker index (realtime > GPS > accelerometer > time,
+            // monotonic, gated against overshoot). It already incorporates the
+            // time-based floor fed in via the loop below, so no extra max() here —
+            // that would re-introduce schedule overshoot on a delayed train.
+            let stopsTraveled = min(positionTracker.stationIndex, totalStops)
             let stopsRemaining = max(totalStops - stopsTraveled, 0)
             let currentStationIdx = min(stopsTraveled, seg.stations.count - 1)
             let currentKo = seg.stations[currentStationIdx]
@@ -864,6 +868,36 @@ struct SubwayNavigatorView: View {
                     nextStDisplay: nextStDisplay,
                     showNextTrans: showNextTrans
                 )
+
+                // "Confirmed by announcement" badge — pink, the strongest signal.
+                if positionTracker.source == .announcement {
+                    HStack(spacing: 6) {
+                        Image(systemName: "waveform.and.mic")
+                            .font(.footnote).fontWeight(.bold)
+                        Text(NavLoc.heardFromAnnouncement.resolved(displayLanguage))
+                            .font(.footnote).fontWeight(.bold)
+                    }
+                    .foregroundStyle(.pink)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .transition(.opacity.combined(with: .move(edge: .top)))
+                }
+
+                // Door side from the PA announcement ("내리실 문은 …").
+                if let side = announcer.doorSide {
+                    let isRight = side == .right
+                    HStack(spacing: 8) {
+                        Image(systemName: isRight ? "arrow.right.to.line" : "arrow.left.to.line")
+                            .font(.callout).fontWeight(.black)
+                        Text((isRight ? NavLoc.doorOpensRight : NavLoc.doorOpensLeft).resolved(displayLanguage))
+                            .font(.callout).fontWeight(.bold)
+                        Spacer()
+                    }
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 12).padding(.vertical, 8)
+                    .background(seg.line.color)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .transition(.opacity.combined(with: .scale))
+                }
 
                 // Realtime "approaching next" badge — purple, authoritative.
                 if positionTracker.arrivingAtNext {
@@ -942,25 +976,40 @@ struct SubwayNavigatorView: View {
             // Start GPS + accelerometer tracking for this segment
             positionTracker.start(seg: seg)
 
+            // Listen to PA announcements for ground-truth station confirmation.
+            if await announcer.requestAuthorization() {
+                announcer.start(candidates: seg.stations) { station, isCurrent in
+                    positionTracker.confirmAnnouncedStation(station, isCurrent: isCurrent)
+                }
+            }
+
             guard #available(iOS 16.1, *) else { return }
+            var lastLiveIdx = -1
             while !Task.isCancelled {
-                // Feed time-based index into tracker so it acts as the floor
+                // Feed the schedule-based floor every few seconds. Sensor/realtime
+                // arrivals publish on their own (event-driven), so the index stays
+                // in sync without waiting on this tick.
                 let elapsed = max(Int(Date().timeIntervalSince(boardedAt)), 0)
                 let timeIdx = min(elapsed / secondsPerStop(for: seg), seg.stopCount)
                 positionTracker.integrate(timeBasedIdx: timeIdx)
 
-                // Update Live Activity
+                // Push the Live Activity only when the station actually changes.
                 let idx = positionTracker.stationIndex
-                let currentKo = seg.stations[min(idx, seg.stations.count - 1)]
-                let nextKo = idx + 1 < seg.stations.count ? seg.stations[idx + 1] : seg.stations.last ?? ""
-                let stopsLeft = max(seg.stations.count - 1 - idx, 0)
-                await KORALiveActivityManager.shared.update(
-                    current: currentKo,
-                    next: nextKo,
-                    stopsRemaining: stopsLeft
-                )
-                try? await Task.sleep(for: .seconds(30))
+                if idx != lastLiveIdx {
+                    lastLiveIdx = idx
+                    let currentKo = seg.stations[min(idx, seg.stations.count - 1)]
+                    let nextKo = idx + 1 < seg.stations.count ? seg.stations[idx + 1] : seg.stations.last ?? ""
+                    let stopsLeft = max(seg.stations.count - 1 - idx, 0)
+                    await KORALiveActivityManager.shared.update(
+                        current: currentKo,
+                        next: nextKo,
+                        stopsRemaining: stopsLeft
+                    )
+                }
+                try? await Task.sleep(for: .seconds(5))
             }
+            // Task cancelled (segment changed / left the screen) — release the mic.
+            announcer.stop()
         }
         .task(id: boardedAt) {
             // Drive inTransitTramY: jump to current interval progress, then animate smoothly
