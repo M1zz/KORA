@@ -144,7 +144,8 @@ struct SubwayNavigatorView: View {
             StationSearchSheet(
                 title: NavLoc.currentStationTitle.resolved(displayLanguage),
                 excluding: toStation,
-                displayLanguage: displayLanguage
+                displayLanguage: displayLanguage,
+                showNearby: true
             ) {
                 fromStation = $0
                 selectedJourneyIdx = 0
@@ -2444,11 +2445,17 @@ struct StationSearchSheet: View {
     let title: String
     let excluding: String?
     let displayLanguage: StationLanguage
+    /// When true, a GPS-based "nearby stations" section is shown at the top
+    /// (used for the departure picker).
+    var showNearby: Bool = false
     let onSelect: (String) -> Void
 
     @Environment(\.dismiss) private var dismiss
     @State private var query = ""
     @State private var selectedLineNumber: Int? = nil
+    @State private var nearby: [String] = []
+    @State private var isLocatingNearby = false
+    private let locationService = LocationService()
 
     private let allLines = MetroLineData.seoulLines
 
@@ -2529,20 +2536,68 @@ struct StationSearchSheet: View {
                     Button(NavLoc.done.resolved(displayLanguage)) { dismiss() }
                 }
             }
+            .task { if showNearby { await loadNearby() } }
         }
+    }
+
+    // MARK: - Nearby (GPS) stations
+
+    /// Show the GPS "nearby" section only on the unfiltered, unsearched list.
+    private var showNearbySection: Bool {
+        showNearby && !nearby.isEmpty
+            && selectedLineNumber == nil
+            && query.trimmingCharacters(in: .whitespaces).isEmpty
+    }
+
+    @ViewBuilder private var nearbySection: some View {
+        Section {
+            ForEach(nearby, id: \.self) { station in
+                Button {
+                    onSelect(station)
+                    dismiss()
+                } label: {
+                    stationRow(station)
+                }
+                .buttonStyle(.plain)
+            }
+        } header: {
+            HStack(spacing: 6) {
+                Image(systemName: "location.fill")
+                    .font(.footnote)
+                    .foregroundStyle(KORATheme.accent)
+                Text(NavLoc.nearbyStations.resolved(displayLanguage))
+                    .font(.body).fontWeight(.bold)
+                    .foregroundStyle(KORATheme.accent)
+                Spacer()
+            }
+        }
+    }
+
+    private func loadNearby() async {
+        guard nearby.isEmpty, !isLocatingNearby else { return }
+        isLocatingNearby = true
+        defer { isLocatingNearby = false }
+        guard let coord = try? await locationService.requestOnce() else { return }
+        nearby = MetroLineData
+            .nearestStations(latitude: coord.latitude, longitude: coord.longitude)
+            .map(\.name)
+            .filter { $0 != excluding }
     }
 
     // MARK: - List bodies
 
     private var flatListView: some View {
-        List(filtered, id: \.self) { station in
-            Button {
-                onSelect(station)
-                dismiss()
-            } label: {
-                stationRow(station)
+        List {
+            if showNearbySection { nearbySection }
+            ForEach(filtered, id: \.self) { station in
+                Button {
+                    onSelect(station)
+                    dismiss()
+                } label: {
+                    stationRow(station)
+                }
+                .buttonStyle(.plain)
             }
-            .buttonStyle(.plain)
         }
         .listStyle(.plain)
     }
@@ -2552,6 +2607,7 @@ struct StationSearchSheet: View {
         return ScrollViewReader { proxy in
             ZStack(alignment: .trailing) {
                 List {
+                    if showNearbySection { nearbySection }
                     ForEach(sections, id: \.key) { group in
                         Section {
                             ForEach(group.stations, id: \.self) { station in

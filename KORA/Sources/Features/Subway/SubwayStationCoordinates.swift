@@ -507,6 +507,19 @@ extension MetroLineData {
         return (b.0, b.1)
     }
 
+    /// Up to `limit` nearest stations (by great-circle distance) within
+    /// `maxMeters`, ordered closest-first. Used to suggest nearby departure
+    /// stations from the device's current location.
+    static func nearestStations(latitude lat: Double, longitude lng: Double,
+                                maxMeters: Double = 1500, limit: Int = 5) -> [(name: String, distanceMeters: Double)] {
+        stationCoordinates
+            .map { (name: $0.key, distanceMeters: haversine(lat1: lat, lng1: lng, lat2: $0.value.lat, lng2: $0.value.lng)) }
+            .filter { $0.distanceMeters <= maxMeters }
+            .sorted { $0.distanceMeters < $1.distanceMeters }
+            .prefix(limit)
+            .map { $0 }
+    }
+
     /// Great-circle distance in meters between two WGS84 coordinates.
     private static func haversine(lat1: Double, lng1: Double, lat2: Double, lng2: Double) -> Double {
         let R = 6_371_000.0
