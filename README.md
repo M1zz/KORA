@@ -2,6 +2,12 @@
 
 > インスタで見つけて、KORAで行く。
 
+## サポート / Support
+
+- 🛟 サポート / よくある質問: <https://m1zz.github.io/KORA/support.html>
+- 🔒 プライバシーポリシー: <https://m1zz.github.io/KORA/privacy.html>
+- 🏠 公式サイト: <https://m1zz.github.io/KORA/>
+
 ## 概要
 
 KORAは、日本人旅行者が韓国を「現地人のように」旅するためのiOSアプリです。

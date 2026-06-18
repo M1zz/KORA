@@ -197,6 +197,19 @@ extension NavLoc {
         en: "Which station are you at now?",
         zh: "您现在在哪一站?"
     )
+    // Position sync confidence / realtime signals
+    static let positionUncertain = NavLoc(
+        ko: "위치가 정확하지 않나요? 탭하여 보정",
+        ja: "現在地がずれていますか？タップして修正",
+        en: "Position off? Tap to correct",
+        zh: "位置不准确？点按修正"
+    )
+    static let approachingNext = NavLoc(
+        ko: "다음 역 접근 중",
+        ja: "まもなく次の駅",
+        en: "Approaching next station",
+        zh: "即将到达下一站"
+    )
     static let gpsSuggestion = NavLoc(
         ko: "위치 기반 추천",
         ja: "位置情報からの候補",

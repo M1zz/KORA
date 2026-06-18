@@ -27,6 +27,7 @@
 		AA019 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AA119 /* Localizable.xcstrings */; };
 		AA020 /* PlaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA120 /* PlaceStore.swift */; };
 		AA021 /* KakaoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA121 /* KakaoConfig.swift */; };
+		AA060 /* SeoulTransitConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA160 /* SeoulTransitConfig.swift */; };
 		AA022 /* KakaoLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA122 /* KakaoLocalService.swift */; };
 		AA023 /* SubwayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA123 /* SubwayView.swift */; };
 		AA024 /* seoul_metro.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AA124 /* seoul_metro.pdf */; };
@@ -110,6 +111,7 @@
 		AA119 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		AA120 /* PlaceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceStore.swift; sourceTree = "<group>"; };
 		AA121 /* KakaoConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConfig.swift; sourceTree = "<group>"; };
+		AA160 /* SeoulTransitConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulTransitConfig.swift; sourceTree = "<group>"; };
 		AA122 /* KakaoLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLocalService.swift; sourceTree = "<group>"; };
 		AA123 /* SubwayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayView.swift; sourceTree = "<group>"; };
 		AA124 /* seoul_metro.pdf */ = {isa = PBXFileReference; lastKnownFileType = com.adobe.pdf; path = seoul_metro.pdf; sourceTree = "<group>"; };
@@ -368,6 +370,7 @@
 				586CF42C2FC87E6B00D2A003 /* NaverLocalService.swift */,
 				586CF42E2FC87E6B00D2A003 /* PlaceSearchService.swift */,
 				AA121 /* KakaoConfig.swift */,
+				AA160 /* SeoulTransitConfig.swift */,
 				AA122 /* KakaoLocalService.swift */,
 				AA148 /* KakaoPlaceDetailService.swift */,
 				AA130 /* NavigationCoordinator.swift */,
@@ -556,6 +559,7 @@
 				AA04A /* CachedAsyncImage.swift in Sources */,
 				AA020 /* PlaceStore.swift in Sources */,
 				AA021 /* KakaoConfig.swift in Sources */,
+				AA060 /* SeoulTransitConfig.swift in Sources */,
 				AA022 /* KakaoLocalService.swift in Sources */,
 				AA048 /* KakaoPlaceDetailService.swift in Sources */,
 				AA030 /* NavigationCoordinator.swift in Sources */,
@@ -598,7 +602,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = KORAShare/KORAShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORAShare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = KORAShare;
@@ -610,7 +614,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.KORAShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -628,7 +632,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = KORAShare/KORAShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORAShare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = KORAShare;
@@ -640,7 +644,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.KORAShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -660,7 +664,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = widget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = widget;
@@ -672,7 +676,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -691,7 +695,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = widget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = widget;
@@ -703,7 +707,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -847,7 +851,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KORA/KORA.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "한국 길찾기";
@@ -860,7 +864,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -880,7 +884,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KORA/KORA.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "한국 길찾기";
@@ -893,7 +897,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

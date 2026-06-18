@@ -26,7 +26,19 @@
   - 환승 규칙, 노선 색상 가이드
   - 한강버스 주요 나루터, 요금, 이용 팁
 
+## 완료 (v1.0.1)
+- [x] 앱 버전 1.0.1 / 빌드 2로 상향 (전 타깃)
+- [x] 지하철 출발·정차 동기화 강화 — 4중 소스 융합 + 안전 장치
+  - 서울 열린데이터광장 실시간 도착 API 연동 (RealtimeArrivalService → TransitPositionTracker)
+    - 종착역/열차번호 기반 방향·열차 식별, 다음 역 도착/접근 확정
+    - SeoulTransitConfig + Secrets(SEOUL_OPEN_API_KEY) + Info.plist 주입, 키 없으면 자동 폴백
+  - 안전 장치: 단조 증가, 종점 클램프, 가속도계 과다카운트 캡(maxMotionLead),
+    GPS 노후 fix 무시(90s), 실시간 게이트(드리프트 ±1역 제한), 신뢰도 등급
+  - UI: 실시간 "다음 역 접근 중" 배지, 저신뢰 시 "위치 보정" 안내
+  - Info.plist NSMotionUsageDescription 추가
+
 ## 예정
+- [ ] 서울 열린데이터광장 실시간 도착 API 키 발급 후 Secrets.xcconfig에 입력
 - [ ] 리뷰 기능 테스트
 - [ ] Now 탭 실제 이벤트 데이터
 - [ ] Share 탭 UI 개선

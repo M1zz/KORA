@@ -14,5 +14,9 @@
 	<string>$(NAVER_CLIENT_ID)</string>
 	<key>NaverClientSecret</key>
 	<string>$(NAVER_CLIENT_SECRET)</string>
+	<key>SeoulOpenApiKey</key>
+	<string>$(SEOUL_OPEN_API_KEY)</string>
+	<key>NSMotionUsageDescription</key>
+	<string>지하철 탑승 중 가속도계로 출발·정차를 감지해 현재 정거장을 정확히 표시하기 위해 모션 데이터를 사용합니다.</string>
 </dict>
 </plist>

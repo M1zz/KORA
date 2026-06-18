@@ -864,6 +864,35 @@ struct SubwayNavigatorView: View {
                     showNextTrans: showNextTrans
                 )
 
+                // Realtime "approaching next" badge — purple, authoritative.
+                if positionTracker.arrivingAtNext {
+                    HStack(spacing: 6) {
+                        Image(systemName: "dot.radiowaves.up.forward")
+                            .font(.footnote).fontWeight(.bold)
+                        Text(NavLoc.approachingNext.resolved(displayLanguage))
+                            .font(.footnote).fontWeight(.bold)
+                    }
+                    .foregroundStyle(.purple)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .transition(.opacity.combined(with: .move(edge: .top)))
+                }
+
+                // Low-confidence safety prompt — nudge the rider to confirm position.
+                if positionTracker.confidence == .low {
+                    Button { showPositionCorrection = true } label: {
+                        HStack(spacing: 6) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .font(.caption).fontWeight(.bold)
+                            Text(NavLoc.positionUncertain.resolved(displayLanguage))
+                                .font(.caption).fontWeight(.semibold)
+                        }
+                        .foregroundStyle(.orange)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .buttonStyle(.plain)
+                    .transition(.opacity)
+                }
+
                 // Stops remaining + ETA — compact single row
                 HStack(alignment: .center) {
                     VStack(alignment: .leading, spacing: 1) {

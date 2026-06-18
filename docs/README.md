@@ -2,7 +2,9 @@
 
 KORA의 공식 지원/개인정보 처리방침 사이트.
 
-배포: <https://m1zz.github.io/KORA/>
+- 🏠 홈: <https://m1zz.github.io/KORA/>
+- 🛟 지원 / Support: <https://m1zz.github.io/KORA/support.html>
+- 🔒 개인정보 처리방침: <https://m1zz.github.io/KORA/privacy.html>
 
 ## GitHub Pages 활성화
 
