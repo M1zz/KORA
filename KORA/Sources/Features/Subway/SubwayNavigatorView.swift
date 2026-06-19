@@ -232,12 +232,14 @@ struct SubwayNavigatorView: View {
                 if let j = journey {
                     if journeyConfirmed {
                         activeStepHost(for: j)
+                            .zIndex(1)   // keep the incoming step ON TOP during the swap
                             .transition(.asymmetric(
                                 insertion: .move(edge: .trailing).combined(with: .opacity),
                                 removal:   .move(edge: .leading).combined(with: .opacity)
                             ))
                     } else {
                         journeyConfirmView(for: j)
+                            .zIndex(0)
                             .transition(.asymmetric(
                                 insertion: .move(edge: .bottom).combined(with: .opacity),
                                 removal:   .move(edge: .bottom).combined(with: .opacity)
