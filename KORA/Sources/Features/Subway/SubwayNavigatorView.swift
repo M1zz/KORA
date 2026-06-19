@@ -759,10 +759,6 @@ struct SubwayNavigatorView: View {
 
     /// ---●──────────────────────────●──▶  horizontal track card.
     private func verifyNextStopCard(currentKo: String, nextKo: String, nextDisplay: String, lineColor: Color) -> some View {
-        let currentDisplay = MetroLineData.displayName(for: currentKo, language: displayLanguage)
-        let showCurrentTranslation = displayLanguage != .korean && currentDisplay != currentKo
-        let showNextTranslation = displayLanguage != .korean && nextDisplay != nextKo
-
         return VStack(spacing: 10) {
             // ● —tram→→→— ○  track row
             HStack(alignment: .center, spacing: 8) {
@@ -771,42 +767,16 @@ struct SubwayNavigatorView: View {
                 Circle().strokeBorder(lineColor, lineWidth: 2.5).frame(width: 14, height: 14)
             }
 
-            // Current station is just the small reference; the NEXT station is the
-            // hero — that's the single thing the rider needs to read at a glance.
-            HStack(alignment: .bottom, spacing: 10) {
-                VStack(alignment: .leading, spacing: 1) {
-                    Text(currentKo)
-                        .font(.system(size: 13, weight: .bold))
-                        .foregroundStyle(KORATheme.labelSecondary)
-                    if showCurrentTranslation {
-                        Text(currentDisplay)
-                            .font(.caption2)
-                            .foregroundStyle(KORATheme.labelTertiary)
-                    }
-                }
-                .padding(.horizontal, 6).padding(.vertical, 3)
-                .overlay(RoundedRectangle(cornerRadius: 6).strokeBorder(.red.opacity(0.7), lineWidth: 1.5))
-
+            // Just an arrow → the next station name. No labels or romaji clutter.
+            HStack(spacing: 12) {
                 Image(systemName: "arrow.right")
-                    .font(.subheadline).fontWeight(.black)
+                    .font(.title2).fontWeight(.black)
                     .foregroundStyle(lineColor.opacity(0.7))
-                    .padding(.bottom, 8)
-
-                VStack(alignment: .leading, spacing: 1) {
-                    Text(NavLoc.nextStopShort.resolved(displayLanguage))
-                        .font(.caption2).fontWeight(.bold)
-                        .foregroundStyle(lineColor.opacity(0.8))
-                    Text(nextKo)
-                        .font(.system(size: 30, weight: .black))
-                        .foregroundStyle(lineColor)
-                        .minimumScaleFactor(0.6)
-                        .lineLimit(1)
-                    if showNextTranslation {
-                        Text(nextDisplay)
-                            .font(.subheadline).fontWeight(.semibold)
-                            .foregroundStyle(KORATheme.labelSecondary)
-                    }
-                }
+                Text(nextKo)
+                    .font(.system(size: 32, weight: .black))
+                    .foregroundStyle(lineColor)
+                    .minimumScaleFactor(0.6)
+                    .lineLimit(1)
                 Spacer(minLength: 0)
             }
         }
@@ -1118,26 +1088,17 @@ struct SubwayNavigatorView: View {
                 }
                 .frame(width: trackW)
                 VStack(alignment: .leading, spacing: 0) {
-                    // Current station — aligns with top filled circle
-                    Text(currentKo)
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundStyle(seg.line.color.opacity(0.85))
-                        .frame(height: trackW, alignment: .center)
+                    // Current-station name removed — the filled dot is "you are here".
+                    Color.clear.frame(height: trackW)
                     Color.clear.frame(height: connectorH)
                     if let nk = nextStKo {
-                        VStack(alignment: .leading, spacing: 1) {
-                            Text(nk)
-                                .font(.system(size: 26, weight: .black))
-                                .foregroundStyle(seg.line.color)
-                                .fixedSize(horizontal: false, vertical: true)
-                            if showNextTrans {
-                                Text(nextStDisplay)
-                                    .font(.callout).fontWeight(.medium)
-                                    .foregroundStyle(KORATheme.labelSecondary)
-                            }
-                        }
-                        .id(nk)
-                        .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
+                        Text(nk)
+                            .font(.system(size: 26, weight: .black))
+                            .foregroundStyle(seg.line.color)
+                            .fixedSize(horizontal: false, vertical: true)
+                            .frame(height: trackW, alignment: .center)
+                            .id(nk)
+                            .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
                     }
                 }
                 .clipped()
@@ -1503,7 +1464,7 @@ struct SubwayNavigatorView: View {
                             isBoarding: idx == allStops.count - 1,
                             isTrainHere: trainIdx == idx,
                             lineColor: seg.line.color,
-                            showLabel: idx < allStops.count - 1
+                            showLabel: false
                         )
                         if idx < allStops.count - 1 {
                             Rectangle()
@@ -1590,7 +1551,8 @@ struct SubwayNavigatorView: View {
                         station: st,
                         isBoarding: st == alightKo,
                         isTrainHere: st == currentKo,
-                        lineColor: seg.line.color
+                        lineColor: seg.line.color,
+                        showLabel: false
                     )
                     if idx < windowStations.count - 1 {
                         Rectangle()
