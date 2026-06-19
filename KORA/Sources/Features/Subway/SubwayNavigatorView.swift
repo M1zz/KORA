@@ -171,7 +171,7 @@ struct SubwayNavigatorView: View {
                 PlatformDirectionScanner(
                     forwardMarkers: markers.forward,
                     backwardMarkers: markers.backward,
-                    towardLabel: directionLabel(terminus: terminiOverride[currentBlockIdx] ?? seg.terminus),
+                    towardLabel: towardDirectionLabel(seg.stations.last ?? seg.terminus),
                     lineColor: seg.line.color,
                     displayLanguage: displayLanguage
                 )
@@ -616,12 +616,7 @@ struct SubwayNavigatorView: View {
         let nextDisplay = nextKo.map { MetroLineData.displayName(for: $0, language: displayLanguage) } ?? ""
         let timing = SubwayScheduleService.timing(for: seg, at: Date())
         let displayedTerminus = terminiOverride[segIdx] ?? seg.terminus
-        let displayedAlts: [String] = {
-            if let ov = terminiOverride[segIdx] {
-                return ([seg.terminus] + seg.alternativeTermini).filter { $0 != ov }
-            }
-            return seg.alternativeTermini
-        }()
+        let segDestKo = seg.stations.last ?? displayedTerminus
 
         let isBoarded = boardedSegmentIdx == segIdx
 
@@ -676,19 +671,17 @@ struct SubwayNavigatorView: View {
                                         .foregroundStyle(seg.line.color)
                                 }
                             } else {
-                                Text(directionLabel(terminus: displayedTerminus))
+                                // No single "○○행": many termini are valid, and some
+                                // same-direction trains (e.g. 사당행) terminate before the
+                                // destination. So we orient by the rider's destination and
+                                // let the camera confirm the actual train's sign.
+                                Text(towardDirectionLabel(segDestKo))
                                     .font(.title3).fontWeight(.heavy)
                                     .foregroundStyle(seg.line.color)
                                     .fixedSize(horizontal: false, vertical: true)
-                                if displayLanguage != .korean {
-                                    Text("\(displayedTerminus)행")
-                                        .font(.subheadline)
-                                        .foregroundStyle(KORATheme.labelSecondary)
-                                        .autoFitLine(minScale: 0.7)
-                                }
-                                if !displayedAlts.isEmpty {
-                                    alternativeTerminiRow(alts: displayedAlts, segIdx: segIdx, lineColor: seg.line.color)
-                                }
+                                Text(NavLoc.confirmTrainWithCamera.resolved(displayLanguage))
+                                    .font(.caption).fontWeight(.medium)
+                                    .foregroundStyle(KORATheme.labelSecondary)
                             }
                         }
                         .layoutPriority(1)
@@ -1689,6 +1682,19 @@ struct SubwayNavigatorView: View {
     }
 
     /// Direction label translated for current display language.
+    /// Destination-oriented direction label, e.g. "경마공원 방면" — used instead of a
+    /// single "○○행" terminus, which can mislead (some same-direction trains stop
+    /// short of the destination).
+    private func towardDirectionLabel(_ destKo: String) -> String {
+        let name = MetroLineData.displayName(for: destKo, language: displayLanguage)
+        switch displayLanguage {
+        case .korean:   return "\(name) 방면"
+        case .japanese: return "\(name)方面"
+        case .english:  return "Toward \(name)"
+        case .chinese:  return "开往\(name)方向"
+        }
+    }
+
     private func directionLabel(terminus: String) -> String {
         // Circular direction labels are already descriptive — translate directly.
         if terminus == "내선순환" {
@@ -1716,30 +1722,35 @@ struct SubwayNavigatorView: View {
         }
     }
 
-    /// Station/terminus names that identify the rider's direction (forward) vs the
-    /// opposite platform (backward), used by the camera scanner to read a
-    /// destination sign and confirm which train to board.
+    /// Terminus names that make a train VALID (green) vs the ones to avoid (red),
+    /// for the camera scanner reading a train's destination display.
+    ///
+    /// A train is valid only if its terminus is at the destination or BEYOND it.
+    /// Crucially, a same-direction train that terminates *before* the destination
+    /// (e.g. a 사당행 when you're heading to 경마공원) is invalid — so "green" is
+    /// "destination and beyond", and "red" is "everything before the destination"
+    /// (which includes both short-turn termini and the opposite direction).
     private func directionMarkers(for seg: JourneySegment) -> (forward: Set<String>, backward: Set<String>) {
-        var forward = Set(seg.stations.dropFirst())   // everything our train will pass
-        forward.insert(seg.terminus)
-        forward.formUnion(seg.alternativeTermini)
-
-        var backward = Set<String>()
         let boarding = seg.stations.first ?? ""
-        let next = seg.stations.count > 1 ? seg.stations[1] : seg.terminus
-        if let route = seg.line.routes.first(where: { $0.stations.contains(boarding) && $0.stations.contains(next) }),
-           let bi = route.stations.firstIndex(of: boarding),
-           let ni = route.stations.firstIndex(of: next) {
-            if ni >= bi {
-                backward.formUnion(route.stations.prefix(bi))      // stations behind us
-                backward.insert(route.terminusA)
-            } else {
-                backward.formUnion(route.stations.suffix(from: min(bi + 1, route.stations.count)))
-                backward.insert(route.terminusB)
-            }
+        let dest = seg.stations.last ?? ""
+        guard let route = seg.line.routes.first(where: { $0.stations.contains(boarding) && $0.stations.contains(dest) }),
+              let bi = route.stations.firstIndex(of: boarding),
+              let di = route.stations.firstIndex(of: dest), bi != di else {
+            // Circular / unknown route: green = the actual path this train takes.
+            return (Set(seg.stations), [])
         }
-        backward.subtract(forward)   // a name can't mean both directions
-        return (forward, backward)
+        let stations = route.stations
+        var green = Set<String>()
+        var red = Set<String>()
+        if di > bi {
+            green.formUnion(stations[di...])     // destination and beyond
+            red.formUnion(stations[..<di])       // before destination (incl. opposite dir)
+        } else {
+            green.formUnion(stations[...di])
+            red.formUnion(stations[(di + 1)...])
+        }
+        red.subtract(green)
+        return (forward: green, backward: red)
     }
 
     private func resetJourney() {

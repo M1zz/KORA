@@ -259,6 +259,12 @@ extension NavLoc {
         en: "Doors open: left",
         zh: "下车门：左侧"
     )
+    static let confirmTrainWithCamera = NavLoc(
+        ko: "열차 행선지는 카메라로 확인하세요",
+        ja: "列車の行先はカメラで確認",
+        en: "Confirm the train's destination with the camera",
+        zh: "请用相机确认列车终点站"
+    )
     // Camera direction scanner
     static let scanDirectionButton = NavLoc(
         ko: "어느 쪽인지 카메라로 확인",
@@ -267,10 +273,10 @@ extension NavLoc {
         zh: "用相机确认方向"
     )
     static let scanAimPrompt = NavLoc(
-        ko: "열차·승강장 행선지를 비춰주세요",
-        ja: "電車・ホームの行先を映してください",
-        en: "Point at the train/platform sign",
-        zh: "请对准列车·站台目的地标识"
+        ko: "열차 행선지(전광판)를 비춰주세요",
+        ja: "列車の行先表示を映してください",
+        en: "Point at the train's destination display",
+        zh: "请对准列车终点站显示屏"
     )
     static let scanCorrect = NavLoc(
         ko: "이 방향이 맞아요 — 타세요",
