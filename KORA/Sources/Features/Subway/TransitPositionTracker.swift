@@ -220,6 +220,20 @@ final class TransitPositionTracker: NSObject, ObservableObject {
                                         gpsFresh: gpsFresh, realtimeActive: realtimeActive)
     }
 
+    /// True when the *current* station index is backed by an authoritative source
+    /// (heard announcement, realtime feed, or a fresh GPS fix) — not merely a
+    /// dead-reckoning estimate from the accelerometer/schedule. Used to gate the
+    /// alight "get off now" cues so an over-counted estimate can't drop the rider
+    /// a station early.
+    var isCurrentStationConfirmed: Bool {
+        switch source {
+        case .announcement: return announcedConfirmedIdx == stationIndex
+        case .realtime:     return isRealtimeFresh && realtimeConfirmedIdx == stationIndex
+        case .gps:          return isGPSFresh && gpsConfirmedIdx == stationIndex
+        case .motion, .time: return false
+        }
+    }
+
     /// Manual position correction — overrides all sensors.
     func forceIndex(_ idx: Int) {
         let lastIdx = max(segStations.count - 1, 0)

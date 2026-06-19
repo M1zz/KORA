@@ -1005,20 +1005,31 @@ struct SubwayNavigatorView: View {
 
                 inTransitProgressVisual(seg: seg, currentKo: currentKo, alightKo: alightKo)
 
-                // Alight target card — escalates as we approach.
+                // Alight target card — escalates as we approach. `positionConfirmed`
+                // gates the strongest cues: an over-counted estimate must NOT issue a
+                // definitive "get off now" that could drop the rider a stop early.
+                let positionConfirmed = positionTracker.isCurrentStationConfirmed
                 alightTargetCard(
                     alightKo: alightKo,
                     alightDisplay: alightDisplay,
                     stopsRemaining: stopsRemaining,
-                    lineColor: seg.line.color
+                    lineColor: seg.line.color,
+                    positionConfirmed: positionConfirmed
                 )
                 .modifier(ShakeEffect(animatableData: CGFloat(alightShakeCount)))
             }
             .animation(.spring(response: 0.5, dampingFraction: 0.8), value: currentKo)
             .onChange(of: stopsRemaining) { old, new in
                 if old != 1 && new == 1 {
-                    UINotificationFeedbackGenerator().notificationOccurred(.warning)
-                    withAnimation(.linear(duration: 0.5)) { alightShakeCount += 1 }
+                    // Only fire the urgent warning haptic + shake when the position is
+                    // confirmed by an authoritative source. Unconfirmed estimates get a
+                    // gentle nudge so a premature flip can't startle the rider off early.
+                    if positionTracker.isCurrentStationConfirmed {
+                        UINotificationFeedbackGenerator().notificationOccurred(.warning)
+                        withAnimation(.linear(duration: 0.5)) { alightShakeCount += 1 }
+                    } else {
+                        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    }
                 }
             }
         }
@@ -1176,8 +1187,12 @@ struct SubwayNavigatorView: View {
     /// Visual representation of how urgent it is to get off. Color/size/copy
     /// escalate from calm → prepare → imminent → now as `stopsRemaining` drops.
     @ViewBuilder
-    private func alightTargetCard(alightKo: String, alightDisplay: String, stopsRemaining: Int, lineColor: Color) -> some View {
+    private func alightTargetCard(alightKo: String, alightDisplay: String, stopsRemaining: Int, lineColor: Color, positionConfirmed: Bool) -> some View {
         let level = AlightWarningLevel.from(stopsRemaining: stopsRemaining)
+        // In the critical last-stop states, always anchor the rider to the station
+        // NAME and surface whether the position is confirmed, so an over-counted
+        // estimate can't make them step off a station early.
+        let showVerify = (level == .imminent || level == .now)
 
         VStack(alignment: .leading, spacing: 10) {
             HStack(spacing: 8) {
@@ -1196,6 +1211,33 @@ struct SubwayNavigatorView: View {
                 Text(alightDisplay)
                     .font(.title3).fontWeight(.semibold)
                     .foregroundStyle(KORATheme.labelSecondary)
+            }
+
+            if showVerify {
+                if positionConfirmed {
+                    HStack(spacing: 6) {
+                        Image(systemName: "checkmark.seal.fill")
+                            .font(.subheadline).fontWeight(.bold)
+                        Text(NavLoc.alightPositionConfirmed.resolved(displayLanguage))
+                            .font(.subheadline).fontWeight(.semibold)
+                    }
+                    .foregroundStyle(.green)
+                } else {
+                    // Unconfirmed estimate near the destination — do NOT command;
+                    // tell the rider to match the station name / announcement.
+                    VStack(alignment: .leading, spacing: 3) {
+                        HStack(spacing: 6) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .font(.subheadline).fontWeight(.bold)
+                            Text(NavLoc.verifyStationNameAlight.resolved(displayLanguage))
+                                .font(.subheadline).fontWeight(.bold)
+                        }
+                        .foregroundStyle(.orange)
+                        Text(NavLoc.alightPositionUnconfirmed.resolved(displayLanguage))
+                            .font(.caption2).fontWeight(.medium)
+                            .foregroundStyle(KORATheme.labelSecondary)
+                    }
+                }
             }
 
             if let info = exitInfo {

@@ -203,6 +203,31 @@ extension NavLoc {
         en: "Nearby stations",
         zh: "附近车站"
     )
+    // Alight safety — name-anchored verification
+    static let verifyStationNameAlight = NavLoc(
+        ko: "역 이름을 확인하고 내리세요",
+        ja: "駅名を確認してから降りてください",
+        en: "Check the station name before getting off",
+        zh: "请确认站名后再下车"
+    )
+    static let alightPositionUnconfirmed = NavLoc(
+        ko: "위치 미확정 — 안내방송·역명으로 확인하세요",
+        ja: "現在地は推定です — 放送・駅名で確認を",
+        en: "Position estimated — verify by sign/announcement",
+        zh: "位置为推算 — 请凭广播·站名确认"
+    )
+    static let alightPositionConfirmed = NavLoc(
+        ko: "위치 확인됨",
+        ja: "現在地確認済み",
+        en: "Position confirmed",
+        zh: "位置已确认"
+    )
+    static let alightAtStationName = NavLoc(
+        ko: "%@에서 내리세요",
+        ja: "%@で降りてください",
+        en: "Get off at %@",
+        zh: "在%@下车"
+    )
     // Position sync confidence / realtime signals
     static let positionUncertain = NavLoc(
         ko: "위치가 정확하지 않나요? 탭하여 보정",
