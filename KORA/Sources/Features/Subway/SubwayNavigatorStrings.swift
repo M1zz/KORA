@@ -197,6 +197,30 @@ extension NavLoc {
         en: "Not here? Tap to change station",
         zh: "不在这站？点按更改"
     )
+    static let changeDepartureStation = NavLoc(
+        ko: "출발역 변경",
+        ja: "出発駅を変更",
+        en: "Change start",
+        zh: "更改出发站"
+    )
+    static let trainFarAway = NavLoc(
+        ko: "전철이 멀리 떨어져 있습니다",
+        ja: "電車はまだ遠くにいます",
+        en: "Train is still far away",
+        zh: "列车还在远处"
+    )
+    static let changeLanguageAction = NavLoc(
+        ko: "언어 변경",
+        ja: "言語を変更",
+        en: "Change language",
+        zh: "更改语言"
+    )
+    static let longPressLanguageHint = NavLoc(
+        ko: "길게 누르면 언어를 바꿀 수 있어요",
+        ja: "長押しで言語を変更できます",
+        en: "Long-press to change the language",
+        zh: "长按可更改语言"
+    )
     static let pickCurrentStation = NavLoc(
         ko: "지금 어느 역인가요?",
         ja: "今どの駅にいますか？",

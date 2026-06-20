@@ -30,6 +30,13 @@ struct InlineDirectionScanner: View {
         }
     }
 
+    /// The recognized destination shown in the rider's language (the camera reads
+    /// the Korean sign; we display the localized name so JP/EN/ZH users understand).
+    private var localizedMatch: String? {
+        guard let s = cam.matchedText, !s.isEmpty else { return nil }
+        return MetroLineData.displayName(for: s, language: displayLanguage)
+    }
+
     var body: some View {
         ZStack {
             CameraPreview(session: cam.session)
@@ -41,9 +48,9 @@ struct InlineDirectionScanner: View {
             case .denied:
                 fullVerdict(station: nil, verdict: NavLoc.scanNoCamera.resolved(displayLanguage), color: .orange, icon: "video.slash.fill")
             case .correct:
-                fullVerdict(station: cam.matchedText, verdict: NavLoc.scanCorrect.resolved(displayLanguage), color: .green, icon: "checkmark.circle.fill")
+                fullVerdict(station: localizedMatch, verdict: NavLoc.scanCorrect.resolved(displayLanguage), color: .green, icon: "checkmark.circle.fill")
             case .wrong:
-                fullVerdict(station: cam.matchedText, verdict: NavLoc.scanWrong.resolved(displayLanguage), color: .red, icon: "xmark.octagon.fill")
+                fullVerdict(station: localizedMatch, verdict: NavLoc.scanWrong.resolved(displayLanguage), color: .red, icon: "xmark.octagon.fill")
             default:
                 VStack {
                     Spacer()

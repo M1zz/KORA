@@ -773,7 +773,7 @@ struct SubwayNavigatorView: View {
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(lineColor.opacity(0.45), lineWidth: 2))
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(currentKo)역 출발, 다음 정거장 \(nextKo)역")
+        .accessibilityLabel(a11yNextStop(currentKo: currentKo, nextKo: nextKo))
         .popoverTip(NextStopVerifyTip(lang: displayLanguage), arrowEdge: .top)
     }
 
@@ -967,7 +967,7 @@ struct SubwayNavigatorView: View {
                     }
                 }
                 .accessibilityElement(children: .combine)
-                .accessibilityLabel("\(alightKo)역까지 \(stopsRemaining)정거장, 약 \(minsRemaining)분 남음")
+                .accessibilityLabel(a11yStopsToAlight(alightKo: alightKo, stops: stopsRemaining, mins: minsRemaining))
 
                 inTransitProgressVisual(seg: seg, currentKo: currentKo, alightKo: alightKo)
 
@@ -1115,7 +1115,7 @@ struct SubwayNavigatorView: View {
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .overlay(RoundedRectangle(cornerRadius: 16).strokeBorder(seg.line.color.opacity(0.45), lineWidth: 2))
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("현재 \(currentKo)역 근처, 다음 \(nextStKo ?? "")역")
+        .accessibilityLabel(a11yNearCurrent(currentKo: currentKo, nextKo: nextStKo))
         .accessibilityHint(NavLoc.correctPosition.resolved(displayLanguage))
         .accessibilityAddTraits(.isButton)
     }
@@ -1221,7 +1221,8 @@ struct SubwayNavigatorView: View {
         )
         .animation(.spring(response: 0.4, dampingFraction: 0.7), value: stopsRemaining)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(alightKo)역까지 \(stopsRemaining)정거장 남음. \(level.headline(lang: .korean))")
+        .accessibilityLabel(a11yStopsToAlight(alightKo: alightKo, stops: stopsRemaining, mins: nil)
+                            + ". " + level.headline(lang: displayLanguage))
     }
 
     /// Average seconds-per-stop for a segment — derived from `SegmentTiming`
@@ -1518,9 +1519,57 @@ struct SubwayNavigatorView: View {
         .frame(maxWidth: .infinity)
     }
 
+    // MARK: - Localized VoiceOver labels
+
+    private func a11yNextStop(currentKo: String, nextKo: String) -> String {
+        let cur = MetroLineData.displayName(for: currentKo, language: displayLanguage)
+        let nxt = MetroLineData.displayName(for: nextKo, language: displayLanguage)
+        switch displayLanguage {
+        case .korean:   return "\(cur)역 출발, 다음 정거장 \(nxt)역"
+        case .japanese: return "\(cur)駅を出発、次は \(nxt) 駅"
+        case .english:  return "Departing \(cur), next stop \(nxt)"
+        case .chinese:  return "从\(cur)出发，下一站\(nxt)"
+        }
+    }
+
+    private func a11yNearCurrent(currentKo: String, nextKo: String?) -> String {
+        let cur = MetroLineData.displayName(for: currentKo, language: displayLanguage)
+        let nxt = nextKo.map { MetroLineData.displayName(for: $0, language: displayLanguage) } ?? ""
+        switch displayLanguage {
+        case .korean:   return "현재 \(cur)역 근처, 다음 \(nxt)역"
+        case .japanese: return "現在 \(cur) 駅付近、次は \(nxt) 駅"
+        case .english:  return "Near \(cur), next \(nxt)"
+        case .chinese:  return "当前在\(cur)附近，下一站\(nxt)"
+        }
+    }
+
+    private func a11yStopsToAlight(alightKo: String, stops: Int, mins: Int?) -> String {
+        let dest = MetroLineData.displayName(for: alightKo, language: displayLanguage)
+        switch displayLanguage {
+        case .korean:
+            let base = "\(dest)역까지 \(stops)정거장 남음"
+            return mins.map { "\(base), 약 \($0)분" } ?? base
+        case .japanese:
+            let base = "\(dest) 駅まであと \(stops) 駅"
+            return mins.map { "\(base)、約 \($0) 分" } ?? base
+        case .english:
+            let base = "\(stops) stops to \(dest)"
+            return mins.map { "\(base), about \($0) min" } ?? base
+        case .chinese:
+            let base = "距\(dest)还有\(stops)站"
+            return mins.map { "\(base)，约\($0)分钟" } ?? base
+        }
+    }
+
     private func approachAccessibility(seg: JourneySegment, trainAt: String?) -> String {
-        guard let at = trainAt else { return "전철이 멀리 떨어져 있습니다" }
-        return "전철이 현재 \(at)에 있습니다"
+        guard let at = trainAt else { return NavLoc.trainFarAway.resolved(displayLanguage) }
+        let name = MetroLineData.displayName(for: at, language: displayLanguage)
+        switch displayLanguage {
+        case .korean:   return "전철이 현재 \(name)에 있습니다"
+        case .japanese: return "電車は現在 \(name) にいます"
+        case .english:  return "Train is currently at \(name)"
+        case .chinese:  return "列车当前在 \(name)"
+        }
     }
 
     /// Shows where the user currently is relative to the destination.
@@ -1770,9 +1819,16 @@ struct SubwayNavigatorView: View {
         let primaryColor = lines.first.map { MetroLineData.lineColor($0) } ?? KORATheme.accent
 
         let lineNames = lines.map { MetroLineData.lineBadgeText($0) }.joined(separator: ", ")
-        let headerLabel = lines.isEmpty
-            ? "\(ko)역. 현재역 변경하려면 탭하세요."
-            : "\(ko)역, \(lineNames). 현재역 변경하려면 탭하세요."
+        let stationName = MetroLineData.displayName(for: ko, language: displayLanguage)
+        let lineSuffix = lines.isEmpty ? "" : ", \(lineNames)"
+        let headerLabel: String = {
+            switch displayLanguage {
+            case .korean:   return "\(stationName)역\(lineSuffix). 현재역 변경하려면 탭하세요."
+            case .japanese: return "\(stationName)駅\(lineSuffix)。タップで現在の駅を変更。"
+            case .english:  return "\(stationName) Station\(lineSuffix). Tap to change the current station."
+            case .chinese:  return "\(stationName)站\(lineSuffix)。点按更改当前车站。"
+            }
+        }()
 
         return Button {
             showFromPicker = true
@@ -1818,7 +1874,7 @@ struct SubwayNavigatorView: View {
 
                 Spacer()
 
-                Text("출발역 변경")
+                Text(NavLoc.changeDepartureStation.resolved(displayLanguage))
                     .font(.caption).fontWeight(.semibold)
                     .foregroundStyle(primaryColor)
                     .padding(.horizontal, 10).padding(.vertical, 5)
@@ -1841,7 +1897,7 @@ struct SubwayNavigatorView: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 6)
         .accessibilityLabel(headerLabel)
-        .accessibilityHint("길게 누르면 언어를 바꿀 수 있어요")
+        .accessibilityHint(NavLoc.longPressLanguageHint.resolved(displayLanguage))
         .highPriorityGesture(
             LongPressGesture(minimumDuration: 0.6).onEnded { _ in
                 let haptic = UIImpactFeedbackGenerator(style: .medium)
@@ -1850,7 +1906,7 @@ struct SubwayNavigatorView: View {
                 Task { await LanguageLongPressTip.didLongPress.donate() }
             }
         )
-        .accessibilityAction(named: "언어 변경") { showLanguagePicker = true }
+        .accessibilityAction(named: Text(NavLoc.changeLanguageAction.resolved(displayLanguage))) { showLanguagePicker = true }
         .popoverTip(LanguageLongPressTip(lang: displayLanguage), arrowEdge: .top)
     }
 
@@ -1988,7 +2044,7 @@ struct SubwayNavigatorView: View {
                 Task { await LanguageLongPressTip.didLongPress.donate() }
             }
         )
-        .accessibilityAction(named: "언어 변경") { showLanguagePicker = true }
+        .accessibilityAction(named: Text(NavLoc.changeLanguageAction.resolved(displayLanguage))) { showLanguagePicker = true }
         .popoverTip(LanguageLongPressTip(lang: displayLanguage), arrowEdge: .top)
     }
 
@@ -2181,7 +2237,7 @@ struct SubwayNavigatorView: View {
                 Task { await LanguageLongPressTip.didLongPress.donate() }
             }
         )
-        .accessibilityAction(named: "언어 변경") { showLanguagePicker = true }
+        .accessibilityAction(named: Text(NavLoc.changeLanguageAction.resolved(displayLanguage))) { showLanguagePicker = true }
     }
 
     private func autoLocateIfNeeded() {
