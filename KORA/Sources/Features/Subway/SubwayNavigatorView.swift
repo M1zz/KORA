@@ -1066,37 +1066,55 @@ struct SubwayNavigatorView: View {
         let totalH: CGFloat = trackW * 2 + connectorH
 
         Button { showPositionCorrection = true } label: {
-            HStack(alignment: .top, spacing: 8) {
-                ZStack(alignment: .top) {
-                    Color.clear.frame(width: tramW, height: totalH)
-                    Image(systemName: "tram.fill")
-                        .font(.system(size: 15, weight: .bold))
-                        .foregroundStyle(seg.line.color)
-                        .frame(width: tramW)
-                        .offset(y: inTransitTramY * (connectorH + trackW))
-                }
-                VStack(alignment: .center, spacing: 0) {
-                    Circle().fill(seg.line.color).frame(width: trackW, height: trackW)
-                    inTransitWaveConnector(lineColor: seg.line.color, width: trackW, height: connectorH)
-                    Circle().strokeBorder(seg.line.color, lineWidth: 2.5)
-                        .frame(width: 13, height: 13).frame(width: trackW, height: trackW)
-                }
-                .frame(width: trackW)
-                VStack(alignment: .leading, spacing: 0) {
-                    // Current-station name removed — the filled dot is "you are here".
-                    Color.clear.frame(height: trackW)
-                    Color.clear.frame(height: connectorH)
-                    if let nk = nextStKo {
-                        Text(nk)
-                            .font(.system(size: 26, weight: .black))
+            VStack(spacing: 10) {
+                HStack(alignment: .top, spacing: 8) {
+                    ZStack(alignment: .top) {
+                        Color.clear.frame(width: tramW, height: totalH)
+                        Image(systemName: "tram.fill")
+                            .font(.system(size: 15, weight: .bold))
                             .foregroundStyle(seg.line.color)
-                            .fixedSize(horizontal: false, vertical: true)
-                            .frame(height: trackW, alignment: .center)
-                            .id(nk)
-                            .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
+                            .frame(width: tramW)
+                            .offset(y: inTransitTramY * (connectorH + trackW))
                     }
+                    VStack(alignment: .center, spacing: 0) {
+                        Circle().fill(seg.line.color).frame(width: trackW, height: trackW)
+                        inTransitWaveConnector(lineColor: seg.line.color, width: trackW, height: connectorH)
+                        Circle().strokeBorder(seg.line.color, lineWidth: 2.5)
+                            .frame(width: 13, height: 13).frame(width: trackW, height: trackW)
+                    }
+                    .frame(width: trackW)
+                    VStack(alignment: .leading, spacing: 0) {
+                        // Current-station name removed — the filled dot is "you are here".
+                        Color.clear.frame(height: trackW)
+                        Color.clear.frame(height: connectorH)
+                        if let nk = nextStKo {
+                            Text(nk)
+                                .font(.system(size: 26, weight: .black))
+                                .foregroundStyle(seg.line.color)
+                                .fixedSize(horizontal: false, vertical: true)
+                                .frame(height: trackW, alignment: .center)
+                                .id(nk)
+                                .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
+                        }
+                    }
+                    .clipped()
                 }
-                .clipped()
+
+                // Explicit tap affordance — makes it obvious the card is editable.
+                HStack(spacing: 6) {
+                    Image(systemName: "hand.tap.fill")
+                        .font(.footnote).fontWeight(.bold)
+                    Text(NavLoc.tapToFixPosition.resolved(displayLanguage))
+                        .font(.footnote).fontWeight(.semibold)
+                    Spacer(minLength: 0)
+                    Image(systemName: "pencil.circle.fill")
+                        .font(.body)
+                }
+                .foregroundStyle(seg.line.color)
+                .padding(.horizontal, 10).padding(.vertical, 8)
+                .frame(maxWidth: .infinity)
+                .background(seg.line.color.opacity(0.14))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
             }
             .padding(14)
             .frame(maxWidth: .infinity, alignment: .leading)
