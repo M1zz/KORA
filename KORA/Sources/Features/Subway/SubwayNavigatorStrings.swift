@@ -197,6 +197,12 @@ extension NavLoc {
         en: "Which station are you at now?",
         zh: "您现在在哪一站?"
     )
+    static let nextStationShort = NavLoc(
+        ko: "다음역",
+        ja: "次の駅",
+        en: "Next station",
+        zh: "下一站"
+    )
     static let nearbyStations = NavLoc(
         ko: "가까운 역",
         ja: "近くの駅",
@@ -301,6 +307,12 @@ extension NavLoc {
         ja: "カメラの許可が必要です",
         en: "Camera permission needed",
         zh: "需要相机权限"
+    )
+    static let scanReadStation = NavLoc(
+        ko: "‘%@’ 인식됨",
+        ja: "「%@」を認識",
+        en: "Read \u{201C}%@\u{201D}",
+        zh: "识别到\u{201C}%@\u{201D}"
     )
     static let gpsSuggestion = NavLoc(
         ko: "위치 기반 추천",

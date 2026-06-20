@@ -10,6 +10,89 @@ import Vision
 // rider whether THAT sign is their direction, by reading it with on-device
 // Vision OCR (Korean) and matching against the route's forward/backward markers.
 
+// MARK: - Inline scanner (embedded live "window")
+//
+// A live camera pane embedded directly in the ride block — the rider just holds
+// the phone up to the train's destination display and the pane borders GREEN
+// (board) or RED (wrong train). No sheet to open.
+struct InlineDirectionScanner: View {
+    let forwardMarkers: Set<String>
+    let backwardMarkers: Set<String>
+    let displayLanguage: StationLanguage
+
+    @StateObject private var cam = DirectionCameraModel()
+
+    private var borderColor: Color {
+        switch cam.verdict {
+        case .correct: return .green
+        case .wrong:   return .red
+        default:       return .white.opacity(0.3)
+        }
+    }
+
+    var body: some View {
+        ZStack {
+            CameraPreview(session: cam.session)
+            Color.black.opacity(0.001)   // keep the layer alive even before frames
+
+            // Verdict chip (bottom): the recognized station + the verdict, so the
+            // rider can see WHICH station name produced the green/red.
+            VStack {
+                Spacer()
+                switch cam.verdict {
+                case .denied:
+                    label(NavLoc.scanNoCamera.resolved(displayLanguage), nil, .orange, "video.slash.fill")
+                case .correct:
+                    label(NavLoc.scanCorrect.resolved(displayLanguage), readStationText, .green, "checkmark.circle.fill")
+                case .wrong:
+                    label(NavLoc.scanWrong.resolved(displayLanguage), readStationText, .red, "xmark.octagon.fill")
+                default:
+                    label(NavLoc.scanAimPrompt.resolved(displayLanguage), nil, .white, "viewfinder")
+                }
+            }
+            .padding(10)
+        }
+        .frame(height: 190)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .strokeBorder(borderColor, lineWidth: 5)
+                .animation(.easeOut(duration: 0.2), value: cam.verdict)
+        )
+        .task {
+            cam.configure(forward: forwardMarkers, backward: backwardMarkers)
+            await cam.start()
+        }
+        .onDisappear { cam.stop() }
+    }
+
+    private var readStationText: String? {
+        guard let s = cam.matchedText, !s.isEmpty else { return nil }
+        return String(format: NavLoc.scanReadStation.resolved(displayLanguage), s)
+    }
+
+    private func label(_ text: String, _ detail: String?, _ color: Color, _ icon: String) -> some View {
+        HStack(spacing: 8) {
+            Image(systemName: icon).font(.title3).fontWeight(.bold)
+            VStack(alignment: .leading, spacing: 1) {
+                if let detail {
+                    Text(detail)
+                        .font(.caption).fontWeight(.bold)
+                        .foregroundStyle(.white.opacity(0.95))
+                }
+                Text(text).font(.subheadline).fontWeight(.heavy)
+            }
+            Spacer(minLength: 0)
+        }
+        .foregroundStyle(.white)
+        .padding(.horizontal, 12).padding(.vertical, 9)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(.ultraThinMaterial)
+        .background(color.opacity(0.4))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+    }
+}
+
 struct PlatformDirectionScanner: View {
     let forwardMarkers: Set<String>     // station/terminus names in the rider's direction
     let backwardMarkers: Set<String>    // names in the opposite direction
@@ -202,23 +285,20 @@ final class DirectionCameraModel: ObservableObject, @unchecked Sendable {
     /// Called on `videoQueue` from the OCR delegate; publishes on the main thread.
     private func evaluate(_ lines: [String]) {
         let norm = Self.normalize(lines.joined(separator: " "))
-        let fwd = forward.contains { !$0.isEmpty && norm.contains($0) }
-        let bwd = backward.contains { !$0.isEmpty && norm.contains($0) }
-
-        let matched = lines.first { line in
-            let n = Self.normalize(line)
-            return forward.contains { !$0.isEmpty && n.contains($0) }
-                || backward.contains { !$0.isEmpty && n.contains($0) }
-        }
+        // The actual station name (from our marker sets) that was read — this is
+        // what drove the verdict, shown to the rider so green/red isn't a mystery.
+        let fwdHit = forward.first { !$0.isEmpty && norm.contains($0) }
+        let bwdHit = backward.first { !$0.isEmpty && norm.contains($0) }
 
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            if fwd && !bwd {
-                self.verdict = .correct; self.matchedText = matched
-            } else if bwd && !fwd {
-                self.verdict = .wrong; self.matchedText = matched
-            } else if fwd && bwd {
-                self.verdict = .ambiguous
+            // A valid destination wins: if any forward terminus/station is on the
+            // display, it's the right train → GREEN (even if other text is present).
+            // Only when there's NO valid destination but a "don't board" one is → RED.
+            if let f = fwdHit {
+                self.verdict = .correct; self.matchedText = f
+            } else if let b = bwdHit {
+                self.verdict = .wrong; self.matchedText = b
             }
             // If neither seen, hold the previous verdict (don't flicker).
         }

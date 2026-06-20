@@ -111,9 +111,6 @@
         }
       }
     },
-    "%@행" : {
-
-    },
     "%@で下車" : {
       "extractionState" : "stale",
       "localizations" : {

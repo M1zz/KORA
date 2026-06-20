@@ -64,7 +64,7 @@ struct SubwayNavigatorView: View {
     @State private var showFromPicker = false
     @State private var showToPicker = false
     @State private var showLanguagePicker = false
-    @State private var showDirectionScanner = false
+    @State private var directionCameraHidden = false
     @State private var selectedJourneyIdx = 0
     /// "" = auto-detect from system locale; otherwise StationLanguage.rawValue
     @AppStorage("kora.display_language") private var languagePref: String = ""
@@ -162,19 +162,6 @@ struct SubwayNavigatorView: View {
             ) {
                 toStation = $0
                 selectedJourneyIdx = 0
-            }
-        }
-        .sheet(isPresented: $showDirectionScanner) {
-            if let j = journey, j.segments.indices.contains(currentBlockIdx) {
-                let seg = j.segments[currentBlockIdx]
-                let markers = directionMarkers(for: seg)
-                PlatformDirectionScanner(
-                    forwardMarkers: markers.forward,
-                    backwardMarkers: markers.backward,
-                    towardLabel: towardDirectionLabel(seg.stations.last ?? seg.terminus),
-                    lineColor: seg.line.color,
-                    displayLanguage: displayLanguage
-                )
             }
         }
         .sheet(isPresented: $showLanguagePicker) {
@@ -276,29 +263,36 @@ struct SubwayNavigatorView: View {
 
         ZStack(alignment: .top) {
             if currentBlockIdx < j.segments.count {
-                rideBlock(seg: j.segments[currentBlockIdx],
-                          segIdx: currentBlockIdx,
-                          isLast: currentBlockIdx == j.segments.count - 1,
-                          j: j)
-                    .padding(.horizontal, 16)
-                    .padding(.top, 14)
-                    .padding(.bottom, 16)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                    .id(currentBlockIdx)
-                    .transition(pageTransition)
+                ScrollView {
+                    rideBlock(seg: j.segments[currentBlockIdx],
+                              segIdx: currentBlockIdx,
+                              isLast: currentBlockIdx == j.segments.count - 1,
+                              j: j)
+                        .padding(.horizontal, 16)
+                        .padding(.top, 14)
+                        .padding(.bottom, 16)
+                        .frame(maxWidth: .infinity, alignment: .top)
+                }
+                .scrollIndicators(.hidden)
+                .id(currentBlockIdx)
+                .transition(pageTransition)
             } else {
-                finishedBlock(j: j)
-                    .padding(.horizontal, 16)
-                    .padding(.top, 22)
-                    .padding(.bottom, 16)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                    .id("finished")
-                    .transition(pageTransition)
+                ScrollView {
+                    finishedBlock(j: j)
+                        .padding(.horizontal, 16)
+                        .padding(.top, 22)
+                        .padding(.bottom, 16)
+                        .frame(maxWidth: .infinity, alignment: .top)
+                }
+                .scrollIndicators(.hidden)
+                .id("finished")
+                .transition(pageTransition)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .animation(.spring(response: 0.42, dampingFraction: 0.9), value: currentBlockIdx)
         .clipped()
-        .gesture(
+        .simultaneousGesture(
             DragGesture(minimumDistance: 40)
                 .onEnded { v in
                     guard abs(v.translation.width) > abs(v.translation.height),
@@ -657,36 +651,6 @@ struct SubwayNavigatorView: View {
                             .background(seg.line.color)
                             .clipShape(Circle())
                             .layoutPriority(0)
-                        VStack(alignment: .leading, spacing: 4) {
-                            let isCircularLabel = displayedTerminus == "내선순환" || displayedTerminus == "외선순환"
-                            if isCircularLabel {
-                                let landmarks = MetroLineData.aheadLandmarks(
-                                    from: seg.stations.first ?? "",
-                                    toward: displayedTerminus,
-                                    lineNumber: seg.line.number
-                                )
-                                if !landmarks.isEmpty {
-                                    platformDirectionHint(landmarks: landmarks, lineColor: seg.line.color)
-                                } else {
-                                    Text(directionLabel(terminus: displayedTerminus))
-                                        .font(.title3).fontWeight(.heavy)
-                                        .foregroundStyle(seg.line.color)
-                                }
-                            } else {
-                                // No single "○○행": many termini are valid, and some
-                                // same-direction trains (e.g. 사당행) terminate before the
-                                // destination. So we orient by the rider's destination and
-                                // let the camera confirm the actual train's sign.
-                                Text(towardDirectionLabel(segDestKo))
-                                    .font(.title3).fontWeight(.heavy)
-                                    .foregroundStyle(seg.line.color)
-                                    .fixedSize(horizontal: false, vertical: true)
-                                Text(NavLoc.confirmTrainWithCamera.resolved(displayLanguage))
-                                    .font(.caption).fontWeight(.medium)
-                                    .foregroundStyle(KORATheme.labelSecondary)
-                            }
-                        }
-                        .layoutPriority(1)
                         Spacer(minLength: 0)
                     }
 
@@ -695,10 +659,15 @@ struct SubwayNavigatorView: View {
                     if let nk = nextKo {
                         verifyNextStopCard(currentKo: seg.stations.first ?? "", nextKo: nk,
                                            nextDisplay: nextDisplay, lineColor: seg.line.color)
-                        directionScannerButton(lineColor: seg.line.color)
+                        directionCameraPane(seg: seg)
                         Divider()
                     }
 
+                    // Direction ("○○ 방면") sits right above the approach visual.
+                    HStack(spacing: 8) {
+                        directionLabelBlock(seg: seg, displayedTerminus: displayedTerminus, segDestKo: segDestKo)
+                        Spacer(minLength: 0)
+                    }
                     trainApproachVisual(seg: seg, timing: timing)
                 }
                 .frame(maxWidth: .infinity, alignment: .top)
@@ -734,29 +703,50 @@ struct SubwayNavigatorView: View {
 
     // MARK: Pre-boarding verification (wrong-direction defense)
 
-    /// "Point your camera at the sign" — opens the live OCR direction checker.
-    private func directionScannerButton(lineColor: Color) -> some View {
-        Button {
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
-            showDirectionScanner = true
-        } label: {
-            HStack(spacing: 8) {
-                Image(systemName: "camera.viewfinder")
-                    .font(.body).fontWeight(.bold)
-                Text(NavLoc.scanDirectionButton.resolved(displayLanguage))
-                    .font(.callout).fontWeight(.bold)
-                Spacer()
-                Image(systemName: "chevron.right")
-                    .font(.footnote).fontWeight(.bold)
-                    .foregroundStyle(lineColor.opacity(0.5))
+    /// Inline live camera "window" — hold the phone up to the train's destination
+    /// display and the pane borders GREEN (board) / RED (wrong train). Collapsible.
+    @ViewBuilder
+    private func directionCameraPane(seg: JourneySegment) -> some View {
+        if directionCameraHidden {
+            Button {
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                withAnimation(.easeInOut(duration: 0.2)) { directionCameraHidden = false }
+            } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "camera.viewfinder").font(.body).fontWeight(.bold)
+                    Text(NavLoc.scanDirectionButton.resolved(displayLanguage))
+                        .font(.callout).fontWeight(.bold)
+                    Spacer()
+                }
+                .foregroundStyle(seg.line.color)
+                .padding(.horizontal, 14).padding(.vertical, 11)
+                .frame(maxWidth: .infinity)
+                .background(seg.line.color.opacity(0.12))
+                .clipShape(RoundedRectangle(cornerRadius: 14))
             }
-            .foregroundStyle(lineColor)
-            .padding(.horizontal, 14).padding(.vertical, 11)
-            .frame(maxWidth: .infinity)
-            .background(lineColor.opacity(0.12))
-            .clipShape(RoundedRectangle(cornerRadius: 14))
+            .buttonStyle(.plain)
+        } else {
+            let markers = directionMarkers(for: seg)
+            InlineDirectionScanner(
+                forwardMarkers: markers.forward,
+                backwardMarkers: markers.backward,
+                displayLanguage: displayLanguage
+            )
+            .overlay(alignment: .topTrailing) {
+                Button {
+                    UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                    withAnimation(.easeInOut(duration: 0.2)) { directionCameraHidden = true }
+                } label: {
+                    Image(systemName: "eye.slash.fill")
+                        .font(.footnote).fontWeight(.bold)
+                        .foregroundStyle(.white)
+                        .padding(8)
+                        .background(.black.opacity(0.45), in: Circle())
+                }
+                .buttonStyle(.plain)
+                .padding(8)
+            }
         }
-        .buttonStyle(.plain)
     }
 
     /// ---●──────────────────────────●──▶  horizontal track card.
@@ -769,10 +759,13 @@ struct SubwayNavigatorView: View {
                 Circle().strokeBorder(lineColor, lineWidth: 2.5).frame(width: 14, height: 14)
             }
 
-            // Just an arrow → the next station name. No labels or romaji clutter.
-            HStack(spacing: 12) {
+            // "다음역" label → arrow → the next station name.
+            HStack(spacing: 10) {
+                Text(NavLoc.nextStationShort.resolved(displayLanguage))
+                    .font(.subheadline).fontWeight(.bold)
+                    .foregroundStyle(lineColor.opacity(0.8))
                 Image(systemName: "arrow.right")
-                    .font(.title2).fontWeight(.black)
+                    .font(.title3).fontWeight(.black)
                     .foregroundStyle(lineColor.opacity(0.7))
                 Text(nextKo)
                     .font(.system(size: 32, weight: .black))
@@ -1646,6 +1639,32 @@ struct SubwayNavigatorView: View {
     }
 
     /// Direction label translated for current display language.
+    /// Direction display shown above the approach visual: circular landmark hint,
+    /// or the destination-oriented "○○ 방면" for linear lines.
+    @ViewBuilder
+    private func directionLabelBlock(seg: JourneySegment, displayedTerminus: String, segDestKo: String) -> some View {
+        let isCircularLabel = displayedTerminus == "내선순환" || displayedTerminus == "외선순환"
+        if isCircularLabel {
+            let landmarks = MetroLineData.aheadLandmarks(
+                from: seg.stations.first ?? "",
+                toward: displayedTerminus,
+                lineNumber: seg.line.number
+            )
+            if !landmarks.isEmpty {
+                platformDirectionHint(landmarks: landmarks, lineColor: seg.line.color)
+            } else {
+                Text(directionLabel(terminus: displayedTerminus))
+                    .font(.title3).fontWeight(.heavy)
+                    .foregroundStyle(seg.line.color)
+            }
+        } else {
+            Text(towardDirectionLabel(segDestKo))
+                .font(.title3).fontWeight(.heavy)
+                .foregroundStyle(seg.line.color)
+                .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+
     /// Destination-oriented direction label, e.g. "경마공원 방면" — used instead of a
     /// single "○○행" terminus, which can mislead (some same-direction trains stop
     /// short of the destination).
