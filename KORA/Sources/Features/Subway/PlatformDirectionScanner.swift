@@ -35,19 +35,20 @@ struct InlineDirectionScanner: View {
             CameraPreview(session: cam.session)
             Color.black.opacity(0.001)   // keep the layer alive even before frames
 
-            // Verdict chip (bottom): the recognized station + the verdict, so the
-            // rider can see WHICH station name produced the green/red.
+            // Verdict chip (bottom): the recognized destination shown LARGE + the
+            // verdict. With forward-priority, the big name is always the valid
+            // destination even when wrong-direction text is also on the display.
             VStack {
                 Spacer()
                 switch cam.verdict {
                 case .denied:
-                    label(NavLoc.scanNoCamera.resolved(displayLanguage), nil, .orange, "video.slash.fill")
+                    verdictChip(station: nil, verdict: NavLoc.scanNoCamera.resolved(displayLanguage), color: .orange, icon: "video.slash.fill")
                 case .correct:
-                    label(NavLoc.scanCorrect.resolved(displayLanguage), readStationText, .green, "checkmark.circle.fill")
+                    verdictChip(station: cam.matchedText, verdict: NavLoc.scanCorrect.resolved(displayLanguage), color: .green, icon: "checkmark.circle.fill")
                 case .wrong:
-                    label(NavLoc.scanWrong.resolved(displayLanguage), readStationText, .red, "xmark.octagon.fill")
+                    verdictChip(station: cam.matchedText, verdict: NavLoc.scanWrong.resolved(displayLanguage), color: .red, icon: "xmark.octagon.fill")
                 default:
-                    label(NavLoc.scanAimPrompt.resolved(displayLanguage), nil, .white, "viewfinder")
+                    verdictChip(station: nil, verdict: NavLoc.scanAimPrompt.resolved(displayLanguage), color: .white, icon: "viewfinder")
                 }
             }
             .padding(10)
@@ -66,30 +67,27 @@ struct InlineDirectionScanner: View {
         .onDisappear { cam.stop() }
     }
 
-    private var readStationText: String? {
-        guard let s = cam.matchedText, !s.isEmpty else { return nil }
-        return String(format: NavLoc.scanReadStation.resolved(displayLanguage), s)
-    }
-
-    private func label(_ text: String, _ detail: String?, _ color: Color, _ icon: String) -> some View {
-        HStack(spacing: 8) {
-            Image(systemName: icon).font(.title3).fontWeight(.bold)
+    private func verdictChip(station: String?, verdict: String, color: Color, icon: String) -> some View {
+        HStack(spacing: 10) {
+            Image(systemName: icon).font(.title).fontWeight(.bold)
             VStack(alignment: .leading, spacing: 1) {
-                if let detail {
-                    Text(detail)
-                        .font(.caption).fontWeight(.bold)
-                        .foregroundStyle(.white.opacity(0.95))
+                if let station, !station.isEmpty {
+                    Text(station)   // recognized destination — the hero
+                        .font(.system(size: 26, weight: .black))
+                        .lineLimit(1).minimumScaleFactor(0.6)
                 }
-                Text(text).font(.subheadline).fontWeight(.heavy)
+                Text(verdict)
+                    .font(.footnote).fontWeight(.bold)
+                    .opacity(0.95)
             }
             Spacer(minLength: 0)
         }
         .foregroundStyle(.white)
-        .padding(.horizontal, 12).padding(.vertical, 9)
+        .padding(.horizontal, 14).padding(.vertical, 10)
         .frame(maxWidth: .infinity, alignment: .leading)
         .background(.ultraThinMaterial)
-        .background(color.opacity(0.4))
-        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .background(color.opacity(0.45))
+        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 
