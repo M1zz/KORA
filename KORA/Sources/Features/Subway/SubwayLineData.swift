@@ -880,7 +880,12 @@ enum MetroLineData {
 
         let sorted = results.sorted { a, b in
             if a.transferCount != b.transferCount { return a.transferCount < b.transferCount }
-            return a.totalStops < b.totalStops
+            if a.totalStops   != b.totalStops   { return a.totalStops   < b.totalStops }
+            // Stable, content-based tiebreaker so the chosen journey is fully
+            // deterministic. Without this, equal-cost journeys (e.g. 가능→가좌 via
+            // 청량리 vs 회기, both 27 stops) could reorder between renders — flipping
+            // journey.id and spuriously resetting journeyConfirmed (bounce to confirm).
+            return a.id < b.id
         }
         return Array(sorted.prefix(4))
     }
