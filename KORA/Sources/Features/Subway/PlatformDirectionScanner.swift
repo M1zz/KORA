@@ -35,29 +35,32 @@ struct InlineDirectionScanner: View {
             CameraPreview(session: cam.session)
             Color.black.opacity(0.001)   // keep the layer alive even before frames
 
-            // Verdict chip (bottom): the recognized destination shown LARGE + the
-            // verdict. With forward-priority, the big name is always the valid
-            // destination even when wrong-direction text is also on the display.
-            VStack {
-                Spacer()
-                switch cam.verdict {
-                case .denied:
-                    verdictChip(station: nil, verdict: NavLoc.scanNoCamera.resolved(displayLanguage), color: .orange, icon: "video.slash.fill")
-                case .correct:
-                    verdictChip(station: cam.matchedText, verdict: NavLoc.scanCorrect.resolved(displayLanguage), color: .green, icon: "checkmark.circle.fill")
-                case .wrong:
-                    verdictChip(station: cam.matchedText, verdict: NavLoc.scanWrong.resolved(displayLanguage), color: .red, icon: "xmark.octagon.fill")
-                default:
-                    verdictChip(station: nil, verdict: NavLoc.scanAimPrompt.resolved(displayLanguage), color: .white, icon: "viewfinder")
+            // Full-pane verdict: the recognized destination (the *reason*) fills
+            // the view huge, with the short verdict beneath it.
+            switch cam.verdict {
+            case .denied:
+                fullVerdict(station: nil, verdict: NavLoc.scanNoCamera.resolved(displayLanguage), color: .orange, icon: "video.slash.fill")
+            case .correct:
+                fullVerdict(station: cam.matchedText, verdict: NavLoc.scanCorrect.resolved(displayLanguage), color: .green, icon: "checkmark.circle.fill")
+            case .wrong:
+                fullVerdict(station: cam.matchedText, verdict: NavLoc.scanWrong.resolved(displayLanguage), color: .red, icon: "xmark.octagon.fill")
+            default:
+                VStack {
+                    Spacer()
+                    Text(NavLoc.scanAimPrompt.resolved(displayLanguage))
+                        .font(.subheadline).fontWeight(.bold)
+                        .foregroundStyle(.white)
+                        .padding(.horizontal, 12).padding(.vertical, 8)
+                        .background(.black.opacity(0.4), in: Capsule())
+                        .padding(12)
                 }
             }
-            .padding(10)
         }
-        .frame(height: 190)
+        .frame(height: 230)
         .clipShape(RoundedRectangle(cornerRadius: 16))
         .overlay(
             RoundedRectangle(cornerRadius: 16)
-                .strokeBorder(borderColor, lineWidth: 5)
+                .strokeBorder(borderColor, lineWidth: 6)
                 .animation(.easeOut(duration: 0.2), value: cam.verdict)
         )
         .task {
@@ -67,27 +70,30 @@ struct InlineDirectionScanner: View {
         .onDisappear { cam.stop() }
     }
 
-    private func verdictChip(station: String?, verdict: String, color: Color, icon: String) -> some View {
-        HStack(spacing: 10) {
-            Image(systemName: icon).font(.title).fontWeight(.bold)
-            VStack(alignment: .leading, spacing: 1) {
+    private func fullVerdict(station: String?, verdict: String, color: Color, icon: String) -> some View {
+        ZStack {
+            color.opacity(0.4)
+            VStack(spacing: 4) {
                 if let station, !station.isEmpty {
-                    Text(station)   // recognized destination — the hero
-                        .font(.system(size: 26, weight: .black))
-                        .lineLimit(1).minimumScaleFactor(0.6)
+                    Image(systemName: icon)
+                        .font(.system(size: 30, weight: .black))
+                    Text(station)                       // the reason — fills the pane
+                        .font(.system(size: 72, weight: .black))
+                        .minimumScaleFactor(0.3)
+                        .lineLimit(1)
+                    Text(verdict)
+                        .font(.headline).fontWeight(.bold)
+                } else {
+                    Image(systemName: icon).font(.system(size: 34, weight: .black))
+                    Text(verdict).font(.title3).fontWeight(.heavy)
+                        .multilineTextAlignment(.center)
                 }
-                Text(verdict)
-                    .font(.footnote).fontWeight(.bold)
-                    .opacity(0.95)
             }
-            Spacer(minLength: 0)
+            .foregroundStyle(.white)
+            .shadow(color: .black.opacity(0.5), radius: 4, y: 1)
+            .padding(.horizontal, 16)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .foregroundStyle(.white)
-        .padding(.horizontal, 14).padding(.vertical, 10)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .background(.ultraThinMaterial)
-        .background(color.opacity(0.45))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 }
 
