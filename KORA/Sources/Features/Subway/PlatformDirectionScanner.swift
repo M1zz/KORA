@@ -30,11 +30,14 @@ struct InlineDirectionScanner: View {
         }
     }
 
-    /// The recognized destination shown in the rider's language (the camera reads
-    /// the Korean sign; we display the localized name so JP/EN/ZH users understand).
-    private var localizedMatch: String? {
-        guard let s = cam.matchedText, !s.isEmpty else { return nil }
-        return MetroLineData.displayName(for: s, language: displayLanguage)
+    /// Reading of the recognized destination in the rider's language (e.g.
+    /// カンナム / Gangnam / 江南). The Korean original stays the anchor — it's what's
+    /// on the sign — and this reading is shown smaller beneath it. nil when the
+    /// reading equals the Korean (or for Korean mode).
+    private var localizedReading: String? {
+        guard let s = cam.matchedText, !s.isEmpty, displayLanguage != .korean else { return nil }
+        let reading = MetroLineData.displayName(for: s, language: displayLanguage)
+        return reading == s ? nil : reading
     }
 
     var body: some View {
@@ -48,9 +51,9 @@ struct InlineDirectionScanner: View {
             case .denied:
                 fullVerdict(station: nil, verdict: NavLoc.scanNoCamera.resolved(displayLanguage), color: .orange, icon: "video.slash.fill")
             case .correct:
-                fullVerdict(station: localizedMatch, verdict: NavLoc.scanCorrect.resolved(displayLanguage), color: .green, icon: "checkmark.circle.fill")
+                fullVerdict(station: cam.matchedText, reading: localizedReading, verdict: NavLoc.scanCorrect.resolved(displayLanguage), color: .green, icon: "checkmark.circle.fill")
             case .wrong:
-                fullVerdict(station: localizedMatch, verdict: NavLoc.scanWrong.resolved(displayLanguage), color: .red, icon: "xmark.octagon.fill")
+                fullVerdict(station: cam.matchedText, reading: localizedReading, verdict: NavLoc.scanWrong.resolved(displayLanguage), color: .red, icon: "xmark.octagon.fill")
             default:
                 VStack {
                     Spacer()
@@ -77,19 +80,27 @@ struct InlineDirectionScanner: View {
         .onDisappear { cam.stop() }
     }
 
-    private func fullVerdict(station: String?, verdict: String, color: Color, icon: String) -> some View {
+    private func fullVerdict(station: String?, reading: String? = nil, verdict: String, color: Color, icon: String) -> some View {
         ZStack {
             color.opacity(0.4)
             VStack(spacing: 4) {
                 if let station, !station.isEmpty {
                     Image(systemName: icon)
                         .font(.system(size: 30, weight: .black))
-                    Text(station)                       // the reason — fills the pane
+                    // Korean original is the anchor (matches the platform sign)…
+                    Text(station)
                         .font(.system(size: 72, weight: .black))
                         .minimumScaleFactor(0.3)
                         .lineLimit(1)
+                    // …with the reading (カンナム / Gangnam / 江南) smaller beneath.
+                    if let reading {
+                        Text(reading)
+                            .font(.title3).fontWeight(.heavy)
+                            .minimumScaleFactor(0.5).lineLimit(1)
+                            .opacity(0.95)
+                    }
                     Text(verdict)
-                        .font(.headline).fontWeight(.bold)
+                        .font(.subheadline).fontWeight(.bold)
                 } else {
                     Image(systemName: icon).font(.system(size: 34, weight: .black))
                     Text(verdict).font(.title3).fontWeight(.heavy)
