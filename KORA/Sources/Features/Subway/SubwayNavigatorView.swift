@@ -861,6 +861,10 @@ struct SubwayNavigatorView: View {
                 let nextStKo = nextStIdx < seg.stations.count ? seg.stations[nextStIdx] : nil
                 let nextStDisplay = nextStKo.map { MetroLineData.displayName(for: $0, language: displayLanguage) } ?? ""
                 let showNextTrans = nextStKo != nil && displayLanguage != .korean && nextStDisplay != (nextStKo ?? "")
+                // When the position is uncertain, wrap the card in the same orange
+                // as the "위치가 정확하지 않나요?" prompt below — they appear and
+                // disappear together to point the rider at the tap-to-fix card.
+                let positionUncertain = positionTracker.confidence == .low
                 inTransitStationCard(
                     seg: seg,
                     currentKo: currentKo,
@@ -868,6 +872,18 @@ struct SubwayNavigatorView: View {
                     nextStDisplay: nextStDisplay,
                     showNextTrans: showNextTrans
                 )
+                .padding(positionUncertain ? 6 : 0)
+                .overlay {
+                    if positionUncertain {
+                        RoundedRectangle(cornerRadius: 18)
+                            .strokeBorder(.orange, lineWidth: 2.5)
+                    }
+                }
+                .background(
+                    positionUncertain ? Color.orange.opacity(0.10) : Color.clear,
+                    in: RoundedRectangle(cornerRadius: 18)
+                )
+                .animation(.easeInOut(duration: 0.2), value: positionUncertain)
 
                 // "Confirmed by announcement" badge — pink, the strongest signal.
                 if positionTracker.source == .announcement {
@@ -1058,8 +1074,7 @@ struct SubwayNavigatorView: View {
         let totalH: CGFloat = trackW * 2 + connectorH
 
         Button { showPositionCorrection = true } label: {
-            VStack(spacing: 10) {
-                HStack(alignment: .top, spacing: 8) {
+            HStack(alignment: .top, spacing: 8) {
                     ZStack(alignment: .top) {
                         Color.clear.frame(width: tramW, height: totalH)
                         Image(systemName: "tram.fill")
@@ -1091,23 +1106,6 @@ struct SubwayNavigatorView: View {
                     }
                     .clipped()
                 }
-
-                // Explicit tap affordance — makes it obvious the card is editable.
-                HStack(spacing: 6) {
-                    Image(systemName: "hand.tap.fill")
-                        .font(.footnote).fontWeight(.bold)
-                    Text(NavLoc.tapToFixPosition.resolved(displayLanguage))
-                        .font(.footnote).fontWeight(.semibold)
-                    Spacer(minLength: 0)
-                    Image(systemName: "pencil.circle.fill")
-                        .font(.body)
-                }
-                .foregroundStyle(seg.line.color)
-                .padding(.horizontal, 10).padding(.vertical, 8)
-                .frame(maxWidth: .infinity)
-                .background(seg.line.color.opacity(0.14))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-            }
             .padding(14)
             .frame(maxWidth: .infinity, alignment: .leading)
             .contentShape(Rectangle())
