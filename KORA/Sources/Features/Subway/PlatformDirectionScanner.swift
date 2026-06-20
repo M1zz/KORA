@@ -245,6 +245,7 @@ final class DirectionCameraModel: ObservableObject, @unchecked Sendable {
 
     private var forward: Set<String> = []
     private var backward: Set<String> = []
+    private var missStreak = 0   // consecutive frames with no matching destination
 
     func configure(forward: Set<String>, backward: Set<String>) {
         self.forward = Set(forward.map(Self.normalize))
@@ -300,11 +301,20 @@ final class DirectionCameraModel: ObservableObject, @unchecked Sendable {
             // display, it's the right train → GREEN (even if other text is present).
             // Only when there's NO valid destination but a "don't board" one is → RED.
             if let f = fwdHit {
+                self.missStreak = 0
                 self.verdict = .correct; self.matchedText = f
             } else if let b = bwdHit {
+                self.missStreak = 0
                 self.verdict = .wrong; self.matchedText = b
+            } else {
+                // No destination read. Hold briefly to avoid flicker, then go neutral
+                // so a stale verdict can't linger when nothing is in frame.
+                self.missStreak += 1
+                if self.missStreak >= 3 {
+                    self.verdict = .searching
+                    self.matchedText = nil
+                }
             }
-            // If neither seen, hold the previous verdict (don't flicker).
         }
     }
 
@@ -332,9 +342,10 @@ private final class SampleHandler: NSObject, AVCaptureVideoDataOutputSampleBuffe
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
 
         let request = VNRecognizeTextRequest { [weak self] req, _ in
-            guard let results = req.results as? [VNRecognizedTextObservation] else { return }
+            let results = req.results as? [VNRecognizedTextObservation] ?? []
             let lines = results.compactMap { $0.topCandidates(1).first?.string }
-            if !lines.isEmpty { self?.onText?(lines) }
+            // Always report (even empty) so a stale verdict resets when nothing is read.
+            self?.onText?(lines)
         }
         request.recognitionLevel = .accurate
         request.usesLanguageCorrection = false

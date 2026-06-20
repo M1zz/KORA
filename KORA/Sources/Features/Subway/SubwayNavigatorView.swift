@@ -642,20 +642,6 @@ struct SubwayNavigatorView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 20))
                     .frame(maxWidth: .infinity)
 
-                    HStack(spacing: 14) {
-                        Text(seg.line.badgeText)
-                            .font(.largeTitle).fontWeight(.black)
-                            .foregroundStyle(.white)
-                            .frame(minWidth: 44, idealWidth: 64, maxWidth: 64,
-                                   minHeight: 44, idealHeight: 64, maxHeight: 64)
-                            .background(seg.line.color)
-                            .clipShape(Circle())
-                            .layoutPriority(0)
-                        Spacer(minLength: 0)
-                    }
-
-                    Divider()
-
                     if let nk = nextKo {
                         verifyNextStopCard(currentKo: seg.stations.first ?? "", nextKo: nk,
                                            nextDisplay: nextDisplay, lineColor: seg.line.color)
@@ -663,8 +649,14 @@ struct SubwayNavigatorView: View {
                         Divider()
                     }
 
-                    // Direction ("○○ 방면") sits right above the approach visual.
-                    HStack(spacing: 8) {
+                    // Line badge + direction ("4  ○○ 방면") together, above the visual.
+                    HStack(spacing: 12) {
+                        Text(seg.line.badgeText)
+                            .font(.title).fontWeight(.black)
+                            .foregroundStyle(.white)
+                            .frame(width: 48, height: 48)
+                            .background(seg.line.color)
+                            .clipShape(Circle())
                         directionLabelBlock(seg: seg, displayedTerminus: displayedTerminus, segDestKo: segDestKo)
                         Spacer(minLength: 0)
                     }
