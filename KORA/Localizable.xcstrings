@@ -81,36 +81,6 @@
         }
       }
     },
-    "%@역 출발, 다음 정거장 %@역" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@역 출발, 다음 정거장 %2$@역"
-          }
-        }
-      }
-    },
-    "%@역까지 %lld정거장 남음. %@" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@역까지 %2$lld정거장 남음. %3$@"
-          }
-        }
-      }
-    },
-    "%@역까지 %lld정거장, 약 %lld분 남음" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@역까지 %2$lld정거장, 약 %3$lld분 남음"
-          }
-        }
-      }
-    },
     "%@で下車" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -289,6 +259,9 @@
       }
     },
     "+%lld" : {
+
+    },
+    "⋯" : {
 
     },
     "📍 GPSで自動取得" : {
@@ -731,9 +704,6 @@
     "검색" : {
 
     },
-    "길게 누르면 언어를 바꿀 수 있어요" : {
-
-    },
     "난지ナルター" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -768,9 +738,6 @@
     "스크린샷에서 추가" : {
 
     },
-    "언어 변경" : {
-
-    },
     "역 이름 (한국어 · 日本語 · English)" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -802,24 +769,11 @@
         }
       }
     },
-    "출발역 변경" : {
-
-    },
     "취소" : {
 
     },
     "캡션에서 감지됨" : {
 
-    },
-    "현재 %@역 근처, 다음 %@역" : {
-      "localizations" : {
-        "ja" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "현재 %1$@역 근처, 다음 %2$@역"
-          }
-        }
-      }
     },
     "アプリ「漢江バス」で予約・決済が便利" : {
       "extractionState" : "stale",

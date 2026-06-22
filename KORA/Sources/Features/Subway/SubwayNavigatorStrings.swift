@@ -191,12 +191,6 @@ extension NavLoc {
         en: "Correct my position",
         zh: "修正当前位置"
     )
-    static let tapToFixPosition = NavLoc(
-        ko: "여기가 아니라면 탭해서 역 바꾸기",
-        ja: "違う駅にいる？タップで変更",
-        en: "Not here? Tap to change station",
-        zh: "不在这站？点按更改"
-    )
     static let changeDepartureStation = NavLoc(
         ko: "출발역 변경",
         ja: "出発駅を変更",

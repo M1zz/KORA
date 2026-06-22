@@ -83,6 +83,16 @@ struct SubwayNavigatorView: View {
     /// from the in-transit view.
     @State private var showPositionCorrection = false
 
+    /// Orange "position uncertain" treatment shown around the in-transit card.
+    /// `uncertainVisible` keeps it on screen while it drains; `uncertainBorderTrim`
+    /// (1→0) makes the border visibly count down so the rider can anticipate it
+    /// vanishing instead of it blinking out. `uncertainDrainGen` cancels a stale
+    /// drain if the position goes uncertain again mid-fade.
+    @State private var uncertainVisible = false
+    @State private var uncertainBorderTrim: CGFloat = 1
+    @State private var uncertainDrainGen = 0
+    private let uncertainDrainSeconds: Double = 1.6
+
     private var displayLanguage: StationLanguage {
         guard !languagePref.isEmpty,
               let explicit = StationLanguage(rawValue: languagePref)
@@ -610,7 +620,6 @@ struct SubwayNavigatorView: View {
     private func rideBlock(seg: JourneySegment, segIdx: Int, isLast: Bool, j: TransferJourney) -> some View {
         let nextKo: String? = seg.stations.count > 1 ? seg.stations[1] : nil
         let nextDisplay = nextKo.map { MetroLineData.displayName(for: $0, language: displayLanguage) } ?? ""
-        let timing = SubwayScheduleService.timing(for: seg, at: Date())
         let displayedTerminus = terminiOverride[segIdx] ?? seg.terminus
         let segDestKo = seg.stations.last ?? displayedTerminus
 
@@ -619,6 +628,24 @@ struct SubwayNavigatorView: View {
         return ZStack(alignment: .top) {
             if isBoarded, let bt = boardedAt {
                 VStack(spacing: 18) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "tram.fill")
+                            .font(.callout).fontWeight(.semibold)
+                            .foregroundStyle(seg.line.color)
+                        Text(boardedStatusLabel)
+                            .font(.callout).fontWeight(.bold)
+                            .foregroundStyle(seg.line.color)
+                        Spacer()
+                        Text(lineDirectionLabel(seg: seg, terminus: displayedTerminus))
+                            .font(.callout).fontWeight(.bold)
+                            .foregroundStyle(seg.line.color)
+                            .lineLimit(1).minimumScaleFactor(0.7)
+                    }
+                    .padding(.horizontal, 14).padding(.vertical, 9)
+                    .background(seg.line.color.opacity(0.15))
+                    .clipShape(RoundedRectangle(cornerRadius: 20))
+                    .frame(maxWidth: .infinity)
+
                     inTransitSection(seg: seg, boardedAt: bt)
                 }
                 .frame(maxWidth: .infinity, alignment: .top)
@@ -636,6 +663,12 @@ struct SubwayNavigatorView: View {
                             .font(.callout).fontWeight(.bold)
                             .foregroundStyle(seg.line.color)
                         Spacer()
+                        // "X호선 ○○행" — the line + bound-for sign to match against
+                        // the platform's destination indicator before boarding.
+                        Text(lineDirectionLabel(seg: seg, terminus: displayedTerminus))
+                            .font(.callout).fontWeight(.bold)
+                            .foregroundStyle(seg.line.color)
+                            .lineLimit(1).minimumScaleFactor(0.7)
                     }
                     .padding(.horizontal, 14).padding(.vertical, 9)
                     .background(seg.line.color.opacity(0.15))
@@ -649,7 +682,7 @@ struct SubwayNavigatorView: View {
                         Divider()
                     }
 
-                    // Line badge + direction ("4  ○○ 방면") together, above the visual.
+                    // Line badge + direction ("4  ○○ 방면").
                     HStack(spacing: 12) {
                         Text(seg.line.badgeText)
                             .font(.title).fontWeight(.black)
@@ -660,7 +693,6 @@ struct SubwayNavigatorView: View {
                         directionLabelBlock(seg: seg, displayedTerminus: displayedTerminus, segDestKo: segDestKo)
                         Spacer(minLength: 0)
                     }
-                    trainApproachVisual(seg: seg, timing: timing)
                 }
                 .frame(maxWidth: .infinity, alignment: .top)
                 .transition(.asymmetric(
@@ -741,31 +773,20 @@ struct SubwayNavigatorView: View {
         }
     }
 
-    /// ---●──────────────────────────●──▶  horizontal track card.
+    /// "다음역  ❯❯❯  한남" — the next station, with the chevrons flowing toward
+    /// the name so the eye is pulled to what to match against the LED display.
     private func verifyNextStopCard(currentKo: String, nextKo: String, nextDisplay: String, lineColor: Color) -> some View {
-        return VStack(spacing: 10) {
-            // ● —tram→→→— ○  track row
-            HStack(alignment: .center, spacing: 8) {
-                Circle().fill(lineColor).frame(width: 14, height: 14)
-                VerifyTrainTrack(lineColor: lineColor)
-                Circle().strokeBorder(lineColor, lineWidth: 2.5).frame(width: 14, height: 14)
-            }
-
-            // "다음역" label → arrow → the next station name.
-            HStack(spacing: 10) {
-                Text(NavLoc.nextStationShort.resolved(displayLanguage))
-                    .font(.subheadline).fontWeight(.bold)
-                    .foregroundStyle(lineColor.opacity(0.8))
-                Image(systemName: "arrow.right")
-                    .font(.title3).fontWeight(.black)
-                    .foregroundStyle(lineColor.opacity(0.7))
-                Text(nextKo)
-                    .font(.system(size: 32, weight: .black))
-                    .foregroundStyle(lineColor)
-                    .minimumScaleFactor(0.6)
-                    .lineLimit(1)
-                Spacer(minLength: 0)
-            }
+        return HStack(spacing: 12) {
+            Text(NavLoc.nextStationShort.resolved(displayLanguage))
+                .font(.subheadline).fontWeight(.bold)
+                .foregroundStyle(lineColor.opacity(0.8))
+            FlowingChevrons(lineColor: lineColor)
+            Text(nextKo)
+                .font(.system(size: 32, weight: .black))
+                .foregroundStyle(lineColor)
+                .minimumScaleFactor(0.6)
+                .lineLimit(1)
+            Spacer(minLength: 0)
         }
         .padding(12)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -779,56 +800,25 @@ struct SubwayNavigatorView: View {
 
     // MARK: In-transit section (post-boarding)
 
-    /// Animated track row: slow chevron wave + tram icon that travels left→right over 7 s.
-    private struct VerifyTrainTrack: View {
+    /// A short run of right-chevrons (❯❯❯) whose brightness sweeps left→right on
+    /// a loop, giving a sense of motion toward the next station without drawing
+    /// a moving train.
+    private struct FlowingChevrons: View {
         let lineColor: Color
+        var count: Int = 3
         var body: some View {
-            TimelineView(.animation(minimumInterval: 0.04)) { ctx in
-                let t = ctx.date.timeIntervalSinceReferenceDate
-                VerifyTrainCanvas(
-                    phase: t * 0.35,
-                    trainProgress: CGFloat(t.truncatingRemainder(dividingBy: 7.0) / 7.0),
-                    lineColor: lineColor
-                )
-            }
-            .frame(height: 20)
-        }
-    }
-
-    private struct VerifyTrainCanvas: View {
-        let phase: Double
-        let trainProgress: CGFloat
-        let lineColor: Color
-        var body: some View {
-            GeometryReader { geo in
-                ZStack(alignment: .leading) {
-                    VerifyChevronRow(phase: phase, lineColor: lineColor)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    Image(systemName: "tram.fill")
-                        .font(.system(size: 12, weight: .bold))
-                        .foregroundStyle(lineColor)
-                        .frame(maxHeight: .infinity, alignment: .center)
-                        .offset(x: trainProgress * max(0, geo.size.width - 14))
+            TimelineView(.animation(minimumInterval: 0.05)) { ctx in
+                let phase = ctx.date.timeIntervalSinceReferenceDate * 1.4
+                HStack(spacing: 1) {
+                    ForEach(0..<count, id: \.self) { i in
+                        let angle = phase * .pi * 2 - Double(i) * (.pi * 2 / Double(count))
+                        Image(systemName: "chevron.right")
+                            .font(.title3).fontWeight(.black)
+                            .foregroundStyle(lineColor.opacity(0.2 + 0.75 * max(0, sin(angle))))
+                    }
                 }
             }
-        }
-    }
-
-    private struct VerifyChevronRow: View {
-        let phase: Double
-        let lineColor: Color
-        var body: some View {
-            HStack(spacing: 0) {
-                ForEach(0..<6, id: \.self) { i in
-                    Spacer(minLength: 0)
-                    let angle: Double = phase * .pi * 2 - Double(i) * .pi * 2.0 / 6.0
-                    let opacity: Double = 0.12 + 0.5 * max(0.0, sin(angle))
-                    Image(systemName: "chevron.right")
-                        .font(.system(size: 8, weight: .semibold))
-                        .foregroundStyle(lineColor.opacity(opacity))
-                }
-                Spacer(minLength: 0)
-            }
+            .fixedSize()
         }
     }
 
@@ -861,10 +851,11 @@ struct SubwayNavigatorView: View {
                 let nextStKo = nextStIdx < seg.stations.count ? seg.stations[nextStIdx] : nil
                 let nextStDisplay = nextStKo.map { MetroLineData.displayName(for: $0, language: displayLanguage) } ?? ""
                 let showNextTrans = nextStKo != nil && displayLanguage != .korean && nextStDisplay != (nextStKo ?? "")
-                // When the position is uncertain, wrap the card in the same orange
-                // as the "위치가 정확하지 않나요?" prompt below — they appear and
-                // disappear together to point the rider at the tap-to-fix card.
-                let positionUncertain = positionTracker.confidence == .low
+                // When the position is uncertain, wrap the card in orange — the
+                // same orange as the "위치가 정확하지 않나요?" prompt below. Once the
+                // position firms up the border doesn't blink out: it drains
+                // (`uncertainBorderTrim` 1→0) like a countdown so the rider can
+                // see it's about to clear.
                 inTransitStationCard(
                     seg: seg,
                     currentKo: currentKo,
@@ -872,18 +863,22 @@ struct SubwayNavigatorView: View {
                     nextStDisplay: nextStDisplay,
                     showNextTrans: showNextTrans
                 )
-                .padding(positionUncertain ? 6 : 0)
+                .padding(uncertainVisible ? 6 : 0)
                 .overlay {
-                    if positionUncertain {
+                    if uncertainVisible {
                         RoundedRectangle(cornerRadius: 18)
-                            .strokeBorder(.orange, lineWidth: 2.5)
+                            .trim(from: 0, to: uncertainBorderTrim)
+                            .stroke(.orange, style: StrokeStyle(lineWidth: 2.5, lineCap: .round))
+                            .padding(1.25)
                     }
                 }
                 .background(
-                    positionUncertain ? Color.orange.opacity(0.10) : Color.clear,
+                    uncertainVisible
+                        ? Color.orange.opacity(0.10 * Double(uncertainBorderTrim))
+                        : Color.clear,
                     in: RoundedRectangle(cornerRadius: 18)
                 )
-                .animation(.easeInOut(duration: 0.2), value: positionUncertain)
+                .animation(.easeInOut(duration: 0.2), value: uncertainVisible)
 
                 // "Confirmed by announcement" badge — pink, the strongest signal.
                 if positionTracker.source == .announcement {
@@ -929,7 +924,8 @@ struct SubwayNavigatorView: View {
                 }
 
                 // Low-confidence safety prompt — nudge the rider to confirm position.
-                if positionTracker.confidence == .low {
+                // Stays up while the orange border drains, fading in step with it.
+                if uncertainVisible {
                     Button { showPositionCorrection = true } label: {
                         HStack(spacing: 6) {
                             Image(systemName: "exclamationmark.triangle.fill")
@@ -941,6 +937,7 @@ struct SubwayNavigatorView: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     .buttonStyle(.plain)
+                    .opacity(Double(uncertainBorderTrim))
                     .transition(.opacity)
                 }
 
@@ -999,7 +996,36 @@ struct SubwayNavigatorView: View {
                 }
             }
         }
+        .onChange(of: positionTracker.confidence == .low) { _, low in
+            if low {
+                // Went uncertain again — cancel any in-flight drain and restore
+                // the full border.
+                uncertainDrainGen += 1
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    uncertainVisible = true
+                    uncertainBorderTrim = 1
+                }
+            } else if uncertainVisible {
+                // Position firmed up — drain the border like a countdown, then
+                // clear the whole treatment once it has emptied.
+                uncertainDrainGen += 1
+                let gen = uncertainDrainGen
+                withAnimation(.linear(duration: uncertainDrainSeconds)) {
+                    uncertainBorderTrim = 0
+                }
+                Task {
+                    try? await Task.sleep(for: .seconds(uncertainDrainSeconds))
+                    guard uncertainDrainGen == gen else { return }
+                    withAnimation(.easeInOut(duration: 0.2)) { uncertainVisible = false }
+                    uncertainBorderTrim = 1
+                }
+            }
+        }
         .task(id: boardedAt) {
+            // Seed the uncertain-border state for this segment before the
+            // sensors start publishing confidence changes.
+            uncertainVisible = positionTracker.confidence == .low
+            uncertainBorderTrim = 1
             // Start GPS + accelerometer tracking for this segment
             positionTracker.start(seg: seg)
 
@@ -1105,6 +1131,15 @@ struct SubwayNavigatorView: View {
                         }
                     }
                     .clipped()
+                    Spacer(minLength: 8)
+                    // Location-pin button — tap to correct the current-position
+                    // estimate (opens PositionCorrectionSheet).
+                    Image(systemName: "mappin.and.ellipse")
+                        .font(.system(size: 17, weight: .bold))
+                        .foregroundStyle(.white)
+                        .frame(width: 36, height: 36)
+                        .background(seg.line.color, in: Circle())
+                        .frame(height: totalH, alignment: .center)
                 }
             .padding(14)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -1365,126 +1400,6 @@ struct SubwayNavigatorView: View {
         }
     }
 
-    // MARK: Arrival badge
-
-    /// Compute the 3 previous stations a train passes through before
-    /// reaching the boarding station, in arrival order (earliest → latest).
-    /// For circular routes (e.g. Line 2), wraps around the array.
-    private func previousStations(for seg: JourneySegment, count: Int = 3) -> [String] {
-        let boarding = seg.stations.first ?? ""
-        // Prefer a route that contains both boarding station AND terminus so the
-        // direction is unambiguous. Fall back to any route with the boarding
-        // station — necessary for branching lines where terminus lives on a
-        // different branch (e.g. Sinbundang, Line 9 express).
-        let route = seg.line.routes.first(where: {
-                        $0.stations.contains(boarding) && $0.stations.contains(seg.terminus)
-                    }) ?? seg.line.routes.first(where: { $0.stations.contains(boarding) })
-        guard let route, let boardingIdx = route.stations.firstIndex(of: boarding) else { return [] }
-
-        // Direction: train approaches from the side OPPOSITE to its terminus.
-        // When terminus is absent from the fallback route, use the second journey
-        // station (first stop after boarding) to infer which way the train moves.
-        let step: Int
-        if let tIdx = route.stations.firstIndex(of: seg.terminus) {
-            step = tIdx < boardingIdx ? 1 : -1
-        } else if seg.stations.count > 1,
-                  let nextIdx = route.stations.firstIndex(of: seg.stations[1]) {
-            step = nextIdx < boardingIdx ? 1 : -1
-        } else {
-            return []
-        }
-
-        let n = route.stations.count
-        var result: [String] = []
-        for i in 1...count {
-            var idx = boardingIdx + step * i
-            if route.isCircular {
-                idx = ((idx % n) + n) % n
-            } else if idx < 0 || idx >= n {
-                break
-            }
-            result.append(route.stations[idx])
-        }
-        return result.reversed()
-    }
-
-    /// Visualization showing the 3 prev stations + boarding station with the
-    /// approaching train icon over its current position (offline schedule
-    /// driven). Replaces the bare "N分後" arrival badge with a spatial map.
-    private func trainApproachVisual(seg: JourneySegment, timing: SegmentTiming?) -> some View {
-        let prev = previousStations(for: seg, count: 3)
-        let boarding = seg.stations.first ?? ""
-        let allStops = prev + [boarding]
-        let trainAt = timing?.currentTrainStation
-        let trainIdx = trainAt.flatMap { allStops.firstIndex(of: $0) }
-        let isTerminus = prev.isEmpty
-
-        return VStack(alignment: .leading, spacing: 12) {
-            Text(NavLoc.trainCurrentLocation.resolved(displayLanguage))
-                .font(.body).fontWeight(.semibold)
-                .foregroundStyle(KORATheme.labelSecondary)
-
-            if isTerminus {
-                // No stations before boarding — this IS the origin terminus.
-                // Draw a buffer-stop block → short rail → boarding station,
-                // matching the visual language of the station dot row.
-                HStack(alignment: .center, spacing: 0) {
-                    // Origin/terminus label badge
-                    let originLabel: String = {
-                        switch displayLanguage {
-                        case .korean:   return "출발점"
-                        case .japanese: return "始発駅"
-                        case .english:  return "Origin"
-                        case .chinese:  return "始发站"
-                        }
-                    }()
-                    VStack(spacing: 4) {
-                        Color.clear.frame(height: 22)
-                        Text(originLabel)
-                            .font(.system(size: 10, weight: .bold))
-                            .foregroundStyle(seg.line.color)
-                            .padding(.horizontal, 6)
-                            .padding(.vertical, 3)
-                            .background(seg.line.color.opacity(0.12))
-                            .clipShape(RoundedRectangle(cornerRadius: 6))
-                        Color.clear.frame(height: 18)
-                    }
-                    Rectangle()
-                        .fill(seg.line.color.opacity(0.4))
-                        .frame(width: 12, height: 3)
-                    visualStationDot(
-                        station: boarding,
-                        isBoarding: true,
-                        isTrainHere: false,
-                        lineColor: seg.line.color,
-                        showLabel: false
-                    )
-                }
-            } else {
-                HStack(alignment: .center, spacing: 0) {
-                    ForEach(Array(allStops.enumerated()), id: \.offset) { idx, st in
-                        visualStationDot(
-                            station: st,
-                            isBoarding: idx == allStops.count - 1,
-                            isTrainHere: trainIdx == idx,
-                            lineColor: seg.line.color,
-                            showLabel: false
-                        )
-                        if idx < allStops.count - 1 {
-                            Rectangle()
-                                .fill(seg.line.color.opacity(0.4))
-                                .frame(height: 3)
-                        }
-                    }
-                }
-            }
-        }
-        .padding(14)
-        .background(Color(.systemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 12))
-        .accessibilityLabel(approachAccessibility(seg: seg, trainAt: trainAt))
-    }
-
     private func visualStationDot(station: String, isBoarding: Bool, isTrainHere: Bool, lineColor: Color, showLabel: Bool = true) -> some View {
         VStack(spacing: 4) {
             // Top slot: train icon if it's here, otherwise spacer for alignment
@@ -1561,26 +1476,22 @@ struct SubwayNavigatorView: View {
         }
     }
 
-    private func approachAccessibility(seg: JourneySegment, trainAt: String?) -> String {
-        guard let at = trainAt else { return NavLoc.trainFarAway.resolved(displayLanguage) }
-        let name = MetroLineData.displayName(for: at, language: displayLanguage)
-        switch displayLanguage {
-        case .korean:   return "전철이 현재 \(name)에 있습니다"
-        case .japanese: return "電車は現在 \(name) にいます"
-        case .english:  return "Train is currently at \(name)"
-        case .chinese:  return "列车当前在 \(name)"
-        }
-    }
-
-    /// Shows where the user currently is relative to the destination.
-    /// Displays the last 3 stations before the destination + destination,
-    /// with the current station marked by a pulsing train icon.
+    /// Shows where the user currently is relative to the destination, with an
+    /// adaptive level of detail: when the destination is within 2 stops every
+    /// station from the current position to the destination is drawn; when it's
+    /// farther the middle collapses to "current ⋯ destination", and the dots
+    /// progressively reappear as the train closes in.
     private func inTransitProgressVisual(seg: JourneySegment, currentKo: String, alightKo: String) -> some View {
         let destIdx = seg.stations.count - 1
+        let curIdx = seg.stations.firstIndex(of: currentKo) ?? 0
+        let remaining = max(destIdx - curIdx, 0)
 
-        let windowCount = 3
-        let windowStart = max(destIdx - windowCount, 0)
-        let windowStations = Array(seg.stations[windowStart...destIdx])
+        // Expand every station only when within 2 stops (≤ 3 dots); collapse the
+        // middle to an ellipsis beyond that.
+        let expanded = remaining <= 2
+        let expandedStations = expanded && curIdx <= destIdx
+            ? Array(seg.stations[curIdx...destIdx])
+            : []
 
         let alightDisplay = MetroLineData.displayName(for: alightKo, language: displayLanguage)
         let towardLabel: String = {
@@ -1598,25 +1509,55 @@ struct SubwayNavigatorView: View {
                 .foregroundStyle(KORATheme.labelSecondary)
 
             HStack(alignment: .center, spacing: 0) {
-                ForEach(Array(windowStations.enumerated()), id: \.offset) { idx, st in
-                    visualStationDot(
-                        station: st,
-                        isBoarding: st == alightKo,
-                        isTrainHere: st == currentKo,
-                        lineColor: seg.line.color,
-                        showLabel: false
-                    )
-                    if idx < windowStations.count - 1 {
-                        Rectangle()
-                            .fill(seg.line.color.opacity(0.4))
-                            .frame(height: 3)
+                if expanded {
+                    ForEach(Array(expandedStations.enumerated()), id: \.offset) { idx, st in
+                        visualStationDot(
+                            station: st,
+                            isBoarding: st == alightKo,
+                            isTrainHere: st == currentKo,
+                            lineColor: seg.line.color,
+                            showLabel: false
+                        )
+                        if idx < expandedStations.count - 1 {
+                            Rectangle()
+                                .fill(seg.line.color.opacity(0.4))
+                                .frame(height: 3)
+                        }
                     }
+                } else {
+                    // Collapsed: current (tram) ⋯ destination.
+                    visualStationDot(
+                        station: currentKo, isBoarding: false, isTrainHere: true,
+                        lineColor: seg.line.color, showLabel: false
+                    )
+                    progressEllipsisConnector(lineColor: seg.line.color)
+                    visualStationDot(
+                        station: alightKo, isBoarding: true, isTrainHere: false,
+                        lineColor: seg.line.color, showLabel: false
+                    )
                 }
             }
         }
+        .animation(.spring(response: 0.45, dampingFraction: 0.85), value: expanded)
         .padding(10)
         .background(Color(.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    /// A rail segment with a centered "⋯" standing in for the collapsed run of
+    /// intermediate stations between the current position and the destination.
+    private func progressEllipsisConnector(lineColor: Color) -> some View {
+        ZStack {
+            Rectangle()
+                .fill(lineColor.opacity(0.4))
+                .frame(height: 3)
+            Text("⋯")
+                .font(.system(size: 24, weight: .black))
+                .foregroundStyle(lineColor.opacity(0.75))
+                .padding(.horizontal, 10)
+                .background(Color(.systemBackground))
+        }
+        .frame(maxWidth: .infinity)
     }
 
     /// Compact chip row showing alternative valid "행" signs — tap to switch displayed terminus.
@@ -2081,6 +2022,28 @@ struct SubwayNavigatorView: View {
         case .japanese: return "乗車前"
         case .english:  return "Before boarding"
         case .chinese:  return "乘车前"
+        }
+    }
+
+    private var boardedStatusLabel: String {
+        switch displayLanguage {
+        case .korean:   return "탑승 중"
+        case .japanese: return "乗車中"
+        case .english:  return "On board"
+        case .chinese:  return "乘车中"
+        }
+    }
+
+    /// Compact "line + bound-for" sign, e.g. "4호선 사당행", shown on the
+    /// pre-boarding status row so the rider can match it to the platform's
+    /// destination indicator.
+    private func lineDirectionLabel(seg: JourneySegment, terminus: String) -> String {
+        let dir = directionLabel(terminus: terminus)
+        switch displayLanguage {
+        case .korean:   return "\(seg.line.name) \(dir)"
+        case .japanese: return "\(seg.line.badgeText)号線 \(dir)"
+        case .english:  return "Line \(seg.line.badgeText) · \(dir)"
+        case .chinese:  return "\(seg.line.badgeText)号线 \(dir)"
         }
     }
 
