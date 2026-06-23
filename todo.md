@@ -1,6 +1,7 @@
 # KORA Todo
 
 ## 완료
+- [x] Google Analytics(Firebase) 수집 활성화: Firebase SDK(SPM) 연동, KORAApp에 FirebaseApp.configure(), GoogleService-Info.plist IS_ANALYTICS_ENABLED=true, 빌드 검증
 - [x] 빌드 에러 수정
 - [x] Deprecated Map API 교체 (Map(position:) + Annotation + MapPolyline)
 - [x] 일본어 기본 / 한국어 번역 (Localizable.xcstrings)

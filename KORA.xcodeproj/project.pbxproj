@@ -14,6 +14,8 @@
 		9C8F74612FC6E3A000B6DA22 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */; };
 		9C8F74632FC6E3A000B6DA22 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */; };
 		9C8F74722FC6E3A100B6DA22 /* widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9CD2A2912FEA2CC9002410B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CD2A2902FEA2CC9002410B9 /* GoogleService-Info.plist */; };
+		9CFBA5E12FEA300000000001 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9CFBA5E12FEA300000000002 /* FirebaseAnalytics */; };
 		AA001 /* KORAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA101 /* KORAApp.swift */; };
 		AA003 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA103 /* MainTabView.swift */; };
 		AA004 /* SaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA104 /* SaveView.swift */; };
@@ -27,7 +29,6 @@
 		AA019 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AA119 /* Localizable.xcstrings */; };
 		AA020 /* PlaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA120 /* PlaceStore.swift */; };
 		AA021 /* KakaoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA121 /* KakaoConfig.swift */; };
-		AA060 /* SeoulTransitConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA160 /* SeoulTransitConfig.swift */; };
 		AA022 /* KakaoLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA122 /* KakaoLocalService.swift */; };
 		AA023 /* SubwayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA123 /* SubwayView.swift */; };
 		AA024 /* seoul_metro.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AA124 /* seoul_metro.pdf */; };
@@ -47,8 +48,6 @@
 		AA043 /* PlaceMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA143 /* PlaceMapView.swift */; };
 		AA044 /* KORALiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA144 /* KORALiveActivityManager.swift */; };
 		AA045 /* TransitPositionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA145 /* TransitPositionTracker.swift */; };
-		AA061 /* StationAnnouncementListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA161 /* StationAnnouncementListener.swift */; };
-		AA062 /* PlatformDirectionScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA162 /* PlatformDirectionScanner.swift */; };
 		AA046 /* PlaceDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA146 /* PlaceDetailSheet.swift */; };
 		AA047 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA147 /* SafariView.swift */; };
 		AA048 /* KakaoPlaceDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA148 /* KakaoPlaceDetailService.swift */; };
@@ -57,6 +56,9 @@
 		AA051 /* SubwayExits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA151 /* SubwayExits.json */; };
 		AA052 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AA154 /* PrivacyInfo.xcprivacy */; };
 		AA053 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AA155 /* InfoPlist.xcstrings */; };
+		AA060 /* SeoulTransitConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA160 /* SeoulTransitConfig.swift */; };
+		AA061 /* StationAnnouncementListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA161 /* StationAnnouncementListener.swift */; };
+		AA062 /* PlatformDirectionScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA162 /* PlatformDirectionScanner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,7 @@
 		9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		9CD2A2902FEA2CC9002410B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA101 /* KORAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAApp.swift; sourceTree = "<group>"; };
 		AA103 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		AA104 /* SaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveView.swift; sourceTree = "<group>"; };
@@ -113,7 +116,6 @@
 		AA119 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		AA120 /* PlaceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceStore.swift; sourceTree = "<group>"; };
 		AA121 /* KakaoConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConfig.swift; sourceTree = "<group>"; };
-		AA160 /* SeoulTransitConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulTransitConfig.swift; sourceTree = "<group>"; };
 		AA122 /* KakaoLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLocalService.swift; sourceTree = "<group>"; };
 		AA123 /* SubwayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayView.swift; sourceTree = "<group>"; };
 		AA124 /* seoul_metro.pdf */ = {isa = PBXFileReference; lastKnownFileType = com.adobe.pdf; path = seoul_metro.pdf; sourceTree = "<group>"; };
@@ -133,8 +135,6 @@
 		AA143 /* PlaceMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMapView.swift; sourceTree = "<group>"; };
 		AA144 /* KORALiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORALiveActivityManager.swift; sourceTree = "<group>"; };
 		AA145 /* TransitPositionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitPositionTracker.swift; sourceTree = "<group>"; };
-		AA161 /* StationAnnouncementListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAnnouncementListener.swift; sourceTree = "<group>"; };
-		AA162 /* PlatformDirectionScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformDirectionScanner.swift; sourceTree = "<group>"; };
 		AA146 /* PlaceDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailSheet.swift; sourceTree = "<group>"; };
 		AA147 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
 		AA148 /* KakaoPlaceDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceDetailService.swift; sourceTree = "<group>"; };
@@ -145,6 +145,9 @@
 		AA153 /* Secrets.sample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.sample.xcconfig; sourceTree = "<group>"; };
 		AA154 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA155 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
+		AA160 /* SeoulTransitConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulTransitConfig.swift; sourceTree = "<group>"; };
+		AA161 /* StationAnnouncementListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAnnouncementListener.swift; sourceTree = "<group>"; };
+		AA162 /* PlatformDirectionScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformDirectionScanner.swift; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -191,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9CFBA5E12FEA300000000001 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +235,7 @@
 				AA128 /* subway_jp.pdf */,
 				AA154 /* PrivacyInfo.xcprivacy */,
 				AA155 /* InfoPlist.xcstrings */,
+				9CD2A2902FEA2CC9002410B9 /* GoogleService-Info.plist */,
 			);
 			path = KORA;
 			sourceTree = "<group>";
@@ -450,6 +455,9 @@
 				9C8F74712FC6E3A100B6DA22 /* PBXTargetDependency */,
 			);
 			name = KORA;
+			packageProductDependencies = (
+				9CFBA5E12FEA300000000002 /* FirebaseAnalytics */,
+			);
 			productName = KORA;
 			productReference = AA200 /* KORA.app */;
 			productType = "com.apple.product-type.application";
@@ -486,6 +494,9 @@
 				Base,
 			);
 			mainGroup = AA400;
+			packageReferences = (
+				9CFBA5E12FEA300000000003 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = AA402 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -518,6 +529,7 @@
 			files = (
 				AA018 /* Assets.xcassets in Resources */,
 				AA019 /* Localizable.xcstrings in Resources */,
+				9CD2A2912FEA2CC9002410B9 /* GoogleService-Info.plist in Resources */,
 				AA024 /* seoul_metro.pdf in Resources */,
 				AA051 /* SubwayExits.json in Resources */,
 				AA052 /* PrivacyInfo.xcprivacy in Resources */,
@@ -957,6 +969,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9CFBA5E12FEA300000000003 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9CFBA5E12FEA300000000002 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9CFBA5E12FEA300000000003 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AA700 /* Project object */;
 }

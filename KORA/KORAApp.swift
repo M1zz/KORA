@@ -1,5 +1,6 @@
 import SwiftUI
 import TipKit
+import FirebaseCore
 
 /// Print only in debug builds. Release builds compile the call site away.
 /// Tagged logs throughout the app (`[Exit]`, `[ExitFetch]`, `[InlineResolve]`,
@@ -17,6 +18,10 @@ struct KORAApp: App {
     @Environment(\.scenePhase) private var scenePhase
 
     init() {
+        // Initialize Firebase (Google Analytics for Firebase). Must run before
+        // any Analytics calls; reads GoogleService-Info.plist from the bundle.
+        FirebaseApp.configure()
+
         #if DEBUG
         // Fail-fast: if any station's English is a translation instead of a
         // romanization (and it isn't whitelisted), crash DEBUG so the dev
