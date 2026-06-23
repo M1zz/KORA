@@ -1,7 +1,8 @@
 # KORA Todo
 
 ## 완료
-- [x] Google Analytics(Firebase) 수집 활성화: Firebase SDK(SPM) 연동, KORAApp에 FirebaseApp.configure(), GoogleService-Info.plist IS_ANALYTICS_ENABLED=true, 빌드 검증
+- [x] Google Analytics(Firebase) 수집 활성화: Firebase SDK(SPM) 연동, KORAApp에 FirebaseApp.configure()
+- [x] GA 데이터 미수집 근본 원인 수정: 앱 타깃에 OTHER_LDFLAGS=-ObjC 추가(정적 Analytics 등록 누락) + Info.plist FIREBASE_ANALYTICS_COLLECTION_ENABLED=YES. 시뮬레이터 실행으로 first_open/session_start 이벤트 기록·measurement DB 생성 확인
 - [x] 빌드 에러 수정
 - [x] Deprecated Map API 교체 (Map(position:) + Annotation + MapPolyline)
 - [x] 일본어 기본 / 한국어 번역 (Localizable.xcstrings)

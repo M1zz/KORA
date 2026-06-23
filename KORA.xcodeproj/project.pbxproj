@@ -14,7 +14,7 @@
 		9C8F74612FC6E3A000B6DA22 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */; };
 		9C8F74632FC6E3A000B6DA22 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */; };
 		9C8F74722FC6E3A100B6DA22 /* widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		9CD2A2912FEA2CC9002410B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CD2A2902FEA2CC9002410B9 /* GoogleService-Info.plist */; };
+		9CD2A3152FEA336B002410B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CD2A3142FEA336B002410B9 /* GoogleService-Info.plist */; };
 		9CFBA5E12FEA300000000001 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9CFBA5E12FEA300000000002 /* FirebaseAnalytics */; };
 		AA001 /* KORAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA101 /* KORAApp.swift */; };
 		AA003 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA103 /* MainTabView.swift */; };
@@ -102,7 +102,7 @@
 		9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		9CD2A2902FEA2CC9002410B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9CD2A3142FEA336B002410B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA101 /* KORAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAApp.swift; sourceTree = "<group>"; };
 		AA103 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		AA104 /* SaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveView.swift; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 				AA128 /* subway_jp.pdf */,
 				AA154 /* PrivacyInfo.xcprivacy */,
 				AA155 /* InfoPlist.xcstrings */,
-				9CD2A2902FEA2CC9002410B9 /* GoogleService-Info.plist */,
+				9CD2A3142FEA336B002410B9 /* GoogleService-Info.plist */,
 			);
 			path = KORA;
 			sourceTree = "<group>";
@@ -529,7 +529,7 @@
 			files = (
 				AA018 /* Assets.xcassets in Resources */,
 				AA019 /* Localizable.xcstrings in Resources */,
-				9CD2A2912FEA2CC9002410B9 /* GoogleService-Info.plist in Resources */,
+				9CD2A3152FEA336B002410B9 /* GoogleService-Info.plist in Resources */,
 				AA024 /* seoul_metro.pdf in Resources */,
 				AA051 /* SubwayExits.json in Resources */,
 				AA052 /* PrivacyInfo.xcprivacy in Resources */,
@@ -622,7 +622,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = KORAShare/KORAShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORAShare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = KORAShare;
@@ -634,7 +634,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.KORAShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -652,7 +652,7 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = KORAShare/KORAShare.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORAShare/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = KORAShare;
@@ -664,7 +664,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.KORAShare;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -684,7 +684,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = widget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = widget;
@@ -696,7 +696,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -715,7 +715,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = widget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = widget;
@@ -727,7 +727,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -871,7 +871,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KORA/KORA.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "한국 길찾기";
@@ -884,7 +884,8 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -904,7 +905,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KORA/KORA.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "한국 길찾기";
@@ -917,7 +918,8 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.2;
+				MARKETING_VERSION = 1.0.3;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;

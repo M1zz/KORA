@@ -2,6 +2,16 @@
 
 KORA のリリースノート / KORA 릴리즈 노트.
 
+## 1.0.3 (2026-06-23)
+
+内部の改善のみのリリースです。利用状況の把握のため Firebase Analytics を追加しました。
+내부 개선 릴리즈입니다. 사용 현황 파악을 위해 Firebase Analytics를 추가했습니다.
+
+### 変更点 / 변경점
+
+- Firebase Analytics（Google Analytics）を導入し、利用状況の計測を有効化 / Firebase Analytics(Google Analytics) 도입 및 사용 통계 수집 활성화
+- 細かな整理と不具合修正 / 세부 정리 및 안정성 개선
+
 ## 1.0.2 (2026-06-22)
 
 乗る前・乗っている間の画面を、もっと一目でわかるように整えました。
