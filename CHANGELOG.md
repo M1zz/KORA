@@ -4,13 +4,50 @@ KORA のリリースノート / KORA 릴리즈 노트.
 
 ## 1.0.3 (2026-06-23)
 
-内部の改善のみのリリースです。利用状況の把握のため Firebase Analytics を追加しました。
-내부 개선 릴리즈입니다. 사용 현황 파악을 위해 Firebase Analytics를 추가했습니다.
+今回は内部の改善のみで、画面の見た目に変化はありません。
+이번에는 내부 개선만 적용했고, 화면상 보이는 변화는 없습니다.
 
-### 変更点 / 변경점
+### App Store「このバージョンの新機能」/ "이번 버전의 새로운 기능"
 
-- Firebase Analytics（Google Analytics）を導入し、利用状況の計測を有効化 / Firebase Analytics(Google Analytics) 도입 및 사용 통계 수집 활성화
-- 細かな整理と不具合修正 / 세부 정리 및 안정성 개선
+**日本語**
+- アプリの安定性を改善しました
+- 細かな不具合を修正しました
+
+**한국어**
+- 앱 안정성을 개선했습니다
+- 자잘한 버그를 수정했습니다
+
+**English**
+- Improved app stability
+- Minor bug fixes
+
+**中文（简体）**
+- 提升了应用稳定性
+- 修复了一些小问题
+
+### 詳細 / 상세 (developer)
+
+**Analytics**
+- Firebase Analytics（Google Analytics）を SPM で導入し、起動時に
+  FirebaseApp.configure() を呼ぶように。/ Firebase Analytics(Google
+  Analytics)를 SPM으로 도입하고 앱 시작 시 FirebaseApp.configure() 호출.
+- データが届かなかった根本原因を修正：OTHER_LDFLAGS = -ObjC を追加し、静的
+  ライブラリ GoogleAppMeasurement の Obj-C 登録がリンク時に剥がれないように。
+  これが無いと Core は configure されても Analytics エンジンが起動せず、計測
+  DB も作られずイベントも記録されなかった。/ 데이터 미수집 근본 원인 수정:
+  OTHER_LDFLAGS = -ObjC 추가로 정적 라이브러리 GoogleAppMeasurement의 Obj-C
+  등록이 링크 단계에서 제거되지 않도록 함. 이게 없으면 Core는 configure돼도
+  Analytics 엔진이 가동되지 않아 측정 DB·이벤트가 전혀 생기지 않았음.
+- GoogleService-Info.plist の IS_ANALYTICS_ENABLED が再ダウンロードのたびに
+  false で降ってくるため、収集が左右されないよう Info.plist に
+  FIREBASE_ANALYTICS_COLLECTION_ENABLED = YES を追加。/ 재다운로드 시마다
+  GoogleService-Info.plist의 IS_ANALYTICS_ENABLED가 false로 내려와, 수집이
+  그 값에 좌우되지 않도록 Info.plist에 FIREBASE_ANALYTICS_COLLECTION_ENABLED =
+  YES 추가.
+- シミュレータで検証：Analytics 起動・collection enabled・first_open /
+  session_start のイベント記録・計測 DB 生成を確認。/ 시뮬레이터에서 검증:
+  Analytics 가동·collection enabled·first_open / session_start 이벤트 기록·
+  측정 DB 생성 확인.
 
 ## 1.0.2 (2026-06-22)
 
