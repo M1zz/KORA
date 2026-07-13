@@ -53,8 +53,24 @@ enum RealtimeArrivalService {
         case 11:    return "1077"   // 신분당선
         case 12:    return "1075"   // 수인분당선
         case 13:    return "1063"   // 경의중앙선
+        case 14:    return "1032"   // GTX-A
+        case 15:    return "1067"   // 경춘선
+        case 16:    return "1081"   // 경강선
+        case 17:    return "1093"   // 서해선
+        case 19:    return "1091"   // 신림선
+        case 20:    return "1092"   // 우이신설선
+        // 김포골드라인·의정부경전철·에버라인·인천 1/2호선과 지방 노선은
+        // 서울 열린데이터 API 미지원 → nil (자동 폴백).
         default:    return nil
         }
+    }
+
+    /// 서울 열린데이터 API가 쓰는 역명. 앱 내부에서 동명이역 구분용으로 붙인
+    /// 괄호 표기("양평(서울)", "신촌(경의중앙)")를 벗겨 실제 역명으로 되돌린다.
+    static func apiStationName(_ station: String) -> String {
+        let base = station.hasSuffix("역") ? String(station.dropLast()) : station
+        guard let parenIdx = base.firstIndex(of: "(") else { return base }
+        return String(base[..<parenIdx])
     }
 
     /// 서울 열린데이터광장 실시간 도착 API. `apiKey` 미지정 시 설정(Secrets)에서 읽습니다.
@@ -65,7 +81,7 @@ enum RealtimeArrivalService {
     ) async throws -> [RealtimeArrivalInfo] {
         let key = apiKey.trimmingCharacters(in: .whitespaces)
         guard !key.isEmpty, key != "YOUR_SEOUL_OPEN_API_KEY" else { throw FetchError.missingKey }
-        let name = station.hasSuffix("역") ? String(station.dropLast()) : station
+        let name = apiStationName(station)
         let raw = "https://swopenAPI.seoul.go.kr/api/subway/\(key)/json/realtimeStationArrival/0/15/\(name)"
         guard let encoded = raw.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
               let url = URL(string: encoded) else { throw FetchError.missingKey }

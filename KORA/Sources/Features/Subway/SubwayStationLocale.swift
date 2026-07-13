@@ -49,7 +49,12 @@ enum StationLanguage: String, CaseIterable, Codable {
 
 extension MetroLineData {
 
-    static let stationLocale: [String: StationLocale] = [
+    /// Combined view over the original Seoul-area table and the nationwide
+    /// expansion table (GTX·경전철·인천·부산·대구·광주·대전).
+    static let stationLocale: [String: StationLocale] =
+        coreStationLocale.merging(expansionStationLocale) { core, _ in core }
+
+    private static let coreStationLocale: [String: StationLocale] = [
 
         // ─── Line 1 North / Common ───────────────────────────────────────
         "소요산":      .init(ja: "ソヨサン",             en: "Soyosan"),

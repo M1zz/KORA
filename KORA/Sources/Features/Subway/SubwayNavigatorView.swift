@@ -686,8 +686,11 @@ struct SubwayNavigatorView: View {
                     HStack(spacing: 12) {
                         Text(seg.line.badgeText)
                             .font(.title).fontWeight(.black)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.35)
                             .foregroundStyle(.white)
                             .frame(width: 48, height: 48)
+                            .padding(.horizontal, 2)
                             .background(seg.line.color)
                             .clipShape(Circle())
                         directionLabelBlock(seg: seg, displayedTerminus: displayedTerminus, segDestKo: segDestKo)
@@ -2039,6 +2042,15 @@ struct SubwayNavigatorView: View {
     /// destination indicator.
     private func lineDirectionLabel(seg: JourneySegment, terminus: String) -> String {
         let dir = directionLabel(terminus: terminus)
+        // Named lines (GTX-A, 경춘선, 부산 1호선 …) don't read as "N号線" —
+        // show the proper name instead of the internal number.
+        if seg.line.code != nil {
+            switch displayLanguage {
+            case .korean:   return "\(seg.line.name) \(dir)"
+            case .japanese, .english, .chinese:
+                return "\(seg.line.name) · \(dir)"
+            }
+        }
         switch displayLanguage {
         case .korean:   return "\(seg.line.name) \(dir)"
         case .japanese: return "\(seg.line.badgeText)号線 \(dir)"
@@ -2645,7 +2657,33 @@ struct StationSearchSheet: View {
     @State private var isLocatingNearby = false
     private let locationService = LocationService()
 
-    private let allLines = MetroLineData.seoulLines
+    /// Persisted region category (서울/경기·인천·부산·대구·광주·대전).
+    /// Once chosen it sticks across launches.
+    @AppStorage("KORA.metroCategory") private var metroCategoryRaw: String
+        = MetroCategory.seoulGyeonggi.rawValue
+
+    private var selectedCategory: MetroCategory {
+        MetroCategory(rawValue: metroCategoryRaw) ?? .seoulGyeonggi
+    }
+
+    /// Lines belonging to the selected region category.
+    private var allLines: [SeoulMetroLineInfo] {
+        MetroLineData.seoulLines.filter { $0.category == selectedCategory }
+    }
+
+    /// Deduped station names across the selected category's lines.
+    private var categoryStations: [String] {
+        var seen = Set<String>()
+        var out: [String] = []
+        for line in allLines {
+            for route in line.routes {
+                for s in route.stations where seen.insert(s).inserted {
+                    out.append(s)
+                }
+            }
+        }
+        return out
+    }
 
     // Stations on the selected line, sorted in the display language's natural
     // order (한글 가나다 / 五十音 / A-Z / 中文). Deduped across line branches.
@@ -2667,8 +2705,10 @@ struct StationSearchSheet: View {
 
     private var filtered: [String] {
         let q = query.trimmingCharacters(in: .whitespaces)
+        // Browsing shows the selected category only; a non-empty search
+        // sweeps the whole country so cross-network picks stay possible.
         let base = (selectedLineNumber == nil
-                    ? MetroLineData.allStationNames
+                    ? (q.isEmpty ? categoryStations : MetroLineData.allStationNames)
                         .sorted { MetroLineData.sortKey(for: $0, language: displayLanguage)
                                 < MetroLineData.sortKey(for: $1, language: displayLanguage) }
                     : stationsOnSelectedLine)
@@ -2705,6 +2745,7 @@ struct StationSearchSheet: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
+                categoryFilterBar
                 lineFilterBar
                 Divider()
 
@@ -2856,6 +2897,40 @@ struct StationSearchSheet: View {
                 )
         )
         .padding(.trailing, 4)
+    }
+
+    // MARK: - Region category filter
+
+    private var categoryFilterBar: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 6) {
+                ForEach(MetroCategory.allCases, id: \.rawValue) { cat in
+                    categoryChip(cat)
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 10)
+            .padding(.bottom, 2)
+        }
+        .background(Color(.systemBackground))
+    }
+
+    private func categoryChip(_ cat: MetroCategory) -> some View {
+        let isSelected = (cat == selectedCategory)
+        return Button {
+            withAnimation(.easeInOut(duration: 0.15)) {
+                metroCategoryRaw = cat.rawValue    // @AppStorage → persisted
+                selectedLineNumber = nil
+            }
+        } label: {
+            Text(cat.displayName(displayLanguage))
+                .font(.subheadline).fontWeight(isSelected ? .bold : .medium)
+                .foregroundStyle(isSelected ? .white : KORATheme.labelSecondary)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 6)
+                .background(isSelected ? KORATheme.accent : Color(.secondarySystemBackground))
+                .clipShape(Capsule())
+        }
     }
 
     // MARK: - Line filter

@@ -2,6 +2,70 @@ import SwiftUI
 
 // MARK: - Data Models
 
+/// Geographic metro network a line belongs to. Journeys and transfers are
+/// only computed between lines of the same region — a station name that
+/// happens to exist in two regions (e.g. 시청) must never join two networks.
+enum MetroRegion: String, CaseIterable {
+    case capital    // 수도권 (서울·인천·경기)
+    case busan      // 부산·울산·경남
+    case daegu      // 대구·경북
+    case gwangju    // 광주
+    case daejeon    // 대전
+}
+
+/// User-facing region category for browsing lines/stations. Finer than
+/// `MetroRegion`: the capital routing network is split into 서울/경기 and
+/// 인천 for display, while journeys still work across the whole network.
+/// The raw value is persisted (@AppStorage) — don't rename cases.
+enum MetroCategory: String, CaseIterable, Codable {
+    case seoulGyeonggi
+    case incheon
+    case busan
+    case daegu
+    case gwangju
+    case daejeon
+
+    /// Routing region this category belongs to.
+    var region: MetroRegion {
+        switch self {
+        case .seoulGyeonggi, .incheon: return .capital
+        case .busan:   return .busan
+        case .daegu:   return .daegu
+        case .gwangju: return .gwangju
+        case .daejeon: return .daejeon
+        }
+    }
+
+    func displayName(_ language: StationLanguage) -> String {
+        switch (self, language) {
+        case (.seoulGyeonggi, .korean):   return "서울/경기"
+        case (.seoulGyeonggi, .japanese): return "ソウル/京畿"
+        case (.seoulGyeonggi, .english):  return "Seoul/Gyeonggi"
+        case (.seoulGyeonggi, .chinese):  return "首尔/京畿"
+        case (.incheon, .korean):   return "인천"
+        case (.incheon, .japanese): return "インチョン"
+        case (.incheon, .english):  return "Incheon"
+        case (.incheon, .chinese):  return "仁川"
+        case (.busan, .korean):   return "부산"
+        case (.busan, .japanese): return "プサン"
+        case (.busan, .english):  return "Busan"
+        case (.busan, .chinese):  return "釜山"
+        case (.daegu, .korean):   return "대구"
+        case (.daegu, .japanese): return "テグ"
+        case (.daegu, .english):  return "Daegu"
+        case (.daegu, .chinese):  return "大邱"
+        case (.gwangju, .korean):   return "광주"
+        case (.gwangju, .japanese): return "クァンジュ"
+        case (.gwangju, .english):  return "Gwangju"
+        case (.gwangju, .chinese):  return "光州"
+        case (.daejeon, .korean):   return "대전"
+        case (.daejeon, .japanese): return "テジョン"
+        case (.daejeon, .english):  return "Daejeon"
+        case (.daejeon, .chinese):  return "大田"
+        }
+    }
+}
+
 struct MetroRoute: Identifiable {
     let id = UUID()
     let label: String
@@ -47,13 +111,30 @@ struct SeoulMetroLineInfo: Identifiable {
     /// When nil, the badge displays `\(number)`.
     let code: String?
     let color: Color
+    let region: MetroRegion
+    /// Browsing category shown in the region picker. Defaults to the
+    /// region's main category; capital-network lines in Incheon pass
+    /// `.incheon` explicitly.
+    let category: MetroCategory
     let routes: [MetroRoute]
 
-    init(number: Int, name: String, code: String? = nil, color: Color, routes: [MetroRoute]) {
+    init(number: Int, name: String, code: String? = nil, color: Color,
+         region: MetroRegion = .capital, category: MetroCategory? = nil,
+         routes: [MetroRoute]) {
         self.number = number
         self.name = name
         self.code = code
         self.color = color
+        self.region = region
+        self.category = category ?? {
+            switch region {
+            case .capital: return .seoulGyeonggi
+            case .busan:   return .busan
+            case .daegu:   return .daegu
+            case .gwangju: return .gwangju
+            case .daejeon: return .daejeon
+            }
+        }()
         self.routes = routes
     }
 
@@ -64,7 +145,13 @@ struct SeoulMetroLineInfo: Identifiable {
 // MARK: - Station Data
 
 enum MetroLineData {
-    static let seoulLines: [SeoulMetroLineInfo] = [
+    /// Every line the app knows about, all regions. The name is historical —
+    /// it started as the Seoul network and later grew nationwide.
+    static let seoulLines: [SeoulMetroLineInfo] =
+        capitalCoreLines + capitalExpansionLines + regionalLines
+
+    /// 수도권 노선 (1~9호선 + 공항철도·신분당·수인분당·경의중앙).
+    static let capitalCoreLines: [SeoulMetroLineInfo] = [
         line1, line2, line3, line4, line5, line6, line7, line8, line9,
         line10, line11, line12, line13
     ]
@@ -72,6 +159,7 @@ enum MetroLineData {
     // MARK: Line 1
 
     private static let line1NorthSection: [String] = [
+        "연천", "전곡", "청산",
         "소요산", "동두천", "보산", "동두천중앙", "지행", "덕정", "덕계",
         "양주", "녹양", "가능", "의정부", "회룡", "망월사", "도봉산",
         "도봉", "방학", "창동", "녹천", "월계", "광운대", "석계",
@@ -85,7 +173,7 @@ enum MetroLineData {
         color: Color(red: 0.17, green: 0.46, blue: 0.82),
         routes: [
             MetroRoute(
-                label: "소요산↔인천",
+                label: "연천↔인천",
                 stations: line1NorthSection + [
                     "개봉", "오류동", "온수", "역곡", "소사",
                     "부천", "중동", "송내", "부개", "부평",
@@ -93,11 +181,11 @@ enum MetroLineData {
                     "제물포", "도원", "동인천", "인천"
                 ],
                 isCircular: false,
-                // 단거리 북행: 소요산까지 안 가는 열차들
-                shortTermini: ["동두천", "동두천중앙", "의정부", "광운대", "청량리"]
+                // 단거리 북행: 연천까지 안 가는 열차들
+                shortTermini: ["소요산", "동두천", "동두천중앙", "의정부", "광운대", "청량리"]
             ),
             MetroRoute(
-                label: "소요산↔신창",
+                label: "연천↔신창",
                 stations: line1NorthSection + [
                     "구일", "가산디지털단지", "독산", "금천구청",
                     "시흥", "관악", "석수", "명학", "안양",
@@ -109,12 +197,17 @@ enum MetroLineData {
                 ],
                 isCircular: false,
                 // 북행 단거리 + 남행 중간 종착
-                shortTermini: ["동두천", "동두천중앙", "의정부", "광운대", "청량리",
+                shortTermini: ["소요산", "동두천", "동두천중앙", "의정부", "광운대", "청량리",
                                "천안", "아산", "온양온천", "수원", "병점"]
             ),
             MetroRoute(
                 label: "서동탄지선",
                 stations: ["병점", "서동탄"],
+                isCircular: false
+            ),
+            MetroRoute(
+                label: "광명셔틀",
+                stations: ["금천구청", "광명"],
                 isCircular: false
             )
         ]
@@ -216,7 +309,7 @@ enum MetroLineData {
     private static let line5CommonSection: [String] = [
         "방화", "개화산", "김포공항", "송정", "마곡", "발산",
         "우장산", "화곡", "까치산", "신정", "목동", "오목교",
-        "양평", "영등포구청", "영등포시장", "신길", "여의도",
+        "양평(서울)", "영등포구청", "영등포시장", "신길", "여의도",
         "여의나루", "마포", "공덕", "애오개", "충정로", "서대문",
         "광화문", "종로3가", "을지로4가", "동대문역사문화공원",
         "청구", "신금호", "행당", "왕십리", "마장", "답십리",
@@ -238,7 +331,7 @@ enum MetroLineData {
                 label: "방화↔하남검단산",
                 stations: line5CommonSection + [
                     "길동", "굽은다리", "명일", "고덕", "상일동",
-                    "미사", "하남풍산", "하남시청", "하남검단산"
+                    "강일", "미사", "하남풍산", "하남시청", "하남검단산"
                 ],
                 isCircular: false
             )
@@ -260,7 +353,12 @@ enum MetroLineData {
                     "버티고개", "한강진", "이태원", "녹사평", "삼각지",
                     "효창공원앞", "공덕", "대흥", "광흥창", "상수",
                     "합정", "망원", "마포구청", "월드컵경기장",
-                    "디지털미디어시티", "수색", "증산", "새절", "응암"
+                    "디지털미디어시티", "수색", "증산", "새절", "응암",
+                    // 응암순환 (실제로는 응암→역촌→…→구산→응암의 단방향
+                    // 루프. 선형 꼬리로 근사: 서행 방향 정차 순서는 정확하고,
+                    // 순환 구간에서 동쪽으로 갈 때만 정차 수가 실제보다
+                    // 적게 표시된다. 승강장이 단방향이라 오탑승 위험은 없음)
+                    "역촌", "불광", "독바위", "연신내", "구산"
                 ],
                 isCircular: false
             )
@@ -286,9 +384,10 @@ enum MetroLineData {
                     "보라매", "신풍", "대림", "남구로", "가산디지털단지",
                     "철산", "광명사거리", "천왕", "온수", "까치울",
                     "부천종합운동장", "춘의", "부천시청", "상동",
-                    "삼산체육관", "굴포천", "부평구청"
+                    "삼산체육관", "굴포천", "부평구청", "산곡", "석남"
                 ],
-                isCircular: false
+                isCircular: false,
+                shortTermini: ["온수", "부평구청"]
             )
         ]
     )
@@ -412,7 +511,7 @@ enum MetroLineData {
                     "신원", "양수", "운길산", "팔당", "도심", "덕소", "도농",
                     "양정", "구리", "양원", "망우", "상봉", "중랑", "회기",
                     "청량리", "왕십리", "응봉", "옥수", "한남", "서빙고", "이촌",
-                    "용산", "효창공원앞", "공덕", "서강대", "신촌", "가좌",
+                    "용산", "효창공원앞", "공덕", "서강대", "홍대입구", "가좌",
                     "디지털미디어시티", "수색", "화전", "강매", "행신", "능곡",
                     "대곡", "곡산", "백마", "풍산", "일산", "탄현", "야당",
                     "운정", "금촌", "월롱", "파주", "문산"
@@ -420,6 +519,19 @@ enum MetroLineData {
                 isCircular: false,
                 // 동행: 용문·지평까지 안 가는 청량리행·용산행 / 서행: 행신·능곡·일산 단거리
                 shortTermini: ["청량리", "왕십리", "용산", "행신", "능곡", "일산", "문산"]
+            ),
+            // 경의선 서울역 착발 계통. 신촌(경의중앙)은 2호선 신촌과 별개 역이라
+            // 괄호 표기로 구분한다 (환승 아님).
+            MetroRoute(
+                label: "서울역↔문산",
+                stations: [
+                    "서울역", "신촌(경의중앙)", "가좌", "디지털미디어시티", "수색",
+                    "화전", "강매", "행신", "능곡", "대곡", "곡산", "백마",
+                    "풍산", "일산", "탄현", "야당", "운정", "금촌", "월롱",
+                    "파주", "문산"
+                ],
+                isCircular: false,
+                shortTermini: ["일산", "문산"]
             )
         ]
     )
@@ -551,7 +663,17 @@ enum MetroLineData {
         "태릉입구":            3,
         "종합운동장":          3,
         "창동":                3,
-        "금정":                4
+        "금정":                4,
+        // GTX-A 환승 (대심도 승강장 — 이동 시간이 김)
+        "수서":                5,
+        "대곡":                5,
+        "연신내":              5,
+        "구성":                5,
+        // 5·9호선·공항철도·김포골드·서해선이 모이는 대형 환승
+        "김포공항":            6,
+        // 지방 대형 환승
+        "서면":                4,
+        "반월당":              4
     ]
 
     // MARK: - Train schedule (last/first)
@@ -740,10 +862,13 @@ enum MetroLineData {
 
     /// Transfer stations that exist on both given lines — derived from each
     /// line's route data so it stays accurate as new lines are added.
+    /// Lines in different regions never share a physical station, so a
+    /// name collision across regions must not produce a phantom transfer.
     static func transferStations(between a: Int, and b: Int) -> [String] {
         guard a != b,
               let lineA = seoulLines.first(where: { $0.number == a }),
-              let lineB = seoulLines.first(where: { $0.number == b }) else { return [] }
+              let lineB = seoulLines.first(where: { $0.number == b }),
+              lineA.region == lineB.region else { return [] }
         let stationsA = Set(lineA.routes.flatMap { $0.stations })
         let stationsB = Set(lineB.routes.flatMap { $0.stations })
         return Array(stationsA.intersection(stationsB))
@@ -855,8 +980,10 @@ enum MetroLineData {
         // 2-transfer fallback (only if no 1-transfer path exists)
         if results.isEmpty {
             for fL in fromLines {
+                let fRegion = seoulLines.first(where: { $0.number == fL })?.region
                 for tL in toLines where tL != fL {
-                    for mid in seoulLines where mid.number != fL && mid.number != tL {
+                    for mid in seoulLines where mid.number != fL && mid.number != tL
+                        && mid.region == fRegion {
                         let mL = mid.number
                         let firstHops = transferStations(between: fL, and: mL)
                         let secondHops = transferStations(between: mL, and: tL)
@@ -936,7 +1063,11 @@ struct TransferJourney: Identifiable {
     var isDirect: Bool { segments.count == 1 }
 
     /// Short label like "2号線 → 1号線" used in the alternative-route picker.
+    /// Named lines (공항철도, GTX-A, 부산1호선 …) show their name instead of
+    /// a meaningless internal number.
     var lineSummaryLabel: String {
-        segments.map { "\($0.line.number)号線" }.joined(separator: " → ")
+        segments
+            .map { $0.line.code != nil ? $0.line.name : "\($0.line.number)号線" }
+            .joined(separator: " → ")
     }
 }

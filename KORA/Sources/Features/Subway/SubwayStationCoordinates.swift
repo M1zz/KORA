@@ -7,7 +7,12 @@ import CoreLocation
 /// nearest-station lookup to work offline without hitting Kakao Local API.
 extension MetroLineData {
     /// Korean canonical name (matches `MetroLineData` station strings) → (lat, lng).
-    static let stationCoordinates: [String: (lat: Double, lng: Double)] = [
+    /// Combined view over the original Seoul-area table and the nationwide
+    /// expansion table (GTX·경전철·인천·부산·대구·광주·대전).
+    static let stationCoordinates: [String: (lat: Double, lng: Double)] =
+        coreStationCoordinates.merging(expansionStationCoordinates) { core, _ in core }
+
+    private static let coreStationCoordinates: [String: (lat: Double, lng: Double)] = [
         "가능":           (37.74832, 127.04436),
         "가락시장":         (37.49253, 127.11864),
         "가산디지털단지":      (37.48159, 126.88262),
