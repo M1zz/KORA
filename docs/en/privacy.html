@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Privacy Policy — KORA Korea Wayfinder</title>
+<meta name="description" content="What KORA Korea Wayfinder processes, what stays on your device, anonymous analytics with Google Analytics for Firebase, and how to contact us.">
+<link rel="canonical" href="https://m1zz.github.io/KORA/en/privacy.html">
+<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/privacy.html">
+<link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/privacy.html">
+<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/privacy.html">
+<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/privacy.html">
+<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/privacy.html">
+<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/privacy.html">
+<link rel="stylesheet" href="../style.css">
+<link rel="icon" href="../icon.png">
+<link rel="apple-touch-icon" href="../icon.png">
+</head>
+<body>
+<div class="container">
+
+  <header class="site">
+    <img src="../icon.png" alt="KORA app icon">
+    <div>
+      <div class="title">KORA Korea Wayfinder</div>
+      <div class="subtitle">Korea subway guide for travelers</div>
+    </div>
+  </header>
+
+  <nav class="langs" aria-label="Language">
+    <a href="../ko/privacy.html" hreflang="ko" lang="ko">한국어</a>
+    <a href="../en/privacy.html" hreflang="en" lang="en" aria-current="true">English</a>
+    <a href="../ja/privacy.html" hreflang="ja" lang="ja">日本語</a>
+    <a href="../zh-Hans/privacy.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+    <a href="../zh-Hant/privacy.html" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+  </nav>
+
+  <nav class="pages" aria-label="Pages">
+    <a href="index.html">Home</a>
+    <a href="support.html">Support</a>
+    <a href="privacy.html" aria-current="page">Privacy Policy</a>
+  </nav>
+
+  <main>
+<h1>Privacy Policy</h1>
+    <p class="lead">Effective September 19, 2026 · Applies to app version 1.0.5 and later</p>
+
+    <p>
+      This policy explains how the iOS app “KORA Korea Wayfinder” (the “app”), provided by the KORA developer (Leeo, “we”),
+      handles information. Our principle is simple: process as little as possible, and keep it on your device.
+    </p>
+
+    <div class="card">
+      <h3>At a glance</h3>
+      <ul>
+        <li>No sign-up or login. We don't collect your name, phone number, email or anything else that directly identifies you.</li>
+        <li>We don't run any servers. Your app settings are stored only on your device.</li>
+        <li>Location, camera, microphone, speech recognition and motion data are processed on your device and are never stored or sent off it.</li>
+        <li>We collect anonymous usage statistics with Google Analytics for Firebase to improve the app. There are no ads, we don't use the advertising identifier (IDFA), and we don't track you across other apps.</li>
+      </ul>
+    </div>
+
+    <h2>1. Information we process and how</h2>
+
+    <h3>a. Stored only on your device</h3>
+    <p>So the app can pick up where you left off, the following is saved in the app's storage on your device (UserDefaults). It is never sent to us or anyone else.</p>
+    <ul>
+      <li>The current (starting) station and destination you selected</li>
+      <li>Your display language</li>
+      <li>The region you selected in the station picker</li>
+    </ul>
+
+    <h3>b. Processed on your device only, never stored or sent</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Data</th><th>Purpose</th><th>How it's handled</th></tr></thead>
+        <tbody>
+          <tr><td>Location (only while using the app)</td><td>Find the nearest station; estimate your position during a ride</td><td>Coordinates are used only for on-device calculations. They are not stored and not sent to any server.</td></tr>
+          <tr><td>Camera frames</td><td>Read platform signs and train destination displays</td><td>Processed on your device with Apple's Vision text recognition. Images are never saved or transmitted.</td></tr>
+          <tr><td>Microphone audio and speech recognition</td><td>Recognize station names and door side from in-train announcements</td><td>On-device speech recognition only (server-based recognition is never used). Audio is not recorded, stored or transmitted.</td></tr>
+          <tr><td>Motion (accelerometer)</td><td>Detect when the train departs and stops</td><td>Processed on your device only.</td></tr>
+          <tr><td>Live Activity</td><td>Show ride progress on the Lock Screen and Dynamic Island</td><td>Displayed on your device only; nothing is sent off it.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>c. Usage statistics collected automatically (Google Analytics for Firebase)</h3>
+    <p>When you use the app, Google Analytics for Firebase automatically collects:</p>
+    <ul>
+      <li>An app instance ID (a random identifier created for each installation)</li>
+      <li>Usage events such as first launch (first_open), session start (session_start) and screen views</li>
+      <li>App version, device model, OS version and device language</li>
+      <li>Country and region estimated from your IP address (Google does not give us the IP address itself)</li>
+    </ul>
+    <p>
+      This information does not identify you, and we do not combine it with other data to identify you.
+      We do not collect the advertising identifier (IDFA), we do not ask for App Tracking Transparency permission,
+      and the data is not used for advertising or for tracking you across other companies' apps or websites.
+    </p>
+
+    <h3>d. Real-time subway arrival data</h3>
+    <p>
+      To refine your current station during a ride, the app requests arrival information from the real-time subway arrival API of the
+      Seoul Open Data Plaza (Seoul Metropolitan Government, data.seoul.go.kr). Only the station name is sent; no information that identifies you is included.
+      As with any internet request, your IP address may reach the Seoul Metropolitan Government's servers, where it is handled under their own policies.
+    </p>
+
+    <h2>2. Why we process it</h2>
+    <ul>
+      <li>To provide the app's features: route guidance, current-station tracking and stop alerts</li>
+      <li>To remember your stations and language for the next launch</li>
+      <li>To understand how the app is used, fix bugs and improve features (statistics)</li>
+    </ul>
+    <p>We never use it for advertising, marketing or profiling.</p>
+
+    <h2>3. How long we keep it</h2>
+    <ul>
+      <li><strong>Data stored on your device</strong>: deleted when you delete the app. We don't use iCloud sync. (It may be included in a full iPhone backup as part of your device data.)</li>
+      <li><strong>Data processed on your device</strong>: discarded immediately after processing; never kept.</li>
+      <li><strong>Usage statistics</strong>: deleted automatically according to Google Analytics' data retention setting (2 or 14 months). Aggregated statistics that cannot identify anyone may remain afterwards.</li>
+    </ul>
+
+    <h2>4. Sharing with third parties</h2>
+    <p>We do not provide your personal information to third parties, except where required by law.</p>
+
+    <h2>5. Service providers and international transfer</h2>
+    <p>We use the following service provider for usage statistics. In the process, data is transferred outside Korea.</p>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><th>Recipient</th><td>Google LLC (Google Analytics for Firebase)</td></tr>
+          <tr><th>Country</th><td>United States (including Google's data centers worldwide)</td></tr>
+          <tr><th>Data</th><td>The usage statistics listed in 1-c (app instance ID, usage events, app version, device model, OS version, device language, IP-derived country and region)</td></tr>
+          <tr><th>When and how</th><td>Sent over an encrypted connection (HTTPS) while you use the app</td></tr>
+          <tr><th>Purpose</th><td>App usage analytics</td></tr>
+          <tr><th>Retention</th><td>Same as usage statistics in section 3</td></tr>
+          <tr><th>Policies</th><td><a href="https://policies.google.com/privacy">Google Privacy Policy</a>, <a href="https://firebase.google.com/support/privacy">Privacy and Security in Firebase</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The app has no separate switch to turn analytics off. If you don't want this transfer, you can stop using and delete the app; nothing is sent after it is deleted.</p>
+
+    <h2>6. Device permissions</h2>
+    <p>The app asks for the permissions below. All of them are <strong>optional</strong>: you can still pick stations manually and get route guidance without them. You can change them at any time in iPhone Settings.</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Permission</th><th>Used for</th></tr></thead>
+        <tbody>
+          <tr><td>Location (While Using the App)</td><td>Finding the nearest station; estimating your position during a ride</td></tr>
+          <tr><td>Camera</td><td>Checking the boarding direction from platform signs and train destination displays</td></tr>
+          <tr><td>Microphone, Speech Recognition</td><td>Recognizing the current station and door side from in-train announcements (on device)</td></tr>
+          <tr><td>Motion &amp; Fitness</td><td>Detecting train departures and stops with the accelerometer</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>7. Deletion</h2>
+    <p>Data stored on your device is removed by iOS when you delete the app. Usage statistics are deleted automatically by Google after the retention period in section 3. We keep no separate copy of your information.</p>
+
+    <h2>8. Your rights</h2>
+    <ul>
+      <li>You can revoke location, camera, microphone, speech recognition and motion access at any time in iPhone Settings.</li>
+      <li>Deleting the app erases everything stored on your device; reinstalling creates a new app instance ID.</li>
+      <li>To request access, correction, deletion or suspension of processing, email us at the address below and we will respond without delay. Because we hold no information that identifies you, we may not be able to locate a specific person's statistics.</li>
+      <li>You may also exercise these rights through a legal guardian or an authorized representative.</li>
+    </ul>
+
+    <h2>9. Cookies and similar technologies</h2>
+    <p>The app does not use web cookies. Google Analytics for Firebase distinguishes usage statistics by the app instance ID described in 1-c. If you don't want this, you can delete the app.</p>
+
+    <h2>10. Security</h2>
+    <ul>
+      <li>We process only the minimum necessary, and all sensitive processing happens on your device.</li>
+      <li>All network communication uses encrypted HTTPS.</li>
+      <li>We have no servers or databases, so no user data accumulates on our side.</li>
+    </ul>
+
+    <h2>11. Children</h2>
+    <p>The app is not directed at children under 13 (under 14 in Korea), and we do not knowingly collect personal information from children.</p>
+
+    <h2>12. Contact</h2>
+    <div class="table-wrap">
+      <table>
+        <tbody>
+          <tr><th>Privacy officer</th><td>Leeo (KORA developer)</td></tr>
+          <tr><th>Email</th><td><a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>13. Changes to this policy</h2>
+    <p>
+      This policy takes effect on September 19, 2026 and replaces the policy dated May 31, 2026, which was written for an earlier version of the app.
+      If it changes, we will post the update on this page with its effective date.
+      This policy is available in several languages; if the translations differ, the <a href="../ko/privacy.html">Korean version</a> prevails.
+    </p>
+  </main>
+
+  <footer class="site">
+    © 2026 Leeo · <a href="support.html">Support</a> · <a href="privacy.html">Privacy Policy</a>
+  </footer>
+</div>
+</body>
+</html>
