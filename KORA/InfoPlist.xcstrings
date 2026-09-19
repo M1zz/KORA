@@ -2,6 +2,7 @@
   "sourceLanguage" : "ko",
   "strings" : {
     "CFBundleDisplayName" : {
+      "comment" : "Bundle display name",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
@@ -27,6 +28,12 @@
             "state" : "translated",
             "value" : "韩国导航"
           }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "韓國導航"
+          }
         }
       }
     },
@@ -43,107 +50,181 @@
       }
     },
     "NSCameraUsageDescription" : {
-      "comment" : "Privacy - Camera Usage Description",
-      "extractionState" : "extracted_with_value",
+      "comment" : "Privacy - NSCameraUsageDescription",
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Point the camera at a platform sign or the train's destination display to check you're boarding in the right direction. Images are processed on your device and never saved or sent."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ホームの案内表示や列車の行き先表示をカメラで読み取り、乗る方向が正しいかをお知らせします。映像は端末内でのみ処理され、保存・送信されません。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
-            "value" : "승강장·열차의 행선지 표시를 카메라로 비춰 어느 방향 열차를 타야 하는지 알려드리기 위해 카메라를 사용합니다."
+            "state" : "translated",
+            "value" : "승강장·열차의 행선지 표시를 카메라로 비춰 어느 방향 열차를 타야 하는지 알려드리기 위해 카메라를 사용합니다. 화면은 기기에서만 처리되며 저장·전송되지 않습니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用相机对准站台指示牌或列车终点站显示屏，确认您乘坐的方向是否正确。画面仅在设备上处理，不会保存或发送。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用相機對準月台指示牌或列車終點站顯示幕，確認您搭乘的方向是否正確。畫面僅在裝置上處理，不會儲存或傳送。"
           }
         }
       }
     },
     "NSLocationWhenInUseUsageDescription" : {
+      "comment" : "Privacy - NSLocationWhenInUseUsageDescription",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Used to find the nearest subway station from your current location."
+            "value" : "Used to find the nearest subway station and to check which station you're at while riding."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "現在地から最寄りの地下鉄駅を見つけるために位置情報を使用します。"
+            "value" : "現在地から最寄りの地下鉄駅を探し、乗車中にいまどの駅にいるかを確認するために位置情報を使用します。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "현재 위치에서 가장 가까운 지하철 역을 찾기 위해 위치 정보를 사용합니다."
+            "value" : "현재 위치에서 가장 가까운 지하철 역을 찾고, 탑승 중 지금 어느 역인지 확인하기 위해 위치 정보를 사용합니다."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "用于查找距您当前位置最近的地铁站。"
+            "value" : "用于查找离您最近的地铁站，并在乘车时确认您所在的车站。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用於尋找離您最近的地鐵站，並在搭乘時確認您所在的車站。"
           }
         }
       }
     },
     "NSMicrophoneUsageDescription" : {
-      "comment" : "Privacy - Microphone Usage Description",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "ko" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "지하철 안내방송을 인식해 현재 역과 내릴 문 방향을 정확히 알려드리기 위해 마이크를 사용합니다. 음성은 기기에서만 처리되며 저장·전송되지 않습니다."
-          }
-        }
-      }
-    },
-    "NSMotionUsageDescription" : {
-      "comment" : "Privacy - Motion Usage Description",
-      "extractionState" : "extracted_with_value",
-      "localizations" : {
-        "ko" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "지하철 탑승 중 가속도계로 출발·정차를 감지해 현재 정거장을 정확히 표시하기 위해 모션 데이터를 사용합니다."
-          }
-        }
-      }
-    },
-    "NSPhotoLibraryUsageDescription" : {
+      "comment" : "Privacy - NSMicrophoneUsageDescription",
       "extractionState" : "manual",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Accesses screenshots or photos you select to extract place names via on-device text recognition."
+            "value" : "Listens to the in-train announcements to confirm the current station and which side the doors open. Audio is processed on your device and never saved or sent."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "スクリーンショットや写真からスポット名を抽出するため、選択した画像にアクセスします。"
+            "value" : "車内アナウンスを聞き取り、現在の駅と降りる側のドアを正確にお知らせするためにマイクを使用します。音声は端末内でのみ処理され、保存・送信されません。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "스크린샷이나 사진에서 장소 이름을 추출하기 위해 선택한 이미지에 접근합니다."
+            "value" : "지하철 안내방송을 인식해 현재 역과 내릴 문 방향을 정확히 알려드리기 위해 마이크를 사용합니다. 음성은 기기에서만 처리되며 저장·전송되지 않습니다."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "访问您选择的截图或照片，用于设备本地的文本识别以提取地点名称。"
+            "value" : "识别车厢广播，准确告诉您当前车站以及开门方向。语音仅在设备上处理，不会保存或发送。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "辨識車廂廣播，準確告訴您目前車站以及開門方向。語音僅在裝置上處理，不會儲存或傳送。"
+          }
+        }
+      }
+    },
+    "NSMotionUsageDescription" : {
+      "comment" : "Privacy - NSMotionUsageDescription",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uses the accelerometer to detect when the train departs and stops, so the current station stays accurate while you ride."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "乗車中に加速度センサーで発車・停車を検知し、現在の駅を正確に表示するためにモーションデータを使用します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지하철 탑승 중 가속도계로 출발·정차를 감지해 현재 정거장을 정확히 표시하기 위해 모션 데이터를 사용합니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "乘车时通过加速度计检测列车的出发与停靠，以准确显示当前车站。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "搭乘時透過加速度計偵測列車的出發與停靠，以準確顯示目前車站。"
           }
         }
       }
     },
     "NSSpeechRecognitionUsageDescription" : {
-      "comment" : "Privacy - Speech Recognition Usage Description",
-      "extractionState" : "extracted_with_value",
+      "comment" : "Privacy - NSSpeechRecognitionUsageDescription",
+      "extractionState" : "manual",
       "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recognizes station names in the in-train announcements. Recognition happens entirely on your device."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "車内アナウンスから駅名を認識するために音声認識を使用します。認識はすべて端末内で行われます。"
+          }
+        },
         "ko" : {
           "stringUnit" : {
-            "state" : "new",
+            "state" : "translated",
             "value" : "지하철 안내방송에서 역 이름을 인식하기 위해 음성 인식을 사용합니다. 인식은 모두 기기 내에서 처리됩니다."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用于从车厢广播中识别站名。识别全部在设备上完成。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用於從車廂廣播中辨識站名。辨識全部在裝置上完成。"
           }
         }
       }

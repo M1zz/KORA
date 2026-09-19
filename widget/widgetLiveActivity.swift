@@ -43,7 +43,7 @@ private struct KORALockScreenView: View {
                     .font(.caption).fontWeight(.bold)
                     .foregroundStyle(lineColor)
                 Spacer()
-                Text("→ \(context.attributes.destinationStation)")
+                Text(verbatim: "→ \(context.attributes.destinationStation)")
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
@@ -63,10 +63,10 @@ private struct KORALockScreenView: View {
                     .lineLimit(1)
                 Spacer()
                 VStack(alignment: .trailing, spacing: 0) {
-                    Text("\(context.state.stopsRemaining)")
+                    Text(verbatim: "\(context.state.stopsRemaining)")
                         .font(.title2).fontWeight(.black)
                         .foregroundStyle(.primary)
-                    Text("정거장")
+                    Text(context.attributes.stopsUnit)
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
@@ -95,7 +95,7 @@ struct widgetLiveActivity: Widget {
                         .foregroundStyle(lineColor)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text("→ \(context.attributes.destinationStation)")
+                    Text(verbatim: "→ \(context.attributes.destinationStation)")
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
@@ -113,7 +113,7 @@ struct widgetLiveActivity: Widget {
                             .foregroundStyle(lineColor)
                             .lineLimit(1)
                         Spacer()
-                        Text("\(context.state.stopsRemaining)정거장")
+                        Text(verbatim: "\(context.state.stopsRemaining) \(context.attributes.stopsUnit)")
                             .font(.body).fontWeight(.semibold)
                             .foregroundStyle(.secondary)
                     }

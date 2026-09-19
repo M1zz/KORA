@@ -17,18 +17,6 @@ enum KORATheme {
     static let labelSecondary   = Color(UIColor.secondaryLabel)
     static let labelTertiary    = Color(UIColor.tertiaryLabel)
 
-    // MARK: Category Colors
-    static func categoryColor(_ category: PlaceCategory) -> Color {
-        switch category {
-        case .restaurant:   return Color(hex: "#1D9E75")
-        case .cafe:         return Color(hex: "#534AB7")
-        case .shopping:     return Color(hex: "#D85A30")
-        case .attraction:   return Color(hex: "#185FA5")
-        case .entertainment: return Color(hex: "#BA7517")
-        case .beauty:       return Color(hex: "#993556")
-        }
-    }
-
     // MARK: Typography
     static func displayFont(size: CGFloat = 28) -> Font {
         .system(size: size, weight: .medium, design: .default)

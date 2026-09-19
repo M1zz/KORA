@@ -82,3 +82,27 @@
 - [x] 탑승 중 역 카드: 긴 역명(남부터미널)이 두 줄로 줄바꿈되며 잘리던 문제 — 1줄 고정 + 자동 축소, 텍스트 열 layoutPriority
 - [x] 진행 다이어그램: 선이 점과 떨어져 떠 있고 높이도 어긋나던 문제 — 노드별 레일 반쪽으로 점 중심을 관통, 역명 라벨 표시
 - [ ] 실기기에서 탑승 중 화면 확인 (긴 역명, 1·2정거장 / 3정거장 이상 축약 모드)
+
+## 완료 (v1.0.5)
+- [x] 앱 버전 1.0.5 / 빌드 6으로 상향 (전 타깃)
+- [x] 탭뷰 제거 → 전철 화면 1개로 (MainTabView 삭제, 앱 루트 = SubwayView)
+- [x] 진행 다이어그램 역명 라벨 .caption → .body (작은 폰트 금지 규칙)
+- [x] 앱 종료 시 라이브 액티비티가 남던 문제: willTerminate에서 전부 종료 + 다음 실행 시 잔여 액티비티 정리
+- [x] 탑승 중 진행 다이어그램: 하차역(맨 오른쪽) 위에 핀 심볼 표시
+- [x] CHANGELOG 1.0.5 항목 작성
+- [ ] 실기기 확인: 앱 스와이프 종료 → 라이브 액티비티 사라지는지 / 다시 실행 시 잔여 정리
+- [x] 지도·저장(가고 싶은) 화면 제거: Features/Save 전체(SaveView, PlaceMapView, PlaceCardView,
+      PlaceDetailSheet, SaveViewModel, LinkParserService) + 전용 의존성(Kakao/Naver 검색,
+      PlaceSearchService, CachedAsyncImage, EmptyStateView, SafariView) 삭제, 빌드 확인
+- [x] 공유 익스텐션(KORAShare) 타깃·저장 장소 위젯·Place/PlaceStore/SharedInbox/NavigationCoordinator·
+      출구 안내(SubwayExitService, 저장 장소 좌표 전용) 제거
+- [x] 다국어: 번체 중국어 추가(StationLanguage.chineseTraditional, NavLoc.zhHant, 역 이름 518건 생성),
+      이름 있는 노선 27개 다국어화, 위치 오류 메시지 5개 언어, Live Activity 앱 언어로 표시,
+      위젯·InfoPlist 카탈로그 5개 언어, 시뮬레이터에서 번체(zh-TW 자동 선택)·영어 화면 확인
+- [x] PrivacyInfo.xcprivacy 를 Firebase Analytics 실제 수집 항목으로, ITSAppUsesNonExemptEncryption = NO
+- [x] DeployBar 준비: deploy.env, KORA/Config/Version.xcconfig(버전 단일 소스), scripts/predeploy.sh, RELEASE_NOTES.md
+- [x] docs/: 언어별 소개·지원·개인정보 처리방침(5개 언어 × 3), docs/appstore/ 스토어 메타데이터
+- [ ] App Store Connect: 번체 중국어 등 없는 현지화 칸을 웹에서 먼저 추가 (API 로는 못 만든다)
+- [ ] App Store Connect: 이름·부제·설명·키워드·프로모션 텍스트·URL 입력 (docs/appstore/*.md), 앱 개인정보 보호 답변 갱신
+- [ ] 5개 언어 스크린샷 교체 (docs/appstore/README.md 7항)
+- [ ] 변경 사항 커밋·푸시 (GitHub Pages 반영)

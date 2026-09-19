@@ -1,0 +1,58 @@
+# 릴리즈 노트
+
+App Store 의 "이 버전의 새로운 기능" 에 그대로 올라가는 글이다.
+DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
+언어마다 `### ...` 제목에 언어 이름이 들어 있고, 코드 블록 안의 글만 올라간다.
+코드 블록 안은 한 줄에 한 문장, 이모지나 마크다운 기호 없이 평문으로 쓴다.
+
+## 1.0.5
+
+### 앱스토어 (한국어)
+
+```
+지하철 안내에 집중하도록 탭과 지도 화면을 없애고 한 화면으로 바꿨습니다
+탑승 중 노선 표시에서 내릴 역에 핀을 표시해 도착지를 한눈에 알 수 있게 했습니다
+앱을 종료하면 잠금 화면의 라이브 액티비티도 함께 종료되도록 했습니다
+번체 중국어를 새로 지원하고 영어, 일본어, 간체 중국어로도 앱 전체를 쓸 수 있게 했습니다
+승강장 표지판 스캔에서 다음 역이 반대 방향으로 판정되던 문제와 탑승 중 긴 역명이 잘리던 문제를 고쳤습니다
+```
+
+### App Store (English)
+
+```
+KORA is now a single screen focused on subway guidance, without tabs or the map
+While riding, the station you get off at now shows a pin so your destination is easy to spot
+Closing the app now also ends the Live Activity on the Lock Screen
+Added Traditional Chinese, and the whole app is now available in English, Japanese and Simplified Chinese
+Fixed platform sign scanning sometimes marking the next station as the wrong direction, and long station names being cut off while riding
+```
+
+### App Store (日本語)
+
+```
+地下鉄案内に集中するため、タブと地図画面をなくして1画面にしました
+乗車中の路線図で、降りる駅にピンを表示して目的地がひと目で分かるようにしました
+アプリを終了するとロック画面のライブアクティビティも終了するようにしました
+繁体字中国語に新しく対応し、英語・日本語・簡体字中国語でもアプリ全体を使えるようにしました
+ホームの案内表示のスキャンで次の駅が反対方向と判定されることがある問題と、乗車中に長い駅名が途切れる問題を修正しました
+```
+
+### 앱스토어 (중국어 간체)
+
+```
+去掉了标签页和地图，改为专注地铁导航的单一画面
+乘车时的线路图会在下车站显示图钉，一眼就能看到目的地
+关闭 App 时，锁定屏幕上的实时活动也会一并结束
+新增繁体中文，并可使用英语、日语、简体中文操作整个 App
+修复了扫描站台指示牌时下一站偶尔被误判为反方向的问题，以及乘车时长站名被截断的问题
+```
+
+### 앱스토어 (중국어 번체)
+
+```
+移除分頁與地圖，改為專注於地鐵導航的單一畫面
+搭乘時的路線圖會在下車站顯示圖釘，目的地一目了然
+關閉 App 時，鎖定畫面上的即時動態也會一併結束
+新增繁體中文，並可用英文、日文、簡體中文操作整個 App
+修正掃描月台指標時偶爾將下一站誤判為反方向的問題，以及搭乘時長站名被截斷的問題
+```

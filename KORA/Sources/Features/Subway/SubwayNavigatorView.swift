@@ -111,18 +111,6 @@ struct SubwayNavigatorView: View {
     // Listens to the train's PA announcements ("이번 역은 …") for ground-truth position.
     @StateObject private var announcer = StationAnnouncementListener()
 
-    // Cross-tab navigation intent
-    @State private var coordinator = NavigationCoordinator.shared
-    @State private var placeStore = PlaceStore.shared
-
-    // Offline nearest-exit lookup (bundled SubwayExits.json)
-    private let exitService = SubwayExitService.shared
-    @State private var destinationCoordinate: Coordinate? = nil
-    @State private var destinationPlaceName: String? = nil
-    /// Place id of the routing target — used to honour a user-confirmed
-    /// `place.exitNo` override that takes priority over the auto lookup.
-    @State private var destinationPlaceID: UUID? = nil
-    @State private var exitInfo: NearestExit? = nil
     @State private var journeyConfirmed = false
     @State private var inTransitTramY: CGFloat = 0
     @State private var alightShakeCount: Int = 0
@@ -191,27 +179,18 @@ struct SubwayNavigatorView: View {
             }
         }
         .onAppear {
-            consumePendingDestination()
             autoLocateIfNeeded()
         }
         .onChange(of: fromStation) { _, new in
             persistedFromStation = new ?? ""
-            // Retry exit lookup once we know the journey is real. The offline
-            // service doesn't actually need `fromStation`, but kicking the
-            // fetch here is a no-op when nothing's changed and surfaces a
-            // result faster on the picker → first journey path.
-            if new != nil { fetchExitInfoIfNeeded() }
         }
         .onChange(of: toStation) { _, new in
             persistedToStation = new ?? ""
-            exitInfo = nil
             journeyConfirmed = false
             maxCompletedIdx = -1
             revisitFromIdx = nil
             terminiOverride = [:]
-            if new != nil { fetchExitInfoIfNeeded() }
         }
-        .onChange(of: coordinator.routeRequestNonce) { _, _ in consumePendingDestination() }
         .onChange(of: journey?.id) { _, _ in
             currentBlockIdx = 0
             boardedAt = nil
@@ -605,10 +584,15 @@ struct SubwayNavigatorView: View {
         let currentKo = seg.stations.first ?? ""
         let nextKo = seg.stations.count > 1 ? seg.stations[1] : currentKo
         let stopsLeft = max(seg.stations.count - 1, 0)
+        // The widget can't read the in-app language setting, so hand it
+        // strings that are already in the chosen language.
+        let lang = displayLanguage
+        let name = { (ko: String) in MetroLineData.displayName(for: ko, language: lang) }
         Task {
             await KORALiveActivityManager.shared.start(
-                destination: dest, current: currentKo, next: nextKo,
-                stopsRemaining: stopsLeft, lineColor: seg.line.color, lineName: seg.line.name
+                destination: name(dest), current: name(currentKo), next: name(nextKo),
+                stopsRemaining: stopsLeft, stopsUnit: NavLoc.stopsUnit.resolved(lang),
+                lineColor: seg.line.color, lineName: seg.line.localizedName(lang)
             )
         }
     }
@@ -1058,8 +1042,8 @@ struct SubwayNavigatorView: View {
                     let nextKo = idx + 1 < seg.stations.count ? seg.stations[idx + 1] : seg.stations.last ?? ""
                     let stopsLeft = max(seg.stations.count - 1 - idx, 0)
                     await KORALiveActivityManager.shared.update(
-                        current: currentKo,
-                        next: nextKo,
+                        current: MetroLineData.displayName(for: currentKo, language: displayLanguage),
+                        next: MetroLineData.displayName(for: nextKo, language: displayLanguage),
                         stopsRemaining: stopsLeft
                     )
                 }
@@ -1239,20 +1223,6 @@ struct SubwayNavigatorView: View {
                     }
                 }
             }
-
-            if let info = exitInfo {
-                HStack(spacing: 8) {
-                    Text(info.no)
-                        .font(.footnote).fontWeight(.black)
-                        .foregroundStyle(.white)
-                        .frame(width: 28, height: 28)
-                        .background(lineColor)
-                        .clipShape(Circle())
-                    Text(exitLabel(no: info.no))
-                        .font(.callout).fontWeight(.semibold)
-                        .foregroundStyle(KORATheme.labelPrimary)
-                }
-            }
         }
         .padding(level.padding)
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -1328,8 +1298,6 @@ struct SubwayNavigatorView: View {
                 .font(.body)
                 .foregroundStyle(KORATheme.labelSecondary)
 
-            exitInfoBanner(color: color)
-
             Button {
                 withAnimation(.easeInOut(duration: 0.3)) { resetJourney() }
             } label: {
@@ -1353,69 +1321,19 @@ struct SubwayNavigatorView: View {
         .overlay(RoundedRectangle(cornerRadius: 18).stroke(color.opacity(0.25), lineWidth: 1.2))
     }
 
-    @ViewBuilder
-    private func exitInfoBanner(color: Color) -> some View {
-        if let info = exitInfo, !info.no.isEmpty {
-            VStack(spacing: 6) {
-                HStack(spacing: 10) {
-                    Text(info.no)
-                        .font(.title2).fontWeight(.black)
-                        .foregroundStyle(.white)
-                        .frame(width: 44, height: 44)
-                        .background(color)
-                        .clipShape(Circle())
-                    Text(exitLabel(no: info.no))
-                        .font(.title3).fontWeight(.bold)
-                        .foregroundStyle(KORATheme.labelPrimary)
-                }
-                if info.walkMinutes > 0 {
-                    let walk = info.walkMinutes
-                    Text(walkLabel(minutes: walk))
-                        .font(.callout)
-                        .foregroundStyle(KORATheme.labelSecondary)
-                }
-            }
-            .padding(.vertical, 12).padding(.horizontal, 20)
-            .background(color.opacity(0.12))
-            .clipShape(RoundedRectangle(cornerRadius: 14))
-        }
-    }
-
-    private func exitLabel(no: String) -> String {
-        switch displayLanguage {
-        case .korean:   return "\(no)번 출구로 나가세요"
-        case .japanese: return "\(no)番出口から出てください"
-        case .english:  return "Use Exit \(no)"
-        case .chinese:  return "请走\(no)号出口"
-        }
-    }
-
-    private func walkLabel(minutes: Int) -> String {
-        switch displayLanguage {
-        case .korean:   return "출구에서 도보 약 \(minutes)분"
-        case .japanese: return "出口から徒歩約\(minutes)分"
-        case .english:  return "~\(minutes) min walk from exit"
-        case .chinese:  return "出口步行约\(minutes)分钟"
-        }
-    }
-
-    private var exitLoadingLabel: String {
-        switch displayLanguage {
-        case .korean:   return "출구 정보 가져오는 중..."
-        case .japanese: return "出口情報を取得中..."
-        case .english:  return "Getting exit info..."
-        case .chinese:  return "获取出口信息..."
-        }
-    }
-
     private func visualStationDot(station: String, isBoarding: Bool, isTrainHere: Bool, lineColor: Color, railLeft: Bool, railRight: Bool) -> some View {
         progressNode(lineColor: lineColor, railLeft: railLeft, railRight: railRight) {
-            // Top slot: train icon if it's here
+            // Top slot: train icon if it's here, otherwise a pin on the
+            // station to get off at so the right end reads as the destination.
             if isTrainHere {
                 Image(systemName: "tram.fill")
                     .font(.title3)
                     .foregroundStyle(.orange)
                     .symbolEffect(.pulse)
+            } else if isBoarding {
+                Image(systemName: "mappin.and.ellipse")
+                    .font(.title3).fontWeight(.bold)
+                    .foregroundStyle(lineColor)
             } else {
                 Color.clear
             }
@@ -1430,10 +1348,10 @@ struct SubwayNavigatorView: View {
                 )
         } label: {
             Text(MetroLineData.displayName(for: station, language: displayLanguage))
-                .font(.caption).fontWeight(isBoarding ? .bold : .regular)
+                .font(.body).fontWeight(isBoarding ? .bold : .regular)
                 .foregroundStyle(isBoarding ? KORATheme.labelPrimary : KORATheme.labelSecondary)
                 .lineLimit(1)
-                .minimumScaleFactor(0.7)
+                .minimumScaleFactor(0.6)
         }
     }
 
@@ -1456,7 +1374,7 @@ struct SubwayNavigatorView: View {
                 marker()
             }
             .frame(height: 24)
-            label().frame(height: 16)
+            label().frame(height: 22)
         }
         .frame(maxWidth: .infinity)
     }
@@ -1471,6 +1389,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "\(cur)駅を出発、次は \(nxt) 駅"
         case .english:  return "Departing \(cur), next stop \(nxt)"
         case .chinese:  return "从\(cur)出发，下一站\(nxt)"
+        case .chineseTraditional: return "從\(cur)出發，下一站\(nxt)"
         }
     }
 
@@ -1482,6 +1401,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "現在 \(cur) 駅付近、次は \(nxt) 駅"
         case .english:  return "Near \(cur), next \(nxt)"
         case .chinese:  return "当前在\(cur)附近，下一站\(nxt)"
+        case .chineseTraditional: return "目前在\(cur)附近，下一站\(nxt)"
         }
     }
 
@@ -1500,6 +1420,9 @@ struct SubwayNavigatorView: View {
         case .chinese:
             let base = "距\(dest)还有\(stops)站"
             return mins.map { "\(base)，约\($0)分钟" } ?? base
+        case .chineseTraditional:
+            let base = "距\(dest)還有\(stops)站"
+            return mins.map { "\(base)，約\($0)分鐘" } ?? base
         }
     }
 
@@ -1527,6 +1450,7 @@ struct SubwayNavigatorView: View {
             case .japanese: return "\(alightDisplay)まで"
             case .english:  return "To \(alightDisplay)"
             case .chinese:  return "前往\(alightDisplay)"
+            case .chineseTraditional: return "前往\(alightDisplay)"
             }
         }()
 
@@ -1575,7 +1499,7 @@ struct SubwayNavigatorView: View {
         progressNode(lineColor: lineColor, railLeft: true, railRight: true) {
             Color.clear
         } marker: {
-            Text("⋯")
+            Text(verbatim: "⋯")
                 .font(.system(size: 24, weight: .black))
                 .foregroundStyle(lineColor.opacity(0.75))
                 .padding(.horizontal, 10)
@@ -1593,6 +1517,7 @@ struct SubwayNavigatorView: View {
             case .japanese: return "どちら方面でも可"
             case .english:  return "Any of these work"
             case .chinese:  return "以下方向均可"
+            case .chineseTraditional: return "以下方向均可"
             }
         }()
         // Show at most 2 alternatives; collapse the rest behind a "+N" chip
@@ -1620,7 +1545,7 @@ struct SubwayNavigatorView: View {
                     .buttonStyle(.plain)
                 }
                 if hiddenCount > 0 {
-                    Text("+\(hiddenCount)")
+                    Text(verbatim: "+\(hiddenCount)")
                         .font(.caption).fontWeight(.medium)
                         .foregroundStyle(KORATheme.labelTertiary)
                         .padding(.horizontal, 8)
@@ -1638,6 +1563,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "\(MetroLineData.displayName(for: ko, language: .japanese))行き"
         case .english:  return "To \(MetroLineData.displayName(for: ko, language: .english))"
         case .chinese:  return "开往\(MetroLineData.displayName(for: ko, language: .chinese))"
+        case .chineseTraditional: return "開往\(MetroLineData.displayName(for: ko, language: .chineseTraditional))"
         }
     }
 
@@ -1651,6 +1577,7 @@ struct SubwayNavigatorView: View {
         case .japanese: suffix = " 方面"
         case .english:  suffix = " direction"
         case .chinese:  suffix = " 方向"
+        case .chineseTraditional: suffix = " 方向"
         }
         let names = landmarks.map { MetroLineData.displayName(for: $0, language: displayLanguage) }
         return Text(names.joined(separator: " · ") + suffix)
@@ -1698,6 +1625,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "\(name)方面"
         case .english:  return "Toward \(name)"
         case .chinese:  return "开往\(name)方向"
+        case .chineseTraditional: return "開往\(name)方向"
         }
     }
 
@@ -1709,6 +1637,7 @@ struct SubwayNavigatorView: View {
             case .japanese: return "内回り"
             case .english:  return "Inner Loop"
             case .chinese:  return "内环方向"
+            case .chineseTraditional: return "內環方向"
             }
         }
         if terminus == "외선순환" {
@@ -1717,6 +1646,7 @@ struct SubwayNavigatorView: View {
             case .japanese: return "外回り"
             case .english:  return "Outer Loop"
             case .chinese:  return "外环方向"
+            case .chineseTraditional: return "外環方向"
             }
         }
         let display = MetroLineData.displayName(for: terminus, language: displayLanguage)
@@ -1725,6 +1655,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "\(display)行き"
         case .english:  return "Toward \(display)"
         case .chinese:  return "开往\(display)"
+        case .chineseTraditional: return "開往\(display)"
         }
     }
 
@@ -1804,6 +1735,7 @@ struct SubwayNavigatorView: View {
             case .japanese: return "\(stationName)駅\(lineSuffix)。タップで現在の駅を変更。"
             case .english:  return "\(stationName) Station\(lineSuffix). Tap to change the current station."
             case .chinese:  return "\(stationName)站\(lineSuffix)。点按更改当前车站。"
+            case .chineseTraditional: return "\(stationName)站\(lineSuffix)。點選更改目前車站。"
             }
         }()
 
@@ -2031,6 +1963,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "どこから出発しますか？"
         case .english:  return "Where are you departing from?"
         case .chinese:  return "从哪里出发？"
+        case .chineseTraditional: return "從哪裡出發？"
         }
     }
 
@@ -2040,6 +1973,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "タップして出発地を選んでください"
         case .english:  return "Tap to set your departure"
         case .chinese:  return "点击设定出发地"
+        case .chineseTraditional: return "點選設定出發地"
         }
     }
 
@@ -2049,6 +1983,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "現在地を確認中..."
         case .english:  return "Detecting location..."
         case .chinese:  return "正在定位..."
+        case .chineseTraditional: return "正在定位..."
         }
     }
 
@@ -2058,6 +1993,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "乗車前"
         case .english:  return "Before boarding"
         case .chinese:  return "乘车前"
+        case .chineseTraditional: return "搭車前"
         }
     }
 
@@ -2067,6 +2003,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "乗車中"
         case .english:  return "On board"
         case .chinese:  return "乘车中"
+        case .chineseTraditional: return "搭車中"
         }
     }
 
@@ -2080,8 +2017,8 @@ struct SubwayNavigatorView: View {
         if seg.line.code != nil {
             switch displayLanguage {
             case .korean:   return "\(seg.line.name) \(dir)"
-            case .japanese, .english, .chinese:
-                return "\(seg.line.name) · \(dir)"
+            case .japanese, .english, .chinese, .chineseTraditional:
+                return "\(seg.line.localizedName(displayLanguage)) · \(dir)"
             }
         }
         switch displayLanguage {
@@ -2089,6 +2026,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "\(seg.line.badgeText)号線 \(dir)"
         case .english:  return "Line \(seg.line.badgeText) · \(dir)"
         case .chinese:  return "\(seg.line.badgeText)号线 \(dir)"
+        case .chineseTraditional: return "\(seg.line.badgeText)號線 \(dir)"
         }
     }
 
@@ -2098,6 +2036,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "スワイプで乗車"
         case .english:  return "Slide to board"
         case .chinese:  return "滑动上车"
+        case .chineseTraditional: return "滑動上車"
         }
     }
 
@@ -2107,6 +2046,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "スワイプで乗換"
         case .english:  return "Slide to transfer"
         case .chinese:  return "滑动换乘"
+        case .chineseTraditional: return "滑動轉乘"
         }
     }
 
@@ -2116,6 +2056,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "スワイプで下車"
         case .english:  return "Slide to alight"
         case .chinese:  return "滑动下车"
+        case .chineseTraditional: return "滑動下車"
         }
     }
 
@@ -2125,6 +2066,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "完了済みのステップです"
         case .english:  return "Already completed"
         case .chinese:  return "已完成的步骤"
+        case .chineseTraditional: return "已完成的步驟"
         }
     }
 
@@ -2134,6 +2076,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "完了済みのステップです。戻りますか？"
         case .english:  return "This step is already done. Do you want to go back to review it?"
         case .chinese:  return "此步骤已完成，要返回查看吗？"
+        case .chineseTraditional: return "此步驟已完成，要返回查看嗎？"
         }
     }
 
@@ -2143,6 +2086,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "続ける"
         case .english:  return "Continue"
         case .chinese:  return "继续"
+        case .chineseTraditional: return "繼續"
         }
     }
 
@@ -2152,6 +2096,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "戻って確認"
         case .english:  return "Go back"
         case .chinese:  return "返回查看"
+        case .chineseTraditional: return "返回查看"
         }
     }
 
@@ -2344,64 +2289,6 @@ struct SubwayNavigatorView: View {
         }
     }
 
-    private func consumePendingDestination() {
-        guard let dest = coordinator.pendingDestination, !dest.isEmpty else { return }
-        // Order matters: write the destination coords *before* `toStation`
-        // so the toStation onChange handler reads the fresh values when it
-        // triggers `fetchExitInfoIfNeeded`.
-        exitInfo = nil
-        destinationCoordinate = coordinator.destinationCoordinate
-        destinationPlaceName = coordinator.destinationPlaceName
-        destinationPlaceID = coordinator.destinationPlaceID
-        toStation = dest
-        selectedJourneyIdx = 0
-        let needsAutoFrom = coordinator.autoFromCurrentLocation
-        coordinator.clearPending()
-        // If user saved a custom exit for this place, use it immediately
-        // and skip the auto lookup.
-        if let pid = destinationPlaceID,
-           let saved = placeStore.places.first(where: { $0.id == pid })?.exitNo,
-           !saved.isEmpty {
-            exitInfo = NearestExit(no: saved, distanceMeters: 0, walkMinutes: 0)
-            return
-        }
-        if needsAutoFrom {
-            // detectCurrentStation will set fromStation → fromStation
-            // onChange → fetchExitInfoIfNeeded.
-            Task { await detectCurrentStation() }
-        } else {
-            // User picked "출발역 직접 선택" — drop the persisted from-station
-            // and open the picker. When they pick, fromStation onChange runs
-            // the fetch.
-            fromStation = nil
-            showFromPicker = true
-        }
-    }
-
-    private func fetchExitInfoIfNeeded() {
-        // User-confirmed override takes priority over auto lookup. We
-        // re-check here (not just in consumePendingDestination) so the
-        // value also surfaces when toStation changes through onChange
-        // without going through the cross-tab consume path.
-        if let pid = destinationPlaceID,
-           let saved = placeStore.places.first(where: { $0.id == pid })?.exitNo,
-           !saved.isEmpty {
-            exitInfo = NearestExit(no: saved, distanceMeters: 0, walkMinutes: 0)
-            return
-        }
-        guard let toKo = toStation else {
-            debugLog("[ExitFetch] skip — toStation nil")
-            return
-        }
-        guard let destCoord = destinationCoordinate else {
-            debugLog("[ExitFetch] skip — destinationCoordinate nil (place has no GPS)")
-            exitInfo = nil
-            return
-        }
-        debugLog("[ExitFetch] toStation='\(toKo)', dest=(\(destCoord.latitude),\(destCoord.longitude))")
-        exitInfo = exitService.nearestExit(station: toKo, to: destCoord)
-    }
-
     // MARK: Setup bar
 
     private func detectCurrentStation() async {
@@ -2430,7 +2317,7 @@ struct SubwayNavigatorView: View {
 
             locationError = NavLoc.locationErrorNoStation.resolved(displayLanguage)
         } catch let e as LocationService.LocationError {
-            locationError = e.errorDescription
+            locationError = e.message(displayLanguage)
         } catch {
             locationError = NavLoc.locationErrorFetchFailed.resolved(displayLanguage)
         }
@@ -2552,7 +2439,7 @@ struct SubwayNavigatorView: View {
             seg.line.color.opacity(0.5)
                 .frame(width: 3)
                 .padding(.leading, 35)
-            Text("\(seg.stopCount)\(stopsUnit)")
+            Text(verbatim: "\(seg.stopCount)\(stopsUnit)")
                 .font(.body).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.labelSecondary)
                 .padding(.leading, 10)
@@ -2567,6 +2454,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "乗換"
         case .english:  return "Transfer"
         case .chinese:  return "换乘"
+        case .chineseTraditional: return "轉乘"
         }
     }
 
@@ -2590,6 +2478,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "出発"
         case .english:  return "From"
         case .chinese:  return "出发"
+        case .chineseTraditional: return "出發"
         }
     }
 
@@ -2599,6 +2488,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "到着"
         case .english:  return "To"
         case .chinese:  return "到达"
+        case .chineseTraditional: return "到達"
         }
     }
 
@@ -2608,6 +2498,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "駅"
         case .english:  return " stops"
         case .chinese:  return "站"
+        case .chineseTraditional: return "站"
         }
     }
 
@@ -2617,6 +2508,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return count == 0 ? "乗換なし" : "\(count)回乗換"
         case .english:  return count == 0 ? "No transfer" : "\(count) transfer\(count > 1 ? "s" : "")"
         case .chinese:  return count == 0 ? "无换乘" : "换乘\(count)次"
+        case .chineseTraditional: return count == 0 ? "無轉乘" : "轉乘\(count)次"
         }
     }
 
@@ -2626,6 +2518,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "出発する"
         case .english:  return "Start Journey"
         case .chinese:  return "开始导航"
+        case .chineseTraditional: return "開始導航"
         }
     }
 
@@ -2635,6 +2528,7 @@ struct SubwayNavigatorView: View {
         case .japanese: return "目的地を変更"
         case .english:  return "Change destination"
         case .chinese:  return "重新选择目的地"
+        case .chineseTraditional: return "重新選擇目的地"
         }
     }
 
@@ -2886,7 +2780,7 @@ struct StationSearchSheet: View {
                                 Text(displayLanguage == .japanese ? group.key + "行" : group.key)
                                     .font(.body).fontWeight(.bold)
                                     .foregroundStyle(KORATheme.accent)
-                                Text("\(group.stations.count)")
+                                Text(verbatim: "\(group.stations.count)")
                                     .font(.body).fontWeight(.semibold)
                                     .foregroundStyle(KORATheme.labelSecondary)
                                 Spacer()
@@ -3010,7 +2904,7 @@ struct StationSearchSheet: View {
                     .padding(.horizontal, 4)
                     .background(isSelected ? Color.white : line.color)
                     .clipShape(Capsule())
-                Text(line.code != nil ? line.name : NavLoc.lineLabel(line.number, displayLanguage))
+                Text(line.localizedName(displayLanguage))
                     .font(.body).fontWeight(isSelected ? .bold : .medium)
                     .foregroundStyle(isSelected ? .white : line.color)
             }

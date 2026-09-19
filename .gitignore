@@ -32,3 +32,6 @@ Pods/
 
 # Secrets — keys live in Secrets.xcconfig, never committed
 KORA/Config/Secrets.xcconfig
+
+# Python
+__pycache__/

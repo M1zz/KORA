@@ -2,6 +2,100 @@
 
 KORA のリリースノート / KORA 릴리즈 노트.
 
+## 1.0.5 (2026-09-19)
+
+地下鉄案内に集中したシンプルな1画面になり、5言語（日本語・韓国語・英語・簡体字・繁体字）に対応しました。
+지하철 안내에 집중한 단순한 한 화면으로 바뀌고, 5개 언어(일본어·한국어·영어·간체·번체)를 지원합니다.
+
+### App Store「このバージョンの新機能」/ "이번 버전의 새로운 기능"
+
+스토어에 올라가는 원문은 `RELEASE_NOTES.md` 다 (DeployBar 가 읽는다). 아래는 그 사본이다.
+
+**日本語**
+
+地下鉄案内に集中するため、タブと地図画面をなくして1画面にしました
+乗車中の路線図で、降りる駅にピンを表示して目的地がひと目で分かるようにしました
+アプリを終了するとロック画面のライブアクティビティも終了するようにしました
+繁体字中国語に新しく対応し、英語・日本語・簡体字中国語でもアプリ全体を使えるようにしました
+ホームの案内表示のスキャンで次の駅が反対方向と判定されることがある問題と、乗車中に長い駅名が途切れる問題を修正しました
+
+**한국어**
+
+지하철 안내에 집중하도록 탭과 지도 화면을 없애고 한 화면으로 바꿨습니다
+탑승 중 노선 표시에서 내릴 역에 핀을 표시해 도착지를 한눈에 알 수 있게 했습니다
+앱을 종료하면 잠금 화면의 라이브 액티비티도 함께 종료되도록 했습니다
+번체 중국어를 새로 지원하고 영어, 일본어, 간체 중국어로도 앱 전체를 쓸 수 있게 했습니다
+승강장 표지판 스캔에서 다음 역이 반대 방향으로 판정되던 문제와 탑승 중 긴 역명이 잘리던 문제를 고쳤습니다
+
+**English**
+
+KORA is now a single screen focused on subway guidance, without tabs or the map
+While riding, the station you get off at now shows a pin so your destination is easy to spot
+Closing the app now also ends the Live Activity on the Lock Screen
+Added Traditional Chinese, and the whole app is now available in English, Japanese and Simplified Chinese
+Fixed platform sign scanning sometimes marking the next station as the wrong direction, and long station names being cut off while riding
+
+**中文（简体）**
+
+去掉了标签页和地图，改为专注地铁导航的单一画面
+乘车时的线路图会在下车站显示图钉，一眼就能看到目的地
+关闭 App 时，锁定屏幕上的实时活动也会一并结束
+新增繁体中文，并可使用英语、日语、简体中文操作整个 App
+修复了扫描站台指示牌时下一站偶尔被误判为反方向的问题，以及乘车时长站名被截断的问题
+
+**中文（繁體）**
+
+移除分頁與地圖，改為專注於地鐵導航的單一畫面
+搭乘時的路線圖會在下車站顯示圖釘，目的地一目了然
+關閉 App 時，鎖定畫面上的即時動態也會一併結束
+新增繁體中文，並可用英文、日文、簡體中文操作整個 App
+修正掃描月台指標時偶爾將下一站誤判為反方向的問題，以及搭乘時長站名被截斷的問題
+
+### 詳細 / 상세 (developer)
+
+**Single screen**
+- MainTabView 삭제, 앱 루트 = SubwayView.
+- 저장 장소 기능 전체 제거: Features/Save(SaveView·PlaceMapView·PlaceCardView·
+  PlaceDetailSheet·SaveViewModel·LinkParserService), Kakao/Naver 검색,
+  PlaceSearchService, CachedAsyncImage, EmptyStateView, SafariView,
+  Place·PlaceStore·SharedInbox·NavigationCoordinator, 출구 안내(SubwayExitService·
+  SubwayExits.json — 저장 장소 좌표가 있어야만 동작했음).
+- 공유 익스텐션(KORAShare) 타깃 삭제. 홈 위젯은 저장 장소 목록을 빼고
+  "지하철 길 안내" 바로가기(small) 하나로.
+- Info.plist: NSPhotoLibraryUsageDescription·Kakao/Naver 키 제거,
+  ITSAppUsesNonExemptEncryption = NO 추가.
+- PrivacyInfo.xcprivacy: 정확한 위치(앱 기능) → Firebase Analytics 실제 수집 항목
+  (Device ID·Product Interaction·Coarse Location, 분석 목적, 연결·추적 안 함).
+
+**Localization**
+- StationLanguage.chineseTraditional 추가. zh-Hant/TW/HK/MO 기기는 자동으로 번체.
+- NavLoc 에 zhHant 필수 필드. 번체는 scripts/i18n/zh_hant.py (ICU Hans-Hant +
+  대만 어휘 표)로 간체에서 뽑아 다듬음. 地鐵 는 捷運 으로 바꾸지 않음.
+- 역 이름 번체 518건: SubwayStationChineseTraditionalNames.swift (생성 파일,
+  scripts/i18n/gen_station_zh_hant.py — 고유명사라 글자만 변환).
+- 이름 있는 노선(공항철도·신분당선·부산 1호선 등 27개) 다국어 이름
+  (SeoulMetroLineInfo.localizedName). 전에는 모든 언어에서 한국어로 보였음.
+- 위치 오류 메시지가 일본어로만 나오던 것 → 5개 언어.
+- Live Activity: 역·노선 이름과 정거장 단위를 앱 표시 언어로 넘김
+  (KORALiveActivityAttributes.stopsUnit 추가 — 앱·위젯 두 사본 동기화).
+- 위젯·컨트롤 위젯: widget/Localizable.xcstrings (5개 언어).
+- InfoPlist.xcstrings: 표시 이름·권한 문구 5개 언어 완비. knownRegions 에 zh-Hans·zh-Hant.
+- 쓰이지 않던 KORA/Localizable.xcstrings(저장 화면용 307키)와 NavLoc 32건 삭제.
+
+**Live Activity / UI**
+- willTerminate 시 모든 Live Activity 종료 + 다음 실행 시 잔여 정리.
+- 진행 다이어그램 하차역 상단 mappin.and.ellipse, 역명 라벨 .body.
+- 방향 스캐너: 탑승역 마커 제외, 다음역 약한 초록, normalize 오매칭 수정.
+
+**Deploy (DeployBar)**
+- deploy.env, scripts/predeploy.sh (버전 단일 소스·카탈로그 빈칸·역 이름 번체 표·
+  Release 빌드), RELEASE_NOTES.md.
+- 버전은 KORA/Config/Version.xcconfig 한 곳 (앱·위젯 base config, Secrets.xcconfig 를 include).
+- docs/: 언어별 소개·지원·개인정보 처리방침, docs/appstore/ 스토어 메타데이터.
+
+**App**
+- Version 1.0.5 (build 6).
+
 ## 1.0.4 (2026-07-14)
 
 全国の地下鉄に対応しました。GTX-A（キンテックス）も乗れます。

@@ -42,26 +42,32 @@ enum MetroCategory: String, CaseIterable, Codable {
         case (.seoulGyeonggi, .japanese): return "ソウル/京畿"
         case (.seoulGyeonggi, .english):  return "Seoul/Gyeonggi"
         case (.seoulGyeonggi, .chinese):  return "首尔/京畿"
+        case (.seoulGyeonggi, .chineseTraditional): return "首爾/京畿"
         case (.incheon, .korean):   return "인천"
         case (.incheon, .japanese): return "インチョン"
         case (.incheon, .english):  return "Incheon"
         case (.incheon, .chinese):  return "仁川"
+        case (.incheon, .chineseTraditional): return "仁川"
         case (.busan, .korean):   return "부산"
         case (.busan, .japanese): return "プサン"
         case (.busan, .english):  return "Busan"
         case (.busan, .chinese):  return "釜山"
+        case (.busan, .chineseTraditional): return "釜山"
         case (.daegu, .korean):   return "대구"
         case (.daegu, .japanese): return "テグ"
         case (.daegu, .english):  return "Daegu"
         case (.daegu, .chinese):  return "大邱"
+        case (.daegu, .chineseTraditional): return "大邱"
         case (.gwangju, .korean):   return "광주"
         case (.gwangju, .japanese): return "クァンジュ"
         case (.gwangju, .english):  return "Gwangju"
         case (.gwangju, .chinese):  return "光州"
+        case (.gwangju, .chineseTraditional): return "光州"
         case (.daejeon, .korean):   return "대전"
         case (.daejeon, .japanese): return "テジョン"
         case (.daejeon, .english):  return "Daejeon"
         case (.daejeon, .chinese):  return "大田"
+        case (.daejeon, .chineseTraditional): return "大田"
         }
     }
 }
@@ -1062,12 +1068,53 @@ struct TransferJourney: Identifiable {
     var totalStops: Int { segments.reduce(0) { $0 + $1.stopCount } }
     var isDirect: Bool { segments.count == 1 }
 
-    /// Short label like "2号線 → 1号線" used in the alternative-route picker.
-    /// Named lines (공항철도, GTX-A, 부산1호선 …) show their name instead of
-    /// a meaningless internal number.
-    var lineSummaryLabel: String {
-        segments
-            .map { $0.line.code != nil ? $0.line.name : "\($0.line.number)号線" }
-            .joined(separator: " → ")
+}
+
+// MARK: - Localized line names
+
+extension SeoulMetroLineInfo {
+    /// Line name in the chosen language. Numbered Seoul lines read "2호선 /
+    /// 2号線 / Line 2 …"; named lines (공항철도, 부산 1호선 …) use the table below
+    /// and fall back to the Korean name.
+    func localizedName(_ lang: StationLanguage) -> String {
+        guard code != nil else { return NavLoc.lineLabel(number, lang) }
+        guard lang != .korean, let names = Self.namedLineNames[name] else { return name }
+        switch lang {
+        case .korean:             return name
+        case .japanese:           return names.ja
+        case .english:            return names.en
+        case .chinese:            return names.zh
+        case .chineseTraditional: return names.zhHant
+        }
     }
+
+    private static let namedLineNames: [String: (ja: String, en: String, zh: String, zhHant: String)] = [
+        "GTX-A":          ("GTX-A", "GTX-A", "GTX-A", "GTX-A"),
+        "공항철도":        ("空港鉄道", "AREX Airport Railroad", "机场铁路", "機場鐵路"),
+        "신분당선":        ("新盆唐線", "Shinbundang Line", "新盆唐线", "新盆唐線"),
+        "수인분당선":      ("水仁・盆唐線", "Suin-Bundang Line", "水仁盆唐线", "水仁盆唐線"),
+        "경의중앙선":      ("京義・中央線", "Gyeongui-Jungang Line", "京义中央线", "京義中央線"),
+        "경춘선":          ("京春線", "Gyeongchun Line", "京春线", "京春線"),
+        "경강선":          ("京江線", "Gyeonggang Line", "京江线", "京江線"),
+        "서해선":          ("西海線", "Seohae Line", "西海线", "西海線"),
+        "김포골드라인":    ("金浦ゴールドライン", "Gimpo Goldline", "金浦黄金线", "金浦黃金線"),
+        "신림선":          ("新林線", "Sillim Line", "新林线", "新林線"),
+        "우이신설선":      ("牛耳新設線", "Ui-Sinseol Line", "牛耳新设线", "牛耳新設線"),
+        "의정부경전철":    ("議政府軽電鉄", "Uijeongbu LRT", "议政府轻轨", "議政府輕軌"),
+        "용인에버라인":    ("龍仁エバーライン", "Yongin EverLine", "龙仁轻轨", "龍仁輕軌"),
+        "인천 1호선":      ("仁川1号線", "Incheon Line 1", "仁川1号线", "仁川1號線"),
+        "인천 2호선":      ("仁川2号線", "Incheon Line 2", "仁川2号线", "仁川2號線"),
+        "부산 1호선":      ("釜山1号線", "Busan Line 1", "釜山1号线", "釜山1號線"),
+        "부산 2호선":      ("釜山2号線", "Busan Line 2", "釜山2号线", "釜山2號線"),
+        "부산 3호선":      ("釜山3号線", "Busan Line 3", "釜山3号线", "釜山3號線"),
+        "부산 4호선":      ("釜山4号線", "Busan Line 4", "釜山4号线", "釜山4號線"),
+        "부산김해경전철":  ("釜山金海軽電鉄", "Busan-Gimhae LRT", "釜山金海轻轨", "釜山金海輕軌"),
+        "동해선":          ("東海線", "Donghae Line", "东海线", "東海線"),
+        "대구 1호선":      ("大邱1号線", "Daegu Line 1", "大邱1号线", "大邱1號線"),
+        "대구 2호선":      ("大邱2号線", "Daegu Line 2", "大邱2号线", "大邱2號線"),
+        "대구 3호선":      ("大邱3号線", "Daegu Line 3", "大邱3号线", "大邱3號線"),
+        "대경선":          ("大慶線", "Daegyeong Line", "大庆线", "大慶線"),
+        "광주 1호선":      ("光州1号線", "Gwangju Line 1", "光州1号线", "光州1號線"),
+        "대전 1호선":      ("大田1号線", "Daejeon Line 1", "大田1号线", "大田1號線"),
+    ]
 }

@@ -12,4 +12,7 @@ struct KORALiveActivityAttributes: ActivityAttributes {
     }
 
     var destinationStation: String
+    /// Localized unit under the stop count ("정거장", "stops" …). Station and
+    /// line names arrive already localized in the app's display language.
+    var stopsUnit: String
 }

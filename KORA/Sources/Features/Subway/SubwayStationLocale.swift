@@ -20,7 +20,8 @@ enum StationLanguage: String, CaseIterable, Codable {
     case korean
     case japanese
     case english
-    case chinese
+    case chinese             // 简体中文
+    case chineseTraditional  // 繁體中文 (Taiwan wording)
 
     /// Human-readable label shown in the language picker menu.
     var displayName: String {
@@ -28,17 +29,23 @@ enum StationLanguage: String, CaseIterable, Codable {
         case .korean:   return "한국어"
         case .japanese: return "日本語"
         case .english:  return "English"
-        case .chinese:  return "中文"
+        case .chinese:  return "简体中文"
+        case .chineseTraditional: return "繁體中文"
         }
     }
 
     /// Maps a system locale language code to a StationLanguage.
     static func resolveFromSystemLocale() -> StationLanguage {
-        let code = Locale.current.language.languageCode?.identifier ?? "ko"
+        let language = Locale.current.language
+        let code = language.languageCode?.identifier ?? "ko"
         switch code {
         case "ko": return .korean
         case "ja": return .japanese
-        case "zh": return .chinese
+        case "zh":
+            // zh-Hant, or a region that writes Traditional (TW/HK/MO) without an explicit script.
+            if let script = language.script?.identifier { return script == "Hant" ? .chineseTraditional : .chinese }
+            let region = language.region?.identifier ?? ""
+            return ["TW", "HK", "MO"].contains(region) ? .chineseTraditional : .chinese
         case "en": return .english
         default:   return .english
         }
@@ -572,12 +579,14 @@ extension MetroLineData {
 
     // Helper: display name for a Korean station name given a language.
     // For Chinese, falls back through stationChineseNames → inline zh → Korean.
+    // Traditional reads the generated table (built from those same two sources).
     static func displayName(for ko: String, language: StationLanguage) -> String {
         switch language {
         case .korean:   return ko
         case .japanese: return stationLocale[ko]?.ja ?? ko
         case .english:  return stationLocale[ko]?.en ?? ko
         case .chinese:  return stationChineseNames[ko] ?? stationLocale[ko]?.zh ?? ko
+        case .chineseTraditional: return stationChineseTraditionalNames[ko] ?? ko
         }
     }
 
@@ -688,13 +697,14 @@ extension MetroLineData {
         case .japanese: return displayName(for: koStation, language: .japanese)
         case .english:  return displayName(for: koStation, language: .english).lowercased()
         case .chinese:  return displayName(for: koStation, language: .chinese)
+        case .chineseTraditional: return displayName(for: koStation, language: .chineseTraditional)
         }
     }
 
     /// Whether the picker should use section headers for this language.
     /// Chinese uses a flat list (no good single-letter section system).
     static func usesSections(for language: StationLanguage) -> Bool {
-        language != .chinese
+        language != .chinese && language != .chineseTraditional
     }
 
     /// Ordered section keys for the chosen language.
@@ -704,6 +714,7 @@ extension MetroLineData {
         case .japanese: return kanaIndexOrder
         case .english:  return englishIndexOrder
         case .chinese:  return []
+        case .chineseTraditional: return []
         }
     }
 
@@ -714,6 +725,7 @@ extension MetroLineData {
         case .japanese: return kanaInitial(for: koStation)
         case .english:  return englishInitial(for: koStation)
         case .chinese:  return ""
+        case .chineseTraditional: return ""
         }
     }
 }

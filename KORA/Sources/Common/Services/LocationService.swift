@@ -14,18 +14,21 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         case unavailable
         case timeout
 
-        var errorDescription: String? {
+        var errorDescription: String? { message(StationLanguage.resolveFromSystemLocale()) }
+
+        /// Message in the app's chosen display language (not necessarily the system one).
+        func message(_ lang: StationLanguage) -> String {
             switch self {
             case .denied:
-                return "位置情報の権限が許可されていません（設定 → KORA → 位置情報）"
+                return NavLoc.locationErrorDenied.resolved(lang)
             case .unavailable:
                 #if targetEnvironment(simulator)
-                return "シミュレータの位置が未設定です（Features → Location → Custom Location）"
+                return "Simulator location is not set (Features → Location → Custom Location)"
                 #else
-                return "現在地を取得できませんでした。手動で出発駅を選んでください"
+                return NavLoc.locationErrorUnavailable.resolved(lang)
                 #endif
             case .timeout:
-                return "位置情報の取得がタイムアウトしました"
+                return NavLoc.locationErrorTimeout.resolved(lang)
             }
         }
     }

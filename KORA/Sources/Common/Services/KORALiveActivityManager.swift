@@ -14,6 +14,9 @@ struct KORALiveActivityAttributes: ActivityAttributes {
     }
 
     var destinationStation: String
+    /// Localized unit under the stop count ("정거장", "stops" …). Station and
+    /// line names arrive already localized in the app's display language.
+    var stopsUnit: String
 }
 
 // MARK: - Manager
@@ -31,12 +34,13 @@ final class KORALiveActivityManager {
         current: String,
         next: String,
         stopsRemaining: Int,
+        stopsUnit: String,
         lineColor: Color,
         lineName: String
     ) async {
         guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
         await end()
-        let attributes = KORALiveActivityAttributes(destinationStation: destination)
+        let attributes = KORALiveActivityAttributes(destinationStation: destination, stopsUnit: stopsUnit)
         let state = KORALiveActivityAttributes.ContentState(
             currentStation: current,
             nextStation: next,
@@ -69,6 +73,30 @@ final class KORALiveActivityManager {
     func end() async {
         await currentActivity?.end(nil, dismissalPolicy: .immediate)
         currentActivity = nil
+    }
+
+    /// Ends every KORA Live Activity, including ones orphaned by a previous
+    /// process. The ride state (`boardedAt`) isn't persisted, so an activity
+    /// that survives an app kill would otherwise sit on the Lock Screen with
+    /// nothing left to update or end it.
+    func endAll() async {
+        currentActivity = nil
+        for activity in Activity<KORALiveActivityAttributes>.activities {
+            await activity.end(nil, dismissalPolicy: .immediate)
+        }
+    }
+
+    /// For `willTerminate`: the process dies as soon as the handler returns, so
+    /// block briefly until the end requests have been handed to the system.
+    nonisolated static func endAllBeforeTermination() {
+        let done = DispatchSemaphore(value: 0)
+        Task.detached {
+            for activity in Activity<KORALiveActivityAttributes>.activities {
+                await activity.end(nil, dismissalPolicy: .immediate)
+            }
+            done.signal()
+        }
+        _ = done.wait(timeout: .now() + 2)
     }
 }
 

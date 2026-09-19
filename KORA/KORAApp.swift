@@ -15,8 +15,6 @@ func debugLog(_ message: @autoclosure () -> String) {
 
 @main
 struct KORAApp: App {
-    @Environment(\.scenePhase) private var scenePhase
-
     init() {
         // Initialize Firebase (Google Analytics for Firebase). Must run before
         // any Analytics calls; reads GoogleService-Info.plist from the bundle.
@@ -29,6 +27,18 @@ struct KORAApp: App {
         MetroLineData.assertStationNamesValid()
         #endif
 
+        // A Live Activity must not outlive the app: the ride state is in memory
+        // only, so end it when the app is killed, and clear any left over from
+        // a run that was killed while suspended (no willTerminate in that case).
+        if #available(iOS 16.1, *) {
+            NotificationCenter.default.addObserver(
+                forName: UIApplication.willTerminateNotification, object: nil, queue: .main
+            ) { _ in
+                KORALiveActivityManager.endAllBeforeTermination()
+            }
+            Task { @MainActor in await KORALiveActivityManager.shared.endAll() }
+        }
+
         try? Tips.configure([
             .displayFrequency(.immediate),
             .datastoreLocation(.applicationDefault)
@@ -37,24 +47,9 @@ struct KORAApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MainTabView()
-        }
-        .onChange(of: scenePhase) { _, phase in
-            if phase == .active { consumeSharedInbox() }
-        }
-    }
-
-    /// Reads any pending URL handed off from the Share Extension and routes it
-    /// to the Save tab for parsing. Called every time the app becomes active so
-    /// shares received while the app was in the background are never missed.
-    private func consumeSharedInbox() {
-        // Drain places saved directly by the Share Extension (new SwiftUI flow)
-        Task { @MainActor in PlaceStore.shared.drainExtensionQueue() }
-
-        // Handle URL/text handoff from the old SLCompose-based extension path
-        guard let payload = SharedInbox.consume() else { return }
-        Task { @MainActor in
-            NavigationCoordinator.shared.receiveSharedURL(payload.url, text: payload.text)
+            // Single screen — the subway navigator is the whole app.
+            SubwayView()
+                .tint(KORATheme.accent)
         }
     }
 }

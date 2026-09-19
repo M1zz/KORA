@@ -7,71 +7,41 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		586CF42B2FC87E6B00D2A003 /* NaverConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CF42A2FC87E6B00D2A003 /* NaverConfig.swift */; };
-		586CF42D2FC87E6B00D2A003 /* NaverLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CF42C2FC87E6B00D2A003 /* NaverLocalService.swift */; };
-		586CF42F2FC87E6B00D2A003 /* PlaceSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586CF42E2FC87E6B00D2A003 /* PlaceSearchService.swift */; };
-		58FF4F012FC47AC600DF7156 /* KORAShare.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 58FF4EF72FC47AC600DF7156 /* KORAShare.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		178554DE9CC7D8AF586969BA /* SubwayStationChineseTraditionalNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1F37D764C0981336FB8ED /* SubwayStationChineseTraditionalNames.swift */; };
 		9C8F74612FC6E3A000B6DA22 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */; };
 		9C8F74632FC6E3A000B6DA22 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */; };
 		9C8F74722FC6E3A100B6DA22 /* widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9CD2A3152FEA336B002410B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CD2A3142FEA336B002410B9 /* GoogleService-Info.plist */; };
 		9CFBA5E12FEA300000000001 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9CFBA5E12FEA300000000002 /* FirebaseAnalytics */; };
 		AA001 /* KORAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA101 /* KORAApp.swift */; };
-		AA003 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA103 /* MainTabView.swift */; };
-		AA004 /* SaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA104 /* SaveView.swift */; };
-		AA005 /* SaveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA105 /* SaveViewModel.swift */; };
-		AA006 /* PlaceCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA106 /* PlaceCardView.swift */; };
-		AA010 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA110 /* Place.swift */; };
 		AA012 /* KORATheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA112 /* KORATheme.swift */; };
-		AA014 /* LinkParserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA114 /* LinkParserService.swift */; };
-		AA017 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA117 /* EmptyStateView.swift */; };
 		AA018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA118 /* Assets.xcassets */; };
-		AA019 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AA119 /* Localizable.xcstrings */; };
-		AA020 /* PlaceStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA120 /* PlaceStore.swift */; };
-		AA021 /* KakaoConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA121 /* KakaoConfig.swift */; };
-		AA022 /* KakaoLocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA122 /* KakaoLocalService.swift */; };
 		AA023 /* SubwayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA123 /* SubwayView.swift */; };
 		AA024 /* seoul_metro.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AA124 /* seoul_metro.pdf */; };
 		AA025 /* SubwayLineData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA125 /* SubwayLineData.swift */; };
-		AA070 /* SubwayLineDataExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA170 /* SubwayLineDataExpansion.swift */; };
-		AA071 /* SubwayLineDataRegional.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA171 /* SubwayLineDataRegional.swift */; };
-		AA072 /* SubwayStationDataExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA172 /* SubwayStationDataExpansion.swift */; };
 		AA027 /* SubwayStationLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA127 /* SubwayStationLocale.swift */; };
 		AA028 /* subway_jp.pdf in Resources */ = {isa = PBXBuildFile; fileRef = AA128 /* subway_jp.pdf */; };
 		AA029 /* SubwayNavigatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA129 /* SubwayNavigatorView.swift */; };
-		AA030 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA130 /* NavigationCoordinator.swift */; };
 		AA031 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA131 /* LocationService.swift */; };
-		AA032 /* SharedInbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA132 /* SharedInbox.swift */; };
 		AA033 /* SubwayStationCoordinates.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA133 /* SubwayStationCoordinates.swift */; };
 		AA034 /* SubwayScheduleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA134 /* SubwayScheduleService.swift */; };
 		AA035 /* RealtimeArrivalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA135 /* RealtimeArrivalService.swift */; };
 		AA040 /* SubwayStationLocaleValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA140 /* SubwayStationLocaleValidation.swift */; };
 		AA041 /* SubwayStationChineseNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA141 /* SubwayStationChineseNames.swift */; };
 		AA042 /* SubwayNavigatorStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA142 /* SubwayNavigatorStrings.swift */; };
-		AA043 /* PlaceMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA143 /* PlaceMapView.swift */; };
 		AA044 /* KORALiveActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA144 /* KORALiveActivityManager.swift */; };
 		AA045 /* TransitPositionTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA145 /* TransitPositionTracker.swift */; };
-		AA046 /* PlaceDetailSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA146 /* PlaceDetailSheet.swift */; };
-		AA047 /* SafariView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA147 /* SafariView.swift */; };
-		AA048 /* KakaoPlaceDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA148 /* KakaoPlaceDetailService.swift */; };
-		AA04A /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA14A /* CachedAsyncImage.swift */; };
-		AA050 /* SubwayExitService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA150 /* SubwayExitService.swift */; };
-		AA051 /* SubwayExits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA151 /* SubwayExits.json */; };
 		AA052 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = AA154 /* PrivacyInfo.xcprivacy */; };
 		AA053 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AA155 /* InfoPlist.xcstrings */; };
 		AA060 /* SeoulTransitConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA160 /* SeoulTransitConfig.swift */; };
 		AA061 /* StationAnnouncementListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA161 /* StationAnnouncementListener.swift */; };
 		AA062 /* PlatformDirectionScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA162 /* PlatformDirectionScanner.swift */; };
+		AA070 /* SubwayLineDataExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA170 /* SubwayLineDataExpansion.swift */; };
+		AA071 /* SubwayLineDataRegional.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA171 /* SubwayLineDataRegional.swift */; };
+		AA072 /* SubwayStationDataExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA172 /* SubwayStationDataExpansion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		58FF4EFF2FC47AC600DF7156 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = AA700 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 58FF4EF62FC47AC600DF7156;
-			remoteInfo = KORAShare;
-		};
 		9C8F74702FC6E3A100B6DA22 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA700 /* Project object */;
@@ -89,7 +59,6 @@
 			dstSubfolderSpec = 13;
 			files = (
 				9C8F74722FC6E3A100B6DA22 /* widgetExtension.appex in Embed Foundation Extensions */,
-				58FF4F012FC47AC600DF7156 /* KORAShare.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,56 +66,29 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		586CF42A2FC87E6B00D2A003 /* NaverConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverConfig.swift; sourceTree = "<group>"; };
-		586CF42C2FC87E6B00D2A003 /* NaverLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NaverLocalService.swift; sourceTree = "<group>"; };
-		586CF42E2FC87E6B00D2A003 /* PlaceSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceSearchService.swift; sourceTree = "<group>"; };
-		58FF4EF72FC47AC600DF7156 /* KORAShare.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KORAShare.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		58FF4F082FC47ADC00DF7156 /* KORA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KORA.entitlements; sourceTree = "<group>"; };
 		9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		9CD2A3142FEA336B002410B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AA101 /* KORAApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAApp.swift; sourceTree = "<group>"; };
-		AA103 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
-		AA104 /* SaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveView.swift; sourceTree = "<group>"; };
-		AA105 /* SaveViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveViewModel.swift; sourceTree = "<group>"; };
-		AA106 /* PlaceCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceCardView.swift; sourceTree = "<group>"; };
-		AA110 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
 		AA112 /* KORATheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORATheme.swift; sourceTree = "<group>"; };
-		AA114 /* LinkParserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinkParserService.swift; sourceTree = "<group>"; };
-		AA117 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		AA118 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AA119 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
-		AA120 /* PlaceStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceStore.swift; sourceTree = "<group>"; };
-		AA121 /* KakaoConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoConfig.swift; sourceTree = "<group>"; };
-		AA122 /* KakaoLocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoLocalService.swift; sourceTree = "<group>"; };
 		AA123 /* SubwayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayView.swift; sourceTree = "<group>"; };
 		AA124 /* seoul_metro.pdf */ = {isa = PBXFileReference; lastKnownFileType = com.adobe.pdf; path = seoul_metro.pdf; sourceTree = "<group>"; };
 		AA125 /* SubwayLineData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineData.swift; sourceTree = "<group>"; };
-		AA170 /* SubwayLineDataExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineDataExpansion.swift; sourceTree = "<group>"; };
-		AA171 /* SubwayLineDataRegional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineDataRegional.swift; sourceTree = "<group>"; };
-		AA172 /* SubwayStationDataExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationDataExpansion.swift; sourceTree = "<group>"; };
 		AA127 /* SubwayStationLocale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationLocale.swift; sourceTree = "<group>"; };
 		AA128 /* subway_jp.pdf */ = {isa = PBXFileReference; lastKnownFileType = com.adobe.pdf; path = subway_jp.pdf; sourceTree = "<group>"; };
 		AA129 /* SubwayNavigatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayNavigatorView.swift; sourceTree = "<group>"; };
-		AA130 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
 		AA131 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
-		AA132 /* SharedInbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedInbox.swift; sourceTree = "<group>"; };
 		AA133 /* SubwayStationCoordinates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationCoordinates.swift; sourceTree = "<group>"; };
 		AA134 /* SubwayScheduleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayScheduleService.swift; sourceTree = "<group>"; };
 		AA135 /* RealtimeArrivalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeArrivalService.swift; sourceTree = "<group>"; };
 		AA140 /* SubwayStationLocaleValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationLocaleValidation.swift; sourceTree = "<group>"; };
 		AA141 /* SubwayStationChineseNames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationChineseNames.swift; sourceTree = "<group>"; };
 		AA142 /* SubwayNavigatorStrings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayNavigatorStrings.swift; sourceTree = "<group>"; };
-		AA143 /* PlaceMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceMapView.swift; sourceTree = "<group>"; };
 		AA144 /* KORALiveActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORALiveActivityManager.swift; sourceTree = "<group>"; };
 		AA145 /* TransitPositionTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitPositionTracker.swift; sourceTree = "<group>"; };
-		AA146 /* PlaceDetailSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceDetailSheet.swift; sourceTree = "<group>"; };
-		AA147 /* SafariView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariView.swift; sourceTree = "<group>"; };
-		AA148 /* KakaoPlaceDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoPlaceDetailService.swift; sourceTree = "<group>"; };
-		AA14A /* CachedAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
-		AA150 /* SubwayExitService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayExitService.swift; sourceTree = "<group>"; };
-		AA151 /* SubwayExits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = SubwayExits.json; sourceTree = "<group>"; };
 		AA152 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 		AA153 /* Secrets.sample.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.sample.xcconfig; sourceTree = "<group>"; };
 		AA154 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
@@ -154,18 +96,16 @@
 		AA160 /* SeoulTransitConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulTransitConfig.swift; sourceTree = "<group>"; };
 		AA161 /* StationAnnouncementListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAnnouncementListener.swift; sourceTree = "<group>"; };
 		AA162 /* PlatformDirectionScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformDirectionScanner.swift; sourceTree = "<group>"; };
+		AA170 /* SubwayLineDataExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineDataExpansion.swift; sourceTree = "<group>"; };
+		AA171 /* SubwayLineDataRegional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineDataRegional.swift; sourceTree = "<group>"; };
+		AA172 /* SubwayStationDataExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationDataExpansion.swift; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3C1F37D764C0981336FB8ED /* SubwayStationChineseTraditionalNames.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubwayStationChineseTraditionalNames.swift; sourceTree = "<group>"; };
+		F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		58FF4F052FC47AC600DF7156 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = 58FF4EF62FC47AC600DF7156 /* KORAShare */;
-		};
-		9C8F74752FC6E3A100B6DA22 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		9C8F74752FC6E3A100B6DA22 /* Exceptions for "widget" folder in "widgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
@@ -175,18 +115,21 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		58FF4EF82FC47AC600DF7156 /* KORAShare */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (58FF4F052FC47AC600DF7156 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = KORAShare; sourceTree = "<group>"; };
-		9C8F74642FC6E3A000B6DA22 /* widget */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (9C8F74752FC6E3A100B6DA22 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = widget; sourceTree = "<group>"; };
+		9C8F74642FC6E3A000B6DA22 /* widget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				9C8F74752FC6E3A100B6DA22 /* Exceptions for "widget" folder in "widgetExtension" target */,
+			);
+			explicitFileTypes = {
+			};
+			explicitFolders = (
+			);
+			path = widget;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		58FF4EF42FC47AC600DF7156 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9C8F745B2FC6E3A000B6DA22 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -220,7 +163,6 @@
 			isa = PBXGroup;
 			children = (
 				AA401 /* KORA */,
-				58FF4EF82FC47AC600DF7156 /* KORAShare */,
 				9C8F74642FC6E3A000B6DA22 /* widget */,
 				9C8F745F2FC6E3A000B6DA22 /* Frameworks */,
 				AA402 /* Products */,
@@ -232,11 +174,9 @@
 			children = (
 				58FF4F082FC47ADC00DF7156 /* KORA.entitlements */,
 				AA101 /* KORAApp.swift */,
-				AA103 /* MainTabView.swift */,
 				AA425 /* Config */,
 				AA410 /* Sources */,
 				AA118 /* Assets.xcassets */,
-				AA119 /* Localizable.xcstrings */,
 				AA124 /* seoul_metro.pdf */,
 				AA128 /* subway_jp.pdf */,
 				AA154 /* PrivacyInfo.xcprivacy */,
@@ -250,7 +190,6 @@
 			isa = PBXGroup;
 			children = (
 				AA200 /* KORA.app */,
-				58FF4EF72FC47AC600DF7156 /* KORAShare.appex */,
 				9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */,
 			);
 			name = Products;
@@ -268,7 +207,6 @@
 		AA411 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				AA420 /* Save */,
 				AA421 /* Go */,
 				AA424 /* Subway */,
 				AA422 /* Now */,
@@ -280,25 +218,10 @@
 		AA412 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				AA430 /* Models */,
-				AA431 /* Components */,
 				AA432 /* Theme */,
 				AA433 /* Services */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		AA420 /* Save */ = {
-			isa = PBXGroup;
-			children = (
-				AA104 /* SaveView.swift */,
-				AA105 /* SaveViewModel.swift */,
-				AA106 /* PlaceCardView.swift */,
-				AA114 /* LinkParserService.swift */,
-				AA143 /* PlaceMapView.swift */,
-				AA146 /* PlaceDetailSheet.swift */,
-			);
-			path = Save;
 			sourceTree = "<group>";
 		};
 		AA421 /* Go */ = {
@@ -341,8 +264,7 @@
 				AA145 /* TransitPositionTracker.swift */,
 				AA161 /* StationAnnouncementListener.swift */,
 				AA162 /* PlatformDirectionScanner.swift */,
-				AA150 /* SubwayExitService.swift */,
-				AA151 /* SubwayExits.json */,
+				F3C1F37D764C0981336FB8ED /* SubwayStationChineseTraditionalNames.swift */,
 			);
 			path = Subway;
 			sourceTree = "<group>";
@@ -352,27 +274,9 @@
 			children = (
 				AA152 /* Secrets.xcconfig */,
 				AA153 /* Secrets.sample.xcconfig */,
+				F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */,
 			);
 			path = Config;
-			sourceTree = "<group>";
-		};
-		AA430 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				AA110 /* Place.swift */,
-				AA120 /* PlaceStore.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		AA431 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				AA117 /* EmptyStateView.swift */,
-				AA147 /* SafariView.swift */,
-				AA14A /* CachedAsyncImage.swift */,
-			);
-			path = Components;
 			sourceTree = "<group>";
 		};
 		AA432 /* Theme */ = {
@@ -386,16 +290,8 @@
 		AA433 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				586CF42A2FC87E6B00D2A003 /* NaverConfig.swift */,
-				586CF42C2FC87E6B00D2A003 /* NaverLocalService.swift */,
-				586CF42E2FC87E6B00D2A003 /* PlaceSearchService.swift */,
-				AA121 /* KakaoConfig.swift */,
 				AA160 /* SeoulTransitConfig.swift */,
-				AA122 /* KakaoLocalService.swift */,
-				AA148 /* KakaoPlaceDetailService.swift */,
-				AA130 /* NavigationCoordinator.swift */,
 				AA131 /* LocationService.swift */,
-				AA132 /* SharedInbox.swift */,
 				AA144 /* KORALiveActivityManager.swift */,
 			);
 			path = Services;
@@ -404,28 +300,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		58FF4EF62FC47AC600DF7156 /* KORAShare */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 58FF4F062FC47AC600DF7156 /* Build configuration list for PBXNativeTarget "KORAShare" */;
-			buildPhases = (
-				58FF4EF32FC47AC600DF7156 /* Sources */,
-				58FF4EF42FC47AC600DF7156 /* Frameworks */,
-				58FF4EF52FC47AC600DF7156 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				58FF4EF82FC47AC600DF7156 /* KORAShare */,
-			);
-			name = KORAShare;
-			packageProductDependencies = (
-			);
-			productName = KORAShare;
-			productReference = 58FF4EF72FC47AC600DF7156 /* KORAShare.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		9C8F745D2FC6E3A000B6DA22 /* widgetExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C8F74762FC6E3A100B6DA22 /* Build configuration list for PBXNativeTarget "widgetExtension" */;
@@ -442,8 +316,6 @@
 				9C8F74642FC6E3A000B6DA22 /* widget */,
 			);
 			name = widgetExtension;
-			packageProductDependencies = (
-			);
 			productName = widgetExtension;
 			productReference = 9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
@@ -460,7 +332,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				58FF4F002FC47AC600DF7156 /* PBXTargetDependency */,
 				9C8F74712FC6E3A100B6DA22 /* PBXTargetDependency */,
 			);
 			name = KORA;
@@ -481,9 +352,6 @@
 				LastSwiftUpdateCheck = 2620;
 				LastUpgradeCheck = 2620;
 				TargetAttributes = {
-					58FF4EF62FC47AC600DF7156 = {
-						CreatedOnToolsVersion = 26.3;
-					};
 					9C8F745D2FC6E3A000B6DA22 = {
 						CreatedOnToolsVersion = 26.2;
 					};
@@ -500,6 +368,8 @@
 				en,
 				ja,
 				ko,
+				"zh-Hans",
+				"zh-Hant",
 				Base,
 			);
 			mainGroup = AA400;
@@ -511,20 +381,12 @@
 			projectRoot = "";
 			targets = (
 				AA500 /* KORA */,
-				58FF4EF62FC47AC600DF7156 /* KORAShare */,
 				9C8F745D2FC6E3A000B6DA22 /* widgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		58FF4EF52FC47AC600DF7156 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9C8F745C2FC6E3A000B6DA22 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -537,10 +399,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA018 /* Assets.xcassets in Resources */,
-				AA019 /* Localizable.xcstrings in Resources */,
 				9CD2A3152FEA336B002410B9 /* GoogleService-Info.plist in Resources */,
 				AA024 /* seoul_metro.pdf in Resources */,
-				AA051 /* SubwayExits.json in Resources */,
 				AA052 /* PrivacyInfo.xcprivacy in Resources */,
 				AA053 /* InfoPlist.xcstrings in Resources */,
 				AA028 /* subway_jp.pdf in Resources */,
@@ -550,13 +410,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		58FF4EF32FC47AC600DF7156 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		9C8F745A2FC6E3A000B6DA22 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -569,29 +422,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				AA001 /* KORAApp.swift in Sources */,
-				AA003 /* MainTabView.swift in Sources */,
-				AA004 /* SaveView.swift in Sources */,
-				AA005 /* SaveViewModel.swift in Sources */,
-				AA006 /* PlaceCardView.swift in Sources */,
-				AA043 /* PlaceMapView.swift in Sources */,
-				AA046 /* PlaceDetailSheet.swift in Sources */,
-				AA010 /* Place.swift in Sources */,
 				AA012 /* KORATheme.swift in Sources */,
-				586CF42B2FC87E6B00D2A003 /* NaverConfig.swift in Sources */,
-				586CF42D2FC87E6B00D2A003 /* NaverLocalService.swift in Sources */,
-				586CF42F2FC87E6B00D2A003 /* PlaceSearchService.swift in Sources */,
-				AA014 /* LinkParserService.swift in Sources */,
-				AA017 /* EmptyStateView.swift in Sources */,
-				AA047 /* SafariView.swift in Sources */,
-				AA04A /* CachedAsyncImage.swift in Sources */,
-				AA020 /* PlaceStore.swift in Sources */,
-				AA021 /* KakaoConfig.swift in Sources */,
 				AA060 /* SeoulTransitConfig.swift in Sources */,
-				AA022 /* KakaoLocalService.swift in Sources */,
-				AA048 /* KakaoPlaceDetailService.swift in Sources */,
-				AA030 /* NavigationCoordinator.swift in Sources */,
 				AA031 /* LocationService.swift in Sources */,
-				AA032 /* SharedInbox.swift in Sources */,
 				AA044 /* KORALiveActivityManager.swift in Sources */,
 				AA023 /* SubwayView.swift in Sources */,
 				AA025 /* SubwayLineData.swift in Sources */,
@@ -609,18 +442,13 @@
 				AA045 /* TransitPositionTracker.swift in Sources */,
 				AA061 /* StationAnnouncementListener.swift in Sources */,
 				AA062 /* PlatformDirectionScanner.swift in Sources */,
-				AA050 /* SubwayExitService.swift in Sources */,
+				178554DE9CC7D8AF586969BA /* SubwayStationChineseTraditionalNames.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		58FF4F002FC47AC600DF7156 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 58FF4EF62FC47AC600DF7156 /* KORAShare */;
-			targetProxy = 58FF4EFF2FC47AC600DF7156 /* PBXContainerItemProxy */;
-		};
 		9C8F74712FC6E3A100B6DA22 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9C8F745D2FC6E3A000B6DA22 /* widgetExtension */;
@@ -629,74 +457,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		58FF4F032FC47AC600DF7156 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = KORAShare/KORAShare.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = KORAShare/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = KORAShare;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.4;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.KORAShare;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		58FF4F042FC47AC600DF7156 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CODE_SIGN_ENTITLEMENTS = KORAShare/KORAShare.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = KORAShare/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = KORAShare;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.4;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.KORAShare;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				STRING_CATALOG_GENERATE_SYMBOLS = YES;
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		9C8F74732FC6E3A100B6DA22 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = widget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = widget;
@@ -708,7 +475,6 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.4;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -723,11 +489,11 @@
 		};
 		9C8F74742FC6E3A100B6DA22 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = widget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = widget;
@@ -739,7 +505,6 @@
 					"@executable_path/../../Frameworks",
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MARKETING_VERSION = 1.0.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.widget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -877,13 +642,12 @@
 		};
 		AA603 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA152 /* Secrets.xcconfig */;
+			baseConfigurationReference = F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KORA/KORA.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "한국 길찾기";
@@ -896,7 +660,6 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.4;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -911,13 +674,12 @@
 		};
 		AA604 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AA152 /* Secrets.xcconfig */;
+			baseConfigurationReference = F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = KORA/KORA.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = KORA/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "한국 길찾기";
@@ -930,7 +692,6 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
-				MARKETING_VERSION = 1.0.4;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -946,15 +707,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		58FF4F062FC47AC600DF7156 /* Build configuration list for PBXNativeTarget "KORAShare" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				58FF4F032FC47AC600DF7156 /* Debug */,
-				58FF4F042FC47AC600DF7156 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		9C8F74762FC6E3A100B6DA22 /* Build configuration list for PBXNativeTarget "widgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

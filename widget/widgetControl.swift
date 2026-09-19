@@ -2,7 +2,7 @@ import AppIntents
 import SwiftUI
 import WidgetKit
 
-/// Control Centre button that opens the KoreaWay subway navigator directly.
+/// Control Centre button that opens the subway navigator directly.
 @available(iOS 18.0, *)
 struct KoreaWayNavigatorControl: ControlWidget {
     var body: some ControlWidgetConfiguration {
@@ -11,11 +11,11 @@ struct KoreaWayNavigatorControl: ControlWidget {
             provider: Provider()
         ) { _ in
             ControlWidgetButton(action: OpenNavigatorIntent()) {
-                Label("지하철 안내", systemImage: "tram.fill")
+                Label("Subway directions", systemImage: "tram.fill")
             }
         }
-        .displayName("지하철 안내")
-        .description("KoreaWay 지하철 네비게이터를 바로 엽니다.")
+        .displayName("Subway directions")
+        .description("Open the subway navigator in one tap.")
     }
 }
 
@@ -28,7 +28,7 @@ extension KoreaWayNavigatorControl {
 }
 
 struct OpenNavigatorIntent: AppIntent {
-    static let title: LocalizedStringResource = "지하철 안내 열기"
+    static let title: LocalizedStringResource = "Open subway directions"
     static let openAppWhenRun: Bool = true
 
     func perform() async throws -> some IntentResult {
