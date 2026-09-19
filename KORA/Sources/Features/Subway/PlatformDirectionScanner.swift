@@ -18,6 +18,7 @@ import Vision
 struct InlineDirectionScanner: View {
     let forwardMarkers: Set<String>
     let backwardMarkers: Set<String>
+    var nextStopMarkers: Set<String> = []
     let displayLanguage: StationLanguage
 
     @StateObject private var cam = DirectionCameraModel()
@@ -74,7 +75,7 @@ struct InlineDirectionScanner: View {
                 .animation(.easeOut(duration: 0.2), value: cam.verdict)
         )
         .task {
-            cam.configure(forward: forwardMarkers, backward: backwardMarkers)
+            cam.configure(forward: forwardMarkers, backward: backwardMarkers, nextStop: nextStopMarkers)
             await cam.start()
         }
         .onDisappear { cam.stop() }
@@ -263,11 +264,13 @@ final class DirectionCameraModel: ObservableObject, @unchecked Sendable {
 
     private var forward: Set<String> = []
     private var backward: Set<String> = []
+    private var nextStop: Set<String> = []
     private var missStreak = 0   // consecutive frames with no matching destination
 
-    func configure(forward: Set<String>, backward: Set<String>) {
-        self.forward = Set(forward.map(Self.normalize))
-        self.backward = Set(backward.map(Self.normalize))
+    func configure(forward: Set<String>, backward: Set<String>, nextStop: Set<String> = []) {
+        self.forward = Set(forward.map(Self.normalizeStation))
+        self.backward = Set(backward.map(Self.normalizeStation))
+        self.nextStop = Set(nextStop.map(Self.normalizeStation))
         delegate.onText = { [weak self] lines in
             self?.evaluate(lines)
         }
@@ -312,6 +315,7 @@ final class DirectionCameraModel: ObservableObject, @unchecked Sendable {
         // what drove the verdict, shown to the rider so green/red isn't a mystery.
         let fwdHit = forward.first { !$0.isEmpty && norm.contains($0) }
         let bwdHit = backward.first { !$0.isEmpty && norm.contains($0) }
+        let nextHit = nextStop.first { !$0.isEmpty && norm.contains($0) }
 
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
@@ -321,6 +325,16 @@ final class DirectionCameraModel: ObservableObject, @unchecked Sendable {
             if let f = fwdHit {
                 self.missStreak = 0
                 self.verdict = .correct; self.matchedText = f
+            } else if let n = nextHit {
+                // A station sign pointing to the next stop → this platform. But a
+                // sign naming both neighbours ("← 잠원 | 고속터미널 | 교대 →")
+                // can't tell us which side we're on — stay neutral.
+                self.missStreak = 0
+                if bwdHit == nil {
+                    self.verdict = .correct; self.matchedText = n
+                } else {
+                    self.verdict = .ambiguous; self.matchedText = nil
+                }
             } else if let b = bwdHit {
                 self.missStreak = 0
                 self.verdict = .wrong; self.matchedText = b
@@ -336,11 +350,22 @@ final class DirectionCameraModel: ObservableObject, @unchecked Sendable {
         }
     }
 
+    /// OCR text: drop spaces/separators only. "오금행", "양재 방면" still contain
+    /// the bare station name, so suffixes needn't be stripped.
     static func normalize(_ s: String) -> String {
-        var t = s.replacingOccurrences(of: " ", with: "")
-        for suffix in ["방면", "방향", "행", "역", "방", "·", "・", ",", "/"] {
-            t = t.replacingOccurrences(of: suffix, with: "")
+        var t = s
+        for sep in [" ", "·", "・", ",", "/"] {
+            t = t.replacingOccurrences(of: sep, with: "")
         }
+        return t
+    }
+
+    /// Station marker: like `normalize`, plus a trailing "역" (서울역 → 서울).
+    /// Never strip 역/방/행 mid-name — 역삼 → "삼", 방이 → "이", 행당 → "당" would
+    /// match nearly any sign.
+    static func normalizeStation(_ s: String) -> String {
+        let t = normalize(s)
+        if t.hasSuffix("역"), t.count > 2 { return String(t.dropLast()) }
         return t
     }
 }

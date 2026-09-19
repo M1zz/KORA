@@ -757,6 +757,7 @@ struct SubwayNavigatorView: View {
             InlineDirectionScanner(
                 forwardMarkers: markers.forward,
                 backwardMarkers: markers.backward,
+                nextStopMarkers: markers.nextStop,
                 displayLanguage: displayLanguage
             )
             .overlay(alignment: .topTrailing) {
@@ -1127,13 +1128,17 @@ struct SubwayNavigatorView: View {
                             Text(nk)
                                 .font(.system(size: 26, weight: .black))
                                 .foregroundStyle(seg.line.color)
-                                .fixedSize(horizontal: false, vertical: true)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
                                 .frame(height: trackW, alignment: .center)
                                 .id(nk)
                                 .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
                         }
                     }
                     .clipped()
+                    // The Color.clear rows are width-flexible; without priority the
+                    // column splits space with the Spacer and long names wrap/clip.
+                    .layoutPriority(1)
                     Spacer(minLength: 8)
                     // Location-pin button — tap to correct the current-position
                     // estimate (opens PositionCorrectionSheet).
@@ -1403,18 +1408,18 @@ struct SubwayNavigatorView: View {
         }
     }
 
-    private func visualStationDot(station: String, isBoarding: Bool, isTrainHere: Bool, lineColor: Color, showLabel: Bool = true) -> some View {
-        VStack(spacing: 4) {
-            // Top slot: train icon if it's here, otherwise spacer for alignment
+    private func visualStationDot(station: String, isBoarding: Bool, isTrainHere: Bool, lineColor: Color, railLeft: Bool, railRight: Bool) -> some View {
+        progressNode(lineColor: lineColor, railLeft: railLeft, railRight: railRight) {
+            // Top slot: train icon if it's here
             if isTrainHere {
                 Image(systemName: "tram.fill")
                     .font(.title3)
                     .foregroundStyle(.orange)
                     .symbolEffect(.pulse)
             } else {
-                Color.clear.frame(height: 22)
+                Color.clear
             }
-
+        } marker: {
             Circle()
                 .fill(isBoarding ? lineColor : (isTrainHere ? Color.orange : Color.gray.opacity(0.5)))
                 .frame(width: isBoarding ? 18 : 12,
@@ -1423,16 +1428,35 @@ struct SubwayNavigatorView: View {
                     Circle()
                         .stroke(.white, lineWidth: isBoarding ? 2 : 0)
                 )
+        } label: {
+            Text(MetroLineData.displayName(for: station, language: displayLanguage))
+                .font(.caption).fontWeight(isBoarding ? .bold : .regular)
+                .foregroundStyle(isBoarding ? KORATheme.labelPrimary : KORATheme.labelSecondary)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+        }
+    }
 
-            if showLabel {
-                Text(MetroLineData.displayName(for: station, language: displayLanguage))
-                    .font(.system(size: 11)).fontWeight(isBoarding ? .bold : .regular)
-                    .foregroundStyle(isBoarding ? KORATheme.labelPrimary : KORATheme.labelSecondary)
-                    .multilineTextAlignment(.center)
-                    .autoFitLine(minScale: 0.7)
-            } else {
-                Color.clear.frame(height: 14)
+    /// One equal-width column of the progress diagram: fixed-height top slot,
+    /// marker centred on its rail halves, and a label row.
+    private func progressNode<Top: View, Marker: View, Label: View>(
+        lineColor: Color, railLeft: Bool, railRight: Bool,
+        @ViewBuilder top: () -> Top,
+        @ViewBuilder marker: () -> Marker,
+        @ViewBuilder label: () -> Label
+    ) -> some View {
+        VStack(spacing: 4) {
+            top().frame(height: 24)
+            ZStack {
+                HStack(spacing: 0) {
+                    Rectangle().fill(railLeft ? lineColor.opacity(0.4) : .clear)
+                    Rectangle().fill(railRight ? lineColor.opacity(0.4) : .clear)
+                }
+                .frame(height: 3)
+                marker()
             }
+            .frame(height: 24)
+            label().frame(height: 16)
         }
         .frame(maxWidth: .infinity)
     }
@@ -1511,7 +1535,9 @@ struct SubwayNavigatorView: View {
                 .font(.callout).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.labelSecondary)
 
-            HStack(alignment: .center, spacing: 0) {
+            // Equal-width nodes, each drawing its own rail halves, so the line runs
+            // unbroken through every dot centre.
+            HStack(alignment: .top, spacing: 0) {
                 if expanded {
                     ForEach(Array(expandedStations.enumerated()), id: \.offset) { idx, st in
                         visualStationDot(
@@ -1519,24 +1545,20 @@ struct SubwayNavigatorView: View {
                             isBoarding: st == alightKo,
                             isTrainHere: st == currentKo,
                             lineColor: seg.line.color,
-                            showLabel: false
+                            railLeft: idx > 0,
+                            railRight: idx < expandedStations.count - 1
                         )
-                        if idx < expandedStations.count - 1 {
-                            Rectangle()
-                                .fill(seg.line.color.opacity(0.4))
-                                .frame(height: 3)
-                        }
                     }
                 } else {
                     // Collapsed: current (tram) ⋯ destination.
                     visualStationDot(
                         station: currentKo, isBoarding: false, isTrainHere: true,
-                        lineColor: seg.line.color, showLabel: false
+                        lineColor: seg.line.color, railLeft: false, railRight: true
                     )
-                    progressEllipsisConnector(lineColor: seg.line.color)
+                    progressEllipsisNode(lineColor: seg.line.color)
                     visualStationDot(
                         station: alightKo, isBoarding: true, isTrainHere: false,
-                        lineColor: seg.line.color, showLabel: false
+                        lineColor: seg.line.color, railLeft: true, railRight: false
                     )
                 }
             }
@@ -1547,20 +1569,20 @@ struct SubwayNavigatorView: View {
         .clipShape(RoundedRectangle(cornerRadius: 12))
     }
 
-    /// A rail segment with a centered "⋯" standing in for the collapsed run of
+    /// A node with a centered "⋯" standing in for the collapsed run of
     /// intermediate stations between the current position and the destination.
-    private func progressEllipsisConnector(lineColor: Color) -> some View {
-        ZStack {
-            Rectangle()
-                .fill(lineColor.opacity(0.4))
-                .frame(height: 3)
+    private func progressEllipsisNode(lineColor: Color) -> some View {
+        progressNode(lineColor: lineColor, railLeft: true, railRight: true) {
+            Color.clear
+        } marker: {
             Text("⋯")
                 .font(.system(size: 24, weight: .black))
                 .foregroundStyle(lineColor.opacity(0.75))
                 .padding(.horizontal, 10)
                 .background(Color(.systemBackground))
+        } label: {
+            Color.clear
         }
-        .frame(maxWidth: .infinity)
     }
 
     /// Compact chip row showing alternative valid "행" signs — tap to switch displayed terminus.
@@ -1714,16 +1736,24 @@ struct SubwayNavigatorView: View {
     /// (e.g. a 사당행 when you're heading to 경마공원) is invalid — so "green" is
     /// "destination and beyond", and "red" is "everything before the destination"
     /// (which includes both short-turn termini and the opposite direction).
-    private func directionMarkers(for seg: JourneySegment) -> (forward: Set<String>, backward: Set<String>) {
+    ///
+    /// Two exceptions, because riders also aim at the platform's station sign
+    /// ("← 잠원 | 고속터미널 | 교대 →"):
+    /// - The boarding station itself is on every sign here, so it's no marker at all.
+    /// - The next stop is returned separately as `nextStop` (a weak green): a sign
+    ///   pointing to it means this platform — it's no short-turn terminus.
+    private func directionMarkers(for seg: JourneySegment) -> (forward: Set<String>, backward: Set<String>, nextStop: Set<String>) {
         let boarding = seg.stations.first ?? ""
         let dest = seg.stations.last ?? ""
         guard let route = seg.line.routes.first(where: { $0.stations.contains(boarding) && $0.stations.contains(dest) }),
               let bi = route.stations.firstIndex(of: boarding),
               let di = route.stations.firstIndex(of: dest), bi != di else {
             // Circular / unknown route: green = the actual path this train takes.
-            return (Set(seg.stations), [])
+            return (Set(seg.stations.dropFirst()), [], [])
         }
         let stations = route.stations
+        let step = di > bi ? 1 : -1
+        let next = stations[bi + step]
         var green = Set<String>()
         var red = Set<String>()
         if di > bi {
@@ -1734,7 +1764,10 @@ struct SubwayNavigatorView: View {
             red.formUnion(stations[(di + 1)...])
         }
         red.subtract(green)
-        return (forward: green, backward: red)
+        red.remove(boarding)
+        let nextStop: Set<String> = green.contains(next) ? [] : [next]
+        red.subtract(nextStop)
+        return (forward: green, backward: red, nextStop: nextStop)
     }
 
     private func resetJourney() {
