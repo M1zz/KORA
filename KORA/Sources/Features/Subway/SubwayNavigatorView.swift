@@ -164,7 +164,7 @@ struct SubwayNavigatorView: View {
         }
         .sheet(isPresented: $showLanguagePicker) {
             LanguagePickerSheet(languagePref: $languagePref)
-                .presentationDetents([.medium])
+                .presentationDetents([.medium, .large])
         }
         .sheet(isPresented: $showPositionCorrection) {
             if let j = journey, j.segments.indices.contains(currentBlockIdx) {
@@ -3210,6 +3210,8 @@ struct LanguagePickerSheet: View {
                         .foregroundStyle(KORATheme.labelPrimary)
                     }
                 }
+
+                DeveloperContactSection(lang: sheetLang)
             }
             .navigationTitle(NavLoc.languagePickerTitle.resolved(sheetLang))
             .navigationBarTitleDisplayMode(.inline)
@@ -3218,6 +3220,26 @@ struct LanguagePickerSheet: View {
                     Button(NavLoc.done.resolved(sheetLang)) { dismiss() }
                 }
             }
+        }
+    }
+}
+
+// MARK: - 개발자 문의
+struct DeveloperContactSection: View {
+    let lang: StationLanguage
+
+    var body: some View {
+        Section {
+            Link(destination: URL(string: "mailto:leeo@kakao.com")!) {
+                Label(NavLoc.contactEmail.resolved(lang), systemImage: "envelope")
+            }
+            Link(destination: URL(string: "https://instagram.com/lee25_ios")!) {
+                Label(NavLoc.contactInstagram.resolved(lang), systemImage: "paperplane")
+            }
+        } header: {
+            Text(NavLoc.contactSectionTitle.resolved(lang))
+        } footer: {
+            Text(NavLoc.contactFooter.resolved(lang))
         }
     }
 }

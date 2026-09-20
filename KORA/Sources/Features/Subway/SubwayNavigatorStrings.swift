@@ -396,6 +396,36 @@ extension NavLoc {
         zhHant: "自動"
     )
 
+    // Developer contact
+    static let contactSectionTitle = NavLoc(
+        ko: "개발자에게 문의",
+        ja: "開発者へのお問い合わせ",
+        en: "Contact the Developer",
+        zh: "联系开发者",
+        zhHant: "聯絡開發者"
+    )
+    static let contactEmail = NavLoc(
+        ko: "이메일로 문의하기",
+        ja: "メールで問い合わせる",
+        en: "Email",
+        zh: "通过邮件联系",
+        zhHant: "透過電子郵件聯絡"
+    )
+    static let contactInstagram = NavLoc(
+        ko: "인스타그램 DM (@lee25_ios)",
+        ja: "インスタグラムDM (@lee25_ios)",
+        en: "Instagram DM (@lee25_ios)",
+        zh: "Instagram 私信 (@lee25_ios)",
+        zhHant: "Instagram 私訊 (@lee25_ios)"
+    )
+    static let contactFooter = NavLoc(
+        ko: "버그 제보와 기능 제안을 환영합니다.",
+        ja: "バグ報告や機能のご提案を歓迎します。",
+        en: "Bug reports and feature suggestions are welcome.",
+        zh: "欢迎反馈问题和提出功能建议。",
+        zhHant: "歡迎回報問題並提出功能建議。"
+    )
+
     // Location errors
     static let locationErrorNoStation = NavLoc(
         ko: "근처에서 역을 찾을 수 없어요",
