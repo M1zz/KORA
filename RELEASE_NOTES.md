@@ -151,7 +151,7 @@ Nama stasiun sesuai papan di stasiun
 Widget dan izin ikut bahasa iPhone
 ```
 
-### 앱스토어 (노르웨이어 nb)
+### 앱스토어 (노르웨이어 보크말 nb)
 
 ```
 KORA finnes nå på 23 språk

@@ -10,6 +10,24 @@
 <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
 <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
 <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
+<link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
+<link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
+<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
+<link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
+<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
+<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
+<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
+<link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
+<link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
+<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
+<link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
+<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
+<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
+<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
+<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
+<link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
+<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
+<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
 <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
 <link rel="stylesheet" href="style.css">
 <link rel="icon" href="icon.png">
@@ -21,10 +39,12 @@
     if (t.indexOf('zh') === 0) {
       return /hant|-tw|-hk|-mo/.test(t) ? 'zh-Hant' : 'zh-Hans';
     }
-    if (t.indexOf('ko') === 0) return 'ko';
-    if (t.indexOf('ja') === 0) return 'ja';
-    if (t.indexOf('en') === 0) return 'en';
-    return null;
+    if (t.indexOf('pt') === 0) return 'pt-BR';
+    if (/^(nb|no|nn)(-|$)/.test(t)) return 'nb';
+    var base = t.split('-')[0];
+    if (base === 'in') base = 'id';
+    var known = ['ko', 'en', 'ja', 'de', 'es', 'fr', 'it', 'ru', 'cs', 'da', 'el', 'fi', 'id', 'nl', 'pl', 'sv', 'th', 'tr', 'vi'];
+    return known.indexOf(base) >= 0 ? base : null;
   }
   var prefs = (navigator.languages && navigator.languages.length)
     ? navigator.languages : [navigator.language || 'en'];
@@ -50,6 +70,24 @@
     <li><a href="ja/" hreflang="ja" lang="ja">日本語 — ホーム</a></li>
     <li><a href="zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文 — 首页</a></li>
     <li><a href="zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文 — 首頁</a></li>
+    <li><a href="de/" hreflang="de" lang="de">Deutsch — Start</a></li>
+    <li><a href="es/" hreflang="es" lang="es">Español — Inicio</a></li>
+    <li><a href="fr/" hreflang="fr" lang="fr">Français — Accueil</a></li>
+    <li><a href="it/" hreflang="it" lang="it">Italiano — Home</a></li>
+    <li><a href="pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil) — Início</a></li>
+    <li><a href="ru/" hreflang="ru" lang="ru">Русский — Главная</a></li>
+    <li><a href="cs/" hreflang="cs" lang="cs">Čeština — Úvod</a></li>
+    <li><a href="da/" hreflang="da" lang="da">Dansk — Forside</a></li>
+    <li><a href="el/" hreflang="el" lang="el">Ελληνικά — Αρχική</a></li>
+    <li><a href="fi/" hreflang="fi" lang="fi">Suomi — Etusivu</a></li>
+    <li><a href="id/" hreflang="id" lang="id">Bahasa Indonesia — Beranda</a></li>
+    <li><a href="nb/" hreflang="nb" lang="nb">Norsk — Hjem</a></li>
+    <li><a href="nl/" hreflang="nl" lang="nl">Nederlands — Home</a></li>
+    <li><a href="pl/" hreflang="pl" lang="pl">Polski — Start</a></li>
+    <li><a href="sv/" hreflang="sv" lang="sv">Svenska — Start</a></li>
+    <li><a href="th/" hreflang="th" lang="th">ไทย — หน้าแรก</a></li>
+    <li><a href="tr/" hreflang="tr" lang="tr">Türkçe — Ana Sayfa</a></li>
+    <li><a href="vi/" hreflang="vi" lang="vi">Tiếng Việt — Trang chủ</a></li>
   </ul>
 </div>
 </body>

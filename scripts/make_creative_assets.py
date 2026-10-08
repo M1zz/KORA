@@ -13,16 +13,14 @@
 
 ⚠️ 가격 · 할인 · 주소(URL) · 수상 · 다른 플랫폼 이름은 넣지 않는다(Apple 가이드).
 """
-import os, signal, subprocess, sys, pathlib, tempfile, time
+import json, os, signal, subprocess, sys, pathlib, tempfile, time
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 # 기기 화면 재료: 시뮬레이터에서 언어마다 찍은 원본(홍대입구 → 명동 경로, 탑승 중 화면).
-RAW = ROOT / "docs" / "screenshots" / "raw" / "creative"
+# scripts/capture_raw_screenshots.py 가 docs/screenshots/raw/<로케일>/ 에 찍는다.
+RAW = ROOT / "docs" / "screenshots" / "raw"
 OUT = ROOT / "docs" / "screenshots" / "creative"
 CHROME = "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-
-# 앱 언어 코드 → App Store Connect 로케일 (deploy.env LOCALES=ja,ko,en-US,zh-Hans,zh-Hant)
-STORE = {"en": "en-US"}
 
 # (가로, 세로, 안전 영역 left, top, right, bottom)
 SPEC = {
@@ -30,25 +28,18 @@ SPEC = {
     "search": (3840, 2560, (836, 765, 3004, 1795)),
 }
 
-# 검색 결과: 타는 방향은 열차 표시 그대로, 내릴 역은 진동으로(프로모션 텍스트와 같은 이야기).
-# 눈썹글은 그 나라 사람이 검색창에 칠 말.
-SEARCH = {
-    "ja":      ("韓国 地下鉄", "乗る方向は<br>行き先表示のまま", "降りる駅は振動でお知らせ"),
-    "ko":      ("지하철 길찾기", "타는 방향은<br>열차 표시 그대로", "내릴 역은 진동으로 알려 드려요"),
-    "en":      ("Seoul subway", "Always board<br>the right train", "A buzz tells you when to get off"),
-    "zh-Hans": ("首尔地铁", "上车方向<br>照着列车显示走", "快到站时，振动提醒你下车"),
-    "zh-Hant": ("首爾地鐵", "搭乘方向<br>照著列車顯示走", "快到站時，震動提醒你下車"),
-}
-
-# 헤더는 한 가지 약속: 타는 방향부터 내릴 역까지 한 화면으로(소개 페이지 h1 과 같은 말).
+# 문구 원본: scripts/i18n/store/<로케일>.json 의 creative
+#   header: [눈썹글, 헤드라인]  — 헤더는 한 가지 약속: 타는 방향부터 내릴 역까지(소개 페이지 h1 과 같은 말)
+#   search: [눈썹글, 헤드라인, 보조 한 줄] — 스크린샷 1장과 같은 이야기. 눈썹글은 그 나라 사람이 검색창에 칠 말
 # ⚠️ 기계번역하지 않는다. 언어마다 따로 쓴다.
-HEADER = {
-    "ja":      ("韓国の地下鉄ガイド", "乗る方向から<br>降りる駅まで"),
-    "ko":      ("한국 지하철 길찾기", "타는 방향부터<br>내릴 역까지"),
-    "en":      ("Korea subway guide", "The right train,<br>the right stop"),
-    "zh-Hans": ("韩国地铁指南", "从上车方向<br>到下车站"),
-    "zh-Hant": ("韓國地鐵指南", "從搭乘方向<br>到下車站"),
-}
+STORE_DIR = ROOT / "scripts" / "i18n" / "store"
+LOCALES = ["ko", "en-US", "ja", "zh-Hans", "zh-Hant", "de", "es", "fr", "it", "pt-BR", "ru", "cs",
+           "da", "el", "fi", "id", "nb", "nl", "pl", "sv", "th", "tr", "vi"]
+
+
+def copy(lang, kind):
+    return json.loads((STORE_DIR / f"{lang}.json").read_text(encoding="utf-8"))["creative"][kind]
+
 
 # 노선 색(장식): 2호선 · 4호선 · 공항철도 · 1호선 · 3호선
 LINES = ["#00A84D", "#00A5DE", "#0090D2", "#0052A4", "#EF7C1C"]
@@ -62,6 +53,7 @@ body { background:#fdfaf7; position:relative; -webkit-font-smoothing:antialiased
 body:lang(ja) { font-family:-apple-system, "Hiragino Sans", sans-serif; }
 body:lang(zh-Hans) { font-family:-apple-system, "PingFang SC", sans-serif; }
 body:lang(zh-Hant) { font-family:-apple-system, "PingFang TC", sans-serif; }
+body:lang(th) { font-family:-apple-system, "Thonburi", sans-serif; }
 .glow { position:absolute; border-radius:50%%; filter:blur(170px); pointer-events:none; }
 .text { position:absolute; display:flex; flex-direction:column; justify-content:center; }
 .eyebrow { font-weight:700; color:#D85A30; letter-spacing:-0.01em; line-height:1.15; }
@@ -111,7 +103,7 @@ PROFILE = TMP / "chrome-profile"
 
 def phone(lang, img, left, top, width, rotate=0):
     pad = round(width * 0.04)
-    src = (RAW / STORE.get(lang, lang) / img).as_uri()
+    src = (RAW / lang / img).as_uri()
     return (f'<div class="phone" style="left:{left}px;top:{top}px;width:{width}px;padding:{pad}px;'
             f'border-radius:{round(width * 0.19)}px;transform:rotate({rotate}deg)">'
             f'<img src="{src}" style="border-radius:{round(width * 0.155)}px"></div>')
@@ -131,7 +123,7 @@ def metro(W, H, paths):
 
 def search_html(lang):
     W, H, (l, t, r, b) = SPEC["search"]
-    eyebrow, headline, sub = SEARCH[lang]
+    eyebrow, headline, sub = copy(lang, "search")
     sw, sh = r - l, b - t
     col = int(sw * 0.58)
     x = l + col + 40
@@ -140,8 +132,8 @@ def search_html(lang):
     return f"""
 {deco}
 <div class="glow" style="left:{x - 200}px;top:500px;width:1800px;height:1800px;background:rgba(216,90,48,.12)"></div>
-{phone(lang, "01-route.png", x + 680, t - 300, 820, 7)}
-{phone(lang, "02-ride.png", x + 110, t - 200, 860, -4)}
+{phone(lang, "route.png", x + 680, t - 300, 820, 7)}
+{phone(lang, "ride.png", x + 110, t - 200, 860, -4)}
 <div class="text" style="left:{l}px;top:{t}px;width:{col}px;height:{sh}px">
   <div class="eyebrow" style="font-size:92px">{eyebrow}</div>
   <div class="headline" data-max="220" data-min="120" style="margin-top:40px">{headline}</div>
@@ -151,15 +143,15 @@ def search_html(lang):
 
 def header_html(lang):
     W, H, (l, t, r, b) = SPEC["header"]
-    eyebrow, headline = HEADER[lang]
+    eyebrow, headline = copy(lang, "header")
     sw, sh = r - l, b - t
     deco = metro(W, H, [(LINES[2], [(-40, 160), (1000, 160), (1180, 340), (1180, 420)]),
                         (LINES[4], [(3900, 1500), (2900, 1500), (2700, 1300), (2700, 1250)])])
     return f"""
 {deco}
 <div class="glow" style="left:{l - 200}px;top:{t - 400}px;width:{sw + 400}px;height:{sh + 800}px;background:rgba(216,90,48,.10)"></div>
-{phone(lang, "01-route.png", 330, 330, 640, -8)}
-{phone(lang, "02-ride.png", 2870, 330, 640, 8)}
+{phone(lang, "route.png", 330, 330, 640, -8)}
+{phone(lang, "ride.png", 2870, 330, 640, 8)}
 <div class="text" style="left:{l}px;top:{t}px;width:{sw}px;height:{sh}px;align-items:center;text-align:center">
   <div class="eyebrow" style="font-size:76px">{eyebrow}</div>
   <div class="headline" data-max="200" data-min="110" style="margin-top:28px">{headline}</div>
@@ -167,7 +159,7 @@ def header_html(lang):
 
 
 def html_lang(lang):
-    return lang
+    return "en" if lang == "en-US" else lang
 
 
 def chrome(args, log, done, timeout=300):
@@ -217,7 +209,7 @@ def render(lang, kind):
         raise SystemExit(f"글 맞추기가 끝나지 않았다: {lang} {kind}")
     if 'data-overflow="1"' in dom:
         raise SystemExit(f"글이 안전 영역을 넘는다: {lang} {kind} - 문구를 줄일 것")
-    out_dir = OUT / STORE.get(lang, lang)
+    out_dir = OUT / lang
     out_dir.mkdir(parents=True, exist_ok=True)
     out_png = out_dir / f"{kind}.png"
     out_png.unlink(missing_ok=True)
@@ -233,9 +225,9 @@ def render(lang, kind):
 
 
 if __name__ == "__main__":
-    langs = sys.argv[1:] or list(SEARCH)
+    langs = sys.argv[1:] or LOCALES
     for lang in langs:
-        if lang not in SEARCH:
-            raise SystemExit(f"모르는 언어: {lang} (아는 것: {', '.join(SEARCH)})")
+        if lang not in LOCALES:
+            raise SystemExit(f"모르는 로케일: {lang} (아는 것: {', '.join(LOCALES)})")
         for kind in ("header", "search"):
             render(lang, kind)

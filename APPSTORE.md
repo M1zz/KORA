@@ -359,7 +359,7 @@ Seoul Metro für Reisende
 
 ### 키워드
 
-busan,incheon,daegu,daejeon,gwangju,gtx,arex,flughafen,zug,umsteigen,route,station,urlaub
+busan,incheon,daegu,daejeon,gwangju,gtx,arex,flughafen,zug,umsteigen,route,station,urlaub,verkehr
 
 ### 프로모션 텍스트
 
@@ -1292,7 +1292,7 @@ ZASIĘG
 Około 930 stacji w aglomeracji Seulu (Seul, Gyeonggi i Incheon, w tym GTX-A, AREX, linia Shinbundang i kolej lekka) oraz w Pusanie, Daegu, Gwangju i Daejeon. Miasto zmienisz przyciskami regionów w wyborze stacji.
 
 DZIAŁA OFFLINE
-Trasy są liczone na urządzeniu, więc wyszukiwanie działa bez internetu. Połączenia wymagają tylko przyjazdy w czasie rzeczywistym.
+Trasy są liczone na urządzeniu, więc wyszukiwanie działa bez internetu. Internet jest potrzebny tylko do przyjazdów w czasie rzeczywistym.
 
 PRYWATNOŚĆ PRZEDE WSZYSTKIM
 Bez konta, reklam i zakupów w aplikacji. Lokalizacja, aparat i rozpoznawanie komunikatów są przetwarzane na urządzeniu i nigdy nie są zapisywane ani wysyłane. Zbieramy tylko anonimowe statystyki użycia, by ulepszać aplikację.
@@ -1532,7 +1532,7 @@ KORA: Tàu điện ngầm Hàn Quốc
 
 ### 키워드
 
-incheon,daegu,daejeon,gwangju,gtx,arex,sân bay,metro,chuyển tuyến,lộ trình,ga,du lịch,khách du lịch
+incheon,daegu,daejeon,gwangju,gtx,arex,metro,ga,sân,bay,chuyển,tuyến,lộ,trình,du,lịch,khách,phượt
 
 ### 프로모션 텍스트
 
