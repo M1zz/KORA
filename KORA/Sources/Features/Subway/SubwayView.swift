@@ -15,3 +15,19 @@ struct SubwayView: View {
 #Preview {
     SubwayView()
 }
+
+/// Fixed screen states for App Store screenshots, chosen with the launch
+/// argument `-KORAShotScene <name>`. Only honoured in Debug builds.
+enum ScreenshotScene: String {
+    case route, board, ride, search, language
+
+    static var current: ScreenshotScene? {
+        #if DEBUG
+        UserDefaults.standard.string(forKey: "KORAShotScene").flatMap(ScreenshotScene.init(rawValue:))
+        #else
+        nil
+        #endif
+    }
+
+    static var isActive: Bool { current != nil }
+}

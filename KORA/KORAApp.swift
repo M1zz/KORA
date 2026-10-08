@@ -48,6 +48,8 @@ struct KORAApp: App {
             .displayFrequency(.immediate),
             .datastoreLocation(.applicationDefault)
         ])
+        // Screenshot runs must show clean screens — no coaching popovers.
+        if ScreenshotScene.isActive { Tips.hideAllTipsForTesting() }
     }
 
     var body: some Scene {

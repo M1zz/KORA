@@ -34,6 +34,114 @@
             "state" : "translated",
             "value" : "韓國導航"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korea-Wegweiser"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guía Corea"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guide Corée"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guida Corea"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guia Coreia"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Навигатор Корея"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Průvodce Koreou"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koreaguide"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Οδηγός Κορέας"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korea-opas"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navigasi Korea"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koreaguide"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korea Wegwijzer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nawigator Korea"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koreaguiden"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "นำทางเกาหลี"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kore Rehberi"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Metro Hàn Quốc"
+          }
         }
       }
     },
@@ -82,6 +190,114 @@
             "state" : "translated",
             "value" : "用相機對準月台指示牌或列車終點站顯示幕，確認您搭乘的方向是否正確。畫面僅在裝置上處理，不會儲存或傳送。"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richte die Kamera auf ein Bahnsteigschild oder die Zielanzeige des Zugs, um zu prüfen, ob du in die richtige Richtung einsteigst. Bilder werden nur auf deinem Gerät verarbeitet und weder gespeichert noch gesendet."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apunta la cámara a un letrero del andén o al letrero de destino del tren para comprobar que subes en el sentido correcto. Las imágenes se procesan en tu dispositivo y nunca se guardan ni se envían."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visez un panneau du quai ou l'affichage de destination du train pour vérifier que vous montez dans le bon sens. Les images sont traitées sur votre appareil et ne sont jamais enregistrées ni envoyées."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inquadra un cartello della banchina o l'indicatore di destinazione del treno per verificare di salire nella direzione giusta. Le immagini vengono elaborate sul dispositivo e non vengono mai salvate né inviate."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aponte a câmera para uma placa da plataforma ou para o letreiro de destino do trem e confira se você está embarcando no sentido certo. As imagens são processadas no aparelho e nunca são salvas nem enviadas."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Наведите камеру на указатель на платформе или табло поезда, чтобы проверить, в правильную ли сторону вы садитесь. Изображение обрабатывается только на устройстве и не сохраняется и не передаётся."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namiřte fotoaparát na ceduli na nástupišti nebo na směrovou tabuli vlaku a ověřte si, že nastupujete správným směrem. Obraz se zpracovává jen v zařízení a nikdy se neukládá ani neodesílá."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ret kameraet mod et skilt på perronen eller togets destinationsskilt for at tjekke, at du stiger på i den rigtige retning. Billeder behandles kun på din enhed og bliver aldrig gemt eller sendt."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Στρέψτε την κάμερα σε πινακίδα της αποβάθρας ή στην ένδειξη προορισμού του τρένου για να ελέγξετε ότι επιβιβάζεστε προς τη σωστή κατεύθυνση. Οι εικόνες επεξεργάζονται μόνο στη συσκευή και δεν αποθηκεύονται ούτε αποστέλλονται."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suuntaa kamera laiturin kylttiin tai junan määränpääkylttiin, niin näet, nouseeko oikeaan suuntaan menevään junaan. Kuvat käsitellään vain laitteessa, eikä niitä tallenneta tai lähetetä."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arahkan kamera ke papan petunjuk di peron atau papan tujuan kereta untuk memastikan kamu naik ke arah yang benar. Gambar hanya diproses di perangkat dan tidak pernah disimpan atau dikirim."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rett kameraet mot et skilt på plattformen eller togets destinasjonsskilt for å sjekke at du går på i riktig retning. Bilder behandles bare på enheten og blir aldri lagret eller sendt."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Richt de camera op een bord op het perron of op de bestemmingsaanduiding van de trein om te checken of je de goede kant op gaat. Beelden worden alleen op je apparaat verwerkt en nooit bewaard of verstuurd."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skieruj aparat na tablicę na peronie lub tablicę kierunkową pociągu, by sprawdzić, czy wsiadasz w dobrym kierunku. Obraz jest przetwarzany tylko na urządzeniu i nigdy nie jest zapisywany ani wysyłany."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rikta kameran mot en skylt på plattformen eller tågets destinationsskylt för att kolla att du kliver på i rätt riktning. Bilder behandlas bara på enheten och sparas eller skickas aldrig."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ส่องกล้องไปที่ป้ายบนชานชาลาหรือป้ายปลายทางของรถไฟ เพื่อเช็กว่าขึ้นรถไฟถูกทิศทาง ภาพจะประมวลผลบนอุปกรณ์เท่านั้น ไม่มีการบันทึกหรือส่งออก"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doğru yönde bindiğini kontrol etmek için kamerayı perondaki tabelaya ya da trenin gideceği yer tabelasına tut. Görüntüler yalnızca cihazında işlenir; asla kaydedilmez veya gönderilmez."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hướng camera vào biển chỉ dẫn trên sân ga hoặc bảng điểm đến của tàu để kiểm tra bạn lên đúng hướng. Hình ảnh chỉ được xử lý trên thiết bị, không bao giờ được lưu hay gửi đi."
+          }
         }
       }
     },
@@ -117,6 +333,114 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "用於尋找離您最近的地鐵站，並在搭乘時確認您所在的車站。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Damit findest du die nächste U-Bahn-Station und siehst während der Fahrt, an welcher Station du bist."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para encontrar la estación de metro más cercana y saber en qué estación estás durante el viaje."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Permet de trouver la station de métro la plus proche et de savoir à quelle station vous êtes pendant le trajet."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Serve a trovare la stazione della metro più vicina e a sapere in che stazione sei durante il viaggio."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usada para encontrar a estação de metrô mais próxima e saber em que estação você está durante a viagem."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нужна, чтобы найти ближайшую станцию метро и понимать, на какой станции вы находитесь во время поездки."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slouží k nalezení nejbližší stanice metra a k tomu, abyste během jízdy věděli, ve které stanici jste."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bruges til at finde den nærmeste metrostation og til at se, hvilken station du er ved under turen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χρησιμοποιείται για να βρεθεί ο πλησιέστερος σταθμός μετρό και να ξέρετε σε ποιον σταθμό βρίσκεστε κατά τη διαδρομή."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Käytetään lähimmän metroaseman löytämiseen ja sen näyttämiseen, millä asemalla olet matkan aikana."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digunakan untuk mencari stasiun kereta bawah tanah terdekat dan mengetahui kamu sedang di stasiun mana selama perjalanan."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brukes til å finne nærmeste T-banestasjon og vise hvilken stasjon du er på underveis."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiermee vind je het dichtstbijzijnde metrostation en zie je onderweg op welk station je bent."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Służy do znalezienia najbliższej stacji metra i pokazania, na jakiej stacji jesteś podczas jazdy."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Används för att hitta närmaste tunnelbanestation och visa vilken station du är på under resan."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ใช้เพื่อค้นหาสถานีรถไฟใต้ดินที่ใกล้ที่สุด และดูว่าตอนนี้อยู่สถานีไหนระหว่างเดินทาง"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En yakın metro istasyonunu bulmak ve yolculuk sırasında hangi istasyonda olduğunu göstermek için kullanılır."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dùng để tìm ga tàu điện ngầm gần nhất và biết bạn đang ở ga nào trong lúc đi tàu."
           }
         }
       }
@@ -154,6 +478,114 @@
             "state" : "translated",
             "value" : "辨識車廂廣播，準確告訴您目前車站以及開門方向。語音僅在裝置上處理，不會儲存或傳送。"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hört die Durchsagen im Zug mit, um die aktuelle Station und die Ausstiegsseite zu bestätigen. Audio wird nur auf deinem Gerät verarbeitet und weder gespeichert noch gesendet."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Escucha los avisos dentro del tren para confirmar la estación actual y de qué lado se abren las puertas. El audio se procesa en tu dispositivo y nunca se guarda ni se envía."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Écoute les annonces dans le train pour confirmer la station actuelle et le côté d'ouverture des portes. Le son est traité sur votre appareil et n'est jamais enregistré ni envoyé."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ascolta gli annunci a bordo per confermare la stazione attuale e il lato di apertura delle porte. L'audio viene elaborato sul dispositivo e non viene mai salvato né inviato."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ouve os avisos sonoros dentro do trem para confirmar a estação atual e o lado de abertura das portas. O áudio é processado no aparelho e nunca é salvo nem enviado."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Распознаёт объявления в вагоне, чтобы подтвердить текущую станцию и сторону выхода. Звук обрабатывается только на устройстве и не сохраняется и не передаётся."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poslouchá hlášení ve voze, aby potvrdil aktuální stanici a stranu výstupu. Zvuk se zpracovává jen v zařízení a nikdy se neukládá ani neodesílá."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lytter til udkaldene i toget for at bekræfte den nuværende station og hvilken side dørene åbner i. Lyden behandles kun på din enhed og bliver aldrig gemt eller sendt."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ακούει τις ανακοινώσεις μέσα στο τρένο για να επιβεβαιώσει τον τρέχοντα σταθμό και την πλευρά αποβίβασης. Ο ήχος επεξεργάζεται μόνο στη συσκευή και δεν αποθηκεύεται ούτε αποστέλλεται."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kuuntelee junan kuulutuksia, jotta nykyinen asema ja ovien avautumispuoli voidaan vahvistaa. Ääni käsitellään vain laitteessa, eikä sitä tallenneta tai lähetetä."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mendengarkan pengumuman di dalam kereta untuk memastikan stasiun saat ini dan sisi pintu yang terbuka. Audio hanya diproses di perangkat dan tidak pernah disimpan atau dikirim."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lytter til annonseringene i toget for å bekrefte nåværende stasjon og hvilken side dørene åpnes på. Lyden behandles bare på enheten og blir aldri lagret eller sendt."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Luistert naar de omroep in de trein om het huidige station en de uitstapkant te bevestigen. Audio wordt alleen op je apparaat verwerkt en nooit bewaard of verstuurd."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Słucha komunikatów w wagonie, by potwierdzić bieżącą stację i stronę wyjścia. Dźwięk jest przetwarzany tylko na urządzeniu i nigdy nie jest zapisywany ani wysyłany."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lyssnar på utropen i tåget för att bekräfta nuvarande station och vilken sida dörrarna öppnas på. Ljud behandlas bara på enheten och sparas eller skickas aldrig."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ฟังเสียงประกาศในขบวนรถเพื่อยืนยันสถานีปัจจุบันและฝั่งประตูที่จะเปิด เสียงจะประมวลผลบนอุปกรณ์เท่านั้น ไม่มีการบันทึกหรือส่งออก"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bulunduğun istasyonu ve kapıların hangi taraftan açılacağını doğrulamak için vagondaki anonsları dinler. Ses yalnızca cihazında işlenir; asla kaydedilmez veya gönderilmez."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nghe thông báo trên tàu để xác nhận ga hiện tại và phía cửa sẽ mở. Âm thanh chỉ được xử lý trên thiết bị, không bao giờ được lưu hay gửi đi."
+          }
         }
       }
     },
@@ -190,6 +622,114 @@
             "state" : "translated",
             "value" : "搭乘時透過加速度計偵測列車的出發與停靠，以準確顯示目前車站。"
           }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erkennt mit dem Beschleunigungssensor, wann der Zug anfährt und hält, damit die aktuelle Station während der Fahrt stimmt."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usa el acelerómetro para detectar cuándo el tren arranca y se detiene, y así mantener exacta la estación actual durante el viaje."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utilise l'accéléromètre pour détecter les départs et les arrêts du train afin que la station actuelle reste exacte pendant le trajet."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usa l'accelerometro per rilevare partenze e fermate del treno, così la stazione attuale resta precisa durante il viaggio."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usa o acelerômetro para detectar quando o trem parte e para, mantendo a estação atual precisa durante a viagem."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "С помощью акселерометра определяет отправление и остановки поезда, чтобы текущая станция в поездке была точной."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pomocí akcelerometru rozpozná rozjezd a zastavení vlaku, aby aktuální stanice během jízdy odpovídala."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bruger accelerometeret til at registrere, når toget kører og standser, så den nuværende station passer under turen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χρησιμοποιεί το επιταχυνσιόμετρο για να εντοπίζει πότε το τρένο ξεκινά και σταματά, ώστε ο τρέχων σταθμός να είναι ακριβής."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tunnistaa kiihtyvyysanturilla junan lähdöt ja pysähdykset, jotta nykyinen asema pysyy oikeana matkan aikana."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memakai akselerometer untuk mendeteksi kapan kereta berangkat dan berhenti, agar stasiun saat ini tetap akurat selama perjalanan."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bruker akselerometeret til å merke når toget kjører og stopper, slik at nåværende stasjon stemmer underveis."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gebruikt de versnellingsmeter om te merken wanneer de trein vertrekt en stopt, zodat het huidige station onderweg klopt."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Za pomocą akcelerometru wykrywa ruszanie i zatrzymywanie się pociągu, by bieżąca stacja była dokładna podczas jazdy."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Använder accelerometern för att känna av när tåget avgår och stannar, så att nuvarande station stämmer under resan."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ใช้มาตรวัดความเร่งตรวจจับตอนรถไฟออกตัวและจอด เพื่อให้แสดงสถานีปัจจุบันได้แม่นยำระหว่างเดินทาง"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yolculuk sırasında bulunduğun istasyonu doğru göstermek için ivmeölçerle trenin kalkışını ve duruşunu algılar."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dùng cảm biến gia tốc để nhận biết khi tàu chạy và dừng, giúp hiển thị đúng ga hiện tại trong lúc đi tàu."
+          }
         }
       }
     },
@@ -225,6 +765,114 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "用於從車廂廣播中辨識站名。辨識全部在裝置上完成。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erkennt Stationsnamen in den Durchsagen im Zug. Die Erkennung erfolgt vollständig auf deinem Gerät."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reconoce los nombres de las estaciones en los avisos del tren. El reconocimiento se hace por completo en tu dispositivo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reconnaît les noms de stations dans les annonces du train. La reconnaissance se fait entièrement sur votre appareil."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riconosce i nomi delle stazioni negli annunci a bordo. Il riconoscimento avviene interamente sul dispositivo."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reconhece os nomes das estações nos avisos do trem. O reconhecimento acontece totalmente no aparelho."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Распознаёт названия станций в объявлениях в вагоне. Распознавание полностью выполняется на устройстве."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozpoznává názvy stanic v hlášeních ve voze. Rozpoznávání probíhá výhradně v zařízení."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genkender stationsnavne i udkaldene i toget. Genkendelsen sker udelukkende på din enhed."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αναγνωρίζει ονόματα σταθμών στις ανακοινώσεις του τρένου. Η αναγνώριση γίνεται εξ ολοκλήρου στη συσκευή."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tunnistaa asemien nimet junan kuulutuksista. Tunnistus tehdään kokonaan laitteessa."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengenali nama stasiun dari pengumuman di dalam kereta. Pengenalan sepenuhnya dilakukan di perangkat."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjenkjenner stasjonsnavn i annonseringene i toget. Gjenkjenningen skjer helt på enheten."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herkent stationsnamen in de omroep in de trein. De herkenning gebeurt volledig op je apparaat."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozpoznaje nazwy stacji w komunikatach w wagonie. Rozpoznawanie odbywa się w całości na urządzeniu."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Känner igen stationsnamn i utropen i tåget. Igenkänningen sker helt på enheten."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ใช้จดจำชื่อสถานีจากเสียงประกาศในขบวนรถ การจดจำทั้งหมดทำบนอุปกรณ์"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vagondaki anonslarda istasyon adlarını tanır. Tanıma tamamen cihazında yapılır."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhận dạng tên ga trong thông báo trên tàu. Việc nhận dạng diễn ra hoàn toàn trên thiết bị."
           }
         }
       }

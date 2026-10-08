@@ -13,6 +13,7 @@
 		9C8F74722FC6E3A100B6DA22 /* widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9CD2A3152FEA336B002410B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9CD2A3142FEA336B002410B9 /* GoogleService-Info.plist */; };
 		9CFBA5E12FEA300000000001 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9CFBA5E12FEA300000000002 /* FirebaseAnalytics */; };
+		A840DAF76879186E63CC68B5 /* SubwayNavigatorCatalog.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BF0AF98EA2E04687A92072 /* SubwayNavigatorCatalog.swift */; };
 		AA001 /* KORAApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA101 /* KORAApp.swift */; };
 		AA012 /* KORATheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA112 /* KORATheme.swift */; };
 		AA018 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA118 /* Assets.xcassets */; };
@@ -39,8 +40,8 @@
 		AA070 /* SubwayLineDataExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA170 /* SubwayLineDataExpansion.swift */; };
 		AA071 /* SubwayLineDataRegional.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA171 /* SubwayLineDataRegional.swift */; };
 		AA072 /* SubwayStationDataExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA172 /* SubwayStationDataExpansion.swift */; };
-		D1286038A08AD446436B2949 /* LeeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = B166D3AACB5B9C90AC428313 /* LeeoKit */; };
 		C62E585A5BD40DD03A69611E /* KORASpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D94BF998F4FA289367D996 /* KORASpec.swift */; };
+		D1286038A08AD446436B2949 /* LeeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = B166D3AACB5B9C90AC428313 /* LeeoKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		53D94BF998F4FA289367D996 /* KORASpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORASpec.swift; sourceTree = "<group>"; };
 		58FF4F082FC47ADC00DF7156 /* KORA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KORA.entitlements; sourceTree = "<group>"; };
 		9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -102,9 +104,9 @@
 		AA171 /* SubwayLineDataRegional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineDataRegional.swift; sourceTree = "<group>"; };
 		AA172 /* SubwayStationDataExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationDataExpansion.swift; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0BF0AF98EA2E04687A92072 /* SubwayNavigatorCatalog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubwayNavigatorCatalog.swift; sourceTree = "<group>"; };
 		F3C1F37D764C0981336FB8ED /* SubwayStationChineseTraditionalNames.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubwayStationChineseTraditionalNames.swift; sourceTree = "<group>"; };
 		F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
-		53D94BF998F4FA289367D996 /* KORASpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORASpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -270,6 +272,7 @@
 				AA161 /* StationAnnouncementListener.swift */,
 				AA162 /* PlatformDirectionScanner.swift */,
 				F3C1F37D764C0981336FB8ED /* SubwayStationChineseTraditionalNames.swift */,
+				B0BF0AF98EA2E04687A92072 /* SubwayNavigatorCatalog.swift */,
 			);
 			path = Subway;
 			sourceTree = "<group>";
@@ -376,6 +379,24 @@
 				ko,
 				"zh-Hans",
 				"zh-Hant",
+				de,
+				es,
+				fr,
+				it,
+				"pt-BR",
+				ru,
+				cs,
+				da,
+				el,
+				fi,
+				id,
+				nb,
+				nl,
+				pl,
+				sv,
+				th,
+				tr,
+				vi,
 				Base,
 			);
 			mainGroup = AA400;
@@ -451,6 +472,7 @@
 				AA061 /* StationAnnouncementListener.swift in Sources */,
 				AA062 /* PlatformDirectionScanner.swift in Sources */,
 				178554DE9CC7D8AF586969BA /* SubwayStationChineseTraditionalNames.swift in Sources */,
+				A840DAF76879186E63CC68B5 /* SubwayNavigatorCatalog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,20 +767,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9CFBA5E12FEA300000000003 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 11.0.0;
-			};
-		};
 		0F3D8391B5D89060B177C096 /* XCRemoteSwiftPackageReference "LeeoKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/M1zz/LeeoKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 3.16.1;
+			};
+		};
+		9CFBA5E12FEA300000000003 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

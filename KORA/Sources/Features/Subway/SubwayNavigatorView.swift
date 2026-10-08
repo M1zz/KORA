@@ -179,6 +179,9 @@ struct SubwayNavigatorView: View {
             }
         }
         .onAppear {
+            #if DEBUG
+            if ScreenshotScene.current != nil { applyScreenshotScene(); return }
+            #endif
             autoLocateIfNeeded()
         }
         .onChange(of: fromStation) { _, new in
@@ -1018,7 +1021,7 @@ struct SubwayNavigatorView: View {
             positionTracker.start(seg: seg)
 
             // Listen to PA announcements for ground-truth station confirmation.
-            if await announcer.requestAuthorization() {
+            if !ScreenshotScene.isActive, await announcer.requestAuthorization() {
                 announcer.start(candidates: seg.stations) { station, isCurrent in
                     positionTracker.confirmAnnouncedStation(station, isCurrent: isCurrent)
                 }
@@ -1384,46 +1387,19 @@ struct SubwayNavigatorView: View {
     private func a11yNextStop(currentKo: String, nextKo: String) -> String {
         let cur = MetroLineData.displayName(for: currentKo, language: displayLanguage)
         let nxt = MetroLineData.displayName(for: nextKo, language: displayLanguage)
-        switch displayLanguage {
-        case .korean:   return "\(cur)역 출발, 다음 정거장 \(nxt)역"
-        case .japanese: return "\(cur)駅を出発、次は \(nxt) 駅"
-        case .english:  return "Departing \(cur), next stop \(nxt)"
-        case .chinese:  return "从\(cur)出发，下一站\(nxt)"
-        case .chineseTraditional: return "從\(cur)出發，下一站\(nxt)"
-        }
+        return NavLoc.a11yNextStop.fill(displayLanguage, cur, nxt)
     }
 
     private func a11yNearCurrent(currentKo: String, nextKo: String?) -> String {
         let cur = MetroLineData.displayName(for: currentKo, language: displayLanguage)
         let nxt = nextKo.map { MetroLineData.displayName(for: $0, language: displayLanguage) } ?? ""
-        switch displayLanguage {
-        case .korean:   return "현재 \(cur)역 근처, 다음 \(nxt)역"
-        case .japanese: return "現在 \(cur) 駅付近、次は \(nxt) 駅"
-        case .english:  return "Near \(cur), next \(nxt)"
-        case .chinese:  return "当前在\(cur)附近，下一站\(nxt)"
-        case .chineseTraditional: return "目前在\(cur)附近，下一站\(nxt)"
-        }
+        return NavLoc.a11yNearCurrent.fill(displayLanguage, cur, nxt)
     }
 
     private func a11yStopsToAlight(alightKo: String, stops: Int, mins: Int?) -> String {
         let dest = MetroLineData.displayName(for: alightKo, language: displayLanguage)
-        switch displayLanguage {
-        case .korean:
-            let base = "\(dest)역까지 \(stops)정거장 남음"
-            return mins.map { "\(base), 약 \($0)분" } ?? base
-        case .japanese:
-            let base = "\(dest) 駅まであと \(stops) 駅"
-            return mins.map { "\(base)、約 \($0) 分" } ?? base
-        case .english:
-            let base = "\(stops) stops to \(dest)"
-            return mins.map { "\(base), about \($0) min" } ?? base
-        case .chinese:
-            let base = "距\(dest)还有\(stops)站"
-            return mins.map { "\(base)，约\($0)分钟" } ?? base
-        case .chineseTraditional:
-            let base = "距\(dest)還有\(stops)站"
-            return mins.map { "\(base)，約\($0)分鐘" } ?? base
-        }
+        let base = NavLoc.a11yStopsToDest.fill(displayLanguage, NavLoc.stopsRemaining(stops, displayLanguage), dest)
+        return mins.map { NavLoc.a11yAboutMinutes.fill(displayLanguage, base, "\($0)") } ?? base
     }
 
     /// Shows where the user currently is relative to the destination, with an
@@ -1444,15 +1420,7 @@ struct SubwayNavigatorView: View {
             : []
 
         let alightDisplay = MetroLineData.displayName(for: alightKo, language: displayLanguage)
-        let towardLabel: String = {
-            switch displayLanguage {
-            case .korean:   return "\(alightDisplay)까지"
-            case .japanese: return "\(alightDisplay)まで"
-            case .english:  return "To \(alightDisplay)"
-            case .chinese:  return "前往\(alightDisplay)"
-            case .chineseTraditional: return "前往\(alightDisplay)"
-            }
-        }()
+        let towardLabel = NavLoc.toStation.fill(displayLanguage, alightDisplay)
 
         return VStack(alignment: .leading, spacing: 8) {
             Text(towardLabel)
@@ -1511,15 +1479,7 @@ struct SubwayNavigatorView: View {
 
     /// Compact chip row showing alternative valid "행" signs — tap to switch displayed terminus.
     private func alternativeTerminiRow(alts: [String], segIdx: Int, lineColor: Color) -> some View {
-        let orLabel: String = {
-            switch displayLanguage {
-            case .korean:   return "어느 방향이든 가능"
-            case .japanese: return "どちら方面でも可"
-            case .english:  return "Any of these work"
-            case .chinese:  return "以下方向均可"
-            case .chineseTraditional: return "以下方向均可"
-            }
-        }()
+        let orLabel = NavLoc.anyDirectionWorks.resolved(displayLanguage)
         // Show at most 2 alternatives; collapse the rest behind a "+N" chip
         let visible = Array(alts.prefix(2))
         let hiddenCount = max(0, alts.count - 2)
@@ -1558,29 +1518,15 @@ struct SubwayNavigatorView: View {
     }
 
     private func terminusSign(_ ko: String) -> String {
-        switch displayLanguage {
-        case .korean:   return "\(ko)행"
-        case .japanese: return "\(MetroLineData.displayName(for: ko, language: .japanese))行き"
-        case .english:  return "To \(MetroLineData.displayName(for: ko, language: .english))"
-        case .chinese:  return "开往\(MetroLineData.displayName(for: ko, language: .chinese))"
-        case .chineseTraditional: return "開往\(MetroLineData.displayName(for: ko, language: .chineseTraditional))"
-        }
+        NavLoc.trainBoundFor.fill(displayLanguage, MetroLineData.displayName(for: ko, language: displayLanguage))
     }
 
     /// Shows landmark stations ahead in the direction of travel so the user can
     /// match the text to the actual physical platform direction signs.
     /// e.g. "시청 · 왕십리 방향" at 홍대입구 내선순환.
     private func platformDirectionHint(landmarks: [String], lineColor: Color) -> some View {
-        let suffix: String
-        switch displayLanguage {
-        case .korean:   suffix = " 방향"
-        case .japanese: suffix = " 方面"
-        case .english:  suffix = " direction"
-        case .chinese:  suffix = " 方向"
-        case .chineseTraditional: suffix = " 方向"
-        }
         let names = landmarks.map { MetroLineData.displayName(for: $0, language: displayLanguage) }
-        return Text(names.joined(separator: " · ") + suffix)
+        return Text(NavLoc.landmarksDirection.fill(displayLanguage, names.joined(separator: " · ")))
             .font(.largeTitle).fontWeight(.black)
             .foregroundStyle(lineColor)
             .lineLimit(2)
@@ -1620,43 +1566,15 @@ struct SubwayNavigatorView: View {
     /// short of the destination).
     private func towardDirectionLabel(_ destKo: String) -> String {
         let name = MetroLineData.displayName(for: destKo, language: displayLanguage)
-        switch displayLanguage {
-        case .korean:   return "\(name) 방면"
-        case .japanese: return "\(name)方面"
-        case .english:  return "Toward \(name)"
-        case .chinese:  return "开往\(name)方向"
-        case .chineseTraditional: return "開往\(name)方向"
-        }
+        return NavLoc.towardDestination.fill(displayLanguage, name)
     }
 
     private func directionLabel(terminus: String) -> String {
         // Circular direction labels are already descriptive — translate directly.
-        if terminus == "내선순환" {
-            switch displayLanguage {
-            case .korean:   return "내선순환"
-            case .japanese: return "内回り"
-            case .english:  return "Inner Loop"
-            case .chinese:  return "内环方向"
-            case .chineseTraditional: return "內環方向"
-            }
-        }
-        if terminus == "외선순환" {
-            switch displayLanguage {
-            case .korean:   return "외선순환"
-            case .japanese: return "外回り"
-            case .english:  return "Outer Loop"
-            case .chinese:  return "外环方向"
-            case .chineseTraditional: return "外環方向"
-            }
-        }
+        if terminus == "내선순환" { return NavLoc.innerLoop.resolved(displayLanguage) }
+        if terminus == "외선순환" { return NavLoc.outerLoop.resolved(displayLanguage) }
         let display = MetroLineData.displayName(for: terminus, language: displayLanguage)
-        switch displayLanguage {
-        case .korean:   return "\(display)행"
-        case .japanese: return "\(display)行き"
-        case .english:  return "Toward \(display)"
-        case .chinese:  return "开往\(display)"
-        case .chineseTraditional: return "開往\(display)"
-        }
+        return NavLoc.towardTerminus.fill(displayLanguage, display)
     }
 
     /// Terminus names that make a train VALID (green) vs the ones to avoid (red),
@@ -1729,15 +1647,7 @@ struct SubwayNavigatorView: View {
         let lineNames = lines.map { MetroLineData.lineBadgeText($0) }.joined(separator: ", ")
         let stationName = MetroLineData.displayName(for: ko, language: displayLanguage)
         let lineSuffix = lines.isEmpty ? "" : ", \(lineNames)"
-        let headerLabel: String = {
-            switch displayLanguage {
-            case .korean:   return "\(stationName)역\(lineSuffix). 현재역 변경하려면 탭하세요."
-            case .japanese: return "\(stationName)駅\(lineSuffix)。タップで現在の駅を変更。"
-            case .english:  return "\(stationName) Station\(lineSuffix). Tap to change the current station."
-            case .chinese:  return "\(stationName)站\(lineSuffix)。点按更改当前车站。"
-            case .chineseTraditional: return "\(stationName)站\(lineSuffix)。點選更改目前車站。"
-            }
-        }()
+        let headerLabel = NavLoc.currentStationA11y.fill(displayLanguage, stationName, lineSuffix)
 
         return Button {
             showFromPicker = true
@@ -1958,53 +1868,23 @@ struct SubwayNavigatorView: View {
     }
 
     private var departurePlaceholderLabel: String {
-        switch displayLanguage {
-        case .korean:   return "어디서 출발하시나요?"
-        case .japanese: return "どこから出発しますか？"
-        case .english:  return "Where are you departing from?"
-        case .chinese:  return "从哪里出发？"
-        case .chineseTraditional: return "從哪裡出發？"
-        }
+        NavLoc.departurePlaceholder.resolved(displayLanguage)
     }
 
     private var departureHintLabel: String {
-        switch displayLanguage {
-        case .korean:   return "탭 해서 출발지를 정해주세요"
-        case .japanese: return "タップして出発地を選んでください"
-        case .english:  return "Tap to set your departure"
-        case .chinese:  return "点击设定出发地"
-        case .chineseTraditional: return "點選設定出發地"
-        }
+        NavLoc.departureHint.resolved(displayLanguage)
     }
 
     private var locatingLabel: String {
-        switch displayLanguage {
-        case .korean:   return "현재 위치 확인 중..."
-        case .japanese: return "現在地を確認中..."
-        case .english:  return "Detecting location..."
-        case .chinese:  return "正在定位..."
-        case .chineseTraditional: return "正在定位..."
-        }
+        NavLoc.locating.resolved(displayLanguage)
     }
 
     private var preBoardingStatusLabel: String {
-        switch displayLanguage {
-        case .korean:   return "탑승 전"
-        case .japanese: return "乗車前"
-        case .english:  return "Before boarding"
-        case .chinese:  return "乘车前"
-        case .chineseTraditional: return "搭車前"
-        }
+        NavLoc.preBoardingStatus.resolved(displayLanguage)
     }
 
     private var boardedStatusLabel: String {
-        switch displayLanguage {
-        case .korean:   return "탑승 중"
-        case .japanese: return "乗車中"
-        case .english:  return "On board"
-        case .chinese:  return "乘车中"
-        case .chineseTraditional: return "搭車中"
-        }
+        NavLoc.boardedStatus.resolved(displayLanguage)
     }
 
     /// Compact "line + bound-for" sign, e.g. "4호선 사당행", shown on the
@@ -2017,8 +1897,7 @@ struct SubwayNavigatorView: View {
         if seg.line.code != nil {
             switch displayLanguage {
             case .korean:   return "\(seg.line.name) \(dir)"
-            case .japanese, .english, .chinese, .chineseTraditional:
-                return "\(seg.line.localizedName(displayLanguage)) · \(dir)"
+            default:        return "\(seg.line.localizedName(displayLanguage)) · \(dir)"
             }
         }
         switch displayLanguage {
@@ -2027,77 +1906,36 @@ struct SubwayNavigatorView: View {
         case .english:  return "Line \(seg.line.badgeText) · \(dir)"
         case .chinese:  return "\(seg.line.badgeText)号线 \(dir)"
         case .chineseTraditional: return "\(seg.line.badgeText)號線 \(dir)"
+        default:        return "\(seg.line.localizedName(displayLanguage)) · \(dir)"
         }
     }
 
     private var boardingSwipeHintLabel: String {
-        switch displayLanguage {
-        case .korean:   return "밀어서 탑승하기"
-        case .japanese: return "スワイプで乗車"
-        case .english:  return "Slide to board"
-        case .chinese:  return "滑动上车"
-        case .chineseTraditional: return "滑動上車"
-        }
+        NavLoc.slideToBoard.resolved(displayLanguage)
     }
 
     private var transferSwipeHintLabel: String {
-        switch displayLanguage {
-        case .korean:   return "밀어서 환승하기"
-        case .japanese: return "スワイプで乗換"
-        case .english:  return "Slide to transfer"
-        case .chinese:  return "滑动换乘"
-        case .chineseTraditional: return "滑動轉乘"
-        }
+        NavLoc.slideToTransfer.resolved(displayLanguage)
     }
 
     private var alightSliderLabel: String {
-        switch displayLanguage {
-        case .korean:   return "밀어서 내리기"
-        case .japanese: return "スワイプで下車"
-        case .english:  return "Slide to alight"
-        case .chinese:  return "滑动下车"
-        case .chineseTraditional: return "滑動下車"
-        }
+        NavLoc.slideToAlight.resolved(displayLanguage)
     }
 
     private var revisitAlertTitle: String {
-        switch displayLanguage {
-        case .korean:   return "이미 지나간 단계예요"
-        case .japanese: return "完了済みのステップです"
-        case .english:  return "Already completed"
-        case .chinese:  return "已完成的步骤"
-        case .chineseTraditional: return "已完成的步驟"
-        }
+        NavLoc.revisitAlertTitle.resolved(displayLanguage)
     }
 
     private var revisitAlertMessage: String {
-        switch displayLanguage {
-        case .korean:   return "이미 완료한 단계입니다. 다시 보시겠습니까?"
-        case .japanese: return "完了済みのステップです。戻りますか？"
-        case .english:  return "This step is already done. Do you want to go back to review it?"
-        case .chinese:  return "此步骤已完成，要返回查看吗？"
-        case .chineseTraditional: return "此步驟已完成，要返回查看嗎？"
-        }
+        NavLoc.revisitAlertMessage.resolved(displayLanguage)
     }
 
     private var revisitConfirmLabel: String {
-        switch displayLanguage {
-        case .korean:   return "계속 진행"
-        case .japanese: return "続ける"
-        case .english:  return "Continue"
-        case .chinese:  return "继续"
-        case .chineseTraditional: return "繼續"
-        }
+        NavLoc.revisitContinue.resolved(displayLanguage)
     }
 
     private var revisitStayLabel: String {
-        switch displayLanguage {
-        case .korean:   return "돌아가서 보기"
-        case .japanese: return "戻って確認"
-        case .english:  return "Go back"
-        case .chinese:  return "返回查看"
-        case .chineseTraditional: return "返回查看"
-        }
+        NavLoc.revisitGoBack.resolved(displayLanguage)
     }
 
     private var destinationCTA: some View {
@@ -2192,6 +2030,38 @@ struct SubwayNavigatorView: View {
         )
         .accessibilityAction(named: Text(NavLoc.changeLanguageAction.resolved(displayLanguage))) { showLanguagePicker = true }
     }
+
+    #if DEBUG
+    /// App Store screenshots: puts the screen in a fixed state from a launch
+    /// argument (`-KORAShotScene route|board|ride|search|language`) so every
+    /// language is captured with the same journey. Debug builds only.
+    private func applyScreenshotScene() {
+        guard let scene = ScreenshotScene.current else { return }
+        directionCameraHidden = true
+        fromStation = "홍대입구"
+        switch scene {
+        case .search:
+            showToPicker = true
+            return
+        case .language:
+            showLanguagePicker = true
+            return
+        default:
+            break
+        }
+        toStation = "명동"
+        guard scene != .route else { return }
+        Task { @MainActor in
+            // Let the journey-change resets run first.
+            try? await Task.sleep(for: .milliseconds(400))
+            journeyConfirmed = true
+            guard scene == .ride else { return }
+            try? await Task.sleep(for: .milliseconds(300))
+            boardedSegmentIdx = 0
+            boardedAt = Date(timeIntervalSinceNow: -100)
+        }
+    }
+    #endif
 
     private func autoLocateIfNeeded() {
         guard !didAutoLocate, !isLocating, fromStation == nil else { return }
@@ -2439,7 +2309,7 @@ struct SubwayNavigatorView: View {
             seg.line.color.opacity(0.5)
                 .frame(width: 3)
                 .padding(.leading, 35)
-            Text(verbatim: "\(seg.stopCount)\(stopsUnit)")
+            Text(verbatim: NavLoc.stopsRemaining(seg.stopCount, displayLanguage))
                 .font(.body).fontWeight(.semibold)
                 .foregroundStyle(KORATheme.labelSecondary)
                 .padding(.leading, 10)
@@ -2449,13 +2319,7 @@ struct SubwayNavigatorView: View {
     }
 
     private var transferLabel: String {
-        switch displayLanguage {
-        case .korean:   return "환승"
-        case .japanese: return "乗換"
-        case .english:  return "Transfer"
-        case .chinese:  return "换乘"
-        case .chineseTraditional: return "轉乘"
-        }
+        NavLoc.transferLabel.resolved(displayLanguage)
     }
 
     private func summaryChip(icon: String, label: String) -> some View {
@@ -2473,63 +2337,24 @@ struct SubwayNavigatorView: View {
     }
 
     private var departureLabel: String {
-        switch displayLanguage {
-        case .korean:   return "출발"
-        case .japanese: return "出発"
-        case .english:  return "From"
-        case .chinese:  return "出发"
-        case .chineseTraditional: return "出發"
-        }
+        NavLoc.departureLabel.resolved(displayLanguage)
     }
 
     private var arrivalLabel: String {
-        switch displayLanguage {
-        case .korean:   return "도착"
-        case .japanese: return "到着"
-        case .english:  return "To"
-        case .chinese:  return "到达"
-        case .chineseTraditional: return "到達"
-        }
+        NavLoc.arrivalLabel.resolved(displayLanguage)
     }
 
-    private var stopsUnit: String {
-        switch displayLanguage {
-        case .korean:   return "정거장"
-        case .japanese: return "駅"
-        case .english:  return " stops"
-        case .chinese:  return "站"
-        case .chineseTraditional: return "站"
-        }
-    }
 
     private func transferSummary(_ count: Int) -> String {
-        switch displayLanguage {
-        case .korean:   return count == 0 ? "환승 없음" : "\(count)회 환승"
-        case .japanese: return count == 0 ? "乗換なし" : "\(count)回乗換"
-        case .english:  return count == 0 ? "No transfer" : "\(count) transfer\(count > 1 ? "s" : "")"
-        case .chinese:  return count == 0 ? "无换乘" : "换乘\(count)次"
-        case .chineseTraditional: return count == 0 ? "無轉乘" : "轉乘\(count)次"
-        }
+        count == 0 ? NavLoc.noTransfer.resolved(displayLanguage) : NavLoc.transfers(count, displayLanguage)
     }
 
     private var startJourneyLabel: String {
-        switch displayLanguage {
-        case .korean:   return "출발하기"
-        case .japanese: return "出発する"
-        case .english:  return "Start Journey"
-        case .chinese:  return "开始导航"
-        case .chineseTraditional: return "開始導航"
-        }
+        NavLoc.startJourney.resolved(displayLanguage)
     }
 
     private var changeDestinationLabel: String {
-        switch displayLanguage {
-        case .korean:   return "목적지 다시 선택"
-        case .japanese: return "目的地を変更"
-        case .english:  return "Change destination"
-        case .chinese:  return "重新选择目的地"
-        case .chineseTraditional: return "重新選擇目的地"
-        }
+        NavLoc.changeDestination.resolved(displayLanguage)
     }
 
     private var noRouteView: some View {
@@ -2920,7 +2745,7 @@ struct StationSearchSheet: View {
     private func stationRow(_ station: String) -> some View {
         let primary = MetroLineData.displayName(for: station, language: displayLanguage)
         let subtitle = MetroLineData.subtitle(for: station, language: displayLanguage)
-        let romaji = displayLanguage == .english
+        let romaji = displayLanguage.stationNames == .english
             ? nil
             : MetroLineData.displayName(for: station, language: .english)
         return HStack {

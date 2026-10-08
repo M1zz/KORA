@@ -37,7 +37,8 @@ enum MetroCategory: String, CaseIterable, Codable {
     }
 
     func displayName(_ language: StationLanguage) -> String {
-        switch (self, language) {
+        // City names are proper nouns — non-sign languages use the romanized form.
+        switch (self, language.stationNames) {
         case (.seoulGyeonggi, .korean):   return "서울/경기"
         case (.seoulGyeonggi, .japanese): return "ソウル/京畿"
         case (.seoulGyeonggi, .english):  return "Seoul/Gyeonggi"
@@ -68,6 +69,7 @@ enum MetroCategory: String, CaseIterable, Codable {
         case (.daejeon, .english):  return "Daejeon"
         case (.daejeon, .chinese):  return "大田"
         case (.daejeon, .chineseTraditional): return "大田"
+        default: return displayName(.english)
         }
     }
 }
@@ -1079,12 +1081,12 @@ extension SeoulMetroLineInfo {
     func localizedName(_ lang: StationLanguage) -> String {
         guard code != nil else { return NavLoc.lineLabel(number, lang) }
         guard lang != .korean, let names = Self.namedLineNames[name] else { return name }
-        switch lang {
+        switch lang.stationNames {
         case .korean:             return name
         case .japanese:           return names.ja
-        case .english:            return names.en
         case .chinese:            return names.zh
         case .chineseTraditional: return names.zhHant
+        default:                  return names.en
         }
     }
 

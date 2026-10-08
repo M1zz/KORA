@@ -22,6 +22,26 @@ enum StationLanguage: String, CaseIterable, Codable {
     case english
     case chinese             // 简体中文
     case chineseTraditional  // 繁體中文 (Taiwan wording)
+    // UI-only languages: the screen reads in the language, station names use
+    // the romanized spelling printed on Korean signs (see `stationNames`).
+    case german
+    case spanish
+    case french
+    case italian
+    case portugueseBrazil
+    case russian
+    case czech
+    case danish
+    case greek
+    case finnish
+    case indonesian
+    case norwegian
+    case dutch
+    case polish
+    case swedish
+    case thai
+    case turkish
+    case vietnamese
 
     /// Human-readable label shown in the language picker menu.
     var displayName: String {
@@ -31,6 +51,34 @@ enum StationLanguage: String, CaseIterable, Codable {
         case .english:  return "English"
         case .chinese:  return "简体中文"
         case .chineseTraditional: return "繁體中文"
+        case .german:   return "Deutsch"
+        case .spanish:  return "Español"
+        case .french:   return "Français"
+        case .italian:  return "Italiano"
+        case .portugueseBrazil: return "Português (Brasil)"
+        case .russian:  return "Русский"
+        case .czech:    return "Čeština"
+        case .danish:   return "Dansk"
+        case .greek:    return "Ελληνικά"
+        case .finnish:  return "Suomi"
+        case .indonesian: return "Bahasa Indonesia"
+        case .norwegian: return "Norsk"
+        case .dutch:    return "Nederlands"
+        case .polish:   return "Polski"
+        case .swedish:  return "Svenska"
+        case .thai:     return "ไทย"
+        case .turkish:  return "Türkçe"
+        case .vietnamese: return "Tiếng Việt"
+        }
+    }
+
+    /// Which station-name table this language reads. Korean signs carry
+    /// Hangul, English (romanized), Japanese and Chinese only — every other
+    /// language uses the romanized names so they match what's on the sign.
+    var stationNames: StationLanguage {
+        switch self {
+        case .korean, .japanese, .english, .chinese, .chineseTraditional: return self
+        default: return .english
         }
     }
 
@@ -47,6 +95,24 @@ enum StationLanguage: String, CaseIterable, Codable {
             let region = language.region?.identifier ?? ""
             return ["TW", "HK", "MO"].contains(region) ? .chineseTraditional : .chinese
         case "en": return .english
+        case "de": return .german
+        case "es": return .spanish
+        case "fr": return .french
+        case "it": return .italian
+        case "pt": return .portugueseBrazil
+        case "ru": return .russian
+        case "cs": return .czech
+        case "da": return .danish
+        case "el": return .greek
+        case "fi": return .finnish
+        case "id", "in": return .indonesian
+        case "nb", "no", "nn": return .norwegian
+        case "nl": return .dutch
+        case "pl": return .polish
+        case "sv": return .swedish
+        case "th": return .thai
+        case "tr": return .turkish
+        case "vi": return .vietnamese
         default:   return .english
         }
     }
@@ -581,12 +647,13 @@ extension MetroLineData {
     // For Chinese, falls back through stationChineseNames → inline zh → Korean.
     // Traditional reads the generated table (built from those same two sources).
     static func displayName(for ko: String, language: StationLanguage) -> String {
-        switch language {
+        switch language.stationNames {
         case .korean:   return ko
         case .japanese: return stationLocale[ko]?.ja ?? ko
         case .english:  return stationLocale[ko]?.en ?? ko
         case .chinese:  return stationChineseNames[ko] ?? stationLocale[ko]?.zh ?? ko
         case .chineseTraditional: return stationChineseTraditionalNames[ko] ?? ko
+        default:        return stationLocale[ko]?.en ?? ko
         }
     }
 
@@ -692,40 +759,43 @@ extension MetroLineData {
     ///   en → lowercase Latin (A-Z)
     ///   zh → Chinese display name (Unicode)
     static func sortKey(for koStation: String, language: StationLanguage) -> String {
-        switch language {
+        switch language.stationNames {
         case .korean:   return koStation
         case .japanese: return displayName(for: koStation, language: .japanese)
         case .english:  return displayName(for: koStation, language: .english).lowercased()
         case .chinese:  return displayName(for: koStation, language: .chinese)
         case .chineseTraditional: return displayName(for: koStation, language: .chineseTraditional)
+        default:        return displayName(for: koStation, language: .english).lowercased()
         }
     }
 
     /// Whether the picker should use section headers for this language.
     /// Chinese uses a flat list (no good single-letter section system).
     static func usesSections(for language: StationLanguage) -> Bool {
-        language != .chinese && language != .chineseTraditional
+        language.stationNames != .chinese && language.stationNames != .chineseTraditional
     }
 
     /// Ordered section keys for the chosen language.
     static func sectionOrder(for language: StationLanguage) -> [String] {
-        switch language {
+        switch language.stationNames {
         case .korean:   return hangulIndexOrder
         case .japanese: return kanaIndexOrder
         case .english:  return englishIndexOrder
         case .chinese:  return []
         case .chineseTraditional: return []
+        default:        return englishIndexOrder
         }
     }
 
     /// Header key for a station in the chosen language.
     static func sectionInitial(for koStation: String, language: StationLanguage) -> String {
-        switch language {
+        switch language.stationNames {
         case .korean:   return hangulInitial(for: koStation)
         case .japanese: return kanaInitial(for: koStation)
         case .english:  return englishInitial(for: koStation)
         case .chinese:  return ""
         case .chineseTraditional: return ""
+        default:        return englishInitial(for: koStation)
         }
     }
 }
