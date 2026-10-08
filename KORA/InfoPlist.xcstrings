@@ -155,7 +155,8 @@
             "value" : "KORA"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "NSCameraUsageDescription" : {
       "comment" : "Privacy - NSCameraUsageDescription",

@@ -371,7 +371,7 @@
 			};
 			buildConfigurationList = AA701 /* Build configuration list for PBXProject "KORA" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = ja;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,

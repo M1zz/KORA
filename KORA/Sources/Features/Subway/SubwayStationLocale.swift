@@ -82,10 +82,11 @@ enum StationLanguage: String, CaseIterable, Codable {
         }
     }
 
-    /// Maps a system locale language code to a StationLanguage.
+    /// Maps a system locale language code to a StationLanguage. Unknown or
+    /// unsupported languages read in English, never Korean.
     static func resolveFromSystemLocale() -> StationLanguage {
         let language = Locale.current.language
-        let code = language.languageCode?.identifier ?? "ko"
+        let code = language.languageCode?.identifier ?? "en"
         switch code {
         case "ko": return .korean
         case "ja": return .japanese
