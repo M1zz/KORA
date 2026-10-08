@@ -1,0 +1,46 @@
+{
+ "name": "KORA: metro v Koreji",
+ "subtitle": "Soul a Pusan bez bloudění",
+ "keywords": "busan,incheon,daegu,daejeon,gwangju,gtx,arex,letiště,vlak,přestup,trasa,stanice,dovolená,turista",
+ "promo": "Nastupte vždy do správného vlaku a nepropásněte svou stanici. KORA teď mluví 23 jazyky včetně češtiny.",
+ "description": "KORA je průvodce metrem pro každého, kdo cestuje po Koreji.\nVyberte výchozí a cílovou stanici a KORA ukáže přestupy, počet stanic, odhadovaný čas a směr, kterým nastoupit – přesně tak, jak to stojí na směrové tabuli vlaku. Během jízdy sleduje aktuální stanici a řekne vám, kdy vystoupit.\n\nSTANICE SE NAJDE SAMA\nNajděte nejbližší stanici přes GPS nebo ji vyberte sami. KORA si ji zapamatuje do příštího spuštění.\n\nTRASA A SMĚR NÁSTUPU\nPřestupy, stanice a doba jízdy a k tomu správný vlak – zobrazený stejně jako na jeho směrové tabuli.\n\nOVĚŘTE SMĚR FOTOAPARÁTEM\nNamiřte fotoaparát na ceduli na nástupišti nebo tabuli vlaku a KORA hned řekne, zda je směr správný. Rozpoznávání textu probíhá výhradně v iPhonu.\n\nVŽDY VÍTE, KDE JSTE\nKORA spojuje data o příjezdech v Soulu v reálném čase, GPS, akcelerometr (pozná rozjezd a zastavení) a rozpoznávání hlášení ve voze přímo v zařízení, aby věděla, ve které stanici jste. Řekne dokonce, na které straně se otevřou dveře.\n\nUPOZORNĚNÍ NA VÝSTUP\nPřed vaší stanicí se objeví „Připravte se k výstupu“ a pak „Vystupte teď!“ s vibrací. Schéma ukazuje vlak a špendlík u cíle.\n\nZAMČENÁ OBRAZOVKA A DYNAMIC ISLAND\nŽivá aktivita ukazuje průběh jízdy, aniž byste museli odemykat iPhone.\n\n23 JAZYKŮ\nCelou aplikaci můžete používat česky nebo v dalších 22 jazycích. Spustí se v jazyce vašeho iPhonu. Názvy stanic jsou vždy v korejštině spolu s latinkovým přepisem z korejských cedulí, takže je na nástupišti hned poznáte.\n\nPOKRYTÍ\nAsi 930 stanic v metropolitní oblasti Soulu (Soul, Kjonggi a Inčchon včetně GTX-A, AREX, linky Shinbundang a lehkého metra), v Pusanu, Tegu, Kwangdžu a Tedžonu. Město přepnete tlačítky regionů ve výběru stanic.\n\nFUNGUJE OFFLINE\nTrasy se počítají v zařízení, takže vyhledávání funguje i bez internetu. Připojení potřebují jen příjezdy v reálném čase.\n\nSOUKROMÍ NA PRVNÍM MÍSTĚ\nŽádný účet, žádné reklamy, žádné nákupy v aplikaci. Poloha, fotoaparát i rozpoznávání hlášení se zpracovávají v zařízení a nikdy se neukládají ani neodesílají. Sbíráme jen anonymní statistiky používání, abychom aplikaci zlepšovali.\n\nPřístup k fotoaparátu, mikrofonu, rozpoznávání řeči a pohybu je dobrovolný. I bez něj můžete vybírat stanice sami a využít celé navádění.\n\nKontakt: mizzking75@gmail.com",
+ "release_notes": [
+  "KORA je teď ve 23 jazycích",
+  "Nově i česky, německy nebo thajsky",
+  "Názvy stanic jako na cedulích",
+  "Widgety a dotazy v jazyce iPhonu"
+ ],
+ "shots": [
+  [
+   "Celá trasa na první pohled",
+   "Stanice, přestupy a čas předem"
+  ],
+  [
+   "Nastupte správným směrem",
+   "Stejně jako na tabuli vlaku"
+  ],
+  [
+   "Už žádná přejetá stanice",
+   "Upozornění a vibrace před cílem"
+  ],
+  [
+   "930 stanic v 5 městech",
+   "Soul, Pusan, Tegu, Kwangdžu, Tedžon"
+  ],
+  [
+   "Váš jazyk – jeden z 23",
+   "Názvy stanic jako na cedulích"
+  ]
+ ],
+ "creative": {
+  "header": [
+   "Průvodce metrem v Koreji",
+   "Správný vlak,<br>správná stanice"
+  ],
+  "search": [
+   "Metro v Soulu",
+   "Vždy do správného<br>vlaku",
+   "Vibrace vám řekne, kdy vystoupit"
+  ]
+ }
+}

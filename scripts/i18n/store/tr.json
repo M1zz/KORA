@@ -1,0 +1,46 @@
+{
+ "name": "KORA: Kore Metro Rehberi",
+ "subtitle": "Seul ve Busan'da kaybolma",
+ "keywords": "incheon,daegu,daejeon,gwangju,gtx,arex,havalimanı,tren,aktarma,rota,istasyon,seyahat,turist,tatil",
+ "promo": "Hep doğru trene bin, durağını asla kaçırma. KORA artık Türkçe dahil 23 dil konuşuyor.",
+ "description": "KORA, Kore'yi gezen herkes için bir metro rehberi.\nBaşlangıç ve varış istasyonunu seç; KORA aktarmaları, durak sayısını, tahmini süreyi ve hangi yöne binmen gerektiğini trenin tabelasında yazdığı gibi göstersin. Yolculuk boyunca bulunduğun istasyonu takip eder ve inme zamanı geldiğinde haber verir.\n\nİSTASYONUN SENİN İÇİN BULUNUR\nEn yakın istasyonu GPS ile bul ya da kendin seç. KORA bir sonraki açılışta hatırlar.\n\nROTA VE BİNİŞ YÖNÜ\nAktarmalar, duraklar ve yolculuk süresi, üstüne binmen gereken tren, tabelasında yazdığı gibi.\n\nYÖNÜ KAMERAYLA KONTROL ET\nKamerayı perondaki tabelaya ya da trenin gideceği yer tabelasına tut, KORA yönün doğru olup olmadığını hemen söylesin. Metin tanıma tamamen iPhone'unda yapılır.\n\nNEREDE OLDUĞUNU HEP BİL\nKORA, Seul'ün gerçek zamanlı varış verilerini, GPS'i, ivmeölçeri (kalkış ve duruşları algılar) ve vagondaki anonsların cihaz üzerinde tanınmasını birleştirerek istasyonunu takip eder. Kapıların hangi taraftan açılacağını bile söyler.\n\nİNİŞ UYARILARI\nDurağın yaklaşınca önce \"İnmeye hazırlan\", ardından \"Şimdi in!\" uyarısı titreşimle gelir. Şemada tren ve varış istasyonundaki iğne görünür.\n\nKİLİTLİ EKRAN VE DYNAMIC ISLAND\nCanlı Etkinlik, iPhone'un kilidini açmadan yolculuğunun ilerleyişini gösterir.\n\n23 DİL\nUygulamanın tamamını Türkçe ya da 22 dilde daha kullan. Uygulama iPhone'unun diliyle açılır. İstasyon adları her zaman Korece aslıyla birlikte Kore'deki tabelalarda yazan Latin harfli yazımla gösterilir; böylece peronda hemen eşleştirirsin.\n\nKAPSAM\nSeul metropol bölgesinde (Seul, Gyeonggi ve Incheon; GTX-A, AREX, Shinbundang Hattı ve hafif raylılar dahil), Busan, Daegu, Gwangju ve Daejeon'da yaklaşık 930 istasyon. İstasyon seçicideki bölge düğmeleriyle şehir değiştir.\n\nÇEVRİMDIŞI ÇALIŞIR\nRotalar cihazda hesaplanır, bu yüzden arama internetsiz de çalışır. Yalnızca gerçek zamanlı varışlar bağlantı ister.\n\nGİZLİLİK ÖNCE GELİR\nHesap yok, reklam yok, uygulama içi satın alma yok. Konum, kamera ve anons tanıma cihazında işlenir; asla kaydedilmez veya gönderilmez. Uygulamayı geliştirmek için yalnızca anonim kullanım istatistikleri toplarız.\n\nKamera, mikrofon, konuşma tanıma ve hareket izinleri isteğe bağlıdır. Bunlar olmadan da istasyonları kendin seçip rota rehberliğinin tamamını kullanabilirsin.\n\nİletişim: mizzking75@gmail.com",
+ "release_notes": [
+  "KORA artık 23 dilde",
+  "Türkçe, Almanca ve Tayca da eklendi",
+  "İstasyon adları tabelalardaki gibi",
+  "Widget ve izin metinleri iPhone dilinde"
+ ],
+ "shots": [
+  [
+   "Tüm aktarmalar tek bakışta",
+   "Durak, aktarma ve süre yola çıkmadan"
+  ],
+  [
+   "Doğru yöne bin",
+   "Trenin tabelasındaki gibi"
+  ],
+  [
+   "Durağını asla kaçırma",
+   "İnmeden önce uyarı ve titreşim"
+  ],
+  [
+   "5 şehirde 930 istasyon",
+   "Seul, Busan, Daegu, Gwangju, Daejeon"
+  ],
+  [
+   "Senin dilin, 23 dilden biri",
+   "İstasyon adları tabelalardaki gibi"
+  ]
+ ],
+ "creative": {
+  "header": [
+   "Kore metro rehberi",
+   "Doğru tren,<br>doğru durak"
+  ],
+  "search": [
+   "Seul metrosu",
+   "Hep doğru<br>trene bin",
+   "Ne zaman ineceğini titreşimle söyler"
+  ]
+ }
+}

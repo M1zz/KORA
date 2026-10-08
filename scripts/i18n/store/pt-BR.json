@@ -1,0 +1,46 @@
+{
+ "name": "KORA: metrô na Coreia",
+ "subtitle": "Guia de Seul para viajantes",
+ "keywords": "busan,incheon,daegu,daejeon,gwangju,gtx,arex,aeroporto,trem,baldeação,rota,estação,turismo",
+ "promo": "Embarque sempre no trem certo e nunca perca sua estação. O KORA agora fala 23 idiomas, incluindo português.",
+ "description": "O KORA é o guia de metrô para quem viaja pela Coreia.\nEscolha a estação de partida e o destino, e o KORA mostra as baldeações, o número de estações, o tempo estimado e em que sentido embarcar, do jeito que aparece no letreiro do trem. Durante a viagem, ele acompanha a estação em que você está e avisa a hora de descer.\n\nSUA ESTAÇÃO, ENCONTRADA PARA VOCÊ\nEncontre a estação mais próxima pelo GPS ou escolha você mesmo. O KORA lembra dela da próxima vez que você abrir o app.\n\nROTA E SENTIDO DO EMBARQUE\nBaldeações, estações e tempo de viagem, além do trem certo, mostrado igual ao letreiro de destino dele.\n\nCONFIRA O SENTIDO COM A CÂMERA\nAponte a câmera para a placa da plataforma ou o letreiro do trem e o KORA diz na hora se o sentido está certo. O reconhecimento de texto acontece todo no seu iPhone.\n\nSAIBA ONDE VOCÊ ESTÁ\nO KORA combina os dados de chegada em tempo real de Seul, o GPS, o acelerômetro (que percebe partidas e paradas) e o reconhecimento dos avisos sonoros do trem no próprio aparelho para acompanhar sua estação. Ele até diz de que lado as portas vão abrir.\n\nAVISOS DE DESEMBARQUE\nQuando sua estação estiver perto, aparece \"Prepare-se para descer\" e depois \"Desça agora!\", com vibração. Um diagrama mostra o trem e um marcador no seu destino.\n\nTELA BLOQUEADA E DYNAMIC ISLAND\nUma Atividade ao Vivo mostra o progresso da viagem sem desbloquear o iPhone.\n\n23 IDIOMAS\nUse o app inteiro em português ou em outros 22 idiomas. Ele começa no idioma do seu iPhone. Os nomes das estações aparecem sempre em coreano junto com a grafia em letras latinas das placas coreanas, para você reconhecer na plataforma na hora.\n\nCOBERTURA\nCerca de 930 estações na região metropolitana de Seul (Seul, Gyeonggi e Incheon, incluindo GTX-A, AREX, a Linha Shinbundang e os VLTs), Busan, Daegu, Gwangju e Daejeon. Troque de cidade pelos filtros de região na escolha de estações.\n\nFUNCIONA OFFLINE\nAs rotas são calculadas no aparelho, então a busca funciona sem internet. Só as chegadas em tempo real precisam de conexão.\n\nPRIVACIDADE EM PRIMEIRO LUGAR\nSem conta, sem anúncios, sem compras no app. Localização, câmera e reconhecimento de avisos são processados no aparelho e nunca são salvos nem enviados. Coletamos apenas estatísticas de uso anônimas para melhorar o app.\n\nO acesso à câmera, ao microfone, ao reconhecimento de fala e aos dados de movimento é opcional. Sem eles, você ainda escolhe as estações e usa todo o guia de rotas.\n\nContato: mizzking75@gmail.com",
+ "release_notes": [
+  "O KORA agora está em 23 idiomas",
+  "Chegaram português, francês, tailandês",
+  "Estações escritas como nas placas",
+  "Widgets e avisos no idioma do iPhone"
+ ],
+ "shots": [
+  [
+   "Toda a rota num relance",
+   "Estações, baldeações e tempo antes de sair"
+  ],
+  [
+   "Embarque no sentido certo",
+   "Igual ao letreiro do trem"
+  ],
+  [
+   "Nunca perca sua estação",
+   "Aviso e vibração antes de chegar"
+  ],
+  [
+   "930 estações, 5 cidades",
+   "Seul, Busan, Daegu, Gwangju e Daejeon"
+  ],
+  [
+   "Seu idioma, entre 23",
+   "Estações escritas como nas placas"
+  ]
+ ],
+ "creative": {
+  "header": [
+   "Guia do metrô coreano",
+   "O trem certo,<br>a estação certa"
+  ],
+  "search": [
+   "Metrô de Seul",
+   "Sempre no<br>trem certo",
+   "Uma vibração avisa a hora de descer"
+  ]
+ }
+}

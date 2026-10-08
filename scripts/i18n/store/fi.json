@@ -1,0 +1,46 @@
+{
+ "name": "KORA: Korean metro-opas",
+ "subtitle": "Soul ja Busan ilman eksymistä",
+ "keywords": "incheon,daegu,daejeon,gwangju,gtx,arex,lentokenttä,juna,vaihto,reitti,asema,matka,turisti,lomamatka",
+ "promo": "Nouse aina oikeaan junaan äläkä koskaan ohita pysäkkiäsi. KORA puhuu nyt 23 kieltä, myös suomea.",
+ "description": "KORA on metro-opas kaikille, jotka matkustavat Koreassa.\nValitse lähtöasema ja määränpää, niin KORA näyttää vaihdot, asemien määrän, arvioidun matka-ajan ja sen, mihin suuntaan noustaan – juuri niin kuin junan määränpääkyltissä lukee. Matkan aikana se seuraa nykyistä asemaa ja kertoo, milloin jäädä pois.\n\nASEMASI LÖYTYY ITSESTÄÄN\nEtsi lähin asema GPS:llä tai valitse se itse. KORA muistaa sen ensi kerralla.\n\nREITTI JA SUUNTA\nVaihdot, asemat ja matka-aika sekä oikea juna, näytettynä kuten sen määränpääkyltissä.\n\nTARKISTA SUUNTA KAMERALLA\nSuuntaa kamera laiturin kylttiin tai junan määränpääkylttiin, niin KORA kertoo heti, onko suunta oikea. Tekstintunnistus tehdään kokonaan iPhonessa.\n\nTIEDÄT AINA, MISSÄ OLET\nKORA yhdistää Soulin reaaliaikaiset saapumistiedot, GPS:n, kiihtyvyysanturin (joka huomaa lähdöt ja pysähdykset) ja junan kuulutusten tunnistuksen laitteessa, jotta asemasi on aina tiedossa. Se kertoo jopa, kummalle puolelle ovet avautuvat.\n\nPOISJÄÄNTIMUISTUTUKSET\nKun asemasi lähestyy, saat ilmoituksen ”Valmistaudu jäämään pois” ja sitten ”Jää pois nyt!” värinän kera. Kaaviossa näkyvät juna ja nuppineula määränpäässä.\n\nLUKITUSNÄYTTÖ JA DYNAMIC ISLAND\nLive Activity näyttää matkan etenemisen avaamatta iPhonen lukitusta.\n\n23 KIELTÄ\nKäytä koko appia suomeksi tai 22 muulla kielellä. Se käynnistyy iPhonen kielellä. Asemien nimet näkyvät aina koreaksi yhdessä korealaisten kylttien latinalaisen kirjoitusasun kanssa, joten tunnistat ne laiturilla heti.\n\nKATTAVUUS\nNoin 930 asemaa Soulin seudulla (Soul, Gyeonggi ja Incheon, mukaan lukien GTX-A, AREX, Shinbundang-linja ja pikaraitiotiet) sekä Busanissa, Daegussa, Gwangjussa ja Daejeonissa. Vaihda kaupunkia asemavalinnan aluepainikkeilla.\n\nTOIMII ILMAN NETTIÄ\nReitit lasketaan laitteessa, joten haku toimii ilman internetiä. Vain reaaliaikaiset saapumistiedot vaativat yhteyden.\n\nYKSITYISYYS ENSIN\nEi tiliä, ei mainoksia, ei sovelluksen sisäisiä ostoja. Sijainti, kamera ja kuulutusten tunnistus käsitellään laitteessa, eikä niitä koskaan tallenneta tai lähetetä. Keräämme vain nimettömiä käyttötilastoja sovelluksen parantamiseksi.\n\nKameran, mikrofonin, puheentunnistuksen ja liiketietojen käyttö on vapaaehtoista. Ilman niitäkin voit valita asemat itse ja saada täyden reittiopastuksen.\n\nYhteystiedot: mizzking75@gmail.com",
+ "release_notes": [
+  "KORA puhuu nyt 23 kieltä",
+  "Uutena suomi, saksa, ranska ja thai",
+  "Asemien nimet kuten kylteissä",
+  "Widgetit ja kehotteet iPhonen kielellä"
+ ],
+ "shots": [
+  [
+   "Koko reitti yhdellä silmäyksellä",
+   "Asemat, vaihdot ja aika etukäteen"
+  ],
+  [
+   "Nouse oikeaan suuntaan",
+   "Kuten junan määränpääkyltissä"
+  ],
+  [
+   "Et enää ohita asemaasi",
+   "Muistutus ja värinä ennen määränpäätä"
+  ],
+  [
+   "930 asemaa, 5 kaupunkia",
+   "Soul, Busan, Daegu, Gwangju, Daejeon"
+  ],
+  [
+   "Sinun kielesi, yksi 23:sta",
+   "Asemien nimet kuten kylteissä"
+  ]
+ ],
+ "creative": {
+  "header": [
+   "Korean metro-opas",
+   "Oikea juna,<br>oikea asema"
+  ],
+  "search": [
+   "Soulin metro",
+   "Aina oikeaan<br>junaan",
+   "Värinä kertoo, milloin jäädä pois"
+  ]
+ }
+}

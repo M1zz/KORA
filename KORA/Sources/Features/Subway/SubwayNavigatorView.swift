@@ -164,7 +164,7 @@ struct SubwayNavigatorView: View {
         }
         .sheet(isPresented: $showLanguagePicker) {
             LanguagePickerSheet(languagePref: $languagePref)
-                .presentationDetents([.medium, .large])
+                .presentationDetents(ScreenshotScene.current == .language ? [.large] : [.medium, .large])
         }
         .sheet(isPresented: $showPositionCorrection) {
             if let j = journey, j.segments.indices.contains(currentBlockIdx) {

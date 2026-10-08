@@ -1,0 +1,46 @@
+{
+ "name": "KORA: Panduan MRT Korea",
+ "subtitle": "Keliling Seoul dan Busan",
+ "keywords": "incheon,daegu,daejeon,gwangju,gtx,arex,bandara,kereta,subway,transit,rute,stasiun,liburan,wisata",
+ "promo": "Selalu naik kereta yang benar dan jangan sampai kelewatan stasiun. KORA kini tersedia dalam 23 bahasa, termasuk bahasa Indonesia.",
+ "description": "KORA adalah panduan kereta bawah tanah untuk siapa pun yang berlibur ke Korea.\nPilih stasiun asal dan tujuan, lalu KORA menunjukkan transit, jumlah stasiun, perkiraan waktu, dan arah kereta yang harus dinaiki, persis seperti tulisan di papan tujuan kereta. Selama perjalanan, KORA mengikuti stasiun tempatmu berada dan memberi tahu kapan harus turun.\n\nSTASIUNMU, LANGSUNG KETEMU\nCari stasiun terdekat dengan GPS atau pilih sendiri. KORA mengingatnya saat kamu membuka aplikasi lagi.\n\nRUTE DAN ARAH NAIK\nTransit, jumlah stasiun, dan waktu tempuh, ditambah kereta yang harus dinaiki, ditampilkan sama seperti papan tujuannya.\n\nCEK ARAH DENGAN KAMERA\nArahkan kamera ke papan di peron atau papan tujuan kereta, dan KORA langsung memberi tahu apakah arahnya benar. Pengenalan teks sepenuhnya berlangsung di iPhone.\n\nSELALU TAHU POSISIMU\nKORA menggabungkan data kedatangan real-time di Seoul, GPS, akselerometer (untuk mendeteksi kereta berangkat dan berhenti), serta pengenalan pengumuman di dalam kereta langsung di perangkat untuk melacak stasiunmu. Bahkan sisi pintu yang akan terbuka pun diberi tahu.\n\nPENGINGAT TURUN\nSaat stasiun tujuan makin dekat, muncul \"Bersiap turun\", lalu \"Turun sekarang!\" disertai getaran. Diagram perjalanan menampilkan kereta dan penanda di stasiun tujuan.\n\nLAYAR KUNCI DAN DYNAMIC ISLAND\nAktivitas Langsung menampilkan progres perjalanan tanpa perlu membuka kunci iPhone.\n\n23 BAHASA\nGunakan seluruh aplikasi dalam bahasa Indonesia atau 22 bahasa lain. Aplikasi otomatis memakai bahasa iPhone-mu. Nama stasiun selalu ditampilkan dalam bahasa Korea beserta ejaan latin yang tertulis di papan stasiun Korea, jadi mudah dicocokkan di peron.\n\nCAKUPAN\nSekitar 930 stasiun di wilayah metropolitan Seoul (Seoul, Gyeonggi, dan Incheon, termasuk GTX-A, AREX, Jalur Shinbundang, dan kereta ringan), Busan, Daegu, Gwangju, dan Daejeon. Ganti kota lewat tombol wilayah di pemilihan stasiun.\n\nBISA OFFLINE\nRute dihitung di perangkat, jadi pencarian tetap jalan tanpa internet. Hanya data kedatangan real-time yang butuh koneksi.\n\nPRIVASI TERJAGA\nTanpa akun, tanpa iklan, tanpa pembelian dalam aplikasi. Lokasi, kamera, dan pengenalan pengumuman diproses di perangkat dan tidak pernah disimpan atau dikirim. Kami hanya mengumpulkan statistik penggunaan anonim untuk meningkatkan aplikasi.\n\nAkses kamera, mikrofon, pengenalan suara, dan gerakan bersifat opsional. Tanpa itu, kamu tetap bisa memilih stasiun sendiri dan memakai panduan rute lengkap.\n\nKontak: mizzking75@gmail.com",
+ "release_notes": [
+  "KORA kini hadir dalam 23 bahasa",
+  "Termasuk Indonesia, Thailand, Vietnam",
+  "Nama stasiun sesuai papan di stasiun",
+  "Widget dan izin ikut bahasa iPhone"
+ ],
+ "shots": [
+  [
+   "Semua transit sekali lihat",
+   "Stasiun, transit, dan waktu sebelum berangkat"
+  ],
+  [
+   "Naik ke arah yang benar",
+   "Sama seperti papan tujuan kereta"
+  ],
+  [
+   "Tak akan kelewatan stasiun",
+   "Pengingat dan getaran sebelum tiba"
+  ],
+  [
+   "930 stasiun di 5 kota",
+   "Seoul, Busan, Daegu, Gwangju, Daejeon"
+  ],
+  [
+   "Bahasamu, salah satu dari 23",
+   "Nama stasiun sesuai papan stasiun"
+  ]
+ ],
+ "creative": {
+  "header": [
+   "Panduan MRT Korea",
+   "Kereta yang tepat,<br>stasiun yang pas"
+  ],
+  "search": [
+   "Subway Seoul",
+   "Selalu naik<br>kereta yang benar",
+   "Getaran memberi tahu kapan turun"
+  ]
+ }
+}

@@ -1,0 +1,46 @@
+{
+ "name": "KORA: metro i Korea",
+ "subtitle": "Find vej i Seoul og Busan",
+ "keywords": "incheon,daegu,daejeon,gwangju,gtx,arex,lufthavn,tog,skift,rute,station,rejse,turist,undergrundsbane",
+ "promo": "Tag altid det rigtige tog, og kør aldrig forbi dit stop. KORA taler nu 23 sprog, også dansk.",
+ "description": "KORA er metroguiden til alle, der rejser i Korea.\nVælg din startstation og din destination, og KORA viser skift, antal stationer, forventet rejsetid og hvilken retning du skal tage – præcis som der står på togets destinationsskilt. Undervejs følger KORA din nuværende station og siger til, når du skal af.\n\nDIN STATION FINDES AUTOMATISK\nFind den nærmeste station med GPS, eller vælg den selv. KORA husker den til næste gang.\n\nRUTE OG RETNING\nSkift, stationer og rejsetid samt det tog, du skal med, vist ligesom på dets destinationsskilt.\n\nTJEK RETNINGEN MED KAMERAET\nRet kameraet mod skiltet på perronen eller togets destinationsskilt, og KORA fortæller med det samme, om retningen er rigtig. Tekstgenkendelsen foregår helt på din iPhone.\n\nVID HVOR DU ER\nKORA kombinerer Seouls ankomstdata i realtid, GPS, accelerometeret (der mærker afgang og stop) og genkendelse af udkaldene i toget direkte på enheden for at følge din station. Den fortæller endda, hvilken side dørene åbner i.\n\nBESKED OM AT STÅ AF\nNår dit stop nærmer sig, får du \"Gør dig klar til at stå af\" og derefter \"Stå af nu!\" med vibration. Et diagram viser toget og en nål ved din destination.\n\nLÅSESKÆRM OG DYNAMIC ISLAND\nEn Live Activity viser turens fremskridt, uden at du skal låse iPhone op.\n\n23 SPROG\nBrug hele appen på dansk eller 22 andre sprog. Den starter på din iPhones sprog. Stationsnavne vises altid på koreansk sammen med den latinske stavemåde fra de koreanske skilte, så du nemt genkender dem på perronen.\n\nDÆKNING\nOmkring 930 stationer i Seoul-området (Seoul, Gyeonggi og Incheon, inkl. GTX-A, AREX, Shinbundang-linjen og letbaner) samt Busan, Daegu, Gwangju og Daejeon. Skift by med regionsknapperne i stationsvælgeren.\n\nVIRKER OFFLINE\nRuter beregnes på enheden, så søgningen virker uden internet. Kun ankomster i realtid kræver forbindelse.\n\nPRIVATLIV FØRST\nIngen konto, ingen reklamer, ingen køb i appen. Lokalitet, kamera og genkendelse af udkald behandles på enheden og bliver aldrig gemt eller sendt. Vi indsamler kun anonym brugsstatistik for at forbedre appen.\n\nAdgang til kamera, mikrofon, talegenkendelse og bevægelse er frivillig. Uden den kan du stadig selv vælge stationer og få fuld rutevejledning.\n\nKontakt: mizzking75@gmail.com",
+ "release_notes": [
+  "KORA findes nu på 23 sprog",
+  "Nyt med dansk, tysk, fransk og thai",
+  "Stationsnavne som på skiltene",
+  "Widgets og beskeder på iPhones sprog"
+ ],
+ "shots": [
+  [
+   "Hele ruten med ét blik",
+   "Stationer, skift og tid før du tager af sted"
+  ],
+  [
+   "Stig på i den rigtige retning",
+   "Som på togets destinationsskilt"
+  ],
+  [
+   "Kør aldrig forbi dit stop",
+   "Besked og vibration før målet"
+  ],
+  [
+   "930 stationer i 5 byer",
+   "Seoul, Busan, Daegu, Gwangju, Daejeon"
+  ],
+  [
+   "Dit sprog, ét af 23",
+   "Stationsnavne som på skiltene"
+  ]
+ ],
+ "creative": {
+  "header": [
+   "Metroguide til Korea",
+   "Rigtigt tog,<br>rigtigt stop"
+  ],
+  "search": [
+   "Metro i Seoul",
+   "Altid det<br>rigtige tog",
+   "En vibration siger, når du skal af"
+  ]
+ }
+}

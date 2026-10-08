@@ -1,0 +1,46 @@
+{
+ "name": "KORA: tunnelbana i Korea",
+ "subtitle": "Seoul och Busan utan stress",
+ "keywords": "incheon,daegu,daejeon,gwangju,gtx,arex,flygplats,tåg,byte,rutt,station,resa,turist,semester,metro",
+ "promo": "Kliv alltid på rätt tåg och missa aldrig din station. KORA talar nu 23 språk, även svenska.",
+ "description": "KORA är tunnelbaneguiden för alla som reser i Korea.\nVälj startstation och resmål, så visar KORA byten, antal stationer, beräknad restid och åt vilket håll du ska kliva på – precis som det står på tågets destinationsskylt. Under resan följer KORA var du är och säger till när du ska av.\n\nDIN STATION HITTAS ÅT DIG\nHitta närmaste station med GPS eller välj själv. KORA kommer ihåg den till nästa gång.\n\nRUTT OCH RIKTNING\nByten, stationer och restid, plus tåget du ska ta, visat som på dess destinationsskylt.\n\nKOLLA RIKTNINGEN MED KAMERAN\nRikta kameran mot en skylt på plattformen eller tågets destinationsskylt så säger KORA direkt om riktningen stämmer. Textigenkänningen sker helt på din iPhone.\n\nVET ALLTID VAR DU ÄR\nKORA kombinerar realtidsdata om ankomster i Seoul, GPS, accelerometern (som känner av avgång och stopp) och igenkänning av utropen i tåget direkt på enheten för att följa din station. Den berättar till och med vilken sida dörrarna öppnas på.\n\nPÅMINNELSE OM ATT KLIVA AV\nNär din station närmar sig får du ”Gör dig redo att kliva av” och sedan ”Kliv av nu!”, med vibration. Ett diagram visar tåget och en nål vid ditt resmål.\n\nLÅSSKÄRM OCH DYNAMIC ISLAND\nEn Live Activity visar hur långt du kommit utan att du behöver låsa upp din iPhone.\n\n23 SPRÅK\nAnvänd hela appen på svenska eller 22 andra språk. Den startar på din iPhones språk. Stationsnamn visas alltid på koreanska tillsammans med den latinska stavningen från de koreanska skyltarna, så att du känner igen dem på plattformen.\n\nTÄCKNING\nCirka 930 stationer i Seoulområdet (Seoul, Gyeonggi och Incheon, inklusive GTX-A, AREX, Shinbundang-linjen och spårvägar), Busan, Daegu, Gwangju och Daejeon. Byt stad med regionknapparna i stationsväljaren.\n\nFUNKAR OFFLINE\nRutter beräknas på enheten, så sökningen fungerar utan internet. Bara ankomster i realtid behöver uppkoppling.\n\nINTEGRITET FÖRST\nInget konto, ingen reklam, inga köp i appen. Plats, kamera och igenkänning av utrop behandlas på enheten och sparas eller skickas aldrig. Vi samlar bara in anonym användningsstatistik för att förbättra appen.\n\nÅtkomst till kamera, mikrofon, taligenkänning och rörelse är frivillig. Utan den kan du ändå välja stationer själv och få full vägledning.\n\nKontakt: mizzking75@gmail.com",
+ "release_notes": [
+  "KORA finns nu på 23 språk",
+  "Nytt med svenska, tyska, franska, thai",
+  "Stationsnamn som på skyltarna",
+  "Widgetar och frågor på iPhones språk"
+ ],
+ "shots": [
+  [
+   "Hela resan med en blick",
+   "Stationer, byten och restid i förväg"
+  ],
+  [
+   "Kliv på åt rätt håll",
+   "Som på tågets destinationsskylt"
+  ],
+  [
+   "Missa aldrig din station",
+   "Påminnelse och vibration före målet"
+  ],
+  [
+   "930 stationer i 5 städer",
+   "Seoul, Busan, Daegu, Gwangju, Daejeon"
+  ],
+  [
+   "Ditt språk, ett av 23",
+   "Stationsnamn som på skyltarna"
+  ]
+ ],
+ "creative": {
+  "header": [
+   "Tunnelbaneguide för Korea",
+   "Rätt tåg,<br>rätt station"
+  ],
+  "search": [
+   "Tunnelbana Seoul",
+   "Alltid på<br>rätt tåg",
+   "En vibration säger när du ska av"
+  ]
+ }
+}

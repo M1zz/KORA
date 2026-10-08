@@ -1,0 +1,46 @@
+{
+ "name": "KORA: Tàu điện ngầm Hàn Quốc",
+ "subtitle": "Đi Seoul, Busan không lạc",
+ "keywords": "incheon,daegu,daejeon,gwangju,gtx,arex,sân bay,metro,chuyển tuyến,lộ trình,ga,du lịch,khách du lịch",
+ "promo": "Luôn lên đúng tàu và không bao giờ lỡ ga xuống. KORA nay hỗ trợ 23 ngôn ngữ, có cả tiếng Việt.",
+ "description": "KORA là ứng dụng chỉ đường tàu điện ngầm dành cho mọi người đi du lịch Hàn Quốc.\nChỉ cần chọn ga đi và ga đến, KORA sẽ cho biết các lần chuyển tuyến, số ga, thời gian dự kiến và hướng tàu cần lên, đúng như bảng điểm đến trên tàu. Trong lúc đi, ứng dụng theo dõi bạn đang ở ga nào và nhắc bạn khi đến lúc xuống.\n\nTỰ TÌM GA CHO BẠN\nTìm ga gần nhất bằng GPS hoặc tự chọn. KORA sẽ nhớ ga đó cho lần mở sau.\n\nLỘ TRÌNH VÀ HƯỚNG LÊN TÀU\nXem số lần chuyển tuyến, số ga và thời gian đi, kèm chuyến tàu cần lên, hiển thị giống hệt bảng điểm đến của tàu.\n\nKIỂM TRA HƯỚNG BẰNG CAMERA\nHướng camera vào biển trên sân ga hoặc bảng điểm đến của tàu, KORA sẽ cho biết ngay hướng đó có đúng không. Việc nhận dạng chữ diễn ra hoàn toàn trên iPhone.\n\nLUÔN BIẾT MÌNH ĐANG Ở ĐÂU\nKORA kết hợp dữ liệu tàu đến theo thời gian thực của Seoul, GPS, cảm biến gia tốc (nhận biết lúc tàu chạy và dừng) cùng việc nhận dạng thông báo trên tàu ngay trên thiết bị để theo dõi ga của bạn. Ứng dụng còn cho biết cửa sẽ mở ở phía nào.\n\nNHẮC XUỐNG TÀU\nKhi gần đến ga, bạn sẽ thấy \"Chuẩn bị xuống tàu\", rồi \"Xuống ngay!\" kèm rung. Sơ đồ hành trình hiển thị con tàu và ghim ở ga đến.\n\nMÀN HÌNH KHÓA VÀ DYNAMIC ISLAND\nHoạt động trực tiếp cho bạn xem tiến trình chuyến đi mà không cần mở khóa iPhone.\n\n23 NGÔN NGỮ\nDùng toàn bộ ứng dụng bằng tiếng Việt hoặc 22 ngôn ngữ khác. Ứng dụng tự mở theo ngôn ngữ của iPhone. Tên ga luôn hiển thị bằng tiếng Hàn kèm cách viết chữ Latinh ghi trên biển ga ở Hàn Quốc, nên bạn dễ dàng đối chiếu ngay trên sân ga.\n\nPHẠM VI\nKhoảng 930 ga ở vùng thủ đô Seoul (Seoul, Gyeonggi và Incheon, gồm GTX-A, AREX, tuyến Shinbundang và tàu điện nhẹ), Busan, Daegu, Gwangju và Daejeon. Đổi thành phố bằng các nút khu vực trong màn hình chọn ga.\n\nDÙNG ĐƯỢC KHI KHÔNG CÓ MẠNG\nLộ trình được tính ngay trên thiết bị nên vẫn tìm được khi không có internet. Chỉ dữ liệu tàu đến theo thời gian thực mới cần kết nối.\n\nTÔN TRỌNG QUYỀN RIÊNG TƯ\nKhông cần tài khoản, không quảng cáo, không mua hàng trong ứng dụng. Vị trí, camera và nhận dạng thông báo được xử lý trên thiết bị, không bao giờ được lưu hay gửi đi. Chúng tôi chỉ thu thập thống kê sử dụng ẩn danh để cải thiện ứng dụng.\n\nQuyền truy cập camera, micrô, nhận dạng giọng nói và chuyển động đều không bắt buộc. Không cấp quyền, bạn vẫn có thể tự chọn ga và dùng đầy đủ tính năng chỉ đường.\n\nLiên hệ: mizzking75@gmail.com",
+ "release_notes": [
+  "KORA nay có 23 ngôn ngữ",
+  "Thêm tiếng Việt, tiếng Thái, tiếng Đức",
+  "Tên ga ghi giống biển trong ga",
+  "Tiện ích và lời xin quyền theo máy"
+ ],
+ "shots": [
+  [
+   "Thấy mọi lần chuyển tuyến",
+   "Số ga, chuyển tuyến và thời gian trước khi đi"
+  ],
+  [
+   "Lên tàu đúng hướng",
+   "Giống bảng điểm đến trên tàu"
+  ],
+  [
+   "Không bao giờ lỡ ga xuống",
+   "Nhắc nhở và rung trước khi đến"
+  ],
+  [
+   "930 ga ở 5 thành phố",
+   "Seoul, Busan, Daegu, Gwangju, Daejeon"
+  ],
+  [
+   "Ngôn ngữ của bạn, 1 trong 23",
+   "Tên ga ghi giống biển trong ga"
+  ]
+ ],
+ "creative": {
+  "header": [
+   "Chỉ đường tàu điện Hàn Quốc",
+   "Đúng tàu,<br>đúng ga"
+  ],
+  "search": [
+   "Tàu điện ngầm Seoul",
+   "Luôn lên<br>đúng tàu",
+   "Rung nhắc khi đến lúc xuống"
+  ]
+ }
+}

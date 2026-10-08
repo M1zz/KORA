@@ -1,0 +1,46 @@
+{
+ "name": "KORA: U-Bahn-Navi für Korea",
+ "subtitle": "Seoul Metro für Reisende",
+ "keywords": "busan,incheon,daegu,daejeon,gwangju,gtx,arex,flughafen,zug,umsteigen,route,station,urlaub",
+ "promo": "Steig immer in den richtigen Zug und verpass nie deine Station. KORA spricht jetzt 23 Sprachen, darunter Deutsch.",
+ "description": "KORA ist dein U-Bahn-Begleiter für die Reise durch Korea.\nWähle Start und Ziel, und KORA zeigt dir Umstiege, Anzahl der Stationen, die ungefähre Fahrzeit und in welche Richtung du einsteigen musst – genau so, wie es auf der Zielanzeige des Zugs steht. Während der Fahrt verfolgt KORA deine aktuelle Station und sagt dir rechtzeitig, wann du aussteigen musst.\n\nDEINE STATION, AUTOMATISCH GEFUNDEN\nFinde die nächste Station per GPS oder wähle sie selbst. KORA merkt sie sich bis zum nächsten Öffnen.\n\nROUTE UND EINSTIEGSRICHTUNG\nUmstiege, Stationen und Fahrzeit auf einen Blick, dazu der richtige Zug – angezeigt wie auf seiner Zielanzeige.\n\nRICHTUNG MIT DER KAMERA PRÜFEN\nRichte die Kamera auf ein Bahnsteigschild oder die Zielanzeige des Zugs, und KORA sagt dir sofort, ob die Richtung stimmt. Die Texterkennung läuft komplett auf deinem iPhone.\n\nIMMER WISSEN, WO DU BIST\nKORA kombiniert Echtzeit-Ankunftsdaten aus Seoul, GPS, den Beschleunigungssensor (erkennt Anfahren und Halten) und die Erkennung der Durchsagen im Zug direkt auf dem Gerät. So weiß KORA, an welcher Station du bist, und sogar, auf welcher Seite sich die Türen öffnen.\n\nAUSSTIEGSHINWEISE\nKurz vor deiner Station heißt es „Bald aussteigen“, dann „Jetzt aussteigen!“ – mit haptischem Feedback. Eine Fortschrittsanzeige zeigt den Zug und eine Markierung an deinem Ziel.\n\nSPERRBILDSCHIRM UND DYNAMIC ISLAND\nEine Live-Aktivität zeigt deinen Fahrtfortschritt, ohne dass du das iPhone entsperren musst.\n\n23 SPRACHEN\nNutze die ganze App auf Deutsch oder in 22 weiteren Sprachen. Sie startet in der Sprache deines iPhone. Stationsnamen erscheinen immer im koreanischen Original zusammen mit der lateinischen Schreibweise von den Schildern in Korea – so findest du sie am Bahnsteig sofort wieder.\n\nABDECKUNG\nRund 930 Stationen im Großraum Seoul (Seoul, Gyeonggi und Incheon, inklusive GTX-A, AREX, Shinbundang-Linie und Stadtbahnen) sowie in Busan, Daegu, Gwangju und Daejeon. Mit den Regions-Chips in der Stationsauswahl wechselst du die Stadt.\n\nFUNKTIONIERT OFFLINE\nRouten werden auf deinem Gerät berechnet, die Suche klappt also auch ohne Internet. Nur die Echtzeit-Ankünfte brauchen eine Verbindung.\n\nDATENSCHUTZ AB WERK\nKein Konto, keine Werbung, keine In-App-Käufe. Standort, Kamera und Durchsagenerkennung werden auf deinem Gerät verarbeitet und nie gespeichert oder versendet. Wir erfassen nur anonyme Nutzungsstatistiken, um die App zu verbessern.\n\nZugriff auf Kamera, Mikrofon, Spracherkennung und Bewegungsdaten ist freiwillig. Auch ohne kannst du Stationen selbst wählen und die volle Routenführung nutzen.\n\nKontakt: mizzking75@gmail.com",
+ "release_notes": [
+  "KORA gibt es jetzt in 23 Sprachen",
+  "Auch auf Deutsch, Französisch und Thai",
+  "Stationsnamen wie auf den Schildern",
+  "Widgets und Hinweise in deiner Sprache"
+ ],
+ "shots": [
+  [
+   "Alle Umstiege auf einen Blick",
+   "Stationen, Umstiege und Fahrzeit vorab"
+  ],
+  [
+   "In die richtige Richtung",
+   "Wie auf der Zielanzeige des Zugs"
+  ],
+  [
+   "Nie wieder Station verpassen",
+   "Hinweis und Vibration vor dem Ziel"
+  ],
+  [
+   "930 Stationen, 5 Städte",
+   "Seoul, Busan, Daegu, Gwangju, Daejeon"
+  ],
+  [
+   "Deine Sprache – eine von 23",
+   "Stationsnamen wie auf den Schildern"
+  ]
+ ],
+ "creative": {
+  "header": [
+   "U-Bahn-Guide für Korea",
+   "Richtiger Zug,<br>richtige Station"
+  ],
+  "search": [
+   "Seoul U-Bahn",
+   "Immer in den<br>richtigen Zug",
+   "Eine Vibration sagt dir, wann du aussteigst"
+  ]
+ }
+}

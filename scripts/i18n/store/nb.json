@@ -1,0 +1,46 @@
+{
+ "name": "KORA: T-bane i Korea",
+ "subtitle": "Seoul og Busan uten stress",
+ "keywords": "incheon,daegu,daejeon,gwangju,gtx,arex,flyplass,tog,bytte,rute,stasjon,reise,turist,ferie,metro",
+ "promo": "Ta alltid riktig tog, og kjør aldri forbi stoppet ditt. KORA snakker nå 23 språk, også norsk.",
+ "description": "KORA er T-baneguiden for alle som reiser i Korea.\nVelg startstasjon og reisemål, så viser KORA bytter, antall stasjoner, beregnet reisetid og hvilken retning du skal ta – akkurat slik det står på togets destinasjonsskilt. Underveis følger KORA med på hvor du er, og sier fra når du skal av.\n\nSTASJONEN DIN, FUNNET FOR DEG\nFinn nærmeste stasjon med GPS eller velg selv. KORA husker den til neste gang.\n\nRUTE OG RETNING\nBytter, stasjoner og reisetid, pluss toget du skal ta, vist slik det står på destinasjonsskiltet.\n\nSJEKK RETNINGEN MED KAMERAET\nRett kameraet mot skiltet på plattformen eller togets destinasjonsskilt, så sier KORA med en gang om retningen stemmer. Tekstgjenkjenningen skjer helt på iPhone.\n\nVIT HVOR DU ER\nKORA kombinerer sanntidsdata for ankomster i Seoul, GPS, akselerometeret (som merker avgang og stopp) og gjenkjenning av annonseringene i toget direkte på enheten for å følge stasjonen din. Den forteller til og med hvilken side dørene åpnes på.\n\nVARSEL OM Å GÅ AV\nNår stoppet ditt nærmer seg, får du «Gjør deg klar til å gå av» og så «Gå av nå!», med vibrering. Et diagram viser toget og en nål ved reisemålet.\n\nLÅST SKJERM OG DYNAMIC ISLAND\nEn Live Activity viser hvor langt du har kommet, uten at du må låse opp iPhone.\n\n23 SPRÅK\nBruk hele appen på norsk eller 22 andre språk. Den starter på iPhone-språket ditt. Stasjonsnavn vises alltid på koreansk sammen med den latinske skrivemåten fra de koreanske skiltene, så du kjenner dem igjen på plattformen.\n\nDEKNING\nRundt 930 stasjoner i Seoul-området (Seoul, Gyeonggi og Incheon, inkludert GTX-A, AREX, Shinbundang-linjen og bybaner), Busan, Daegu, Gwangju og Daejeon. Bytt by med regionknappene i stasjonsvelgeren.\n\nFUNGERER UTEN NETT\nRutene beregnes på enheten, så søket virker uten internett. Bare sanntidsankomster trenger tilkobling.\n\nPERSONVERN FØRST\nIngen konto, ingen reklame, ingen kjøp i appen. Posisjon, kamera og gjenkjenning av annonseringer behandles på enheten og blir aldri lagret eller sendt. Vi samler bare inn anonym bruksstatistikk for å gjøre appen bedre.\n\nTilgang til kamera, mikrofon, talegjenkjenning og bevegelse er valgfritt. Uten det kan du fortsatt velge stasjoner selv og få full veiledning.\n\nKontakt: mizzking75@gmail.com",
+ "release_notes": [
+  "KORA finnes nå på 23 språk",
+  "Nytt med norsk, tysk, fransk og thai",
+  "Stasjonsnavn som på skiltene",
+  "Widgeter og varsler på iPhone-språket"
+ ],
+ "shots": [
+  [
+   "Hele ruten med ett blikk",
+   "Stasjoner, bytter og tid før du drar"
+  ],
+  [
+   "Gå på i riktig retning",
+   "Som på togets destinasjonsskilt"
+  ],
+  [
+   "Kjør aldri forbi stoppet",
+   "Varsel og vibrering før målet"
+  ],
+  [
+   "930 stasjoner i 5 byer",
+   "Seoul, Busan, Daegu, Gwangju, Daejeon"
+  ],
+  [
+   "Ditt språk, ett av 23",
+   "Stasjonsnavn som på skiltene"
+  ]
+ ],
+ "creative": {
+  "header": [
+   "T-baneguide for Korea",
+   "Riktig tog,<br>riktig stopp"
+  ],
+  "search": [
+   "T-bane Seoul",
+   "Alltid riktig<br>tog",
+   "En vibrering sier når du skal av"
+  ]
+ }
+}

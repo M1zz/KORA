@@ -1,0 +1,46 @@
+{
+ "name": "KORA : métro en Corée",
+ "subtitle": "Séoul et Busan sans se perdre",
+ "keywords": "incheon,daegu,daejeon,gwangju,gtx,arex,aéroport,train,correspondance,itinéraire,station,voyage",
+ "promo": "Montez dans le bon train et ne ratez plus votre arrêt. KORA parle désormais 23 langues, dont le français.",
+ "description": "KORA est le guide du métro pour tous ceux qui voyagent en Corée.\nChoisissez votre station de départ et votre destination : KORA indique les correspondances, le nombre d'arrêts, la durée estimée et le sens dans lequel monter, tel qu'il s'affiche sur le train. Pendant le trajet, il suit votre station actuelle et vous prévient quand descendre.\n\nVOTRE STATION, TROUVÉE POUR VOUS\nTrouvez la station la plus proche par GPS ou choisissez-la vous-même. KORA s'en souvient à la prochaine ouverture.\n\nITINÉRAIRE ET SENS DE MONTÉE\nCorrespondances, arrêts et durée du trajet, plus le train à prendre, présenté comme sur son affichage de destination.\n\nVÉRIFIEZ LE SENS AVEC LA CAMÉRA\nVisez un panneau du quai ou l'affichage de destination du train : KORA vous dit tout de suite si c'est le bon sens. La reconnaissance du texte se fait entièrement sur votre iPhone.\n\nSACHEZ OÙ VOUS ÊTES\nKORA combine les horaires d'arrivée en temps réel de Séoul, le GPS, l'accéléromètre (qui détecte départs et arrêts) et la reconnaissance des annonces à bord, sur l'appareil, pour suivre votre station. Il indique même de quel côté les portes s'ouvrent.\n\nALERTES D'ARRIVÉE\nÀ l'approche de votre arrêt : « Préparez-vous à descendre », puis « Descendez maintenant ! », avec retour haptique. Un schéma montre le train et un repère sur votre destination.\n\nÉCRAN VERROUILLÉ ET DYNAMIC ISLAND\nUne activité en direct affiche votre progression sans déverrouiller l'iPhone.\n\n23 LANGUES\nUtilisez toute l'app en français ou dans 22 autres langues. Elle démarre dans la langue de votre iPhone. Les noms de stations s'affichent toujours en coréen avec la transcription en lettres latines inscrite sur les panneaux coréens, pour les repérer facilement sur le quai.\n\nCOUVERTURE\nEnviron 930 stations dans la région de Séoul (Séoul, Gyeonggi et Incheon, y compris GTX-A, AREX, la ligne Shinbundang et les métros légers), à Busan, Daegu, Gwangju et Daejeon. Changez de ville grâce aux filtres de région du sélecteur de stations.\n\nFONCTIONNE HORS LIGNE\nLes itinéraires sont calculés sur l'appareil : la recherche marche sans Internet. Seules les arrivées en temps réel nécessitent une connexion.\n\nRESPECT DE LA VIE PRIVÉE\nPas de compte, pas de publicité, pas d'achats intégrés. Position, caméra et reconnaissance des annonces sont traitées sur l'appareil et ne sont jamais enregistrées ni envoyées. Nous ne collectons que des statistiques d'utilisation anonymes pour améliorer l'app.\n\nL'accès à la caméra, au micro, à la reconnaissance vocale et aux données de mouvement est facultatif. Sans eux, vous pouvez choisir vos stations vous-même et profiter de tout le guidage.\n\nContact : mizzking75@gmail.com",
+ "release_notes": [
+  "KORA est disponible en 23 langues",
+  "Nouveau en français, allemand et thaï",
+  "Noms de stations comme sur les panneaux",
+  "Widgets et alertes dans votre langue"
+ ],
+ "shots": [
+  [
+   "Tout le trajet d'un coup d'œil",
+   "Arrêts, correspondances et durée"
+  ],
+  [
+   "Montez dans le bon sens",
+   "Comme sur l'affichage du train"
+  ],
+  [
+   "Ne ratez plus votre arrêt",
+   "Alerte et vibration avant l'arrivée"
+  ],
+  [
+   "930 stations, 5 villes",
+   "Séoul, Busan, Daegu, Gwangju, Daejeon"
+  ],
+  [
+   "Votre langue, parmi 23",
+   "Noms de stations comme sur les panneaux"
+  ]
+ ],
+ "creative": {
+  "header": [
+   "Guide du métro coréen",
+   "Le bon train,<br>le bon arrêt"
+  ],
+  "search": [
+   "Métro de Séoul",
+   "Toujours dans<br>le bon train",
+   "Une vibration vous dit quand descendre"
+  ]
+ }
+}
