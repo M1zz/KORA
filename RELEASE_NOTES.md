@@ -14,7 +14,7 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 독일어 프랑스어 태국어 등이 새로 들어왔어요
 새 언어에서는 역 이름을 표지판 영문으로 보여 줘요
 위젯과 권한 안내도 휴대폰 언어로 나와요
-지원하지 않는 언어의 휴대폰에서는 영어로 나와요
+외국어로 쓸 때 다음 역 아래 읽는 법도 보여요
 ```
 
 ### 앱스토어 (English en-US)
@@ -24,7 +24,7 @@ KORA now speaks 23 languages
 Added German, French, Thai and more
 Station names match the romanized signs
 Widgets and prompts follow your language
-Unsupported languages now show English
+Next stop shows a name you can read too
 ```
 
 ### 앱스토어 (日本語 ja)
@@ -34,7 +34,7 @@ Unsupported languages now show English
 ドイツ語やタイ語などを追加しました
 新しい言語では駅名を案内板の表記で表示
 ウィジェットと許可の案内も端末の言語に
-未対応の言語の端末では英語で表示します
+次の駅はハングルの下にカタカナも表示
 ```
 
 ### 앱스토어 (중국어 간체 zh-Hans)
@@ -44,7 +44,7 @@ Unsupported languages now show English
 新增德语、法语、泰语等语言
 新语言中站名按站牌上的罗马字显示
 小组件和权限说明也跟随手机语言
-未支持语言的手机将以英语显示
+下一站在韩文下方显示中文站名
 ```
 
 ### 앱스토어 (중국어 번체 zh-Hant)
@@ -54,7 +54,7 @@ Unsupported languages now show English
 新增德文、法文、泰文等語言
 新語言中站名依站牌上的羅馬拼音顯示
 小工具與權限說明也跟隨手機語言
-未支援語言的手機會以英文顯示
+下一站在韓文下方顯示中文站名
 ```
 
 ### 앱스토어 (독일어 de)
@@ -64,7 +64,7 @@ KORA gibt es jetzt in 23 Sprachen
 Auch auf Deutsch, Französisch und Thai
 Stationsnamen wie auf den Schildern
 Widgets und Hinweise in deiner Sprache
-Bei anderen Sprachen erscheint Englisch
+Nächste Station auch in Lateinschrift
 ```
 
 ### 앱스토어 (스페인어 es)
@@ -74,7 +74,7 @@ KORA ya está disponible en 23 idiomas
 Ahora en español, francés, alemán y más
 Estaciones escritas como en los letreros
 Widgets y avisos en el idioma del iPhone
-En otros idiomas, la app se ve en inglés
+Próxima estación también en letra latina
 ```
 
 ### 앱스토어 (프랑스어 fr)
@@ -84,7 +84,7 @@ KORA est disponible en 23 langues
 Nouveau en français, allemand et thaï
 Noms de stations comme sur les panneaux
 Widgets et alertes dans votre langue
-Les autres langues passent en anglais
+Prochain arrêt aussi en lettres latines
 ```
 
 ### 앱스토어 (이탈리아어 it)
@@ -94,7 +94,7 @@ KORA ora è disponibile in 23 lingue
 Anche in italiano, francese e tedesco
 Nomi delle stazioni come sui cartelli
 Widget e avvisi nella lingua dell'iPhone
-Con altre lingue l'app è in inglese
+Prossima fermata anche in lettere latine
 ```
 
 ### 앱스토어 (포르투갈어 브라질 pt-BR)
@@ -104,7 +104,7 @@ O KORA agora está em 23 idiomas
 Chegaram português, francês, tailandês
 Estações escritas como nas placas
 Widgets e avisos no idioma do iPhone
-Em outros idiomas, o app fica em inglês
+Próxima estação também em letra latina
 ```
 
 ### 앱스토어 (러시아어 ru)
@@ -114,7 +114,7 @@ KORA теперь на 23 языках
 Добавлены русский, немецкий и тайский
 Станции подписаны как на указателях
 Виджеты и запросы на языке iPhone
-На других языках теперь английский
+Следующая станция теперь и латиницей
 ```
 
 ### 앱스토어 (체코어 cs)
@@ -124,7 +124,7 @@ KORA je teď ve 23 jazycích
 Nově i česky, německy nebo thajsky
 Názvy stanic jako na cedulích
 Widgety a dotazy v jazyce iPhonu
-V jiných jazycích je aplikace anglicky
+Další stanice nově i latinkou
 ```
 
 ### 앱스토어 (덴마크어 da)
@@ -134,7 +134,7 @@ KORA findes nu på 23 sprog
 Nyt med dansk, tysk, fransk og thai
 Stationsnavne som på skiltene
 Widgets og beskeder på iPhones sprog
-På andre sprog vises appen på engelsk
+Næste station også med latinsk skrift
 ```
 
 ### 앱스토어 (그리스어 el)
@@ -144,7 +144,7 @@ På andre sprog vises appen på engelsk
 Νέα ελληνικά, γερμανικά και ταϊλανδικά
 Σταθμοί γραμμένοι όπως στις πινακίδες
 Widget και μηνύματα στη γλώσσα σας
-Σε άλλες γλώσσες εμφανίζονται αγγλικά
+Επόμενος σταθμός και με λατινικά
 ```
 
 ### 앱스토어 (핀란드어 fi)
@@ -154,7 +154,7 @@ KORA puhuu nyt 23 kieltä
 Uutena suomi, saksa, ranska ja thai
 Asemien nimet kuten kylteissä
 Widgetit ja kehotteet iPhonen kielellä
-Muilla kielillä sovellus on englanniksi
+Seuraava asema myös tutuin kirjaimin
 ```
 
 ### 앱스토어 (인도네시아어 id)
@@ -164,7 +164,7 @@ KORA kini hadir dalam 23 bahasa
 Termasuk Indonesia, Thailand, Vietnam
 Nama stasiun sesuai papan di stasiun
 Widget dan izin ikut bahasa iPhone
-Bahasa lain kini memakai bahasa Inggris
+Stasiun berikut juga dalam huruf Latin
 ```
 
 ### 앱스토어 (노르웨이어 보크말 nb)
@@ -174,7 +174,7 @@ KORA finnes nå på 23 språk
 Nytt med norsk, tysk, fransk og thai
 Stasjonsnavn som på skiltene
 Widgeter og varsler på iPhone-språket
-På andre språk vises appen på engelsk
+Neste stasjon også i latinske bokstaver
 ```
 
 ### 앱스토어 (네덜란드어 nl)
@@ -184,7 +184,7 @@ KORA is nu in 23 talen beschikbaar
 Nieuw in het Nederlands, Duits en Thai
 Stationsnamen zoals op de borden
 Widgets en meldingen in je eigen taal
-Andere talen tonen nu Engels
+Volgend station ook in Latijnse letters
 ```
 
 ### 앱스토어 (폴란드어 pl)
@@ -194,7 +194,7 @@ KORA działa teraz w 23 językach
 Doszły m.in. polski, niemiecki, tajski
 Nazwy stacji jak na tablicach
 Widżety i prośby w języku iPhone’a
-Inne języki wyświetlą wersję angielską
+Następna stacja też łacińskimi literami
 ```
 
 ### 앱스토어 (스웨덴어 sv)
@@ -204,7 +204,7 @@ KORA finns nu på 23 språk
 Nytt med svenska, tyska, franska, thai
 Stationsnamn som på skyltarna
 Widgetar och frågor på iPhones språk
-På andra språk visas appen på engelska
+Nästa station också i latinsk skrift
 ```
 
 ### 앱스토어 (태국어 th)
@@ -214,7 +214,7 @@ På andra språk visas appen på engelska
 เพิ่มภาษาไทย เยอรมัน ฝรั่งเศส และอื่นๆ
 ชื่อสถานีสะกดตรงกับป้ายสถานี
 วิดเจ็ตและคำขอสิทธิ์ตามภาษาเครื่อง
-ภาษาที่ไม่รองรับจะแสดงเป็นภาษาอังกฤษ
+สถานีถัดไปแสดงชื่อภาษาอังกฤษด้วย
 ```
 
 ### 앱스토어 (튀르키예어 tr)
@@ -224,7 +224,7 @@ KORA artık 23 dilde
 Türkçe, Almanca ve Tayca da eklendi
 İstasyon adları tabelalardaki gibi
 Widget ve izin metinleri iPhone dilinde
-Diğer dillerde artık İngilizce görünür
+Sonraki istasyon Latin harfleriyle de
 ```
 
 ### 앱스토어 (베트남어 vi)
@@ -234,7 +234,7 @@ KORA nay có 23 ngôn ngữ
 Thêm tiếng Việt, tiếng Thái, tiếng Đức
 Tên ga ghi giống biển trong ga
 Tiện ích và lời xin quyền theo máy
-Ngôn ngữ khác sẽ hiển thị bằng tiếng Anh
+Ga tiếp theo hiện cả tên chữ Latinh
 ```
 
 ## 1.0.5

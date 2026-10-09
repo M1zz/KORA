@@ -615,23 +615,9 @@ struct SubwayNavigatorView: View {
         return ZStack(alignment: .top) {
             if isBoarded, let bt = boardedAt {
                 VStack(spacing: 18) {
-                    HStack(spacing: 8) {
-                        Image(systemName: "tram.fill")
-                            .font(.callout).fontWeight(.semibold)
-                            .foregroundStyle(seg.line.color)
-                        Text(boardedStatusLabel)
-                            .font(.callout).fontWeight(.bold)
-                            .foregroundStyle(seg.line.color)
-                        Spacer()
-                        Text(lineDirectionLabel(seg: seg, terminus: displayedTerminus))
-                            .font(.callout).fontWeight(.bold)
-                            .foregroundStyle(seg.line.color)
-                            .lineLimit(1).minimumScaleFactor(0.7)
-                    }
-                    .padding(.horizontal, 14).padding(.vertical, 9)
-                    .background(seg.line.color.opacity(0.15))
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .frame(maxWidth: .infinity)
+                    rideStatusHeader(icon: "tram.fill", status: boardedStatusLabel,
+                                     direction: lineDirectionLabel(seg: seg, terminus: displayedTerminus),
+                                     color: seg.line.color)
 
                     inTransitSection(seg: seg, boardedAt: bt)
                 }
@@ -642,25 +628,11 @@ struct SubwayNavigatorView: View {
                 ))
             } else {
                 VStack(spacing: 18) {
-                    HStack(spacing: 8) {
-                        Image(systemName: "clock.fill")
-                            .font(.callout).fontWeight(.semibold)
-                            .foregroundStyle(seg.line.color)
-                        Text(preBoardingStatusLabel)
-                            .font(.callout).fontWeight(.bold)
-                            .foregroundStyle(seg.line.color)
-                        Spacer()
-                        // "X호선 ○○행" — the line + bound-for sign to match against
-                        // the platform's destination indicator before boarding.
-                        Text(lineDirectionLabel(seg: seg, terminus: displayedTerminus))
-                            .font(.callout).fontWeight(.bold)
-                            .foregroundStyle(seg.line.color)
-                            .lineLimit(1).minimumScaleFactor(0.7)
-                    }
-                    .padding(.horizontal, 14).padding(.vertical, 9)
-                    .background(seg.line.color.opacity(0.15))
-                    .clipShape(RoundedRectangle(cornerRadius: 20))
-                    .frame(maxWidth: .infinity)
+                    // "X호선 ○○행" — the line + bound-for sign to match against
+                    // the platform's destination indicator before boarding.
+                    rideStatusHeader(icon: "clock.fill", status: preBoardingStatusLabel,
+                                     direction: lineDirectionLabel(seg: seg, terminus: displayedTerminus),
+                                     color: seg.line.color)
 
                     if let nk = nextKo {
                         verifyNextStopCard(currentKo: seg.stations.first ?? "", nextKo: nk,
@@ -697,6 +669,42 @@ struct SubwayNavigatorView: View {
         .clipShape(RoundedRectangle(cornerRadius: 18))
         .overlay(RoundedRectangle(cornerRadius: 18).stroke(seg.line.color.opacity(0.25), lineWidth: 1.2))
         .animation(.spring(response: 0.38, dampingFraction: 0.88), value: isBoarded)
+    }
+
+    /// Status pill above a ride block: "⏱ 탑승 전 · 4호선 사당행". Short labels
+    /// share one row; when the line name + direction is too long (Latin-script
+    /// languages, named lines like AREX) the direction drops to its own full-width
+    /// row instead of being truncated, and the status never wraps mid-phrase.
+    private func rideStatusHeader(icon: String, status: String, direction: String, color: Color) -> some View {
+        let statusRow = HStack(spacing: 8) {
+            Image(systemName: icon)
+                .font(.callout).fontWeight(.semibold)
+            Text(status)
+                .font(.callout).fontWeight(.bold)
+                .lineLimit(1)
+        }
+        let directionText = Text(direction)
+            .font(.callout).fontWeight(.bold)
+        return ViewThatFits(in: .horizontal) {
+            HStack(spacing: 8) {
+                statusRow.fixedSize()
+                Spacer(minLength: 8)
+                directionText.lineLimit(1).fixedSize()
+            }
+            VStack(alignment: .leading, spacing: 4) {
+                statusRow
+                directionText
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.8)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+        .foregroundStyle(color)
+        .padding(.horizontal, 14).padding(.vertical, 9)
+        .background(color.opacity(0.15))
+        .clipShape(RoundedRectangle(cornerRadius: 20))
+        .frame(maxWidth: .infinity)
     }
 
     /// Two-line station label (display name + Korean Hangul). Single-line +
@@ -764,6 +772,12 @@ struct SubwayNavigatorView: View {
         }
     }
 
+    /// Show the rider's own reading under a Hangul station name — never for
+    /// Korean, and never when there's no distinct reading to add.
+    private func showsReading(ko: String, display: String) -> Bool {
+        displayLanguage.stationNames != .korean && !display.isEmpty && display != ko
+    }
+
     /// "다음역  ❯❯❯  한남" — the next station, with the chevrons flowing toward
     /// the name so the eye is pulled to what to match against the LED display.
     private func verifyNextStopCard(currentKo: String, nextKo: String, nextDisplay: String, lineColor: Color) -> some View {
@@ -772,11 +786,24 @@ struct SubwayNavigatorView: View {
                 .font(.subheadline).fontWeight(.bold)
                 .foregroundStyle(lineColor.opacity(0.8))
             FlowingChevrons(lineColor: lineColor)
-            Text(nextKo)
-                .font(.system(size: 32, weight: .black))
-                .foregroundStyle(lineColor)
-                .minimumScaleFactor(0.6)
-                .lineLimit(1)
+            // Hangul stays the hero (it's what the LED board shows); the rider's
+            // own reading sits underneath as a small single line so it never
+            // pushes the card taller than two lines or wraps.
+            VStack(alignment: .leading, spacing: 0) {
+                Text(nextKo)
+                    .font(.system(size: 32, weight: .black))
+                    .foregroundStyle(lineColor)
+                    .minimumScaleFactor(0.6)
+                    .lineLimit(1)
+                if showsReading(ko: nextKo, display: nextDisplay) {
+                    Text(nextDisplay)
+                        .font(.subheadline).fontWeight(.semibold)
+                        .foregroundStyle(KORATheme.labelSecondary)
+                        .minimumScaleFactor(0.6)
+                        .lineLimit(1)
+                }
+            }
+            .layoutPriority(1)
             Spacer(minLength: 0)
         }
         .padding(12)
@@ -841,7 +868,7 @@ struct SubwayNavigatorView: View {
                 let nextStIdx = currentStationIdx + 1
                 let nextStKo = nextStIdx < seg.stations.count ? seg.stations[nextStIdx] : nil
                 let nextStDisplay = nextStKo.map { MetroLineData.displayName(for: $0, language: displayLanguage) } ?? ""
-                let showNextTrans = nextStKo != nil && displayLanguage != .korean && nextStDisplay != (nextStKo ?? "")
+                let showNextTrans = nextStKo.map { showsReading(ko: $0, display: nextStDisplay) } ?? false
                 // When the position is uncertain, wrap the card in orange — the
                 // same orange as the "위치가 정확하지 않나요?" prompt below. Once the
                 // position firms up the border doesn't blink out: it drains
@@ -1112,14 +1139,31 @@ struct SubwayNavigatorView: View {
                         Color.clear.frame(height: trackW)
                         Color.clear.frame(height: connectorH)
                         if let nk = nextStKo {
-                            Text(nk)
-                                .font(.system(size: 26, weight: .black))
-                                .foregroundStyle(seg.line.color)
-                                .lineLimit(1)
-                                .minimumScaleFactor(0.5)
-                                .frame(height: trackW, alignment: .center)
-                                .id(nk)
-                                .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
+                            // Hangul row stays level with the hollow "next" circle;
+                            // the rider's reading hangs just below it.
+                            VStack(alignment: .leading, spacing: 0) {
+                                // Full-height Hangul centred on the circle's row: it may
+                                // overhang the 22pt row (instead of being squeezed to fit
+                                // it), so it stays the biggest thing in the card.
+                                Text(nk)
+                                    .font(.system(size: 26, weight: .black))
+                                    .foregroundStyle(seg.line.color)
+                                    .lineLimit(1)
+                                    .minimumScaleFactor(0.5)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .frame(height: trackW, alignment: .center)
+                                if showNextTrans {
+                                    Text(nextStDisplay)
+                                        .font(.subheadline).fontWeight(.semibold)
+                                        .foregroundStyle(KORATheme.labelSecondary)
+                                        .lineLimit(1)
+                                        .minimumScaleFactor(0.6)
+                                        .padding(.top, 8)
+                                }
+                            }
+                            .padding(.bottom, 6)
+                            .id(nk)
+                            .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
                         }
                     }
                     .clipped()
