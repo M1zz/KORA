@@ -5,6 +5,238 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 언어마다 `### ...` 제목에 언어 이름이 들어 있고, 코드 블록 안의 글만 올라간다.
 코드 블록 안은 한 줄에 한 문장, 이모지나 마크다운 기호 없이 평문으로 쓴다.
 
+## 1.0.7
+
+### 앱스토어 (한국어 ko)
+
+```
+출구마다 가까운 장소를 미리 볼 수 있어요
+막차 시간을 알려 주고 미리 알림도 보내요
+짐이 많으면 엘리베이터와 가까운 칸을 알려 줘요
+새 기능은 KORA Pro에서 쓸 수 있어요
+이미 쓰던 분은 모든 기능을 그대로 써요
+```
+
+### 앱스토어 (English en-US)
+
+```
+See what's near each station exit
+Last train times with a reminder
+Find the car closest to the elevator
+New features come with KORA Pro
+Existing users keep every feature
+```
+
+### 앱스토어 (日本語 ja)
+
+```
+出口ごとの周辺スポットを確認できます
+終電時刻と事前の通知に対応しました
+エレベーターに近い車両がわかります
+新機能はKORA Proで使えます
+これまでの利用者は全機能をそのまま使えます
+```
+
+### 앱스토어 (중국어 간체 zh-Hans)
+
+```
+可以查看每个出口附近的地点
+显示末班车时间并提前提醒
+告诉你离电梯最近的车厢
+新功能包含在 KORA Pro 中
+老用户可继续使用全部功能
+```
+
+### 앱스토어 (중국어 번체 zh-Hant)
+
+```
+可以查看每個出口附近的地點
+顯示末班車時間並提前提醒
+告訴你離電梯最近的車廂
+新功能包含在 KORA Pro 中
+既有使用者可繼續使用所有功能
+```
+
+### 앱스토어 (독일어 de)
+
+```
+Sieh, was an jedem Ausgang liegt
+Letzter Zug mit Erinnerung
+Der Wagen nah am Aufzug für Gepäck
+Neue Funktionen gibt es mit KORA Pro
+Bisherige Nutzer behalten alles
+```
+
+### 앱스토어 (스페인어 es)
+
+```
+Mira qué hay cerca de cada salida
+Hora del último tren con aviso
+El vagón más cerca del ascensor
+Las novedades llegan con KORA Pro
+Si ya usabas KORA, lo conservas todo
+```
+
+### 앱스토어 (프랑스어 fr)
+
+```
+Voyez ce qui entoure chaque sortie
+Heure du dernier train avec rappel
+La voiture la plus proche de l'ascenseur
+Les nouveautés arrivent avec KORA Pro
+Les anciens utilisateurs gardent tout
+```
+
+### 앱스토어 (이탈리아어 it)
+
+```
+Scopri cosa c'è vicino a ogni uscita
+Orario dell'ultimo treno con avviso
+La carrozza più vicina all'ascensore
+Le novità arrivano con KORA Pro
+Chi usava già KORA mantiene tutto
+```
+
+### 앱스토어 (포르투갈어 브라질 pt-BR)
+
+```
+Veja o que fica perto de cada saída
+Horário do último trem com aviso
+O vagão mais perto do elevador
+As novidades vêm com o KORA Pro
+Quem já usava mantém tudo
+```
+
+### 앱스토어 (러시아어 ru)
+
+```
+Что рядом с каждым выходом
+Время последнего поезда с напоминанием
+Вагон ближе всего к лифту
+Новые функции входят в KORA Pro
+Прежние пользователи сохраняют всё
+```
+
+### 앱스토어 (체코어 cs)
+
+```
+Co je poblíž každého východu
+Poslední vlak s připomenutím
+Vůz nejblíž k výtahu pro zavazadla
+Novinky jsou součástí KORA Pro
+Stávající uživatelé si vše ponechají
+```
+
+### 앱스토어 (덴마크어 da)
+
+```
+Se, hvad der ligger ved hver udgang
+Sidste tog med påmindelse
+Vognen tættest på elevatoren
+Nye funktioner følger med KORA Pro
+Eksisterende brugere beholder alt
+```
+
+### 앱스토어 (그리스어 el)
+
+```
+Δείτε τι υπάρχει σε κάθε έξοδο
+Τελευταίο τρένο με υπενθύμιση
+Το βαγόνι πιο κοντά στον ανελκυστήρα
+Οι νέες λειτουργίες με το KORA Pro
+Οι παλιοί χρήστες κρατούν τα πάντα
+```
+
+### 앱스토어 (핀란드어 fi)
+
+```
+Katso, mitä uloskäyntien lähellä on
+Viimeinen juna ja muistutus
+Hissiä lähin vaunu matkatavaroille
+Uudet ominaisuudet KORA Prossa
+Nykyiset käyttäjät pitävät kaiken
+```
+
+### 앱스토어 (인도네시아어 id)
+
+```
+Lihat tempat di dekat tiap pintu keluar
+Jam kereta terakhir dengan pengingat
+Gerbong terdekat ke lift
+Fitur baru hadir di KORA Pro
+Pengguna lama tetap dapat semua fitur
+```
+
+### 앱스토어 (노르웨이어 보크말 nb)
+
+```
+Se hva som ligger ved hver utgang
+Siste tog med påminnelse
+Vognen nærmest heisen
+Nye funksjoner følger med KORA Pro
+Eksisterende brukere beholder alt
+```
+
+### 앱스토어 (네덜란드어 nl)
+
+```
+Zie wat er bij elke uitgang ligt
+Laatste trein met herinnering
+De wagon het dichtst bij de lift
+Nieuwe functies zitten in KORA Pro
+Bestaande gebruikers houden alles
+```
+
+### 앱스토어 (폴란드어 pl)
+
+```
+Zobacz, co jest przy każdym wyjściu
+Ostatni pociąg z przypomnieniem
+Wagon najbliżej windy
+Nowości są w KORA Pro
+Dotychczasowi użytkownicy mają wszystko
+```
+
+### 앱스토어 (스웨덴어 sv)
+
+```
+Se vad som finns vid varje utgång
+Sista tåget med påminnelse
+Vagnen närmast hissen
+Nya funktioner ingår i KORA Pro
+Befintliga användare behåller allt
+```
+
+### 앱스토어 (태국어 th)
+
+```
+ดูสถานที่ใกล้แต่ละทางออกได้
+บอกเวลารถเที่ยวสุดท้ายและเตือนล่วงหน้า
+บอกตู้ที่ใกล้ลิฟต์ที่สุด
+ฟีเจอร์ใหม่มีใน KORA Pro
+ผู้ใช้เดิมใช้ได้ทุกฟีเจอร์เหมือนเดิม
+```
+
+### 앱스토어 (튀르키예어 tr)
+
+```
+Her çıkışın yakınında ne var görün
+Son tren saati ve hatırlatma
+Asansöre en yakın vagon
+Yenilikler KORA Pro ile geliyor
+Mevcut kullanıcılar her şeyi korur
+```
+
+### 앱스토어 (베트남어 vi)
+
+```
+Xem địa điểm gần mỗi lối ra
+Giờ tàu cuối kèm lời nhắc
+Toa gần thang máy nhất
+Tính năng mới có trong KORA Pro
+Người dùng cũ vẫn dùng mọi tính năng
+```
+
 ## 1.0.6
 
 ### 앱스토어 (한국어 ko)
