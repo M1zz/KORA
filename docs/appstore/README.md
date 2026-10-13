@@ -18,7 +18,7 @@
 |---|---|
 | 기본 카테고리 | 내비게이션 (Navigation) |
 | 보조 카테고리 | 여행 (Travel) |
-| 가격 | 무료 (인앱 결제 없음) |
+| 가격 | 무료 + 비소모성 인앱 결제 `com.kora.leeo.pro` (KORA Pro 평생 이용권, 처음 3번의 여정은 무료) |
 | 저작권 | `2026 Leeo` |
 | 번들 ID | `com.kora.leeo` |
 | 기본 언어 | 한국어 권장 (기존 설정 유지) |
@@ -98,7 +98,7 @@ Apple 기준에서 “수집”은 데이터가 기기 밖으로 나가 개발�
 **심사 메모 (영어, 그대로 붙여 넣기)**
 
 ```
-KORA is a single-screen subway guide for travelers in Korea. No account or login is required, and there are no in-app purchases or ads.
+KORA is a single-screen subway guide for travelers in Korea. No account or login is required, and there are no ads. KORA Pro (non-consumable, com.kora.leeo.pro) unlocks Lock Screen tracking, announcement recognition and get-off vibration alerts; the first three journeys include them for free. To reach the purchase screen without riding, open the language sheet (long-press the station name) and tap "Get KORA Pro". Restore Purchase is on the same screen.
 
 How to test route guidance:
 1. Tap the current-station card at the top and choose a station, for example Seoul Station. If you allow location while outside Korea, the nearest station will be far away, so please pick stations manually.

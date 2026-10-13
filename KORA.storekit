@@ -1,0 +1,34 @@
+{
+  "identifier" : "4B0A7E20",
+  "nonRenewingSubscriptions" : [ ],
+  "products" : [
+    {
+      "displayPrice" : "6.99",
+      "familyShareable" : true,
+      "internalID" : "4B0A7E21",
+      "localizations" : [
+        {
+          "description" : "Lock Screen, announcement and get-off alerts on every ride",
+          "displayName" : "KORA Pro",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "모든 탑승에서 잠금 화면, 안내방송, 하차 알림",
+          "displayName" : "KORA Pro",
+          "locale" : "ko"
+        }
+      ],
+      "productID" : "com.kora.leeo.pro",
+      "referenceName" : "KORA Pro Lifetime",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_storefront" : "USA"
+  },
+  "subscriptionGroups" : [ ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

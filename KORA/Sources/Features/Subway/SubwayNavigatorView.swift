@@ -131,6 +131,19 @@ struct SubwayNavigatorView: View {
     /// Direction of the last page change: true = forward (trailing→leading), false = backward.
     @State private var pageTransitionForward: Bool = true
 
+    // KORA Pro: 여정 하나(첫 탑승 → 도착)를 무료 안내 탑승 1회로 센다.
+    @ObservedObject private var pro = KORAPro.shared
+    /// 이번 여정이 안내 탑승인지. nil = 아직 첫 열차에 타지 않음 (그때 정한다).
+    @State private var journeyGuided: Bool? = nil
+    @State private var showPaywall = false
+    @State private var paywallReason = "arrival"
+    /// 도착 화면을 다시 봐도(뒤로 넘겼다 돌아와도) 결제 화면은 여정마다 한 번만.
+    @State private var arrivalPaywallShown = false
+
+    /// 잠금 화면 라이브 액티비티·안내방송 인식·하차 진동을 켤지. 결정 전(nil)과
+    /// 스크린샷 장면은 켠다. 탑승 중에 Pro 를 사면 바로 켠다.
+    private var guidedRide: Bool { journeyGuided != false || pro.hasPro }
+
     private var journeys: [TransferJourney] {
         guard let f = fromStation, let t = toStation else { return [] }
         return MetroLineData.findAnyJourneys(from: f, to: t)
@@ -166,6 +179,9 @@ struct SubwayNavigatorView: View {
             LanguagePickerSheet(languagePref: $languagePref)
                 .presentationDetents(ScreenshotScene.current == .language ? [.large] : [.medium, .large])
         }
+        .sheet(isPresented: $showPaywall) {
+            KORAPaywallView(lang: displayLanguage, reason: paywallReason)
+        }
         .sheet(isPresented: $showPositionCorrection) {
             if let j = journey, j.segments.indices.contains(currentBlockIdx) {
                 PositionCorrectionSheet(
@@ -189,6 +205,8 @@ struct SubwayNavigatorView: View {
         }
         .onChange(of: toStation) { _, new in
             persistedToStation = new ?? ""
+            journeyGuided = nil
+            arrivalPaywallShown = false
             journeyConfirmed = false
             maxCompletedIdx = -1
             revisitFromIdx = nil
@@ -198,6 +216,8 @@ struct SubwayNavigatorView: View {
             currentBlockIdx = 0
             boardedAt = nil
             boardedSegmentIdx = -1
+            journeyGuided = nil
+            arrivalPaywallShown = false
             journeyConfirmed = false
             maxCompletedIdx = -1
             revisitFromIdx = nil
@@ -270,7 +290,10 @@ struct SubwayNavigatorView: View {
                 .transition(pageTransition)
             } else {
                 ScrollView {
-                    finishedBlock(j: j)
+                    VStack(spacing: 16) {
+                        finishedBlock(j: j)
+                        arrivalProNote
+                    }
                         .padding(.horizontal, 16)
                         .padding(.top, 22)
                         .padding(.bottom, 16)
@@ -279,6 +302,16 @@ struct SubwayNavigatorView: View {
                 .scrollIndicators(.hidden)
                 .id("finished")
                 .transition(pageTransition)
+                .task {
+                    // 마지막 무료 안내 탑승으로 막 도착한 순간 — 알림 덕에 제대로 내린 바로
+                    // 그때 한 번만 권한다. 그 뒤 기본 모드 여정에서는 저절로 띄우지 않는다.
+                    guard journeyGuided == true, !arrivalPaywallShown, pro.freeRidesLeft == 0 else { return }
+                    try? await Task.sleep(for: .seconds(1.2))
+                    guard !Task.isCancelled else { return }
+                    arrivalPaywallShown = true
+                    paywallReason = "arrival"
+                    showPaywall = true
+                }
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
@@ -582,6 +615,9 @@ struct SubwayNavigatorView: View {
         boardedSegmentIdx = currentBlockIdx
         UIImpactFeedbackGenerator(style: .light).impactOccurred()
         Task { await NextStopVerifyTip.didBoardOnce.donate() }
+        // 여정의 첫 열차에서만 센다 — 환승한 열차는 같은 여정이다.
+        if journeyGuided == nil { journeyGuided = pro.beginGuidedRide() }
+        guard guidedRide else { return }
         guard #available(iOS 16.1, *) else { return }
         let dest = j.segments.last?.stations.last ?? ""
         let currentKo = seg.stations.first ?? ""
@@ -864,6 +900,8 @@ struct SubwayNavigatorView: View {
             let minsRemaining = (secsRemaining + 30) / 60
 
             VStack(alignment: .leading, spacing: 10) {
+                if !guidedRide { basicRideBanner }
+
                 // Station-sign card — tap to correct position estimate.
                 let nextStIdx = currentStationIdx + 1
                 let nextStKo = nextStIdx < seg.stations.count ? seg.stations[nextStIdx] : nil
@@ -1001,7 +1039,8 @@ struct SubwayNavigatorView: View {
             }
             .animation(.spring(response: 0.5, dampingFraction: 0.8), value: currentKo)
             .onChange(of: stopsRemaining) { old, new in
-                if old != 1 && new == 1 {
+                // 하차 진동은 Pro 안내다. 기본 모드는 화면 안 표시(위 카드)만 바뀐다.
+                if guidedRide && old != 1 && new == 1 {
                     // Only fire the urgent warning haptic + shake when the position is
                     // confirmed by an authoritative source. Unconfirmed estimates get a
                     // gentle nudge so a premature flip can't startle the rider off early.
@@ -1047,8 +1086,14 @@ struct SubwayNavigatorView: View {
             // Start GPS + accelerometer tracking for this segment
             positionTracker.start(seg: seg)
 
+            // 기본 모드는 잠금 화면 안내가 없으니 "화면을 켜 두세요" 라는 안내와 짝을 맞춰
+            // 화면이 저절로 꺼지지 않게 한다. 이 탑승이 끝나면(task 취소) 되돌린다.
+            let keepAwake = !guidedRide
+            if keepAwake { UIApplication.shared.isIdleTimerDisabled = true }
+            defer { if keepAwake { UIApplication.shared.isIdleTimerDisabled = false } }
+
             // Listen to PA announcements for ground-truth station confirmation.
-            if !ScreenshotScene.isActive, await announcer.requestAuthorization() {
+            if guidedRide, !ScreenshotScene.isActive, await announcer.requestAuthorization() {
                 announcer.start(candidates: seg.stations) { station, isCurrent in
                     positionTracker.confirmAnnouncedStation(station, isCurrent: isCurrent)
                 }
@@ -1066,7 +1111,7 @@ struct SubwayNavigatorView: View {
 
                 // Push the Live Activity only when the station actually changes.
                 let idx = positionTracker.stationIndex
-                if idx != lastLiveIdx {
+                if guidedRide, idx != lastLiveIdx {
                     lastLiveIdx = idx
                     let currentKo = seg.stations[min(idx, seg.stations.count - 1)]
                     let nextKo = idx + 1 < seg.stations.count ? seg.stations[idx + 1] : seg.stations.last ?? ""
@@ -1323,6 +1368,58 @@ struct SubwayNavigatorView: View {
     }
 
     // MARK: Finished block
+
+    /// 무료 안내 탑승을 다 쓴 뒤의 탑승: 무엇이 꺼졌는지와 화면을 켜 두라는 말.
+    /// 결제 화면은 사람이 눌렀을 때만 연다 — 열차 안에서 길을 막지 않는다.
+    private var basicRideBanner: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack(alignment: .firstTextBaseline, spacing: 8) {
+                Image(systemName: "iphone")
+                    .font(.footnote).fontWeight(.bold)
+                Text(NavLoc.proBasicRide.resolved(displayLanguage))
+                    .font(.footnote).fontWeight(.semibold)
+                    .fixedSize(horizontal: false, vertical: true)
+            }
+            .foregroundStyle(KORATheme.labelSecondary)
+            Button {
+                paywallReason = "basic_ride"
+                showPaywall = true
+            } label: {
+                Label(NavLoc.proGet.resolved(displayLanguage), systemImage: "bell.badge.fill")
+                    .font(.footnote).fontWeight(.bold)
+            }
+            .tint(KORATheme.accent)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(12)
+        .background(KORATheme.surface, in: RoundedRectangle(cornerRadius: KORATheme.radiusMD))
+    }
+
+    /// 도착 화면의 Pro 안내. 마지막 무료 회차를 앞두면 미리 알리고, 다 쓰면 권한다.
+    @ViewBuilder
+    private var arrivalProNote: some View {
+        if let left = pro.freeRidesLeft, left <= 1 {
+            VStack(spacing: 10) {
+                Text((left == 0 ? NavLoc.proUsedUp : NavLoc.proLastFreeRide).resolved(displayLanguage))
+                    .font(.subheadline).fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
+                    .foregroundStyle(KORATheme.labelPrimary)
+                Button {
+                    paywallReason = "arrival"
+                    showPaywall = true
+                } label: {
+                    Label(NavLoc.proGet.resolved(displayLanguage), systemImage: "bell.badge.fill")
+                        .font(.subheadline).fontWeight(.bold)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 10)
+                }
+                .buttonStyle(.borderedProminent)
+                .tint(KORATheme.accent)
+            }
+            .padding(16)
+            .background(KORATheme.surface, in: RoundedRectangle(cornerRadius: KORATheme.radiusLG))
+        }
+    }
 
     private func finishedBlock(j: TransferJourney) -> some View {
         let destKo = j.segments.last?.stations.last ?? ""
@@ -2089,6 +2186,11 @@ struct SubwayNavigatorView: View {
             return
         case .language:
             showLanguagePicker = true
+            return
+        case .paywall:
+            // 심사 제출용 결제 화면 스크린샷 (가격은 Xcode 실행 + KORA.storekit 에서만 뜬다).
+            paywallReason = "settings"
+            showPaywall = true
             return
         default:
             break
@@ -3079,6 +3181,8 @@ struct LanguagePickerSheet: View {
                         .foregroundStyle(KORATheme.labelPrimary)
                     }
                 }
+
+                KORAProSection(lang: sheetLang)
 
                 DeveloperContactSection(lang: sheetLang)
             }

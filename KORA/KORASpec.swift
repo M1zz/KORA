@@ -29,6 +29,16 @@ enum KORASpec: LeeoAppSpec {
         marketingURL: URL(string: "https://m1zz.github.io/KORA/")
     )
 
-    /// 인앱 결제 없음.
-    static let monetization = LeeoMonetization.free
+    /// 부분유료: 길찾기는 늘 무료, "안내 탑승"(잠금 화면·안내방송 인식·하차 진동)은
+    /// 여정 3회까지 무료, 그 뒤로는 평생 이용권 한 번으로 연다. 구독은 팔지 않는다 —
+    /// 며칠 머무는 여행자에게 자동 갱신은 잊힌 결제가 된다. 흐름은 `KORAPro` 참고.
+    static let monetization = LeeoMonetization.freemium(
+        LeeoPurchaseConfig(
+            productIDs: ["com.kora.leeo.pro"],
+            gate: LeeoGatePolicy(
+                freeLimits: [KORAPro.guidedRideKey: 3],
+                warnWhenRemaining: 1)))
+
+    /// 결제 퍼널 이벤트를 Firebase 로.
+    static let analytics: any LeeoAnalytics = KORAFirebaseAnalytics()
 }

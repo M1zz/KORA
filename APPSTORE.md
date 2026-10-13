@@ -52,8 +52,11 @@ GPS로 가장 가까운 역을 찾거나 직접 고를 수 있습니다. 고른 
 인터넷이 없어도
 경로 검색은 기기 안에서 계산하므로 오프라인에서도 됩니다. 실시간 도착 정보만 네트워크가 필요합니다.
 
+KORA Pro
+경로 검색, 타는 방향, 실시간 도착 정보, 카메라 방향 확인은 언제나 무료입니다. 잠금 화면 안내, 안내방송 인식, 하차 진동 알림은 처음 세 번의 여정 동안 무료로 써 볼 수 있고, 그 뒤에는 KORA Pro를 한 번 구매하면 계속 쓸 수 있습니다. 구독이 아닙니다.
+
 개인정보를 아낍니다
-회원가입, 광고, 인앱 결제가 없습니다. 위치, 카메라, 안내방송 인식은 모두 기기 안에서 처리되며 저장하거나 전송하지 않습니다. 앱 개선을 위한 익명 이용 통계만 수집합니다.
+회원가입과 광고가 없습니다. 위치, 카메라, 안내방송 인식은 모두 기기 안에서 처리되며 저장하거나 전송하지 않습니다. 앱 개선을 위한 익명 이용 통계만 수집합니다.
 
 카메라, 마이크, 음성 인식, 동작 권한은 모두 선택 사항입니다. 허용하지 않아도 역을 직접 골라 경로 안내를 이용할 수 있습니다.
 
@@ -121,8 +124,11 @@ About 930 stations in the Seoul metropolitan area (Seoul, Gyeonggi and Incheon, 
 WORKS OFFLINE
 Routes are calculated on your device, so route search works without internet. Only real-time arrivals need a connection.
 
+KORA PRO
+Route search, boarding direction, real-time arrivals and the camera direction check are always free. Lock Screen tracking, announcement recognition and get-off vibration alerts are free for your first three journeys. After that, a one-time KORA Pro purchase keeps them on. No subscription.
+
 PRIVATE BY DESIGN
-No account, no ads, no in-app purchases. Location, camera and announcement recognition are processed on your device and are never stored or sent anywhere. We only collect anonymous usage statistics to improve the app.
+No account, no ads. Location, camera and announcement recognition are processed on your device and are never stored or sent anywhere. We only collect anonymous usage statistics to improve the app.
 
 Camera, microphone, speech recognition and motion access are all optional. Without them you can still pick stations yourself and get full route guidance.
 
@@ -190,8 +196,11 @@ GPS で最寄り駅を探すか、自分で選べます。選んだ駅は次に�
 【オフラインでも】
 ルートは端末内で計算するので、インターネットがなくても検索できます。ネットワークを使うのはリアルタイム到着情報だけです。
 
+【KORA Pro】
+経路検索、乗る方向、リアルタイム到着情報、カメラでの方向確認はいつでも無料です。ロック画面での案内、車内アナウンス認識、降車バイブ通知は最初の3回の移動まで無料で試せます。その後はKORA Proを一度購入すれば使い続けられます。サブスクリプションではありません。
+
 【プライバシーを大切に】
-アカウント登録、広告、アプリ内課金はありません。位置情報、カメラ、アナウンス認識はすべて端末内で処理し、保存も送信もしません。アプリ改善のための匿名の利用統計だけを収集しています。
+アカウント登録も広告もありません。位置情報、カメラ、アナウンス認識はすべて端末内で処理し、保存も送信もしません。アプリ改善のための匿名の利用統計だけを収集しています。
 
 カメラ、マイク、音声認識、モーションの許可はすべて任意です。許可しなくても、駅を自分で選べばルート案内を使えます。
 
@@ -259,8 +268,11 @@ KORA 是一款为来韩国旅行的人打造的地铁指南 App。
 【离线也能用】
 路线在设备上计算，没有网络也能查询。只有实时到站信息需要联网。
 
+【KORA Pro】
+路线搜索、乘车方向、实时到站信息和相机方向确认始终免费。锁定屏幕引导、车内广播识别和下车振动提醒可在前三次行程中免费试用，之后一次购买 KORA Pro 即可继续使用。不是订阅。
+
 【重视隐私】
-无需注册账号，没有广告和 App 内购买。定位、相机和广播识别都在设备上处理，不会保存或上传。我们只收集用于改进 App 的匿名使用统计。
+无需注册账号，没有广告。定位、相机和广播识别都在设备上处理，不会保存或上传。我们只收集用于改进 App 的匿名使用统计。
 
 相机、麦克风、语音识别和运动权限都是可选的。即使不允许，也可以手动选择车站并使用路线导航。
 
@@ -328,8 +340,11 @@ KORA 是專為來韓國旅遊的人設計的地鐵指南 App。
 【離線也能用】
 路線在裝置上計算，沒有網路也能查詢。只有即時到站資訊需要連網。
 
+【KORA Pro】
+路線搜尋、乘車方向、即時到站資訊和相機方向確認一律免費。鎖定畫面導引、車內廣播辨識和下車震動提醒可在前三次行程免費試用，之後只要購買一次 KORA Pro 就能繼續使用。不是訂閱制。
+
 【重視你的隱私】
-不需要註冊帳號，沒有廣告和 App 內購買。定位、相機和廣播辨識都在裝置上處理，不會儲存或上傳。我們只蒐集用於改善 App 的匿名使用統計。
+不需要註冊帳號，沒有廣告。定位、相機和廣播辨識都在裝置上處理，不會儲存或上傳。我們只蒐集用於改善 App 的匿名使用統計。
 
 相機、麥克風、語音辨識和動作權限都是選用的。就算不允許，也可以手動選擇車站並使用路線導航。
 
@@ -397,8 +412,11 @@ Rund 930 Stationen im Großraum Seoul (Seoul, Gyeonggi und Incheon, inklusive GT
 FUNKTIONIERT OFFLINE
 Routen werden auf deinem Gerät berechnet, die Suche klappt also auch ohne Internet. Nur die Echtzeit-Ankünfte brauchen eine Verbindung.
 
+KORA PRO
+Routensuche, Einstiegsrichtung, Echtzeit-Ankünfte und die Richtungsprüfung per Kamera sind immer kostenlos. Sperrbildschirm-Anzeige, Durchsagenerkennung und Vibration beim Aussteigen kannst du auf deinen ersten drei Fahrten kostenlos nutzen. Danach schaltet ein einmaliger Kauf von KORA Pro sie dauerhaft frei. Kein Abo.
+
 DATENSCHUTZ AB WERK
-Kein Konto, keine Werbung, keine In-App-Käufe. Standort, Kamera und Durchsagenerkennung werden auf deinem Gerät verarbeitet und nie gespeichert oder versendet. Wir erfassen nur anonyme Nutzungsstatistiken, um die App zu verbessern.
+Kein Konto, keine Werbung. Standort, Kamera und Durchsagenerkennung werden auf deinem Gerät verarbeitet und nie gespeichert oder versendet. Wir erfassen nur anonyme Nutzungsstatistiken, um die App zu verbessern.
 
 Zugriff auf Kamera, Mikrofon, Spracherkennung und Bewegungsdaten ist freiwillig. Auch ohne kannst du Stationen selbst wählen und die volle Routenführung nutzen.
 
@@ -466,8 +484,11 @@ Unas 930 estaciones en el área metropolitana de Seúl (Seúl, Gyeonggi e Incheo
 FUNCIONA SIN CONEXIÓN
 Las rutas se calculan en tu dispositivo, así que la búsqueda funciona sin internet. Solo las llegadas en tiempo real necesitan conexión.
 
+KORA PRO
+La búsqueda de rutas, la dirección de embarque, las llegadas en tiempo real y la comprobación de dirección con la cámara son siempre gratis. El seguimiento en la pantalla bloqueada, el reconocimiento de avisos y la vibración para bajar son gratis en tus tres primeros trayectos. Después, una única compra de KORA Pro los mantiene activos. Sin suscripción.
+
 PRIVACIDAD ANTE TODO
-Sin cuentas, sin anuncios, sin compras dentro de la app. La ubicación, la cámara y el reconocimiento de avisos se procesan en tu dispositivo y nunca se guardan ni se envían. Solo recopilamos estadísticas de uso anónimas para mejorar la app.
+Sin cuentas, sin anuncios. La ubicación, la cámara y el reconocimiento de avisos se procesan en tu dispositivo y nunca se guardan ni se envían. Solo recopilamos estadísticas de uso anónimas para mejorar la app.
 
 El acceso a la cámara, el micrófono, el reconocimiento de voz y el movimiento es opcional. Sin ellos puedes elegir las estaciones tú mismo y usar toda la guía de rutas.
 
@@ -535,8 +556,11 @@ Environ 930 stations dans la région de Séoul (Séoul, Gyeonggi et Incheon, y c
 FONCTIONNE HORS LIGNE
 Les itinéraires sont calculés sur l'appareil : la recherche marche sans Internet. Seules les arrivées en temps réel nécessitent une connexion.
 
+KORA PRO
+La recherche d'itinéraire, le sens d'embarquement, les arrivées en temps réel et la vérification du sens à la caméra sont toujours gratuits. Le suivi sur l'écran verrouillé, la reconnaissance des annonces et la vibration pour descendre sont gratuits pendant vos trois premiers trajets. Ensuite, un achat unique de KORA Pro les garde actifs. Sans abonnement.
+
 RESPECT DE LA VIE PRIVÉE
-Pas de compte, pas de publicité, pas d'achats intégrés. Position, caméra et reconnaissance des annonces sont traitées sur l'appareil et ne sont jamais enregistrées ni envoyées. Nous ne collectons que des statistiques d'utilisation anonymes pour améliorer l'app.
+Pas de compte, pas de publicité. Position, caméra et reconnaissance des annonces sont traitées sur l'appareil et ne sont jamais enregistrées ni envoyées. Nous ne collectons que des statistiques d'utilisation anonymes pour améliorer l'app.
 
 L'accès à la caméra, au micro, à la reconnaissance vocale et aux données de mouvement est facultatif. Sans eux, vous pouvez choisir vos stations vous-même et profiter de tout le guidage.
 
@@ -604,8 +628,11 @@ Circa 930 stazioni nell'area metropolitana di Seul (Seul, Gyeonggi e Incheon, co
 FUNZIONA OFFLINE
 I percorsi vengono calcolati sul dispositivo, quindi la ricerca funziona anche senza internet. Solo gli arrivi in tempo reale richiedono la connessione.
 
+KORA PRO
+Ricerca del percorso, direzione di salita, arrivi in tempo reale e verifica della direzione con la fotocamera sono sempre gratuiti. Il viaggio sulla schermata di blocco, il riconoscimento degli annunci e la vibrazione per scendere sono gratuiti per i primi tre viaggi. Poi basta un unico acquisto di KORA Pro per continuare a usarli. Nessun abbonamento.
+
 PRIVACY AL PRIMO POSTO
-Nessun account, nessuna pubblicità, nessun acquisto in-app. Posizione, fotocamera e riconoscimento degli annunci vengono elaborati sul dispositivo e non vengono mai salvati né inviati. Raccogliamo solo statistiche d'uso anonime per migliorare l'app.
+Nessun account, nessuna pubblicità. Posizione, fotocamera e riconoscimento degli annunci vengono elaborati sul dispositivo e non vengono mai salvati né inviati. Raccogliamo solo statistiche d'uso anonime per migliorare l'app.
 
 L'accesso a fotocamera, microfono, riconoscimento vocale e movimento è facoltativo. Anche senza puoi scegliere le stazioni da solo e usare tutta la guida al percorso.
 
@@ -673,8 +700,11 @@ Cerca de 930 estações na região metropolitana de Seul (Seul, Gyeonggi e Inche
 FUNCIONA OFFLINE
 As rotas são calculadas no aparelho, então a busca funciona sem internet. Só as chegadas em tempo real precisam de conexão.
 
+KORA PRO
+Busca de rotas, sentido de embarque, chegadas em tempo real e a conferência de sentido pela câmera são sempre grátis. O acompanhamento na Tela Bloqueada, o reconhecimento de avisos e a vibração para descer são grátis nas suas três primeiras viagens. Depois, uma compra única do KORA Pro mantém tudo ativo. Sem assinatura.
+
 PRIVACIDADE EM PRIMEIRO LUGAR
-Sem conta, sem anúncios, sem compras no app. Localização, câmera e reconhecimento de avisos são processados no aparelho e nunca são salvos nem enviados. Coletamos apenas estatísticas de uso anônimas para melhorar o app.
+Sem conta, sem anúncios. Localização, câmera e reconhecimento de avisos são processados no aparelho e nunca são salvos nem enviados. Coletamos apenas estatísticas de uso anônimas para melhorar o app.
 
 O acesso à câmera, ao microfone, ao reconhecimento de fala e aos dados de movimento é opcional. Sem eles, você ainda escolhe as estações e usa todo o guia de rotas.
 
@@ -742,8 +772,11 @@ Live Activity показывает ход поездки без разблоки
 РАБОТАЕТ БЕЗ ИНТЕРНЕТА
 Маршруты рассчитываются на устройстве, поэтому поиск работает офлайн. Сеть нужна только для данных о прибытии в реальном времени.
 
+KORA PRO
+Поиск маршрута, направление посадки, прибытие в реальном времени и проверка направления камерой всегда бесплатны. Поездка на экране блокировки, распознавание объявлений и вибрация перед выходом бесплатны в первых трёх поездках. Дальше достаточно один раз купить KORA Pro. Без подписки.
+
 КОНФИДЕНЦИАЛЬНОСТЬ
-Без регистрации, рекламы и встроенных покупок. Геопозиция, камера и распознавание объявлений обрабатываются на устройстве и никуда не сохраняются и не отправляются. Мы собираем только анонимную статистику использования, чтобы улучшать приложение.
+Без регистрации и рекламы. Геопозиция, камера и распознавание объявлений обрабатываются на устройстве и никуда не сохраняются и не отправляются. Мы собираем только анонимную статистику использования, чтобы улучшать приложение.
 
 Доступ к камере, микрофону, распознаванию речи и датчикам движения необязателен. Без него можно выбирать станции вручную и пользоваться всеми маршрутами.
 
@@ -811,8 +844,11 @@ Asi 930 stanic v metropolitní oblasti Soulu (Soul, Kjonggi a Inčchon včetně 
 FUNGUJE OFFLINE
 Trasy se počítají v zařízení, takže vyhledávání funguje i bez internetu. Připojení potřebují jen příjezdy v reálném čase.
 
+KORA PRO
+Vyhledání trasy, směr nástupu, příjezdy v reálném čase a kontrola směru fotoaparátem jsou vždy zdarma. Průběh jízdy na zamčené obrazovce, rozpoznávání hlášení a vibrace před výstupem jsou zdarma při prvních třech cestách. Potom je odemkne jednorázový nákup KORA Pro. Žádné předplatné.
+
 SOUKROMÍ NA PRVNÍM MÍSTĚ
-Žádný účet, žádné reklamy, žádné nákupy v aplikaci. Poloha, fotoaparát i rozpoznávání hlášení se zpracovávají v zařízení a nikdy se neukládají ani neodesílají. Sbíráme jen anonymní statistiky používání, abychom aplikaci zlepšovali.
+Žádný účet, žádné reklamy. Poloha, fotoaparát i rozpoznávání hlášení se zpracovávají v zařízení a nikdy se neukládají ani neodesílají. Sbíráme jen anonymní statistiky používání, abychom aplikaci zlepšovali.
 
 Přístup k fotoaparátu, mikrofonu, rozpoznávání řeči a pohybu je dobrovolný. I bez něj můžete vybírat stanice sami a využít celé navádění.
 
@@ -880,8 +916,11 @@ Omkring 930 stationer i Seoul-området (Seoul, Gyeonggi og Incheon, inkl. GTX-A,
 VIRKER OFFLINE
 Ruter beregnes på enheden, så søgningen virker uden internet. Kun ankomster i realtid kræver forbindelse.
 
+KORA PRO
+Rutesøgning, påstigningsretning, ankomster i realtid og retningstjek med kameraet er altid gratis. Visning på låseskærmen, genkendelse af udkald og vibration, når du skal stå af, er gratis på dine første tre ture. Derefter holder et engangskøb af KORA Pro dem kørende. Intet abonnement.
+
 PRIVATLIV FØRST
-Ingen konto, ingen reklamer, ingen køb i appen. Lokalitet, kamera og genkendelse af udkald behandles på enheden og bliver aldrig gemt eller sendt. Vi indsamler kun anonym brugsstatistik for at forbedre appen.
+Ingen konto, ingen reklamer. Lokalitet, kamera og genkendelse af udkald behandles på enheden og bliver aldrig gemt eller sendt. Vi indsamler kun anonym brugsstatistik for at forbedre appen.
 
 Adgang til kamera, mikrofon, talegenkendelse og bevægelse er frivillig. Uden den kan du stadig selv vælge stationer og få fuld rutevejledning.
 
@@ -949,8 +988,11 @@ busan,incheon,daegu,daejeon,gwangju,gtx,arex,αεροδρόμιο,τρένο,μ�
 ΛΕΙΤΟΥΡΓΕΙ ΧΩΡΙΣ ΣΥΝΔΕΣΗ
 Οι διαδρομές υπολογίζονται στη συσκευή, οπότε η αναζήτηση δουλεύει χωρίς internet. Σύνδεση χρειάζονται μόνο οι αφίξεις σε πραγματικό χρόνο.
 
+KORA PRO
+Η αναζήτηση διαδρομής, η κατεύθυνση επιβίβασης, οι αφίξεις σε πραγματικό χρόνο και ο έλεγχος κατεύθυνσης με την κάμερα είναι πάντα δωρεάν. Η παρακολούθηση στην οθόνη κλειδώματος, η αναγνώριση ανακοινώσεων και η δόνηση για αποβίβαση είναι δωρεάν στις τρεις πρώτες διαδρομές σας. Μετά, μία εφάπαξ αγορά του KORA Pro τα κρατά ενεργά. Χωρίς συνδρομή.
+
 ΠΡΟΣΤΑΣΙΑ ΑΠΟΡΡΗΤΟΥ
-Χωρίς λογαριασμό, διαφημίσεις ή αγορές εντός εφαρμογής. Η τοποθεσία, η κάμερα και η αναγνώριση ανακοινώσεων επεξεργάζονται στη συσκευή και δεν αποθηκεύονται ούτε αποστέλλονται ποτέ. Συλλέγουμε μόνο ανώνυμα στατιστικά χρήσης για να βελτιώνουμε την εφαρμογή.
+Χωρίς λογαριασμό και χωρίς διαφημίσεις. Η τοποθεσία, η κάμερα και η αναγνώριση ανακοινώσεων επεξεργάζονται στη συσκευή και δεν αποθηκεύονται ούτε αποστέλλονται ποτέ. Συλλέγουμε μόνο ανώνυμα στατιστικά χρήσης για να βελτιώνουμε την εφαρμογή.
 
 Η πρόσβαση σε κάμερα, μικρόφωνο, αναγνώριση ομιλίας και κίνηση είναι προαιρετική. Χωρίς αυτήν μπορείτε να επιλέγετε σταθμούς μόνοι σας και να έχετε πλήρη καθοδήγηση.
 
@@ -1018,8 +1060,11 @@ Noin 930 asemaa Soulin seudulla (Soul, Gyeonggi ja Incheon, mukaan lukien GTX-A,
 TOIMII ILMAN NETTIÄ
 Reitit lasketaan laitteessa, joten haku toimii ilman internetiä. Vain reaaliaikaiset saapumistiedot vaativat yhteyden.
 
+KORA PRO
+Reittihaku, noususuunta, reaaliaikaiset saapumisajat ja suunnan tarkistus kameralla ovat aina ilmaisia. Lukitusnäytön seuranta, kuulutusten tunnistus ja poisjäämisen värinähälytys ovat ilmaisia kolmella ensimmäisellä matkallasi. Sen jälkeen KORA Pron kertaosto pitää ne käytössä. Ei tilausta.
+
 YKSITYISYYS ENSIN
-Ei tiliä, ei mainoksia, ei sovelluksen sisäisiä ostoja. Sijainti, kamera ja kuulutusten tunnistus käsitellään laitteessa, eikä niitä koskaan tallenneta tai lähetetä. Keräämme vain nimettömiä käyttötilastoja sovelluksen parantamiseksi.
+Ei tiliä, ei mainoksia. Sijainti, kamera ja kuulutusten tunnistus käsitellään laitteessa, eikä niitä koskaan tallenneta tai lähetetä. Keräämme vain nimettömiä käyttötilastoja sovelluksen parantamiseksi.
 
 Kameran, mikrofonin, puheentunnistuksen ja liiketietojen käyttö on vapaaehtoista. Ilman niitäkin voit valita asemat itse ja saada täyden reittiopastuksen.
 
@@ -1087,8 +1132,11 @@ Sekitar 930 stasiun di wilayah metropolitan Seoul (Seoul, Gyeonggi, dan Incheon,
 BISA OFFLINE
 Rute dihitung di perangkat, jadi pencarian tetap jalan tanpa internet. Hanya data kedatangan real-time yang butuh koneksi.
 
+KORA PRO
+Pencarian rute, arah naik, kedatangan real-time, dan cek arah dengan kamera selalu gratis. Pemantauan di Layar Terkunci, pengenalan pengumuman, dan getar saat harus turun gratis untuk tiga perjalanan pertamamu. Setelah itu, cukup beli KORA Pro sekali untuk terus memakainya. Bukan langganan.
+
 PRIVASI TERJAGA
-Tanpa akun, tanpa iklan, tanpa pembelian dalam aplikasi. Lokasi, kamera, dan pengenalan pengumuman diproses di perangkat dan tidak pernah disimpan atau dikirim. Kami hanya mengumpulkan statistik penggunaan anonim untuk meningkatkan aplikasi.
+Tanpa akun, tanpa iklan. Lokasi, kamera, dan pengenalan pengumuman diproses di perangkat dan tidak pernah disimpan atau dikirim. Kami hanya mengumpulkan statistik penggunaan anonim untuk meningkatkan aplikasi.
 
 Akses kamera, mikrofon, pengenalan suara, dan gerakan bersifat opsional. Tanpa itu, kamu tetap bisa memilih stasiun sendiri dan memakai panduan rute lengkap.
 
@@ -1156,8 +1204,11 @@ Rundt 930 stasjoner i Seoul-området (Seoul, Gyeonggi og Incheon, inkludert GTX-
 FUNGERER UTEN NETT
 Rutene beregnes på enheten, så søket virker uten internett. Bare sanntidsankomster trenger tilkobling.
 
+KORA PRO
+Rutesøk, påstigningsretning, sanntidsankomster og retningssjekk med kameraet er alltid gratis. Visning på låseskjermen, gjenkjenning av annonseringer og vibrasjon når du skal gå av er gratis på de tre første turene dine. Deretter holder et engangskjøp av KORA Pro dem i gang. Ikke abonnement.
+
 PERSONVERN FØRST
-Ingen konto, ingen reklame, ingen kjøp i appen. Posisjon, kamera og gjenkjenning av annonseringer behandles på enheten og blir aldri lagret eller sendt. Vi samler bare inn anonym bruksstatistikk for å gjøre appen bedre.
+Ingen konto, ingen reklame. Posisjon, kamera og gjenkjenning av annonseringer behandles på enheten og blir aldri lagret eller sendt. Vi samler bare inn anonym bruksstatistikk for å gjøre appen bedre.
 
 Tilgang til kamera, mikrofon, talegjenkjenning og bevegelse er valgfritt. Uten det kan du fortsatt velge stasjoner selv og få full veiledning.
 
@@ -1225,8 +1276,11 @@ Zo'n 930 stations in de regio Seoul (Seoul, Gyeonggi en Incheon, inclusief GTX-A
 WERKT OFFLINE
 Routes worden op je apparaat berekend, dus zoeken werkt zonder internet. Alleen realtime aankomsten hebben een verbinding nodig.
 
+KORA PRO
+Routes zoeken, de instaprichting, realtime aankomsttijden en de richtingcheck met de camera zijn altijd gratis. Je rit op het toegangsscherm, omroepherkenning en de trilling bij uitstappen zijn gratis tijdens je eerste drie ritten. Daarna houdt een eenmalige aankoop van KORA Pro ze aan. Geen abonnement.
+
 PRIVACY VOOROP
-Geen account, geen advertenties, geen in-app-aankopen. Locatie, camera en omroepherkenning worden op je apparaat verwerkt en nooit bewaard of verstuurd. We verzamelen alleen anonieme gebruiksstatistieken om de app te verbeteren.
+Geen account, geen advertenties. Locatie, camera en omroepherkenning worden op je apparaat verwerkt en nooit bewaard of verstuurd. We verzamelen alleen anonieme gebruiksstatistieken om de app te verbeteren.
 
 Toegang tot camera, microfoon, spraakherkenning en beweging is optioneel. Zonder kun je nog steeds zelf stations kiezen en de volledige routebegeleiding gebruiken.
 
@@ -1294,8 +1348,11 @@ Około 930 stacji w aglomeracji Seulu (Seul, Gyeonggi i Incheon, w tym GTX-A, AR
 DZIAŁA OFFLINE
 Trasy są liczone na urządzeniu, więc wyszukiwanie działa bez internetu. Internet jest potrzebny tylko do przyjazdów w czasie rzeczywistym.
 
+KORA PRO
+Wyszukiwanie trasy, kierunek wsiadania, przyjazdy na żywo i sprawdzanie kierunku aparatem są zawsze bezpłatne. Postęp na ekranie blokady, rozpoznawanie komunikatów i wibracja przed wysiadaniem są bezpłatne podczas pierwszych trzech podróży. Potem wystarczy jednorazowy zakup KORA Pro. Bez subskrypcji.
+
 PRYWATNOŚĆ PRZEDE WSZYSTKIM
-Bez konta, reklam i zakupów w aplikacji. Lokalizacja, aparat i rozpoznawanie komunikatów są przetwarzane na urządzeniu i nigdy nie są zapisywane ani wysyłane. Zbieramy tylko anonimowe statystyki użycia, by ulepszać aplikację.
+Bez konta i bez reklam. Lokalizacja, aparat i rozpoznawanie komunikatów są przetwarzane na urządzeniu i nigdy nie są zapisywane ani wysyłane. Zbieramy tylko anonimowe statystyki użycia, by ulepszać aplikację.
 
 Dostęp do aparatu, mikrofonu, rozpoznawania mowy i ruchu jest opcjonalny. Bez niego nadal wybierzesz stacje samodzielnie i skorzystasz z pełnego prowadzenia.
 
@@ -1363,8 +1420,11 @@ Cirka 930 stationer i Seoulområdet (Seoul, Gyeonggi och Incheon, inklusive GTX-
 FUNKAR OFFLINE
 Rutter beräknas på enheten, så sökningen fungerar utan internet. Bara ankomster i realtid behöver uppkoppling.
 
+KORA PRO
+Ruttsökning, påstigningsriktning, ankomster i realtid och riktningskoll med kameran är alltid gratis. Visning på låsskärmen, igenkänning av utrop och vibration när du ska kliva av är gratis under dina tre första resor. Sedan håller ett engångsköp av KORA Pro dem igång. Ingen prenumeration.
+
 INTEGRITET FÖRST
-Inget konto, ingen reklam, inga köp i appen. Plats, kamera och igenkänning av utrop behandlas på enheten och sparas eller skickas aldrig. Vi samlar bara in anonym användningsstatistik för att förbättra appen.
+Inget konto, ingen reklam. Plats, kamera och igenkänning av utrop behandlas på enheten och sparas eller skickas aldrig. Vi samlar bara in anonym användningsstatistik för att förbättra appen.
 
 Åtkomst till kamera, mikrofon, taligenkänning och rörelse är frivillig. Utan den kan du ändå välja stationer själv och få full vägledning.
 
@@ -1432,8 +1492,11 @@ KORA ใช้ข้อมูลเวลารถไฟเข้าสถาน
 ใช้ได้แม้ไม่มีเน็ต
 คำนวณเส้นทางบนอุปกรณ์ จึงค้นหาได้แม้ไม่มีอินเทอร์เน็ต ต้องใช้เน็ตเฉพาะข้อมูลเวลารถไฟแบบเรียลไทม์
 
+KORA Pro
+การค้นหาเส้นทาง ทิศทางที่ต้องขึ้น เวลารถถึงแบบเรียลไทม์ และการเช็กทิศทางด้วยกล้องใช้ฟรีเสมอ การติดตามบนหน้าจอล็อก การจดจำเสียงประกาศ และการสั่นเตือนเมื่อถึงเวลาลงใช้ฟรีใน 3 การเดินทางแรก หลังจากนั้นซื้อ KORA Pro ครั้งเดียวก็ใช้ต่อได้ ไม่ใช่แบบสมัครสมาชิก
+
 ใส่ใจความเป็นส่วนตัว
-ไม่ต้องสมัครบัญชี ไม่มีโฆษณา ไม่มีการซื้อในแอป ตำแหน่ง กล้อง และการจดจำเสียงประกาศประมวลผลบนอุปกรณ์ ไม่มีการบันทึกหรือส่งออก เราเก็บเพียงสถิติการใช้งานแบบไม่ระบุตัวตนเพื่อปรับปรุงแอป
+ไม่ต้องสมัครบัญชี ไม่มีโฆษณา ตำแหน่ง กล้อง และการจดจำเสียงประกาศประมวลผลบนอุปกรณ์ ไม่มีการบันทึกหรือส่งออก เราเก็บเพียงสถิติการใช้งานแบบไม่ระบุตัวตนเพื่อปรับปรุงแอป
 
 การอนุญาตกล้อง ไมโครโฟน การรู้จำเสียงพูด และการเคลื่อนไหวเป็นตัวเลือกทั้งหมด หากไม่อนุญาตก็ยังเลือกสถานีเองและใช้การนำทางได้ครบ
 
@@ -1501,8 +1564,11 @@ Seul metropol bölgesinde (Seul, Gyeonggi ve Incheon; GTX-A, AREX, Shinbundang H
 ÇEVRİMDIŞI ÇALIŞIR
 Rotalar cihazda hesaplanır, bu yüzden arama internetsiz de çalışır. Yalnızca gerçek zamanlı varışlar bağlantı ister.
 
+KORA PRO
+Rota arama, biniş yönü, gerçek zamanlı varış bilgisi ve kamerayla yön kontrolü her zaman ücretsizdir. Kilitli Ekran takibi, anons tanıma ve inerken titreşim uyarısı ilk üç yolculuğunda ücretsizdir. Sonrasında KORA Pro'yu bir kez satın alman yeterli. Abonelik yok.
+
 GİZLİLİK ÖNCE GELİR
-Hesap yok, reklam yok, uygulama içi satın alma yok. Konum, kamera ve anons tanıma cihazında işlenir; asla kaydedilmez veya gönderilmez. Uygulamayı geliştirmek için yalnızca anonim kullanım istatistikleri toplarız.
+Hesap yok, reklam yok. Konum, kamera ve anons tanıma cihazında işlenir; asla kaydedilmez veya gönderilmez. Uygulamayı geliştirmek için yalnızca anonim kullanım istatistikleri toplarız.
 
 Kamera, mikrofon, konuşma tanıma ve hareket izinleri isteğe bağlıdır. Bunlar olmadan da istasyonları kendin seçip rota rehberliğinin tamamını kullanabilirsin.
 
@@ -1570,8 +1636,11 @@ Khoảng 930 ga ở vùng thủ đô Seoul (Seoul, Gyeonggi và Incheon, gồm G
 DÙNG ĐƯỢC KHI KHÔNG CÓ MẠNG
 Lộ trình được tính ngay trên thiết bị nên vẫn tìm được khi không có internet. Chỉ dữ liệu tàu đến theo thời gian thực mới cần kết nối.
 
+KORA PRO
+Tìm đường, hướng lên tàu, giờ tàu đến theo thời gian thực và kiểm tra hướng bằng camera luôn miễn phí. Theo dõi trên Màn hình khóa, nhận dạng thông báo và rung báo khi cần xuống được dùng miễn phí trong ba chuyến đầu tiên. Sau đó, chỉ cần mua KORA Pro một lần để tiếp tục dùng. Không phải gói đăng ký.
+
 TÔN TRỌNG QUYỀN RIÊNG TƯ
-Không cần tài khoản, không quảng cáo, không mua hàng trong ứng dụng. Vị trí, camera và nhận dạng thông báo được xử lý trên thiết bị, không bao giờ được lưu hay gửi đi. Chúng tôi chỉ thu thập thống kê sử dụng ẩn danh để cải thiện ứng dụng.
+Không cần tài khoản, không quảng cáo. Vị trí, camera và nhận dạng thông báo được xử lý trên thiết bị, không bao giờ được lưu hay gửi đi. Chúng tôi chỉ thu thập thống kê sử dụng ẩn danh để cải thiện ứng dụng.
 
 Quyền truy cập camera, micrô, nhận dạng giọng nói và chuyển động đều không bắt buộc. Không cấp quyền, bạn vẫn có thể tự chọn ga và dùng đầy đủ tính năng chỉ đường.
 
