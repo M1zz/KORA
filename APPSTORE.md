@@ -53,7 +53,7 @@ GPS로 가장 가까운 역을 찾거나 직접 고를 수 있습니다. 고른 
 경로 검색은 기기 안에서 계산하므로 오프라인에서도 됩니다. 실시간 도착 정보만 네트워크가 필요합니다.
 
 KORA Pro
-경로 검색, 타는 방향, 실시간 도착 정보, 카메라 방향 확인은 언제나 무료입니다. 잠금 화면 안내, 안내방송 인식, 하차 진동 알림은 처음 세 번의 여정 동안 무료로 써 볼 수 있고, 그 뒤에는 KORA Pro를 한 번 구매하면 계속 쓸 수 있습니다. 서울 지하철 1~8호선 역의 출구별 주변 장소를 알려 주는 출구 안내도 KORA Pro에 들어 있습니다. 구독이 아닙니다.
+경로 검색, 타는 방향, 실시간 도착 정보, 카메라 방향 확인은 언제나 무료입니다. 잠금 화면 안내, 안내방송 인식, 하차 진동 알림은 처음 세 번의 여정 동안 무료로 써 볼 수 있고, 그 뒤에는 KORA Pro를 한 번 구매하면 계속 쓸 수 있습니다. 서울 지하철 1~8호선 역의 출구별 주변 장소를 알려 주는 출구 안내도 KORA Pro에 들어 있습니다. 1~9호선 막차 시간을 미리 알려 주는 막차 알림, 짐이 많을 때 엘리베이터와 가까운 칸을 알려 주는 캐리어 모드(1~8호선)도 들어 있습니다. 구독이 아닙니다.
 
 개인정보를 아낍니다
 회원가입과 광고가 없습니다. 위치, 카메라, 안내방송 인식은 모두 기기 안에서 처리되며 저장하거나 전송하지 않습니다. 앱 개선을 위한 익명 이용 통계만 수집합니다.
@@ -125,7 +125,7 @@ WORKS OFFLINE
 Routes are calculated on your device, so route search works without internet. Only real-time arrivals need a connection.
 
 KORA PRO
-Route search, boarding direction, real-time arrivals and the camera direction check are always free. Lock Screen tracking, announcement recognition and get-off vibration alerts are free for your first three journeys. After that, a one-time KORA Pro purchase keeps them on. KORA Pro also adds an exit guide that shows what's near each exit on Seoul Subway Lines 1 to 8. No subscription.
+Route search, boarding direction, real-time arrivals and the camera direction check are always free. Lock Screen tracking, announcement recognition and get-off vibration alerts are free for your first three journeys. After that, a one-time KORA Pro purchase keeps them on. KORA Pro also adds an exit guide that shows what's near each exit on Seoul Subway Lines 1 to 8. It also includes last train alerts for Lines 1 to 9, and a luggage mode that shows the car closest to the elevator on Lines 1 to 8. No subscription.
 
 PRIVATE BY DESIGN
 No account, no ads. Location, camera and announcement recognition are processed on your device and are never stored or sent anywhere. We only collect anonymous usage statistics to improve the app.
@@ -197,7 +197,7 @@ GPS で最寄り駅を探すか、自分で選べます。選んだ駅は次に�
 ルートは端末内で計算するので、インターネットがなくても検索できます。ネットワークを使うのはリアルタイム到着情報だけです。
 
 【KORA Pro】
-経路検索、乗る方向、リアルタイム到着情報、カメラでの方向確認はいつでも無料です。ロック画面での案内、車内アナウンス認識、降車バイブ通知は最初の3回の移動まで無料で試せます。その後はKORA Proを一度購入すれば使い続けられます。ソウル地下鉄1〜8号線の駅で出口ごとの周辺スポットがわかる出口案内もKORA Proに含まれます。サブスクリプションではありません。
+経路検索、乗る方向、リアルタイム到着情報、カメラでの方向確認はいつでも無料です。ロック画面での案内、車内アナウンス認識、降車バイブ通知は最初の3回の移動まで無料で試せます。その後はKORA Proを一度購入すれば使い続けられます。ソウル地下鉄1〜8号線の駅で出口ごとの周辺スポットがわかる出口案内もKORA Proに含まれます。1〜9号線の終電時刻を事前に知らせる終電アラート、荷物が多いときにエレベーターに近い車両を教えるスーツケースモード（1〜8号線）も含まれます。サブスクリプションではありません。
 
 【プライバシーを大切に】
 アカウント登録も広告もありません。位置情報、カメラ、アナウンス認識はすべて端末内で処理し、保存も送信もしません。アプリ改善のための匿名の利用統計だけを収集しています。
@@ -269,7 +269,7 @@ KORA 是一款为来韩国旅行的人打造的地铁指南 App。
 路线在设备上计算，没有网络也能查询。只有实时到站信息需要联网。
 
 【KORA Pro】
-路线搜索、乘车方向、实时到站信息和相机方向确认始终免费。锁定屏幕引导、车内广播识别和下车振动提醒可在前三次行程中免费试用，之后一次购买 KORA Pro 即可继续使用。KORA Pro 还包含出口指南，可查看首尔地铁1至8号线各站每个出口附近的地点。不是订阅。
+路线搜索、乘车方向、实时到站信息和相机方向确认始终免费。锁定屏幕引导、车内广播识别和下车振动提醒可在前三次行程中免费试用，之后一次购买 KORA Pro 即可继续使用。KORA Pro 还包含出口指南，可查看首尔地铁1至8号线各站每个出口附近的地点。还包括1至9号线的末班车提醒，以及在1至8号线上告诉你离电梯最近车厢的行李模式。不是订阅。
 
 【重视隐私】
 无需注册账号，没有广告。定位、相机和广播识别都在设备上处理，不会保存或上传。我们只收集用于改进 App 的匿名使用统计。
@@ -341,7 +341,7 @@ KORA 是專為來韓國旅遊的人設計的地鐵指南 App。
 路線在裝置上計算，沒有網路也能查詢。只有即時到站資訊需要連網。
 
 【KORA Pro】
-路線搜尋、乘車方向、即時到站資訊和相機方向確認一律免費。鎖定畫面導引、車內廣播辨識和下車震動提醒可在前三次行程免費試用，之後只要購買一次 KORA Pro 就能繼續使用。KORA Pro 還包含出口指南，可查看首爾地鐵1至8號線各站每個出口附近的地點。不是訂閱制。
+路線搜尋、乘車方向、即時到站資訊和相機方向確認一律免費。鎖定畫面導引、車內廣播辨識和下車震動提醒可在前三次行程免費試用，之後只要購買一次 KORA Pro 就能繼續使用。KORA Pro 還包含出口指南，可查看首爾地鐵1至8號線各站每個出口附近的地點。還包括1至9號線的末班車提醒，以及在1至8號線上告訴你離電梯最近車廂的行李模式。不是訂閱制。
 
 【重視你的隱私】
 不需要註冊帳號，沒有廣告。定位、相機和廣播辨識都在裝置上處理，不會儲存或上傳。我們只蒐集用於改善 App 的匿名使用統計。
@@ -413,7 +413,7 @@ FUNKTIONIERT OFFLINE
 Routen werden auf deinem Gerät berechnet, die Suche klappt also auch ohne Internet. Nur die Echtzeit-Ankünfte brauchen eine Verbindung.
 
 KORA PRO
-Routensuche, Einstiegsrichtung, Echtzeit-Ankünfte und die Richtungsprüfung per Kamera sind immer kostenlos. Sperrbildschirm-Anzeige, Durchsagenerkennung und Vibration beim Aussteigen kannst du auf deinen ersten drei Fahrten kostenlos nutzen. Danach schaltet ein einmaliger Kauf von KORA Pro sie dauerhaft frei. Dazu kommt ein Ausgangsführer, der für die Seouler U-Bahn-Linien 1 bis 8 zeigt, was in der Nähe jedes Ausgangs liegt. Kein Abo.
+Routensuche, Einstiegsrichtung, Echtzeit-Ankünfte und die Richtungsprüfung per Kamera sind immer kostenlos. Sperrbildschirm-Anzeige, Durchsagenerkennung und Vibration beim Aussteigen kannst du auf deinen ersten drei Fahrten kostenlos nutzen. Danach schaltet ein einmaliger Kauf von KORA Pro sie dauerhaft frei. Dazu kommt ein Ausgangsführer, der für die Seouler U-Bahn-Linien 1 bis 8 zeigt, was in der Nähe jedes Ausgangs liegt. Außerdem enthalten: Erinnerungen an den letzten Zug auf den Linien 1 bis 9 und ein Gepäckmodus, der auf den Linien 1 bis 8 den Wagen nahe am Aufzug zeigt. Kein Abo.
 
 DATENSCHUTZ AB WERK
 Kein Konto, keine Werbung. Standort, Kamera und Durchsagenerkennung werden auf deinem Gerät verarbeitet und nie gespeichert oder versendet. Wir erfassen nur anonyme Nutzungsstatistiken, um die App zu verbessern.
@@ -485,7 +485,7 @@ FUNCIONA SIN CONEXIÓN
 Las rutas se calculan en tu dispositivo, así que la búsqueda funciona sin internet. Solo las llegadas en tiempo real necesitan conexión.
 
 KORA PRO
-La búsqueda de rutas, la dirección de embarque, las llegadas en tiempo real y la comprobación de dirección con la cámara son siempre gratis. El seguimiento en la pantalla bloqueada, el reconocimiento de avisos y la vibración para bajar son gratis en tus tres primeros trayectos. Después, una única compra de KORA Pro los mantiene activos. KORA Pro también incluye una guía de salidas que muestra qué hay cerca de cada salida en las líneas 1 a 8 del metro de Seúl. Sin suscripción.
+La búsqueda de rutas, la dirección de embarque, las llegadas en tiempo real y la comprobación de dirección con la cámara son siempre gratis. El seguimiento en la pantalla bloqueada, el reconocimiento de avisos y la vibración para bajar son gratis en tus tres primeros trayectos. Después, una única compra de KORA Pro los mantiene activos. KORA Pro también incluye una guía de salidas que muestra qué hay cerca de cada salida en las líneas 1 a 8 del metro de Seúl. También incluye avisos del último tren en las líneas 1 a 9 y un modo equipaje que indica el vagón más cercano al ascensor en las líneas 1 a 8. Sin suscripción.
 
 PRIVACIDAD ANTE TODO
 Sin cuentas, sin anuncios. La ubicación, la cámara y el reconocimiento de avisos se procesan en tu dispositivo y nunca se guardan ni se envían. Solo recopilamos estadísticas de uso anónimas para mejorar la app.
@@ -557,7 +557,7 @@ FONCTIONNE HORS LIGNE
 Les itinéraires sont calculés sur l'appareil : la recherche marche sans Internet. Seules les arrivées en temps réel nécessitent une connexion.
 
 KORA PRO
-La recherche d'itinéraire, le sens d'embarquement, les arrivées en temps réel et la vérification du sens à la caméra sont toujours gratuits. Le suivi sur l'écran verrouillé, la reconnaissance des annonces et la vibration pour descendre sont gratuits pendant vos trois premiers trajets. Ensuite, un achat unique de KORA Pro les garde actifs. KORA Pro ajoute aussi un guide des sorties qui indique ce qui se trouve près de chaque sortie sur les lignes 1 à 8 du métro de Séoul. Sans abonnement.
+La recherche d'itinéraire, le sens d'embarquement, les arrivées en temps réel et la vérification du sens à la caméra sont toujours gratuits. Le suivi sur l'écran verrouillé, la reconnaissance des annonces et la vibration pour descendre sont gratuits pendant vos trois premiers trajets. Ensuite, un achat unique de KORA Pro les garde actifs. KORA Pro ajoute aussi un guide des sorties qui indique ce qui se trouve près de chaque sortie sur les lignes 1 à 8 du métro de Séoul. Il comprend aussi des alertes de dernier train sur les lignes 1 à 9 et un mode bagages qui indique la voiture la plus proche de l'ascenseur sur les lignes 1 à 8. Sans abonnement.
 
 RESPECT DE LA VIE PRIVÉE
 Pas de compte, pas de publicité. Position, caméra et reconnaissance des annonces sont traitées sur l'appareil et ne sont jamais enregistrées ni envoyées. Nous ne collectons que des statistiques d'utilisation anonymes pour améliorer l'app.
@@ -629,7 +629,7 @@ FUNZIONA OFFLINE
 I percorsi vengono calcolati sul dispositivo, quindi la ricerca funziona anche senza internet. Solo gli arrivi in tempo reale richiedono la connessione.
 
 KORA PRO
-Ricerca del percorso, direzione di salita, arrivi in tempo reale e verifica della direzione con la fotocamera sono sempre gratuiti. Il viaggio sulla schermata di blocco, il riconoscimento degli annunci e la vibrazione per scendere sono gratuiti per i primi tre viaggi. Poi basta un unico acquisto di KORA Pro per continuare a usarli. KORA Pro include anche una guida alle uscite che mostra cosa c'è vicino a ogni uscita sulle linee della metropolitana di Seul dalla 1 alla 8. Nessun abbonamento.
+Ricerca del percorso, direzione di salita, arrivi in tempo reale e verifica della direzione con la fotocamera sono sempre gratuiti. Il viaggio sulla schermata di blocco, il riconoscimento degli annunci e la vibrazione per scendere sono gratuiti per i primi tre viaggi. Poi basta un unico acquisto di KORA Pro per continuare a usarli. KORA Pro include anche una guida alle uscite che mostra cosa c'è vicino a ogni uscita sulle linee della metropolitana di Seul dalla 1 alla 8. Include anche gli avvisi dell'ultimo treno sulle linee dalla 1 alla 9 e una modalità bagagli che indica la carrozza più vicina all'ascensore sulle linee dalla 1 alla 8. Nessun abbonamento.
 
 PRIVACY AL PRIMO POSTO
 Nessun account, nessuna pubblicità. Posizione, fotocamera e riconoscimento degli annunci vengono elaborati sul dispositivo e non vengono mai salvati né inviati. Raccogliamo solo statistiche d'uso anonime per migliorare l'app.
@@ -701,7 +701,7 @@ FUNCIONA OFFLINE
 As rotas são calculadas no aparelho, então a busca funciona sem internet. Só as chegadas em tempo real precisam de conexão.
 
 KORA PRO
-Busca de rotas, sentido de embarque, chegadas em tempo real e a conferência de sentido pela câmera são sempre grátis. O acompanhamento na Tela Bloqueada, o reconhecimento de avisos e a vibração para descer são grátis nas suas três primeiras viagens. Depois, uma compra única do KORA Pro mantém tudo ativo. O KORA Pro também traz um guia de saídas que mostra o que fica perto de cada saída nas linhas 1 a 8 do metrô de Seul. Sem assinatura.
+Busca de rotas, sentido de embarque, chegadas em tempo real e a conferência de sentido pela câmera são sempre grátis. O acompanhamento na Tela Bloqueada, o reconhecimento de avisos e a vibração para descer são grátis nas suas três primeiras viagens. Depois, uma compra única do KORA Pro mantém tudo ativo. O KORA Pro também traz um guia de saídas que mostra o que fica perto de cada saída nas linhas 1 a 8 do metrô de Seul. Inclui também alertas de último trem nas linhas 1 a 9 e um modo bagagem que mostra o vagão mais perto do elevador nas linhas 1 a 8. Sem assinatura.
 
 PRIVACIDADE EM PRIMEIRO LUGAR
 Sem conta, sem anúncios. Localização, câmera e reconhecimento de avisos são processados no aparelho e nunca são salvos nem enviados. Coletamos apenas estatísticas de uso anônimas para melhorar o app.
@@ -773,7 +773,7 @@ Live Activity показывает ход поездки без разблоки
 Маршруты рассчитываются на устройстве, поэтому поиск работает офлайн. Сеть нужна только для данных о прибытии в реальном времени.
 
 KORA PRO
-Поиск маршрута, направление посадки, прибытие в реальном времени и проверка направления камерой всегда бесплатны. Поездка на экране блокировки, распознавание объявлений и вибрация перед выходом бесплатны в первых трёх поездках. Дальше достаточно один раз купить KORA Pro. В KORA Pro есть и путеводитель по выходам: он показывает, что находится у каждого выхода на линиях сеульского метро с 1 по 8. Без подписки.
+Поиск маршрута, направление посадки, прибытие в реальном времени и проверка направления камерой всегда бесплатны. Поездка на экране блокировки, распознавание объявлений и вибрация перед выходом бесплатны в первых трёх поездках. Дальше достаточно один раз купить KORA Pro. В KORA Pro есть и путеводитель по выходам: он показывает, что находится у каждого выхода на линиях сеульского метро с 1 по 8. Также есть напоминания о последнем поезде на линиях 1–9 и режим багажа, который на линиях 1–8 подскажет вагон ближе всего к лифту. Без подписки.
 
 КОНФИДЕНЦИАЛЬНОСТЬ
 Без регистрации и рекламы. Геопозиция, камера и распознавание объявлений обрабатываются на устройстве и никуда не сохраняются и не отправляются. Мы собираем только анонимную статистику использования, чтобы улучшать приложение.
@@ -845,7 +845,7 @@ FUNGUJE OFFLINE
 Trasy se počítají v zařízení, takže vyhledávání funguje i bez internetu. Připojení potřebují jen příjezdy v reálném čase.
 
 KORA PRO
-Vyhledání trasy, směr nástupu, příjezdy v reálném čase a kontrola směru fotoaparátem jsou vždy zdarma. Průběh jízdy na zamčené obrazovce, rozpoznávání hlášení a vibrace před výstupem jsou zdarma při prvních třech cestách. Potom je odemkne jednorázový nákup KORA Pro. KORA Pro navíc obsahuje průvodce východy, který na linkách 1 až 8 soulského metra ukáže, co je poblíž každého východu. Žádné předplatné.
+Vyhledání trasy, směr nástupu, příjezdy v reálném čase a kontrola směru fotoaparátem jsou vždy zdarma. Průběh jízdy na zamčené obrazovce, rozpoznávání hlášení a vibrace před výstupem jsou zdarma při prvních třech cestách. Potom je odemkne jednorázový nákup KORA Pro. KORA Pro navíc obsahuje průvodce východy, který na linkách 1 až 8 soulského metra ukáže, co je poblíž každého východu. Obsahuje také upozornění na poslední vlak na linkách 1 až 9 a režim zavazadel, který na linkách 1 až 8 ukáže vůz nejblíž k výtahu. Žádné předplatné.
 
 SOUKROMÍ NA PRVNÍM MÍSTĚ
 Žádný účet, žádné reklamy. Poloha, fotoaparát i rozpoznávání hlášení se zpracovávají v zařízení a nikdy se neukládají ani neodesílají. Sbíráme jen anonymní statistiky používání, abychom aplikaci zlepšovali.
@@ -917,7 +917,7 @@ VIRKER OFFLINE
 Ruter beregnes på enheden, så søgningen virker uden internet. Kun ankomster i realtid kræver forbindelse.
 
 KORA PRO
-Rutesøgning, påstigningsretning, ankomster i realtid og retningstjek med kameraet er altid gratis. Visning på låseskærmen, genkendelse af udkald og vibration, når du skal stå af, er gratis på dine første tre ture. Derefter holder et engangskøb af KORA Pro dem kørende. KORA Pro giver også en udgangsguide, der viser, hvad der ligger ved hver udgang på Seouls metrolinje 1 til 8. Intet abonnement.
+Rutesøgning, påstigningsretning, ankomster i realtid og retningstjek med kameraet er altid gratis. Visning på låseskærmen, genkendelse af udkald og vibration, når du skal stå af, er gratis på dine første tre ture. Derefter holder et engangskøb af KORA Pro dem kørende. KORA Pro giver også en udgangsguide, der viser, hvad der ligger ved hver udgang på Seouls metrolinje 1 til 8. Den indeholder også påmindelser om sidste tog på linje 1 til 9 og en bagagetilstand, der viser vognen tættest på elevatoren på linje 1 til 8. Intet abonnement.
 
 PRIVATLIV FØRST
 Ingen konto, ingen reklamer. Lokalitet, kamera og genkendelse af udkald behandles på enheden og bliver aldrig gemt eller sendt. Vi indsamler kun anonym brugsstatistik for at forbedre appen.
@@ -989,7 +989,7 @@ busan,incheon,daegu,daejeon,gwangju,gtx,arex,αεροδρόμιο,τρένο,μ�
 Οι διαδρομές υπολογίζονται στη συσκευή, οπότε η αναζήτηση δουλεύει χωρίς internet. Σύνδεση χρειάζονται μόνο οι αφίξεις σε πραγματικό χρόνο.
 
 KORA PRO
-Η αναζήτηση διαδρομής, η κατεύθυνση επιβίβασης, οι αφίξεις σε πραγματικό χρόνο και ο έλεγχος κατεύθυνσης με την κάμερα είναι πάντα δωρεάν. Η παρακολούθηση στην οθόνη κλειδώματος, η αναγνώριση ανακοινώσεων και η δόνηση για αποβίβαση είναι δωρεάν στις τρεις πρώτες διαδρομές σας. Μετά, μία εφάπαξ αγορά του KORA Pro τα κρατά ενεργά. Το KORA Pro περιλαμβάνει επίσης οδηγό εξόδων που δείχνει τι βρίσκεται κοντά σε κάθε έξοδο στις γραμμές 1 έως 8 του μετρό της Σεούλ. Χωρίς συνδρομή.
+Η αναζήτηση διαδρομής, η κατεύθυνση επιβίβασης, οι αφίξεις σε πραγματικό χρόνο και ο έλεγχος κατεύθυνσης με την κάμερα είναι πάντα δωρεάν. Η παρακολούθηση στην οθόνη κλειδώματος, η αναγνώριση ανακοινώσεων και η δόνηση για αποβίβαση είναι δωρεάν στις τρεις πρώτες διαδρομές σας. Μετά, μία εφάπαξ αγορά του KORA Pro τα κρατά ενεργά. Το KORA Pro περιλαμβάνει επίσης οδηγό εξόδων που δείχνει τι βρίσκεται κοντά σε κάθε έξοδο στις γραμμές 1 έως 8 του μετρό της Σεούλ. Περιλαμβάνει επίσης ειδοποιήσεις για το τελευταίο τρένο στις γραμμές 1 έως 9 και λειτουργία αποσκευών που δείχνει το βαγόνι πιο κοντά στον ανελκυστήρα στις γραμμές 1 έως 8. Χωρίς συνδρομή.
 
 ΠΡΟΣΤΑΣΙΑ ΑΠΟΡΡΗΤΟΥ
 Χωρίς λογαριασμό και χωρίς διαφημίσεις. Η τοποθεσία, η κάμερα και η αναγνώριση ανακοινώσεων επεξεργάζονται στη συσκευή και δεν αποθηκεύονται ούτε αποστέλλονται ποτέ. Συλλέγουμε μόνο ανώνυμα στατιστικά χρήσης για να βελτιώνουμε την εφαρμογή.
@@ -1061,7 +1061,7 @@ TOIMII ILMAN NETTIÄ
 Reitit lasketaan laitteessa, joten haku toimii ilman internetiä. Vain reaaliaikaiset saapumistiedot vaativat yhteyden.
 
 KORA PRO
-Reittihaku, noususuunta, reaaliaikaiset saapumisajat ja suunnan tarkistus kameralla ovat aina ilmaisia. Lukitusnäytön seuranta, kuulutusten tunnistus ja poisjäämisen värinähälytys ovat ilmaisia kolmella ensimmäisellä matkallasi. Sen jälkeen KORA Pron kertaosto pitää ne käytössä. KORA Prossa on myös uloskäyntiopas, joka näyttää Soulin metrolinjoilla 1–8, mitä kunkin uloskäynnin lähellä on. Ei tilausta.
+Reittihaku, noususuunta, reaaliaikaiset saapumisajat ja suunnan tarkistus kameralla ovat aina ilmaisia. Lukitusnäytön seuranta, kuulutusten tunnistus ja poisjäämisen värinähälytys ovat ilmaisia kolmella ensimmäisellä matkallasi. Sen jälkeen KORA Pron kertaosto pitää ne käytössä. KORA Prossa on myös uloskäyntiopas, joka näyttää Soulin metrolinjoilla 1–8, mitä kunkin uloskäynnin lähellä on. Mukana ovat myös viimeisen junan muistutukset linjoilla 1–9 ja matkatavaratila, joka näyttää hissiä lähimmän vaunun linjoilla 1–8. Ei tilausta.
 
 YKSITYISYYS ENSIN
 Ei tiliä, ei mainoksia. Sijainti, kamera ja kuulutusten tunnistus käsitellään laitteessa, eikä niitä koskaan tallenneta tai lähetetä. Keräämme vain nimettömiä käyttötilastoja sovelluksen parantamiseksi.
@@ -1133,7 +1133,7 @@ BISA OFFLINE
 Rute dihitung di perangkat, jadi pencarian tetap jalan tanpa internet. Hanya data kedatangan real-time yang butuh koneksi.
 
 KORA PRO
-Pencarian rute, arah naik, kedatangan real-time, dan cek arah dengan kamera selalu gratis. Pemantauan di Layar Terkunci, pengenalan pengumuman, dan getar saat harus turun gratis untuk tiga perjalanan pertamamu. Setelah itu, cukup beli KORA Pro sekali untuk terus memakainya. KORA Pro juga punya panduan pintu keluar yang menunjukkan tempat di dekat setiap pintu keluar di jalur 1 sampai 8 kereta bawah tanah Seoul. Bukan langganan.
+Pencarian rute, arah naik, kedatangan real-time, dan cek arah dengan kamera selalu gratis. Pemantauan di Layar Terkunci, pengenalan pengumuman, dan getar saat harus turun gratis untuk tiga perjalanan pertamamu. Setelah itu, cukup beli KORA Pro sekali untuk terus memakainya. KORA Pro juga punya panduan pintu keluar yang menunjukkan tempat di dekat setiap pintu keluar di jalur 1 sampai 8 kereta bawah tanah Seoul. Juga ada pengingat kereta terakhir di jalur 1 sampai 9 dan mode koper yang menunjukkan gerbong terdekat ke lift di jalur 1 sampai 8. Bukan langganan.
 
 PRIVASI TERJAGA
 Tanpa akun, tanpa iklan. Lokasi, kamera, dan pengenalan pengumuman diproses di perangkat dan tidak pernah disimpan atau dikirim. Kami hanya mengumpulkan statistik penggunaan anonim untuk meningkatkan aplikasi.
@@ -1205,7 +1205,7 @@ FUNGERER UTEN NETT
 Rutene beregnes på enheten, så søket virker uten internett. Bare sanntidsankomster trenger tilkobling.
 
 KORA PRO
-Rutesøk, påstigningsretning, sanntidsankomster og retningssjekk med kameraet er alltid gratis. Visning på låseskjermen, gjenkjenning av annonseringer og vibrasjon når du skal gå av er gratis på de tre første turene dine. Deretter holder et engangskjøp av KORA Pro dem i gang. KORA Pro har også en utgangsguide som viser hva som ligger ved hver utgang på Seouls T-banelinje 1 til 8. Ikke abonnement.
+Rutesøk, påstigningsretning, sanntidsankomster og retningssjekk med kameraet er alltid gratis. Visning på låseskjermen, gjenkjenning av annonseringer og vibrasjon når du skal gå av er gratis på de tre første turene dine. Deretter holder et engangskjøp av KORA Pro dem i gang. KORA Pro har også en utgangsguide som viser hva som ligger ved hver utgang på Seouls T-banelinje 1 til 8. Den har også påminnelser om siste tog på linje 1 til 9 og en bagasjemodus som viser vognen nærmest heisen på linje 1 til 8. Ikke abonnement.
 
 PERSONVERN FØRST
 Ingen konto, ingen reklame. Posisjon, kamera og gjenkjenning av annonseringer behandles på enheten og blir aldri lagret eller sendt. Vi samler bare inn anonym bruksstatistikk for å gjøre appen bedre.
@@ -1277,7 +1277,7 @@ WERKT OFFLINE
 Routes worden op je apparaat berekend, dus zoeken werkt zonder internet. Alleen realtime aankomsten hebben een verbinding nodig.
 
 KORA PRO
-Routes zoeken, de instaprichting, realtime aankomsttijden en de richtingcheck met de camera zijn altijd gratis. Je rit op het toegangsscherm, omroepherkenning en de trilling bij uitstappen zijn gratis tijdens je eerste drie ritten. Daarna houdt een eenmalige aankoop van KORA Pro ze aan. KORA Pro heeft ook een uitgangengids die laat zien wat er bij elke uitgang ligt op metrolijn 1 tot en met 8 in Seoel. Geen abonnement.
+Routes zoeken, de instaprichting, realtime aankomsttijden en de richtingcheck met de camera zijn altijd gratis. Je rit op het toegangsscherm, omroepherkenning en de trilling bij uitstappen zijn gratis tijdens je eerste drie ritten. Daarna houdt een eenmalige aankoop van KORA Pro ze aan. KORA Pro heeft ook een uitgangengids die laat zien wat er bij elke uitgang ligt op metrolijn 1 tot en met 8 in Seoel. Ook inbegrepen: meldingen voor de laatste trein op lijn 1 tot en met 9 en een bagagemodus die op lijn 1 tot en met 8 de wagon het dichtst bij de lift toont. Geen abonnement.
 
 PRIVACY VOOROP
 Geen account, geen advertenties. Locatie, camera en omroepherkenning worden op je apparaat verwerkt en nooit bewaard of verstuurd. We verzamelen alleen anonieme gebruiksstatistieken om de app te verbeteren.
@@ -1349,7 +1349,7 @@ DZIAŁA OFFLINE
 Trasy są liczone na urządzeniu, więc wyszukiwanie działa bez internetu. Internet jest potrzebny tylko do przyjazdów w czasie rzeczywistym.
 
 KORA PRO
-Wyszukiwanie trasy, kierunek wsiadania, przyjazdy na żywo i sprawdzanie kierunku aparatem są zawsze bezpłatne. Postęp na ekranie blokady, rozpoznawanie komunikatów i wibracja przed wysiadaniem są bezpłatne podczas pierwszych trzech podróży. Potem wystarczy jednorazowy zakup KORA Pro. KORA Pro ma też przewodnik po wyjściach, który pokazuje, co jest przy każdym wyjściu na liniach 1–8 metra w Seulu. Bez subskrypcji.
+Wyszukiwanie trasy, kierunek wsiadania, przyjazdy na żywo i sprawdzanie kierunku aparatem są zawsze bezpłatne. Postęp na ekranie blokady, rozpoznawanie komunikatów i wibracja przed wysiadaniem są bezpłatne podczas pierwszych trzech podróży. Potem wystarczy jednorazowy zakup KORA Pro. KORA Pro ma też przewodnik po wyjściach, który pokazuje, co jest przy każdym wyjściu na liniach 1–8 metra w Seulu. Zawiera też przypomnienia o ostatnim pociągu na liniach 1–9 i tryb bagażu, który na liniach 1–8 pokazuje wagon najbliżej windy. Bez subskrypcji.
 
 PRYWATNOŚĆ PRZEDE WSZYSTKIM
 Bez konta i bez reklam. Lokalizacja, aparat i rozpoznawanie komunikatów są przetwarzane na urządzeniu i nigdy nie są zapisywane ani wysyłane. Zbieramy tylko anonimowe statystyki użycia, by ulepszać aplikację.
@@ -1421,7 +1421,7 @@ FUNKAR OFFLINE
 Rutter beräknas på enheten, så sökningen fungerar utan internet. Bara ankomster i realtid behöver uppkoppling.
 
 KORA PRO
-Ruttsökning, påstigningsriktning, ankomster i realtid och riktningskoll med kameran är alltid gratis. Visning på låsskärmen, igenkänning av utrop och vibration när du ska kliva av är gratis under dina tre första resor. Sedan håller ett engångsköp av KORA Pro dem igång. KORA Pro har också en utgångsguide som visar vad som finns vid varje utgång på Seouls tunnelbanelinje 1 till 8. Ingen prenumeration.
+Ruttsökning, påstigningsriktning, ankomster i realtid och riktningskoll med kameran är alltid gratis. Visning på låsskärmen, igenkänning av utrop och vibration när du ska kliva av är gratis under dina tre första resor. Sedan håller ett engångsköp av KORA Pro dem igång. KORA Pro har också en utgångsguide som visar vad som finns vid varje utgång på Seouls tunnelbanelinje 1 till 8. Den har också påminnelser om sista tåget på linje 1 till 9 och ett bagageläge som visar vagnen närmast hissen på linje 1 till 8. Ingen prenumeration.
 
 INTEGRITET FÖRST
 Inget konto, ingen reklam. Plats, kamera och igenkänning av utrop behandlas på enheten och sparas eller skickas aldrig. Vi samlar bara in anonym användningsstatistik för att förbättra appen.
@@ -1493,7 +1493,7 @@ KORA ใช้ข้อมูลเวลารถไฟเข้าสถาน
 คำนวณเส้นทางบนอุปกรณ์ จึงค้นหาได้แม้ไม่มีอินเทอร์เน็ต ต้องใช้เน็ตเฉพาะข้อมูลเวลารถไฟแบบเรียลไทม์
 
 KORA Pro
-การค้นหาเส้นทาง ทิศทางที่ต้องขึ้น เวลารถถึงแบบเรียลไทม์ และการเช็กทิศทางด้วยกล้องใช้ฟรีเสมอ การติดตามบนหน้าจอล็อก การจดจำเสียงประกาศ และการสั่นเตือนเมื่อถึงเวลาลงใช้ฟรีใน 3 การเดินทางแรก หลังจากนั้นซื้อ KORA Pro ครั้งเดียวก็ใช้ต่อได้ KORA Pro ยังมีคู่มือทางออกที่บอกสถานที่ใกล้แต่ละทางออกของรถไฟใต้ดินโซลสาย 1 ถึง 8 ด้วย ไม่ใช่แบบสมัครสมาชิก
+การค้นหาเส้นทาง ทิศทางที่ต้องขึ้น เวลารถถึงแบบเรียลไทม์ และการเช็กทิศทางด้วยกล้องใช้ฟรีเสมอ การติดตามบนหน้าจอล็อก การจดจำเสียงประกาศ และการสั่นเตือนเมื่อถึงเวลาลงใช้ฟรีใน 3 การเดินทางแรก หลังจากนั้นซื้อ KORA Pro ครั้งเดียวก็ใช้ต่อได้ KORA Pro ยังมีคู่มือทางออกที่บอกสถานที่ใกล้แต่ละทางออกของรถไฟใต้ดินโซลสาย 1 ถึง 8 ด้วย ยังมีการเตือนรถไฟเที่ยวสุดท้ายของสาย 1 ถึง 9 และโหมดกระเป๋าเดินทางที่บอกตู้ใกล้ลิฟต์ที่สุดบนสาย 1 ถึง 8 ด้วย ไม่ใช่แบบสมัครสมาชิก
 
 ใส่ใจความเป็นส่วนตัว
 ไม่ต้องสมัครบัญชี ไม่มีโฆษณา ตำแหน่ง กล้อง และการจดจำเสียงประกาศประมวลผลบนอุปกรณ์ ไม่มีการบันทึกหรือส่งออก เราเก็บเพียงสถิติการใช้งานแบบไม่ระบุตัวตนเพื่อปรับปรุงแอป
@@ -1565,7 +1565,7 @@ Seul metropol bölgesinde (Seul, Gyeonggi ve Incheon; GTX-A, AREX, Shinbundang H
 Rotalar cihazda hesaplanır, bu yüzden arama internetsiz de çalışır. Yalnızca gerçek zamanlı varışlar bağlantı ister.
 
 KORA PRO
-Rota arama, biniş yönü, gerçek zamanlı varış bilgisi ve kamerayla yön kontrolü her zaman ücretsizdir. Kilitli Ekran takibi, anons tanıma ve inerken titreşim uyarısı ilk üç yolculuğunda ücretsizdir. Sonrasında KORA Pro'yu bir kez satın alman yeterli. KORA Pro'da ayrıca Seul metrosunun 1-8 hatlarında her çıkışın yakınında ne olduğunu gösteren bir çıkış rehberi de var. Abonelik yok.
+Rota arama, biniş yönü, gerçek zamanlı varış bilgisi ve kamerayla yön kontrolü her zaman ücretsizdir. Kilitli Ekran takibi, anons tanıma ve inerken titreşim uyarısı ilk üç yolculuğunda ücretsizdir. Sonrasında KORA Pro'yu bir kez satın alman yeterli. KORA Pro'da ayrıca Seul metrosunun 1-8 hatlarında her çıkışın yakınında ne olduğunu gösteren bir çıkış rehberi de var. Ayrıca 1-9 hatlarında son tren hatırlatmaları ve 1-8 hatlarında asansöre en yakın vagonu gösteren bavul modu da var. Abonelik yok.
 
 GİZLİLİK ÖNCE GELİR
 Hesap yok, reklam yok. Konum, kamera ve anons tanıma cihazında işlenir; asla kaydedilmez veya gönderilmez. Uygulamayı geliştirmek için yalnızca anonim kullanım istatistikleri toplarız.
@@ -1637,7 +1637,7 @@ DÙNG ĐƯỢC KHI KHÔNG CÓ MẠNG
 Lộ trình được tính ngay trên thiết bị nên vẫn tìm được khi không có internet. Chỉ dữ liệu tàu đến theo thời gian thực mới cần kết nối.
 
 KORA PRO
-Tìm đường, hướng lên tàu, giờ tàu đến theo thời gian thực và kiểm tra hướng bằng camera luôn miễn phí. Theo dõi trên Màn hình khóa, nhận dạng thông báo và rung báo khi cần xuống được dùng miễn phí trong ba chuyến đầu tiên. Sau đó, chỉ cần mua KORA Pro một lần để tiếp tục dùng. KORA Pro còn có hướng dẫn lối ra, cho biết gần mỗi lối ra trên tuyến tàu điện ngầm Seoul số 1 đến 8 có những gì. Không phải gói đăng ký.
+Tìm đường, hướng lên tàu, giờ tàu đến theo thời gian thực và kiểm tra hướng bằng camera luôn miễn phí. Theo dõi trên Màn hình khóa, nhận dạng thông báo và rung báo khi cần xuống được dùng miễn phí trong ba chuyến đầu tiên. Sau đó, chỉ cần mua KORA Pro một lần để tiếp tục dùng. KORA Pro còn có hướng dẫn lối ra, cho biết gần mỗi lối ra trên tuyến tàu điện ngầm Seoul số 1 đến 8 có những gì. Ngoài ra còn có nhắc nhở chuyến tàu cuối trên tuyến 1 đến 9 và chế độ hành lý cho biết toa gần thang máy nhất trên tuyến 1 đến 8. Không phải gói đăng ký.
 
 TÔN TRỌNG QUYỀN RIÊNG TƯ
 Không cần tài khoản, không quảng cáo. Vị trí, camera và nhận dạng thông báo được xử lý trên thiết bị, không bao giờ được lưu hay gửi đi. Chúng tôi chỉ thu thập thống kê sử dụng ẩn danh để cải thiện ứng dụng.

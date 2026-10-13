@@ -41,6 +41,10 @@
 		AA091 /* KORAPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA191 /* KORAPaywallView.swift */; };
 		AA092 /* KORAExitGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA192 /* KORAExitGuideView.swift */; };
 		AA093 /* station_exits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA193 /* station_exits.json */; };
+		AA094 /* KORALastTrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA194 /* KORALastTrain.swift */; };
+		AA095 /* last_trains.json in Resources */ = {isa = PBXBuildFile; fileRef = AA195 /* last_trains.json */; };
+		AA096 /* KORALuggageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA196 /* KORALuggageMode.swift */; };
+		AA097 /* quick_exits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA197 /* quick_exits.json */; };
 		AA070 /* SubwayLineDataExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA170 /* SubwayLineDataExpansion.swift */; };
 		AA071 /* SubwayLineDataRegional.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA171 /* SubwayLineDataRegional.swift */; };
 		AA072 /* SubwayStationDataExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA172 /* SubwayStationDataExpansion.swift */; };
@@ -108,6 +112,10 @@
 		AA191 /* KORAPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAPaywallView.swift; sourceTree = "<group>"; };
 		AA192 /* KORAExitGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAExitGuideView.swift; sourceTree = "<group>"; };
 		AA193 /* station_exits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = station_exits.json; sourceTree = "<group>"; };
+		AA194 /* KORALastTrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORALastTrain.swift; sourceTree = "<group>"; };
+		AA195 /* last_trains.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = last_trains.json; sourceTree = "<group>"; };
+		AA196 /* KORALuggageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORALuggageMode.swift; sourceTree = "<group>"; };
+		AA197 /* quick_exits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = quick_exits.json; sourceTree = "<group>"; };
 		AA170 /* SubwayLineDataExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineDataExpansion.swift; sourceTree = "<group>"; };
 		AA171 /* SubwayLineDataRegional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineDataRegional.swift; sourceTree = "<group>"; };
 		AA172 /* SubwayStationDataExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationDataExpansion.swift; sourceTree = "<group>"; };
@@ -198,6 +206,8 @@
 				AA155 /* InfoPlist.xcstrings */,
 				9CD2A3142FEA336B002410B9 /* GoogleService-Info.plist */,
 				AA193 /* station_exits.json */,
+				AA195 /* last_trains.json */,
+				AA197 /* quick_exits.json */,
 			);
 			path = KORA;
 			sourceTree = "<group>";
@@ -282,6 +292,8 @@
 				AA162 /* PlatformDirectionScanner.swift */,
 				AA191 /* KORAPaywallView.swift */,
 				AA192 /* KORAExitGuideView.swift */,
+				AA194 /* KORALastTrain.swift */,
+				AA196 /* KORALuggageMode.swift */,
 				F3C1F37D764C0981336FB8ED /* SubwayStationChineseTraditionalNames.swift */,
 				B0BF0AF98EA2E04687A92072 /* SubwayNavigatorCatalog.swift */,
 			);
@@ -445,6 +457,8 @@
 				AA053 /* InfoPlist.xcstrings in Resources */,
 				AA028 /* subway_jp.pdf in Resources */,
 				AA093 /* station_exits.json in Resources */,
+				AA095 /* last_trains.json in Resources */,
+				AA097 /* quick_exits.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +501,8 @@
 				AA090 /* KORAPro.swift in Sources */,
 				AA091 /* KORAPaywallView.swift in Sources */,
 				AA092 /* KORAExitGuideView.swift in Sources */,
+				AA094 /* KORALastTrain.swift in Sources */,
+				AA096 /* KORALuggageMode.swift in Sources */,
 				178554DE9CC7D8AF586969BA /* SubwayStationChineseTraditionalNames.swift in Sources */,
 				A840DAF76879186E63CC68B5 /* SubwayNavigatorCatalog.swift in Sources */,
 			);

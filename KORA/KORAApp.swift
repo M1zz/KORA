@@ -1,6 +1,7 @@
 import SwiftUI
 import TipKit
 import FirebaseCore
+import UserNotifications
 import LeeoKit
 
 /// Print only in debug builds. Release builds compile the call site away.
@@ -46,6 +47,9 @@ struct KORAApp: App {
             }
             Task { @MainActor in await KORALiveActivityManager.shared.endAll() }
         }
+
+        // 막차 알림을 앱을 보고 있을 때도 배너로 띄운다.
+        UNUserNotificationCenter.current().delegate = KORANotificationPresenter.shared
 
         try? Tips.configure([
             .displayFrequency(.immediate),

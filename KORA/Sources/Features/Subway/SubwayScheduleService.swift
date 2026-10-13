@@ -422,7 +422,7 @@ enum SubwayScheduleService {
         return headway(rules, at: nowMinutes(at: date))
     }
 
-    private static func scheduleSecsPerStop(for segment: JourneySegment) -> Int {
+    static func scheduleSecsPerStop(for segment: JourneySegment) -> Int {
         findScheduleAndRoute(for: segment)?.0.secsPerStop ?? 120
     }
 }

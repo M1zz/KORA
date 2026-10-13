@@ -146,7 +146,7 @@ struct SubwayNavigatorView: View {
     /// 스크린샷 장면은 켠다. 탑승 중에 Pro 를 사면 바로 켠다.
     private var guidedRide: Bool { journeyGuided != false || pro.hasPro }
 
-    /// 출구 안내(Pro)는 무료 안내 탑승이 남아 있거나 이번 여정이 무료 안내 탑승일 때도 열린다.
+    /// 출구 안내·막차 알림·캐리어 모드(Pro)는 무료 안내 탑승이 남아 있거나 이번 여정이 무료 안내 탑승일 때도 열린다.
     private var exitGuideUnlocked: Bool {
         pro.hasPro || journeyGuided == true || (pro.freeRidesLeft ?? 0) > 0
     }
@@ -708,6 +708,9 @@ struct SubwayNavigatorView: View {
                         directionLabelBlock(seg: seg, displayedTerminus: displayedTerminus, segDestKo: segDestKo)
                         Spacer(minLength: 0)
                     }
+
+                    // 캐리어 모드: 내릴 역 엘리베이터와 가까운 문에서 타라고 안내.
+                    LuggageHintCard(seg: seg, lang: displayLanguage, unlocked: exitGuideUnlocked)
                 }
                 .frame(maxWidth: .infinity, alignment: .top)
                 .transition(.asymmetric(
@@ -2199,7 +2202,7 @@ struct SubwayNavigatorView: View {
     private func applyScreenshotScene() {
         guard let scene = ScreenshotScene.current else { return }
         directionCameraHidden = true
-        fromStation = "홍대입구"
+        fromStation = UserDefaults.standard.string(forKey: "KORAShotFrom") ?? "홍대입구"
         switch scene {
         case .search:
             showToPicker = true
@@ -2218,7 +2221,7 @@ struct SubwayNavigatorView: View {
         default:
             break
         }
-        toStation = "명동"
+        toStation = UserDefaults.standard.string(forKey: "KORAShotTo") ?? "명동"
         guard scene != .route else { return }
         Task { @MainActor in
             // Let the journey-change resets run first.
@@ -2398,8 +2401,20 @@ struct SubwayNavigatorView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 18))
                 .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
 
+                // 밤에는 이 경로의 막차 (Pro, 1~9호선만).
+                LastTrainCard(journey: j, lang: displayLanguage, unlocked: exitGuideUnlocked) {
+                    paywallReason = "last_train"
+                    showPaywall = true
+                }
+
                 // 내릴 역의 출구를 미리 본다 (Pro).
                 exitGuideButton(toKo, tint: KORATheme.accent)
+
+                // 짐이 많으면 엘리베이터 가까운 칸 안내를 켠다 (Pro, 1~8호선).
+                LuggageModeRow(lang: displayLanguage, unlocked: exitGuideUnlocked) {
+                    paywallReason = "luggage"
+                    showPaywall = true
+                }
 
                 // ── Action buttons ────────────────────────────────────
                 VStack(spacing: 10) {
