@@ -111,18 +111,7 @@ struct KORAPaywallView: View {
                 Button {
                     Task { await store.purchase(product) { try await purchaseAction($0) } }
                 } label: {
-                    Group {
-                        if store.purchasingProductID != nil {
-                            ProgressView().tint(.white)
-                        } else {
-                            Text(NavLoc.proUnlockPrice.fill(lang, product.displayPrice))
-                                .font(.headline)
-                        }
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 16)
-                    .background(KORATheme.accent, in: RoundedRectangle(cornerRadius: KORATheme.radiusLG))
-                    .foregroundStyle(.white)
+                    buyLabel(price: product.displayPrice)
                 }
                 .disabled(store.purchasingProductID != nil)
 
@@ -136,6 +125,14 @@ struct KORAPaywallView: View {
                         .foregroundStyle(.red)
                         .multilineTextAlignment(.center)
                 }
+            }
+        } else if let price = Self.screenshotPrice {
+            // 심사용 스크린샷: 명령줄 실행에는 StoreKit 설정이 붙지 않으므로 KORA.storekit 의 가격으로 그린다.
+            VStack(spacing: 10) {
+                buyLabel(price: price)
+                Text(NavLoc.proBilling.resolved(lang))
+                    .font(.caption)
+                    .foregroundStyle(KORATheme.labelSecondary)
             }
         } else if store.isLoadingProducts {
             ProgressView()
@@ -154,6 +151,30 @@ struct KORAPaywallView: View {
             }
             .padding(.vertical, 12)
         }
+    }
+
+    private func buyLabel(price: String) -> some View {
+        Group {
+            if store.purchasingProductID != nil {
+                ProgressView().tint(.white)
+            } else {
+                Text(NavLoc.proUnlockPrice.fill(lang, price))
+                    .font(.headline)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 16)
+        .background(KORATheme.accent, in: RoundedRectangle(cornerRadius: KORATheme.radiusLG))
+        .foregroundStyle(.white)
+    }
+
+    /// DEBUG 스크린샷 전용 가격: `-KORAShotPrice '$6.99'`.
+    private static var screenshotPrice: String? {
+        #if DEBUG
+        ScreenshotScene.isActive ? UserDefaults.standard.string(forKey: "KORAShotPrice") : nil
+        #else
+        nil
+        #endif
     }
 
     private var footer: some View {
