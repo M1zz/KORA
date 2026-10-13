@@ -39,6 +39,8 @@
 		AA062 /* PlatformDirectionScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA162 /* PlatformDirectionScanner.swift */; };
 		AA090 /* KORAPro.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA190 /* KORAPro.swift */; };
 		AA091 /* KORAPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA191 /* KORAPaywallView.swift */; };
+		AA092 /* KORAExitGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA192 /* KORAExitGuideView.swift */; };
+		AA093 /* station_exits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA193 /* station_exits.json */; };
 		AA070 /* SubwayLineDataExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA170 /* SubwayLineDataExpansion.swift */; };
 		AA071 /* SubwayLineDataRegional.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA171 /* SubwayLineDataRegional.swift */; };
 		AA072 /* SubwayStationDataExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA172 /* SubwayStationDataExpansion.swift */; };
@@ -104,6 +106,8 @@
 		AA162 /* PlatformDirectionScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformDirectionScanner.swift; sourceTree = "<group>"; };
 		AA190 /* KORAPro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAPro.swift; sourceTree = "<group>"; };
 		AA191 /* KORAPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAPaywallView.swift; sourceTree = "<group>"; };
+		AA192 /* KORAExitGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAExitGuideView.swift; sourceTree = "<group>"; };
+		AA193 /* station_exits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = station_exits.json; sourceTree = "<group>"; };
 		AA170 /* SubwayLineDataExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineDataExpansion.swift; sourceTree = "<group>"; };
 		AA171 /* SubwayLineDataRegional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineDataRegional.swift; sourceTree = "<group>"; };
 		AA172 /* SubwayStationDataExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationDataExpansion.swift; sourceTree = "<group>"; };
@@ -193,6 +197,7 @@
 				AA154 /* PrivacyInfo.xcprivacy */,
 				AA155 /* InfoPlist.xcstrings */,
 				9CD2A3142FEA336B002410B9 /* GoogleService-Info.plist */,
+				AA193 /* station_exits.json */,
 			);
 			path = KORA;
 			sourceTree = "<group>";
@@ -276,6 +281,7 @@
 				AA161 /* StationAnnouncementListener.swift */,
 				AA162 /* PlatformDirectionScanner.swift */,
 				AA191 /* KORAPaywallView.swift */,
+				AA192 /* KORAExitGuideView.swift */,
 				F3C1F37D764C0981336FB8ED /* SubwayStationChineseTraditionalNames.swift */,
 				B0BF0AF98EA2E04687A92072 /* SubwayNavigatorCatalog.swift */,
 			);
@@ -438,6 +444,7 @@
 				AA052 /* PrivacyInfo.xcprivacy in Resources */,
 				AA053 /* InfoPlist.xcstrings in Resources */,
 				AA028 /* subway_jp.pdf in Resources */,
+				AA093 /* station_exits.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -479,6 +486,7 @@
 				AA062 /* PlatformDirectionScanner.swift in Sources */,
 				AA090 /* KORAPro.swift in Sources */,
 				AA091 /* KORAPaywallView.swift in Sources */,
+				AA092 /* KORAExitGuideView.swift in Sources */,
 				178554DE9CC7D8AF586969BA /* SubwayStationChineseTraditionalNames.swift in Sources */,
 				A840DAF76879186E63CC68B5 /* SubwayNavigatorCatalog.swift in Sources */,
 			);

@@ -139,10 +139,24 @@ struct SubwayNavigatorView: View {
     @State private var paywallReason = "arrival"
     /// 도착 화면을 다시 봐도(뒤로 넘겼다 돌아와도) 결제 화면은 여정마다 한 번만.
     @State private var arrivalPaywallShown = false
+    /// 스크린샷 촬영용: 출구 안내 시트를 바로 띄운다.
+    @State private var screenshotExitGuide = false
 
     /// 잠금 화면 라이브 액티비티·안내방송 인식·하차 진동을 켤지. 결정 전(nil)과
     /// 스크린샷 장면은 켠다. 탑승 중에 Pro 를 사면 바로 켠다.
     private var guidedRide: Bool { journeyGuided != false || pro.hasPro }
+
+    /// 출구 안내(Pro)는 무료 안내 탑승이 남아 있거나 이번 여정이 무료 안내 탑승일 때도 열린다.
+    private var exitGuideUnlocked: Bool {
+        pro.hasPro || journeyGuided == true || (pro.freeRidesLeft ?? 0) > 0
+    }
+
+    private func exitGuideButton(_ stationKo: String, tint: Color) -> some View {
+        ExitGuideButton(stationKo: stationKo, lang: displayLanguage, unlocked: exitGuideUnlocked, tint: tint) {
+            paywallReason = "exit_guide"
+            showPaywall = true
+        }
+    }
 
     private var journeys: [TransferJourney] {
         guard let f = fromStation, let t = toStation else { return [] }
@@ -181,6 +195,9 @@ struct SubwayNavigatorView: View {
         }
         .sheet(isPresented: $showPaywall) {
             KORAPaywallView(lang: displayLanguage, reason: paywallReason)
+        }
+        .sheet(isPresented: $screenshotExitGuide) {
+            ExitGuideSheet(stationKo: "명동", lang: displayLanguage)
         }
         .sheet(isPresented: $showPositionCorrection) {
             if let j = journey, j.segments.indices.contains(currentBlockIdx) {
@@ -1442,6 +1459,9 @@ struct SubwayNavigatorView: View {
                 .font(.body)
                 .foregroundStyle(KORATheme.labelSecondary)
 
+            exitGuideButton(destKo, tint: color)
+                .padding(.top, 4)
+
             Button {
                 withAnimation(.easeInOut(duration: 0.3)) { resetJourney() }
             } label: {
@@ -2192,6 +2212,9 @@ struct SubwayNavigatorView: View {
             paywallReason = "settings"
             showPaywall = true
             return
+        case .exits:
+            screenshotExitGuide = true
+            return
         default:
             break
         }
@@ -2374,6 +2397,9 @@ struct SubwayNavigatorView: View {
                 .background(Color(.systemBackground))
                 .clipShape(RoundedRectangle(cornerRadius: 18))
                 .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+
+                // 내릴 역의 출구를 미리 본다 (Pro).
+                exitGuideButton(toKo, tint: KORATheme.accent)
 
                 // ── Action buttons ────────────────────────────────────
                 VStack(spacing: 10) {

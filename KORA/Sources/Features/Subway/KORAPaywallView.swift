@@ -10,7 +10,7 @@ import LeeoKit
 /// 상품 로드·구매·복원·권한은 `KORAPro.shared.store`(LeeoStore)가 한다.
 struct KORAPaywallView: View {
     let lang: StationLanguage
-    /// 분석용: 어디서 열렸는지 ("arrival", "basic_ride", "settings").
+    /// 분석용: 어디서 열렸는지 ("arrival", "basic_ride", "exit_guide", "settings").
     let reason: String
 
     @ObservedObject private var pro = KORAPro.shared
@@ -81,6 +81,7 @@ struct KORAPaywallView: View {
             benefitRow("lock.iphone", NavLoc.proBenefitLockScreen)
             benefitRow("waveform.and.mic", NavLoc.proBenefitAnnouncement)
             benefitRow("iphone.radiowaves.left.and.right", NavLoc.proBenefitAlight)
+            benefitRow("door.right.hand.open", NavLoc.proBenefitExitGuide)
             benefitRow("infinity", NavLoc.proBenefitOneTime)
         }
         .frame(maxWidth: .infinity, alignment: .leading)

@@ -98,7 +98,7 @@ Apple 기준에서 “수집”은 데이터가 기기 밖으로 나가 개발�
 **심사 메모 (영어, 그대로 붙여 넣기)**
 
 ```
-KORA is a single-screen subway guide for travelers in Korea. No account or login is required, and there are no ads. KORA Pro (non-consumable, com.kora.leeo.pro) unlocks Lock Screen tracking, announcement recognition and get-off vibration alerts; the first three journeys include them for free. To reach the purchase screen without riding, open the language sheet (long-press the station name) and tap "Get KORA Pro". Restore Purchase is on the same screen.
+KORA is a single-screen subway guide for travelers in Korea. No account or login is required, and there are no ads. KORA Pro (non-consumable, com.kora.leeo.pro) unlocks Lock Screen tracking, announcement recognition, get-off vibration alerts and the exit guide (places near each exit, Seoul Subway Lines 1 to 8, from Seoul Metro open data); the first three journeys include them for free. To reach the purchase screen without riding, open the language sheet (long-press the station name) and tap "Get KORA Pro". Restore Purchase is on the same screen.
 
 How to test route guidance:
 1. Tap the current-station card at the top and choose a station, for example Seoul Station. If you allow location while outside Korea, the nearest station will be far away, so please pick stations manually.
