@@ -12,7 +12,7 @@ import Foundation
 import LeeoKit
 
 enum KORASpec: LeeoAppSpec {
-    static let appName = "한국 길찾기"
+    static let appName = "KORA"
     static let developerEmail = "leeo@kakao.com"
 
     static let feedback = LeeoFeedbackConfig(

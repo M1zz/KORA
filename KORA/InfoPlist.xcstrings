@@ -8,139 +8,139 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Korea Wayfinder"
+            "value" : "KORA"
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "韓国ナビ"
+            "value" : "KORA"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "한국 길찾기"
+            "value" : "KORA"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "韩国导航"
+            "value" : "KORA"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "韓國導航"
+            "value" : "KORA"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Korea-Wegweiser"
+            "value" : "KORA"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guía Corea"
+            "value" : "KORA"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guide Corée"
+            "value" : "KORA"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guida Corea"
+            "value" : "KORA"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Guia Coreia"
+            "value" : "KORA"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Навигатор Корея"
+            "value" : "KORA"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Průvodce Koreou"
+            "value" : "KORA"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Koreaguide"
+            "value" : "KORA"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Οδηγός Κορέας"
+            "value" : "KORA"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Korea-opas"
+            "value" : "KORA"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Navigasi Korea"
+            "value" : "KORA"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Koreaguide"
+            "value" : "KORA"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Korea Wegwijzer"
+            "value" : "KORA"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nawigator Korea"
+            "value" : "KORA"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Koreaguiden"
+            "value" : "KORA"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "นำทางเกาหลี"
+            "value" : "KORA"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Kore Rehberi"
+            "value" : "KORA"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Metro Hàn Quốc"
+            "value" : "KORA"
           }
         }
       }
