@@ -214,7 +214,7 @@ def fix_root(page, labels):
     text = re.sub(r"  function pick\(tag\) \{.*?\n  \}", lambda m: js, text, count=1, flags=re.S)
     idx = list(PAGES).index(page)
     href = "" if page == "index" else PAGES[page]
-    items = "\n".join(f'    <li><a href="{l}/{href}" hreflang="{l}" lang="{l}">{name} — {labels[l][idx]}</a></li>'
+    items = "\n".join(f'    <li><a href="{l}/{href}" hreflang="{l}" lang="{l}">{name} · {labels[l][idx]}</a></li>'
                       for l, name in LANGS)
     text = re.sub(r'  <ul class="picker">.*?</ul>', lambda m: f'  <ul class="picker">\n{items}\n  </ul>', text,
                   count=1, flags=re.S)
