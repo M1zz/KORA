@@ -10,6 +10,7 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 ### 앱스토어 (한국어 ko)
 
 ```
+홈 화면의 앱 이름이 KORA로 바뀌었어요
 앱이 더 가벼워졌어요
 다른 회사의 분석 도구를 더 이상 쓰지 않아요
 문제가 생기면 더 빨리 찾아 고칠 수 있어요
@@ -18,6 +19,7 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 ### 앱스토어 (English en-US)
 
 ```
+The app is now called KORA on your Home Screen
 The app is now lighter
 We no longer use third-party analytics
 We can find and fix problems faster
@@ -26,6 +28,7 @@ We can find and fix problems faster
 ### 앱스토어 (日本語 ja)
 
 ```
+ホーム画面のアプリ名がKORAになりました
 アプリが軽くなりました
 他社の分析ツールを使わなくなりました
 不具合をより早く見つけて直せるようになりました
@@ -34,6 +37,7 @@ We can find and fix problems faster
 ### 앱스토어 (중국어 간체 zh-Hans)
 
 ```
+主屏幕上的应用名称已改为 KORA
 应用变得更轻巧
 不再使用第三方分析工具
 出现问题时能更快发现并修复
@@ -42,6 +46,7 @@ We can find and fix problems faster
 ### 앱스토어 (중국어 번체 zh-Hant)
 
 ```
+主畫面上的 App 名稱已改為 KORA
 App 變得更輕巧
 不再使用第三方分析工具
 出現問題時能更快發現並修正
@@ -50,6 +55,7 @@ App 變得更輕巧
 ### 앱스토어 (독일어 de)
 
 ```
+Auf dem Home-Bildschirm heißt die App jetzt KORA
 Die App ist jetzt schlanker
 Keine Analysedienste von Drittanbietern mehr
 Fehler finden und beheben wir jetzt schneller
@@ -58,6 +64,7 @@ Fehler finden und beheben wir jetzt schneller
 ### 앱스토어 (스페인어 es)
 
 ```
+En la pantalla de inicio, la app ahora se llama KORA
 La app ahora es más ligera
 Ya no usamos analítica de terceros
 Detectamos y corregimos errores más rápido
@@ -66,6 +73,7 @@ Detectamos y corregimos errores más rápido
 ### 앱스토어 (프랑스어 fr)
 
 ```
+Sur l'écran d'accueil, l'app s'appelle désormais KORA
 L'app est désormais plus légère
 Plus aucun outil d'analyse tiers
 Nous repérons et corrigeons les bugs plus vite
@@ -74,6 +82,7 @@ Nous repérons et corrigeons les bugs plus vite
 ### 앱스토어 (이탈리아어 it)
 
 ```
+Nella schermata Home l'app ora si chiama KORA
 L'app ora è più leggera
 Niente più strumenti di analisi di terze parti
 Troviamo e risolviamo i problemi più in fretta
@@ -82,6 +91,7 @@ Troviamo e risolviamo i problemi più in fretta
 ### 앱스토어 (포르투갈어 브라질 pt-BR)
 
 ```
+Na tela de início, o app agora se chama KORA
 O app ficou mais leve
 Não usamos mais análises de terceiros
 Encontramos e corrigimos problemas mais rápido
@@ -90,6 +100,7 @@ Encontramos e corrigimos problemas mais rápido
 ### 앱스토어 (러시아어 ru)
 
 ```
+На экране «Домой» приложение теперь называется KORA
 Приложение стало легче
 Больше никакой сторонней аналитики
 Мы быстрее находим и исправляем ошибки
@@ -98,6 +109,7 @@ Encontramos e corrigimos problemas mais rápido
 ### 앱스토어 (체코어 cs)
 
 ```
+Na ploše se aplikace nyní jmenuje KORA
 Aplikace je teď menší a lehčí
 Už nepoužíváme analytiku třetích stran
 Chyby najdeme a opravíme rychleji
@@ -106,6 +118,7 @@ Chyby najdeme a opravíme rychleji
 ### 앱스토어 (덴마크어 da)
 
 ```
+På hjemmeskærmen hedder appen nu KORA
 Appen fylder nu mindre
 Vi bruger ikke længere analyse fra tredjeparter
 Vi kan finde og rette fejl hurtigere
@@ -114,6 +127,7 @@ Vi kan finde og rette fejl hurtigere
 ### 앱스토어 (그리스어 el)
 
 ```
+Στην οθόνη Αφετηρίας η εφαρμογή λέγεται πλέον KORA
 Η εφαρμογή έγινε πιο ελαφριά
 Δεν χρησιμοποιούμε πια εργαλεία ανάλυσης τρίτων
 Βρίσκουμε και διορθώνουμε προβλήματα πιο γρήγορα
@@ -122,6 +136,7 @@ Vi kan finde og rette fejl hurtigere
 ### 앱스토어 (핀란드어 fi)
 
 ```
+Kotinäytöllä sovelluksen nimi on nyt KORA
 Sovellus on nyt kevyempi
 Emme enää käytä ulkopuolisia analytiikkapalveluja
 Löydämme ja korjaamme ongelmat nopeammin
@@ -130,6 +145,7 @@ Löydämme ja korjaamme ongelmat nopeammin
 ### 앱스토어 (인도네시아어 id)
 
 ```
+Di Layar Utama, nama aplikasi kini KORA
 Aplikasi kini lebih ringan
 Kami tidak lagi memakai analitik pihak ketiga
 Masalah bisa kami temukan dan perbaiki lebih cepat
@@ -138,6 +154,7 @@ Masalah bisa kami temukan dan perbaiki lebih cepat
 ### 앱스토어 (노르웨이어 보크말 nb)
 
 ```
+På Hjem-skjermen heter appen nå KORA
 Appen tar nå mindre plass
 Vi bruker ikke lenger analyse fra tredjeparter
 Vi kan finne og rette feil raskere
@@ -146,6 +163,7 @@ Vi kan finne og rette feil raskere
 ### 앱스토어 (네덜란드어 nl)
 
 ```
+Op het beginscherm heet de app nu KORA
 De app is nu lichter
 We gebruiken geen analyse van derden meer
 We vinden en verhelpen problemen sneller
@@ -154,6 +172,7 @@ We vinden en verhelpen problemen sneller
 ### 앱스토어 (폴란드어 pl)
 
 ```
+Na ekranie początkowym aplikacja nazywa się teraz KORA
 Aplikacja jest teraz lżejsza
 Nie używamy już zewnętrznych narzędzi analitycznych
 Szybciej znajdujemy i naprawiamy błędy
@@ -162,6 +181,7 @@ Szybciej znajdujemy i naprawiamy błędy
 ### 앱스토어 (스웨덴어 sv)
 
 ```
+På hemskärmen heter appen nu KORA
 Appen tar nu mindre plats
 Vi använder inte längre analys från tredje part
 Vi hittar och rättar fel snabbare
@@ -170,6 +190,7 @@ Vi hittar och rättar fel snabbare
 ### 앱스토어 (태국어 th)
 
 ```
+ชื่อแอปบนหน้าจอโฮมเปลี่ยนเป็น KORA แล้ว
 แอปมีขนาดเล็กลง
 เลิกใช้เครื่องมือวิเคราะห์จากบริษัทอื่นแล้ว
 ค้นหาและแก้ไขปัญหาได้เร็วขึ้น
@@ -178,6 +199,7 @@ Vi hittar och rättar fel snabbare
 ### 앱스토어 (튀르키예어 tr)
 
 ```
+Ana ekranda uygulamanın adı artık KORA
 Uygulama artık daha hafif
 Artık üçüncü taraf analiz araçları kullanmıyoruz
 Sorunları daha hızlı bulup düzeltiyoruz
@@ -186,6 +208,7 @@ Sorunları daha hızlı bulup düzeltiyoruz
 ### 앱스토어 (베트남어 vi)
 
 ```
+Tên ứng dụng trên Màn hình chính giờ là KORA
 Ứng dụng nhẹ hơn
 Không còn dùng công cụ phân tích của bên thứ ba
 Phát hiện và sửa lỗi nhanh hơn
