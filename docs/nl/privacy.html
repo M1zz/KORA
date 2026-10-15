@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>Privacybeleid — KORA Korea Wegwijzer</title>
-<meta name="description" content="Wat KORA Korea Wegwijzer verwerkt, wat op je apparaat blijft, anonieme statistieken met Google Analytics for Firebase en hoe je ons bereikt.">
+<meta name="description" content="Wat KORA Korea Wegwijzer verwerkt, wat op je apparaat blijft, anonieme statistieken en crashrapporten in iCloud van Apple en hoe je ons bereikt.">
 <link rel="canonical" href="https://m1zz.github.io/KORA/nl/privacy.html">
 <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/privacy.html">
 <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/privacy.html">
@@ -81,7 +81,7 @@
   <main>
 <h1>Privacy</h1>
 
-    <p class="lead">Geldig vanaf 19 september 2026 · Voor appversie 1.0.5 en hoger</p>
+    <p class="lead">Geldig vanaf 15 oktober 2026 · Voor appversie 1.0.8 en hoger</p>
 
     <p>Dit beleid legt uit hoe de iOS-app 'KORA Korea Wegwijzer' (de 'app') van de ontwikkelaar van KORA (Leeo, 'wij') met gegevens omgaat. Ons uitgangspunt: zo weinig mogelijk verwerken en alles op je apparaat houden.</p>
 
@@ -89,9 +89,9 @@
       <h3>In het kort</h3>
       <ul>
         <li>Geen registratie of inloggen. We verzamelen geen naam, telefoonnummer, e-mail of iets anders wat je direct identificeert.</li>
-        <li>We hebben geen servers. De instellingen van de app staan alleen op je apparaat.</li>
+        <li>We hebben geen eigen servers. De instellingen van de app staan alleen op je apparaat.</li>
         <li>Locatie, camera, microfoon, spraakherkenning en bewegingsgegevens worden op het apparaat verwerkt en nooit bewaard of verstuurd.</li>
-        <li>We verzamelen anonieme gebruiksstatistieken met Google Analytics for Firebase om de app te verbeteren. Geen advertenties, geen advertentie-ID (IDFA), geen tracking tussen apps.</li>
+        <li>Om de app te verbeteren verzamelen we anonieme gebruiksstatistieken en crashrapporten en bewaren we die in iCloud van Apple. Geen advertenties, geen advertentie-ID (IDFA), geen tracking tussen apps.</li>
       </ul>
     </div>
 
@@ -122,15 +122,16 @@
       </table>
     </div>
 
-    <h3>c. Automatisch verzamelde gebruiksstatistieken (Google Analytics for Firebase)</h3>
+    <h3>c. Automatisch verzamelde gebruiksstatistieken en crashrapporten (iCloud van Apple)</h3>
 
-    <p>Als je de app gebruikt, verzamelt Google Analytics for Firebase automatisch:</p>
+    <p>Als je de app gebruikt, stuurt die het volgende naar de iCloud-database van de ontwikkelaar, die door Apple wordt beheerd (CloudKit):</p>
 
     <ul>
-      <li>Een app-instantie-ID (een willekeurige ID per installatie)</li>
-      <li>Gebruiksgebeurtenissen zoals eerste opening (first_open), sessiestart (session_start) en schermweergaven</li>
+      <li>Een installatie-ID (een willekeurige ID per installatie)</li>
+      <li>Gebruiksaantallen: installatiedatum, aantal keer geopend, dagen sinds de installatie, wanneer de app voor het laatst is geopend en of die op een bepaalde dag is geopend</li>
+      <li>Stappen in KORA Pro: of het aankoopscherm is getoond, een aankoop is gestart of afgerond, of een gratis limiet is bereikt (geen betaalgegevens; betalingen lopen volledig via Apple)</li>
+      <li>Crash- en vastloperrapporten: het soort fout en waar in de code van de app die optrad</li>
       <li>Appversie, apparaatmodel, besturingssysteemversie en apparaattaal</li>
-      <li>Land en regio geschat op basis van het IP-adres (het IP-adres zelf krijgen we niet van Google)</li>
     </ul>
 
     <p>Deze gegevens identificeren je niet en we combineren ze niet met andere gegevens om dat te doen. We verzamelen geen advertentie-ID (IDFA), vragen geen toestemming voor App Tracking Transparency en gebruiken de gegevens niet voor advertenties of om je te volgen in apps en websites van andere bedrijven.</p>
@@ -152,9 +153,9 @@
     <h2>3. Hoe lang we ze bewaren</h2>
 
     <ul>
-      <li><strong>Gegevens op het apparaat</strong>: verwijderd als je de app verwijdert. We gebruiken geen iCloud-synchronisatie. (Ze kunnen in een volledige iPhone-reservekopie zitten.)</li>
+      <li><strong>Gegevens op het apparaat</strong>: verwijderd als je de app verwijdert. Je instellingen worden niet via iCloud gesynchroniseerd. (Ze kunnen in een volledige iPhone-reservekopie zitten.)</li>
       <li><strong>Op het apparaat verwerkte gegevens</strong>: direct na verwerking weggegooid.</li>
-      <li><strong>Gebruiksstatistieken</strong>: automatisch verwijderd volgens de bewaarinstelling van Google Analytics (2 of 14 maanden). Geaggregeerde statistieken die niemand identificeren kunnen blijven bestaan.</li>
+      <li><strong>Gebruiksstatistieken en crashrapporten</strong>: bewaard zolang de app wordt aangeboden en verwijderd als de dienst stopt, of eerder op verzoek. Geaggregeerde statistieken die niemand identificeren kunnen blijven bestaan.</li>
     </ul>
 
     <h2>4. Delen met derden</h2>
@@ -163,18 +164,18 @@
 
     <h2>5. Dienstverleners en doorgifte naar het buitenland</h2>
 
-    <p>Voor gebruiksstatistieken gebruiken we de volgende dienstverlener. Daarbij worden gegevens buiten Korea doorgegeven.</p>
+    <p>Voor het opslaan van gebruiksstatistieken en crashrapporten gebruiken we de volgende dienstverlener. Daarbij worden gegevens buiten Korea doorgegeven.</p>
 
     <div class="table-wrap">
       <table>
         <tbody>
-          <tr><th>Ontvanger</th><td>Google LLC (Google Analytics for Firebase)</td></tr>
-          <tr><th>Land</th><td>Verenigde Staten (inclusief Googles datacenters wereldwijd)</td></tr>
-          <tr><th>Gegevens</th><td>De gebruiksstatistieken uit 1-c</td></tr>
+          <tr><th>Ontvanger</th><td>Apple Inc. (iCloud, CloudKit)</td></tr>
+          <tr><th>Land</th><td>Verenigde Staten (inclusief Apples datacenters wereldwijd)</td></tr>
+          <tr><th>Gegevens</th><td>De gegevens uit 1-c (installatie-ID, gebruiksaantallen, stappen in KORA Pro, crash- en vastloperrapporten, appversie, apparaatmodel, besturingssysteemversie, apparaattaal)</td></tr>
           <tr><th>Wanneer en hoe</th><td>Verstuurd via een versleutelde verbinding (HTTPS) tijdens gebruik</td></tr>
-          <tr><th>Doel</th><td>Analyse van appgebruik</td></tr>
+          <tr><th>Doel</th><td>Analyse van appgebruik en oplossen van crashes</td></tr>
           <tr><th>Bewaartermijn</th><td>Gelijk aan de gebruiksstatistieken in hoofdstuk 3</td></tr>
-          <tr><th>Beleid</th><td><a href="https://policies.google.com/privacy">Privacybeleid van Google</a>, <a href="https://firebase.google.com/support/privacy">Privacy en beveiliging in Firebase</a></td></tr>
+          <tr><th>Beleid</th><td><a href="https://www.apple.com/legal/privacy/">Privacybeleid van Apple</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -199,27 +200,27 @@
 
     <h2>7. Verwijderen</h2>
 
-    <p>iOS verwijdert de gegevens op het apparaat als je de app verwijdert. Google verwijdert de statistieken automatisch na de termijn uit hoofdstuk 3. Wij houden geen kopie.</p>
+    <p>iOS verwijdert de gegevens op het apparaat als je de app verwijdert. Statistieken en crashrapporten worden verwijderd zoals beschreven in hoofdstuk 3. Verder houden wij geen kopie.</p>
 
     <h2>8. Je rechten</h2>
 
     <ul>
       <li>Je kunt toegang tot locatie, camera, microfoon, spraakherkenning en beweging altijd intrekken in Instellingen.</li>
-      <li>Als je de app verwijdert, verdwijnt alles van het apparaat; bij opnieuw installeren ontstaat een nieuwe app-instantie-ID.</li>
+      <li>Als je de app verwijdert, verdwijnt alles van het apparaat; bij opnieuw installeren ontstaat een nieuwe installatie-ID.</li>
       <li>Voor inzage, correctie, verwijdering of beperking van de verwerking mail je naar het adres hieronder; we reageren zonder vertraging. Omdat we geen identificerende gegevens hebben, kunnen we de statistieken van een specifiek persoon mogelijk niet terugvinden.</li>
       <li>Je kunt deze rechten ook uitoefenen via een wettelijk vertegenwoordiger of gemachtigde.</li>
     </ul>
 
     <h2>9. Cookies en vergelijkbare technieken</h2>
 
-    <p>De app gebruikt geen webcookies. Google Analytics for Firebase onderscheidt statistieken via de app-instantie-ID uit 1-c. Wil je dat niet, dan kun je de app verwijderen.</p>
+    <p>De app gebruikt geen webcookies. Statistieken worden onderscheiden via de installatie-ID uit 1-c. Wil je dat niet, dan kun je de app verwijderen.</p>
 
     <h2>10. Beveiliging</h2>
 
     <ul>
       <li>We verwerken alleen het hoognodige en alle gevoelige verwerking gebeurt op je apparaat.</li>
       <li>Alle netwerkcommunicatie is versleuteld met HTTPS.</li>
-      <li>We hebben geen servers of databases, dus er stapelen zich bij ons geen gebruikersgegevens op.</li>
+      <li>We hebben geen eigen servers. Buiten je apparaat staan alleen de anonieme statistieken en crashrapporten uit 1-c, opgeslagen in iCloud van Apple.</li>
     </ul>
 
     <h2>11. Kinderen</h2>
@@ -239,7 +240,7 @@
 
     <h2>13. Wijzigingen in dit beleid</h2>
 
-    <p>Dit beleid geldt vanaf 19 september 2026 en vervangt het beleid van 31 mei 2026, geschreven voor een eerdere appversie. Wijzigingen publiceren we op deze pagina met de ingangsdatum. Het beleid is in meerdere talen beschikbaar; bij verschillen gaat de <a href="../ko/privacy.html">Koreaanse versie</a> voor.</p>
+    <p>Dit beleid geldt vanaf 15 oktober 2026 en vervangt het beleid van 19 september 2026, dat gold voor versie 1.0.5 tot en met 1.0.7 met Google Analytics for Firebase. Wijzigingen publiceren we op deze pagina met de ingangsdatum. Het beleid is in meerdere talen beschikbaar; bij verschillen gaat de <a href="../ko/privacy.html">Koreaanse versie</a> voor.</p>
   </main>
 
   <footer class="site">

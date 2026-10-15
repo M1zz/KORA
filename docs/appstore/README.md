@@ -41,16 +41,18 @@
 
 ## 3. 앱 개인정보 보호 (App Privacy, 개인정보 영양 성분표)
 
-Apple 기준에서 “수집”은 데이터가 기기 밖으로 나가 개발자나 제3자(여기서는 Google)가 일정 시간 이상 접근할 수 있는 경우를 말한다.
+Apple 기준에서 “수집”은 데이터가 기기 밖으로 나가 개발자나 제3자(여기서는 Apple iCloud 에 저장)가 일정 시간 이상 접근할 수 있는 경우를 말한다.
 기기 안에서만 처리하고 버리는 데이터는 수집이 아니다.
 
 **“데이터를 수집합니까?” → 예**
 
 | 데이터 유형 | 세부 유형 | 목적 | 사용자와 연결 | 추적에 사용 | 근거 |
 |---|---|---|---|---|---|
-| 식별자 (Identifiers) | 기기 ID (Device ID) | 분석 (Analytics) | 아니요 | 아니요 | Firebase 앱 인스턴스 ID |
-| 사용 데이터 (Usage Data) | 제품 상호작용 (Product Interaction) | 분석 (Analytics) | 아니요 | 아니요 | first_open, session_start, 화면 조회 이벤트 |
-| 위치 (Location) | 대략적 위치 (Coarse Location) | 분석 (Analytics) | 아니요 | 아니요 | Analytics가 IP 주소로 국가·지역을 추정 |
+| 식별자 (Identifiers) | 기기 ID (Device ID) | 분석 (Analytics) | 아니요 | 아니요 | LeeoKit 설치 ID (설치마다 만드는 무작위 값) |
+| 사용 데이터 (Usage Data) | 제품 상호작용 (Product Interaction) | 분석 (Analytics) | 아니요 | 아니요 | 실행 횟수, 설치 후 일수, 하루 한 번 app_open |
+| 구입 항목 (Purchases) | 구입 내역 (Purchase History) | 분석 (Analytics) | 아니요 | 아니요 | 결제 흐름 이벤트 paywall_shown, purchase_started, purchase_completed, gate_blocked |
+| 진단 (Diagnostics) | 충돌 데이터 (Crash Data) | 분석 (Analytics) | 아니요 | 아니요 | LeeoKit MetricKit 크래시 진단 |
+| 진단 (Diagnostics) | 성능 데이터 (Performance Data) | 분석 (Analytics) | 아니요 | 아니요 | LeeoKit MetricKit 멈춤(hang) 진단 |
 
 다른 목적(앱 기능, 광고, 개인화 등)은 선택하지 않는다.
 
@@ -63,12 +65,16 @@ Apple 기준에서 “수집”은 데이터가 기기 밖으로 나가 개발�
 | 사진 또는 비디오 | 수집 안 함 | 카메라 프레임은 Vision 텍스트 인식에 쓰고 바로 버린다. |
 | 기타 센서(동작) | 수집 안 함 | 가속도계는 출발·정차 감지에만 기기 안에서 쓴다. |
 | 연락처 정보, 사용자 콘텐츠, 검색 기록, 구매, 재무, 건강 | 수집 안 함 | 해당 기능 없음. 경로 검색은 기기 안에서 계산한다. |
-| 진단 (충돌, 성능) | 수집 안 함 | Crashlytics·Performance Monitoring을 쓰지 않는다. 나중에 추가하면 “충돌 데이터 / 성능 데이터 — 앱 기능, 연결 안 함” 을 추가해야 한다. |
+| 대략적 위치 (Coarse Location) | 수집 안 함 | 1.0.8 에서 Firebase 를 뺐다. IP 로 지역을 추정하는 곳이 더는 없다. |
 
 서울 열린데이터광장 실시간 도착 API에는 역 이름만 보낸다. 사용자 데이터가 아니므로 수집 항목에 넣지 않는다.
 
 **추적 (Tracking) → 아니요.** IDFA를 쓰지 않고, ATT 권한을 요청하지 않으며, 광고 네트워크나 데이터 브로커와 공유하지 않는다.
-`GoogleService-Info.plist` 의 `IS_ADS_ENABLED` 가 false 이고, Firebase 광고 식별자 수집도 하지 않는다.
+1.0.8 부터 Firebase 를 쓰지 않는다. 통계와 진단은 LeeoKit 이 피드백 허브(iCloud.com.Ysoup.FeedbackHub, CloudKit)로 보낸다.
+
+**코드 쪽 정리 (1.0.8에서 반영함)**
+
+- Firebase 를 걷어냈다. `PrivacyInfo.xcprivacy` 에서 대략적 위치를 빼고 구입 내역, 충돌 데이터, 성능 데이터(모두 분석, 연결 안 함, 추적 안 함)를 넣었다.
 
 **코드 쪽 정리 (1.0.5에서 반영함)**
 
@@ -117,7 +123,7 @@ While riding, a Live Activity shows progress on the Lock Screen and Dynamic Isla
 
 Long-press a station card to change the app language (Korean, Japanese, English, Simplified Chinese, Traditional Chinese).
 
-Analytics: Google Analytics for Firebase collects anonymous usage data only. No IDFA, no App Tracking Transparency prompt, no tracking.
+Analytics: anonymous usage counts, purchase screen steps and crash reports are stored in the developer's iCloud (CloudKit) database. No third-party analytics SDK, no IDFA, no App Tracking Transparency prompt, no tracking.
 ```
 
 ## 7. 스크린샷 체크리스트

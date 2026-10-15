@@ -2,7 +2,6 @@ import Foundation
 import Combine
 import StoreKit
 import LeeoKit
-import FirebaseAnalytics
 
 /// KORA Pro 권한과 무료 "안내 탑승" 횟수.
 ///
@@ -95,13 +94,5 @@ final class KORAPro: ObservableObject {
               let build = Int(transaction.originalAppVersion)
         else { return false }
         return build <= lastFreeBuild
-    }
-}
-
-/// LeeoKit 이 내는 결제 퍼널 이벤트(paywall_shown → purchase_started →
-/// purchase_completed, gate_blocked)를 이미 붙어 있는 Firebase 로 보낸다.
-struct KORAFirebaseAnalytics: LeeoAnalytics {
-    func track(_ event: LeeoEvent) {
-        Analytics.logEvent(event.name, parameters: event.parameters.isEmpty ? nil : event.parameters)
     }
 }

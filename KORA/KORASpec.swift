@@ -4,8 +4,8 @@
 //
 //  LeeoKit 계약(LeeoAppSpec) 준수 — 이 앱의 공통 기능 설정값 단일 소스.
 //
-//  ⚠️ 피드백 허브(iCloud.com.Ysoup.FeedbackHub)는 아직 이 앱의 entitlements 에 없다.
-//     피드백 화면·크래시 진단을 켜기 전에 그 컨테이너를 먼저 추가해야 한다.
+//  피드백 허브(iCloud.com.Ysoup.FeedbackHub)는 KORA.entitlements 에 있다.
+//  크래시 진단·사용 통계·피드백이 모두 이 컨테이너로 간다.
 //
 
 import Foundation
@@ -39,6 +39,6 @@ enum KORASpec: LeeoAppSpec {
                 freeLimits: [KORAPro.guidedRideKey: 3],
                 warnWhenRemaining: 1)))
 
-    /// 결제 퍼널 이벤트를 Firebase 로.
-    static let analytics: any LeeoAnalytics = KORAFirebaseAnalytics()
+    /// 결제 퍼널 이벤트를 피드백 허브(CloudKit)로. no-op 으로 두면 LeeoKit 이 사용 통계 보고도 끈다.
+    static let analytics: any LeeoAnalytics = LeeoUsageAnalytics(spec: KORASpec.self)
 }

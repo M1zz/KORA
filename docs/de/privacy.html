@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>Datenschutz — KORA Korea-Wegweiser</title>
-<meta name="description" content="Was KORA Korea-Wegweiser verarbeitet, was auf deinem Gerät bleibt, anonyme Statistik mit Google Analytics for Firebase und wie du uns erreichst.">
+<meta name="description" content="Was KORA Korea-Wegweiser verarbeitet, was auf deinem Gerät bleibt, anonyme Nutzungsstatistik und Absturzberichte in Apples iCloud und wie du uns erreichst.">
 <link rel="canonical" href="https://m1zz.github.io/KORA/de/privacy.html">
 <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/privacy.html">
 <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/privacy.html">
@@ -81,7 +81,7 @@
   <main>
 <h1>Datenschutz</h1>
 
-    <p class="lead">Gültig ab 19. September 2026 · Gilt für App-Version 1.0.5 und neuer</p>
+    <p class="lead">Gültig ab 15. Oktober 2026 · Gilt für App-Version 1.0.8 und neuer</p>
 
     <p>Diese Erklärung beschreibt, wie die iOS-App „KORA Korea-Wegweiser“ (die „App“) des KORA-Entwicklers (Leeo, „wir“) mit Informationen umgeht. Unser Grundsatz: so wenig wie möglich verarbeiten und alles auf deinem Gerät behalten.</p>
 
@@ -89,9 +89,9 @@
       <h3>Auf einen Blick</h3>
       <ul>
         <li>Keine Registrierung oder Anmeldung. Wir erfassen weder Namen, Telefonnummer, E-Mail noch andere Daten, die dich direkt identifizieren.</li>
-        <li>Wir betreiben keine Server. Deine App-Einstellungen liegen nur auf deinem Gerät.</li>
+        <li>Wir betreiben keine eigenen Server. Deine App-Einstellungen liegen nur auf deinem Gerät.</li>
         <li>Standort, Kamera, Mikrofon, Spracherkennung und Bewegungsdaten werden auf dem Gerät verarbeitet und nie gespeichert oder übertragen.</li>
-        <li>Wir erfassen anonyme Nutzungsstatistiken mit Google Analytics for Firebase, um die App zu verbessern. Keine Werbung, keine Werbe-ID (IDFA), kein Tracking über andere Apps.</li>
+        <li>Um die App zu verbessern, erfassen wir anonyme Nutzungsstatistiken und Absturzberichte und speichern sie in Apples iCloud. Keine Werbung, keine Werbe-ID (IDFA), kein Tracking über andere Apps.</li>
       </ul>
     </div>
 
@@ -122,15 +122,16 @@
       </table>
     </div>
 
-    <h3>c. Automatisch erfasste Nutzungsstatistik (Google Analytics for Firebase)</h3>
+    <h3>c. Automatisch erfasste Nutzungsstatistik und Absturzberichte (Apple iCloud)</h3>
 
-    <p>Bei der Nutzung erfasst Google Analytics for Firebase automatisch:</p>
+    <p>Bei der Nutzung sendet die App Folgendes an die iCloud-Datenbank des Entwicklers, die von Apple betrieben wird (CloudKit):</p>
 
     <ul>
-      <li>Eine App-Instanz-ID (eine zufällige Kennung pro Installation)</li>
-      <li>Nutzungsereignisse wie erster Start (first_open), Sitzungsbeginn (session_start) und Bildschirmaufrufe</li>
+      <li>Eine Installations-ID (eine zufällige Kennung pro Installation)</li>
+      <li>Nutzungszahlen: Installationsdatum, Anzahl der Starts, Tage seit der Installation, letzter Start der App und ob sie an einem bestimmten Tag geöffnet wurde</li>
+      <li>KORA-Pro-Schritte: ob der Kaufbildschirm angezeigt, ein Kauf begonnen oder abgeschlossen oder ein Gratislimit erreicht wurde (keine Zahlungsdaten; Zahlungen wickelt ausschließlich Apple ab)</li>
+      <li>Absturz- und Hängerberichte: die Art des Fehlers und die Stelle im Code der App, an der er auftrat</li>
       <li>App-Version, Gerätemodell, Betriebssystemversion und Gerätesprache</li>
-      <li>Aus der IP-Adresse geschätztes Land und Region (die IP-Adresse selbst erhalten wir nicht)</li>
     </ul>
 
     <p>Diese Daten identifizieren dich nicht, und wir verknüpfen sie nicht mit anderen Daten. Wir erfassen keine Werbe-ID (IDFA), fragen nicht nach App-Tracking-Transparenz und nutzen die Daten weder für Werbung noch für Tracking über Apps oder Websites anderer Unternehmen.</p>
@@ -152,9 +153,9 @@
     <h2>3. Wie lange wir sie aufbewahren</h2>
 
     <ul>
-      <li><strong>Auf dem Gerät gespeicherte Daten</strong>: werden mit dem Löschen der App entfernt. Wir nutzen keine iCloud-Synchronisierung. (Sie können in einem vollständigen iPhone-Backup enthalten sein.)</li>
+      <li><strong>Auf dem Gerät gespeicherte Daten</strong>: werden mit dem Löschen der App entfernt. Deine Einstellungen werden nicht über iCloud synchronisiert. (Sie können in einem vollständigen iPhone-Backup enthalten sein.)</li>
       <li><strong>Auf dem Gerät verarbeitete Daten</strong>: sofort nach der Verarbeitung verworfen.</li>
-      <li><strong>Nutzungsstatistik</strong>: wird gemäß der Aufbewahrungseinstellung von Google Analytics (2 oder 14 Monate) automatisch gelöscht. Danach können nicht identifizierende, aggregierte Statistiken bleiben.</li>
+      <li><strong>Nutzungsstatistik und Absturzberichte</strong>: werden aufbewahrt, solange die App angeboten wird, und mit dem Ende des Dienstes gelöscht, auf Anfrage auch früher. Danach können nicht identifizierende, aggregierte Statistiken bleiben.</li>
     </ul>
 
     <h2>4. Weitergabe an Dritte</h2>
@@ -163,18 +164,18 @@
 
     <h2>5. Dienstleister und Übermittlung ins Ausland</h2>
 
-    <p>Für die Nutzungsstatistik nutzen wir den folgenden Dienstleister. Dabei werden Daten außerhalb Koreas übermittelt.</p>
+    <p>Zur Speicherung von Nutzungsstatistik und Absturzberichten nutzen wir den folgenden Dienstleister. Dabei werden Daten außerhalb Koreas übermittelt.</p>
 
     <div class="table-wrap">
       <table>
         <tbody>
-          <tr><th>Empfänger</th><td>Google LLC (Google Analytics for Firebase)</td></tr>
-          <tr><th>Land</th><td>USA (einschließlich Googles Rechenzentren weltweit)</td></tr>
-          <tr><th>Daten</th><td>Die unter 1-c genannte Nutzungsstatistik</td></tr>
+          <tr><th>Empfänger</th><td>Apple Inc. (iCloud, CloudKit)</td></tr>
+          <tr><th>Land</th><td>USA (einschließlich Apples Rechenzentren weltweit)</td></tr>
+          <tr><th>Daten</th><td>Die unter 1-c genannten Angaben (Installations-ID, Nutzungszahlen, KORA-Pro-Schritte, Absturz- und Hängerberichte, App-Version, Gerätemodell, Betriebssystemversion, Gerätesprache)</td></tr>
           <tr><th>Wann und wie</th><td>Über eine verschlüsselte Verbindung (HTTPS) während der Nutzung</td></tr>
-          <tr><th>Zweck</th><td>Analyse der App-Nutzung</td></tr>
+          <tr><th>Zweck</th><td>Analyse der App-Nutzung und Beheben von Abstürzen</td></tr>
           <tr><th>Aufbewahrung</th><td>Wie die Nutzungsstatistik in Abschnitt 3</td></tr>
-          <tr><th>Richtlinien</th><td><a href="https://policies.google.com/privacy">Google-Datenschutzerklärung</a>, <a href="https://firebase.google.com/support/privacy">Datenschutz und Sicherheit in Firebase</a></td></tr>
+          <tr><th>Richtlinien</th><td><a href="https://www.apple.com/legal/privacy/">Apple-Datenschutzrichtlinie</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -199,27 +200,27 @@
 
     <h2>7. Löschung</h2>
 
-    <p>Auf dem Gerät gespeicherte Daten entfernt iOS beim Löschen der App. Die Nutzungsstatistik löscht Google nach der Frist aus Abschnitt 3 automatisch. Wir behalten keine eigene Kopie.</p>
+    <p>Auf dem Gerät gespeicherte Daten entfernt iOS beim Löschen der App. Nutzungsstatistik und Absturzberichte werden wie in Abschnitt 3 beschrieben gelöscht. Darüber hinaus behalten wir keine Kopie.</p>
 
     <h2>8. Deine Rechte</h2>
 
     <ul>
       <li>Du kannst den Zugriff auf Standort, Kamera, Mikrofon, Spracherkennung und Bewegung jederzeit in den iPhone-Einstellungen widerrufen.</li>
-      <li>Das Löschen der App entfernt alles auf deinem Gerät; eine Neuinstallation erzeugt eine neue App-Instanz-ID.</li>
+      <li>Das Löschen der App entfernt alles auf deinem Gerät; eine Neuinstallation erzeugt eine neue Installations-ID.</li>
       <li>Für Auskunft, Berichtigung, Löschung oder Einschränkung der Verarbeitung schreib uns an die unten genannte Adresse; wir antworten umgehend. Da wir keine identifizierenden Daten haben, können wir die Statistik einer bestimmten Person eventuell nicht zuordnen.</li>
       <li>Du kannst diese Rechte auch über einen gesetzlichen Vertreter oder eine bevollmächtigte Person ausüben.</li>
     </ul>
 
     <h2>9. Cookies und ähnliche Technologien</h2>
 
-    <p>Die App verwendet keine Web-Cookies. Google Analytics for Firebase unterscheidet die Statistik über die in 1-c beschriebene App-Instanz-ID. Wenn du das nicht möchtest, kannst du die App löschen.</p>
+    <p>Die App verwendet keine Web-Cookies. Die Statistik wird über die in 1-c beschriebene Installations-ID unterschieden. Wenn du das nicht möchtest, kannst du die App löschen.</p>
 
     <h2>10. Sicherheit</h2>
 
     <ul>
       <li>Wir verarbeiten nur das Nötigste, und alle sensiblen Vorgänge laufen auf deinem Gerät.</li>
       <li>Die gesamte Netzwerkkommunikation ist per HTTPS verschlüsselt.</li>
-      <li>Wir haben keine Server oder Datenbanken, daher sammeln sich bei uns keine Nutzerdaten.</li>
+      <li>Wir betreiben keine eigenen Server. Außerhalb deines Geräts liegen nur die anonymen Statistiken und Absturzberichte aus 1-c, gespeichert in Apples iCloud.</li>
     </ul>
 
     <h2>11. Kinder</h2>
@@ -239,7 +240,7 @@
 
     <h2>13. Änderungen dieser Erklärung</h2>
 
-    <p>Diese Erklärung gilt ab dem 19. September 2026 und ersetzt die Fassung vom 31. Mai 2026, die für eine frühere App-Version geschrieben wurde. Änderungen veröffentlichen wir auf dieser Seite mit Gültigkeitsdatum. Die Erklärung gibt es in mehreren Sprachen; bei Abweichungen gilt die <a href="../ko/privacy.html">koreanische Fassung</a>.</p>
+    <p>Diese Erklärung gilt ab dem 15. Oktober 2026 und ersetzt die Fassung vom 19. September 2026, die für die Versionen 1.0.5 bis 1.0.7 mit Google Analytics for Firebase galt. Änderungen veröffentlichen wir auf dieser Seite mit Gültigkeitsdatum. Die Erklärung gibt es in mehreren Sprachen; bei Abweichungen gilt die <a href="../ko/privacy.html">koreanische Fassung</a>.</p>
   </main>
 
   <footer class="site">

@@ -1,6 +1,5 @@
 import SwiftUI
 import TipKit
-import FirebaseCore
 import UserNotifications
 import LeeoKit
 
@@ -18,16 +17,11 @@ func debugLog(_ message: @autoclosure () -> String) {
 @main
 struct KORAApp: App {
     init() {
-        // Initialize Firebase (Google Analytics for Firebase). Must run before
-        // any Analytics calls; reads GoogleService-Info.plist from the bundle.
-        FirebaseApp.configure()
-
-        // LeeoKit 앱 계약. 크래시 진단 업로드는 피드백 허브(iCloud.com.Ysoup.FeedbackHub)
-        // 권한이 있어야 하는데 아직 entitlements 에 없으므로 진단은 끈다 — 넣은 뒤 켤 것.
-        // 사용 통계 보고(CloudKit)도 같은 컨테이너를 쓰므로 끈다. KORASpec.analytics 를
-        // 꽂으면 LeeoKit 이 보고를 켜는데, 권한 없는 컨테이너를 열다가 실행 즉시 죽는다.
-        // 결제 퍼널은 Firebase 로 간다.
-        LeeoKit.bootstrap(KORASpec.self, diagnostics: false, usageReporting: false)
+        // LeeoKit 앱 계약. 크래시 진단과 사용 통계(설치·실행·하루 한 번 app_open)는
+        // 피드백 허브(iCloud.com.Ysoup.FeedbackHub)로 간다. 그 컨테이너가 KORA.entitlements 와
+        // App ID(com.kora.leeo) 양쪽에 있어야 한다. 빠지면 컨테이너를 여는 순간 실행 즉시 죽는다.
+        // 결제 퍼널 이벤트도 같은 허브로 간다 (KORASpec.analytics).
+        LeeoKit.bootstrap(KORASpec.self)
 
         #if DEBUG
         // Fail-fast: if any station's English is a translation instead of a

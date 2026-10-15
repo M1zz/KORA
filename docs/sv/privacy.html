@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>Integritetspolicy — KORA Koreaguiden</title>
-<meta name="description" content="Vad KORA Koreaguiden behandlar, vad som stannar på din enhet, anonym statistik med Google Analytics for Firebase och hur du kontaktar oss.">
+<meta name="description" content="Vad KORA Koreaguiden behandlar, vad som stannar på din enhet, anonym användningsstatistik och kraschrapporter som lagras i Apples iCloud och hur du kontaktar oss.">
 <link rel="canonical" href="https://m1zz.github.io/KORA/sv/privacy.html">
 <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/privacy.html">
 <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/privacy.html">
@@ -81,7 +81,7 @@
   <main>
 <h1>Integritet</h1>
 
-    <p class="lead">Gäller från 19 september 2026 · För appversion 1.0.5 och senare</p>
+    <p class="lead">Gäller från 15 oktober 2026 · För appversion 1.0.8 och senare</p>
 
     <p>Den här policyn förklarar hur iOS-appen ”KORA Koreaguiden” (”appen”) från KORA-utvecklaren (Leeo, ”vi”) hanterar information. Vår princip: behandla så lite som möjligt och behåll det på din enhet.</p>
 
@@ -89,9 +89,9 @@
       <h3>I korthet</h3>
       <ul>
         <li>Ingen registrering eller inloggning. Vi samlar inte in namn, telefonnummer, mejl eller något annat som direkt identifierar dig.</li>
-        <li>Vi har inga servrar. Appens inställningar sparas bara på din enhet.</li>
+        <li>Vi har inga egna servrar. Appens inställningar sparas bara på din enhet.</li>
         <li>Plats, kamera, mikrofon, taligenkänning och rörelsedata behandlas på enheten och sparas eller skickas aldrig.</li>
-        <li>Vi samlar in anonym användningsstatistik med Google Analytics for Firebase för att förbättra appen. Ingen reklam, inget annons-ID (IDFA), ingen spårning mellan appar.</li>
+        <li>För att förbättra appen samlar vi in anonym användningsstatistik och kraschrapporter och lagrar dem i Apples iCloud. Ingen reklam, inget annons-ID (IDFA), ingen spårning mellan appar.</li>
       </ul>
     </div>
 
@@ -122,15 +122,16 @@
       </table>
     </div>
 
-    <h3>c. Automatiskt insamlad användningsstatistik (Google Analytics for Firebase)</h3>
+    <h3>c. Automatiskt insamlad användningsstatistik och kraschrapporter (Apple iCloud)</h3>
 
-    <p>När du använder appen samlar Google Analytics for Firebase automatiskt in:</p>
+    <p>När du använder appen skickas följande till utvecklarens iCloud-databas, som drivs av Apple (CloudKit):</p>
 
     <ul>
-      <li>Ett appinstans-ID (ett slumpmässigt ID som skapas vid varje installation)</li>
-      <li>Användningshändelser som första öppning (first_open), sessionsstart (session_start) och skärmvisningar</li>
+      <li>Ett installations-ID (ett slumpmässigt ID som skapas vid varje installation)</li>
+      <li>Användningsräknare: installationsdatum, antal starter, dagar sedan installationen, senaste gången appen öppnades och om den öppnades en viss dag</li>
+      <li>Steg i KORA Pro: om köpskärmen visades, om ett köp påbörjades eller slutfördes och om en gratisgräns nåddes (inga betalningsuppgifter; betalningen sköts helt av Apple)</li>
+      <li>Krasch- och frysrapporter: typ av fel och var i appens kod det inträffade</li>
       <li>Appversion, enhetsmodell, OS-version och enhetens språk</li>
-      <li>Land och region uppskattade utifrån IP-adressen (Google ger oss inte själva IP-adressen)</li>
     </ul>
 
     <p>Uppgifterna identifierar dig inte, och vi kombinerar dem inte med andra data för att göra det. Vi samlar inte in annons-ID (IDFA), ber inte om tillstånd för App Tracking Transparency och använder inte uppgifterna för reklam eller spårning i andra företags appar och webbplatser.</p>
@@ -152,9 +153,9 @@
     <h2>3. Hur länge vi sparar den</h2>
 
     <ul>
-      <li><strong>Data sparad på enheten</strong>: raderas när du raderar appen. Vi använder inte iCloud-synkronisering. (Den kan ingå i en fullständig iPhone-säkerhetskopia.)</li>
+      <li><strong>Data sparad på enheten</strong>: raderas när du raderar appen. Inställningarna synkas inte via iCloud. (De kan ingå i en fullständig iPhone-säkerhetskopia.)</li>
       <li><strong>Data som behandlas på enheten</strong>: kastas direkt efter behandling.</li>
-      <li><strong>Användningsstatistik</strong>: raderas automatiskt enligt lagringsinställningen i Google Analytics (2 eller 14 månader). Sammanställd statistik som inte identifierar någon kan finnas kvar.</li>
+      <li><strong>Användningsstatistik och kraschrapporter</strong>: sparas så länge appen erbjuds och raderas när tjänsten upphör, eller tidigare på begäran. Sammanställd statistik som inte identifierar någon kan finnas kvar.</li>
     </ul>
 
     <h2>4. Delning med tredje part</h2>
@@ -163,18 +164,18 @@
 
     <h2>5. Tjänsteleverantörer och överföring till utlandet</h2>
 
-    <p>Vi använder följande leverantör för användningsstatistik. Data överförs då utanför Korea.</p>
+    <p>Vi använder följande leverantör för att lagra användningsstatistik och kraschrapporter. Data överförs då utanför Korea.</p>
 
     <div class="table-wrap">
       <table>
         <tbody>
-          <tr><th>Mottagare</th><td>Google LLC (Google Analytics for Firebase)</td></tr>
-          <tr><th>Land</th><td>USA (inklusive Googles datacenter i hela världen)</td></tr>
-          <tr><th>Data</th><td>Användningsstatistiken i 1-c</td></tr>
+          <tr><th>Mottagare</th><td>Apple Inc. (iCloud, CloudKit)</td></tr>
+          <tr><th>Land</th><td>USA (inklusive Apples datacenter i hela världen)</td></tr>
+          <tr><th>Data</th><td>Uppgifterna i 1-c (installations-ID, användningsräknare, steg i KORA Pro, krasch- och frysrapporter, appversion, enhetsmodell, OS-version, enhetens språk)</td></tr>
           <tr><th>När och hur</th><td>Skickas via krypterad anslutning (HTTPS) när du använder appen</td></tr>
-          <tr><th>Syfte</th><td>Analys av appanvändning</td></tr>
+          <tr><th>Syfte</th><td>Analys av appanvändning och åtgärdande av krascher</td></tr>
           <tr><th>Lagring</th><td>Som användningsstatistiken i avsnitt 3</td></tr>
-          <tr><th>Policyer</th><td><a href="https://policies.google.com/privacy">Googles integritetspolicy</a>, <a href="https://firebase.google.com/support/privacy">Integritet och säkerhet i Firebase</a></td></tr>
+          <tr><th>Policyer</th><td><a href="https://www.apple.com/legal/privacy/">Apples integritetspolicy</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -199,27 +200,27 @@
 
     <h2>7. Radering</h2>
 
-    <p>iOS tar bort data som sparats på enheten när du raderar appen. Google raderar användningsstatistiken automatiskt efter perioden i avsnitt 3. Vi har ingen egen kopia.</p>
+    <p>iOS tar bort data som sparats på enheten när du raderar appen. Användningsstatistik och kraschrapporter raderas enligt avsnitt 3. Vi har ingen annan kopia.</p>
 
     <h2>8. Dina rättigheter</h2>
 
     <ul>
       <li>Du kan när som helst återkalla åtkomst till plats, kamera, mikrofon, taligenkänning och rörelse i Inställningar.</li>
-      <li>Raderar du appen försvinner allt på enheten; en ny installation skapar ett nytt appinstans-ID.</li>
+      <li>Raderar du appen försvinner allt på enheten; en ny installation skapar ett nytt installations-ID.</li>
       <li>Vill du begära tillgång, rättelse, radering eller begränsning av behandlingen, skriv till adressen nedan så svarar vi utan dröjsmål. Eftersom vi inte har identifierande uppgifter kan vi kanske inte hitta en viss persons statistik.</li>
       <li>Du kan även utöva rättigheterna via en vårdnadshavare eller ett ombud.</li>
     </ul>
 
     <h2>9. Kakor och liknande tekniker</h2>
 
-    <p>Appen använder inga webbkakor. Google Analytics for Firebase skiljer statistiken åt med appinstans-ID:t som beskrivs i 1-c. Vill du inte det kan du radera appen.</p>
+    <p>Appen använder inga webbkakor. Användningsstatistiken skiljs åt med installations-ID:t som beskrivs i 1-c. Vill du inte det kan du radera appen.</p>
 
     <h2>10. Säkerhet</h2>
 
     <ul>
       <li>Vi behandlar bara det nödvändiga, och all känslig behandling sker på din enhet.</li>
       <li>All nätverkskommunikation är krypterad med HTTPS.</li>
-      <li>Vi har inga servrar eller databaser, så inga användardata samlas hos oss.</li>
+      <li>Vi har inga egna servrar. Det enda som sparas utanför din enhet är den anonyma statistiken och kraschrapporterna i 1-c, som lagras i Apples iCloud.</li>
     </ul>
 
     <h2>11. Barn</h2>
@@ -239,7 +240,7 @@
 
     <h2>13. Ändringar i policyn</h2>
 
-    <p>Policyn gäller från 19 september 2026 och ersätter policyn från 31 maj 2026, som skrevs för en tidigare appversion. Ändringar publiceras på den här sidan med datum för ikraftträdande. Policyn finns på flera språk; vid avvikelser gäller den <a href="../ko/privacy.html">koreanska versionen</a>.</p>
+    <p>Policyn gäller från 15 oktober 2026 och ersätter policyn från 19 september 2026, som gällde version 1.0.5 till 1.0.7 med Google Analytics for Firebase. Ändringar publiceras på den här sidan med datum för ikraftträdande. Policyn finns på flera språk; vid avvikelser gäller den <a href="../ko/privacy.html">koreanska versionen</a>.</p>
   </main>
 
   <footer class="site">

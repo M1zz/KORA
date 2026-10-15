@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>Política de privacidad — KORA Guía Corea</title>
-<meta name="description" content="Qué procesa KORA Guía Corea, qué queda en tu dispositivo, las estadísticas anónimas con Google Analytics for Firebase y cómo contactarnos.">
+<meta name="description" content="Qué procesa KORA Guía Corea, qué queda en tu dispositivo, las estadísticas anónimas y los informes de fallos guardados en iCloud de Apple y cómo contactarnos.">
 <link rel="canonical" href="https://m1zz.github.io/KORA/es/privacy.html">
 <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/privacy.html">
 <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/privacy.html">
@@ -81,7 +81,7 @@
   <main>
 <h1>Privacidad</h1>
 
-    <p class="lead">Vigente desde el 19 de septiembre de 2026 · Aplica a la versión 1.0.5 y posteriores</p>
+    <p class="lead">Vigente desde el 15 de octubre de 2026 · Aplica a la versión 1.0.8 y posteriores</p>
 
     <p>Esta política explica cómo la app de iOS "KORA Guía Corea" (la "app"), ofrecida por el desarrollador de KORA (Leeo, "nosotros"), trata la información. Nuestro principio: procesar lo mínimo y mantenerlo en tu dispositivo.</p>
 
@@ -89,9 +89,9 @@
       <h3>En resumen</h3>
       <ul>
         <li>Sin registro ni inicio de sesión. No recopilamos tu nombre, teléfono, correo ni nada que te identifique directamente.</li>
-        <li>No tenemos servidores. Los ajustes de la app se guardan solo en tu dispositivo.</li>
+        <li>No tenemos servidores propios. Los ajustes de la app se guardan solo en tu dispositivo.</li>
         <li>La ubicación, la cámara, el micrófono, el reconocimiento de voz y los datos de movimiento se procesan en el dispositivo y nunca se guardan ni se envían.</li>
-        <li>Recopilamos estadísticas de uso anónimas con Google Analytics for Firebase para mejorar la app. Sin anuncios, sin identificador publicitario (IDFA) y sin seguimiento entre apps.</li>
+        <li>Para mejorar la app, recopilamos estadísticas de uso anónimas e informes de fallos y los guardamos en iCloud de Apple. Sin anuncios, sin identificador publicitario (IDFA) y sin seguimiento entre apps.</li>
       </ul>
     </div>
 
@@ -122,15 +122,16 @@
       </table>
     </div>
 
-    <h3>c. Estadísticas de uso recopiladas automáticamente (Google Analytics for Firebase)</h3>
+    <h3>c. Estadísticas de uso e informes de fallos recopilados automáticamente (iCloud de Apple)</h3>
 
-    <p>Al usar la app, Google Analytics for Firebase recopila automáticamente:</p>
+    <p>Al usar la app, esta envía lo siguiente a la base de datos de iCloud del desarrollador, gestionada por Apple (CloudKit):</p>
 
     <ul>
-      <li>Un ID de instancia de la app (un identificador aleatorio creado en cada instalación)</li>
-      <li>Eventos de uso como el primer inicio (first_open), el inicio de sesión (session_start) y las vistas de pantalla</li>
+      <li>Un ID de instalación (un identificador aleatorio creado en cada instalación)</li>
+      <li>Recuentos de uso: fecha de instalación, número de aperturas, días desde la instalación, última vez que se abrió la app y si se abrió un día determinado</li>
+      <li>Pasos de KORA Pro: si se mostró la pantalla de compra, si se inició o completó una compra o si se alcanzó un límite gratuito (sin datos de pago; Apple gestiona todos los pagos)</li>
+      <li>Informes de fallos y bloqueos: el tipo de error y en qué parte del código de la app ocurrió</li>
       <li>Versión de la app, modelo de dispositivo, versión del sistema e idioma del dispositivo</li>
-      <li>País y región estimados a partir de la dirección IP (Google no nos da la IP)</li>
     </ul>
 
     <p>Esta información no te identifica y no la combinamos con otros datos para identificarte. No recopilamos el identificador publicitario (IDFA), no pedimos el permiso de App Tracking Transparency y no usamos los datos para publicidad ni para seguirte en apps o sitios web de otras empresas.</p>
@@ -152,9 +153,9 @@
     <h2>3. Cuánto tiempo la conservamos</h2>
 
     <ul>
-      <li><strong>Datos guardados en el dispositivo</strong>: se eliminan al borrar la app. No usamos sincronización con iCloud. (Pueden incluirse en una copia de seguridad completa del iPhone.)</li>
+      <li><strong>Datos guardados en el dispositivo</strong>: se eliminan al borrar la app. Tus ajustes no se sincronizan con iCloud. (Pueden incluirse en una copia de seguridad completa del iPhone.)</li>
       <li><strong>Datos procesados en el dispositivo</strong>: se descartan justo después de procesarse.</li>
-      <li><strong>Estadísticas de uso</strong>: se eliminan automáticamente según la configuración de retención de Google Analytics (2 o 14 meses). Pueden quedar estadísticas agregadas que no identifican a nadie.</li>
+      <li><strong>Estadísticas de uso e informes de fallos</strong>: se conservan mientras se ofrezca la app y se eliminan cuando termine el servicio, o antes si lo solicitas. Pueden quedar estadísticas agregadas que no identifican a nadie.</li>
     </ul>
 
     <h2>4. Cesión a terceros</h2>
@@ -163,18 +164,18 @@
 
     <h2>5. Proveedores de servicios y transferencia internacional</h2>
 
-    <p>Usamos el siguiente proveedor para las estadísticas de uso. En el proceso, los datos se transfieren fuera de Corea.</p>
+    <p>Usamos el siguiente proveedor para guardar las estadísticas de uso y los informes de fallos. En el proceso, los datos se transfieren fuera de Corea.</p>
 
     <div class="table-wrap">
       <table>
         <tbody>
-          <tr><th>Destinatario</th><td>Google LLC (Google Analytics for Firebase)</td></tr>
-          <tr><th>País</th><td>Estados Unidos (incluidos los centros de datos de Google en todo el mundo)</td></tr>
-          <tr><th>Datos</th><td>Las estadísticas de uso del apartado 1-c</td></tr>
+          <tr><th>Destinatario</th><td>Apple Inc. (iCloud, CloudKit)</td></tr>
+          <tr><th>País</th><td>Estados Unidos (incluidos los centros de datos de Apple en todo el mundo)</td></tr>
+          <tr><th>Datos</th><td>Los datos del apartado 1-c (ID de instalación, recuentos de uso, pasos de KORA Pro, informes de fallos y bloqueos, versión de la app, modelo de dispositivo, versión del sistema e idioma del dispositivo)</td></tr>
           <tr><th>Cuándo y cómo</th><td>Se envían por conexión cifrada (HTTPS) mientras usas la app</td></tr>
-          <tr><th>Finalidad</th><td>Análisis del uso de la app</td></tr>
+          <tr><th>Finalidad</th><td>Análisis del uso de la app y corrección de fallos</td></tr>
           <tr><th>Conservación</th><td>Igual que las estadísticas del apartado 3</td></tr>
-          <tr><th>Políticas</th><td><a href="https://policies.google.com/privacy">Política de privacidad de Google</a>, <a href="https://firebase.google.com/support/privacy">Privacidad y seguridad en Firebase</a></td></tr>
+          <tr><th>Políticas</th><td><a href="https://www.apple.com/legal/privacy/">Política de privacidad de Apple</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -199,27 +200,27 @@
 
     <h2>7. Eliminación</h2>
 
-    <p>iOS borra los datos guardados en el dispositivo al eliminar la app. Google borra automáticamente las estadísticas tras el plazo del apartado 3. No guardamos ninguna copia.</p>
+    <p>iOS borra los datos guardados en el dispositivo al eliminar la app. Las estadísticas y los informes de fallos se eliminan como se indica en el apartado 3. No guardamos ninguna otra copia.</p>
 
     <h2>8. Tus derechos</h2>
 
     <ul>
       <li>Puedes retirar en cualquier momento el acceso a ubicación, cámara, micrófono, reconocimiento de voz y movimiento en los Ajustes del iPhone.</li>
-      <li>Eliminar la app borra todo lo guardado en el dispositivo; al reinstalarla se crea un nuevo ID de instancia.</li>
+      <li>Eliminar la app borra todo lo guardado en el dispositivo; al reinstalarla se crea un nuevo ID de instalación.</li>
       <li>Para solicitar acceso, rectificación, supresión o limitación del tratamiento, escríbenos a la dirección de abajo y responderemos sin demora. Como no tenemos datos que te identifiquen, puede que no podamos localizar las estadísticas de una persona concreta.</li>
       <li>También puedes ejercer estos derechos mediante un representante legal o una persona autorizada.</li>
     </ul>
 
     <h2>9. Cookies y tecnologías similares</h2>
 
-    <p>La app no usa cookies web. Google Analytics for Firebase distingue las estadísticas por el ID de instancia descrito en 1-c. Si no lo deseas, puedes eliminar la app.</p>
+    <p>La app no usa cookies web. Las estadísticas se distinguen por el ID de instalación descrito en 1-c. Si no lo deseas, puedes eliminar la app.</p>
 
     <h2>10. Seguridad</h2>
 
     <ul>
       <li>Solo procesamos lo imprescindible y todo tratamiento sensible ocurre en tu dispositivo.</li>
       <li>Todas las comunicaciones de red van cifradas por HTTPS.</li>
-      <li>No tenemos servidores ni bases de datos, así que no acumulamos datos de usuarios.</li>
+      <li>No tenemos servidores propios. Lo único que se guarda fuera de tu dispositivo son las estadísticas anónimas y los informes de fallos del apartado 1-c, almacenados en iCloud de Apple.</li>
     </ul>
 
     <h2>11. Menores</h2>
@@ -239,7 +240,7 @@
 
     <h2>13. Cambios en esta política</h2>
 
-    <p>Esta política entra en vigor el 19 de septiembre de 2026 y sustituye a la del 31 de mayo de 2026, escrita para una versión anterior de la app. Si cambia, publicaremos la actualización en esta página con su fecha de entrada en vigor. Está disponible en varios idiomas; si las traducciones difieren, prevalece la <a href="../ko/privacy.html">versión coreana</a>.</p>
+    <p>Esta política entra en vigor el 15 de octubre de 2026 y sustituye a la del 19 de septiembre de 2026, que se aplicaba a las versiones 1.0.5 a 1.0.7, basadas en Google Analytics for Firebase. Si cambia, publicaremos la actualización en esta página con su fecha de entrada en vigor. Está disponible en varios idiomas; si las traducciones difieren, prevalece la <a href="../ko/privacy.html">versión coreana</a>.</p>
   </main>
 
   <footer class="site">

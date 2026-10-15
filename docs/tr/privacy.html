@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>Gizlilik Politikası — KORA Kore Rehberi</title>
-<meta name="description" content="KORA Kore Rehberi&#x27;nin neleri işlediği, cihazında neler kaldığı, Google Analytics for Firebase ile anonim istatistikler ve bize nasıl ulaşacağın.">
+<meta name="description" content="KORA Kore Rehberi&#x27;nin neleri işlediği, cihazında neler kaldığı, Apple iCloud&#x27;da saklanan anonim kullanım istatistikleri ile çökme raporları ve bize nasıl ulaşacağın.">
 <link rel="canonical" href="https://m1zz.github.io/KORA/tr/privacy.html">
 <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/privacy.html">
 <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/privacy.html">
@@ -81,7 +81,7 @@
   <main>
 <h1>Gizlilik</h1>
 
-    <p class="lead">Yürürlük: 19 Eylül 2026 · Uygulamanın 1.0.5 ve sonraki sürümleri için geçerlidir</p>
+    <p class="lead">Yürürlük: 15 Ekim 2026 · Uygulamanın 1.0.8 ve sonraki sürümleri için geçerlidir</p>
 
     <p>Bu politika, KORA geliştiricisinin (Leeo, "biz") sunduğu "KORA Kore Rehberi" iOS uygulamasının ("uygulama") bilgileri nasıl işlediğini açıklar. İlkemiz basit: olabildiğince az işle ve cihazında tut.</p>
 
@@ -89,9 +89,9 @@
       <h3>Kısaca</h3>
       <ul>
         <li>Kayıt veya giriş yok. Adını, telefonunu, e-postanı ya da seni doğrudan tanımlayan hiçbir şeyi toplamayız.</li>
-        <li>Sunucu işletmiyoruz. Uygulama ayarların yalnızca cihazında saklanır.</li>
+        <li>Kendi sunucumuzu işletmiyoruz. Uygulama ayarların yalnızca cihazında saklanır.</li>
         <li>Konum, kamera, mikrofon, konuşma tanıma ve hareket verileri cihazda işlenir; asla saklanmaz veya gönderilmez.</li>
-        <li>Uygulamayı geliştirmek için Google Analytics for Firebase ile anonim kullanım istatistikleri toplarız. Reklam yok, reklam tanımlayıcısı (IDFA) yok, uygulamalar arası izleme yok.</li>
+        <li>Uygulamayı geliştirmek için anonim kullanım istatistikleri ve çökme raporları toplar, bunları Apple'ın iCloud hizmetinde saklarız. Reklam yok, reklam tanımlayıcısı (IDFA) yok, uygulamalar arası izleme yok.</li>
       </ul>
     </div>
 
@@ -122,15 +122,16 @@
       </table>
     </div>
 
-    <h3>c. Otomatik toplanan kullanım istatistikleri (Google Analytics for Firebase)</h3>
+    <h3>c. Otomatik toplanan kullanım istatistikleri ve çökme raporları (Apple iCloud)</h3>
 
-    <p>Uygulamayı kullandığında Google Analytics for Firebase şunları otomatik olarak toplar:</p>
+    <p>Uygulamayı kullandığında uygulama, Apple tarafından işletilen geliştirici iCloud veritabanına (CloudKit) şunları gönderir:</p>
 
     <ul>
-      <li>Uygulama örnek kimliği (her kurulumda oluşturulan rastgele bir kimlik)</li>
-      <li>İlk açılış (first_open), oturum başlangıcı (session_start) ve ekran görüntülemeleri gibi kullanım olayları</li>
+      <li>Kurulum kimliği (her kurulumda oluşturulan rastgele bir kimlik)</li>
+      <li>Kullanım sayıları: kurulum tarihi, açılış sayısı, kurulumdan bu yana geçen gün sayısı, uygulamanın en son ne zaman açıldığı ve belirli bir günde açılıp açılmadığı</li>
+      <li>KORA Pro adımları: satın alma ekranının gösterilip gösterilmediği, bir satın almanın başlatılıp başlatılmadığı veya tamamlanıp tamamlanmadığı ve ücretsiz sınıra ulaşılıp ulaşılmadığı (ödeme bilgisi yok; ödemeler tamamen Apple tarafından yürütülür)</li>
+      <li>Çökme ve donma raporları: hatanın türü ve uygulama kodunun neresinde oluştuğu</li>
       <li>Uygulama sürümü, cihaz modeli, işletim sistemi sürümü ve cihaz dili</li>
-      <li>IP adresinden tahmin edilen ülke ve bölge (IP adresinin kendisini Google bize vermez)</li>
     </ul>
 
     <p>Bu bilgiler seni tanımlamaz ve seni tanımlamak için başka verilerle birleştirmeyiz. Reklam tanımlayıcısını (IDFA) toplamayız, App Tracking Transparency izni istemeyiz ve verileri reklam ya da başka şirketlerin uygulama ve sitelerinde izleme için kullanmayız.</p>
@@ -152,9 +153,9 @@
     <h2>3. Ne kadar süre saklıyoruz</h2>
 
     <ul>
-      <li><strong>Cihazda saklanan veriler</strong>: uygulamayı sildiğinde silinir. iCloud eşzamanlaması kullanmayız. (Tam bir iPhone yedeğine dahil olabilir.)</li>
+      <li><strong>Cihazda saklanan veriler</strong>: uygulamayı sildiğinde silinir. Ayarların iCloud üzerinden eşzamanlanmaz. (Tam bir iPhone yedeğine dahil olabilir.)</li>
       <li><strong>Cihazda işlenen veriler</strong>: işlendikten hemen sonra atılır.</li>
-      <li><strong>Kullanım istatistikleri</strong>: Google Analytics'in saklama ayarına göre (2 veya 14 ay) otomatik silinir. Kimseyi tanımlamayan toplu istatistikler kalabilir.</li>
+      <li><strong>Kullanım istatistikleri ve çökme raporları</strong>: uygulama sunulduğu sürece saklanır; hizmet sona erdiğinde ya da talep üzerine daha erken silinir. Kimseyi tanımlamayan toplu istatistikler kalabilir.</li>
     </ul>
 
     <h2>4. Üçüncü taraflarla paylaşım</h2>
@@ -163,18 +164,18 @@
 
     <h2>5. Hizmet sağlayıcılar ve yurt dışına aktarım</h2>
 
-    <p>Kullanım istatistikleri için aşağıdaki hizmet sağlayıcıyı kullanırız. Bu süreçte veriler Kore dışına aktarılır.</p>
+    <p>Kullanım istatistiklerini ve çökme raporlarını saklamak için aşağıdaki hizmet sağlayıcıyı kullanırız. Bu süreçte veriler Kore dışına aktarılır.</p>
 
     <div class="table-wrap">
       <table>
         <tbody>
-          <tr><th>Alıcı</th><td>Google LLC (Google Analytics for Firebase)</td></tr>
-          <tr><th>Ülke</th><td>ABD (Google'ın dünya genelindeki veri merkezleri dahil)</td></tr>
-          <tr><th>Veriler</th><td>1-c'de listelenen kullanım istatistikleri</td></tr>
+          <tr><th>Alıcı</th><td>Apple Inc. (iCloud, CloudKit)</td></tr>
+          <tr><th>Ülke</th><td>ABD (Apple'ın dünya genelindeki veri merkezleri dahil)</td></tr>
+          <tr><th>Veriler</th><td>1-c'de listelenen öğeler (kurulum kimliği, kullanım sayıları, KORA Pro adımları, çökme ve donma raporları, uygulama sürümü, cihaz modeli, işletim sistemi sürümü, cihaz dili)</td></tr>
           <tr><th>Ne zaman ve nasıl</th><td>Kullanım sırasında şifreli bağlantıyla (HTTPS) gönderilir</td></tr>
-          <tr><th>Amaç</th><td>Uygulama kullanım analizi</td></tr>
+          <tr><th>Amaç</th><td>Uygulama kullanım analizi ve çökmelerin giderilmesi</td></tr>
           <tr><th>Saklama</th><td>3. bölümdeki istatistiklerle aynı</td></tr>
-          <tr><th>Politikalar</th><td><a href="https://policies.google.com/privacy">Google Gizlilik Politikası</a>, <a href="https://firebase.google.com/support/privacy">Firebase'de gizlilik ve güvenlik</a></td></tr>
+          <tr><th>Politikalar</th><td><a href="https://www.apple.com/legal/privacy/">Apple Gizlilik Politikası</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -199,27 +200,27 @@
 
     <h2>7. Silme</h2>
 
-    <p>Uygulamayı sildiğinde iOS cihazdaki verileri kaldırır. Google kullanım istatistiklerini 3. bölümdeki sürenin sonunda otomatik siler. Ayrı bir kopya tutmayız.</p>
+    <p>Uygulamayı sildiğinde iOS cihazdaki verileri kaldırır. Kullanım istatistikleri ve çökme raporları 3. bölümde açıklandığı şekilde silinir. Başka bir kopya tutmayız.</p>
 
     <h2>8. Hakların</h2>
 
     <ul>
       <li>Konum, kamera, mikrofon, konuşma tanıma ve hareket erişimini istediğin zaman iPhone Ayarları'ndan geri alabilirsin.</li>
-      <li>Uygulamayı silmek cihazdaki her şeyi siler; yeniden yüklemek yeni bir uygulama örnek kimliği oluşturur.</li>
+      <li>Uygulamayı silmek cihazdaki her şeyi siler; yeniden yüklemek yeni bir kurulum kimliği oluşturur.</li>
       <li>Erişim, düzeltme, silme veya işlemenin durdurulması talebi için aşağıdaki adrese yaz; gecikmeden yanıt veririz. Seni tanımlayan veri tutmadığımız için belirli bir kişinin istatistiklerini bulamayabiliriz.</li>
       <li>Bu hakları yasal temsilcin ya da yetkili bir vekil aracılığıyla da kullanabilirsin.</li>
     </ul>
 
     <h2>9. Çerezler ve benzeri teknolojiler</h2>
 
-    <p>Uygulama web çerezi kullanmaz. Google Analytics for Firebase istatistikleri 1-c'de açıklanan uygulama örnek kimliğiyle ayırt eder. Bunu istemiyorsan uygulamayı silebilirsin.</p>
+    <p>Uygulama web çerezi kullanmaz. Kullanım istatistikleri 1-c'de açıklanan kurulum kimliğiyle ayırt edilir. Bunu istemiyorsan uygulamayı silebilirsin.</p>
 
     <h2>10. Güvenlik</h2>
 
     <ul>
       <li>Yalnızca gerekli olanı işleriz ve tüm hassas işlemler cihazında gerçekleşir.</li>
       <li>Tüm ağ iletişimi HTTPS ile şifrelenir.</li>
-      <li>Sunucumuz veya veritabanımız olmadığından bizde kullanıcı verisi birikmez.</li>
+      <li>Kendi sunucumuzu işletmiyoruz. Cihazının dışında saklanan tek veri 1-c'deki anonim istatistikler ve çökme raporlarıdır; bunlar Apple'ın iCloud hizmetinde tutulur.</li>
     </ul>
 
     <h2>11. Çocuklar</h2>
@@ -239,7 +240,7 @@
 
     <h2>13. Politikadaki değişiklikler</h2>
 
-    <p>Bu politika 19 Eylül 2026'da yürürlüğe girer ve uygulamanın önceki bir sürümü için yazılan 31 Mayıs 2026 tarihli politikanın yerini alır. Değişiklik olursa güncellemeyi yürürlük tarihiyle birlikte bu sayfada yayımlarız. Politika birkaç dilde sunulur; çeviriler arasında fark olursa <a href="../ko/privacy.html">Korece sürüm</a> esas alınır.</p>
+    <p>Bu politika 15 Ekim 2026'da yürürlüğe girer ve Google Analytics for Firebase kullanan 1.0.5 ile 1.0.7 arasındaki sürümler için geçerli olan 19 Eylül 2026 tarihli politikanın yerini alır. Değişiklik olursa güncellemeyi yürürlük tarihiyle birlikte bu sayfada yayımlarız. Politika birkaç dilde sunulur; çeviriler arasında fark olursa <a href="../ko/privacy.html">Korece sürüm</a> esas alınır.</p>
   </main>
 
   <footer class="site">

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>Tietosuojakäytäntö — KORA Korea-opas</title>
-<meta name="description" content="Mitä KORA Korea-opas käsittelee, mitä jää laitteellesi, nimettömät tilastot Google Analytics for Firebasella ja miten tavoitat meidät.">
+<meta name="description" content="Mitä KORA Korea-opas käsittelee, mitä jää laitteellesi, nimettömät käyttötilastot ja kaatumisraportit Applen iCloudissa ja miten tavoitat meidät.">
 <link rel="canonical" href="https://m1zz.github.io/KORA/fi/privacy.html">
 <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/privacy.html">
 <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/privacy.html">
@@ -81,7 +81,7 @@
   <main>
 <h1>Tietosuoja</h1>
 
-    <p class="lead">Voimassa 19.9.2026 alkaen · Koskee apin versiota 1.0.5 ja uudempia</p>
+    <p class="lead">Voimassa 15.10.2026 alkaen · Koskee apin versiota 1.0.8 ja uudempia</p>
 
     <p>Tämä käytäntö kertoo, miten iOS-appi ”KORA Korea-opas” (”appi”), jonka tarjoaa KORAn kehittäjä (Leeo, ”me”), käsittelee tietoja. Periaatteemme: käsitellä mahdollisimman vähän ja pitää kaikki laitteellasi.</p>
 
@@ -89,9 +89,9 @@
       <h3>Lyhyesti</h3>
       <ul>
         <li>Ei rekisteröitymistä eikä kirjautumista. Emme kerää nimeä, puhelinnumeroa, sähköpostia tai muuta, mikä tunnistaa sinut suoraan.</li>
-        <li>Meillä ei ole palvelimia. Apin asetukset tallentuvat vain laitteellesi.</li>
+        <li>Meillä ei ole omia palvelimia. Apin asetukset tallentuvat vain laitteellesi.</li>
         <li>Sijainti, kamera, mikrofoni, puheentunnistus ja liiketiedot käsitellään laitteessa, eikä niitä koskaan tallenneta tai lähetetä.</li>
-        <li>Keräämme nimettömiä käyttötilastoja Google Analytics for Firebasella apin parantamiseksi. Ei mainoksia, ei mainostunnistetta (IDFA), ei seurantaa sovellusten välillä.</li>
+        <li>Keräämme apin parantamiseksi nimettömiä käyttötilastoja ja kaatumisraportteja, jotka tallennetaan Applen iCloudiin. Ei mainoksia, ei mainostunnistetta (IDFA), ei seurantaa sovellusten välillä.</li>
       </ul>
     </div>
 
@@ -122,15 +122,16 @@
       </table>
     </div>
 
-    <h3>c. Automaattisesti kerättävät käyttötilastot (Google Analytics for Firebase)</h3>
+    <h3>c. Automaattisesti kerättävät käyttötilastot ja kaatumisraportit (Apple iCloud)</h3>
 
-    <p>Kun käytät appia, Google Analytics for Firebase kerää automaattisesti:</p>
+    <p>Kun käytät appia, se lähettää kehittäjän iCloud-tietokantaan, jota Apple ylläpitää (CloudKit):</p>
 
     <ul>
-      <li>Apin instanssitunnisteen (satunnainen tunniste jokaiselle asennukselle)</li>
-      <li>Käyttötapahtumia, kuten ensimmäinen avaus (first_open), istunnon alku (session_start) ja näkymien katselut</li>
+      <li>Asennustunnisteen (satunnainen tunniste jokaiselle asennukselle)</li>
+      <li>Käyttömäärät: asennuspäivän, käynnistyskertojen määrän, asennuksesta kuluneet päivät, viimeisimmän avauskerran ja sen, avattiinko appi tiettynä päivänä</li>
+      <li>KORA Pron vaiheet: näytettiinkö ostonäkymä, aloitettiinko tai saatiinko osto valmiiksi ja tuliko maksuton raja täyteen (ei maksutietoja; Apple hoitaa maksut kokonaan)</li>
+      <li>Kaatumis- ja jumiutumisraportit: virheen tyypin ja sen, missä kohtaa apin koodia se tapahtui</li>
       <li>Apin version, laitemallin, käyttöjärjestelmän version ja laitteen kielen</li>
-      <li>IP-osoitteesta arvioidun maan ja alueen (itse IP-osoitetta Google ei anna meille)</li>
     </ul>
 
     <p>Nämä tiedot eivät tunnista sinua, emmekä yhdistä niitä muihin tietoihin tunnistaaksemme sinut. Emme kerää mainostunnistetta (IDFA), emme pyydä App Tracking Transparency -lupaa emmekä käytä tietoja mainontaan tai seurantaan muiden yritysten apeissa ja verkkosivuilla.</p>
@@ -152,9 +153,9 @@
     <h2>3. Kuinka kauan säilytämme niitä</h2>
 
     <ul>
-      <li><strong>Laitteelle tallennetut tiedot</strong>: poistuvat, kun poistat apin. Emme käytä iCloud-synkronointia. (Ne voivat sisältyä iPhonen täyteen varmuuskopioon.)</li>
+      <li><strong>Laitteelle tallennetut tiedot</strong>: poistuvat, kun poistat apin. Asetuksia ei synkronoida iCloudin kautta. (Ne voivat sisältyä iPhonen täyteen varmuuskopioon.)</li>
       <li><strong>Laitteessa käsitellyt tiedot</strong>: hävitetään heti käsittelyn jälkeen.</li>
-      <li><strong>Käyttötilastot</strong>: poistetaan automaattisesti Google Analyticsin säilytysasetuksen mukaan (2 tai 14 kuukautta). Koottuja tilastoja, jotka eivät tunnista ketään, voi jäädä jäljelle.</li>
+      <li><strong>Käyttötilastot ja kaatumisraportit</strong>: säilytetään niin kauan kuin appia tarjotaan, ja ne poistetaan palvelun päättyessä tai pyynnöstä jo aiemmin. Koottuja tilastoja, jotka eivät tunnista ketään, voi jäädä jäljelle.</li>
     </ul>
 
     <h2>4. Luovuttaminen kolmansille osapuolille</h2>
@@ -163,18 +164,18 @@
 
     <h2>5. Palveluntarjoajat ja siirto ulkomaille</h2>
 
-    <p>Käytämme käyttötilastoihin seuraavaa palveluntarjoajaa. Tällöin tietoja siirretään Korean ulkopuolelle.</p>
+    <p>Käytämme käyttötilastojen ja kaatumisraporttien tallentamiseen seuraavaa palveluntarjoajaa. Tällöin tietoja siirretään Korean ulkopuolelle.</p>
 
     <div class="table-wrap">
       <table>
         <tbody>
-          <tr><th>Vastaanottaja</th><td>Google LLC (Google Analytics for Firebase)</td></tr>
-          <tr><th>Maa</th><td>Yhdysvallat (mukaan lukien Googlen datakeskukset ympäri maailmaa)</td></tr>
-          <tr><th>Tiedot</th><td>Kohdassa 1-c luetellut käyttötilastot</td></tr>
+          <tr><th>Vastaanottaja</th><td>Apple Inc. (iCloud, CloudKit)</td></tr>
+          <tr><th>Maa</th><td>Yhdysvallat (mukaan lukien Applen datakeskukset ympäri maailmaa)</td></tr>
+          <tr><th>Tiedot</th><td>Kohdassa 1-c luetellut tiedot (asennustunniste, käyttömäärät, KORA Pron vaiheet, kaatumis- ja jumiutumisraportit, apin versio, laitemalli, käyttöjärjestelmän versio, laitteen kieli)</td></tr>
           <tr><th>Milloin ja miten</th><td>Lähetetään salatulla yhteydellä (HTTPS) käytön aikana</td></tr>
-          <tr><th>Tarkoitus</th><td>Apin käytön analysointi</td></tr>
+          <tr><th>Tarkoitus</th><td>Apin käytön analysointi ja kaatumisten korjaaminen</td></tr>
           <tr><th>Säilytys</th><td>Kuten käyttötilastot kohdassa 3</td></tr>
-          <tr><th>Käytännöt</th><td><a href="https://policies.google.com/privacy">Googlen tietosuojakäytäntö</a>, <a href="https://firebase.google.com/support/privacy">Yksityisyys ja turvallisuus Firebasessa</a></td></tr>
+          <tr><th>Käytännöt</th><td><a href="https://www.apple.com/legal/privacy/">Applen tietosuojakäytäntö</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -199,27 +200,27 @@
 
     <h2>7. Poistaminen</h2>
 
-    <p>iOS poistaa laitteelle tallennetut tiedot, kun poistat apin. Google poistaa käyttötilastot automaattisesti kohdan 3 säilytysajan jälkeen. Emme säilytä omaa kopiota.</p>
+    <p>iOS poistaa laitteelle tallennetut tiedot, kun poistat apin. Käyttötilastot ja kaatumisraportit poistetaan kohdan 3 mukaisesti. Emme säilytä muuta kopiota.</p>
 
     <h2>8. Oikeutesi</h2>
 
     <ul>
       <li>Voit milloin tahansa perua sijainnin, kameran, mikrofonin, puheentunnistuksen ja liikkeen käyttöoikeuden iPhonen asetuksista.</li>
-      <li>Apin poistaminen poistaa kaiken laitteelle tallennetun; uudelleenasennus luo uuden instanssitunnisteen.</li>
+      <li>Apin poistaminen poistaa kaiken laitteelle tallennetun; uudelleenasennus luo uuden asennustunnisteen.</li>
       <li>Jos haluat pyytää tietojen tarkastamista, oikaisua, poistamista tai käsittelyn rajoittamista, kirjoita alla olevaan osoitteeseen; vastaamme viipymättä. Koska meillä ei ole tunnistavia tietoja, emme välttämättä löydä tietyn henkilön tilastoja.</li>
       <li>Voit käyttää oikeuksiasi myös laillisen edustajan tai valtuutetun kautta.</li>
     </ul>
 
     <h2>9. Evästeet ja vastaavat tekniikat</h2>
 
-    <p>Appi ei käytä verkkoevästeitä. Google Analytics for Firebase erottelee tilastot kohdassa 1-c kuvatun instanssitunnisteen avulla. Jos et halua tätä, voit poistaa apin.</p>
+    <p>Appi ei käytä verkkoevästeitä. Käyttötilastot erotellaan kohdassa 1-c kuvatun asennustunnisteen avulla. Jos et halua tätä, voit poistaa apin.</p>
 
     <h2>10. Tietoturva</h2>
 
     <ul>
       <li>Käsittelemme vain välttämättömän, ja kaikki arkaluonteinen käsittely tapahtuu laitteessasi.</li>
       <li>Kaikki verkkoliikenne on salattu HTTPS:llä.</li>
-      <li>Meillä ei ole palvelimia eikä tietokantoja, joten käyttäjätietoja ei kerry meille.</li>
+      <li>Meillä ei ole omia palvelimia. Laitteesi ulkopuolella säilytetään vain kohdan 1-c nimettömät tilastot ja kaatumisraportit, jotka tallennetaan Applen iCloudiin.</li>
     </ul>
 
     <h2>11. Lapset</h2>
@@ -239,7 +240,7 @@
 
     <h2>13. Muutokset käytäntöön</h2>
 
-    <p>Tämä käytäntö on voimassa 19.9.2026 alkaen ja korvaa 31.5.2026 päivätyn käytännön, joka kirjoitettiin apin aiemmalle versiolle. Muutokset julkaistaan tällä sivulla voimaantulopäivineen. Käytäntö on saatavilla useilla kielillä; jos käännökset poikkeavat toisistaan, <a href="../ko/privacy.html">korealainen versio</a> on ensisijainen.</p>
+    <p>Tämä käytäntö on voimassa 15.10.2026 alkaen ja korvaa 19.9.2026 päivätyn käytännön, joka koski Google Analytics for Firebasea käyttäneitä versioita 1.0.5:stä 1.0.7:ään. Muutokset julkaistaan tällä sivulla voimaantulopäivineen. Käytäntö on saatavilla useilla kielillä; jos käännökset poikkeavat toisistaan, <a href="../ko/privacy.html">korealainen versio</a> on ensisijainen.</p>
   </main>
 
   <footer class="site">

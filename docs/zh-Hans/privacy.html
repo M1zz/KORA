@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>隐私政策 — KORA 韩国导航</title>
-<meta name="description" content="KORA 韩国导航处理哪些信息、哪些只在设备上处理、Google Analytics for Firebase 匿名统计，以及联系方式。">
+<meta name="description" content="KORA 韩国导航处理哪些信息、哪些只在设备上处理、保存在 Apple iCloud 中的匿名使用统计和崩溃报告，以及联系方式。">
 <link rel="canonical" href="https://m1zz.github.io/KORA/zh-Hans/privacy.html">
 <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/privacy.html">
 <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/privacy.html">
@@ -62,7 +62,7 @@
 
   <main>
 <h1>隐私政策</h1>
-    <p class="lead">生效日期：2026 年 9 月 19 日 · 适用于 App 1.0.5 及以后版本</p>
+    <p class="lead">生效日期：2026 年 10 月 15 日 · 适用于 App 1.0.8 及以后版本</p>
 
     <p>
       本政策说明 KORA 开发者（Leeo，以下简称“开发者”）提供的 iOS App“KORA 韩国导航”（以下简称“本 App”）如何处理信息。
@@ -73,9 +73,9 @@
       <h3>概要</h3>
       <ul>
         <li>无需注册或登录。我们不收集姓名、电话号码、电子邮件等可直接识别你身份的信息。</li>
-        <li>开发者不运营任何服务器。App 的设置只保存在你的设备上。</li>
+        <li>开发者不运营自己的服务器。App 的设置只保存在你的设备上。</li>
         <li>定位、相机、麦克风与语音识别、运动数据只在设备上处理，不会保存，也不会发送到设备以外。</li>
-        <li>为改进 App，我们通过 Google Analytics for Firebase 收集匿名使用统计。没有广告，不使用广告标识符（IDFA），也不会跨 App 追踪你。</li>
+        <li>为改进 App，我们收集匿名使用统计和崩溃报告，并保存在 Apple 的 iCloud 中。没有广告，不使用广告标识符（IDFA），也不会跨 App 追踪你。</li>
       </ul>
     </div>
 
@@ -103,13 +103,14 @@
       </table>
     </div>
 
-    <h3>c. 自动收集的使用统计（Google Analytics for Firebase）</h3>
-    <p>使用本 App 时，Google Analytics for Firebase 会自动收集以下信息：</p>
+    <h3>c. 自动收集的使用统计和崩溃报告（Apple iCloud）</h3>
+    <p>使用本 App 时，App 会将以下信息发送到由 Apple 运营的开发者 iCloud 数据库（CloudKit）：</p>
     <ul>
-      <li>App 实例 ID（每次安装时随机生成的标识符）</li>
-      <li>使用事件，例如首次打开（first_open）、会话开始（session_start）、画面浏览</li>
+      <li>安装 ID（每次安装时随机生成的标识符）</li>
+      <li>使用次数信息：安装日期、启动次数、安装后的天数、最后一次打开的时间，以及某一天是否打开过</li>
+      <li>KORA Pro 使用步骤：是否显示了购买页面、是否开始或完成了购买、是否达到免费使用上限（不含任何支付信息，支付完全由 Apple 处理）</li>
+      <li>崩溃与卡死报告：错误类型及其在 App 代码中发生的位置</li>
       <li>App 版本、设备型号、系统版本、设备语言</li>
-      <li>根据 IP 地址推断的国家和地区（Google 不会向开发者提供 IP 地址本身）</li>
     </ul>
     <p>
       这些信息无法识别你个人，开发者也不会将其与其他信息结合来识别你。
@@ -133,26 +134,26 @@
 
     <h2>3. 保存期限</h2>
     <ul>
-      <li><strong>保存在设备上的信息</strong>：删除本 App 时一并删除。不使用 iCloud 同步。（完整的 iPhone 备份可能会将其作为设备数据一并包含。）</li>
+      <li><strong>保存在设备上的信息</strong>：删除本 App 时一并删除。设置不会通过 iCloud 同步。（完整的 iPhone 备份可能会将其作为设备数据一并包含。）</li>
       <li><strong>仅在设备上处理的信息</strong>：处理后立即丢弃，不做保存。</li>
-      <li><strong>使用统计</strong>：按照 Google Analytics 的数据保留设置（2 个月或 14 个月），到期后自动删除。无法识别个人的汇总统计之后可能仍会保留。</li>
+      <li><strong>使用统计和崩溃报告</strong>：在本 App 提供期间保存，服务终止时删除；如你提出要求，也会提前删除。无法识别个人的汇总统计之后可能仍会保留。</li>
     </ul>
 
     <h2>4. 向第三方提供</h2>
     <p>除法律另有规定外，我们不会向第三方提供你的个人信息。</p>
 
     <h2>5. 委托处理与跨境传输</h2>
-    <p>为分析使用统计，我们按以下方式委托处理信息，过程中信息会被传输到韩国境外。</p>
+    <p>为保存使用统计和崩溃报告，我们按以下方式委托处理信息，过程中信息会被传输到韩国境外。</p>
     <div class="table-wrap">
       <table>
         <tbody>
-          <tr><th>接收方</th><td>Google LLC（Google Analytics for Firebase）</td></tr>
-          <tr><th>传输国家</th><td>美国（包括 Google 在全球运营的数据中心）</td></tr>
-          <tr><th>传输的信息</th><td>1-c 所列使用统计（App 实例 ID、使用事件、App 版本、设备型号、系统版本、设备语言、根据 IP 推断的国家和地区）</td></tr>
+          <tr><th>接收方</th><td>Apple Inc.（iCloud、CloudKit）</td></tr>
+          <tr><th>传输国家</th><td>美国（包括 Apple 在全球运营的数据中心）</td></tr>
+          <tr><th>传输的信息</th><td>1-c 所列信息（安装 ID、使用次数信息、KORA Pro 使用步骤、崩溃与卡死报告、App 版本、设备型号、系统版本、设备语言）</td></tr>
           <tr><th>时间与方式</th><td>使用 App 时通过加密连接（HTTPS）随时传输</td></tr>
-          <tr><th>目的</th><td>App 使用统计分析</td></tr>
-          <tr><th>保存期限</th><td>与第 3 条中的使用统计相同</td></tr>
-          <tr><th>相关政策</th><td><a href="https://policies.google.com/privacy?hl=zh-CN">Google 隐私权政策</a>、<a href="https://firebase.google.com/support/privacy">Firebase 中的隐私与安全</a></td></tr>
+          <tr><th>目的</th><td>App 使用统计分析与崩溃修复</td></tr>
+          <tr><th>保存期限</th><td>与第 3 条中的使用统计和崩溃报告相同</td></tr>
+          <tr><th>相关政策</th><td><a href="https://www.apple.com/legal/privacy/">Apple 隐私政策</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -173,24 +174,24 @@
     </div>
 
     <h2>7. 删除方式</h2>
-    <p>删除本 App 时，iOS 会删除设备上保存的信息。使用统计在第 3 条的保存期限到期后由 Google 自动删除。开发者不会另行保存你的信息。</p>
+    <p>删除本 App 时，iOS 会删除设备上保存的信息。使用统计和崩溃报告按第 3 条的规定删除。除此之外，开发者不会另行保存你的信息。</p>
 
     <h2>8. 你的权利</h2>
     <ul>
       <li>你可以随时在 iPhone 设置中撤销定位、相机、麦克风、语音识别和运动权限。</li>
-      <li>删除本 App 会清除设备上保存的所有信息；重新安装会生成新的 App 实例 ID。</li>
+      <li>删除本 App 会清除设备上保存的所有信息；重新安装会生成新的安装 ID。</li>
       <li>如需查阅、更正、删除或停止处理个人信息，请发送邮件至下方地址，我们会及时处理。但由于开发者不持有可识别你身份的信息，可能无法找出特定用户的统计数据。</li>
       <li>你也可以通过法定代理人或受托代理人行使上述权利。</li>
     </ul>
 
     <h2>9. Cookie 等技术</h2>
-    <p>本 App 不使用网页 Cookie。Google Analytics for Firebase 通过 1-c 中的 App 实例 ID 区分使用统计。如不希望如此，可以删除本 App。</p>
+    <p>本 App 不使用网页 Cookie。使用统计通过 1-c 中的安装 ID 加以区分。如不希望如此，可以删除本 App。</p>
 
     <h2>10. 安全措施</h2>
     <ul>
       <li>只处理必要的最少信息，敏感处理全部在设备上完成。</li>
       <li>所有对外通信都使用加密的 HTTPS。</li>
-      <li>开发者没有服务器或数据库，因此不会在开发者一侧积累用户信息。</li>
+      <li>开发者不运营自己的服务器。保存在设备以外的数据只有 1-c 所列的匿名使用统计和崩溃报告，存放在 Apple 的 iCloud 中。</li>
     </ul>
 
     <h2>11. 儿童信息</h2>
@@ -208,7 +209,7 @@
 
     <h2>13. 政策变更</h2>
     <p>
-      本政策自 2026 年 9 月 19 日起生效，取代针对旧版 App 编写的 2026 年 5 月 31 日版政策。
+      本政策自 2026 年 10 月 15 日起生效，取代 2026 年 9 月 19 日版政策（该版政策适用于使用 Google Analytics for Firebase 的 App 1.0.5 至 1.0.7 版本）。
       如有变更，我们会在本页面公布更新内容及生效日期。
       本政策提供多种语言版本，如各译本之间存在差异，以<a href="../ko/privacy.html">韩语版</a>为准。
     </p>

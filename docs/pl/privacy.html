@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>Polityka prywatności — KORA Nawigator Korea</title>
-<meta name="description" content="Co przetwarza KORA Nawigator Korea, co zostaje na urządzeniu, anonimowe statystyki Google Analytics for Firebase i jak się z nami skontaktować.">
+<meta name="description" content="Co przetwarza KORA Nawigator Korea, co zostaje na urządzeniu, anonimowe statystyki użycia i raporty awarii przechowywane w Apple iCloud oraz jak się z nami skontaktować.">
 <link rel="canonical" href="https://m1zz.github.io/KORA/pl/privacy.html">
 <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/privacy.html">
 <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/privacy.html">
@@ -81,7 +81,7 @@
   <main>
 <h1>Prywatność</h1>
 
-    <p class="lead">Obowiązuje od 19 września 2026 r. · Dotyczy wersji 1.0.5 i nowszych</p>
+    <p class="lead">Obowiązuje od 15 października 2026 r. · Dotyczy wersji 1.0.8 i nowszych</p>
 
     <p>Ta polityka wyjaśnia, jak aplikacja na iOS „KORA Nawigator Korea” („aplikacja”) od twórcy KORA (Leeo, „my”) obchodzi się z informacjami. Nasza zasada: przetwarzać jak najmniej i trzymać wszystko na Twoim urządzeniu.</p>
 
@@ -89,9 +89,9 @@
       <h3>W skrócie</h3>
       <ul>
         <li>Bez rejestracji i logowania. Nie zbieramy imienia, telefonu, e-maila ani niczego, co bezpośrednio Cię identyfikuje.</li>
-        <li>Nie mamy serwerów. Ustawienia aplikacji są tylko na Twoim urządzeniu.</li>
+        <li>Nie mamy własnych serwerów. Ustawienia aplikacji są tylko na Twoim urządzeniu.</li>
         <li>Lokalizacja, aparat, mikrofon, rozpoznawanie mowy i dane ruchu są przetwarzane na urządzeniu i nigdy nie są zapisywane ani wysyłane.</li>
-        <li>Zbieramy anonimowe statystyki użycia przez Google Analytics for Firebase, by ulepszać aplikację. Bez reklam, bez identyfikatora reklamowego (IDFA), bez śledzenia między aplikacjami.</li>
+        <li>Aby ulepszać aplikację, zbieramy anonimowe statystyki użycia i raporty awarii, które przechowujemy w iCloud firmy Apple. Bez reklam, bez identyfikatora reklamowego (IDFA), bez śledzenia między aplikacjami.</li>
       </ul>
     </div>
 
@@ -122,15 +122,16 @@
       </table>
     </div>
 
-    <h3>c. Statystyki zbierane automatycznie (Google Analytics for Firebase)</h3>
+    <h3>c. Statystyki i raporty awarii zbierane automatycznie (Apple iCloud)</h3>
 
-    <p>Podczas korzystania z aplikacji Google Analytics for Firebase automatycznie zbiera:</p>
+    <p>Podczas korzystania z aplikacji do bazy danych twórcy w iCloud, obsługiwanej przez Apple (CloudKit), wysyłane są:</p>
 
     <ul>
-      <li>Identyfikator instancji aplikacji (losowy identyfikator tworzony przy każdej instalacji)</li>
-      <li>Zdarzenia użycia, np. pierwsze uruchomienie (first_open), początek sesji (session_start) i wyświetlenia ekranów</li>
-      <li>Wersję aplikacji, model urządzenia, wersję systemu i język urządzenia</li>
-      <li>Kraj i region oszacowane z adresu IP (samego adresu IP Google nam nie przekazuje)</li>
+      <li>Identyfikator instalacji (losowy identyfikator tworzony przy każdej instalacji)</li>
+      <li>Liczniki użycia: data instalacji, liczba uruchomień, liczba dni od instalacji, czas ostatniego otwarcia oraz to, czy aplikacja była otwarta danego dnia</li>
+      <li>Etapy KORA Pro: czy wyświetlono ekran zakupu, czy zakup rozpoczęto lub zakończono, czy wyczerpano darmowy limit (bez danych płatniczych; płatności w całości obsługuje Apple)</li>
+      <li>Raporty awarii i zawieszeń: rodzaj błędu i miejsce w kodzie aplikacji, w którym wystąpił</li>
+      <li>Wersja aplikacji, model urządzenia, wersja systemu i język urządzenia</li>
     </ul>
 
     <p>Te dane Cię nie identyfikują i nie łączymy ich z innymi danymi w tym celu. Nie zbieramy identyfikatora reklamowego (IDFA), nie prosimy o zgodę App Tracking Transparency i nie używamy danych do reklam ani śledzenia w aplikacjach i witrynach innych firm.</p>
@@ -152,9 +153,9 @@
     <h2>3. Jak długo je przechowujemy</h2>
 
     <ul>
-      <li><strong>Dane na urządzeniu</strong>: usuwane razem z aplikacją. Nie korzystamy z synchronizacji iCloud. (Mogą trafić do pełnej kopii zapasowej iPhone’a.)</li>
+      <li><strong>Dane na urządzeniu</strong>: usuwane razem z aplikacją. Ustawienia nie są synchronizowane przez iCloud. (Mogą trafić do pełnej kopii zapasowej iPhone’a.)</li>
       <li><strong>Dane przetwarzane na urządzeniu</strong>: odrzucane zaraz po przetworzeniu.</li>
-      <li><strong>Statystyki</strong>: usuwane automatycznie zgodnie z ustawieniem przechowywania Google Analytics (2 lub 14 miesięcy). Mogą pozostać zbiorcze dane, które nikogo nie identyfikują.</li>
+      <li><strong>Statystyki i raporty awarii</strong>: przechowywane, dopóki aplikacja jest udostępniana, i usuwane po zakończeniu usługi lub wcześniej na żądanie. Mogą pozostać zbiorcze dane, które nikogo nie identyfikują.</li>
     </ul>
 
     <h2>4. Udostępnianie osobom trzecim</h2>
@@ -163,18 +164,18 @@
 
     <h2>5. Dostawcy usług i przekazywanie za granicę</h2>
 
-    <p>Do statystyk korzystamy z poniższego dostawcy. Dane są przy tym przekazywane poza Koreę.</p>
+    <p>Do przechowywania statystyk i raportów awarii korzystamy z poniższego dostawcy. Dane są przy tym przekazywane poza Koreę.</p>
 
     <div class="table-wrap">
       <table>
         <tbody>
-          <tr><th>Odbiorca</th><td>Google LLC (Google Analytics for Firebase)</td></tr>
-          <tr><th>Kraj</th><td>USA (w tym centra danych Google na całym świecie)</td></tr>
-          <tr><th>Dane</th><td>Statystyki wymienione w pkt 1-c</td></tr>
+          <tr><th>Odbiorca</th><td>Apple Inc. (iCloud, CloudKit)</td></tr>
+          <tr><th>Kraj</th><td>USA (w tym centra danych Apple na całym świecie)</td></tr>
+          <tr><th>Dane</th><td>Dane wymienione w pkt 1-c (identyfikator instalacji, liczniki użycia, etapy KORA Pro, raporty awarii i zawieszeń, wersja aplikacji, model urządzenia, wersja systemu, język urządzenia)</td></tr>
           <tr><th>Kiedy i jak</th><td>Przesyłane szyfrowanym połączeniem (HTTPS) podczas korzystania</td></tr>
-          <tr><th>Cel</th><td>Analiza korzystania z aplikacji</td></tr>
+          <tr><th>Cel</th><td>Analiza korzystania z aplikacji i usuwanie awarii</td></tr>
           <tr><th>Przechowywanie</th><td>Jak statystyki w pkt 3</td></tr>
-          <tr><th>Zasady</th><td><a href="https://policies.google.com/privacy">Polityka prywatności Google</a>, <a href="https://firebase.google.com/support/privacy">Prywatność i bezpieczeństwo w Firebase</a></td></tr>
+          <tr><th>Zasady</th><td><a href="https://www.apple.com/legal/privacy/">Polityka prywatności Apple</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -199,27 +200,27 @@
 
     <h2>7. Usuwanie</h2>
 
-    <p>Dane na urządzeniu iOS usuwa razem z aplikacją. Statystyki Google usuwa automatycznie po okresie z pkt 3. Nie przechowujemy kopii.</p>
+    <p>Dane na urządzeniu iOS usuwa razem z aplikacją. Statystyki i raporty awarii są usuwane zgodnie z pkt 3. Nie przechowujemy innych kopii.</p>
 
     <h2>8. Twoje prawa</h2>
 
     <ul>
       <li>W każdej chwili możesz cofnąć dostęp do lokalizacji, aparatu, mikrofonu, rozpoznawania mowy i ruchu w Ustawieniach iPhone’a.</li>
-      <li>Usunięcie aplikacji kasuje wszystko z urządzenia; ponowna instalacja tworzy nowy identyfikator instancji.</li>
+      <li>Usunięcie aplikacji kasuje wszystko z urządzenia; ponowna instalacja tworzy nowy identyfikator instalacji.</li>
       <li>Aby poprosić o dostęp, sprostowanie, usunięcie lub ograniczenie przetwarzania, napisz na adres poniżej – odpowiemy niezwłocznie. Ponieważ nie mamy danych identyfikujących, możemy nie być w stanie znaleźć statystyk konkretnej osoby.</li>
       <li>Prawa te możesz wykonywać także przez przedstawiciela ustawowego lub pełnomocnika.</li>
     </ul>
 
     <h2>9. Pliki cookie i podobne technologie</h2>
 
-    <p>Aplikacja nie używa plików cookie. Google Analytics for Firebase rozróżnia statystyki po identyfikatorze instancji opisanym w pkt 1-c. Jeśli tego nie chcesz, usuń aplikację.</p>
+    <p>Aplikacja nie używa plików cookie. Statystyki są rozróżniane po identyfikatorze instalacji opisanym w pkt 1-c. Jeśli tego nie chcesz, usuń aplikację.</p>
 
     <h2>10. Bezpieczeństwo</h2>
 
     <ul>
       <li>Przetwarzamy tylko niezbędne minimum, a wszystko, co wrażliwe, dzieje się na Twoim urządzeniu.</li>
       <li>Cała komunikacja sieciowa jest szyfrowana przez HTTPS.</li>
-      <li>Nie mamy serwerów ani baz danych, więc nie gromadzimy danych użytkowników.</li>
+      <li>Nie mamy własnych serwerów. Poza Twoim urządzeniem przechowywane są tylko anonimowe statystyki i raporty awarii z pkt 1-c, w iCloud firmy Apple.</li>
     </ul>
 
     <h2>11. Dzieci</h2>
@@ -239,7 +240,7 @@
 
     <h2>13. Zmiany polityki</h2>
 
-    <p>Polityka obowiązuje od 19 września 2026 r. i zastępuje wersję z 31 maja 2026 r., napisaną dla wcześniejszej wersji aplikacji. O zmianach poinformujemy na tej stronie, podając datę wejścia w życie. Polityka jest dostępna w kilku językach; w razie rozbieżności rozstrzyga <a href="../ko/privacy.html">wersja koreańska</a>.</p>
+    <p>Polityka obowiązuje od 15 października 2026 r. i zastępuje wersję z 19 września 2026 r., która dotyczyła wersji od 1.0.5 do 1.0.7 korzystających z Google Analytics for Firebase. O zmianach poinformujemy na tej stronie, podając datę wejścia w życie. Polityka jest dostępna w kilku językach; w razie rozbieżności rozstrzyga <a href="../ko/privacy.html">wersja koreańska</a>.</p>
   </main>
 
   <footer class="site">

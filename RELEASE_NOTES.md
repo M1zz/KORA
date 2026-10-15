@@ -5,6 +5,192 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 언어마다 `### ...` 제목에 언어 이름이 들어 있고, 코드 블록 안의 글만 올라간다.
 코드 블록 안은 한 줄에 한 문장, 이모지나 마크다운 기호 없이 평문으로 쓴다.
 
+## 1.0.8
+
+### 앱스토어 (한국어 ko)
+
+```
+앱이 더 가벼워졌어요
+다른 회사의 분석 도구를 더 이상 쓰지 않아요
+문제가 생기면 더 빨리 찾아 고칠 수 있어요
+```
+
+### 앱스토어 (English en-US)
+
+```
+The app is now lighter
+We no longer use third-party analytics
+We can find and fix problems faster
+```
+
+### 앱스토어 (日本語 ja)
+
+```
+アプリが軽くなりました
+他社の分析ツールを使わなくなりました
+不具合をより早く見つけて直せるようになりました
+```
+
+### 앱스토어 (중국어 간체 zh-Hans)
+
+```
+应用变得更轻巧
+不再使用第三方分析工具
+出现问题时能更快发现并修复
+```
+
+### 앱스토어 (중국어 번체 zh-Hant)
+
+```
+App 變得更輕巧
+不再使用第三方分析工具
+出現問題時能更快發現並修正
+```
+
+### 앱스토어 (독일어 de)
+
+```
+Die App ist jetzt schlanker
+Keine Analysedienste von Drittanbietern mehr
+Fehler finden und beheben wir jetzt schneller
+```
+
+### 앱스토어 (스페인어 es)
+
+```
+La app ahora es más ligera
+Ya no usamos analítica de terceros
+Detectamos y corregimos errores más rápido
+```
+
+### 앱스토어 (프랑스어 fr)
+
+```
+L'app est désormais plus légère
+Plus aucun outil d'analyse tiers
+Nous repérons et corrigeons les bugs plus vite
+```
+
+### 앱스토어 (이탈리아어 it)
+
+```
+L'app ora è più leggera
+Niente più strumenti di analisi di terze parti
+Troviamo e risolviamo i problemi più in fretta
+```
+
+### 앱스토어 (포르투갈어 브라질 pt-BR)
+
+```
+O app ficou mais leve
+Não usamos mais análises de terceiros
+Encontramos e corrigimos problemas mais rápido
+```
+
+### 앱스토어 (러시아어 ru)
+
+```
+Приложение стало легче
+Больше никакой сторонней аналитики
+Мы быстрее находим и исправляем ошибки
+```
+
+### 앱스토어 (체코어 cs)
+
+```
+Aplikace je teď menší a lehčí
+Už nepoužíváme analytiku třetích stran
+Chyby najdeme a opravíme rychleji
+```
+
+### 앱스토어 (덴마크어 da)
+
+```
+Appen fylder nu mindre
+Vi bruger ikke længere analyse fra tredjeparter
+Vi kan finde og rette fejl hurtigere
+```
+
+### 앱스토어 (그리스어 el)
+
+```
+Η εφαρμογή έγινε πιο ελαφριά
+Δεν χρησιμοποιούμε πια εργαλεία ανάλυσης τρίτων
+Βρίσκουμε και διορθώνουμε προβλήματα πιο γρήγορα
+```
+
+### 앱스토어 (핀란드어 fi)
+
+```
+Sovellus on nyt kevyempi
+Emme enää käytä ulkopuolisia analytiikkapalveluja
+Löydämme ja korjaamme ongelmat nopeammin
+```
+
+### 앱스토어 (인도네시아어 id)
+
+```
+Aplikasi kini lebih ringan
+Kami tidak lagi memakai analitik pihak ketiga
+Masalah bisa kami temukan dan perbaiki lebih cepat
+```
+
+### 앱스토어 (노르웨이어 보크말 nb)
+
+```
+Appen tar nå mindre plass
+Vi bruker ikke lenger analyse fra tredjeparter
+Vi kan finne og rette feil raskere
+```
+
+### 앱스토어 (네덜란드어 nl)
+
+```
+De app is nu lichter
+We gebruiken geen analyse van derden meer
+We vinden en verhelpen problemen sneller
+```
+
+### 앱스토어 (폴란드어 pl)
+
+```
+Aplikacja jest teraz lżejsza
+Nie używamy już zewnętrznych narzędzi analitycznych
+Szybciej znajdujemy i naprawiamy błędy
+```
+
+### 앱스토어 (스웨덴어 sv)
+
+```
+Appen tar nu mindre plats
+Vi använder inte längre analys från tredje part
+Vi hittar och rättar fel snabbare
+```
+
+### 앱스토어 (태국어 th)
+
+```
+แอปมีขนาดเล็กลง
+เลิกใช้เครื่องมือวิเคราะห์จากบริษัทอื่นแล้ว
+ค้นหาและแก้ไขปัญหาได้เร็วขึ้น
+```
+
+### 앱스토어 (튀르키예어 tr)
+
+```
+Uygulama artık daha hafif
+Artık üçüncü taraf analiz araçları kullanmıyoruz
+Sorunları daha hızlı bulup düzeltiyoruz
+```
+
+### 앱스토어 (베트남어 vi)
+
+```
+Ứng dụng nhẹ hơn
+Không còn dùng công cụ phân tích của bên thứ ba
+Phát hiện và sửa lỗi nhanh hơn
+```
+
 ## 1.0.7
 
 ### 앱스토어 (한국어 ko)

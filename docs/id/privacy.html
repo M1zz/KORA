@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="color-scheme" content="light dark">
 <title>Kebijakan Privasi — KORA Navigasi Korea</title>
-<meta name="description" content="Apa yang diproses KORA Navigasi Korea, apa yang tetap di perangkatmu, statistik anonim dengan Google Analytics for Firebase, dan cara menghubungi kami.">
+<meta name="description" content="Apa yang diproses KORA Navigasi Korea, apa yang tetap di perangkatmu, statistik anonim dan laporan crash yang disimpan di iCloud Apple, dan cara menghubungi kami.">
 <link rel="canonical" href="https://m1zz.github.io/KORA/id/privacy.html">
 <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/privacy.html">
 <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/privacy.html">
@@ -81,7 +81,7 @@
   <main>
 <h1>Privasi</h1>
 
-    <p class="lead">Berlaku sejak 19 September 2026 · Untuk versi aplikasi 1.0.5 dan seterusnya</p>
+    <p class="lead">Berlaku sejak 15 Oktober 2026 · Untuk versi aplikasi 1.0.8 dan seterusnya</p>
 
     <p>Kebijakan ini menjelaskan cara aplikasi iOS "KORA Navigasi Korea" ("aplikasi") dari pengembang KORA (Leeo, "kami") menangani informasi. Prinsip kami sederhana: memproses sesedikit mungkin dan menyimpannya di perangkatmu.</p>
 
@@ -89,9 +89,9 @@
       <h3>Ringkasnya</h3>
       <ul>
         <li>Tanpa pendaftaran atau login. Kami tidak mengumpulkan nama, nomor telepon, email, atau apa pun yang langsung mengidentifikasimu.</li>
-        <li>Kami tidak menjalankan server. Pengaturan aplikasi hanya tersimpan di perangkatmu.</li>
+        <li>Kami tidak menjalankan server sendiri. Pengaturan aplikasi hanya tersimpan di perangkatmu.</li>
         <li>Lokasi, kamera, mikrofon, pengenalan suara, dan data gerakan diproses di perangkat dan tidak pernah disimpan atau dikirim.</li>
-        <li>Kami mengumpulkan statistik penggunaan anonim dengan Google Analytics for Firebase untuk meningkatkan aplikasi. Tanpa iklan, tanpa ID iklan (IDFA), tanpa pelacakan lintas aplikasi.</li>
+        <li>Untuk meningkatkan aplikasi, kami mengumpulkan statistik penggunaan anonim dan laporan crash, lalu menyimpannya di iCloud Apple. Tanpa iklan, tanpa ID iklan (IDFA), tanpa pelacakan lintas aplikasi.</li>
       </ul>
     </div>
 
@@ -122,15 +122,16 @@
       </table>
     </div>
 
-    <h3>c. Statistik penggunaan yang dikumpulkan otomatis (Google Analytics for Firebase)</h3>
+    <h3>c. Statistik penggunaan dan laporan crash yang dikumpulkan otomatis (iCloud Apple)</h3>
 
-    <p>Saat kamu memakai aplikasi, Google Analytics for Firebase otomatis mengumpulkan:</p>
+    <p>Saat kamu memakai aplikasi, aplikasi mengirim data berikut ke basis data iCloud milik pengembang yang dioperasikan oleh Apple (CloudKit):</p>
 
     <ul>
-      <li>ID instans aplikasi (pengenal acak yang dibuat setiap instalasi)</li>
-      <li>Peristiwa penggunaan seperti pembukaan pertama (first_open), awal sesi (session_start), dan tampilan layar</li>
+      <li>ID instalasi (pengenal acak yang dibuat setiap instalasi)</li>
+      <li>Jumlah penggunaan: tanggal instalasi, berapa kali aplikasi dibuka, jumlah hari sejak instalasi, kapan terakhir dibuka, dan apakah aplikasi dibuka pada hari tertentu</li>
+      <li>Tahapan KORA Pro: apakah layar pembelian ditampilkan, pembelian dimulai atau selesai, atau batas gratis tercapai (tanpa data pembayaran; pembayaran sepenuhnya ditangani Apple)</li>
+      <li>Laporan crash dan macet: jenis kesalahan dan bagian kode aplikasi tempat kesalahan terjadi</li>
       <li>Versi aplikasi, model perangkat, versi OS, dan bahasa perangkat</li>
-      <li>Negara dan wilayah yang diperkirakan dari alamat IP (Google tidak memberikan alamat IP itu sendiri kepada kami)</li>
     </ul>
 
     <p>Informasi ini tidak mengidentifikasimu, dan kami tidak menggabungkannya dengan data lain untuk itu. Kami tidak mengumpulkan ID iklan (IDFA), tidak meminta izin App Tracking Transparency, dan tidak memakai data untuk iklan atau pelacakan di aplikasi dan situs perusahaan lain.</p>
@@ -152,9 +153,9 @@
     <h2>3. Berapa lama kami menyimpannya</h2>
 
     <ul>
-      <li><strong>Data di perangkat</strong>: terhapus saat aplikasi dihapus. Kami tidak memakai sinkronisasi iCloud. (Bisa ikut dalam cadangan lengkap iPhone.)</li>
+      <li><strong>Data di perangkat</strong>: terhapus saat aplikasi dihapus. Pengaturanmu tidak disinkronkan lewat iCloud. (Bisa ikut dalam cadangan lengkap iPhone.)</li>
       <li><strong>Data yang diproses di perangkat</strong>: dibuang segera setelah diproses.</li>
-      <li><strong>Statistik penggunaan</strong>: dihapus otomatis sesuai pengaturan retensi Google Analytics (2 atau 14 bulan). Statistik agregat yang tidak mengidentifikasi siapa pun dapat tetap ada.</li>
+      <li><strong>Statistik penggunaan dan laporan crash</strong>: disimpan selama aplikasi masih tersedia dan dihapus saat layanan berakhir, atau lebih awal jika kamu memintanya. Statistik agregat yang tidak mengidentifikasi siapa pun dapat tetap ada.</li>
     </ul>
 
     <h2>4. Berbagi dengan pihak ketiga</h2>
@@ -163,18 +164,18 @@
 
     <h2>5. Penyedia layanan dan transfer ke luar negeri</h2>
 
-    <p>Kami memakai penyedia berikut untuk statistik penggunaan. Dalam prosesnya, data ditransfer ke luar Korea.</p>
+    <p>Kami memakai penyedia berikut untuk menyimpan statistik penggunaan dan laporan crash. Dalam prosesnya, data ditransfer ke luar Korea.</p>
 
     <div class="table-wrap">
       <table>
         <tbody>
-          <tr><th>Penerima</th><td>Google LLC (Google Analytics for Firebase)</td></tr>
-          <tr><th>Negara</th><td>Amerika Serikat (termasuk pusat data Google di seluruh dunia)</td></tr>
-          <tr><th>Data</th><td>Statistik penggunaan pada poin 1-c</td></tr>
+          <tr><th>Penerima</th><td>Apple Inc. (iCloud, CloudKit)</td></tr>
+          <tr><th>Negara</th><td>Amerika Serikat (termasuk pusat data Apple di seluruh dunia)</td></tr>
+          <tr><th>Data</th><td>Data pada poin 1-c (ID instalasi, jumlah penggunaan, tahapan KORA Pro, laporan crash dan macet, versi aplikasi, model perangkat, versi OS, bahasa perangkat)</td></tr>
           <tr><th>Kapan dan bagaimana</th><td>Dikirim lewat koneksi terenkripsi (HTTPS) saat aplikasi dipakai</td></tr>
-          <tr><th>Tujuan</th><td>Analisis penggunaan aplikasi</td></tr>
-          <tr><th>Retensi</th><td>Sama dengan statistik pada bagian 3</td></tr>
-          <tr><th>Kebijakan</th><td><a href="https://policies.google.com/privacy">Kebijakan Privasi Google</a>, <a href="https://firebase.google.com/support/privacy">Privasi dan keamanan di Firebase</a></td></tr>
+          <tr><th>Tujuan</th><td>Analisis penggunaan aplikasi dan perbaikan crash</td></tr>
+          <tr><th>Retensi</th><td>Sama dengan statistik penggunaan dan laporan crash pada bagian 3</td></tr>
+          <tr><th>Kebijakan</th><td><a href="https://www.apple.com/legal/privacy/">Kebijakan Privasi Apple</a></td></tr>
         </tbody>
       </table>
     </div>
@@ -199,27 +200,27 @@
 
     <h2>7. Penghapusan</h2>
 
-    <p>iOS menghapus data di perangkat saat aplikasi dihapus. Google menghapus statistik secara otomatis setelah masa retensi di bagian 3. Kami tidak menyimpan salinan.</p>
+    <p>iOS menghapus data di perangkat saat aplikasi dihapus. Statistik penggunaan dan laporan crash dihapus sesuai bagian 3. Kami tidak menyimpan salinan lain.</p>
 
     <h2>8. Hak-hakmu</h2>
 
     <ul>
       <li>Kamu bisa mencabut akses lokasi, kamera, mikrofon, pengenalan suara, dan gerakan kapan saja di Pengaturan iPhone.</li>
-      <li>Menghapus aplikasi menghapus semua yang tersimpan di perangkat; memasang ulang membuat ID instans baru.</li>
+      <li>Menghapus aplikasi menghapus semua yang tersimpan di perangkat; memasang ulang membuat ID instalasi baru.</li>
       <li>Untuk meminta akses, koreksi, penghapusan, atau pembatasan pemrosesan, kirim email ke alamat di bawah dan kami akan segera membalas. Karena tidak punya data yang mengidentifikasi, kami mungkin tidak bisa menemukan statistik orang tertentu.</li>
       <li>Kamu juga dapat menggunakan hak ini melalui wali atau kuasa yang sah.</li>
     </ul>
 
     <h2>9. Cookie dan teknologi serupa</h2>
 
-    <p>Aplikasi tidak memakai cookie web. Google Analytics for Firebase membedakan statistik dengan ID instans pada poin 1-c. Jika tidak menginginkannya, kamu bisa menghapus aplikasi.</p>
+    <p>Aplikasi tidak memakai cookie web. Statistik penggunaan dibedakan dengan ID instalasi pada poin 1-c. Jika tidak menginginkannya, kamu bisa menghapus aplikasi.</p>
 
     <h2>10. Keamanan</h2>
 
     <ul>
       <li>Kami hanya memproses yang benar-benar perlu, dan semua pemrosesan sensitif terjadi di perangkatmu.</li>
       <li>Semua komunikasi jaringan dienkripsi dengan HTTPS.</li>
-      <li>Kami tidak punya server atau basis data, jadi tidak ada data pengguna yang menumpuk di pihak kami.</li>
+      <li>Kami tidak menjalankan server sendiri. Satu-satunya data yang disimpan di luar perangkatmu adalah statistik anonim dan laporan crash pada poin 1-c, yang tersimpan di iCloud Apple.</li>
     </ul>
 
     <h2>11. Anak-anak</h2>
@@ -239,7 +240,7 @@
 
     <h2>13. Perubahan kebijakan</h2>
 
-    <p>Kebijakan ini berlaku sejak 19 September 2026 dan menggantikan kebijakan tertanggal 31 Mei 2026 yang ditulis untuk versi aplikasi sebelumnya. Jika berubah, kami akan memuat pembaruannya di halaman ini beserta tanggal berlakunya. Kebijakan ini tersedia dalam beberapa bahasa; jika terjemahannya berbeda, yang berlaku adalah <a href="../ko/privacy.html">versi bahasa Korea</a>.</p>
+    <p>Kebijakan ini berlaku sejak 15 Oktober 2026 dan menggantikan kebijakan tertanggal 19 September 2026 yang berlaku untuk versi 1.0.5 sampai 1.0.7, yaitu versi yang memakai Google Analytics for Firebase. Jika berubah, kami akan memuat pembaruannya di halaman ini beserta tanggal berlakunya. Kebijakan ini tersedia dalam beberapa bahasa; jika terjemahannya berbeda, yang berlaku adalah <a href="../ko/privacy.html">versi bahasa Korea</a>.</p>
   </main>
 
   <footer class="site">
