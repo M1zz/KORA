@@ -218,6 +218,19 @@ def fix_root(page, labels):
                       for l, name in LANGS)
     text = re.sub(r'  <ul class="picker">.*?</ul>', lambda m: f'  <ul class="picker">\n{items}\n  </ul>', text,
                   count=1, flags=re.S)
+    # 언어를 고르기 전에도(스크립트 없이 읽어도) 개인정보처리방침과 연락처가 보이게 한다.
+    privacy = " · ".join(f'<a href="{l}/{PAGES["privacy"]}" hreflang="{l}" lang="{l}">{labels[l][2]}</a>'
+                         for l, _ in LANGS)
+    block = ("  <!-- root-links -->\n"
+             '  <footer class="site">\n'
+             f"    <p>Privacy Policy · 개인정보처리방침 · プライバシーポリシー: {privacy}</p>\n"
+             f'    <p>Contact · 문의 · お問い合わせ: <a href="mailto:{EMAIL}">{EMAIL}</a></p>\n'
+             "  </footer>\n"
+             "  <!-- /root-links -->\n")
+    if "<!-- root-links -->" in text:
+        text = re.sub(r"  <!-- root-links -->\n.*?<!-- /root-links -->\n", lambda m: block, text, count=1, flags=re.S)
+    else:
+        text = text.replace("  </ul>\n", "  </ul>\n" + block, 1)
     f.write_text(text, encoding="utf-8")
 
 
