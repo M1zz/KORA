@@ -1,6 +1,7 @@
 import SwiftUI
 import CoreLocation
 import TipKit
+import LeeoKit
 
 // MARK: - Tips
 
@@ -3224,6 +3225,10 @@ struct LanguagePickerSheet: View {
                 }
 
                 KORAProSection(lang: sheetLang)
+
+                Section {
+                    NavigationLink(LeeoRoadmapText.entry) { RoadmapScreen() }
+                }
 
                 DeveloperContactSection(lang: sheetLang)
             }
