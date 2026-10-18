@@ -5,6 +5,214 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 언어마다 `### ...` 제목에 언어 이름이 들어 있고, 코드 블록 안의 글만 올라간다.
 코드 블록 안은 한 줄에 한 문장, 이모지나 마크다운 기호 없이 평문으로 쓴다.
 
+## 1.0.9
+
+### 앱스토어 (한국어 ko)
+
+```
+처음 쓰는 분께 사용법을 세 장으로 알려 드려요
+앱에서 바로 의견을 보내고 답장도 받아요
+고대비와 동작 줄이기 설정에 맞춰 보여요
+VoiceOver로도 타고 내릴 수 있어요
+```
+
+### 앱스토어 (English en-US)
+
+```
+A quick guide for first-time riders
+Send feedback and read replies in-app
+Supports higher contrast and less motion
+Board and get off with VoiceOver too
+```
+
+### 앱스토어 (日本語 ja)
+
+```
+初めての方向けの使い方ガイドが付きました
+アプリから意見を送り、返信も読めます
+コントラストや視差効果の設定に対応しました
+VoiceOverでも乗車と降車ができます
+```
+
+### 앱스토어 (중국어 간체 zh-Hans)
+
+```
+新增首次使用的简短指南
+可在应用内反馈意见并查看回复
+支持增强对比度和减弱动态效果
+用旁白也能完成上下车操作
+```
+
+### 앱스토어 (중국어 번체 zh-Hant)
+
+```
+新增第一次使用的簡短說明
+可在 App 內回饋意見並查看回覆
+支援增加對比和減少動態效果
+用 VoiceOver 也能完成上下車操作
+```
+
+### 앱스토어 (독일어 de)
+
+```
+Eine kurze Anleitung für den Einstieg
+Feedback senden und Antworten lesen
+Hoher Kontrast und weniger Bewegung
+Ein- und Aussteigen auch mit VoiceOver
+```
+
+### 앱스토어 (스페인어 es)
+
+```
+Una guía breve para empezar
+Envía comentarios y lee las respuestas
+Más contraste y menos movimiento
+Sube y baja también con VoiceOver
+```
+
+### 앱스토어 (프랑스어 fr)
+
+```
+Un petit guide pour bien démarrer
+Envoyez vos avis et lisez nos réponses
+Contraste accru et animations réduites
+Montez et descendez aussi avec VoiceOver
+```
+
+### 앱스토어 (이탈리아어 it)
+
+```
+Una breve guida per iniziare
+Invia feedback e leggi le risposte
+Più contrasto e meno movimento
+Sali e scendi anche con VoiceOver
+```
+
+### 앱스토어 (포르투갈어 브라질 pt-BR)
+
+```
+Um guia rápido para começar
+Envie sua opinião e leia as respostas
+Mais contraste e menos movimento
+Embarque e desembarque com VoiceOver
+```
+
+### 앱스토어 (러시아어 ru)
+
+```
+Короткое руководство для новичков
+Отзывы и ответы прямо в приложении
+Поддержка контраста и меньшего движения
+Посадка и выход теперь и с VoiceOver
+```
+
+### 앱스토어 (체코어 cs)
+
+```
+Krátký průvodce pro začátek
+Zpětná vazba a odpovědi přímo v aplikaci
+Vyšší kontrast a omezení pohybu
+Nástup a výstup i s VoiceOverem
+```
+
+### 앱스토어 (덴마크어 da)
+
+```
+En kort guide til at komme i gang
+Send feedback og læs vores svar i appen
+Øget kontrast og mindre bevægelse
+Stig på og af også med VoiceOver
+```
+
+### 앱스토어 (그리스어 el)
+
+```
+Σύντομος οδηγός για να ξεκινήσετε
+Σχόλια και απαντήσεις μέσα στην εφαρμογή
+Αυξημένη αντίθεση και μείωση κίνησης
+Επιβίβαση και αποβίβαση και με VoiceOver
+```
+
+### 앱스토어 (핀란드어 fi)
+
+```
+Lyhyt opas alkuun
+Palaute ja vastaukset sovelluksessa
+Lisää kontrastia ja vähemmän liikettä
+Kyytiin ja pois myös VoiceOverilla
+```
+
+### 앱스토어 (인도네시아어 id)
+
+```
+Panduan singkat untuk pengguna baru
+Kirim masukan, baca balasan di aplikasi
+Kontras tinggi dan gerakan dikurangi
+Naik dan turun juga dengan VoiceOver
+```
+
+### 앱스토어 (노르웨이어 보크말 nb)
+
+```
+En kort guide for å komme i gang
+Send tilbakemelding og les svarene våre
+Økt kontrast og redusert bevegelse
+Gå på og av også med VoiceOver
+```
+
+### 앱스토어 (네덜란드어 nl)
+
+```
+Een korte uitleg om te beginnen
+Stuur feedback en lees onze antwoorden
+Meer contrast en minder beweging
+In- en uitstappen ook met VoiceOver
+```
+
+### 앱스토어 (폴란드어 pl)
+
+```
+Krótki przewodnik na start
+Opinie i odpowiedzi prosto w aplikacji
+Większy kontrast i mniej ruchu
+Wsiadanie i wysiadanie także z VoiceOver
+```
+
+### 앱스토어 (스웨덴어 sv)
+
+```
+En kort guide för att komma igång
+Skicka feedback och läs svar i appen
+Ökad kontrast och minskad rörelse
+Kliv på och av även med VoiceOver
+```
+
+### 앱스토어 (태국어 th)
+
+```
+คู่มือสั้นๆ สำหรับผู้ใช้ใหม่
+ส่งความคิดเห็นและอ่านคำตอบในแอป
+รองรับความต่างของสีสูงและลดการเคลื่อนไหว
+ขึ้นและลงรถไฟด้วย VoiceOver ได้แล้ว
+```
+
+### 앱스토어 (튀르키예어 tr)
+
+```
+Yeni başlayanlar için kısa bir rehber
+Geri bildirim gönder, yanıtlarımızı oku
+Yüksek kontrast ve azaltılmış hareket
+VoiceOver ile de binip inebilirsin
+```
+
+### 앱스토어 (베트남어 vi)
+
+```
+Hướng dẫn ngắn cho người mới
+Gửi góp ý và đọc phản hồi trong ứng dụng
+Tăng tương phản và giảm chuyển động
+Lên và xuống tàu bằng VoiceOver
+```
 ## 1.0.8
 
 ### 앱스토어 (한국어 ko)
