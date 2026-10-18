@@ -14,6 +14,8 @@ import LeeoKit
 enum KORASpec: LeeoAppSpec {
     static let appName = "KORA"
     static let developerEmail = "leeo@kakao.com"
+    /// 설정의 "리뷰 남기기" 가 작성 페이지로 바로 가도록 (itunes lookup com.kora.leeo).
+    static let appStoreID: String? = "6775176578"
 
     static let feedback = LeeoFeedbackConfig(
         containerIdentifier: "iCloud.com.Ysoup.FeedbackHub",

@@ -138,6 +138,7 @@ struct ExitGuideSheet: View {
                     .padding(16)
             }
             .accessibilityLabel(NavLoc.done.resolved(lang))
+            .accessibilityInputLabels([Text(NavLoc.done.resolved(lang))])
         }
         .presentationDragIndicator(.visible)
     }
@@ -157,6 +158,8 @@ struct ExitGuideSheet: View {
             Text(exit.places.joined(separator: " · "))
                 .font(.body)
                 .foregroundStyle(KORATheme.labelPrimary)
+                // 길게 눌러 복사 — 지도 앱에 장소 이름을 붙여 넣을 때.
+                .textSelection(.enabled)
                 .fixedSize(horizontal: false, vertical: true)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.top, 6)

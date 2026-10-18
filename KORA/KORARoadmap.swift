@@ -19,38 +19,45 @@ import LeeoKit
 extension KORASpec {
     static var roadmap: [LeeoRoadmapItem] {
         let lang = roadmapLanguage
-        func item(_ id: String, _ title: NavLoc, _ detail: NavLoc) -> LeeoRoadmapItem {
-            .init(id: id, status: .planned, title: title.resolved(lang), detail: detail.resolved(lang))
+        func item(_ id: String, _ title: NavLoc, _ detail: NavLoc,
+                  _ status: LeeoRoadmapItem.Status = .planned) -> LeeoRoadmapItem {
+            .init(id: id, status: status, title: title.resolved(lang), detail: detail.resolved(lang))
         }
         return [
             // MARK: 다음에 만들어요
             item("autosave", .roadmapResume, .roadmapResumeDetail),
-            item("onboarding", .roadmapOnboarding, .roadmapOnboardingDetail),
-            item("whatsnew", .roadmapWhatsNew, .roadmapWhatsNewDetail),
-            item("feedback.inapp", .roadmapFeedback, .roadmapFeedbackDetail),
-            item("feedback.reply", .roadmapFeedbackReply, .roadmapFeedbackReplyDetail),
-            item("about.version", .roadmapVersion, .roadmapVersionDetail),
             item("a11y.voiceover", .roadmapVoiceOver, .roadmapVoiceOverDetail),
             item("a11y.largetext", .roadmapLargeText, .roadmapLargeTextDetail),
-            item("a11y.contrast", .roadmapContrast, .roadmapContrastDetail),
-            item("a11y.motion", .roadmapMotion, .roadmapMotionDetail),
             item("a11y.keyboard", .roadmapKeyboard, .roadmapKeyboardDetail),
             item("fold", .roadmapFold, .roadmapFoldDetail),
+
+            // MARK: 내보냈어요
+            item("onboarding", .roadmapOnboarding, .roadmapOnboardingDetail, .shipped("1.0.9")),
+            item("whatsnew", .roadmapWhatsNew, .roadmapWhatsNewDetail, .shipped("1.0.9")),
+            item("feedback.inapp", .roadmapFeedback, .roadmapFeedbackDetail, .shipped("1.0.9")),
+            item("feedback.reply", .roadmapFeedbackReply, .roadmapFeedbackReplyDetail, .shipped("1.0.9")),
+            item("about.version", .roadmapVersion, .roadmapVersionDetail, .shipped("1.0.9")),
+            item("a11y.contrast", .roadmapContrast, .roadmapContrastDetail, .shipped("1.0.9")),
+            item("a11y.motion", .roadmapMotion, .roadmapMotionDetail, .shipped("1.0.9")),
         ]
     }
 
     /// 앱 안에서 고른 언어(언어 시트). 비어 있으면 기기 언어를 따른다 — 화면의 나머지와 같은 규칙.
-    private static var roadmapLanguage: StationLanguage {
-        let pref = UserDefaults.standard.string(forKey: "kora.display_language") ?? ""
-        return StationLanguage(rawValue: pref) ?? StationLanguage.resolveFromSystemLocale()
-    }
+    private static var roadmapLanguage: StationLanguage { .inAppChoice }
 }
 
 // MARK: - 화면
 
-/// 언어 시트 ▸ 앞으로 만들 기능. 앱 안 피드백 창이 아직 없어 제안 단추는 두지 않는다.
+/// 언어 시트 ▸ 앞으로 만들 기능. 바라는 기능은 앱 안 피드백 창(기능 제안)으로 바로 보낸다.
 struct RoadmapScreen: View {
+    @State private var showSuggest = false
+
     var body: some View {
-        LeeoRoadmapView<KORASpec>()
+        LeeoRoadmapView<KORASpec>(onSuggest: { showSuggest = true })
+            .sheet(isPresented: $showSuggest) {
+                NavigationStack {
+                    LeeoFeedbackView<KORASpec>(initialType: .feature)
+                }
+            }
     }
 }

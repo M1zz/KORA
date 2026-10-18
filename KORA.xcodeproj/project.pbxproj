@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		178554DE9CC7D8AF586969BA /* SubwayStationChineseTraditionalNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1F37D764C0981336FB8ED /* SubwayStationChineseTraditionalNames.swift */; };
+		52C1E797CE3FF9EB6B79569B /* KORAOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E41CBC41FA1E01C421558 /* KORAOps.swift */; };
+		6F5D0AC2E2C8C983A7D6D753 /* KORATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DA18C0A341E50817C804 /* KORATests.swift */; };
 		749636181A0BA9BFD20746A2 /* KORARoadmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30AA3727A6C748762BDB882 /* KORARoadmap.swift */; };
+		818B386BB6FEB822B14E7710 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D017B436A4BFC9338A4A8F52 /* Foundation.framework */; };
+		98123AE006EE0BEC4B878BA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D017B436A4BFC9338A4A8F52 /* Foundation.framework */; };
 		9C8F74612FC6E3A000B6DA22 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */; };
 		9C8F74632FC6E3A000B6DA22 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */; };
 		9C8F74722FC6E3A100B6DA22 /* widgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -47,11 +51,28 @@
 		AA095 /* last_trains.json in Resources */ = {isa = PBXBuildFile; fileRef = AA195 /* last_trains.json */; };
 		AA096 /* KORALuggageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA196 /* KORALuggageMode.swift */; };
 		AA097 /* quick_exits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA197 /* quick_exits.json */; };
+		B28BC43FCA7E3ADCCCD4EB7A /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B0BC9C834088B328FF6507 /* WhatsNewView.swift */; };
 		C62E585A5BD40DD03A69611E /* KORASpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D94BF998F4FA289367D996 /* KORASpec.swift */; };
 		D1286038A08AD446436B2949 /* LeeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = B166D3AACB5B9C90AC428313 /* LeeoKit */; };
+		D999DB981385F94B4D7355AB /* KORAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A2D1E8A09BD26E4BFA2F /* KORAUITests.swift */; };
+		F9C1A5B07B654E85BB6129D6 /* KORAOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F01AD801998564ABFD99FEA /* KORAOnboardingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		86D4A78F2E5C7D9EDFEC0F04 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA700 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA500;
+			remoteInfo = KORA;
+		};
+		937FC8A1618E21EC90F8F950 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA700 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AA500;
+			remoteInfo = KORA;
+		};
 		9C8F74702FC6E3A100B6DA22 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA700 /* Project object */;
@@ -76,6 +97,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E04A2D1E8A09BD26E4BFA2F /* KORAUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KORAUITests.swift; sourceTree = "<group>"; };
+		153D72F9D07DFBA98CE0E192 /* KORAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KORAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C8E41CBC41FA1E01C421558 /* KORAOps.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KORAOps.swift; sourceTree = "<group>"; };
+		4F01AD801998564ABFD99FEA /* KORAOnboardingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KORAOnboardingView.swift; sourceTree = "<group>"; };
 		53D94BF998F4FA289367D996 /* KORASpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORASpec.swift; sourceTree = "<group>"; };
 		58FF4F082FC47ADC00DF7156 /* KORA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KORA.entitlements; sourceTree = "<group>"; };
 		9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +144,10 @@
 		AA197 /* quick_exits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = quick_exits.json; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0BF0AF98EA2E04687A92072 /* SubwayNavigatorCatalog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubwayNavigatorCatalog.swift; sourceTree = "<group>"; };
+		B80A15DD4F041A3443CC9668 /* KORATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KORATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBC1DA18C0A341E50817C804 /* KORATests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KORATests.swift; sourceTree = "<group>"; };
+		D017B436A4BFC9338A4A8F52 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS26.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		E8B0BC9C834088B328FF6507 /* WhatsNewView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WhatsNewView.swift; sourceTree = "<group>"; };
 		F30AA3727A6C748762BDB882 /* KORARoadmap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KORARoadmap.swift; sourceTree = "<group>"; };
 		F3C1F37D764C0981336FB8ED /* SubwayStationChineseTraditionalNames.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubwayStationChineseTraditionalNames.swift; sourceTree = "<group>"; };
 		F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
@@ -150,6 +179,14 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7AD617B964300EF0BF089F6C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				98123AE006EE0BEC4B878BA6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9C8F745B2FC6E3A000B6DA22 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -167,14 +204,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CD0F1246EFF117F0397D1DCD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				818B386BB6FEB822B14E7710 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		31B746DFE9F2D92C9C461D14 /* KORATests */ = {
+			isa = PBXGroup;
+			children = (
+				CBC1DA18C0A341E50817C804 /* KORATests.swift */,
+			);
+			name = KORATests;
+			path = KORATests;
+			sourceTree = "<group>";
+		};
+		8261D23189CAB96FB290B7BB /* KORAUITests */ = {
+			isa = PBXGroup;
+			children = (
+				0E04A2D1E8A09BD26E4BFA2F /* KORAUITests.swift */,
+			);
+			name = KORAUITests;
+			path = KORAUITests;
+			sourceTree = "<group>";
+		};
 		9C8F745F2FC6E3A000B6DA22 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */,
 				9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */,
+				CD4C27067913D15C200ACC9B /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -186,6 +250,8 @@
 				9C8F74642FC6E3A000B6DA22 /* widget */,
 				9C8F745F2FC6E3A000B6DA22 /* Frameworks */,
 				AA402 /* Products */,
+				31B746DFE9F2D92C9C461D14 /* KORATests */,
+				8261D23189CAB96FB290B7BB /* KORAUITests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -215,6 +281,8 @@
 			children = (
 				AA200 /* KORA.app */,
 				9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */,
+				B80A15DD4F041A3443CC9668 /* KORATests.xctest */,
+				153D72F9D07DFBA98CE0E192 /* KORAUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -235,6 +303,7 @@
 				AA424 /* Subway */,
 				AA422 /* Now */,
 				AA423 /* Share */,
+				E0B271754DC2FD89CF31653C /* Onboarding */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -323,13 +392,68 @@
 				AA131 /* LocationService.swift */,
 				AA144 /* KORALiveActivityManager.swift */,
 				AA190 /* KORAPro.swift */,
+				2C8E41CBC41FA1E01C421558 /* KORAOps.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		CD4C27067913D15C200ACC9B /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				D017B436A4BFC9338A4A8F52 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		E0B271754DC2FD89CF31653C /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				4F01AD801998564ABFD99FEA /* KORAOnboardingView.swift */,
+				E8B0BC9C834088B328FF6507 /* WhatsNewView.swift */,
+			);
+			name = Onboarding;
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		1FA560C9B1FB3270E34FD269 /* KORATests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C548CD33033E5735DC9A847 /* Build configuration list for PBXNativeTarget "KORATests" */;
+			buildPhases = (
+				E4D2A21F24F8C5DDF5E85842 /* Sources */,
+				7AD617B964300EF0BF089F6C /* Frameworks */,
+				64454291A0EAEEA3B1CA87A0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4D1B9EF7A44C73FA573B7210 /* PBXTargetDependency */,
+			);
+			name = KORATests;
+			productName = KORATests;
+			productReference = B80A15DD4F041A3443CC9668 /* KORATests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4C3D32A10F270FFBDBE69807 /* KORAUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAABB89A5D94560031E468D7 /* Build configuration list for PBXNativeTarget "KORAUITests" */;
+			buildPhases = (
+				C199953B304F20E9258E4008 /* Sources */,
+				CD0F1246EFF117F0397D1DCD /* Frameworks */,
+				EEE6F12B18105B161A16349F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3715CDD9FF26F0E06DE3EF55 /* PBXTargetDependency */,
+			);
+			name = KORAUITests;
+			productName = KORAUITests;
+			productReference = 153D72F9D07DFBA98CE0E192 /* KORAUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		9C8F745D2FC6E3A000B6DA22 /* widgetExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9C8F74762FC6E3A100B6DA22 /* Build configuration list for PBXNativeTarget "widgetExtension" */;
@@ -430,11 +554,20 @@
 			targets = (
 				AA500 /* KORA */,
 				9C8F745D2FC6E3A000B6DA22 /* widgetExtension */,
+				1FA560C9B1FB3270E34FD269 /* KORATests */,
+				4C3D32A10F270FFBDBE69807 /* KORAUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		64454291A0EAEEA3B1CA87A0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9C8F745C2FC6E3A000B6DA22 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -454,6 +587,13 @@
 				AA093 /* station_exits.json in Resources */,
 				AA095 /* last_trains.json in Resources */,
 				AA097 /* quick_exits.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EEE6F12B18105B161A16349F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,12 +641,43 @@
 				178554DE9CC7D8AF586969BA /* SubwayStationChineseTraditionalNames.swift in Sources */,
 				A840DAF76879186E63CC68B5 /* SubwayNavigatorCatalog.swift in Sources */,
 				749636181A0BA9BFD20746A2 /* KORARoadmap.swift in Sources */,
+				52C1E797CE3FF9EB6B79569B /* KORAOps.swift in Sources */,
+				F9C1A5B07B654E85BB6129D6 /* KORAOnboardingView.swift in Sources */,
+				B28BC43FCA7E3ADCCCD4EB7A /* WhatsNewView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C199953B304F20E9258E4008 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D999DB981385F94B4D7355AB /* KORAUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4D2A21F24F8C5DDF5E85842 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F5D0AC2E2C8C983A7D6D753 /* KORATests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3715CDD9FF26F0E06DE3EF55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KORA;
+			target = AA500 /* KORA */;
+			targetProxy = 86D4A78F2E5C7D9EDFEC0F04 /* PBXContainerItemProxy */;
+		};
+		4D1B9EF7A44C73FA573B7210 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KORA;
+			target = AA500 /* KORA */;
+			targetProxy = 937FC8A1618E21EC90F8F950 /* PBXContainerItemProxy */;
+		};
 		9C8F74712FC6E3A100B6DA22 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 9C8F745D2FC6E3A000B6DA22 /* widgetExtension */;
@@ -515,6 +686,41 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		2567600EBE8FA53C4EB4C6AE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.KORAUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KORA;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2A7FA2F309DDE1CE19114D25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.KORAUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = KORA;
+			};
+			name = Debug;
+		};
 		9C8F74732FC6E3A100B6DA22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */;
@@ -760,9 +966,55 @@
 			};
 			name = Release;
 		};
+		CD0DDE6C3FF5A064E1C2B192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.KORATests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KORA.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KORA";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CF58C6FDE50C12D67F96F562 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.KORATests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/KORA.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/KORA";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6C548CD33033E5735DC9A847 /* Build configuration list for PBXNativeTarget "KORATests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CD0DDE6C3FF5A064E1C2B192 /* Release */,
+				CF58C6FDE50C12D67F96F562 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		9C8F74762FC6E3A100B6DA22 /* Build configuration list for PBXNativeTarget "widgetExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -786,6 +1038,15 @@
 			buildConfigurations = (
 				AA601 /* Debug */,
 				AA602 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAABB89A5D94560031E468D7 /* Build configuration list for PBXNativeTarget "KORAUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2567600EBE8FA53C4EB4C6AE /* Release */,
+				2A7FA2F309DDE1CE19114D25 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

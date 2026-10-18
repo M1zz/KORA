@@ -1,3 +1,4 @@
+import OSLog
 import Foundation
 import Speech
 import AVFoundation
@@ -61,6 +62,10 @@ final class StationAnnouncementListener: NSObject, ObservableObject {
         self.candidates = candidates.map { $0.hasSuffix("역") ? String($0.dropLast()) : $0 }
         self.onConfirm = onConfirm
         self.lastConfirmed = nil
+        guard KORAFlag.announcementListening.isEnabled else {
+            KORALog.announcement.notice("안내방송 인식이 원격으로 꺼져 있어 듣지 않습니다")
+            return
+        }
         guard recognizer?.isAvailable == true, recognizer?.supportsOnDeviceRecognition == true else { return }
         do {
             try configureSession()
@@ -68,6 +73,7 @@ final class StationAnnouncementListener: NSObject, ObservableObject {
             isListening = true
             beginRecognition()
         } catch {
+            KORALog.announcement.error("안내방송 듣기 시작 실패: \(error.localizedDescription, privacy: .public)")
             isListening = false
         }
     }

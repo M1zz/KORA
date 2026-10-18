@@ -13,8 +13,14 @@ enum LastTrainService {
         let station: String
         /// 출발 시각 (실제 날짜·시각).
         let date: Date
-        /// "00:46" 처럼 서울 시각으로.
-        let clock: String
+
+        /// 서울 시각을 그 언어의 시각 표기로 ("00:46" · "12:46 AM" · "0:46").
+        func clock(_ lang: StationLanguage) -> String {
+            var style = Date.FormatStyle(date: .omitted, time: .shortened)
+            style.timeZone = LastTrainService.seoul
+            style.locale = lang.locale
+            return date.formatted(style)
+        }
     }
 
     // MARK: - 데이터
@@ -42,7 +48,7 @@ enum LastTrainService {
         return decoded
     }()
 
-    private static let seoul = TimeZone(identifier: "Asia/Seoul")!
+    static let seoul = TimeZone(identifier: "Asia/Seoul")!
     private static var calendar: Calendar {
         var c = Calendar(identifier: .gregorian)
         c.timeZone = seoul
@@ -73,8 +79,7 @@ enum LastTrainService {
         }
         guard let minute = latest else { return nil }
         let date = serviceDay.addingTimeInterval(TimeInterval(minute * 60))
-        let clock = String(format: "%02d:%02d", (minute / 60) % 24, minute % 60)
-        return Deadline(station: origin, date: date, clock: clock)
+        return Deadline(station: origin, date: date)
     }
 
     /// 한 구간을 그 방향으로 끝까지(내릴 역 이상) 가는 마지막 열차의 출발 분.
@@ -160,7 +165,7 @@ enum LastTrainService {
             guard fire > Date() else { continue }
             let content = UNMutableNotificationContent()
             content.title = NavLoc.lastTrainNotifyTitle.fill(lang, "\(lead)")
-            content.body = NavLoc.lastTrainInfo.fill(lang, station, deadline.clock)
+            content.body = NavLoc.lastTrainInfo.fill(lang, station, deadline.clock(lang))
             content.sound = .default
             let trigger = UNTimeIntervalNotificationTrigger(timeInterval: fire.timeIntervalSinceNow, repeats: false)
             try? await center.add(UNNotificationRequest(identifier: id, content: content, trigger: trigger))
@@ -217,7 +222,7 @@ struct LastTrainCard: View {
                     .fontWeight(.bold)
                 Spacer(minLength: 4)
                 if !gone {
-                    Text(deadline.clock)
+                    Text(deadline.clock(lang))
                         .font(.title3).fontWeight(.heavy)
                         .monospacedDigit()
                 }
@@ -225,7 +230,7 @@ struct LastTrainCard: View {
             .font(.body)
             .foregroundStyle(tint)
 
-            Text((gone ? NavLoc.lastTrainGoneHint : NavLoc.lastTrainInfo).fill(lang, station, deadline.clock))
+            Text((gone ? NavLoc.lastTrainGoneHint : NavLoc.lastTrainInfo).fill(lang, station, deadline.clock(lang)))
                 .font(.subheadline)
                 .foregroundStyle(KORATheme.labelPrimary)
                 .fixedSize(horizontal: false, vertical: true)

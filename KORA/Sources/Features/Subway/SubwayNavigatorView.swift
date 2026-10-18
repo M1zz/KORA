@@ -2,6 +2,7 @@ import SwiftUI
 import CoreLocation
 import TipKit
 import LeeoKit
+import OSLog
 
 // MARK: - Tips
 
@@ -10,6 +11,8 @@ import LeeoKit
 /// performs a long-press for the first time.
 struct LanguageLongPressTip: Tip {
     static let didLongPress = Event(id: "language-long-press-discovered")
+    /// 사용법 안내가 떠 있는 동안에는 팁을 띄우지 않는다(안내 위에 말풍선이 겹친다).
+    @Parameter static var isOnboardingVisible: Bool = false
 
     let lang: StationLanguage
 
@@ -26,7 +29,10 @@ struct LanguageLongPressTip: Tip {
     }
 
     var rules: [Rule] {
-        [#Rule(Self.didLongPress) { $0.donations.count == 0 }]
+        [
+            #Rule(Self.didLongPress) { $0.donations.count == 0 },
+            #Rule(Self.$isOnboardingVisible) { $0 == false },
+        ]
     }
 }
 
@@ -142,6 +148,19 @@ struct SubwayNavigatorView: View {
     @State private var arrivalPaywallShown = false
     /// 스크린샷 촬영용: 출구 안내 시트를 바로 띄운다.
     @State private var screenshotExitGuide = false
+    /// 도착한 순간(좋은 인상일 때)에만 묻는 만족도 확인 — 결제 화면과 겹치지 않을 때.
+    @State private var showReviewGate = false
+    /// 사용법 안내를 마치기 전에는 위치 권한을 묻지 않는다 — 안내 첫 장 위에 권한 창이 겹친다.
+    @AppStorage(KORAOnboarding.completedKey) private var hasCompletedOnboarding = false
+    /// 이번 여정의 도착을 이미 셌는지 (뒤로 넘겼다 돌아와도 한 번만).
+    @State private var arrivalRecorded = false
+
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
+    @Environment(\.accessibilityDifferentiateWithoutColor) private var differentiateWithoutColor
+    @Environment(\.colorSchemeContrast) private var colorSchemeContrast
+    /// 설정 ▸ 손쉬운 사용 ▸ 대비 증가. 흐린 글자·얇은 테두리를 진하게 한다.
+    private var highContrast: Bool { colorSchemeContrast == .increased }
 
     /// 잠금 화면 라이브 액티비티·안내방송 인식·하차 진동을 켤지. 결정 전(nil)과
     /// 스크린샷 장면은 켠다. 탑승 중에 Pro 를 사면 바로 켠다.
@@ -212,11 +231,15 @@ struct SubwayNavigatorView: View {
                 .presentationDetents([.medium, .large])
             }
         }
+        .leeoReviewGate(KORASpec.self, isPresented: $showReviewGate)
         .onAppear {
             #if DEBUG
             if ScreenshotScene.current != nil { applyScreenshotScene(); return }
             #endif
             autoLocateIfNeeded()
+        }
+        .onChange(of: hasCompletedOnboarding) { _, done in
+            if done { autoLocateIfNeeded() }
         }
         .onChange(of: fromStation) { _, new in
             persistedFromStation = new ?? ""
@@ -225,6 +248,7 @@ struct SubwayNavigatorView: View {
             persistedToStation = new ?? ""
             journeyGuided = nil
             arrivalPaywallShown = false
+            arrivalRecorded = false
             journeyConfirmed = false
             maxCompletedIdx = -1
             revisitFromIdx = nil
@@ -236,6 +260,7 @@ struct SubwayNavigatorView: View {
             boardedSegmentIdx = -1
             journeyGuided = nil
             arrivalPaywallShown = false
+            arrivalRecorded = false
             journeyConfirmed = false
             maxCompletedIdx = -1
             revisitFromIdx = nil
@@ -250,14 +275,14 @@ struct SubwayNavigatorView: View {
                     if journeyConfirmed {
                         activeStepHost(for: j)
                             .zIndex(1)   // keep the incoming step ON TOP during the swap
-                            .transition(.asymmetric(
+                            .transition(reduceMotion ? .opacity : .asymmetric(
                                 insertion: .move(edge: .trailing).combined(with: .opacity),
                                 removal:   .move(edge: .leading).combined(with: .opacity)
                             ))
                     } else {
                         journeyConfirmView(for: j)
                             .zIndex(0)
-                            .transition(.asymmetric(
+                            .transition(reduceMotion ? .opacity : .asymmetric(
                                 insertion: .move(edge: .bottom).combined(with: .opacity),
                                 removal:   .move(edge: .bottom).combined(with: .opacity)
                             ))
@@ -287,7 +312,8 @@ struct SubwayNavigatorView: View {
     private func activeStepHost(for j: TransferJourney) -> some View {
         let pageCount = j.segments.count + 1
         let pageFwd = pageTransitionForward
-        let pageTransition: AnyTransition = pageFwd
+        // 움직임 줄이기: 옆으로 미끄러지는 대신 겹쳐 바뀐다.
+        let pageTransition: AnyTransition = reduceMotion ? .opacity : pageFwd
             ? .asymmetric(insertion: .move(edge: .trailing), removal: .move(edge: .leading))
             : .asymmetric(insertion: .move(edge: .leading), removal: .move(edge: .trailing))
 
@@ -323,7 +349,12 @@ struct SubwayNavigatorView: View {
                 .task {
                     // 마지막 무료 안내 탑승으로 막 도착한 순간 — 알림 덕에 제대로 내린 바로
                     // 그때 한 번만 권한다. 그 뒤 기본 모드 여정에서는 저절로 띄우지 않는다.
-                    guard journeyGuided == true, !arrivalPaywallShown, pro.freeRidesLeft == 0 else { return }
+                    let paywallDue = journeyGuided == true && !arrivalPaywallShown && pro.freeRidesLeft == 0
+                    guard paywallDue else {
+                        await recordArrival(willShowPaywall: false)
+                        return
+                    }
+                    await recordArrival(willShowPaywall: true)
                     try? await Task.sleep(for: .seconds(1.2))
                     guard !Task.isCancelled else { return }
                     arrivalPaywallShown = true
@@ -383,7 +414,8 @@ struct SubwayNavigatorView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 12)
             }
-            .background(.ultraThinMaterial)
+            // 투명도 줄이기: 비치는 유리 대신 불투명한 바탕(밀어서 타기 글자가 뒤 내용과 섞이지 않게).
+            .background(reduceTransparency ? AnyShapeStyle(KORATheme.background) : AnyShapeStyle(.ultraThinMaterial))
             .animation(.spring(response: 0.35, dampingFraction: 0.8), value: boardedAt != nil)
             .animation(.spring(response: 0.35, dampingFraction: 0.8), value: currentBlockIdx)
         }
@@ -431,7 +463,15 @@ struct SubwayNavigatorView: View {
                                 : Color.gray.opacity(0.3)))
                     )
                     .frame(width: isActive ? 20 : 8, height: 8)
-                    .animation(.spring(response: 0.3, dampingFraction: 0.8), value: current)
+                    .overlay {
+                        // 색 없이 구별: 아직 가지 않은 칸은 속이 빈 테두리, 지나온 칸은 채운 점.
+                        if differentiateWithoutColor && !isActive && i > maxCompletedIdx {
+                            Capsule()
+                                .fill(KORATheme.background)
+                                .overlay(Capsule().strokeBorder(KORATheme.labelSecondary, lineWidth: 1.5))
+                        }
+                    }
+                    .animation(reduceMotion ? nil : .spring(response: 0.3, dampingFraction: 0.8), value: current)
             }
         }
     }
@@ -488,7 +528,15 @@ struct SubwayNavigatorView: View {
         }
         .frame(height: 50)
         .clipShape(Capsule())
-        .overlay(Capsule().strokeBorder(seg.line.color.opacity(0.35), lineWidth: 1.5))
+        .overlay(Capsule().strokeBorder(seg.line.color.opacity(highContrast ? 0.9 : 0.35),
+                                        lineWidth: highContrast ? 2.5 : 1.5))
+        // 끌 수 없는 사람(VoiceOver · 음성 제어 · 스위치 제어)은 두 번 탭/"탭 …" 으로 같은 일을 한다.
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(boardingSwipeHintLabel)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityInputLabels([Text(boardingSwipeHintLabel)])
+        .accessibilityIdentifier("slider.board")
+        .accessibilityAction { UIImpactFeedbackGenerator(style: .heavy).impactOccurred(); boardCurrentTrain(seg: seg, in: j) }
     }
 
     @ViewBuilder
@@ -530,22 +578,7 @@ struct SubwayNavigatorView: View {
                                 transferHapticPhase = 0
                                 if transferDragOffset >= maxX * 0.72 {
                                     UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-                                    let nextIdx = currentBlockIdx + 1
-                                    maxCompletedIdx = max(maxCompletedIdx, currentBlockIdx)
-                                    transferDragOffset = 0
-                                    boardDragOffset = 0
-                                    pageTransitionForward = true
-                                    withAnimation(.spring(response: 0.42, dampingFraction: 0.88)) {
-                                        currentBlockIdx = nextIdx
-                                    }
-                                    Task {
-                                        try? await Task.sleep(for: .seconds(0.5))
-                                        boardedAt = nil
-                                        boardedSegmentIdx = -1
-                                        if #available(iOS 16.1, *) {
-                                            await KORALiveActivityManager.shared.end()
-                                        }
-                                    }
+                                    completeTransfer()
                                 } else {
                                     withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
                                         transferDragOffset = 0
@@ -557,7 +590,15 @@ struct SubwayNavigatorView: View {
         }
         .frame(height: 50)
         .clipShape(Capsule())
-        .overlay(Capsule().strokeBorder(seg.line.color.opacity(0.35), lineWidth: 1.5))
+        .overlay(Capsule().strokeBorder(seg.line.color.opacity(highContrast ? 0.9 : 0.35),
+                                        lineWidth: highContrast ? 2.5 : 1.5))
+        // 끌 수 없는 사람(VoiceOver · 음성 제어 · 스위치 제어)은 두 번 탭/"탭 …" 으로 같은 일을 한다.
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(transferSwipeHintLabel)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityInputLabels([Text(transferSwipeHintLabel)])
+        .accessibilityIdentifier("slider.transfer")
+        .accessibilityAction { UIImpactFeedbackGenerator(style: .heavy).impactOccurred(); completeTransfer() }
     }
 
     @ViewBuilder
@@ -599,20 +640,7 @@ struct SubwayNavigatorView: View {
                                 alightHapticPhase = 0
                                 if alightDragOffset >= maxX * 0.72 {
                                     UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
-                                    maxCompletedIdx = max(maxCompletedIdx, currentBlockIdx)
-                                    alightDragOffset = 0
-                                    pageTransitionForward = true
-                                    withAnimation(.spring(response: 0.42, dampingFraction: 0.88)) {
-                                        currentBlockIdx = finishedIdx
-                                    }
-                                    Task {
-                                        try? await Task.sleep(for: .seconds(0.5))
-                                        boardedAt = nil
-                                        boardedSegmentIdx = -1
-                                        if #available(iOS 16.1, *) {
-                                            await KORALiveActivityManager.shared.end()
-                                        }
-                                    }
+                                    completeAlight(finishedIdx: finishedIdx)
                                 } else {
                                     withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
                                         alightDragOffset = 0
@@ -624,7 +652,64 @@ struct SubwayNavigatorView: View {
         }
         .frame(height: 50)
         .clipShape(Capsule())
-        .overlay(Capsule().strokeBorder(seg.line.color.opacity(0.35), lineWidth: 1.5))
+        .overlay(Capsule().strokeBorder(seg.line.color.opacity(highContrast ? 0.9 : 0.35),
+                                        lineWidth: highContrast ? 2.5 : 1.5))
+        // 끌 수 없는 사람(VoiceOver · 음성 제어 · 스위치 제어)은 두 번 탭/"탭 …" 으로 같은 일을 한다.
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(alightSliderLabel)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityInputLabels([Text(alightSliderLabel)])
+        .accessibilityIdentifier("slider.alight")
+        .accessibilityAction { UIImpactFeedbackGenerator(style: .heavy).impactOccurred(); completeAlight(finishedIdx: finishedIdx) }
+    }
+
+    /// 환승역에 내렸다 — 다음 열차 칸으로 넘긴다.
+    private func completeTransfer() {
+        let nextIdx = currentBlockIdx + 1
+        maxCompletedIdx = max(maxCompletedIdx, currentBlockIdx)
+        transferDragOffset = 0
+        boardDragOffset = 0
+        pageTransitionForward = true
+        withAnimation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.42, dampingFraction: 0.88)) {
+            currentBlockIdx = nextIdx
+        }
+        endRideAfterPageChange()
+    }
+
+    /// 마지막 열차에서 내렸다 — 도착 화면으로.
+    private func completeAlight(finishedIdx: Int) {
+        maxCompletedIdx = max(maxCompletedIdx, currentBlockIdx)
+        alightDragOffset = 0
+        pageTransitionForward = true
+        withAnimation(reduceMotion ? .easeInOut(duration: 0.2) : .spring(response: 0.42, dampingFraction: 0.88)) {
+            currentBlockIdx = finishedIdx
+        }
+        endRideAfterPageChange()
+    }
+
+    private func endRideAfterPageChange() {
+        Task {
+            try? await Task.sleep(for: .seconds(0.5))
+            boardedAt = nil
+            boardedSegmentIdx = -1
+            if #available(iOS 16.1, *) {
+                await KORALiveActivityManager.shared.end()
+            }
+        }
+    }
+
+    /// 목적지에 닿은 순간 — 이 앱이 해낸 일. 여정마다 한 번 센다(리뷰 요청의 근거).
+    /// 결제 화면이 뜰 여정이면 만족도 확인은 다음 기회로 미룬다.
+    private func recordArrival(willShowPaywall: Bool) async {
+        guard !arrivalRecorded else { return }
+        arrivalRecorded = true
+        LeeoEngagement.shared.registerSignificantEvent()
+        KORALog.route.info("여정 도착 (구간 \(journey?.segments.count ?? 0, privacy: .public)개)")
+        guard !willShowPaywall, LeeoReviewRequest.shouldRequest(policy: .default, engagement: .shared) else { return }
+        try? await Task.sleep(for: .seconds(1.5))
+        guard !Task.isCancelled else { return }
+        LeeoReviewRequest.markRequested(engagement: .shared)
+        showReviewGate = true
     }
 
     private func boardCurrentTrain(seg: JourneySegment, in j: TransferJourney) {
@@ -797,6 +882,7 @@ struct SubwayNavigatorView: View {
                         .font(.callout).fontWeight(.bold)
                     Spacer()
                 }
+                .accessibilityInputLabels([Text(NavLoc.scanDirectionButton.resolved(displayLanguage))])
                 .foregroundStyle(seg.line.color)
                 .padding(.horizontal, 14).padding(.vertical, 11)
                 .frame(maxWidth: .infinity)
@@ -821,9 +907,11 @@ struct SubwayNavigatorView: View {
                         .font(.footnote).fontWeight(.bold)
                         .foregroundStyle(.white)
                         .padding(8)
-                        .background(.black.opacity(0.45), in: Circle())
+                        .background(.black.opacity(reduceTransparency || highContrast ? 0.85 : 0.45), in: Circle())
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel(NavLoc.hideCamera.resolved(displayLanguage))
+                .accessibilityInputLabels([Text(NavLoc.hideCamera.resolved(displayLanguage))])
                 .padding(8)
             }
         }
@@ -881,15 +969,19 @@ struct SubwayNavigatorView: View {
     private struct FlowingChevrons: View {
         let lineColor: Color
         var count: Int = 3
+        @Environment(\.accessibilityReduceMotion) private var reduceMotion
         var body: some View {
-            TimelineView(.animation(minimumInterval: 0.05)) { ctx in
+            // 움직임 줄이기: 밝기가 흐르지 않고 가만히 선 화살표.
+            TimelineView(.animation(minimumInterval: 0.05, paused: reduceMotion)) { ctx in
                 let phase = ctx.date.timeIntervalSinceReferenceDate * 1.4
                 HStack(spacing: 1) {
                     ForEach(0..<count, id: \.self) { i in
                         let angle = phase * .pi * 2 - Double(i) * (.pi * 2 / Double(count))
                         Image(systemName: "chevron.right")
                             .font(.title3).fontWeight(.black)
-                            .foregroundStyle(lineColor.opacity(0.2 + 0.75 * max(0, sin(angle))))
+                            .foregroundStyle(lineColor.opacity(reduceMotion
+                                ? 0.85
+                                : 0.2 + 0.75 * max(0, sin(angle))))
                     }
                 }
             }
@@ -1027,6 +1119,7 @@ struct SubwayNavigatorView: View {
                         Text(NavLoc.stopsRemaining(stopsRemaining, displayLanguage))
                             .font(.title2).fontWeight(.black)
                             .foregroundStyle(KORATheme.labelPrimary)
+                            .contentTransition(.numericText(countsDown: true))
                     }
                     Spacer()
                     VStack(alignment: .trailing, spacing: 1) {
@@ -1038,6 +1131,8 @@ struct SubwayNavigatorView: View {
                              : NavLoc.aboutMinutes(minsRemaining, displayLanguage))
                             .font(.title3).fontWeight(.bold)
                             .foregroundStyle(seg.line.color)
+                            .contentTransition(.numericText(countsDown: true))
+                            .animation(reduceMotion ? nil : .default, value: minsRemaining)
                     }
                 }
                 .accessibilityElement(children: .combine)
@@ -1067,7 +1162,9 @@ struct SubwayNavigatorView: View {
                     // gentle nudge so a premature flip can't startle the rider off early.
                     if positionTracker.isCurrentStationConfirmed {
                         UINotificationFeedbackGenerator().notificationOccurred(.warning)
-                        withAnimation(.linear(duration: 0.5)) { alightShakeCount += 1 }
+                        if !reduceMotion {
+                            withAnimation(.linear(duration: 0.5)) { alightShakeCount += 1 }
+                        }
                     } else {
                         UIImpactFeedbackGenerator(style: .light).impactOccurred()
                     }
@@ -1263,13 +1360,13 @@ struct SubwayNavigatorView: View {
     /// Downward-flowing wave chevron connector used between station circles.
     @ViewBuilder
     private func inTransitWaveConnector(lineColor: Color, width: CGFloat, height: CGFloat) -> some View {
-        TimelineView(.animation(minimumInterval: 0.05)) { ctx in
+        TimelineView(.animation(minimumInterval: 0.05, paused: reduceMotion)) { ctx in
             let phase = ctx.date.timeIntervalSinceReferenceDate * 1.2
             VStack(spacing: 3) {
                 ForEach(0..<4, id: \.self) { i in
                     Image(systemName: "chevron.down")
                         .font(.system(size: 8, weight: .semibold))
-                        .foregroundStyle(lineColor.opacity(
+                        .foregroundStyle(lineColor.opacity(reduceMotion ? 0.7 :
                             0.15 + 0.8 * max(0.0, sin(
                                 phase * .pi * 2 - Double(i) * .pi * 2.0 / 4.0
                             ))
@@ -1457,11 +1554,15 @@ struct SubwayNavigatorView: View {
             Text(NavLoc.arrived.resolved(displayLanguage))
                 .font(.largeTitle).fontWeight(.black)
                 .foregroundStyle(color)
+            // 길게 눌러 복사 — 택시 · 지도 앱에 역 이름을 붙여 넣을 때.
             Text(destDisplay)
                 .font(.title2).fontWeight(.bold)
+                .multilineTextAlignment(.center)
+                .textSelection(.enabled)
             Text(destKo)
                 .font(.body)
-                .foregroundStyle(KORATheme.labelSecondary)
+                .foregroundStyle(highContrast ? KORATheme.labelPrimary : KORATheme.labelSecondary)
+                .textSelection(.enabled)
 
             exitGuideButton(destKo, tint: color)
                 .padding(.top, 4)
@@ -1472,6 +1573,7 @@ struct SubwayNavigatorView: View {
                 HStack(spacing: 8) {
                     Image(systemName: "arrow.counterclockwise").font(.body)
                     Text(NavLoc.startOver.resolved(displayLanguage)).font(.body).fontWeight(.semibold)
+                    .accessibilityInputLabels([Text(NavLoc.startOver.resolved(displayLanguage))])
                 }
                 .foregroundStyle(color)
                 .frame(maxWidth: .infinity)
@@ -1486,7 +1588,8 @@ struct SubwayNavigatorView: View {
         .padding(30)
         .background(color.opacity(0.08))
         .clipShape(RoundedRectangle(cornerRadius: 18))
-        .overlay(RoundedRectangle(cornerRadius: 18).stroke(color.opacity(0.25), lineWidth: 1.2))
+        .overlay(RoundedRectangle(cornerRadius: 18).stroke(color.opacity(highContrast ? 0.8 : 0.25),
+                                                           lineWidth: highContrast ? 2 : 1.2))
     }
 
     private func visualStationDot(station: String, isBoarding: Bool, isTrainHere: Bool, lineColor: Color, railLeft: Bool, railRight: Bool) -> some View {
@@ -1882,6 +1985,8 @@ struct SubwayNavigatorView: View {
         .padding(.vertical, 6)
         .accessibilityLabel(headerLabel)
         .accessibilityHint(NavLoc.longPressLanguageHint.resolved(displayLanguage))
+        .accessibilityInputLabels([Text(NavLoc.currentStationTitle.resolved(displayLanguage)),
+                                   Text(NavLoc.changeDepartureStation.resolved(displayLanguage))])
         .highPriorityGesture(
             LongPressGesture(minimumDuration: 0.6).onEnded { _ in
                 let haptic = UIImpactFeedbackGenerator(style: .medium)
@@ -1980,21 +2085,25 @@ struct SubwayNavigatorView: View {
                         } else {
                             Image(systemName: "location.fill")
                                 .font(.body).fontWeight(.black)
-                                .foregroundStyle(KORATheme.accent)
+                                .foregroundStyle(KORATheme.accentText)
                         }
                     }
                     VStack(alignment: .leading, spacing: 4) {
                         Text(departurePlaceholderLabel)
                             .font(.title).fontWeight(.black)
                             .foregroundStyle(isLocating ? KORATheme.labelSecondary : KORATheme.labelPrimary)
+                            // 큰 글씨에서도 잘리지 않게 줄을 늘린다.
+                            .fixedSize(horizontal: false, vertical: true)
                         if isLocating {
                             Text(locatingLabel)
                                 .font(.body)
                                 .foregroundStyle(KORATheme.labelSecondary)
+                                .fixedSize(horizontal: false, vertical: true)
                         } else {
                             Text(departureHintLabel)
                                 .font(.subheadline)
-                                .foregroundStyle(KORATheme.accent.opacity(0.75))
+                                .foregroundStyle(KORATheme.accentText)
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                     }
                 }
@@ -2003,7 +2112,7 @@ struct SubwayNavigatorView: View {
 
                 Image(systemName: "chevron.right")
                     .font(.body).fontWeight(.bold)
-                    .foregroundStyle(primaryColor.opacity(0.6))
+                    .foregroundStyle(ko != nil ? primaryColor : KORATheme.accentText)
             }
             .padding(.vertical, 12)
             .padding(.leading, 10)
@@ -2020,6 +2129,9 @@ struct SubwayNavigatorView: View {
         .buttonStyle(PressScaleButtonStyle())
         .padding(.horizontal, 16)
         .padding(.vertical, 6)
+        .accessibilityInputLabels([Text(NavLoc.currentStationTitle.resolved(displayLanguage)),
+                                   Text(departurePlaceholderLabel)])
+        .accessibilityIdentifier("card.departure")
         .highPriorityGesture(
             LongPressGesture(minimumDuration: 0.6).onEnded { _ in
                 let haptic = UIImpactFeedbackGenerator(style: .medium)
@@ -2151,15 +2263,17 @@ struct SubwayNavigatorView: View {
                             .frame(width: 36, height: 36)
                         Image(systemName: "magnifyingglass")
                             .font(.body).fontWeight(.black)
-                            .foregroundStyle(KORATheme.accent)
+                            .foregroundStyle(KORATheme.accentText)
                     }
                     VStack(alignment: .leading, spacing: 2) {
                         Text(NavLoc.whereToGo.resolved(displayLanguage))
                             .font(.title).fontWeight(.black)
                             .foregroundStyle(KORATheme.labelPrimary)
+                            .fixedSize(horizontal: false, vertical: true)
                         Text(NavLoc.tapStationForRoute.resolved(displayLanguage))
                             .font(.body).fontWeight(.medium)
-                            .foregroundStyle(KORATheme.labelSecondary)
+                            .foregroundStyle(KORATheme.labelGuide)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
 
@@ -2167,7 +2281,7 @@ struct SubwayNavigatorView: View {
 
                 Image(systemName: "chevron.right")
                     .font(.body).fontWeight(.bold)
-                    .foregroundStyle(primaryColor.opacity(0.6))
+                    .foregroundStyle(ko != nil ? primaryColor : KORATheme.accentText)
             }
             .padding(.vertical, 12)
             .padding(.leading, 10)
@@ -2185,6 +2299,9 @@ struct SubwayNavigatorView: View {
         .padding(.vertical, 6)
         .accessibilityLabel(NavLoc.whereToGo.resolved(displayLanguage))
         .accessibilityHint(NavLoc.tapStationForRoute.resolved(displayLanguage))
+        .accessibilityInputLabels([Text(NavLoc.destinationTitle.resolved(displayLanguage)),
+                                   Text(NavLoc.whereToGo.resolved(displayLanguage))])
+        .accessibilityIdentifier("card.destination")
         .highPriorityGesture(
             LongPressGesture(minimumDuration: 0.6).onEnded { _ in
                 let haptic = UIImpactFeedbackGenerator(style: .medium)
@@ -2238,6 +2355,9 @@ struct SubwayNavigatorView: View {
 
     private func autoLocateIfNeeded() {
         guard !didAutoLocate, !isLocating, fromStation == nil else { return }
+        // 세이프 모드에서는 시작하자마자 위치를 찾지 않는다 — 사용자가 직접 출발역을 누르면 찾는다.
+        guard !KORALaunch.isSafeMode else { return }
+        guard hasCompletedOnboarding || ScreenshotScene.isActive else { return }
         didAutoLocate = true
         Task { await detectCurrentStation() }
     }
@@ -2337,7 +2457,11 @@ struct SubwayNavigatorView: View {
     private func detectCurrentStation() async {
         isLocating = true
         locationError = nil
-        defer { isLocating = false }
+        let signpost = KORASignpost.location.beginInterval("detectCurrentStation")
+        defer {
+            isLocating = false
+            KORASignpost.location.endInterval("detectCurrentStation", signpost)
+        }
         do {
             let coord = try await withThrowingTaskGroup(of: CLLocationCoordinate2D.self) { group in
                 group.addTask { try await self.locationService.requestOnce() }
@@ -2358,10 +2482,13 @@ struct SubwayNavigatorView: View {
                 return
             }
 
+            KORALog.location.notice("현재 위치 근처에 지원하는 역이 없습니다")
             locationError = NavLoc.locationErrorNoStation.resolved(displayLanguage)
         } catch let e as LocationService.LocationError {
+            KORALog.location.error("현재 역 찾기 실패: \(String(describing: e), privacy: .public)")
             locationError = e.message(displayLanguage)
         } catch {
+            KORALog.location.error("현재 역 찾기 실패: \(error.localizedDescription, privacy: .public)")
             locationError = NavLoc.locationErrorFetchFailed.resolved(displayLanguage)
         }
     }
@@ -2591,6 +2718,8 @@ struct StationSearchSheet: View {
     let onSelect: (String) -> Void
 
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
+    @Environment(\.colorSchemeContrast) private var colorSchemeContrast
     @State private var query = ""
     @State private var selectedLineNumber: Int? = nil
     @State private var nearby: [String] = []
@@ -2659,6 +2788,7 @@ struct StationSearchSheet: View {
                 || MetroLineData.displayName(for: s, language: .japanese).contains(q)
                 || MetroLineData.displayName(for: s, language: .english).lowercased().contains(q.lowercased())
                 || MetroLineData.displayName(for: s, language: .chinese).contains(q)
+                || MetroLineData.displayName(for: s, language: .chineseTraditional).contains(q)
         }
     }
 
@@ -2698,6 +2828,16 @@ struct StationSearchSheet: View {
                 }
             }
             .searchable(text: $query, prompt: NavLoc.searchPrompt.resolved(displayLanguage))
+            // 검색 키보드의 버튼은 '검색'. 결과가 하나뿐이면 바로 그 역을 고른다.
+            .submitLabel(.search)
+            .onSubmit(of: .search) {
+                if filtered.count == 1, let only = filtered.first {
+                    onSelect(only)
+                    dismiss()
+                }
+            }
+            // 목록을 끌어 내리면 키보드도 따라 내려가 결과를 가리지 않는다.
+            .scrollDismissesKeyboard(.interactively)
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -2707,6 +2847,7 @@ struct StationSearchSheet: View {
             }
             .task { if showNearby { await loadNearby() } }
         }
+        .presentationDragIndicator(.visible)
     }
 
     // MARK: - Nearby (GPS) stations
@@ -2830,7 +2971,7 @@ struct StationSearchSheet: View {
         .padding(.horizontal, 2)
         .background(
             RoundedRectangle(cornerRadius: 12)
-                .fill(Color(.systemBackground).opacity(0.85))
+                .fill(Color(.systemBackground).opacity(reduceTransparency ? 1 : 0.85))
                 .overlay(
                     RoundedRectangle(cornerRadius: 12)
                         .stroke(KORATheme.separator, lineWidth: 0.5)
@@ -2950,7 +3091,8 @@ struct StationSearchSheet: View {
                     if let romaji, !romaji.isEmpty, subtitle != romaji {
                         Text(subtitle == nil ? romaji : "· \(romaji)")
                             .font(.body)
-                            .foregroundStyle(KORATheme.labelTertiary)
+                            .foregroundStyle(colorSchemeContrast == .increased
+                                             ? KORATheme.labelSecondary : KORATheme.labelTertiary)
                     }
                 }
             }
@@ -2971,17 +3113,13 @@ struct StationSearchSheet: View {
     }
 
     private var emptyState: some View {
-        VStack(spacing: 8) {
-            Spacer()
-            Image(systemName: "magnifyingglass")
-                .font(.largeTitle)
-                .foregroundStyle(KORATheme.labelSecondary.opacity(0.4))
-            Text(NavLoc.noMatchingStation.resolved(displayLanguage))
-                .font(.body)
-                .foregroundStyle(KORATheme.labelSecondary)
-            Spacer()
+        ContentUnavailableView {
+            Label(NavLoc.noMatchingStation.resolved(displayLanguage), systemImage: "magnifyingglass")
+        } description: {
+            Text(NavLoc.noMatchingStationHint.resolved(displayLanguage))
         }
-        .frame(maxWidth: .infinity)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .accessibilityIdentifier("search.empty")
     }
 
     private func linesForStation(_ station: String) -> [Int] {
@@ -3171,6 +3309,8 @@ struct PositionCorrectionSheet: View {
 struct LanguagePickerSheet: View {
     @Binding var languagePref: String
     @Environment(\.dismiss) private var dismiss
+    @State private var showOnboarding = false
+    @State private var showWhatsNew = false
 
     /// Language used to render this sheet's chrome (title, "Auto", Done button).
     /// Pinned to the user's resolved preference at sheet-open time so toggling
@@ -3227,16 +3367,42 @@ struct LanguagePickerSheet: View {
                 KORAProSection(lang: sheetLang)
 
                 Section {
+                    Button {
+                        showOnboarding = true
+                    } label: {
+                        Label(NavLoc.onboardingReplay.resolved(sheetLang), systemImage: "questionmark.circle")
+                    }
+                    .foregroundStyle(KORATheme.labelPrimary)
+                    if !KORAWhatsNew.currentItems.isEmpty {
+                        Button {
+                            showWhatsNew = true
+                        } label: {
+                            Label(NavLoc.whatsNewTitle.resolved(sheetLang), systemImage: "sparkles.rectangle.stack")
+                        }
+                        .foregroundStyle(KORATheme.labelPrimary)
+                    }
                     NavigationLink(LeeoRoadmapText.entry) { RoadmapScreen() }
                 }
 
                 DeveloperContactSection(lang: sheetLang)
+
+                // 같은 개발자의 다른 앱 — 지금 쓰는 앱이 등장하는 장면부터 보여 준다.
+                Section {
+                    LeeoFamilySettingsRow<KORASpec>()
+                }
+            }
+            .fullScreenCover(isPresented: $showOnboarding) {
+                KORAOnboardingView(lang: sheetLang) { showOnboarding = false }
+            }
+            .sheet(isPresented: $showWhatsNew) {
+                WhatsNewView(lang: sheetLang, items: KORAWhatsNew.currentItems)
             }
             .navigationTitle(NavLoc.languagePickerTitle.resolved(sheetLang))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     Button(NavLoc.done.resolved(sheetLang)) { dismiss() }
+                        .accessibilityInputLabels([Text(NavLoc.done.resolved(sheetLang))])
                 }
             }
         }
@@ -3249,6 +3415,8 @@ struct DeveloperContactSection: View {
 
     var body: some View {
         Section {
+            // 의견 보내기 · 보낸 의견의 답장 · 리뷰 남기기 · 개인정보처리방침 · 앱 버전.
+            LeeoSupportSection<KORASpec>()
             Link(destination: URL(string: "mailto:leeo@kakao.com")!) {
                 Label(NavLoc.contactEmail.resolved(lang), systemImage: "envelope")
             }

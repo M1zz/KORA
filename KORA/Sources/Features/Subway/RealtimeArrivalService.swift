@@ -1,3 +1,4 @@
+import OSLog
 import Foundation
 
 struct RealtimeArrivalInfo: Identifiable {
@@ -42,7 +43,7 @@ enum RealtimeArrivalService {
         }
     }
 
-    enum FetchError: Error { case missingKey, badResponse }
+    enum FetchError: Error { case missingKey, badResponse, disabled }
 
     /// 앱 내부 노선 번호 → 서울 열린데이터 `subwayId` 매핑.
     /// 1~9호선은 100N, 광역/민자 노선은 공식 코드. 미지원 노선은 nil → 매칭 없음(폴백).
@@ -79,6 +80,8 @@ enum RealtimeArrivalService {
         lineNumber: Int,
         apiKey: String = SeoulTransitConfig.openApiKey
     ) async throws -> [RealtimeArrivalInfo] {
+        // 원격으로 꺼지면 시간표 추정으로 물러난다(부르는 쪽은 모두 실패를 '확정 신호 없음'으로 본다).
+        guard KORAFlag.realtimeArrivals.isEnabled else { throw FetchError.disabled }
         let key = apiKey.trimmingCharacters(in: .whitespaces)
         guard !key.isEmpty, key != "YOUR_SEOUL_OPEN_API_KEY" else { throw FetchError.missingKey }
         let name = apiStationName(station)
@@ -88,7 +91,10 @@ enum RealtimeArrivalService {
         var request = URLRequest(url: url)
         request.timeoutInterval = 8
         let (data, resp) = try await URLSession.shared.data(for: request)
-        guard (resp as? HTTPURLResponse)?.statusCode == 200 else { throw FetchError.badResponse }
+        guard (resp as? HTTPURLResponse)?.statusCode == 200 else {
+            KORALog.realtime.error("실시간 도착 응답 이상: \((resp as? HTTPURLResponse)?.statusCode ?? -1)")
+            throw FetchError.badResponse
+        }
         let decoded = try JSONDecoder().decode(APIResponse.self, from: data)
         // 미지원 노선이면 다른 노선 열차 오인 매칭을 피하려 빈 결과로 폴백.
         guard let lineId = seoulSubwayId(for: lineNumber) else { return [] }

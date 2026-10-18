@@ -8,6 +8,8 @@ enum KORATheme {
     static let accent        = Color("KORAAccent")       // #D85A30 코랄 레드
     static let accentLight   = Color("KORAAccentLight")  // #FAECE7
     static let accentDark    = Color("KORAAccentDark")   // #993C1D
+    /// 작은 글자용 코랄 — 흰 바탕 · 검은 바탕 모두 4.5:1 이상 (고대비에서는 더 진하게).
+    static let accentText    = Color("KORAAccentText")
 
     static let surface       = Color(UIColor.secondarySystemBackground)
     static let background    = Color(UIColor.systemBackground)
@@ -16,6 +18,8 @@ enum KORATheme {
     static let labelPrimary     = Color(UIColor.label)
     static let labelSecondary   = Color(UIColor.secondaryLabel)
     static let labelTertiary    = Color(UIColor.tertiaryLabel)
+    /// 첫 화면의 안내 문구처럼 꼭 읽혀야 하는 보조 글자 — 시스템 보조색(약 3.4:1)보다 진하게(4.5:1 이상).
+    static let labelGuide       = Color(UIColor.label).opacity(0.72)
 
     // MARK: Typography
     static func displayFont(size: CGFloat = 28) -> Font {
@@ -52,13 +56,17 @@ enum KORATheme {
 // MARK: - Auto-fit line modifier
 
 extension View {
-    /// Keeps a label on one line by scaling the font down to `minScale` (default 65%)
-    /// before falling back to truncation. Use for station names, direction labels,
-    /// and any other text that should stay single-line but can flex smaller.
+    /// Keeps a label on one line: first tightens letter spacing, then scales the font
+    /// down to `minScale` (default 65%), and only then truncates — in the middle, so
+    /// both the start and the end of a long station name stay readable
+    /// ("Dongdaemun History & C…Park" → "Dongdaemun…Culture Park").
+    /// Use for station names, direction labels, and any other single-line text.
     func autoFitLine(minScale: CGFloat = 0.65) -> some View {
         self
             .lineLimit(1)
+            .allowsTightening(true)
             .minimumScaleFactor(minScale)
+            .truncationMode(.middle)
     }
 }
 

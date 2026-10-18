@@ -224,3 +224,38 @@ extension NavLoc {
         }
     }
 }
+
+// MARK: - Locale for formatting
+
+extension StationLanguage {
+    /// 날짜·시각·숫자를 이 언어의 표기로 쓸 때의 로케일 (앱 안에서 고른 언어를 따른다).
+    var locale: Locale {
+        let id: String
+        switch self {
+        case .korean: id = "ko_KR"
+        case .japanese: id = "ja_JP"
+        case .english: id = "en_US"
+        case .chinese: id = "zh_Hans_CN"
+        case .chineseTraditional: id = "zh_Hant_TW"
+        case .german: id = "de_DE"
+        case .spanish: id = "es_ES"
+        case .french: id = "fr_FR"
+        case .italian: id = "it_IT"
+        case .portugueseBrazil: id = "pt_BR"
+        case .russian: id = "ru_RU"
+        case .czech: id = "cs_CZ"
+        case .danish: id = "da_DK"
+        case .greek: id = "el_GR"
+        case .finnish: id = "fi_FI"
+        case .indonesian: id = "id_ID"
+        case .norwegian: id = "nb_NO"
+        case .dutch: id = "nl_NL"
+        case .polish: id = "pl_PL"
+        case .swedish: id = "sv_SE"
+        case .thai: id = "th_TH"
+        case .turkish: id = "tr_TR"
+        case .vietnamese: id = "vi_VN"
+        }
+        return Locale(identifier: id)
+    }
+}

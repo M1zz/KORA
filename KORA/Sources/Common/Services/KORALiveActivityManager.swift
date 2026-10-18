@@ -1,3 +1,4 @@
+import OSLog
 import ActivityKit
 import SwiftUI
 
@@ -38,6 +39,10 @@ final class KORALiveActivityManager {
         lineColor: Color,
         lineName: String
     ) async {
+        guard KORAFlag.liveActivity.isEnabled else {
+            KORALog.liveActivity.notice("라이브 액티비티가 원격으로 꺼져 있어 시작하지 않습니다")
+            return
+        }
         guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
         await end()
         let attributes = KORALiveActivityAttributes(destinationStation: destination, stopsUnit: stopsUnit)
@@ -54,7 +59,9 @@ final class KORALiveActivityManager {
                 content: ActivityContent(state: state, staleDate: nil),
                 pushType: nil
             )
-        } catch {}
+        } catch {
+            KORALog.liveActivity.error("라이브 액티비티 시작 실패: \(error.localizedDescription, privacy: .public)")
+        }
     }
 
     func update(current: String, next: String, stopsRemaining: Int) async {

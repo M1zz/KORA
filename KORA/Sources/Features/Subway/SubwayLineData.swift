@@ -955,6 +955,8 @@ enum MetroLineData {
     /// Returns the best few options sorted by (transfers ↑, total stops ↑).
     static func findAnyJourneys(from: String, to: String) -> [TransferJourney] {
         guard from != to else { return [] }
+        let signpost = KORASignpost.route.beginInterval("findAnyJourneys")
+        defer { KORASignpost.route.endInterval("findAnyJourneys", signpost) }
 
         // 0-transfer (direct)
         let direct = findJourneys(from: from, to: to).map { d in
