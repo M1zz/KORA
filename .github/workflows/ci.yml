@@ -1,0 +1,64 @@
+name: CI
+
+# 로컬에서만 돌던 배포 게이트(scripts/predeploy.sh)와 단위 시험을 push · PR 마다 돌린다.
+# 게이트 로직은 predeploy.sh 한 곳에만 둔다 - 여기서 명령을 복제하면 로컬과 CI 가 갈라진다.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: 게이트 · 빌드 · 단위 시험
+    runs-on: macos-15
+    timeout-minutes: 40
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Xcode 버전 확인
+        run: xcodebuild -version
+
+      # LeeoKit(공개 SPM 패키지)을 매번 새로 받지 않도록 캐시.
+      - name: SPM 캐시
+        uses: actions/cache@v4
+        with:
+          path: ~/Library/Developer/Xcode/DerivedData/**/SourcePackages
+          key: spm-${{ runner.os }}-${{ hashFiles('**/Package.resolved') }}
+          restore-keys: spm-${{ runner.os }}-
+
+      # 버전 소스 · 카탈로그 빈칸 · 화면 문구 생성본 · Release 빌드.
+      - name: 배포 게이트 (predeploy.sh)
+        run: sh scripts/predeploy.sh
+
+      - name: 단위 시험 (KORATests)
+        run: |
+          DEST=$(xcrun simctl list devices available | grep -m1 -oE 'iPhone [0-9]+( Pro)? \(' | sed 's/ ($//')
+          echo "시뮬레이터: $DEST"
+          xcodebuild test \
+            -project KORA.xcodeproj \
+            -scheme KORA \
+            -only-testing:KORATests \
+            -destination "platform=iOS Simulator,name=$DEST" \
+            CODE_SIGNING_ALLOWED=NO \
+            -quiet
+
+  lint:
+    name: SwiftLint
+    runs-on: macos-15
+    timeout-minutes: 10
+    # 기존 위반(강제 언랩 · 큰 파일)을 0 으로 만들기 전까지는 막지 않는다.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: SwiftLint 설치
+        run: brew install swiftlint
+      - name: SwiftLint 실행
+        run: swiftlint --strict

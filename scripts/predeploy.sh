@@ -9,7 +9,7 @@
 #   NavLoc 은 모든 언어가 필수 인자라 빠지면 컴파일이 멈춘다 - 그래서 빌드가 곧 검사다.
 #   NavLoc 카탈로그는 scripts/i18n/navloc.json 에서 생성한다 - 생성본이 원본과 같은지도 본다.
 #
-# ⚠️ 이 앱에는 테스트 타겟이 없다. 이 게이트는 "컴파일은 된다"까지만 말해 준다.
+# 단위 시험(KORATests)·UI 시험(KORAUITests)은 CI(.github/workflows/ci.yml)와 Xcode 에서 돈다.
 set -e
 ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$ROOT"
