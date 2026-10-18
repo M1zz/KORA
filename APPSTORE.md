@@ -14,7 +14,7 @@ KORA: 한국 지하철 길찾기
 
 ### 키워드
 
-전철,환승,실시간,도착정보,노선,역,대구,광주,대전,인천,경기,수도권,GTX,공항철도,신분당선,경전철,여행,외국인,관광,안내방송,오프라인,열차,교통,도시철도,메트로,노선도
+타는방향,신분당선,경전철,안내방송,공항철도,지하철노선도,GTX,하차알림,부산지하철,도시철도,서울지하철,수도권,지하철시간표,노선도,관광,막차,전철,메트로,환승,빠른환승,출구정보
 
 ### 프로모션 텍스트
 
@@ -86,7 +86,7 @@ Seoul Metro Guide for Visitors
 
 ### 키워드
 
-busan,incheon,daegu,daejeon,gwangju,gtx,arex,airport,train,transfer,route,station,travel,tourist
+incheon,arex,busan,gtx,ktx,exit,tourist,airport,transfer,station,line,train,english,daegu
 
 ### 프로모션 텍스트
 
