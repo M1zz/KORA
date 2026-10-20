@@ -130,3 +130,68 @@ final class FirstRunTests: XCTestCase {
         XCTAssertNil(defaults.object(forKey: KORAOnboarding.completedKey))
     }
 }
+
+final class TrainBoardJudgeTests: XCTestCase {
+    /// 9호선: 신논현 → 노량진 (서쪽, 김포공항·개화 방향). 둘 다 급행역.
+    private func judge(from boarding: String, to destination: String) -> TrainBoardJudge {
+        let stations = MetroLineData.line9.routes[0].stations
+        let bi = stations.firstIndex(of: boarding)!, di = stations.firstIndex(of: destination)!
+        let forward = di < bi ? Set(stations[...di]) : Set(stations[di...])
+        let backward = Set(stations).subtracting(forward).subtracting([boarding])
+        return TrainBoardJudge(forward: forward, backward: backward,
+                               boarding: boarding, destination: destination,
+                               services: [MetroLineData.line9Express])
+    }
+
+    func testLocalTrainBoardsAnywhere() {
+        let j = judge(from: "신논현", to: "흑석")
+        XCTAssertEqual(j.judge(row: "일반 개화행"), .board(matched: "개화"))
+    }
+
+    func testExpressBetweenExpressStopsBoards() {
+        let j = judge(from: "신논현", to: "노량진")
+        XCTAssertEqual(j.judge(row: "급행 김포공항"), .board(matched: "김포공항"))
+    }
+
+    func testExpressSkippingDestinationIsCaught() {
+        // 흑석은 급행이 서지 않는다.
+        let j = judge(from: "신논현", to: "흑석")
+        XCTAssertEqual(j.judge(row: "급행 김포공항행"), .skipsStop(serviceWord: "급행", station: "흑석"))
+    }
+
+    func testExpressSkippingBoardingIsCaught() {
+        let j = judge(from: "언주", to: "노량진")
+        XCTAssertEqual(j.judge(row: "급행 김포공항"), .skipsStop(serviceWord: "급행", station: "언주"))
+    }
+
+    func testWrongDirectionStaysWrongEvenForExpress() {
+        let j = judge(from: "신논현", to: "흑석")
+        XCTAssertEqual(j.judge(row: "급행 중앙보훈병원"), .wrongDirection(matched: "중앙보훈병원"))
+    }
+
+    func testExpressBusTerminalIsNotAnExpressTrain() {
+        // 고속터미널의 영어 이름에 Express 가 들어 있어도 급행으로 보지 않는다.
+        let j = judge(from: "신논현", to: "흑석")
+        XCTAssertEqual(j.judge(row: "Express Bus Terminal 고속터미널 개화"), .board(matched: "개화"))
+    }
+
+    func testTopRowOfTheBoardDecides() {
+        // 전광판 첫 줄이 다음 열차다. 첫 줄 급행(흑석 통과), 둘째 줄 일반.
+        let boxes: [TrainBoardJudge.TextBox] = [
+            .init(text: "일반", minY: 0.40, maxY: 0.50, minX: 0.1),
+            .init(text: "김포공항", minY: 0.41, maxY: 0.49, minX: 0.3),
+            .init(text: "김포공항", minY: 0.61, maxY: 0.69, minX: 0.3),
+            .init(text: "급행", minY: 0.60, maxY: 0.70, minX: 0.1),
+        ]
+        let rows = TrainBoardJudge.rows(from: boxes)
+        XCTAssertEqual(rows, ["급행 김포공항", "일반 김포공항"])
+        let j = judge(from: "신논현", to: "흑석")
+        XCTAssertEqual(j.judge(rows: rows), .skipsStop(serviceWord: "급행", station: "흑석"))
+        XCTAssertEqual(j.judge(rows: Array(rows.dropFirst())), .board(matched: "김포공항"))
+    }
+
+    func testStationSignNamingBothNeighboursIsAmbiguous() {
+        let j = TrainBoardJudge(forward: ["개화"], backward: ["언주", "중앙보훈병원"], nextStop: ["사평"])
+        XCTAssertEqual(j.judge(row: "← 사평 | 신논현 | 언주 →"), .ambiguous)
+    }
+}

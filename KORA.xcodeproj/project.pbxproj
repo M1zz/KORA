@@ -40,6 +40,7 @@
 		AA060 /* SeoulTransitConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA160 /* SeoulTransitConfig.swift */; };
 		AA061 /* StationAnnouncementListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA161 /* StationAnnouncementListener.swift */; };
 		AA062 /* PlatformDirectionScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA162 /* PlatformDirectionScanner.swift */; };
+		AATB1 /* TrainBoardJudge.swift in Sources */ = {isa = PBXBuildFile; fileRef = AATB2 /* TrainBoardJudge.swift */; };
 		AA070 /* SubwayLineDataExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA170 /* SubwayLineDataExpansion.swift */; };
 		AA071 /* SubwayLineDataRegional.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA171 /* SubwayLineDataRegional.swift */; };
 		AA072 /* SubwayStationDataExpansion.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA172 /* SubwayStationDataExpansion.swift */; };
@@ -131,6 +132,7 @@
 		AA160 /* SeoulTransitConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeoulTransitConfig.swift; sourceTree = "<group>"; };
 		AA161 /* StationAnnouncementListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StationAnnouncementListener.swift; sourceTree = "<group>"; };
 		AA162 /* PlatformDirectionScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlatformDirectionScanner.swift; sourceTree = "<group>"; };
+		AATB2 /* TrainBoardJudge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainBoardJudge.swift; sourceTree = "<group>"; };
 		AA170 /* SubwayLineDataExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineDataExpansion.swift; sourceTree = "<group>"; };
 		AA171 /* SubwayLineDataRegional.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayLineDataRegional.swift; sourceTree = "<group>"; };
 		AA172 /* SubwayStationDataExpansion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubwayStationDataExpansion.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				AA145 /* TransitPositionTracker.swift */,
 				AA161 /* StationAnnouncementListener.swift */,
 				AA162 /* PlatformDirectionScanner.swift */,
+				AATB2 /* TrainBoardJudge.swift */,
 				AA191 /* KORAPaywallView.swift */,
 				AA192 /* KORAExitGuideView.swift */,
 				AA194 /* KORALastTrain.swift */,
@@ -633,6 +636,7 @@
 				AA045 /* TransitPositionTracker.swift in Sources */,
 				AA061 /* StationAnnouncementListener.swift in Sources */,
 				AA062 /* PlatformDirectionScanner.swift in Sources */,
+				AATB1 /* TrainBoardJudge.swift in Sources */,
 				AA090 /* KORAPro.swift in Sources */,
 				AA091 /* KORAPaywallView.swift in Sources */,
 				AA092 /* KORAExitGuideView.swift in Sources */,

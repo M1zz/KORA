@@ -9,6 +9,8 @@ import Vision
 // the other. This view points the camera at a destination sign and tells the
 // rider whether THAT sign is their direction, by reading it with on-device
 // Vision OCR (Korean) and matching against the route's forward/backward markers.
+// The text is split into board rows and judged by `TrainBoardJudge`, which also
+// catches a train type (급행) that passes the rider's station.
 
 // MARK: - Inline scanner (embedded live "window")
 //
@@ -19,6 +21,9 @@ struct InlineDirectionScanner: View {
     let forwardMarkers: Set<String>
     let backwardMarkers: Set<String>
     var nextStopMarkers: Set<String> = []
+    var boarding: String = ""
+    var destination: String = ""
+    var services: [TrainService] = []
     let displayLanguage: StationLanguage
 
     @StateObject private var cam = DirectionCameraModel()
@@ -26,7 +31,7 @@ struct InlineDirectionScanner: View {
     private var borderColor: Color {
         switch cam.verdict {
         case .correct: return .green
-        case .wrong:   return .red
+        case .wrong, .skips: return .red
         default:       return .white.opacity(0.3)
         }
     }
@@ -55,6 +60,9 @@ struct InlineDirectionScanner: View {
                 fullVerdict(station: cam.matchedText, reading: localizedReading, verdict: NavLoc.scanCorrect.resolved(displayLanguage), color: .green, icon: "checkmark.circle.fill")
             case .wrong:
                 fullVerdict(station: cam.matchedText, reading: localizedReading, verdict: NavLoc.scanWrong.resolved(displayLanguage), color: .red, icon: "xmark.octagon.fill")
+            case .skips:
+                // The train type (급행) is the reason — show it as read on the sign.
+                fullVerdict(station: cam.matchedText, reading: skipsReading, verdict: skipsVerdict, color: .red, icon: "forward.fill")
             default:
                 VStack {
                     Spacer()
@@ -75,10 +83,22 @@ struct InlineDirectionScanner: View {
                 .animation(.easeOut(duration: 0.2), value: cam.verdict)
         )
         .task {
-            cam.configure(forward: forwardMarkers, backward: backwardMarkers, nextStop: nextStopMarkers)
+            cam.configure(forward: forwardMarkers, backward: backwardMarkers, nextStop: nextStopMarkers,
+                          boarding: boarding, destination: destination, services: services)
             await cam.start()
         }
         .onDisappear { cam.stop() }
+    }
+
+    /// "急行" / "Express" under the Korean "급행"; nil in Korean mode.
+    private var skipsReading: String? {
+        displayLanguage == .korean ? nil : NavLoc.trainTypeExpress.resolved(displayLanguage)
+    }
+
+    /// "Doesn't stop at 신방화 — take a local train".
+    private var skipsVerdict: String {
+        let station = MetroLineData.displayName(for: cam.skippedStation ?? "", language: displayLanguage)
+        return NavLoc.scanSkipsStop.fill(displayLanguage, station)
     }
 
     private func fullVerdict(station: String?, reading: String? = nil, verdict: String, color: Color, icon: String) -> some View {
@@ -167,7 +187,7 @@ struct PlatformDirectionScanner: View {
     private var borderColor: Color? {
         switch cam.verdict {
         case .correct: return .green
-        case .wrong:   return .red
+        case .wrong, .skips: return .red
         default:       return nil
         }
     }
@@ -204,6 +224,12 @@ struct PlatformDirectionScanner: View {
         case .wrong:
             verdictBox(icon: "xmark.octagon.fill",
                        title: NavLoc.scanWrong.resolved(displayLanguage),
+                       detail: cam.matchedText,
+                       color: .red)
+        case .skips:
+            verdictBox(icon: "forward.fill",
+                       title: NavLoc.scanSkipsStop.fill(displayLanguage,
+                           MetroLineData.displayName(for: cam.skippedStation ?? "", language: displayLanguage)),
                        detail: cam.matchedText,
                        color: .red)
         case .searching, .ambiguous:
@@ -252,27 +278,28 @@ struct PlatformDirectionScanner: View {
 // capture session/output are confined to `videoQueue`. We manage that manually.
 final class DirectionCameraModel: ObservableObject, @unchecked Sendable {
 
-    enum Verdict { case searching, correct, wrong, ambiguous, denied }
+    /// `skips`: right direction, but this train type (급행) passes the rider's station.
+    enum Verdict { case searching, correct, wrong, skips, ambiguous, denied }
 
     @Published private(set) var verdict: Verdict = .searching
     @Published private(set) var matchedText: String?
+    /// For `.skips`: the station the train passes without stopping.
+    @Published private(set) var skippedStation: String?
 
     let session = AVCaptureSession()
     private let videoQueue = DispatchQueue(label: "kora.direction.scanner")
     private let output = AVCaptureVideoDataOutput()
     private let delegate = SampleHandler()
 
-    private var forward: Set<String> = []
-    private var backward: Set<String> = []
-    private var nextStop: Set<String> = []
+    private var judge = TrainBoardJudge(forward: [], backward: [])
     private var missStreak = 0   // consecutive frames with no matching destination
 
-    func configure(forward: Set<String>, backward: Set<String>, nextStop: Set<String> = []) {
-        self.forward = Set(forward.map(Self.normalizeStation))
-        self.backward = Set(backward.map(Self.normalizeStation))
-        self.nextStop = Set(nextStop.map(Self.normalizeStation))
-        delegate.onText = { [weak self] lines in
-            self?.evaluate(lines)
+    func configure(forward: Set<String>, backward: Set<String>, nextStop: Set<String> = [],
+                   boarding: String = "", destination: String = "", services: [TrainService] = []) {
+        judge = TrainBoardJudge(forward: forward, backward: backward, nextStop: nextStop,
+                                boarding: boarding, destination: destination, services: services)
+        delegate.onText = { [weak self] boxes in
+            self?.evaluate(TrainBoardJudge.rows(from: boxes))
         }
     }
 
@@ -309,71 +336,41 @@ final class DirectionCameraModel: ObservableObject, @unchecked Sendable {
     }
 
     /// Called on `videoQueue` from the OCR delegate; publishes on the main thread.
-    private func evaluate(_ lines: [String]) {
-        let norm = Self.normalize(lines.joined(separator: " "))
-        // The actual station name (from our marker sets) that was read — this is
-        // what drove the verdict, shown to the rider so green/red isn't a mystery.
-        let fwdHit = forward.first { !$0.isEmpty && norm.contains($0) }
-        let bwdHit = backward.first { !$0.isEmpty && norm.contains($0) }
-        let nextHit = nextStop.first { !$0.isEmpty && norm.contains($0) }
+    private func evaluate(_ rows: [String]) {
+        let result = judge.judge(rows: rows)
 
         DispatchQueue.main.async { [weak self] in
             guard let self else { return }
-            // A valid destination wins: if any forward terminus/station is on the
-            // display, it's the right train → GREEN (even if other text is present).
-            // Only when there's NO valid destination but a "don't board" one is → RED.
-            if let f = fwdHit {
+            switch result {
+            case .board(let station):
                 self.missStreak = 0
-                self.verdict = .correct; self.matchedText = f
-            } else if let n = nextHit {
-                // A station sign pointing to the next stop → this platform. But a
-                // sign naming both neighbours ("← 잠원 | 고속터미널 | 교대 →")
-                // can't tell us which side we're on — stay neutral.
+                self.verdict = .correct; self.matchedText = station; self.skippedStation = nil
+            case .wrongDirection(let station):
                 self.missStreak = 0
-                if bwdHit == nil {
-                    self.verdict = .correct; self.matchedText = n
-                } else {
-                    self.verdict = .ambiguous; self.matchedText = nil
-                }
-            } else if let b = bwdHit {
+                self.verdict = .wrong; self.matchedText = station; self.skippedStation = nil
+            case .skipsStop(let word, let station):
                 self.missStreak = 0
-                self.verdict = .wrong; self.matchedText = b
-            } else {
+                self.verdict = .skips; self.matchedText = word; self.skippedStation = station
+            case .ambiguous:
+                self.missStreak = 0
+                self.verdict = .ambiguous; self.matchedText = nil; self.skippedStation = nil
+            case nil:
                 // No destination read. Hold briefly to avoid flicker, then go neutral
                 // so a stale verdict can't linger when nothing is in frame.
                 self.missStreak += 1
                 if self.missStreak >= 3 {
                     self.verdict = .searching
-                    self.matchedText = nil
+                    self.matchedText = nil; self.skippedStation = nil
                 }
             }
         }
-    }
-
-    /// OCR text: drop spaces/separators only. "오금행", "양재 방면" still contain
-    /// the bare station name, so suffixes needn't be stripped.
-    static func normalize(_ s: String) -> String {
-        var t = s
-        for sep in [" ", "·", "・", ",", "/"] {
-            t = t.replacingOccurrences(of: sep, with: "")
-        }
-        return t
-    }
-
-    /// Station marker: like `normalize`, plus a trailing "역" (서울역 → 서울).
-    /// Never strip 역/방/행 mid-name — 역삼 → "삼", 방이 → "이", 행당 → "당" would
-    /// match nearly any sign.
-    static func normalizeStation(_ s: String) -> String {
-        let t = normalize(s)
-        if t.hasSuffix("역"), t.count > 2 { return String(t.dropLast()) }
-        return t
     }
 }
 
 // MARK: - Sample buffer → Vision OCR
 
 private final class SampleHandler: NSObject, AVCaptureVideoDataOutputSampleBufferDelegate {
-    var onText: (([String]) -> Void)?
+    var onText: (([TrainBoardJudge.TextBox]) -> Void)?
     private var lastRun = Date.distantPast
     private let minInterval: TimeInterval = 0.5   // ~2 fps OCR
 
@@ -386,9 +383,13 @@ private final class SampleHandler: NSObject, AVCaptureVideoDataOutputSampleBuffe
 
         let request = VNRecognizeTextRequest { [weak self] req, _ in
             let results = req.results as? [VNRecognizedTextObservation] ?? []
-            let lines = results.compactMap { $0.topCandidates(1).first?.string }
+            let boxes = results.compactMap { obs -> TrainBoardJudge.TextBox? in
+                guard let text = obs.topCandidates(1).first?.string else { return nil }
+                let r = obs.boundingBox
+                return .init(text: text, minY: r.minY, maxY: r.maxY, minX: r.minX)
+            }
             // Always report (even empty) so a stale verdict resets when nothing is read.
-            self?.onText?(lines)
+            self?.onText?(boxes)
         }
         request.recognitionLevel = .accurate
         request.usesLanguageCorrection = false

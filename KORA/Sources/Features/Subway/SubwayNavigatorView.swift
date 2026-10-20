@@ -896,6 +896,9 @@ struct SubwayNavigatorView: View {
                 forwardMarkers: markers.forward,
                 backwardMarkers: markers.backward,
                 nextStopMarkers: markers.nextStop,
+                boarding: seg.stations.first ?? "",
+                destination: seg.stations.last ?? "",
+                services: trainServices(for: seg),
                 displayLanguage: displayLanguage
             )
             .overlay(alignment: .topTrailing) {
@@ -1859,6 +1862,13 @@ struct SubwayNavigatorView: View {
     /// - The boarding station itself is on every sign here, so it's no marker at all.
     /// - The next stop is returned separately as `nextStop` (a weak green): a sign
     ///   pointing to it means this platform — it's no short-turn terminus.
+    /// Station-skipping train types (급행) on the route this segment rides.
+    private func trainServices(for seg: JourneySegment) -> [TrainService] {
+        let boarding = seg.stations.first ?? ""
+        let dest = seg.stations.last ?? ""
+        return seg.line.routes.first { $0.stations.contains(boarding) && $0.stations.contains(dest) }?.services ?? []
+    }
+
     private func directionMarkers(for seg: JourneySegment) -> (forward: Set<String>, backward: Set<String>, nextStop: Set<String>) {
         let boarding = seg.stations.first ?? ""
         let dest = seg.stations.last ?? ""

@@ -93,13 +93,15 @@ struct MetroRoute: Identifiable {
     /// Seoul Metro Line 2 officially uses 6–7 major stations so passengers can
     /// match what they read on the physical platform signs.
     let directionLandmarks: [String]
+    /// Station-skipping train types (급행). Empty = every train stops everywhere.
+    let services: [TrainService]
 
     var terminusA: String { stations.first ?? "" }
     var terminusB: String { stations.last ?? "" }
 
     init(label: String, stations: [String], isCircular: Bool, shortTermini: [String] = [],
          circularForwardLabel: String? = nil, circularBackwardLabel: String? = nil,
-         directionLandmarks: [String] = []) {
+         directionLandmarks: [String] = [], services: [TrainService] = []) {
         self.label = label
         self.stations = stations
         self.isCircular = isCircular
@@ -107,6 +109,7 @@ struct MetroRoute: Identifiable {
         self.circularForwardLabel = circularForwardLabel
         self.circularBackwardLabel = circularBackwardLabel
         self.directionLandmarks = directionLandmarks
+        self.services = services
     }
 }
 
@@ -422,6 +425,18 @@ enum MetroLineData {
 
     // MARK: Line 9
 
+    /// 9호선 급행: 김포공항↔중앙보훈병원, 16개 역에만 선다 (개화·둔촌오륜 등은 일반만).
+    /// 열차 앞과 승강장 안내판에 "급행" 으로 적힌다. 영어 "Express" 는 쓰지 않는다 —
+    /// 고속터미널의 영어 이름(Express Bus Terminal)에도 들어 있다.
+    static let line9Express = TrainService(
+        id: "express",
+        signWords: ["급행"],
+        stops: [
+            "김포공항", "마곡나루", "가양", "염창", "당산", "여의도", "노량진", "동작",
+            "고속터미널", "신논현", "선정릉", "봉은사", "종합운동장", "석촌", "올림픽공원", "중앙보훈병원"
+        ]
+    )
+
     static let line9 = SeoulMetroLineInfo(
         number: 9, name: "9호선",
         color: Color(red: 0.80, green: 0.67, blue: 0.20),
@@ -438,7 +453,8 @@ enum MetroLineData {
                     "삼전", "석촌고분", "석촌", "송파나루", "한성백제",
                     "올림픽공원", "둔촌오륜", "중앙보훈병원"
                 ],
-                isCircular: false
+                isCircular: false,
+                services: [line9Express]
             )
         ]
     )
