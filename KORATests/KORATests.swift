@@ -7,6 +7,7 @@
 
 import XCTest
 import LeeoKit
+import TrainBoardKit
 @testable import KORA
 
 final class KORASpecTests: XCTestCase {
