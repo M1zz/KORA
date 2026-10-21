@@ -17,7 +17,7 @@ cd "$ROOT"
 SCHEME="KORA"
 PROJECT="KORA.xcodeproj"
 VERSION_XCCONFIG="KORA/Config/Version.xcconfig"
-LANGS="en ja ko zh-Hans zh-Hant de es fr it pt-BR ru cs da el fi id nb nl pl sv th tr vi"
+LANGS="en en-GB ja ko zh-Hans zh-Hant de es fr it pt-BR ru cs da el fi id nb nl pl sv th tr vi"
 
 # ── 1. 버전 소스가 한 곳인지 ────────────────────────────────────────────
 # project.pbxproj 에 MARKETING_VERSION 이 되살아나면 xcconfig 를 이겨서

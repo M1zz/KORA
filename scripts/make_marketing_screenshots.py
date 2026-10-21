@@ -23,7 +23,7 @@ RAW = ROOT / "docs" / "screenshots" / "raw"
 OUT = ROOT / "docs" / "screenshots" / "marketing"
 STORE = ROOT / "scripts" / "i18n" / "store"
 W, H = 1242, 2688
-LOCALES = ["ko", "en-US", "ja", "zh-Hans", "zh-Hant", "de", "es", "fr", "it", "pt-BR", "ru", "cs",
+LOCALES = ["ko", "en-US", "en-GB", "ja", "zh-Hans", "zh-Hant", "de", "es", "fr", "it", "pt-BR", "ru", "cs",
            "da", "el", "fi", "id", "nb", "nl", "pl", "sv", "th", "tr", "vi"]
 
 # (파일 이름, 원본 화면, 배치) — 순서가 스토어 순서이고 shots[] 순서와 같다
@@ -114,7 +114,7 @@ document.fonts.ready.then(() => {
 def page(loc, headline, sub, raw, layout):
     glow = ('<div class="glow" style="left:120px;top:1100px;width:1000px;height:1200px;'
             'background:rgba(216,90,48,.14)"></div>') if layout in ("hero", "tilt") else ""
-    lang = "en" if loc == "en-US" else loc
+    lang = "en" if loc in ("en-US", "en-GB") else loc
     return (f'<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><style>{BASE_CSS}{LAYOUTS[layout]}'
             f'</style></head><body>{glow}'
             f'<div class="text"><div class="bar"></div><div class="headline">{headline}</div>'

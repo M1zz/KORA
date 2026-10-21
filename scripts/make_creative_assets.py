@@ -33,7 +33,7 @@ SPEC = {
 #   search: [눈썹글, 헤드라인, 보조 한 줄] — 스크린샷 1장과 같은 이야기. 눈썹글은 그 나라 사람이 검색창에 칠 말
 # ⚠️ 기계번역하지 않는다. 언어마다 따로 쓴다.
 STORE_DIR = ROOT / "scripts" / "i18n" / "store"
-LOCALES = ["ko", "en-US", "ja", "zh-Hans", "zh-Hant", "de", "es", "fr", "it", "pt-BR", "ru", "cs",
+LOCALES = ["ko", "en-US", "en-GB", "ja", "zh-Hans", "zh-Hant", "de", "es", "fr", "it", "pt-BR", "ru", "cs",
            "da", "el", "fi", "id", "nb", "nl", "pl", "sv", "th", "tr", "vi"]
 
 
@@ -159,7 +159,7 @@ def header_html(lang):
 
 
 def html_lang(lang):
-    return "en" if lang == "en-US" else lang
+    return "en" if lang in ("en-US", "en-GB") else lang
 
 
 def chrome(args, log, done, timeout=300):

@@ -146,6 +146,78 @@ https://m1zz.github.io/KORA/en/privacy.html
 
 https://m1zz.github.io/KORA/en/
 
+## en-GB
+
+### 이름
+
+KORA: Korea Subway Navigator
+
+### 부제
+
+Seoul Metro Guide for Visitors
+
+### 키워드
+
+busan,incheon,daegu,daejeon,gwangju,gtx,arex,airport,train,transfer,station,tube,holiday,tourist
+
+### 프로모션 텍스트
+
+Board the right train and never miss your stop. KORA now speaks 23 languages, from German and Spanish to Thai and Vietnamese.
+
+### 설명
+
+KORA is a subway guide for anyone visiting Korea.
+Choose your starting station and destination, and KORA shows the transfers, number of stops, estimated time, and which direction to board, exactly as the train's destination sign reads. While you ride, it follows your current station and tells you when to get off.
+
+YOUR STATION, FOUND FOR YOU
+Find the nearest station with GPS or choose one yourself. KORA remembers it the next time you open the app.
+
+ROUTE AND BOARDING DIRECTION
+See transfers, stops and estimated travel time, plus the train to take, shown just like its destination sign.
+
+CHECK THE DIRECTION WITH YOUR CAMERA
+Point your camera at the platform sign or the train's destination display and KORA tells you right away whether it's the right way. Text recognition happens entirely on your iPhone.
+
+KNOW WHERE YOU ARE
+KORA combines Seoul's real-time arrival data, GPS, the accelerometer (to sense departures and stops) and on-device recognition of the in-train announcements to track your current station. It even tells you which side the doors will open.
+
+STOP ALERTS
+As your stop approaches you get "Prepare to get off", then "Get off now", with haptics. A progress diagram shows the train and a pin on your destination.
+
+LOCK SCREEN AND DYNAMIC ISLAND
+A Live Activity keeps your ride progress visible without unlocking your phone.
+
+23 LANGUAGES
+Use the whole app in 23 languages, including English, Japanese, Chinese, German, French, Spanish, Thai and Vietnamese. It starts in your phone's language. Station names always show the Korean original next to katakana, Chinese characters or the romanized spelling printed on Korean station signs, so you can match them on the platform.
+
+COVERAGE
+About 930 stations in the Seoul metropolitan area (Seoul, Gyeonggi and Incheon, including GTX-A, AREX, the Shinbundang Line and light rail lines), Busan, Daegu, Gwangju and Daejeon. Switch cities with the region chips in the station picker.
+
+WORKS OFFLINE
+Routes are calculated on your device, so route search works without internet. Only live arrivals need a connection.
+
+KORA PRO
+Route search, boarding direction, real-time arrivals and the camera direction check are always free. Lock Screen tracking, announcement recognition and get-off vibration alerts are free for your first three journeys. After that, a one-time KORA Pro purchase keeps them on. KORA Pro also adds an exit guide that shows what's near each exit on Seoul Subway Lines 1 to 8. It also includes last train alerts for Lines 1 to 9, and a luggage mode that shows the carriage closest to the lift on Lines 1 to 8. No subscription.
+
+PRIVATE BY DESIGN
+No account, no ads. Location, camera and announcement recognition are processed on your device and are never stored or sent anywhere. We only collect anonymous usage statistics to improve the app.
+
+Camera, microphone, speech recognition and motion access are all optional. Without them you can still pick stations yourself and get full route guidance.
+
+Contact: mizzking75@gmail.com
+
+### 지원 URL
+
+https://m1zz.github.io/KORA/en/support.html
+
+### 개인정보처리방침 URL
+
+https://m1zz.github.io/KORA/en/privacy.html
+
+### 마케팅 URL
+
+https://m1zz.github.io/KORA/en/
+
 ## ja
 
 ### 이름

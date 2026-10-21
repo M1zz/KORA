@@ -140,6 +140,12 @@
             "state" : "translated",
             "value" : "Chỉ đường tàu điện ngầm"
           }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Subway directions"
+          }
         }
       }
     },
@@ -282,6 +288,12 @@
             "state" : "translated",
             "value" : "Mở trình chỉ đường tàu điện ngầm chỉ với một chạm."
           }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open the subway navigator in one tap."
+          }
         }
       }
     },
@@ -423,6 +435,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mở chỉ đường tàu điện ngầm"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Open subway directions"
           }
         }
       }

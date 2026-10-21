@@ -142,6 +142,12 @@
             "state" : "translated",
             "value" : "KORA"
           }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "KORA"
+          }
         }
       }
     },
@@ -299,6 +305,12 @@
             "state" : "translated",
             "value" : "Hướng camera vào biển chỉ dẫn trên sân ga hoặc bảng điểm đến của tàu để kiểm tra bạn lên đúng hướng. Hình ảnh chỉ được xử lý trên thiết bị, không bao giờ được lưu hay gửi đi."
           }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Point the camera at a platform sign or the train's destination display to check you're boarding in the right direction. Images are processed on your device and never saved or sent."
+          }
         }
       }
     },
@@ -442,6 +454,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dùng để tìm ga tàu điện ngầm gần nhất và biết bạn đang ở ga nào trong lúc đi tàu."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Used to find the nearest subway station and to check which station you're at while riding."
           }
         }
       }
@@ -587,6 +605,12 @@
             "state" : "translated",
             "value" : "Nghe thông báo trên tàu để xác nhận ga hiện tại và phía cửa sẽ mở. Âm thanh chỉ được xử lý trên thiết bị, không bao giờ được lưu hay gửi đi."
           }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Listens to the in-train announcements to confirm the current station and which side the doors open. Audio is processed on your device and never saved or sent."
+          }
         }
       }
     },
@@ -731,6 +755,12 @@
             "state" : "translated",
             "value" : "Dùng cảm biến gia tốc để nhận biết khi tàu chạy và dừng, giúp hiển thị đúng ga hiện tại trong lúc đi tàu."
           }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uses the accelerometer to detect when the train departs and stops, so the current station stays accurate while you ride."
+          }
         }
       }
     },
@@ -874,6 +904,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nhận dạng tên ga trong thông báo trên tàu. Việc nhận dạng diễn ra hoàn toàn trên thiết bị."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recognises station names in the in-train announcements. Recognition happens entirely on your device."
           }
         }
       }

@@ -20,7 +20,7 @@ SCENES = ["route", "board", "ride", "search", "language"]
 
 # 스토어 로케일 → (앱 언어 StationLanguage raw, AppleLanguages, AppleLocale)
 LOCALES = {
-    "ko": ("korean", "ko", "ko_KR"), "en-US": ("english", "en-US", "en_US"), "ja": ("japanese", "ja", "ja_JP"),
+    "ko": ("korean", "ko", "ko_KR"), "en-US": ("english", "en-US", "en_US"), "en-GB": ("english", "en-GB", "en_GB"), "ja": ("japanese", "ja", "ja_JP"),
     "zh-Hans": ("chinese", "zh-Hans", "zh_CN"), "zh-Hant": ("chineseTraditional", "zh-Hant", "zh_TW"),
     "de": ("german", "de", "de_DE"), "es": ("spanish", "es", "es_ES"), "fr": ("french", "fr", "fr_FR"),
     "it": ("italian", "it", "it_IT"), "pt-BR": ("portugueseBrazil", "pt-BR", "pt_BR"),
