@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
-"""앱 아이콘 생성기: 코랄 바탕에 흰 지하철 정면.
+"""앱 아이콘 생성기: 태극 빨강 바탕에 흰 열차 정면, 앞 유리·표시판은 태극 파랑.
 
   python3 scripts/make_app_icon.py
+
+일본길찾기의 아이콘과 같은 그림이다. 두 앱이 한 시리즈로 보이도록
+모양은 그대로 두고 색만 나라에 맞춘다 (KORA = 태극 빨강·파랑, 일본길찾기 = 남색·빨강).
+모양을 고치면 ../일본길찾기/scripts/make_app_icon.py 도 같이 고친다.
 
 출력: KORA/Assets.xcassets/AppIcon.appiconset/AppIcon.png (1024, 모서리 없음, 투명 없음)
       docs/icon.png (웹사이트용 같은 그림)
@@ -14,9 +18,10 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 S = 4                      # 슈퍼샘플링 배율 (가장자리를 매끄럽게)
 N = 1024 * S
 
-TOP = (232, 106, 64)       # 바탕 위쪽
-BOTTOM = (200, 76, 36)     # 바탕 아래쪽 (#D85A30 근처)
-WINDOW = (153, 60, 29)     # KORAAccentDark #993C1D
+TOP = (222, 62, 74)        # 바탕 위쪽
+BOTTOM = (190, 36, 50)     # 바탕 아래쪽 (태극 빨강 #CD2E3A 근처)
+WINDOW = (0, 71, 160)      # 앞 유리·전조등 (태극 파랑 #0047A0)
+SIGN = WINDOW              # 행선지 표시판
 WHITE = (255, 255, 255)
 
 
@@ -34,7 +39,7 @@ def main():
     # 열차 몸체
     d.rounded_rectangle(s(272, 176, 752, 760), radius=120 * S, fill=WHITE)
     # 행선지 표시판
-    d.rounded_rectangle(s(402, 222, 622, 262), radius=20 * S, fill=WINDOW)
+    d.rounded_rectangle(s(402, 222, 622, 262), radius=20 * S, fill=SIGN)
     # 앞 유리
     d.rounded_rectangle(s(330, 304, 694, 520), radius=48 * S, fill=WINDOW)
     # 전조등
