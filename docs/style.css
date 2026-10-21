@@ -1,9 +1,9 @@
 /* KORA — home / support / privacy pages (all languages) */
 :root {
   color-scheme: light dark;
-  --accent: #D85A30;
-  --accent-ink: #b8461f;
-  --accent-soft: #fbe5dc;
+  --accent: #CD2E3A;
+  --accent-ink: #a8222d;
+  --accent-soft: #fbe4e6;
   --ink: #1c1817;
   --ink-soft: #5c5552;
   --line: #ece6e2;
@@ -13,9 +13,9 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --accent: #f08a62;
-    --accent-ink: #f5a585;
-    --accent-soft: #3a241c;
+    --accent: #f07a83;
+    --accent-ink: #f59aa1;
+    --accent-soft: #3a1c1f;
     --ink: #f3eeeb;
     --ink-soft: #b3aaa6;
     --line: #3a3431;

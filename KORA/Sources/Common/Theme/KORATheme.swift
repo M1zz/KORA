@@ -5,10 +5,10 @@ import SwiftUI
 enum KORATheme {
 
     // MARK: Colors
-    static let accent        = Color("KORAAccent")       // #D85A30 코랄 레드
-    static let accentLight   = Color("KORAAccentLight")  // #FAECE7
-    static let accentDark    = Color("KORAAccentDark")   // #993C1D
-    /// 작은 글자용 코랄 — 흰 바탕 · 검은 바탕 모두 4.5:1 이상 (고대비에서는 더 진하게).
+    static let accent        = Color("KORAAccent")       // #CD2E3A 태극 빨강 (아이콘 바탕과 같다)
+    static let accentLight   = Color("KORAAccentLight")  // #FBE8EA
+    static let accentDark    = Color("KORAAccentDark")   // #9E1C28
+    /// 작은 글자용 빨강 — 흰 바탕 · 검은 바탕 모두 4.5:1 이상 (고대비에서는 더 진하게).
     static let accentText    = Color("KORAAccentText")
 
     static let surface       = Color(UIColor.secondarySystemBackground)

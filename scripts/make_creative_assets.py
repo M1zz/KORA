@@ -44,7 +44,7 @@ def copy(lang, kind):
 # 노선 색(장식): 2호선 · 4호선 · 공항철도 · 1호선 · 3호선
 LINES = ["#00A84D", "#00A5DE", "#0090D2", "#0052A4", "#EF7C1C"]
 
-# ⚠️ 바탕 · 글자색은 앱 · 소개 페이지 팔레트(docs/style.css, KORATheme)와 같다: 코랄 레드 #D85A30.
+# ⚠️ 바탕 · 글자색은 앱 · 소개 페이지 팔레트(docs/style.css, KORATheme)와 같다: 태극 빨강 #CD2E3A.
 BASE_CSS = """
 * { margin:0; padding:0; box-sizing:border-box; }
 html,body { width:%(W)dpx; height:%(H)dpx; overflow:hidden; }
@@ -56,7 +56,7 @@ body:lang(zh-Hant) { font-family:-apple-system, "PingFang TC", sans-serif; }
 body:lang(th) { font-family:-apple-system, "Thonburi", sans-serif; }
 .glow { position:absolute; border-radius:50%%; filter:blur(170px); pointer-events:none; }
 .text { position:absolute; display:flex; flex-direction:column; justify-content:center; }
-.eyebrow { font-weight:700; color:#D85A30; letter-spacing:-0.01em; line-height:1.15; }
+.eyebrow { font-weight:700; color:#CD2E3A; letter-spacing:-0.01em; line-height:1.15; }
 .headline { font-weight:800; color:#1c1817; letter-spacing:-0.02em; line-height:1.2; text-wrap:balance; }
 .sub { font-weight:500; color:#5c5552; letter-spacing:-0.01em; line-height:1.4; text-wrap:balance; }
 :lang(ja) .headline, :lang(zh) .headline, :lang(ja) .eyebrow, :lang(zh) .eyebrow { letter-spacing:.01em; }

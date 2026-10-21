@@ -92,7 +92,7 @@ struct KORAOnboardingView: View {
             }
             .buttonStyle(.borderedProminent)
             .controlSize(.large)
-            // 흰 글자가 4.5:1 이상 되도록 진한 코랄.
+            // 흰 글자가 4.5:1 이상 되도록 진한 빨강.
             .tint(KORATheme.accentDark)
             .padding(.horizontal, 24)
             .padding(.bottom, 24)

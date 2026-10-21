@@ -52,7 +52,7 @@ body:lang(th) {{ font-family:-apple-system, "Thonburi", sans-serif; }}
 :lang(ja) .headline, :lang(zh) .headline {{ letter-spacing:.01em; }}
 :lang(ko) .headline, :lang(ko) .sub {{ word-break:keep-all; }}
 :lang(ja) .headline, :lang(ja) .sub {{ word-break:auto-phrase; }}
-.bar {{ width:120px; height:14px; border-radius:7px; background:#D85A30; margin-bottom:56px; }}
+.bar {{ width:120px; height:14px; border-radius:7px; background:#CD2E3A; margin-bottom:56px; }}
 .phone {{ position:absolute; background:#17171a; border:4px solid #3a3a3e; padding:28px; border-radius:150px;
   box-shadow:0 70px 140px rgba(28,24,23,.24), 0 20px 50px rgba(28,24,23,.12); }}
 .phone img {{ display:block; width:100%; border-radius:122px; }}
@@ -67,9 +67,9 @@ LAYOUTS = {
     "tilt": """
 .phone { left:150px; top:800px; width:980px; transform:rotate(-5deg); }
 """,
-    # 코랄 바탕 반전
+    # 빨강 바탕 반전
     "accent": """
-body { background:#D85A30; }
+body { background:#CD2E3A; }
 .headline { color:#ffffff; }
 .sub { color:rgba(255,255,255,.82); }
 .bar { background:#ffffff; }
