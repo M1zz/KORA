@@ -73,7 +73,7 @@ body { background:#CD2E3A; }
 .headline { color:#ffffff; }
 .sub { color:rgba(255,255,255,.82); }
 .bar { background:#ffffff; }
-.phone { left:131px; top:770px; width:980px; border-color:#5a2a1a;
+.phone { left:131px; top:770px; width:980px; border-color:#6a1a22;
   box-shadow:0 70px 140px rgba(60,20,10,.35); }
 """,
     # 어두운 바탕 반전(마지막 장)
@@ -82,7 +82,7 @@ body { background:#16130f; }
 .headline { color:#f7f3ef; }
 .sub { color:#a39b96; }
 .phone { left:131px; top:770px; width:980px; border-color:#48484e;
-  box-shadow:0 0 160px rgba(216,90,48,.28), 0 70px 120px rgba(0,0,0,.55); }
+  box-shadow:0 0 160px rgba(205,46,58,.28), 0 70px 120px rgba(0,0,0,.55); }
 """,
 }
 
@@ -113,7 +113,7 @@ document.fonts.ready.then(() => {
 
 def page(loc, headline, sub, raw, layout):
     glow = ('<div class="glow" style="left:120px;top:1100px;width:1000px;height:1200px;'
-            'background:rgba(216,90,48,.14)"></div>') if layout in ("hero", "tilt") else ""
+            'background:rgba(205,46,58,.14)"></div>') if layout in ("hero", "tilt") else ""
     lang = "en" if loc == "en-US" else loc
     return (f'<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><style>{BASE_CSS}{LAYOUTS[layout]}'
             f'</style></head><body>{glow}'
