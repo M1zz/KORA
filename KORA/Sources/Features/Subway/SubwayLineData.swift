@@ -946,7 +946,7 @@ enum MetroLineData {
             }
 
             for segment in candidates {
-                if best == nil || segment.stations.count < best!.stations.count {
+                if best.map({ segment.stations.count < $0.stations.count }) ?? true {
                     best = segment
                 }
             }

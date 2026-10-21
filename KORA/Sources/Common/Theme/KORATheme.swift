@@ -97,3 +97,17 @@ extension Color {
         )
     }
 }
+
+// MARK: - Fixed URLs
+
+extension URL {
+    /// A URL written in the source (support page, mail address). It's fixed at
+    /// build time, so a typo is a programmer error caught on first run — not a
+    /// runtime condition to handle.
+    init(fixed string: StaticString) {
+        guard let url = URL(string: "\(string)") else {
+            preconditionFailure("Invalid fixed URL: \(string)")
+        }
+        self = url
+    }
+}

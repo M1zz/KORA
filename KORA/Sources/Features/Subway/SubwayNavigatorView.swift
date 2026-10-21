@@ -2481,7 +2481,8 @@ struct SubwayNavigatorView: View {
                     throw LocationService.LocationError.timeout
                 }
                 defer { group.cancelAll() }
-                return try await group.next()!
+                guard let first = try await group.next() else { throw LocationService.LocationError.timeout }
+                return first
             }
 
             if let local = MetroLineData.nearestStation(
@@ -2512,7 +2513,7 @@ struct SubwayNavigatorView: View {
         let fromDisplay = MetroLineData.displayBilingual(for: fromKo, language: displayLanguage)
         let toDisplay   = MetroLineData.displayBilingual(for: toKo,   language: displayLanguage)
         let fromRelevantLines = j.segments.isEmpty ? [] : [j.segments[0].line.number]
-        let toRelevantLines   = j.segments.isEmpty ? [] : [j.segments.last!.line.number]
+        let toRelevantLines   = j.segments.last.map { [$0.line.number] } ?? []
 
         return ScrollView {
             VStack(spacing: 20) {
@@ -3428,10 +3429,10 @@ struct DeveloperContactSection: View {
         Section {
             // 의견 보내기 · 보낸 의견의 답장 · 리뷰 남기기 · 개인정보처리방침 · 앱 버전.
             LeeoSupportSection<KORASpec>()
-            Link(destination: URL(string: "mailto:leeo@kakao.com")!) {
+            Link(destination: URL(fixed: "mailto:leeo@kakao.com")) {
                 Label(NavLoc.contactEmail.resolved(lang), systemImage: "envelope")
             }
-            Link(destination: URL(string: "https://instagram.com/lee25_ios")!) {
+            Link(destination: URL(fixed: "https://instagram.com/lee25_ios")) {
                 Label(NavLoc.contactInstagram.resolved(lang), systemImage: "paperplane")
             }
         } header: {

@@ -508,7 +508,7 @@ extension MetroLineData {
         for (name, c) in stationCoordinates {
             let d = haversine(lat1: lat, lng1: lng, lat2: c.lat, lng2: c.lng)
             if d > maxMeters { continue }
-            if best == nil || d < best!.1 { best = (name, d) }
+            if best.map({ d < $0.1 }) ?? true { best = (name, d) }
         }
         guard let b = best else { return nil }
         return (b.0, b.1)

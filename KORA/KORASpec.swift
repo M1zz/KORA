@@ -24,8 +24,8 @@ enum KORASpec: LeeoAppSpec {
 
     /// 지원·개인정보 페이지 (README.md). 언어별 페이지는 docs/appstore/README.md 참고.
     static let legal = LeeoLegalConfig(
-        privacyURL: URL(string: "https://m1zz.github.io/KORA/privacy.html")!,
-        supportURL: URL(string: "https://m1zz.github.io/KORA/support.html")!,
+        privacyURL: URL(fixed: "https://m1zz.github.io/KORA/privacy.html"),
+        supportURL: URL(fixed: "https://m1zz.github.io/KORA/support.html"),
         // 계정을 만들지 않는다.
         createsAccounts: false,
         marketingURL: URL(string: "https://m1zz.github.io/KORA/")

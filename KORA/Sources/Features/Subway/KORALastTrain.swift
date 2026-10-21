@@ -48,7 +48,8 @@ enum LastTrainService {
         return decoded
     }()
 
-    static let seoul = TimeZone(identifier: "Asia/Seoul")!
+    // 서울은 서머타임이 없어 UTC+9 고정값과 같다.
+    static let seoul = TimeZone(identifier: "Asia/Seoul") ?? TimeZone(secondsFromGMT: 9 * 3600) ?? .current
     private static var calendar: Calendar {
         var c = Calendar(identifier: .gregorian)
         c.timeZone = seoul

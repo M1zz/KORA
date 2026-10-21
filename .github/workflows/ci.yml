@@ -17,14 +17,19 @@ concurrency:
 jobs:
   test:
     name: 게이트 · 빌드 · 단위 시험
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 40
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Xcode 버전 확인
-        run: xcodebuild -version
+      # LeeoKit 이 iOS 26 SDK 의 API(glassEffect 등)를 쓴다. 기기에 있는 가장 새 Xcode 를 고른다.
+      - name: Xcode 고르기
+        run: |
+          XCODE=$(ls -d /Applications/Xcode_*.app | sort -V | tail -1)
+          echo "Xcode: $XCODE"
+          sudo xcode-select -s "$XCODE"
+          xcodebuild -version
 
       # LeeoKit(공개 SPM 패키지)을 매번 새로 받지 않도록 캐시.
       - name: SPM 캐시
@@ -52,10 +57,8 @@ jobs:
 
   lint:
     name: SwiftLint
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 10
-    # 기존 위반(강제 언랩 · 큰 파일)을 0 으로 만들기 전까지는 막지 않는다.
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v4
       - name: SwiftLint 설치
