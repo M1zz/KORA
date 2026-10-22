@@ -14,6 +14,7 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 앱에서 바로 의견을 보내고 답장도 받아요
 고대비와 동작 줄이기 설정에 맞춰 보여요
 VoiceOver로도 타고 내릴 수 있어요
+9호선 급행이 내 역을 지나치면 알려 줘요
 ```
 
 ### 앱스토어 (English en-US)
@@ -23,6 +24,7 @@ A quick guide for first-time riders
 Send feedback and read replies in-app
 Supports higher contrast and less motion
 Board and get off with VoiceOver too
+See if a Line 9 express skips your stop
 ```
 
 ### 앱스토어 (영국 영어 en-GB)
@@ -32,6 +34,7 @@ A quick guide for first-time travellers
 Send feedback and see replies in the app
 Supports higher contrast and less motion
 Get on and off with VoiceOver too
+See if a Line 9 express skips your stop
 ```
 
 ### 앱스토어 (日本語 ja)
@@ -41,6 +44,7 @@ Get on and off with VoiceOver too
 アプリから意見を送り、返信も読めます
 コントラストや視差効果の設定に対応しました
 VoiceOverでも乗車と降車ができます
+9号線の急行が自分の駅に止まるか分かります
 ```
 
 ### 앱스토어 (중국어 간체 zh-Hans)
@@ -50,6 +54,7 @@ VoiceOverでも乗車と降車ができます
 可在应用内反馈意见并查看回复
 支持增强对比度和减弱动态效果
 用旁白也能完成上下车操作
+9号线快车不停靠你的车站时会提醒你
 ```
 
 ### 앱스토어 (중국어 번체 zh-Hant)
@@ -59,6 +64,7 @@ VoiceOverでも乗車と降車ができます
 可在 App 內回饋意見並查看回覆
 支援增加對比和減少動態效果
 用 VoiceOver 也能完成上下車操作
+9號線快車不停靠你的車站時會提醒你
 ```
 
 ### 앱스토어 (독일어 de)
@@ -68,6 +74,7 @@ Eine kurze Anleitung für den Einstieg
 Feedback senden und Antworten lesen
 Hoher Kontrast und weniger Bewegung
 Ein- und Aussteigen auch mit VoiceOver
+Sehen, ob der Express der Linie 9 hält
 ```
 
 ### 앱스토어 (스페인어 es)
@@ -77,6 +84,7 @@ Una guía breve para empezar
 Envía comentarios y lee las respuestas
 Más contraste y menos movimiento
 Sube y baja también con VoiceOver
+Avisa si el exprés de la línea 9 no para
 ```
 
 ### 앱스토어 (프랑스어 fr)
@@ -86,6 +94,7 @@ Un petit guide pour bien démarrer
 Envoyez vos avis et lisez nos réponses
 Contraste accru et animations réduites
 Montez et descendez aussi avec VoiceOver
+Voir si l'express de la ligne 9 s'arrête
 ```
 
 ### 앱스토어 (이탈리아어 it)
@@ -95,6 +104,7 @@ Una breve guida per iniziare
 Invia feedback e leggi le risposte
 Più contrasto e meno movimento
 Sali e scendi anche con VoiceOver
+Avviso se l'espresso linea 9 non ferma
 ```
 
 ### 앱스토어 (포르투갈어 브라질 pt-BR)
@@ -104,6 +114,7 @@ Um guia rápido para começar
 Envie sua opinião e leia as respostas
 Mais contraste e menos movimento
 Embarque e desembarque com VoiceOver
+Aviso se o expresso da linha 9 não parar
 ```
 
 ### 앱스토어 (러시아어 ru)
@@ -113,6 +124,7 @@ Embarque e desembarque com VoiceOver
 Отзывы и ответы прямо в приложении
 Поддержка контраста и меньшего движения
 Посадка и выход теперь и с VoiceOver
+Узнайте, остановится ли экспресс линии 9
 ```
 
 ### 앱스토어 (체코어 cs)
@@ -122,6 +134,7 @@ Krátký průvodce pro začátek
 Zpětná vazba a odpovědi přímo v aplikaci
 Vyšší kontrast a omezení pohybu
 Nástup a výstup i s VoiceOverem
+Upozornění, když expres linky 9 nestaví
 ```
 
 ### 앱스토어 (덴마크어 da)
@@ -131,6 +144,7 @@ En kort guide til at komme i gang
 Send feedback og læs vores svar i appen
 Øget kontrast og mindre bevægelse
 Stig på og af også med VoiceOver
+Se om ekspressen på linje 9 stopper
 ```
 
 ### 앱스토어 (그리스어 el)
@@ -140,6 +154,7 @@ Stig på og af også med VoiceOver
 Σχόλια και απαντήσεις μέσα στην εφαρμογή
 Αυξημένη αντίθεση και μείωση κίνησης
 Επιβίβαση και αποβίβαση και με VoiceOver
+Δείτε αν το εξπρές της γραμμής 9 σταματά
 ```
 
 ### 앱스토어 (핀란드어 fi)
@@ -149,6 +164,7 @@ Lyhyt opas alkuun
 Palaute ja vastaukset sovelluksessa
 Lisää kontrastia ja vähemmän liikettä
 Kyytiin ja pois myös VoiceOverilla
+Näet, pysähtyykö linjan 9 pikajuna
 ```
 
 ### 앱스토어 (인도네시아어 id)
@@ -158,6 +174,7 @@ Panduan singkat untuk pengguna baru
 Kirim masukan, baca balasan di aplikasi
 Kontras tinggi dan gerakan dikurangi
 Naik dan turun juga dengan VoiceOver
+Cek apakah ekspres jalur 9 berhenti
 ```
 
 ### 앱스토어 (노르웨이어 보크말 nb)
@@ -167,6 +184,7 @@ En kort guide for å komme i gang
 Send tilbakemelding og les svarene våre
 Økt kontrast og redusert bevegelse
 Gå på og av også med VoiceOver
+Se om ekspressen på linje 9 stopper
 ```
 
 ### 앱스토어 (네덜란드어 nl)
@@ -176,6 +194,7 @@ Een korte uitleg om te beginnen
 Stuur feedback en lees onze antwoorden
 Meer contrast en minder beweging
 In- en uitstappen ook met VoiceOver
+Check of de sneltrein van lijn 9 stopt
 ```
 
 ### 앱스토어 (폴란드어 pl)
@@ -185,6 +204,7 @@ Krótki przewodnik na start
 Opinie i odpowiedzi prosto w aplikacji
 Większy kontrast i mniej ruchu
 Wsiadanie i wysiadanie także z VoiceOver
+Sprawdź, czy ekspres linii 9 staje
 ```
 
 ### 앱스토어 (스웨덴어 sv)
@@ -194,6 +214,7 @@ En kort guide för att komma igång
 Skicka feedback och läs svar i appen
 Ökad kontrast och minskad rörelse
 Kliv på och av även med VoiceOver
+Se om expresståget på linje 9 stannar
 ```
 
 ### 앱스토어 (태국어 th)
@@ -203,6 +224,7 @@ Kliv på och av även med VoiceOver
 ส่งความคิดเห็นและอ่านคำตอบในแอป
 รองรับความต่างของสีสูงและลดการเคลื่อนไหว
 ขึ้นและลงรถไฟด้วย VoiceOver ได้แล้ว
+แจ้งเมื่อรถด่วนสาย 9 ไม่จอดสถานีคุณ
 ```
 
 ### 앱스토어 (튀르키예어 tr)
@@ -212,6 +234,7 @@ Yeni başlayanlar için kısa bir rehber
 Geri bildirim gönder, yanıtlarımızı oku
 Yüksek kontrast ve azaltılmış hareket
 VoiceOver ile de binip inebilirsin
+Hat 9 ekspresi durağında durmazsa uyarır
 ```
 
 ### 앱스토어 (베트남어 vi)
@@ -221,7 +244,9 @@ Hướng dẫn ngắn cho người mới
 Gửi góp ý và đọc phản hồi trong ứng dụng
 Tăng tương phản và giảm chuyển động
 Lên và xuống tàu bằng VoiceOver
+Báo khi tàu tốc hành tuyến 9 bỏ qua ga
 ```
+
 ## 1.0.8
 
 ### 앱스토어 (한국어 ko)
