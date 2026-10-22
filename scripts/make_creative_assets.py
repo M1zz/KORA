@@ -131,7 +131,7 @@ def search_html(lang):
                         (LINES[1], [(3400, -40), (3400, 300), (3600, 500), (3900, 500)])])
     return f"""
 {deco}
-<div class="glow" style="left:{x - 200}px;top:500px;width:1800px;height:1800px;background:rgba(216,90,48,.12)"></div>
+<div class="glow" style="left:{x - 200}px;top:500px;width:1800px;height:1800px;background:rgba(205,46,58,.12)"></div>
 {phone(lang, "route.png", x + 680, t - 300, 820, 7)}
 {phone(lang, "ride.png", x + 110, t - 200, 860, -4)}
 <div class="text" style="left:{l}px;top:{t}px;width:{col}px;height:{sh}px">
@@ -149,7 +149,7 @@ def header_html(lang):
                         (LINES[4], [(3900, 1500), (2900, 1500), (2700, 1300), (2700, 1250)])])
     return f"""
 {deco}
-<div class="glow" style="left:{l - 200}px;top:{t - 400}px;width:{sw + 400}px;height:{sh + 800}px;background:rgba(216,90,48,.10)"></div>
+<div class="glow" style="left:{l - 200}px;top:{t - 400}px;width:{sw + 400}px;height:{sh + 800}px;background:rgba(205,46,58,.10)"></div>
 {phone(lang, "route.png", 330, 330, 640, -8)}
 {phone(lang, "ride.png", 2870, 330, 640, 8)}
 <div class="text" style="left:{l}px;top:{t}px;width:{sw}px;height:{sh}px;align-items:center;text-align:center">
@@ -179,7 +179,12 @@ def chrome(args, log, done, timeout=300):
                 ok = True
                 break
             if proc.poll() is not None:
-                ok = done()
+                # 빨리 끝난 Chrome — done() 이 여러 번 확인하는 조건(파일 크기 안정)이면 몇 번 더 본다.
+                for _ in range(4):
+                    ok = done()
+                    if ok:
+                        break
+                    time.sleep(0.5)
                 break
         try:
             os.killpg(proc.pid, signal.SIGKILL)
