@@ -28,11 +28,10 @@ Board and get off with VoiceOver too
 ### 앱스토어 (영국 영어 en-GB)
 
 ```
-See what's near each station exit
-Last train times with a reminder
-Find the carriage closest to the lift
-New features come with KORA Pro
-Existing users keep every feature
+A quick guide for first-time travellers
+Send feedback and see replies in the app
+Supports higher contrast and less motion
+Get on and off with VoiceOver too
 ```
 
 ### 앱스토어 (日本語 ja)
