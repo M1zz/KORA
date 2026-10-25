@@ -50,6 +50,15 @@ final class RouteFindingTests: XCTestCase {
     func testSameStationHasNoRoute() {
         XCTAssertTrue(MetroLineData.findAnyJourneys(from: "서울역", to: "서울역").isEmpty)
     }
+
+    func testLine1RunsThroughJongnoAndCityHall() throws {
+        // 1호선 서울역 → 동대문은 시청·종각·종로3가·종로5가를 지난다 (예전에는 세 역이 빠져 있었다).
+        let route = try XCTUnwrap(MetroLineData.line1.routes.first)
+        let i = try XCTUnwrap(route.stations.firstIndex(of: "동대문"))
+        XCTAssertEqual(Array(route.stations[i...(i + 5)]), ["동대문", "종로5가", "종로3가", "종각", "시청", "서울역"])
+        // 시청에서 1호선과 2호선이 만난다.
+        XCTAssertTrue(MetroLineData.linesContaining("시청").contains(1))
+    }
 }
 
 final class LastTrainClockTests: XCTestCase {

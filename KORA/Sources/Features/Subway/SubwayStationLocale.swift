@@ -302,6 +302,7 @@ extension MetroLineData {
         "경복궁":      .init(ja: "キョンボックン",         en: "Gyeongbokgung"),
         "안국":        .init(ja: "アングク",              en: "Anguk"),
         "종로3가":     .init(ja: "チョンノサムガ",         en: "Jongno 3(sam)-ga"),
+        "종로5가":     .init(ja: "チョンノオガ",          en: "Jongno 5(o)-ga"),
         "충무로":      .init(ja: "チュンムロ",            en: "Chungmuro"),
         "동대입구":    .init(ja: "トンデイック",           en: "Dongguk Univ."),
         "약수":        .init(ja: "ヤクス",               en: "Yaksu"),

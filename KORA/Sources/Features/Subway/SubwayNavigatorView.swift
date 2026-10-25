@@ -2733,6 +2733,7 @@ struct StationSearchSheet: View {
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
     @Environment(\.colorSchemeContrast) private var colorSchemeContrast
     @State private var query = ""
+    @State private var showMap = false
     @State private var selectedLineNumber: Int? = nil
     @State private var nearby: [String] = []
     @State private var isLocatingNearby = false
@@ -2828,7 +2829,7 @@ struct StationSearchSheet: View {
     }
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack(spacing: 0) {
                 categoryFilterBar
                 lineFilterBar
@@ -2864,9 +2865,8 @@ struct StationSearchSheet: View {
                     Button(NavLoc.done.resolved(displayLanguage)) { dismiss() }
                 }
                 ToolbarItem(placement: .primaryAction) {
-                    NavigationLink {
-                        StationMapPicker(excluding: excluding, lang: displayLanguage, category: selectedCategory,
-                                         startsAtUserLocation: showNearby) { onSelect($0); dismiss() }
+                    Button {
+                        showMap = true
                     } label: {
                         Image(systemName: "map")
                     }
@@ -2874,7 +2874,21 @@ struct StationSearchSheet: View {
                     .accessibilityIdentifier("search.map")
                 }
             }
-            .task { if showNearby { await loadNearby() } }
+            .navigationDestination(isPresented: $showMap) {
+                StationMapPicker(excluding: excluding, lang: displayLanguage, category: selectedCategory,
+                                 startsAtUserLocation: showNearby) { onSelect($0); dismiss() }
+            }
+            .task {
+                #if DEBUG
+                // 스크린샷용: `-KORAShotQuery 코엑스`, `-KORAShotMap YES`.
+                if let q = UserDefaults.standard.string(forKey: "KORAShotQuery") { query = q }
+                if UserDefaults.standard.bool(forKey: "KORAShotMap") {
+                    try? await Task.sleep(for: .milliseconds(600))   // after the sheet has settled
+                    showMap = true
+                }
+                #endif
+                if showNearby { await loadNearby() }
+            }
         }
         .presentationDragIndicator(.visible)
     }
