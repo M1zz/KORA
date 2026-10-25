@@ -46,6 +46,9 @@
 		AA090 /* KORAPro.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA190 /* KORAPro.swift */; };
 		AA091 /* KORAPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA191 /* KORAPaywallView.swift */; };
 		AA092 /* KORAExitGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA192 /* KORAExitGuideView.swift */; };
+		AAAT1 /* KORAAttractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAT2 /* KORAAttractions.swift */; };
+		AAMP1 /* KORAStationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAMP2 /* KORAStationMapView.swift */; };
+		AAAT3 /* attractions.json in Resources */ = {isa = PBXBuildFile; fileRef = AAAT4 /* attractions.json */; };
 		AA093 /* station_exits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA193 /* station_exits.json */; };
 		AA094 /* KORALastTrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA194 /* KORALastTrain.swift */; };
 		AA095 /* last_trains.json in Resources */ = {isa = PBXBuildFile; fileRef = AA195 /* last_trains.json */; };
@@ -138,6 +141,9 @@
 		AA190 /* KORAPro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAPro.swift; sourceTree = "<group>"; };
 		AA191 /* KORAPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAPaywallView.swift; sourceTree = "<group>"; };
 		AA192 /* KORAExitGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAExitGuideView.swift; sourceTree = "<group>"; };
+		AAAT2 /* KORAAttractions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAAttractions.swift; sourceTree = "<group>"; };
+		AAMP2 /* KORAStationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAStationMapView.swift; sourceTree = "<group>"; };
+		AAAT4 /* attractions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = attractions.json; sourceTree = "<group>"; };
 		AA193 /* station_exits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = station_exits.json; sourceTree = "<group>"; };
 		AA194 /* KORALastTrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORALastTrain.swift; sourceTree = "<group>"; };
 		AA195 /* last_trains.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = last_trains.json; sourceTree = "<group>"; };
@@ -273,6 +279,7 @@
 				AA193 /* station_exits.json */,
 				AA195 /* last_trains.json */,
 				AA197 /* quick_exits.json */,
+				AAAT4 /* attractions.json */,
 				F30AA3727A6C748762BDB882 /* KORARoadmap.swift */,
 			);
 			path = KORA;
@@ -361,6 +368,8 @@
 				AA162 /* PlatformDirectionScanner.swift */,
 				AA191 /* KORAPaywallView.swift */,
 				AA192 /* KORAExitGuideView.swift */,
+				AAAT2 /* KORAAttractions.swift */,
+				AAMP2 /* KORAStationMapView.swift */,
 				AA194 /* KORALastTrain.swift */,
 				AA196 /* KORALuggageMode.swift */,
 				F3C1F37D764C0981336FB8ED /* SubwayStationChineseTraditionalNames.swift */,
@@ -592,6 +601,7 @@
 				AA093 /* station_exits.json in Resources */,
 				AA095 /* last_trains.json in Resources */,
 				AA097 /* quick_exits.json in Resources */,
+				AAAT3 /* attractions.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +651,8 @@
 				AA090 /* KORAPro.swift in Sources */,
 				AA091 /* KORAPaywallView.swift in Sources */,
 				AA092 /* KORAExitGuideView.swift in Sources */,
+				AAAT1 /* KORAAttractions.swift in Sources */,
+				AAMP1 /* KORAStationMapView.swift in Sources */,
 				AA094 /* KORALastTrain.swift in Sources */,
 				AA096 /* KORALuggageMode.swift in Sources */,
 				178554DE9CC7D8AF586969BA /* SubwayStationChineseTraditionalNames.swift in Sources */,

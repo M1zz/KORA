@@ -1,0 +1,3438 @@
+[
+  {
+    "id": "gyeongbokgung",
+    "category": "palace",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "경복궁",
+      "ja": "景福宮",
+      "en": "Gyeongbokgung Palace",
+      "zh-Hans": "景福宫",
+      "zh-Hant": "景福宮"
+    },
+    "aliases": [
+      "Gyeongbokgung",
+      "キョンボックン",
+      "Kyongbokkung",
+      "광화문 수문장 교대식",
+      "景福宮守門将交代式"
+    ],
+    "lat": 37.57961,
+    "lng": 126.97704,
+    "stations": [
+      {
+        "station": "경복궁",
+        "exits": [
+          "5"
+        ],
+        "walk": 2
+      },
+      {
+        "station": "광화문",
+        "exits": [
+          "2"
+        ],
+        "walk": 6
+      },
+      {
+        "station": "안국",
+        "exits": [
+          "1"
+        ],
+        "walk": 6
+      }
+    ],
+    "sources": [
+      "https://royal.khs.go.kr/ROYAL/contents/R707000000.do?schGroupCode=gbg",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "changdeokgung",
+    "category": "palace",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "창덕궁",
+      "ja": "昌徳宮",
+      "en": "Changdeokgung Palace",
+      "zh-Hans": "昌德宫",
+      "zh-Hant": "昌德宮"
+    },
+    "aliases": [
+      "Changdeokgung",
+      "チャンドックン",
+      "후원",
+      "비원",
+      "Secret Garden",
+      "Huwon",
+      "秘苑",
+      "돈화문",
+      "Donhwamun"
+    ],
+    "lat": 37.57944,
+    "lng": 126.99104,
+    "stations": [
+      {
+        "station": "안국",
+        "exits": [
+          "3"
+        ],
+        "walk": 5
+      },
+      {
+        "station": "종로3가",
+        "exits": [
+          "7"
+        ],
+        "walk": 10
+      }
+    ],
+    "sources": [
+      "https://royal.khs.go.kr/ROYAL/contents/R707000000.do?schGroupCode=cdg",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "changgyeonggung",
+    "category": "palace",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "창경궁",
+      "ja": "昌慶宮",
+      "en": "Changgyeonggung Palace",
+      "zh-Hans": "昌庆宫",
+      "zh-Hant": "昌慶宮"
+    },
+    "aliases": [
+      "Changgyeonggung",
+      "チャンギョングン",
+      "창경궁 대온실",
+      "Daeonsil Greenhouse",
+      "大温室",
+      "홍화문"
+    ],
+    "lat": 37.57881,
+    "lng": 126.99486,
+    "stations": [
+      {
+        "station": "혜화",
+        "exits": [
+          "4"
+        ],
+        "walk": 12
+      }
+    ],
+    "sources": [
+      "https://royal.khs.go.kr/ROYAL/contents/R707000000.do?schGroupCode=cgg",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "deoksugung",
+    "category": "palace",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "덕수궁",
+      "ja": "徳寿宮",
+      "en": "Deoksugung Palace",
+      "zh-Hans": "德寿宫",
+      "zh-Hant": "德壽宮"
+    },
+    "aliases": [
+      "Deoksugung",
+      "トクスグン",
+      "대한문",
+      "Daehanmun",
+      "大漢門",
+      "석조전",
+      "Seokjojeon",
+      "덕수궁 돌담길",
+      "徳寿宮石垣道",
+      "수문장 교대식"
+    ],
+    "lat": 37.5658,
+    "lng": 126.9751,
+    "stations": [
+      {
+        "station": "시청",
+        "exits": [
+          "2"
+        ],
+        "walk": 2
+      },
+      {
+        "station": "광화문",
+        "exits": [
+          "6",
+          "2"
+        ],
+        "walk": 10
+      }
+    ],
+    "sources": [
+      "https://royal.khs.go.kr/ROYAL/contents/R707000000.do?schGroupCode=dsg",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "jongmyo",
+    "category": "palace",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "종묘",
+      "ja": "宗廟",
+      "en": "Jongmyo Shrine",
+      "zh-Hans": "宗庙",
+      "zh-Hant": "宗廟"
+    },
+    "aliases": [
+      "Jongmyo",
+      "チョンミョ",
+      "Jongmyo Royal Shrine",
+      "종묘제례",
+      "종묘광장공원"
+    ],
+    "lat": 37.5715,
+    "lng": 126.9941,
+    "stations": [
+      {
+        "station": "종로3가",
+        "exits": [
+          "11",
+          "8"
+        ],
+        "walk": 3
+      }
+    ],
+    "sources": [
+      "https://news.seoul.go.kr/traffic/archives/10413",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "gwanghwamun-square",
+    "category": "landmark",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "광화문광장",
+      "ja": "光化門広場",
+      "en": "Gwanghwamun Square",
+      "zh-Hans": "光化门广场",
+      "zh-Hant": "光化門廣場"
+    },
+    "aliases": [
+      "Gwanghwamun",
+      "광화문",
+      "光化門",
+      "クァンファムン",
+      "세종대왕 동상",
+      "King Sejong Statue",
+      "世宗大王像",
+      "이순신 장군 동상",
+      "Admiral Yi Sun-sin Statue",
+      "세종로"
+    ],
+    "lat": 37.5726,
+    "lng": 126.97688,
+    "stations": [
+      {
+        "station": "광화문",
+        "exits": [
+          "9"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://mediahub.seoul.go.kr/archives/2011790",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "bukchon",
+    "category": "street",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "북촌한옥마을",
+      "ja": "北村韓屋村",
+      "en": "Bukchon Hanok Village",
+      "zh-Hans": "北村韩屋村",
+      "zh-Hant": "北村韓屋村"
+    },
+    "aliases": [
+      "Bukchon",
+      "북촌",
+      "プクチョン",
+      "가회동",
+      "Gahoe-dong",
+      "北村八景",
+      "Bukchon Eight Views",
+      "북촌로11길"
+    ],
+    "lat": 37.58235,
+    "lng": 126.98465,
+    "stations": [
+      {
+        "station": "안국",
+        "exits": [
+          "2"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://weekly.khan.co.kr/article/8516"
+    ]
+  },
+  {
+    "id": "insadong",
+    "category": "street",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "인사동",
+      "ja": "仁寺洞",
+      "en": "Insadong",
+      "zh-Hans": "仁寺洞",
+      "zh-Hant": "仁寺洞"
+    },
+    "aliases": [
+      "Insa-dong",
+      "インサドン",
+      "인사동길",
+      "쌈지길",
+      "Ssamziegil",
+      "サムジキル"
+    ],
+    "lat": 37.5741,
+    "lng": 126.9851,
+    "stations": [
+      {
+        "station": "안국",
+        "exits": [
+          "6"
+        ],
+        "walk": null
+      },
+      {
+        "station": "종로3가",
+        "exits": [
+          "5"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "ikseondong",
+    "category": "street",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "익선동 한옥거리",
+      "ja": "益善洞韓屋通り",
+      "en": "Ikseon-dong Hanok Street",
+      "zh-Hans": "益善洞韩屋村",
+      "zh-Hant": "益善洞韓屋村"
+    },
+    "aliases": [
+      "Ikseondong",
+      "익선동",
+      "益善洞",
+      "イクソンドン",
+      "Ikseon-dong",
+      "익선동 한옥마을"
+    ],
+    "lat": 37.5744,
+    "lng": 126.9899,
+    "stations": [
+      {
+        "station": "종로3가",
+        "exits": [
+          "4"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://mediahub.seoul.go.kr/archives/2019534"
+    ]
+  },
+  {
+    "id": "myeongdong",
+    "category": "shopping",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "명동",
+      "ja": "明洞",
+      "en": "Myeongdong",
+      "zh-Hans": "明洞",
+      "zh-Hant": "明洞"
+    },
+    "aliases": [
+      "Myeong-dong",
+      "ミョンドン",
+      "명동거리",
+      "명동 쇼핑거리",
+      "Myeongdong Shopping Street",
+      "Myeongdong Fashion Street",
+      "명동 패션의 거리",
+      "명동 노점"
+    ],
+    "lat": 37.5637,
+    "lng": 126.9838,
+    "stations": [
+      {
+        "station": "명동",
+        "exits": [
+          "6",
+          "7",
+          "8"
+        ],
+        "walk": null
+      },
+      {
+        "station": "을지로입구",
+        "exits": [
+          "6",
+          "5"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://news.seoul.go.kr/traffic/archives/10413"
+    ]
+  },
+  {
+    "id": "myeongdong-cathedral",
+    "category": "landmark",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "명동성당",
+      "ja": "明洞聖堂",
+      "en": "Myeongdong Cathedral",
+      "zh-Hans": "明洞天主教堂",
+      "zh-Hant": "明洞聖堂"
+    },
+    "aliases": [
+      "명동대성당",
+      "Myeongdong Cathedral of Seoul",
+      "ミョンドン聖堂",
+      "明洞大聖堂",
+      "明洞大圣堂",
+      "明洞教堂",
+      "Cathedral Church of the Virgin Mary of the Immaculate Conception"
+    ],
+    "lat": 37.5632,
+    "lng": 126.9871,
+    "stations": [
+      {
+        "station": "명동",
+        "exits": [
+          "9"
+        ],
+        "walk": null
+      },
+      {
+        "station": "을지로입구",
+        "exits": [
+          "5"
+        ],
+        "walk": null
+      },
+      {
+        "station": "을지로3가",
+        "exits": [
+          "12",
+          "9"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "n-seoul-tower",
+    "category": "landmark",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "N서울타워",
+      "ja": "Nソウルタワー",
+      "en": "N Seoul Tower",
+      "zh-Hans": "首尔N塔",
+      "zh-Hant": "N首爾塔"
+    },
+    "aliases": [
+      "남산서울타워",
+      "Namsan Seoul Tower",
+      "남산타워",
+      "Namsan Tower",
+      "南山タワー",
+      "南山ソウルタワー",
+      "南山塔",
+      "南山首尔塔",
+      "南山首爾塔",
+      "서울타워",
+      "Seoul Tower",
+      "남산",
+      "Namsan",
+      "南山",
+      "남산케이블카",
+      "Namsan Cable Car",
+      "南山ケーブルカー",
+      "南山缆车",
+      "南山纜車"
+    ],
+    "lat": 37.55119,
+    "lng": 126.9882,
+    "stations": [
+      {
+        "station": "명동",
+        "exits": [
+          "3"
+        ],
+        "walk": null
+      },
+      {
+        "station": "회현",
+        "exits": [
+          "1"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://mediahub.seoul.go.kr/archives/2015205",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "namdaemun-market",
+    "category": "market",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "남대문시장",
+      "ja": "南大門市場",
+      "en": "Namdaemun Market",
+      "zh-Hans": "南大门市场",
+      "zh-Hant": "南大門市場"
+    },
+    "aliases": [
+      "Namdaemun",
+      "ナムデムン市場",
+      "남대문",
+      "숭례문",
+      "Sungnyemun",
+      "崇礼門",
+      "崇禮門"
+    ],
+    "lat": 37.5592,
+    "lng": 126.9777,
+    "stations": [
+      {
+        "station": "회현",
+        "exits": [
+          "5",
+          "6"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://news.seoul.go.kr/traffic/archives/10413",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "ddp",
+    "category": "landmark",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "동대문디자인플라자",
+      "ja": "東大門デザインプラザ",
+      "en": "Dongdaemun Design Plaza",
+      "zh-Hans": "东大门设计广场",
+      "zh-Hant": "東大門設計廣場"
+    },
+    "aliases": [
+      "DDP",
+      "Dongdaemun",
+      "동대문",
+      "東大門",
+      "トンデムン",
+      "동대문역사문화공원",
+      "Dongdaemun History & Culture Park",
+      "東大門歴史文化公園",
+      "동대문 패션타운",
+      "Dongdaemun Fashion Town"
+    ],
+    "lat": 37.5667,
+    "lng": 127.0095,
+    "stations": [
+      {
+        "station": "동대문역사문화공원",
+        "exits": [
+          "1"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://mediahub.seoul.go.kr/archives/2010685"
+    ]
+  },
+  {
+    "id": "gwangjang-market",
+    "category": "market",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "광장시장",
+      "ja": "広蔵市場",
+      "en": "Gwangjang Market",
+      "zh-Hans": "广藏市场",
+      "zh-Hant": "廣藏市場"
+    },
+    "aliases": [
+      "Kwangjang Market",
+      "クァンジャン市場",
+      "광장전통시장",
+      "Gwangjang Traditional Market",
+      "広蔵市場屋台",
+      "광장시장 먹자골목",
+      "빈대떡",
+      "ピンデトッ"
+    ],
+    "lat": 37.57,
+    "lng": 126.9997,
+    "stations": [
+      {
+        "station": "을지로4가",
+        "exits": [
+          "4"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://mediahub.seoul.go.kr/archives/2013463"
+    ]
+  },
+  {
+    "id": "cheonggyecheon",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "청계천",
+      "ja": "清渓川",
+      "en": "Cheonggyecheon Stream",
+      "zh-Hans": "清溪川",
+      "zh-Hant": "清溪川"
+    },
+    "aliases": [
+      "Cheonggyecheon",
+      "チョンゲチョン",
+      "청계광장",
+      "Cheonggye Plaza",
+      "清渓広場",
+      "清溪广场",
+      "清溪廣場",
+      "스프링",
+      "Spring sculpture"
+    ],
+    "lat": 37.5692,
+    "lng": 126.9779,
+    "stations": [
+      {
+        "station": "광화문",
+        "exits": [
+          "5"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "national-museum-of-korea",
+    "category": "museum",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "국립중앙박물관",
+      "ja": "国立中央博物館",
+      "en": "National Museum of Korea",
+      "zh-Hans": "国立中央博物馆",
+      "zh-Hant": "國立中央博物館"
+    },
+    "aliases": [
+      "NMK",
+      "국중박",
+      "国立博物館",
+      "용산가족공원",
+      "Yongsan Family Park",
+      "박물관 나들길",
+      "국립한글박물관"
+    ],
+    "lat": 37.5239,
+    "lng": 126.9804,
+    "stations": [
+      {
+        "station": "이촌",
+        "exits": [
+          "2"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://mediahub.seoul.go.kr/archives/2010707"
+    ]
+  },
+  {
+    "id": "war-memorial-of-korea",
+    "category": "museum",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "전쟁기념관",
+      "ja": "戦争記念館",
+      "en": "The War Memorial of Korea",
+      "zh-Hans": "战争纪念馆",
+      "zh-Hant": "戰爭紀念館"
+    },
+    "aliases": [
+      "War Memorial of Korea",
+      "War Memorial",
+      "韓国戦争記念館",
+      "韩国战争纪念馆",
+      "韓國戰爭紀念館",
+      "용산 전쟁기념관"
+    ],
+    "lat": 37.5366,
+    "lng": 126.977,
+    "stations": [
+      {
+        "station": "삼각지",
+        "exits": [
+          "12",
+          "11",
+          "1"
+        ],
+        "walk": 3
+      }
+    ],
+    "sources": [
+      "https://mediahub.seoul.go.kr/archives/2015380",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "itaewon",
+    "category": "street",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "이태원",
+      "ja": "梨泰院",
+      "en": "Itaewon",
+      "zh-Hans": "梨泰院",
+      "zh-Hant": "梨泰院"
+    },
+    "aliases": [
+      "Itaewon-ro",
+      "イテウォン",
+      "이태원로",
+      "이태원 관광특구",
+      "Itaewon Special Tourist Zone",
+      "경리단길",
+      "Gyeongnidan-gil",
+      "해방촌"
+    ],
+    "lat": 37.5345,
+    "lng": 126.9946,
+    "stations": [
+      {
+        "station": "이태원",
+        "exits": [
+          "1"
+        ],
+        "walk": null
+      },
+      {
+        "station": "녹사평",
+        "exits": [
+          "3"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://news.seoul.go.kr/traffic/archives/10374",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "hongdae",
+    "category": "street",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "홍대 거리",
+      "ja": "弘大",
+      "en": "Hongdae",
+      "zh-Hans": "弘大",
+      "zh-Hant": "弘大"
+    },
+    "aliases": [
+      "홍대",
+      "홍대 앞",
+      "Hongik University",
+      "홍익대학교",
+      "弘益大学",
+      "弘益大學",
+      "ホンデ",
+      "弘大入口",
+      "홍대걷고싶은거리",
+      "Hongdae Walking Street",
+      "Hongdae Street"
+    ],
+    "lat": 37.5552,
+    "lng": 126.9234,
+    "stations": [
+      {
+        "station": "홍대입구",
+        "exits": [
+          "9",
+          "7"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "yeonnam-gyeongui-forest",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "연남동 경의선숲길",
+      "ja": "延南洞 京義線森の道",
+      "en": "Gyeongui Line Forest Park, Yeonnam-dong",
+      "zh-Hans": "延南洞京义线林荫道",
+      "zh-Hant": "延南洞京義線林道"
+    },
+    "aliases": [
+      "연트럴파크",
+      "Yeontral Park",
+      "ヨントラルパーク",
+      "延特勒公园",
+      "延特勒公園",
+      "연남동",
+      "Yeonnam-dong",
+      "ヨンナムドン",
+      "延南洞",
+      "경의선숲길",
+      "Gyeongui Line Forest Park",
+      "京義線森の道",
+      "京义线林荫道",
+      "京義線林道"
+    ],
+    "lat": 37.5605,
+    "lng": 126.9239,
+    "stations": [
+      {
+        "station": "홍대입구",
+        "exits": [
+          "3"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "yeouido-hangang-park",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "여의도한강공원",
+      "ja": "汝矣島漢江公園",
+      "en": "Yeouido Hangang Park",
+      "zh-Hans": "汝矣岛汉江公园",
+      "zh-Hant": "汝矣島漢江公園"
+    },
+    "aliases": [
+      "여의도 한강공원",
+      "Yeouido",
+      "ヨイド",
+      "汝矣島",
+      "汝矣岛",
+      "한강공원",
+      "Hangang Park",
+      "Han River Park",
+      "漢江",
+      "汉江",
+      "한강",
+      "Han River"
+    ],
+    "lat": 37.528,
+    "lng": 126.933,
+    "stations": [
+      {
+        "station": "여의나루",
+        "exits": [
+          "2",
+          "3"
+        ],
+        "walk": 1
+      }
+    ],
+    "sources": [
+      "https://hangang.seoul.go.kr/www/contents/671.do?mid=510",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "the-hyundai-seoul",
+    "category": "shopping",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "더현대 서울",
+      "ja": "ザ・現代ソウル",
+      "en": "The Hyundai Seoul",
+      "zh-Hans": "现代首尔百货",
+      "zh-Hant": "現代首爾百貨"
+    },
+    "aliases": [
+      "더현대서울",
+      "The Hyundai",
+      "TheHyundai Seoul",
+      "ザ・ヒョンデ・ソウル",
+      "ザヒョンデソウル",
+      "현대백화점 여의도",
+      "Hyundai Department Store Yeouido",
+      "파크원",
+      "Parc.1",
+      "现代百货",
+      "現代百貨"
+    ],
+    "lat": 37.5259,
+    "lng": 126.9284,
+    "stations": [
+      {
+        "station": "여의도",
+        "exits": null,
+        "walk": null
+      },
+      {
+        "station": "여의나루",
+        "exits": null,
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.inews24.com/view/1345493"
+    ]
+  },
+  {
+    "id": "ihwa-mural-village",
+    "category": "street",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "이화벽화마을",
+      "ja": "梨花洞壁画村",
+      "en": "Ihwa Mural Village",
+      "zh-Hans": "梨花洞壁画村",
+      "zh-Hant": "梨花洞壁畫村"
+    },
+    "aliases": [
+      "이화마을",
+      "이화동 벽화마을",
+      "Ihwa-dong",
+      "Ihwa-dong Mural Village",
+      "梨花壁画村",
+      "イファ洞壁画村",
+      "イファ壁画村",
+      "낙산공원",
+      "Naksan Park",
+      "駱山公園",
+      "骆山公园",
+      "낙산",
+      "한양도성 낙산구간"
+    ],
+    "lat": 37.5772,
+    "lng": 127.0069,
+    "stations": [
+      {
+        "station": "혜화",
+        "exits": [
+          "2"
+        ],
+        "walk": 15
+      }
+    ],
+    "sources": [
+      "https://mediahub.seoul.go.kr/archives/1262791",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)"
+    ]
+  },
+  {
+    "id": "coex",
+    "category": "shopping",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "코엑스",
+      "ja": "コエックス",
+      "en": "COEX",
+      "zh-Hans": "COEX商场",
+      "zh-Hant": "COEX商場"
+    },
+    "aliases": [
+      "코엑스몰",
+      "스타필드 코엑스몰",
+      "Starfield COEX Mall",
+      "COEX Mall",
+      "コエックスモール",
+      "星域广场COEX",
+      "별마당도서관",
+      "Starfield Library",
+      "ピョルマダン図書館",
+      "星空图书馆",
+      "星空圖書館",
+      "코엑스아쿠아리움",
+      "COEX Aquarium",
+      "삼성동",
+      "Samseong-dong"
+    ],
+    "lat": 37.51194,
+    "lng": 127.05889,
+    "stations": [
+      {
+        "station": "삼성",
+        "exits": [
+          "5",
+          "6"
+        ],
+        "walk": null
+      },
+      {
+        "station": "봉은사",
+        "exits": [
+          "7"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.coex.co.kr/guide/directions/",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://www.wikidata.org/wiki/Q490387"
+    ]
+  },
+  {
+    "id": "bongeunsa",
+    "category": "temple",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "봉은사",
+      "ja": "奉恩寺",
+      "en": "Bongeunsa Temple",
+      "zh-Hans": "奉恩寺",
+      "zh-Hant": "奉恩寺"
+    },
+    "aliases": [
+      "Bongeunsa",
+      "ポンウンサ",
+      "봉은사 홍매화",
+      "Bongeun Temple"
+    ],
+    "lat": 37.51566,
+    "lng": 127.05729,
+    "stations": [
+      {
+        "station": "봉은사",
+        "exits": [
+          "1",
+          "2"
+        ],
+        "walk": null
+      },
+      {
+        "station": "삼성중앙",
+        "exits": [
+          "4"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://mediahub.seoul.go.kr/archives/2015919",
+      "https://www.wikidata.org/wiki/Q135709"
+    ]
+  },
+  {
+    "id": "lotteworld",
+    "category": "entertainment",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "롯데월드 어드벤처",
+      "ja": "ロッテワールドアドベンチャー",
+      "en": "Lotte World Adventure",
+      "zh-Hans": "乐天世界探险乐园",
+      "zh-Hant": "樂天世界探險樂園"
+    },
+    "aliases": [
+      "롯데월드",
+      "Lotte World",
+      "ロッテワールド",
+      "乐天世界",
+      "樂天世界",
+      "매직아일랜드",
+      "Magic Island",
+      "マジックアイランド",
+      "魔幻岛",
+      "魔幻島",
+      "롯데월드 놀이공원"
+    ],
+    "lat": 37.51119,
+    "lng": 127.09811,
+    "stations": [
+      {
+        "station": "잠실",
+        "exits": [
+          "4",
+          "3"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://kr.trip.com/guide/attraction/lotte-world-adventure.html",
+      "https://ko.wikipedia.org/wiki/잠실역",
+      "https://www.wikidata.org/wiki/Q494668"
+    ]
+  },
+  {
+    "id": "lotteworldtower",
+    "category": "landmark",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "롯데월드타워·서울스카이",
+      "ja": "ロッテワールドタワー・ソウルスカイ",
+      "en": "Lotte World Tower & SEOUL SKY",
+      "zh-Hans": "乐天世界塔·首尔天空观景台",
+      "zh-Hant": "樂天世界塔·首爾天空觀景台"
+    },
+    "aliases": [
+      "롯데월드타워",
+      "서울스카이",
+      "Lotte World Tower",
+      "SEOUL SKY",
+      "ロッテワールドタワー",
+      "ソウルスカイ",
+      "乐天世界大厦",
+      "樂天世界大樓",
+      "롯데월드몰",
+      "Lotte World Mall",
+      "ロッテワールドモール",
+      "乐天世界购物城",
+      "樂天世界購物城",
+      "롯데타워",
+      "Lotte Tower",
+      "ロッテタワー",
+      "제2롯데월드",
+      "롯데월드 아쿠아리움",
+      "Lotte World Aquarium"
+    ],
+    "lat": 37.51255,
+    "lng": 127.10268,
+    "stations": [
+      {
+        "station": "잠실",
+        "exits": [
+          "1",
+          "11"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://ko.wikipedia.org/wiki/잠실역",
+      "https://www.wikidata.org/wiki/Q494895",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "seokchonlake",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "석촌호수",
+      "ja": "石村湖",
+      "en": "Seokchonhosu Lake",
+      "zh-Hans": "石村湖",
+      "zh-Hant": "石村湖"
+    },
+    "aliases": [
+      "Seokchon Lake",
+      "ソクチョン湖",
+      "ソクチョンホス",
+      "석촌호수 벚꽃",
+      "석촌호수 동호",
+      "석촌호수 서호",
+      "송리단길",
+      "Songridan-gil",
+      "石村湖樱花",
+      "石村湖櫻花"
+    ],
+    "lat": 37.51009,
+    "lng": 127.10408,
+    "stations": [
+      {
+        "station": "잠실",
+        "exits": [
+          "2",
+          "3"
+        ],
+        "walk": null
+      },
+      {
+        "station": "석촌",
+        "exits": [
+          "1",
+          "8"
+        ],
+        "walk": null
+      },
+      {
+        "station": "송파나루",
+        "exits": [
+          "1"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://mediahub.seoul.go.kr/archives/174563",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "olympicpark",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "올림픽공원",
+      "ja": "オリンピック公園",
+      "en": "Olympic Park",
+      "zh-Hans": "奥林匹克公园",
+      "zh-Hant": "奧林匹克公園"
+    },
+    "aliases": [
+      "Seoul Olympic Park",
+      "ソウルオリンピック公園",
+      "서울올림픽공원",
+      "평화의문",
+      "World Peace Gate",
+      "平和の門",
+      "몽촌토성",
+      "Mongchontoseong",
+      "夢村土城",
+      "나홀로나무",
+      "KSPO DOME",
+      "케이스포돔",
+      "체조경기장",
+      "한성백제박물관",
+      "首尔奥林匹克公园",
+      "首爾奧林匹克公園"
+    ],
+    "lat": 37.52028,
+    "lng": 127.1225,
+    "stations": [
+      {
+        "station": "몽촌토성",
+        "exits": [
+          "1"
+        ],
+        "walk": null
+      },
+      {
+        "station": "올림픽공원",
+        "exits": [
+          "3",
+          "4"
+        ],
+        "walk": null
+      },
+      {
+        "station": "한성백제",
+        "exits": [
+          "2"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://www.wikidata.org/wiki/Q486694"
+    ]
+  },
+  {
+    "id": "garosugil",
+    "category": "street",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "가로수길",
+      "ja": "カロスキル",
+      "en": "Garosu-gil",
+      "zh-Hans": "新沙洞林荫道",
+      "zh-Hant": "新沙洞林蔭道"
+    },
+    "aliases": [
+      "신사동 가로수길",
+      "Sinsa-dong Garosu-gil",
+      "Garosugil",
+      "新沙洞カロスキル",
+      "新沙洞",
+      "신사동",
+      "Sinsa-dong",
+      "林荫道",
+      "林蔭大道",
+      "カロスキル通り"
+    ],
+    "lat": 37.52063,
+    "lng": 127.02318,
+    "stations": [
+      {
+        "station": "신사",
+        "exits": [
+          "8"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://mediahub.seoul.go.kr/archives/1118442",
+      "https://www.ivisitkorea.com/?p=62638",
+      "https://www.wikidata.org/wiki/Q12604308",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "apgujeongrodeo",
+    "category": "street",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "압구정로데오거리",
+      "ja": "狎鴎亭ロデオ通り",
+      "en": "Apgujeong Rodeo Street",
+      "zh-Hans": "狎鸥亭罗德奥街",
+      "zh-Hant": "狎鷗亭羅德奧街"
+    },
+    "aliases": [
+      "로데오거리",
+      "압구정 로데오",
+      "Rodeo Street",
+      "Apgujeong Rodeo",
+      "ロデオ通り",
+      "狎鴎亭",
+      "アックジョン",
+      "압구정",
+      "Apgujeong",
+      "狎鸥亭",
+      "狎鷗亭",
+      "圧鴎亭ロデオ"
+    ],
+    "lat": 37.52623,
+    "lng": 127.03765,
+    "stations": [
+      {
+        "station": "압구정로데오",
+        "exits": [
+          "6"
+        ],
+        "walk": null
+      },
+      {
+        "station": "압구정",
+        "exits": [
+          "2"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.ivisitkorea.com/apgujeong-rodeo/",
+      "https://ko.wikipedia.org/wiki/압구정로데오거리",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "seongsu",
+    "category": "street",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "성수동 카페거리",
+      "ja": "聖水洞カフェ通り",
+      "en": "Seongsu-dong Cafe Street",
+      "zh-Hans": "圣水洞咖啡街",
+      "zh-Hant": "聖水洞咖啡街"
+    },
+    "aliases": [
+      "성수동",
+      "Seongsu-dong",
+      "Seongsu",
+      "ソンスドン",
+      "聖水洞",
+      "圣水洞",
+      "성수",
+      "연무장길",
+      "Yeonmujang-gil",
+      "ヨンムジャンギル",
+      "성수 카페거리",
+      "서울의 브루클린",
+      "Brooklyn of Seoul",
+      "ソウルのブルックリン",
+      "首尔布鲁克林",
+      "首爾布魯克林",
+      "성수 팝업"
+    ],
+    "lat": 37.54418,
+    "lng": 127.05062,
+    "stations": [
+      {
+        "station": "성수",
+        "exits": [
+          "3"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://xn--ok0b236bp0a.com/place/25173",
+      "https://www.i-boss.co.kr/ab-6141-56690",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "seoulforest",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "서울숲",
+      "ja": "ソウルの森",
+      "en": "Seoul Forest",
+      "zh-Hans": "首尔林",
+      "zh-Hant": "首爾林"
+    },
+    "aliases": [
+      "Seoul Forest Park",
+      "서울숲공원",
+      "ソウルスプ",
+      "首尔森林",
+      "首爾森林",
+      "서울숲 사슴",
+      "언더스탠드에비뉴",
+      "Understand Avenue"
+    ],
+    "lat": 37.54463,
+    "lng": 127.03984,
+    "stations": [
+      {
+        "station": "서울숲",
+        "exits": [
+          "3"
+        ],
+        "walk": 5
+      },
+      {
+        "station": "뚝섬",
+        "exits": [
+          "8"
+        ],
+        "walk": 10
+      }
+    ],
+    "sources": [
+      "https://seoulforest.or.kr/info/map",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://www.wikidata.org/wiki/Q483014"
+    ]
+  },
+  {
+    "id": "ttukseomhangang",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "뚝섬한강공원",
+      "ja": "トゥクソム漢江公園",
+      "en": "Ttukseom Hangang Park",
+      "zh-Hans": "纛岛汉江公园",
+      "zh-Hant": "纛島漢江公園"
+    },
+    "aliases": [
+      "뚝섬유원지",
+      "Ttukseom Resort",
+      "トゥクソム遊園地",
+      "뚝섬 한강공원",
+      "Ttukseom Han River Park",
+      "뚝섬 수영장",
+      "뚝섬 자벌레",
+      "자양",
+      "Jayang",
+      "纛岛",
+      "纛島",
+      "Ttukseom"
+    ],
+    "lat": 37.52983,
+    "lng": 127.06811,
+    "stations": [
+      {
+        "station": "뚝섬유원지",
+        "exits": [
+          "2",
+          "3"
+        ],
+        "walk": 1
+      },
+      {
+        "station": "건대입구",
+        "exits": [
+          "5"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://hangang.seoul.go.kr/www/contents/656.do?mid=452",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://www.wikidata.org/wiki/Q130342836",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "banpohangang",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "반포한강공원",
+      "ja": "盤浦漢江公園",
+      "en": "Banpo Hangang Park",
+      "zh-Hans": "盘浦汉江公园",
+      "zh-Hant": "盤浦漢江公園"
+    },
+    "aliases": [
+      "달빛무지개분수",
+      "Moonlight Rainbow Fountain",
+      "月光レインボー噴水",
+      "月光虹の噴水",
+      "月光彩虹喷泉",
+      "月光彩虹噴泉",
+      "반포대교",
+      "Banpo Bridge",
+      "盤浦大橋",
+      "盘浦大桥",
+      "반포대교 분수",
+      "Banpo Han River Park",
+      "세빛섬",
+      "Some Sevit",
+      "セビッソム",
+      "三光岛",
+      "三光島",
+      "잠원한강공원"
+    ],
+    "lat": 37.51554,
+    "lng": 126.99594,
+    "stations": [
+      {
+        "station": "고속터미널",
+        "exits": [
+          "8-1",
+          "8-2"
+        ],
+        "walk": 15
+      },
+      {
+        "station": "신반포",
+        "exits": [
+          "1"
+        ],
+        "walk": 15
+      }
+    ],
+    "sources": [
+      "https://hangang.seoul.go.kr/www/contents/665.do?mid=466",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://www.wikidata.org/wiki/Q12597453",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "gotomall",
+    "category": "shopping",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "고투몰",
+      "ja": "ゴートゥーモール",
+      "en": "GOTO MALL",
+      "zh-Hans": "GOTO MALL地下商街",
+      "zh-Hant": "GOTO MALL地下街"
+    },
+    "aliases": [
+      "고속터미널 지하상가",
+      "강남터미널 지하상가",
+      "강남터미널지하쇼핑센터",
+      "Gangnam Terminal Underground Shopping Center",
+      "Express Bus Terminal Underground Shopping Center",
+      "高速ターミナル地下街",
+      "江南ターミナル地下商街",
+      "高速巴士客运站地下商街",
+      "高速巴士客運站地下街",
+      "江南客运站地下商街",
+      "GOTOMALL",
+      "고투몰 지하상가"
+    ],
+    "lat": 37.50577,
+    "lng": 127.00462,
+    "stations": [
+      {
+        "station": "고속터미널",
+        "exits": [
+          "8",
+          "1"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://ko.wikipedia.org/wiki/고투몰",
+      "https://www.wikidata.org/wiki/Q137533230",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "seoulartscenter",
+    "category": "museum",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "예술의전당",
+      "ja": "ソウル芸術の殿堂",
+      "en": "Seoul Arts Center",
+      "zh-Hans": "艺术殿堂",
+      "zh-Hant": "藝術殿堂"
+    },
+    "aliases": [
+      "SAC",
+      "芸術の殿堂",
+      "首尔艺术殿堂",
+      "首爾藝術殿堂",
+      "한가람미술관",
+      "Hangaram Art Museum",
+      "예술의전당 오페라하우스",
+      "Opera House",
+      "音乐厅",
+      "서울서예박물관",
+      "예당"
+    ],
+    "lat": 37.48043,
+    "lng": 127.01119,
+    "stations": [
+      {
+        "station": "남부터미널",
+        "exits": [
+          "5"
+        ],
+        "walk": 10
+      }
+    ],
+    "sources": [
+      "https://sac.or.kr/site/eng/content/directionGuide",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://www.wikidata.org/wiki/Q490606"
+    ]
+  },
+  {
+    "id": "noryangjin",
+    "category": "market",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "노량진수산시장",
+      "ja": "鷺梁津水産市場",
+      "en": "Noryangjin Fisheries Wholesale Market",
+      "zh-Hans": "鹭梁津水产市场",
+      "zh-Hant": "鷺梁津水產市場"
+    },
+    "aliases": [
+      "Noryangjin Fish Market",
+      "ノリャンジン水産市場",
+      "ノリャンジン",
+      "노량진 수산물도매시장",
+      "노량진수산물도매시장",
+      "수산시장",
+      "鹭梁津",
+      "鷺梁津",
+      "鹭梁津鱼市场",
+      "鷺梁津魚市場"
+    ],
+    "lat": 37.51523,
+    "lng": 126.94106,
+    "stations": [
+      {
+        "station": "노량진",
+        "exits": [
+          "1",
+          "7"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Noryangjin_Fisheries_Wholesale_Market",
+      "https://www.koreaherald.com/article/404197",
+      "https://www.ivisitkorea.com/the-ultimate-guide-to-noryangjin-fish-market/",
+      "https://www.wikidata.org/wiki/Q491006"
+    ]
+  },
+  {
+    "id": "63square",
+    "category": "landmark",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "63스퀘어",
+      "ja": "63スクエア",
+      "en": "63 Square",
+      "zh-Hans": "63大厦",
+      "zh-Hant": "63大樓"
+    },
+    "aliases": [
+      "63빌딩",
+      "63 Building",
+      "63ビル",
+      "63大廈",
+      "육삼빌딩",
+      "63아트",
+      "63 Art",
+      "63アート",
+      "63 Art 美术馆",
+      "아쿠아플라넷63",
+      "Aqua Planet 63",
+      "アクアプラネット63",
+      "63水族馆",
+      "63水族館",
+      "여의도 63"
+    ],
+    "lat": 37.51972,
+    "lng": 126.94,
+    "stations": [
+      {
+        "station": "여의나루",
+        "exits": [
+          "4"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://ko.wikipedia.org/wiki/여의나루역",
+      "https://www.wikidata.org/wiki/Q22968"
+    ]
+  },
+  {
+    "id": "seonyudopark",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "선유도공원",
+      "ja": "仙遊島公園",
+      "en": "Seonyudo Park",
+      "zh-Hans": "仙游岛公园",
+      "zh-Hant": "仙遊島公園"
+    },
+    "aliases": [
+      "선유도",
+      "Seonyudo",
+      "ソニュド公園",
+      "仙遊島",
+      "仙游岛",
+      "선유교",
+      "Seonyugyo Bridge",
+      "仙遊橋",
+      "Seonyudo Island Park"
+    ],
+    "lat": 37.54342,
+    "lng": 126.90032,
+    "stations": [
+      {
+        "station": "선유도",
+        "exits": [
+          "2"
+        ],
+        "walk": 10
+      },
+      {
+        "station": "합정",
+        "exits": [
+          "8"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://culture.seoul.go.kr/night/sub/viewSpot/view.do?viewId=34",
+      "https://m.go.seoul.co.kr/news/2016/06/28/20160628500198",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "haneulpark",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "하늘공원",
+      "ja": "ハヌル公園",
+      "en": "Haneul Park",
+      "zh-Hans": "天空公园",
+      "zh-Hant": "天空公園"
+    },
+    "aliases": [
+      "월드컵공원",
+      "World Cup Park",
+      "ワールドカップ公園",
+      "世界杯公园",
+      "世界盃公園",
+      "하늘공원 억새",
+      "억새축제",
+      "Silver Grass Festival",
+      "ススキ祭り",
+      "Sky Park",
+      "노을공원",
+      "Noeul Park",
+      "난지도",
+      "Nanjido"
+    ],
+    "lat": 37.56806,
+    "lng": 126.88498,
+    "stations": [
+      {
+        "station": "월드컵경기장",
+        "exits": [
+          "1"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://www.wikidata.org/wiki/Q11263863",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "seoulworldcupstadium",
+    "category": "stadium",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "서울월드컵경기장",
+      "ja": "ソウルワールドカップ競技場",
+      "en": "Seoul World Cup Stadium",
+      "zh-Hans": "首尔世界杯体育场",
+      "zh-Hant": "首爾世界盃競技場"
+    },
+    "aliases": [
+      "상암월드컵경기장",
+      "Sangam World Cup Stadium",
+      "上岩ワールドカップ競技場",
+      "상암",
+      "Sangam",
+      "上岩",
+      "FC서울",
+      "FC Seoul",
+      "首尔世界杯竞技场",
+      "首爾世界盃體育場",
+      "월드컵경기장"
+    ],
+    "lat": 37.56823,
+    "lng": 126.89724,
+    "stations": [
+      {
+        "station": "월드컵경기장",
+        "exits": [
+          "1",
+          "2",
+          "3"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://www.wikidata.org/wiki/Q175477"
+    ]
+  },
+  {
+    "id": "seoulbotanicpark",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "서울식물원",
+      "ja": "ソウル植物園",
+      "en": "Seoul Botanic Park",
+      "zh-Hans": "首尔植物园",
+      "zh-Hant": "首爾植物園"
+    },
+    "aliases": [
+      "Seoul Botanic Garden",
+      "마곡",
+      "Magok",
+      "麻谷",
+      "マゴク",
+      "서울식물원 온실",
+      "식물문화센터",
+      "首尔植物园温室"
+    ],
+    "lat": 37.57107,
+    "lng": 126.83466,
+    "stations": [
+      {
+        "station": "마곡나루",
+        "exits": [
+          "3",
+          "4"
+        ],
+        "walk": null
+      },
+      {
+        "station": "마곡",
+        "exits": [
+          "3"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://mediahub.seoul.go.kr/archives/2004030",
+      "https://ko.wikipedia.org/wiki/마곡나루역",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://www.wikidata.org/wiki/Q47524353",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "childrensgrandpark",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "서울어린이대공원",
+      "ja": "ソウル子供大公園",
+      "en": "Seoul Children's Grand Park",
+      "zh-Hans": "首尔儿童大公园",
+      "zh-Hant": "首爾兒童大公園"
+    },
+    "aliases": [
+      "어린이대공원",
+      "Children's Grand Park",
+      "子供大公園",
+      "儿童大公园",
+      "兒童大公園",
+      "어린이대공원 동물원",
+      "Seoul Childrens Grand Park",
+      "オリニデゴンウォン"
+    ],
+    "lat": 37.54889,
+    "lng": 127.08048,
+    "stations": [
+      {
+        "station": "어린이대공원",
+        "exits": [
+          "1"
+        ],
+        "walk": null
+      },
+      {
+        "station": "아차산",
+        "exits": [
+          "4"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://sisul.or.kr/open_content/childrenpark/introduce/location.jsp",
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "seoulgrandpark",
+    "category": "park",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "서울대공원",
+      "ja": "ソウル大公園",
+      "en": "Seoul Grand Park",
+      "zh-Hans": "首尔大公园",
+      "zh-Hant": "首爾大公園"
+    },
+    "aliases": [
+      "서울동물원",
+      "Seoul Zoo",
+      "ソウル動物園",
+      "首尔动物园",
+      "首爾動物園",
+      "과천",
+      "Gwacheon",
+      "果川",
+      "서울대공원 동물원",
+      "Seoul Grand Park Zoo",
+      "국립현대미술관 과천",
+      "大公园"
+    ],
+    "lat": 37.43394,
+    "lng": 127.01138,
+    "stations": [
+      {
+        "station": "대공원",
+        "exits": [
+          "2"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://mediahub.seoul.go.kr/archives/2011200",
+      "https://mediahub.seoul.go.kr/archives/2015226",
+      "https://www.wikidata.org/wiki/Q495391",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "jamsilbaseball",
+    "category": "stadium",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "잠실야구장",
+      "ja": "蚕室野球場",
+      "en": "Jamsil Baseball Stadium",
+      "zh-Hans": "蚕室棒球场",
+      "zh-Hant": "蠶室棒球場"
+    },
+    "aliases": [
+      "서울종합운동장 야구장",
+      "Seoul Sports Complex Baseball Stadium",
+      "蚕室総合運動場野球場",
+      "잠실종합운동장",
+      "Jamsil Sports Complex",
+      "蚕室綜合運動場",
+      "蚕室综合运动场",
+      "LG 트윈스",
+      "LG Twins",
+      "두산 베어스",
+      "Doosan Bears",
+      "チャムシル野球場",
+      "잠실 야구장"
+    ],
+    "lat": 37.51239,
+    "lng": 127.07197,
+    "stations": [
+      {
+        "station": "종합운동장",
+        "exits": [
+          "5",
+          "6"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://ko.wikipedia.org/wiki/서울종합운동장_야구장",
+      "https://www.wikidata.org/wiki/Q490616"
+    ]
+  },
+  {
+    "id": "mangwonmarket",
+    "category": "market",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "망원시장",
+      "ja": "望遠市場",
+      "en": "Mangwon Market",
+      "zh-Hans": "望远市场",
+      "zh-Hant": "望遠市場"
+    },
+    "aliases": [
+      "망원동",
+      "Mangwon-dong",
+      "マンウォン市場",
+      "マンウォンドン",
+      "望远洞",
+      "望遠洞",
+      "망리단길",
+      "Mangridan-gil",
+      "Mangwon Traditional Market",
+      "망원 전통시장",
+      "월드컵시장"
+    ],
+    "lat": 37.55662,
+    "lng": 126.90605,
+    "stations": [
+      {
+        "station": "망원",
+        "exits": [
+          "2"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "Seoul Metro 역별 역세권 현황 (data.go.kr/data/15044230)",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "everland",
+    "category": "entertainment",
+    "region": "seoulGyeonggi",
+    "name": {
+      "ko": "에버랜드",
+      "ja": "エバーランド",
+      "en": "Everland",
+      "zh-Hans": "爱宝乐园",
+      "zh-Hant": "愛寶樂園"
+    },
+    "aliases": [
+      "Everland Resort",
+      "에버랜드 리조트",
+      "용인 에버랜드",
+      "Yongin Everland",
+      "삼성 에버랜드",
+      "T익스프레스",
+      "T Express",
+      "판다월드",
+      "Panda World",
+      "パンダワールド",
+      "熊猫世界",
+      "熊貓世界",
+      "푸바오",
+      "Fubao",
+      "福宝",
+      "福寶",
+      "エバーランドリゾート",
+      "愛寶樂園度假村"
+    ],
+    "lat": 37.29388,
+    "lng": 127.20484,
+    "stations": [
+      {
+        "station": "전대·에버랜드",
+        "exits": null,
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://en.wikipedia.org/wiki/Jeondae%E2%80%93Everland_station",
+      "https://ko.wikipedia.org/wiki/전대·에버랜드역",
+      "https://www.wikidata.org/wiki/Q494673",
+      "https://nominatim.openstreetmap.org"
+    ]
+  },
+  {
+    "id": "haeundae-beach",
+    "category": "beach",
+    "region": "busan",
+    "name": {
+      "ko": "해운대해수욕장",
+      "ja": "海雲台海水浴場",
+      "en": "Haeundae Beach",
+      "zh-Hans": "海云台海水浴场",
+      "zh-Hant": "海雲台海水浴場"
+    },
+    "aliases": [
+      "해운대",
+      "Haeundae",
+      "海雲台",
+      "海云台",
+      "ヘウンデ"
+    ],
+    "lat": 35.15847,
+    "lng": 129.15987,
+    "stations": [
+      {
+        "station": "해운대",
+        "exits": [
+          "5"
+        ],
+        "walk": 15
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=373&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "gwangalli-beach",
+    "category": "beach",
+    "region": "busan",
+    "name": {
+      "ko": "광안리해수욕장",
+      "ja": "広安里海水浴場",
+      "en": "Gwangalli Beach",
+      "zh-Hans": "广安里海水浴场",
+      "zh-Hant": "廣安里海水浴場"
+    },
+    "aliases": [
+      "광안리",
+      "광안대교",
+      "Gwangan Bridge",
+      "Gwangandaegyo",
+      "Diamond Bridge",
+      "広安大橋",
+      "广安大桥",
+      "廣安大橋",
+      "クァンアンリ"
+    ],
+    "lat": 35.15318,
+    "lng": 129.11887,
+    "stations": [
+      {
+        "station": "광안",
+        "exits": [
+          "5"
+        ],
+        "walk": 13
+      },
+      {
+        "station": "금련산",
+        "exits": [
+          "1"
+        ],
+        "walk": 8
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=377&lang_cd=ko",
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=1954&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "gamcheon-culture-village",
+    "category": "street",
+    "region": "busan",
+    "name": {
+      "ko": "감천문화마을",
+      "ja": "甘川文化村",
+      "en": "Gamcheon Culture Village",
+      "zh-Hans": "甘川文化村",
+      "zh-Hant": "甘川文化村"
+    },
+    "aliases": [
+      "감천마을",
+      "Gamcheon",
+      "カムチョン文化村",
+      "甘川洞文化村"
+    ],
+    "lat": 35.09579,
+    "lng": 129.00926,
+    "stations": [
+      {
+        "station": "토성",
+        "exits": [
+          "6"
+        ],
+        "walk": null
+      },
+      {
+        "station": "괴정",
+        "exits": [
+          "6"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=365&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "jagalchi-market",
+    "category": "market",
+    "region": "busan",
+    "name": {
+      "ko": "자갈치시장",
+      "ja": "チャガルチ市場",
+      "en": "Jagalchi Market",
+      "zh-Hans": "札嘎其市场",
+      "zh-Hant": "札嘎其市場"
+    },
+    "aliases": [
+      "자갈치",
+      "Jagalchi Fish Market",
+      "チャガルチ",
+      "扎嘎其市场",
+      "札嘎其鱼市"
+    ],
+    "lat": 35.09666,
+    "lng": 129.03055,
+    "stations": [
+      {
+        "station": "자갈치",
+        "exits": [
+          "10"
+        ],
+        "walk": 6
+      },
+      {
+        "station": "남포",
+        "exits": [
+          "2"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=412&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "gukje-market",
+    "category": "market",
+    "region": "busan",
+    "name": {
+      "ko": "국제시장",
+      "ja": "国際市場",
+      "en": "Gukje Market",
+      "zh-Hans": "国际市场",
+      "zh-Hant": "國際市場"
+    },
+    "aliases": [
+      "Gukje International Market",
+      "International Market",
+      "クッチェシジャン",
+      "깡통시장"
+    ],
+    "lat": 35.10154,
+    "lng": 129.02809,
+    "stations": [
+      {
+        "station": "자갈치",
+        "exits": [
+          "7"
+        ],
+        "walk": 7
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=399&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "biff-square",
+    "category": "street",
+    "region": "busan",
+    "name": {
+      "ko": "BIFF광장",
+      "ja": "BIFF広場",
+      "en": "BIFF Square",
+      "zh-Hans": "BIFF广场",
+      "zh-Hant": "BIFF廣場"
+    },
+    "aliases": [
+      "비프광장",
+      "PIFF광장",
+      "PIFF Square",
+      "ビフ広場",
+      "BIFF広場通り",
+      "釜山国際映画祭広場",
+      "남포동"
+    ],
+    "lat": 35.0989,
+    "lng": 129.02905,
+    "stations": [
+      {
+        "station": "자갈치",
+        "exits": null,
+        "walk": null
+      },
+      {
+        "station": "남포",
+        "exits": null,
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://nominatim.openstreetmap.org/search?q=BIFF%20Square&countrycodes=kr"
+    ]
+  },
+  {
+    "id": "yongdusan-park",
+    "category": "park",
+    "region": "busan",
+    "name": {
+      "ko": "용두산공원",
+      "ja": "龍頭山公園",
+      "en": "Yongdusan Park",
+      "zh-Hans": "龙头山公园",
+      "zh-Hant": "龍頭山公園"
+    },
+    "aliases": [
+      "부산타워",
+      "Busan Tower",
+      "釜山タワー",
+      "釜山塔",
+      "부산다이아몬드타워",
+      "Busan Diamond Tower",
+      "ヨンドゥサン公園"
+    ],
+    "lat": 35.10072,
+    "lng": 129.03264,
+    "stations": [
+      {
+        "station": "남포",
+        "exits": [
+          "7"
+        ],
+        "walk": 7
+      },
+      {
+        "station": "중앙(부산)",
+        "exits": [
+          "1"
+        ],
+        "walk": 6
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=368&lang_cd=ko",
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=550&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "haedong-yonggungsa",
+    "category": "temple",
+    "region": "busan",
+    "name": {
+      "ko": "해동용궁사",
+      "ja": "海東龍宮寺",
+      "en": "Haedong Yonggungsa Temple",
+      "zh-Hans": "海东龙宫寺",
+      "zh-Hant": "海東龍宮寺"
+    },
+    "aliases": [
+      "용궁사",
+      "Yonggungsa",
+      "龍宮寺",
+      "龙宫寺",
+      "ヘドンヨングンサ"
+    ],
+    "lat": 35.18858,
+    "lng": 129.22346,
+    "stations": [
+      {
+        "station": "오시리아",
+        "exits": [
+          "1"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=261&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "taejongdae",
+    "category": "park",
+    "region": "busan",
+    "name": {
+      "ko": "태종대",
+      "ja": "太宗台",
+      "en": "Taejongdae",
+      "zh-Hans": "太宗台",
+      "zh-Hant": "太宗台"
+    },
+    "aliases": [
+      "태종대유원지",
+      "Taejongdae Park",
+      "Taejongdae Resort Park",
+      "太宗台遊園地",
+      "太宗台游园区",
+      "太宗台遊園區",
+      "영도등대",
+      "다누비열차",
+      "テジョンデ"
+    ],
+    "lat": 35.05264,
+    "lng": 129.0878,
+    "stations": [
+      {
+        "station": "남포",
+        "exits": [
+          "6"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=258&lang_cd=ko",
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=1155&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "songdo-marine-cable-car",
+    "category": "entertainment",
+    "region": "busan",
+    "name": {
+      "ko": "송도해상케이블카",
+      "ja": "松島海上ケーブルカー",
+      "en": "Songdo Marine Cable Car",
+      "zh-Hans": "松岛海上缆车",
+      "zh-Hant": "松島海上纜車"
+    },
+    "aliases": [
+      "부산에어크루즈",
+      "Busan Air Cruise",
+      "Songdo Sea Cable Car",
+      "송도해수욕장",
+      "Songdo Beach",
+      "松島海水浴場",
+      "松岛海水浴场",
+      "松島ロープウェイ",
+      "松島海上ロープウェイ"
+    ],
+    "lat": 35.07629,
+    "lng": 129.02365,
+    "stations": [
+      {
+        "station": "자갈치",
+        "exits": [
+          "2"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=1422&lang_cd=ko",
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=286&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "shinsegae-centum-city",
+    "category": "shopping",
+    "region": "busan",
+    "name": {
+      "ko": "신세계 센텀시티",
+      "ja": "新世界百貨店センタムシティ店",
+      "en": "Shinsegae Centum City",
+      "zh-Hans": "新世界百货商店Centum City店",
+      "zh-Hant": "新世界百貨商店Centum City店"
+    },
+    "aliases": [
+      "신세계백화점 센텀시티점",
+      "Shinsegae Department Store Centum City",
+      "스파랜드",
+      "Spa Land",
+      "センタムシティ",
+      "新世界センタムシティ",
+      "新世界百货",
+      "新世界百貨"
+    ],
+    "lat": 35.16863,
+    "lng": 129.12907,
+    "stations": [
+      {
+        "station": "센텀시티",
+        "exits": null,
+        "walk": 2
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=548&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "dongbaekseom",
+    "category": "park",
+    "region": "busan",
+    "name": {
+      "ko": "동백섬",
+      "ja": "冬柏島",
+      "en": "Dongbaekseom Island",
+      "zh-Hans": "冬柏岛",
+      "zh-Hant": "冬柏島"
+    },
+    "aliases": [
+      "누리마루",
+      "APEC누리마루",
+      "누리마루 APEC하우스",
+      "Nurimaru APEC House",
+      "Nurimaru",
+      "Dongbaek Island",
+      "ヌリマルAPECハウス",
+      "APEC世峰楼",
+      "APEC世峰樓",
+      "トンベクソム"
+    ],
+    "lat": 35.15397,
+    "lng": 129.1523,
+    "stations": [
+      {
+        "station": "동백(부산)",
+        "exits": [
+          "1"
+        ],
+        "walk": 17
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=2274&lang_cd=ko",
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=2121&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "haeundae-blueline-park",
+    "category": "entertainment",
+    "region": "busan",
+    "name": {
+      "ko": "해운대블루라인파크",
+      "ja": "海雲台ブルーラインパーク",
+      "en": "Haeundae Blueline Park",
+      "zh-Hans": "海云台蓝线公园",
+      "zh-Hant": "海雲臺藍線公園"
+    },
+    "aliases": [
+      "블루라인파크",
+      "미포정거장",
+      "Mipo Station",
+      "해변열차",
+      "해운대 해변열차",
+      "스카이캡슐",
+      "Beach Train",
+      "Sky Capsule",
+      "Blue Line Park",
+      "海辺列車",
+      "スカイカプセル",
+      "ミポ",
+      "海岸列车",
+      "天空舱",
+      "海岸列車",
+      "天空膠囊列車",
+      "海雲台藍線公園"
+    ],
+    "lat": 35.15817,
+    "lng": 129.17283,
+    "stations": [
+      {
+        "station": "중동(부산)",
+        "exits": [
+          "7"
+        ],
+        "walk": 18
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=1027&lang_cd=ko",
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=980&lang_cd=ko",
+      "https://nominatim.openstreetmap.org/search?q=%ED%95%B4%EC%9A%B4%EB%8C%80%EB%B8%94%EB%A3%A8%EB%9D%BC%EC%9D%B8%ED%8C%8C%ED%81%AC%20%EB%AF%B8%ED%8F%AC%EC%A0%95%EA%B1%B0%EC%9E%A5"
+    ]
+  },
+  {
+    "id": "huinnyeoul-culture-village",
+    "category": "street",
+    "region": "busan",
+    "name": {
+      "ko": "흰여울문화마을",
+      "ja": "ヒニョウル文化村",
+      "en": "Huinnyeoul Culture Village",
+      "zh-Hans": "白川文化村",
+      "zh-Hant": "白淺灘文化村"
+    },
+    "aliases": [
+      "흰여울마을",
+      "흰여울길",
+      "Huinnyeoul",
+      "Huinyeoul",
+      "ヒンヨウル文化村",
+      "白浅滩文化村",
+      "白浅滩",
+      "白淺灘"
+    ],
+    "lat": 35.07885,
+    "lng": 129.04402,
+    "stations": [
+      {
+        "station": "남포",
+        "exits": [
+          "6"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=255&lang_cd=ko",
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=1440&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "busan-chinatown",
+    "category": "street",
+    "region": "busan",
+    "name": {
+      "ko": "부산 차이나타운",
+      "ja": "釜山チャイナタウン",
+      "en": "Busan Chinatown",
+      "zh-Hans": "釜山唐人街",
+      "zh-Hant": "釜山中華街"
+    },
+    "aliases": [
+      "차이나타운",
+      "상해거리",
+      "Shanghai Street",
+      "上海通り",
+      "上海街",
+      "초량이바구길",
+      "이바구길",
+      "Choryang Ibagu-gil",
+      "Ibagu-gil",
+      "草梁イバグキル",
+      "草粱故事路",
+      "텍사스거리",
+      "Texas Street"
+    ],
+    "lat": 35.11381,
+    "lng": 129.03786,
+    "stations": [
+      {
+        "station": "부산",
+        "exits": [
+          "1",
+          "5"
+        ],
+        "walk": null
+      },
+      {
+        "station": "초량",
+        "exits": [
+          "1"
+        ],
+        "walk": 8
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=415&lang_cd=ko",
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=58&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "lotte-world-adventure-busan",
+    "category": "entertainment",
+    "region": "busan",
+    "name": {
+      "ko": "롯데월드 어드벤처 부산",
+      "ja": "ロッテワールド・アドベンチャー釜山",
+      "en": "Lotte World Adventure Busan",
+      "zh-Hans": "釜山乐天世界探险乐园",
+      "zh-Hant": "釜山樂天世界探險樂園"
+    },
+    "aliases": [
+      "롯데월드 부산",
+      "Lotte World Busan",
+      "오시리아",
+      "Osiria",
+      "ロッテワールド釜山",
+      "乐天世界",
+      "樂天世界探險世界"
+    ],
+    "lat": 35.19602,
+    "lng": 129.2132,
+    "stations": [
+      {
+        "station": "오시리아",
+        "exits": [
+          "1"
+        ],
+        "walk": 10
+      }
+    ],
+    "sources": [
+      "https://www.visitbusan.net/kr/index.do?menuCd=DOM_000000201001001000&uc_seq=1310&lang_cd=ko"
+    ]
+  },
+  {
+    "id": "incheon-chinatown",
+    "category": "street",
+    "region": "incheon",
+    "name": {
+      "ko": "인천 차이나타운",
+      "ja": "仁川チャイナタウン",
+      "en": "Incheon Chinatown",
+      "zh-Hans": "仁川中华街",
+      "zh-Hant": "仁川中華街"
+    },
+    "aliases": [
+      "차이나타운",
+      "Chinatown",
+      "チャイナタウン",
+      "中华街",
+      "唐人街",
+      "짜장면박물관",
+      "개항장"
+    ],
+    "lat": 37.47746,
+    "lng": 126.61842,
+    "stations": [
+      {
+        "station": "인천",
+        "exits": [
+          "1"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://itour.incheon.go.kr/ssst/ssst/detail.do?cotId=ITD21122811325905008",
+      "https://www.icjg.go.kr/tour/cttu0101a01",
+      "https://ko.wikipedia.org/wiki/인천역"
+    ]
+  },
+  {
+    "id": "wolmido",
+    "category": "landmark",
+    "region": "incheon",
+    "name": {
+      "ko": "월미도",
+      "ja": "月尾島",
+      "en": "Wolmido Island",
+      "zh-Hans": "月尾岛",
+      "zh-Hant": "月尾島"
+    },
+    "aliases": [
+      "월미문화의거리",
+      "월미도 문화의 거리",
+      "Wolmi Culture Street",
+      "月尾島文化の街",
+      "ウォルミド",
+      "月尾岛文化街",
+      "월미바다열차",
+      "Wolmi Sea Train",
+      "월미테마파크",
+      "달빛음악분수"
+    ],
+    "lat": 37.47383,
+    "lng": 126.59837,
+    "stations": [
+      {
+        "station": "인천",
+        "exits": null,
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://itour.incheon.go.kr/ssst/ssst/detail.do?cotId=APD21120710052543179",
+      "https://itour.incheon.go.kr/ssst/ssst/detail.do?cotId=APD21112609215303499",
+      "https://ko.wikipedia.org/wiki/인천역"
+    ]
+  },
+  {
+    "id": "songdo-central-park",
+    "category": "park",
+    "region": "incheon",
+    "name": {
+      "ko": "송도센트럴파크",
+      "ja": "松島セントラルパーク",
+      "en": "Songdo Central Park",
+      "zh-Hans": "松岛中央公园",
+      "zh-Hant": "松島中央公園"
+    },
+    "aliases": [
+      "센트럴파크",
+      "Central Park",
+      "송도 센트럴파크",
+      "セントラルパーク",
+      "中央公园",
+      "송도국제도시"
+    ],
+    "lat": 37.39227,
+    "lng": 126.63634,
+    "stations": [
+      {
+        "station": "센트럴파크",
+        "exits": [
+          "3"
+        ],
+        "walk": 2
+      }
+    ],
+    "sources": [
+      "https://www.incheon.go.kr/culture/CU020901/view?fcltySn=37",
+      "https://itour.incheon.go.kr/ssst/ssst/detail.do?cotId=ITD21121615281620822"
+    ]
+  },
+  {
+    "id": "sinpo-market",
+    "category": "market",
+    "region": "incheon",
+    "name": {
+      "ko": "신포국제시장",
+      "ja": "新浦国際市場",
+      "en": "Sinpo International Market",
+      "zh-Hans": "新浦国际市场",
+      "zh-Hant": "新浦國際市場"
+    },
+    "aliases": [
+      "신포시장",
+      "Sinpo Market",
+      "新浦市場",
+      "新浦市场",
+      "신포닭강정",
+      "Sinpo Dakgangjeong"
+    ],
+    "lat": 37.47146,
+    "lng": 126.62781,
+    "stations": [
+      {
+        "station": "신포",
+        "exits": null,
+        "walk": 10
+      },
+      {
+        "station": "동인천",
+        "exits": null,
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://itour.incheon.go.kr/ssst/ssst/detail.do?cotId=ITD21122715161333869",
+      "https://www.icjg.go.kr/tour/cttu0101a15"
+    ]
+  },
+  {
+    "id": "soraepogu",
+    "category": "market",
+    "region": "incheon",
+    "name": {
+      "ko": "소래포구 어시장",
+      "ja": "蘇莱浦口魚市場",
+      "en": "Soraepogu Fish Market",
+      "zh-Hans": "苏莱浦口鱼市场",
+      "zh-Hant": "蘇萊浦口魚市場"
+    },
+    "aliases": [
+      "소래포구",
+      "소래포구재래어시장",
+      "Soraepogu Port",
+      "Sorae Port",
+      "ソレポグ",
+      "蘇莱浦口",
+      "苏莱浦口",
+      "蘇萊浦口",
+      "소래어시장"
+    ],
+    "lat": 37.39797,
+    "lng": 126.7384,
+    "stations": [
+      {
+        "station": "소래포구",
+        "exits": [
+          "2"
+        ],
+        "walk": 10
+      }
+    ],
+    "sources": [
+      "https://itour.incheon.go.kr/ssst/ssst/detail.do?cotId=APD21112609133462500"
+    ]
+  },
+  {
+    "id": "seomun-market",
+    "category": "market",
+    "region": "daegu",
+    "name": {
+      "ko": "서문시장",
+      "ja": "西門市場",
+      "en": "Seomun Market",
+      "zh-Hans": "西门市场",
+      "zh-Hant": "西門市場"
+    },
+    "aliases": [
+      "ソムン市場",
+      "ソムンシジャン",
+      "서문야시장",
+      "Seomun Night Market",
+      "西门夜市",
+      "西門夜市"
+    ],
+    "lat": 35.86941,
+    "lng": 128.57986,
+    "stations": [
+      {
+        "station": "서문시장",
+        "exits": [
+          "3"
+        ],
+        "walk": null
+      },
+      {
+        "station": "청라언덕",
+        "exits": [
+          "1"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.dtro.or.kr/front/dtro/cyberstation/station/stationInfo.do?stt_cd=328",
+      "https://www.dtro.or.kr/front/dtro/cyberstation/station/stationInfo.do?stt_cd=229",
+      "https://tour.daegu.go.kr/index.do?menu_id=00002913&menu_link=/front/tour/tourMapsView.do?tourId=KOATTR_229",
+      "https://ko.wikipedia.org/wiki/서문시장역"
+    ]
+  },
+  {
+    "id": "kim-kwangseok-street",
+    "category": "street",
+    "region": "daegu",
+    "name": {
+      "ko": "김광석다시그리기길",
+      "ja": "キム・グァンソク通り",
+      "en": "Kim Kwang-seok Street",
+      "zh-Hans": "金光石街",
+      "zh-Hant": "金光石街"
+    },
+    "aliases": [
+      "김광석길",
+      "김광석거리",
+      "방천시장",
+      "Kim Gwangseok-gil",
+      "Kim Kwangseok-gil",
+      "金光石再画街",
+      "金光石通り"
+    ],
+    "lat": 35.86187,
+    "lng": 128.60768,
+    "stations": [
+      {
+        "station": "경대병원",
+        "exits": [
+          "3"
+        ],
+        "walk": null
+      },
+      {
+        "station": "대봉교",
+        "exits": null,
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.dtro.or.kr/front/dtro/cyberstation/station/stationInfo.do?stt_cd=231",
+      "https://www.dtro.or.kr/front/dtro/cyberstation/station/stationInfo.do?stt_cd=333",
+      "https://ko.wikipedia.org/wiki/경대병원역",
+      "https://www.openstreetmap.org/search?query=%EA%B9%80%EA%B4%91%EC%84%9D%EA%B1%B0%EB%A6%AC%20%EC%9E%85%EA%B5%AC"
+    ]
+  },
+  {
+    "id": "dongseongno",
+    "category": "shopping",
+    "region": "daegu",
+    "name": {
+      "ko": "동성로",
+      "ja": "東城路",
+      "en": "Dongseong-ro",
+      "zh-Hans": "东城路",
+      "zh-Hant": "東城路"
+    },
+    "aliases": [
+      "トンソンノ",
+      "Dongseongno",
+      "동성로 거리",
+      "대구백화점",
+      "東城路商圈",
+      "东城路商圈"
+    ],
+    "lat": 35.86921,
+    "lng": 128.59545,
+    "stations": [
+      {
+        "station": "중앙로(대구)",
+        "exits": [
+          "2"
+        ],
+        "walk": null
+      },
+      {
+        "station": "반월당",
+        "exits": null,
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.dtro.or.kr/front/dtro/cyberstation/station/stationInfo.do?stt_cd=131",
+      "https://www.dtro.or.kr/front/dtro/cyberstation/station/stationInfo.do?stt_cd=130",
+      "https://tour.daegu.go.kr/index.do?menu_id=00002913&menu_link=/front/tour/tourMapsView.do?tourId=KOATTR_221",
+      "https://ko.wikipedia.org/wiki/중앙로역_(대구)"
+    ]
+  },
+  {
+    "id": "suseongmot",
+    "category": "park",
+    "region": "daegu",
+    "name": {
+      "ko": "수성못",
+      "ja": "寿城池",
+      "en": "Suseongmot Lake",
+      "zh-Hans": "寿城池",
+      "zh-Hant": "壽城池"
+    },
+    "aliases": [
+      "スソンモッ",
+      "Suseong Lake",
+      "Suseongmot",
+      "수성유원지",
+      "壽城湖",
+      "寿城湖"
+    ],
+    "lat": 35.82779,
+    "lng": 128.61768,
+    "stations": [
+      {
+        "station": "수성못",
+        "exits": [
+          "1"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.dtro.or.kr/front/dtro/cyberstation/station/stationInfo.do?stt_cd=338",
+      "https://tour.daegu.go.kr/index.do?menu_id=00002913&menu_link=/front/tour/tourMapsView.do?tourId=KOATTR_120",
+      "https://ko.wikipedia.org/wiki/수성못역"
+    ]
+  },
+  {
+    "id": "eworld-83tower",
+    "category": "entertainment",
+    "region": "daegu",
+    "name": {
+      "ko": "이월드·83타워",
+      "ja": "イーワールド・83タワー",
+      "en": "E-World & 83 Tower",
+      "zh-Hans": "E-World·83塔",
+      "zh-Hant": "E-World·83塔"
+    },
+    "aliases": [
+      "이월드",
+      "83타워",
+      "우방타워",
+      "우방랜드",
+      "E-World",
+      "Eworld",
+      "83 Tower",
+      "イーワールド",
+      "83タワー",
+      "83塔",
+      "头流公园",
+      "頭流公園",
+      "두류공원"
+    ],
+    "lat": 35.85316,
+    "lng": 128.56665,
+    "stations": [
+      {
+        "station": "두류",
+        "exits": [
+          "12"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.dtro.or.kr/front/dtro/cyberstation/station/stationInfo.do?stt_cd=226",
+      "https://tour.daegu.go.kr/index.do?menu_id=00002913&menu_link=/front/tour/tourMapsView.do?tourId=KOATTR_216",
+      "https://ko.wikipedia.org/wiki/두류역"
+    ]
+  },
+  {
+    "id": "cheongna-hill",
+    "category": "landmark",
+    "region": "daegu",
+    "name": {
+      "ko": "청라언덕",
+      "ja": "青蘿の丘",
+      "en": "Cheongna Hill",
+      "zh-Hans": "青萝山丘",
+      "zh-Hant": "青蘿山丘"
+    },
+    "aliases": [
+      "チョンナオンドク",
+      "Cheongna Eondeok",
+      "근대골목",
+      "대구 근대골목",
+      "Daegu Modern History Alley",
+      "近代胡同",
+      "近代巷弄",
+      "近代路地",
+      "선교사주택",
+      "Missionary Houses",
+      "3·1만세운동길",
+      "90계단"
+    ],
+    "lat": 35.86715,
+    "lng": 128.58548,
+    "stations": [
+      {
+        "station": "청라언덕",
+        "exits": [
+          "9"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.dtro.or.kr/front/dtro/cyberstation/station/stationInfo.do?stt_cd=229",
+      "https://ko.wikipedia.org/wiki/청라언덕역",
+      "https://www.openstreetmap.org/#map=18/35.86715/128.58548"
+    ]
+  },
+  {
+    "id": "asia-culture-center",
+    "category": "museum",
+    "region": "gwangju",
+    "name": {
+      "ko": "국립아시아문화전당",
+      "ja": "国立アジア文化殿堂",
+      "en": "National Asian Culture Center",
+      "zh-Hans": "国立亚洲文化殿堂",
+      "zh-Hant": "國立亞洲文化殿堂"
+    },
+    "aliases": [
+      "ACC",
+      "Asia Culture Center",
+      "아시아문화전당",
+      "문화전당",
+      "옛 전남도청",
+      "亚洲文化殿堂",
+      "亞洲文化殿堂"
+    ],
+    "lat": 35.14724,
+    "lng": 126.92069,
+    "stations": [
+      {
+        "station": "문화전당",
+        "exits": [
+          "5",
+          "6"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://www.acc.go.kr/main/contents.do?PID=060102",
+      "https://station.kric.go.kr/v2/altmInfoSys/index.do?areCd=04&lnCd=1&railOprIsttCd=GJ&prprStinCd=0850",
+      "https://ko.wikipedia.org/wiki/국립아시아문화전당"
+    ]
+  },
+  {
+    "id": "songjeong-1913-market",
+    "category": "market",
+    "region": "gwangju",
+    "name": {
+      "ko": "1913송정역시장",
+      "ja": "1913松汀駅市場",
+      "en": "1913 Songjeong Station Market",
+      "zh-Hans": "1913松汀站市场",
+      "zh-Hant": "1913松汀站市場"
+    },
+    "aliases": [
+      "송정역시장",
+      "송정매일시장",
+      "송정역전매일시장",
+      "Songjeong Market",
+      "松汀駅市場",
+      "松汀站市场"
+    ],
+    "lat": 35.13608,
+    "lng": 126.7921,
+    "stations": [
+      {
+        "station": "광주송정역",
+        "exits": [
+          "2"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://station.kric.go.kr/v2/altmInfoSys/index.do?areCd=04&lnCd=1&railOprIsttCd=GJ&prprStinCd=0837",
+      "https://www.openstreetmap.org/search?query=송정로8번길%20광산구"
+    ]
+  },
+  {
+    "id": "yangnim-history-village",
+    "category": "street",
+    "region": "gwangju",
+    "name": {
+      "ko": "양림동 역사문화마을",
+      "ja": "楊林洞歴史文化村",
+      "en": "Yangnim History and Culture Village",
+      "zh-Hans": "杨林洞历史文化村",
+      "zh-Hant": "楊林洞歷史文化村"
+    },
+    "aliases": [
+      "펭귄마을",
+      "양림동 펭귄마을",
+      "양림동",
+      "Penguin Village",
+      "Yangnim-dong",
+      "ペンギン村",
+      "企鹅村",
+      "企鵝村",
+      "오웬기념각"
+    ],
+    "lat": 35.14024,
+    "lng": 126.91687,
+    "stations": [
+      {
+        "station": "남광주",
+        "exits": [
+          "3"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://station.kric.go.kr/v2/altmInfoSys/index.do?areCd=04&lnCd=1&railOprIsttCd=GJ&prprStinCd=0841",
+      "https://www.openstreetmap.org/way/503210073"
+    ]
+  },
+  {
+    "id": "sungsimdang",
+    "category": "shopping",
+    "region": "daejeon",
+    "name": {
+      "ko": "성심당 본점",
+      "ja": "聖心堂 本店",
+      "en": "Sungsimdang Bakery (Main Store)",
+      "zh-Hans": "圣心堂 总店",
+      "zh-Hant": "聖心堂 本店"
+    },
+    "aliases": [
+      "성심당",
+      "Sungsimdang",
+      "Sung Sim Dang",
+      "튀김소보로",
+      "은행동",
+      "으능정이",
+      "聖心堂",
+      "圣心堂"
+    ],
+    "lat": 36.32773,
+    "lng": 127.42729,
+    "stations": [
+      {
+        "station": "중앙로(대전)",
+        "exits": [
+          "2"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://station.kric.go.kr/v2/altmInfoSys/index.do?areCd=05&lnCd=1&railOprIsttCd=DJ&prprStinCd=0879",
+      "https://ko.wikipedia.org/wiki/중앙로역_(대전)",
+      "https://www.openstreetmap.org/node/6443238585"
+    ]
+  },
+  {
+    "id": "expo-science-park",
+    "category": "park",
+    "region": "daejeon",
+    "name": {
+      "ko": "엑스포과학공원·한빛탑",
+      "ja": "エキスポ科学公園・ハンビッ塔",
+      "en": "Expo Science Park & Hanbit Tower",
+      "zh-Hans": "世博科学公园·韩光塔",
+      "zh-Hant": "世博科學公園·韓光塔"
+    },
+    "aliases": [
+      "엑스포과학공원",
+      "엑스포공원",
+      "한빛탑",
+      "엑스포다리",
+      "Hanbit Tower",
+      "Daejeon Expo",
+      "EXPO科学公园",
+      "大田世博"
+    ],
+    "lat": 36.37663,
+    "lng": 127.38806,
+    "stations": [
+      {
+        "station": "정부청사",
+        "exits": null,
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://ko.wikipedia.org/wiki/한빛탑",
+      "https://ko.wikipedia.org/wiki/엑스포과학공원",
+      "https://station.kric.go.kr/v2/altmInfoSys/index.do?areCd=05&lnCd=1&railOprIsttCd=DJ&prprStinCd=0877"
+    ]
+  },
+  {
+    "id": "yuseong-foot-spa",
+    "category": "park",
+    "region": "daejeon",
+    "name": {
+      "ko": "유성온천 족욕체험장",
+      "ja": "儒城温泉 足湯体験場",
+      "en": "Yuseong Hot Spring Foot Spa",
+      "zh-Hans": "儒城温泉足浴体验场",
+      "zh-Hant": "儒城溫泉足浴體驗場"
+    },
+    "aliases": [
+      "유성온천",
+      "족욕장",
+      "유성 족욕체험장",
+      "유성명물문화공원",
+      "유성온천공원",
+      "Yuseong Foot Spa",
+      "Yuseong Spa",
+      "足湯",
+      "儒城温泉"
+    ],
+    "lat": 36.35513,
+    "lng": 127.3446,
+    "stations": [
+      {
+        "station": "유성온천",
+        "exits": [
+          "7"
+        ],
+        "walk": null
+      }
+    ],
+    "sources": [
+      "https://station.kric.go.kr/v2/altmInfoSys/index.do?areCd=05&lnCd=1&railOprIsttCd=DJ&prprStinCd=0876",
+      "https://www.openstreetmap.org/node/11195298937",
+      "https://www.ktriptips.com/kor/tourspot/125858"
+    ]
+  }
+]

@@ -2804,6 +2804,9 @@ struct StationSearchSheet: View {
         }
     }
 
+    /// 검색어에 맞는 명소 (코엑스 → 삼성 · 봉은사). 검색할 때만.
+    private var matchingAttractions: [Attraction] { KORAAttractions.search(query) }
+
     /// True when the list should be grouped under section headers — uses the
     /// display language's natural collation (한글 / 五十音 / A-Z). Chinese mode
     /// uses a flat sorted list since there's no clean single-letter system.
@@ -2831,7 +2834,7 @@ struct StationSearchSheet: View {
                 lineFilterBar
                 Divider()
 
-                if filtered.isEmpty {
+                if filtered.isEmpty && matchingAttractions.isEmpty {
                     emptyState
                 } else if shouldUseLanguageSections {
                     sectionedListView
@@ -2846,6 +2849,10 @@ struct StationSearchSheet: View {
                 if filtered.count == 1, let only = filtered.first {
                     onSelect(only)
                     dismiss()
+                } else if filtered.isEmpty, matchingAttractions.count == 1,
+                          let best = matchingAttractions.first?.stations.first(where: { $0.station != excluding }) {
+                    onSelect(best.station)
+                    dismiss()
                 }
             }
             // 목록을 끌어 내리면 키보드도 따라 내려가 결과를 가리지 않는다.
@@ -2855,6 +2862,16 @@ struct StationSearchSheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(NavLoc.done.resolved(displayLanguage)) { dismiss() }
+                }
+                ToolbarItem(placement: .primaryAction) {
+                    NavigationLink {
+                        StationMapPicker(excluding: excluding, lang: displayLanguage, category: selectedCategory,
+                                         startsAtUserLocation: showNearby) { onSelect($0); dismiss() }
+                    } label: {
+                        Image(systemName: "map")
+                    }
+                    .accessibilityLabel(NavLoc.pickOnMap.resolved(displayLanguage))
+                    .accessibilityIdentifier("search.map")
                 }
             }
             .task { if showNearby { await loadNearby() } }
@@ -2911,6 +2928,21 @@ struct StationSearchSheet: View {
     private var flatListView: some View {
         List {
             if showNearbySection { nearbySection }
+            if !matchingAttractions.isEmpty {
+                Section {
+                    ForEach(matchingAttractions) { attraction in
+                        AttractionCard(attraction: attraction, lang: displayLanguage, excluding: excluding) {
+                            onSelect($0)
+                            dismiss()
+                        }
+                        .listRowSeparator(.hidden)
+                    }
+                } header: {
+                    Text(NavLoc.attractionsHeader.resolved(displayLanguage))
+                        .font(.body).fontWeight(.bold)
+                        .foregroundStyle(KORATheme.accent)
+                }
+            }
             ForEach(filtered, id: \.self) { station in
                 Button {
                     onSelect(station)

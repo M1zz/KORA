@@ -2,12 +2,13 @@
 //  KORATests.swift
 //  KORATests
 //
-//  핵심 로직 시험 — 길찾기 · 막차 시각 표기 · 새로 생긴 것/사용법 안내 노출 규칙 · LeeoKit 계약.
+//  핵심 로직 시험 — 길찾기 · 막차 시각 표기 · 새로 생긴 것/사용법 안내 노출 규칙 · LeeoKit 계약 · 명소 → 역.
 //
 
 import XCTest
 import LeeoKit
 import TrainBoardKit
+import CoreLocation
 @testable import KORA
 
 final class KORASpecTests: XCTestCase {
@@ -194,5 +195,107 @@ final class TrainBoardJudgeTests: XCTestCase {
     func testStationSignNamingBothNeighboursIsAmbiguous() {
         let j = TrainBoardJudge(forward: ["개화"], backward: ["언주", "중앙보훈병원"], nextStop: ["사평"])
         XCTAssertEqual(j.judge(row: "← 사평 | 신논현 | 언주 →"), .ambiguous)
+    }
+}
+
+final class AttractionDataTests: XCTestCase {
+    private let all = KORAAttractions.all
+
+    func testDataLoads() {
+        XCTAssertGreaterThanOrEqual(all.count, 60)
+        let ids = all.map(\.id)
+        XCTAssertEqual(Set(ids).count, ids.count, "id 가 겹친다")
+    }
+
+    func testEveryStationExistsInLineData() {
+        let names = Set(MetroLineData.allStationNames)
+        for a in all {
+            XCTAssertFalse(a.stations.isEmpty, a.id)
+            for s in a.stations {
+                XCTAssertTrue(names.contains(s.station), "\(a.id): 노선 데이터에 없는 역 \(s.station)")
+                XCTAssertNotNil(MetroLineData.stationCoordinates[s.station], "\(a.id): 좌표 없는 역 \(s.station)")
+            }
+        }
+    }
+
+    func testStationsBelongToTheAttractionsRegion() {
+        for a in all {
+            for s in a.stations {
+                let regions = Set(MetroLineData.linesContaining(s.station).compactMap { num in
+                    MetroLineData.seoulLines.first { $0.number == num }?.region
+                })
+                XCTAssertTrue(regions.contains(a.region.region), "\(a.id): \(s.station) 은 다른 권역")
+            }
+        }
+    }
+
+    func testCoordinatesAreInKoreaAndNearTheirStations() {
+        for a in all {
+            XCTAssertTrue((33.0...38.7).contains(a.lat) && (124.5...131.0).contains(a.lng), "\(a.id): 한국 밖 좌표")
+            for s in a.stations {
+                guard let c = MetroLineData.stationCoordinates[s.station] else { continue }
+                // 태종대·해동용궁사처럼 역에서 버스를 타는 곳도 있어 넉넉하게. 위도·경도를 바꿔 적은 실수는 잡는다.
+                XCTAssertLessThan(meters(a.lat, a.lng, c.lat, c.lng), 8000, "\(a.id): \(s.station) 에서 너무 멀다")
+            }
+        }
+    }
+
+    func testNamesAndExits() {
+        let exitPattern = try? NSRegularExpression(pattern: "^[0-9]+(-[0-9]+)?$")
+        for a in all {
+            for key in ["ko", "ja", "en", "zh-Hans", "zh-Hant"] {
+                let name = a.name[key] ?? ""
+                XCTAssertFalse(name.isEmpty, "\(a.id): \(key) 이름 없음")
+                XCTAssertFalse(name.contains("—") || name.contains(" - "), "\(a.id): 엠대시")
+            }
+            XCTAssertFalse(a.sources.isEmpty, "\(a.id): 출처 없음")
+            for s in a.stations {
+                for e in s.exits ?? [] {
+                    let range = NSRange(e.startIndex..., in: e)
+                    XCTAssertNotNil(exitPattern?.firstMatch(in: e, range: range), "\(a.id): 출구 번호 \(e)")
+                }
+                if let w = s.walk { XCTAssertTrue((1...30).contains(w), "\(a.id): 도보 \(w)분") }
+            }
+        }
+    }
+
+    private func meters(_ lat1: Double, _ lng1: Double, _ lat2: Double, _ lng2: Double) -> Double {
+        CLLocation(latitude: lat1, longitude: lng1).distance(from: CLLocation(latitude: lat2, longitude: lng2))
+    }
+}
+
+final class AttractionSearchTests: XCTestCase {
+    func testCoexLeadsToSamseongAndBongeunsa() throws {
+        for q in ["코엑스", "COEX", "coex", "コエックス", "별마당도서관"] {
+            let coex = try XCTUnwrap(KORAAttractions.search(q).first, q)
+            XCTAssertEqual(coex.id, "coex", q)
+            let stations = coex.stations.map(\.station)
+            XCTAssertTrue(stations.contains("삼성"), q)
+            XCTAssertTrue(stations.contains("봉은사"), q)
+        }
+    }
+
+    func testGyeongbokgungInEveryScript() {
+        for q in ["경복궁", "Gyeongbokgung", "gyeongbokgung palace", "景福宮", "景福宫"] {
+            XCTAssertTrue(KORAAttractions.search(q).contains { $0.id == "gyeongbokgung" }, q)
+        }
+    }
+
+    func testIgnoresSpacesAndHyphens() {
+        XCTAssertTrue(KORAAttractions.search("N 서울 타워").contains { $0.id == "n-seoul-tower" })
+        XCTAssertTrue(KORAAttractions.search("myeong-dong").contains { $0.id == "myeongdong" })
+    }
+
+    func testSingleLatinLetterFindsNoPlace() {
+        XCTAssertTrue(KORAAttractions.search("a").isEmpty)
+        XCTAssertTrue(KORAAttractions.search("  ").isEmpty)
+    }
+
+    func testDetailLine() {
+        let access = Attraction.Access(station: "삼성", exits: ["5", "6"], walk: 3)
+        XCTAssertEqual(AttractionCard.detail(access, .korean), "5·6번 출구 · 도보 약 3분")
+        XCTAssertEqual(AttractionCard.detail(access, .english), "Exits 5·6 · About 3 min walk")
+        XCTAssertEqual(AttractionCard.detail(Attraction.Access(station: "삼성", exits: ["5"], walk: nil), .japanese), "5番出口")
+        XCTAssertNil(AttractionCard.detail(Attraction.Access(station: "삼성", exits: nil, walk: nil), .korean))
     }
 }
