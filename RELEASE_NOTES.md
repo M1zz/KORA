@@ -5,6 +5,224 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 언어마다 `### ...` 제목에 언어 이름이 들어 있고, 코드 블록 안의 글만 올라간다.
 코드 블록 안은 한 줄에 한 문장, 이모지나 마크다운 기호 없이 평문으로 쓴다.
 
+## 1.0.10
+
+### 앱스토어 (한국어 ko)
+
+```
+코엑스처럼 가고 싶은 곳으로 역을 찾아요
+가까운 역과 나갈 출구를 함께 알려 줘요
+지도에서 역을 바로 고를 수 있어요
+1호선 종로5가 종로3가 시청이 빠져 있던 것을 고쳤어요
+```
+
+### 앱스토어 (English en-US)
+
+```
+Find stations by place, like COEX
+See the nearest stations and which exit to use
+Pick a station right on the map
+Line 1 now includes Jongno 5-ga, Jongno 3-ga and City Hall
+```
+
+### 앱스토어 (영국 영어 en-GB)
+
+```
+Find stations by place, such as COEX
+See the nearest stations and which exit to take
+Choose a station straight from the map
+Line 1 now includes Jongno 5-ga, Jongno 3-ga and City Hall
+```
+
+### 앱스토어 (日本語 ja)
+
+```
+COEXなど行きたい場所から駅を探せます
+最寄り駅と使う出口をあわせて表示します
+地図から駅を直接選べます
+1号線に鍾路5街・鍾路3街・市庁が抜けていたのを直しました
+```
+
+### 앱스토어 (중국어 간체 zh-Hans)
+
+```
+可按COEX等目的地查找车站
+同时显示最近的车站和该走的出口
+可直接在地图上选择车站
+修复了1号线缺少钟路5街、钟路3街和市厅站的问题
+```
+
+### 앱스토어 (중국어 번체 zh-Hant)
+
+```
+可依COEX等目的地查找車站
+同時顯示最近的車站和該走的出口
+可直接在地圖上選擇車站
+修正了1號線缺少鐘路5街、鐘路3街和市廳站的問題
+```
+
+### 앱스토어 (독일어 de)
+
+```
+Stationen nach Ziel finden, etwa COEX
+Nächste Stationen samt passendem Ausgang
+Stationen direkt auf der Karte wählen
+Linie 1 hält jetzt auch in Jongno 5-ga, Jongno 3-ga und City Hall
+```
+
+### 앱스토어 (스페인어 es)
+
+```
+Busca estaciones por lugar, como COEX
+Verás las estaciones más cercanas y qué salida usar
+Elige una estación directamente en el mapa
+La línea 1 ya incluye Jongno 5-ga, Jongno 3-ga y City Hall
+```
+
+### 앱스토어 (프랑스어 fr)
+
+```
+Trouvez une station par lieu, comme COEX
+Stations les plus proches et sortie à prendre
+Choisissez une station directement sur la carte
+La ligne 1 inclut désormais Jongno 5-ga, Jongno 3-ga et City Hall
+```
+
+### 앱스토어 (이탈리아어 it)
+
+```
+Trova le stazioni dal luogo, come COEX
+Vedi le stazioni più vicine e l'uscita giusta
+Scegli una stazione direttamente sulla mappa
+La linea 1 ora include Jongno 5-ga, Jongno 3-ga e City Hall
+```
+
+### 앱스토어 (포르투갈어 브라질 pt-BR)
+
+```
+Encontre estações pelo lugar, como COEX
+Veja as estações mais próximas e a saída certa
+Escolha uma estação direto no mapa
+A linha 1 agora inclui Jongno 5-ga, Jongno 3-ga e City Hall
+```
+
+### 앱스토어 (러시아어 ru)
+
+```
+Ищите станции по месту, например COEX
+Видно ближайшие станции и нужный выход
+Станцию можно выбрать прямо на карте
+На линии 1 появились Чонно 5-га, Чонно 3-га и Сичхон
+```
+
+### 앱스토어 (체코어 cs)
+
+```
+Hledejte stanice podle místa, třeba COEX
+Ukážeme nejbližší stanice i správný východ
+Stanici vyberete přímo na mapě
+Linka 1 nově zahrnuje Jongno 5-ga, Jongno 3-ga a City Hall
+```
+
+### 앱스토어 (덴마크어 da)
+
+```
+Find stationer ud fra sted, fx COEX
+Se nærmeste stationer og hvilken udgang du skal tage
+Vælg en station direkte på kortet
+Linje 1 har nu Jongno 5-ga, Jongno 3-ga og City Hall med
+```
+
+### 앱스토어 (그리스어 el)
+
+```
+Βρείτε σταθμούς από τον προορισμό, π.χ. COEX
+Δείτε τους κοντινότερους σταθμούς και την έξοδο
+Επιλέξτε σταθμό απευθείας στον χάρτη
+Η γραμμή 1 περιλαμβάνει πλέον Jongno 5-ga, Jongno 3-ga και City Hall
+```
+
+### 앱스토어 (핀란드어 fi)
+
+```
+Etsi asemia paikan mukaan, kuten COEX
+Näet lähimmät asemat ja oikean uloskäynnin
+Valitse asema suoraan kartalta
+Linjalla 1 ovat nyt Jongno 5-ga, Jongno 3-ga ja City Hall
+```
+
+### 앱스토어 (인도네시아어 id)
+
+```
+Cari stasiun dari tempat, seperti COEX
+Lihat stasiun terdekat dan pintu keluar yang tepat
+Pilih stasiun langsung di peta
+Jalur 1 kini mencakup Jongno 5-ga, Jongno 3-ga, dan City Hall
+```
+
+### 앱스토어 (노르웨이어 보크말 nb)
+
+```
+Finn stasjoner ut fra sted, som COEX
+Se nærmeste stasjoner og hvilken utgang du skal ta
+Velg stasjon rett på kartet
+Linje 1 har nå med Jongno 5-ga, Jongno 3-ga og City Hall
+```
+
+### 앱스토어 (네덜란드어 nl)
+
+```
+Zoek stations op plek, zoals COEX
+Zie de dichtstbijzijnde stations en welke uitgang
+Kies een station direct op de kaart
+Lijn 1 rijdt nu ook via Jongno 5-ga, Jongno 3-ga en City Hall
+```
+
+### 앱스토어 (폴란드어 pl)
+
+```
+Szukaj stacji po miejscu, np. COEX
+Zobacz najbliższe stacje i właściwe wyjście
+Wybierz stację prosto na mapie
+Linia 1 obejmuje teraz Jongno 5-ga, Jongno 3-ga i City Hall
+```
+
+### 앱스토어 (스웨덴어 sv)
+
+```
+Hitta stationer via plats, som COEX
+Se närmaste stationer och vilken utgång du ska ta
+Välj station direkt på kartan
+Linje 1 har nu med Jongno 5-ga, Jongno 3-ga och City Hall
+```
+
+### 앱스토어 (태국어 th)
+
+```
+ค้นหาสถานีจากสถานที่ เช่น COEX
+บอกสถานีที่ใกล้ที่สุดและทางออกที่ควรใช้
+เลือกสถานีจากแผนที่ได้โดยตรง
+สาย 1 มีสถานีจงโน 5 กา จงโน 3 กา และซิตี้ฮอลล์แล้ว
+```
+
+### 앱스토어 (튀르키예어 tr)
+
+```
+COEX gibi yerlere göre istasyon bul
+En yakın istasyonları ve doğru çıkışı gör
+İstasyonu doğrudan haritadan seç
+1. hat artık Jongno 5-ga, Jongno 3-ga ve City Hall'u içeriyor
+```
+
+### 앱스토어 (베트남어 vi)
+
+```
+Tìm ga theo địa điểm, như COEX
+Xem ga gần nhất và lối ra nên đi
+Chọn ga ngay trên bản đồ
+Tuyến 1 nay có thêm Jongno 5-ga, Jongno 3-ga và City Hall
+```
+
 ## 1.0.9
 
 ### 앱스토어 (한국어 ko)

@@ -21,6 +21,9 @@ enum KORAWhatsNew {
 
     /// 버전별 사용자 기능. 내부 정리·빌드 설정은 적지 않는다.
     static let notes: [String: [Item]] = [
+        "1.0.10": [
+            Item(symbol: "mappin.and.ellipse", text: .roadmapPlaces),
+        ],
         "1.0.9": [
             Item(symbol: "hand.wave.fill", text: .whatsNew1),
             Item(symbol: "bubble.left.and.text.bubble.right.fill", text: .whatsNew2),

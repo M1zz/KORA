@@ -24,9 +24,6 @@ extension KORASpec {
             .init(id: id, status: status, title: title.resolved(lang), detail: detail.resolved(lang))
         }
         return [
-            // MARK: 만들고 있어요
-            item("places", .roadmapPlaces, .roadmapPlacesDetail, .building),
-
             // MARK: 다음에 만들어요
             item("autosave", .roadmapResume, .roadmapResumeDetail),
             item("a11y.voiceover", .roadmapVoiceOver, .roadmapVoiceOverDetail),
@@ -35,6 +32,7 @@ extension KORASpec {
             item("fold", .roadmapFold, .roadmapFoldDetail),
 
             // MARK: 내보냈어요
+            item("places", .roadmapPlaces, .roadmapPlacesDetail, .shipped("1.0.10")),
             item("express", .roadmapExpress, .roadmapExpressDetail, .shipped("1.0.9")),
             item("onboarding", .roadmapOnboarding, .roadmapOnboardingDetail, .shipped("1.0.9")),
             item("whatsnew", .roadmapWhatsNew, .roadmapWhatsNewDetail, .shipped("1.0.9")),
