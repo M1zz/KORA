@@ -3423,6 +3423,7 @@ struct LanguagePickerSheet: View {
                 }
 
                 KORAProSection(lang: sheetLang)
+                KORAGiftSection()
 
                 Section {
                     Button {

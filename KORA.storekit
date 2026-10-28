@@ -21,6 +21,26 @@
       "productID" : "com.kora.leeo.pro",
       "referenceName" : "KORA Pro Lifetime",
       "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "6.99",
+      "familyShareable" : false,
+      "internalID" : "4B0A7E22",
+      "localizations" : [
+        {
+          "description" : "Give KORA Pro to someone else with a gift code.",
+          "displayName" : "Gift KORA Pro",
+          "locale" : "en_US"
+        },
+        {
+          "description" : "다른 사람에게 KORA Pro 를 선물합니다. 코드를 보내 주세요.",
+          "displayName" : "KORA Pro 선물",
+          "locale" : "ko"
+        }
+      ],
+      "productID" : "com.kora.leeo.gift.pro",
+      "referenceName" : "Gift Pro",
+      "type" : "Consumable"
     }
   ],
   "settings" : {

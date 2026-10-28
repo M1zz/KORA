@@ -24,6 +24,9 @@ extension KORASpec {
             .init(id: id, status: status, title: title.resolved(lang), detail: detail.resolved(lang))
         }
         return [
+            // MARK: 만들고 있어요
+            item("gift", .roadmapGift, .roadmapGiftDetail, .building),
+
             // MARK: 다음에 만들어요
             item("autosave", .roadmapResume, .roadmapResumeDetail),
             item("a11y.voiceover", .roadmapVoiceOver, .roadmapVoiceOverDetail),
