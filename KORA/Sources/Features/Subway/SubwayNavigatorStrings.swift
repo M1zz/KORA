@@ -166,6 +166,35 @@ extension NavLoc {
         }
     }
 
+    /// 팁 부탁 카드의 숫자 한 줄 — KORA 와 함께 목적지에 닿은 여정 수.
+    static func tipArrivals(_ n: Int, _ lang: StationLanguage) -> String {
+        switch lang {
+        case .korean:   return "KORA 와 함께 목적지에 \(n)번 도착했어요"
+        case .japanese: return "KORA で目的地に\(n)回たどり着きました"
+        case .english:  return "You've reached your destination \(n) times with KORA"
+        case .chinese:  return "你已用 KORA 顺利到达目的地 \(n) 次"
+        case .chineseTraditional: return "你已用 KORA 順利抵達目的地 \(n) 次"
+        case .german:   return "Mit KORA schon \(n)-mal gut ans Ziel gekommen"
+        case .spanish:  return "Ya llegaste a tu destino \(n) veces con KORA"
+        case .french:   return "Déjà \(n) trajets menés à bon port avec KORA"
+        case .italian:  return "Con KORA sei già arrivato a destinazione \(n) volte"
+        case .portugueseBrazil: return "Você já chegou ao destino \(n) vezes com o KORA"
+        case .russian:  return "С KORA вы доехали до цели уже \(n) " + pick(n, lang, one: "раз", few: "раза", many: "раз")
+        case .czech:    return "S KORA jste dojeli do cíle už \(n)×"
+        case .danish:   return "Du er kommet frem \(n) gange med KORA"
+        case .greek:    return "Φτάσατε στον προορισμό σας \(n) φορές με το KORA"
+        case .finnish:  return "Olet päässyt KORAn kanssa perille jo \(n) kertaa"
+        case .indonesian: return "Kamu sudah \(n) kali sampai tujuan bersama KORA"
+        case .norwegian: return "Du har kommet frem \(n) ganger med KORA"
+        case .dutch:    return "Je bent al \(n) keer op je bestemming gekomen met KORA"
+        case .polish:   return "Z KORA już \(n) " + pick(n, lang, one: "raz", few: "razy", many: "razy") + " bez problemu do celu"
+        case .swedish:  return "Du har kommit fram \(n) gånger med KORA"
+        case .thai:     return "คุณเดินทางถึงที่หมายกับ KORA มาแล้ว \(n) ครั้ง"
+        case .turkish:  return "KORA ile \(n) kez hedefine ulaştın"
+        case .vietnamese: return "Bạn đã đến nơi \(n) lần cùng KORA"
+        }
+    }
+
     // Suffixes / inline pieces
     static func aboutMinutes(_ m: Int, _ lang: StationLanguage) -> String {
         let n = max(m, 1)

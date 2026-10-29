@@ -46,12 +46,16 @@ enum KORASpec: LeeoAppSpec {
             gift: LeeoGiftConfig(
                 productID: giftProductID,
                 grantsProductID: proProductID,
-                containerIdentifier: "iCloud.com.Ysoup.FeedbackHub")))
+                containerIdentifier: "iCloud.com.Ysoup.FeedbackHub"),
+            // 개발자 응원하기(팁, 소모성). 기능을 열지 않는다 — productIDs · entitlementIDs 에 넣지 않는다.
+            tipJar: LeeoTipJarConfig(productIDs: tipProductIDs)))
 
     /// 평생 이용권(비소모성, 가족 공유). 파는 상품은 이것 하나다.
     static let proProductID = "com.kora.leeo.pro"
     /// Pro 선물(소모성). 몇 번이고 살 수 있고, 산 사람이 아니라 코드를 받은 사람이 Pro 가 된다.
     static let giftProductID = "com.kora.leeo.gift.pro"
+    /// 팁(소모성). 작은 것부터 큰 것 순.
+    static let tipProductIDs = ["com.kora.leeo.tip.small", "com.kora.leeo.tip.medium", "com.kora.leeo.tip.large"]
 
     /// 결제 퍼널 이벤트를 피드백 허브(CloudKit)로. no-op 으로 두면 LeeoKit 이 사용 통계 보고도 끈다.
     static let analytics: any LeeoAnalytics = LeeoUsageAnalytics(spec: KORASpec.self)

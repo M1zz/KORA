@@ -41,6 +41,51 @@
       "productID" : "com.kora.leeo.gift.pro",
       "referenceName" : "Gift Pro",
       "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "4B0A7E31",
+      "localizations" : [
+        {
+          "description" : "Support the developer of KORA.",
+          "displayName" : "Small Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.kora.leeo.tip.small",
+      "referenceName" : "Small Tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "4B0A7E32",
+      "localizations" : [
+        {
+          "description" : "Support the developer of KORA.",
+          "displayName" : "Medium Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.kora.leeo.tip.medium",
+      "referenceName" : "Medium Tip",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "4B0A7E33",
+      "localizations" : [
+        {
+          "description" : "Support the developer of KORA.",
+          "displayName" : "Large Tip",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.kora.leeo.tip.large",
+      "referenceName" : "Large Tip",
+      "type" : "Consumable"
     }
   ],
   "settings" : {

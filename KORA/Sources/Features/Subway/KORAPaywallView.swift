@@ -288,3 +288,42 @@ private struct GiftRows: View {
         }
     }
 }
+
+// MARK: - 개발자 응원하기 (팁)
+
+/// 설정의 '개발자 응원하기' 줄. 판매 중인 팁이 있어야 선다 — 줄이 없으면 묶음도 세우지 않는다.
+struct KORATipSection: View {
+    var body: some View {
+        if let tipJar = KORAPro.shared.store.tipJar {
+            TipRows(tipJar: tipJar)
+        }
+    }
+}
+
+/// 상품은 앱이 뜬 뒤에 온다. `LeeoTipJar` 를 따로 관찰해야 줄이 제때 선다.
+private struct TipRows: View {
+    @ObservedObject var tipJar: LeeoTipJar
+
+    var body: some View {
+        if tipJar.isAvailable {
+            Section {
+                LeeoTipJarLink<KORASpec>(tipJar: tipJar)
+            }
+        }
+    }
+}
+
+/// 팁을 부탁할 순간 — 목적지에 닿은 여정 수(`LeeoEngagement` 가 도착마다 센다). 큰 것부터.
+enum KORATipMoments {
+    static let arrivals = [50, 20, 7]
+
+    static func reached(arrivals count: Int, lang: StationLanguage) -> [LeeoTipMoment] {
+        arrivals.filter { count >= $0 }.map {
+            LeeoTipMoment(id: "arrived.\($0)", message: NavLoc.tipArrivals(count, lang))
+        }
+    }
+
+    static func reachedNow(lang: StationLanguage) -> [LeeoTipMoment] {
+        reached(arrivals: LeeoEngagement.shared.significantEventCount, lang: lang)
+    }
+}

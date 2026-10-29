@@ -338,6 +338,12 @@ struct SubwayNavigatorView: View {
                     VStack(spacing: 16) {
                         finishedBlock(j: j)
                         arrivalProNote
+                        // 이미 Pro 인 사람이 또 한 번 무사히 내린 순간에만 응원을 부탁한다.
+                        // 아직 안 산 사람에게는 위의 Pro 안내가 맞는 길이다.
+                        if pro.hasPro, let tipJar = pro.store.tipJar {
+                            LeeoTipAskSlot<KORASpec>(tipJar: tipJar,
+                                                     reached: KORATipMoments.reachedNow(lang: displayLanguage))
+                        }
                     }
                         .padding(.horizontal, 16)
                         .padding(.top, 22)
@@ -3424,6 +3430,7 @@ struct LanguagePickerSheet: View {
 
                 KORAProSection(lang: sheetLang)
                 KORAGiftSection()
+                KORATipSection()
 
                 Section {
                     Button {
