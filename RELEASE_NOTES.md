@@ -5,6 +5,224 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 언어마다 `### ...` 제목에 언어 이름이 들어 있고, 코드 블록 안의 글만 올라간다.
 코드 블록 안은 한 줄에 한 문장, 이모지나 마크다운 기호 없이 평문으로 쓴다.
 
+## 1.0.11
+
+### 앱스토어 (한국어 ko)
+
+```
+고마울 때 개발자에게 작은 팁을 보낼 수 있어요
+친구에게 Pro를 선물할 수 있어요
+VoiceOver가 노선을 2호선처럼 이름으로 읽어요
+카메라 방향 확인을 음성 명령으로 닫을 수 있어요
+```
+
+### 앱스토어 (English en-US)
+
+```
+Say thanks to the developer with a tip
+Now you can gift Pro to a friend
+VoiceOver reads line names, like Line 2
+Close the camera check with your voice
+```
+
+### 앱스토어 (영국 영어 en-GB)
+
+```
+Say thanks to the developer with a tip
+Now you can gift Pro to a friend
+VoiceOver reads line names, like Line 2
+Close the camera check with your voice
+```
+
+### 앱스토어 (日本語 ja)
+
+```
+感謝の気持ちを小さなチップで開発者に送れます
+友だちにProをプレゼントできます
+VoiceOverが路線を「2号線」と名前で読み上げます
+カメラの方向確認を音声で閉じられます
+```
+
+### 앱스토어 (중국어 간체 zh-Hans)
+
+```
+可以给开发者送一点小费表达感谢
+可以把 Pro 送给朋友
+VoiceOver 会按名称朗读线路，如“2号线”
+可用语音关闭相机方向确认
+```
+
+### 앱스토어 (중국어 번체 zh-Hant)
+
+```
+可以送開發者一點小費表達感謝
+可以把 Pro 送給朋友
+VoiceOver 會以名稱朗讀路線，如「2號線」
+可用語音關閉相機方向確認
+```
+
+### 앱스토어 (독일어 de)
+
+```
+Sag Danke mit einem kleinen Trinkgeld
+Verschenke Pro jetzt an Freunde
+VoiceOver sagt jetzt „Linie 2“ statt „2“
+Kameraprüfung per Sprache schließen
+```
+
+### 앱스토어 (스페인어 es)
+
+```
+Deja una propina al desarrollador
+Ahora puedes regalar Pro a un amigo
+VoiceOver dice «Línea 2» y no solo «2»
+Cierra la cámara con tu voz
+```
+
+### 앱스토어 (프랑스어 fr)
+
+```
+Laissez un pourboire au développeur
+Offrez Pro à un ami
+VoiceOver annonce le nom des lignes
+Fermez la caméra de direction à la voix
+```
+
+### 앱스토어 (이탈리아어 it)
+
+```
+Lascia una mancia allo sviluppatore
+Regala Pro a un amico
+VoiceOver legge il nome delle linee
+Chiudi la fotocamera con la voce
+```
+
+### 앱스토어 (포르투갈어 브라질 pt-BR)
+
+```
+Deixe uma gorjeta para o desenvolvedor
+Dê o Pro de presente a um amigo
+O VoiceOver lê o nome das linhas
+Feche a câmera de direção pela voz
+```
+
+### 앱스토어 (러시아어 ru)
+
+```
+Можно оставить разработчику чаевые
+Pro теперь можно подарить другу
+VoiceOver называет линии по имени
+Проверку камерой можно закрыть голосом
+```
+
+### 앱스토어 (체코어 cs)
+
+```
+Poděkujte vývojáři malým spropitným
+Pro teď můžete darovat příteli
+VoiceOver čte celé názvy linek
+Kontrolu kamerou zavřete hlasem
+```
+
+### 앱스토어 (덴마크어 da)
+
+```
+Giv udvikleren lidt drikkepenge som tak
+Nu kan du give Pro i gave til en ven
+VoiceOver læser linjernes navne op
+Luk kameratjekket med stemmen
+```
+
+### 앱스토어 (그리스어 el)
+
+```
+Στείλτε ένα φιλοδώρημα στον δημιουργό
+Χαρίστε το Pro σε έναν φίλο
+Το VoiceOver λέει το όνομα κάθε γραμμής
+Κλείστε τον έλεγχο κάμερας με τη φωνή
+```
+
+### 앱스토어 (핀란드어 fi)
+
+```
+Kiitä kehittäjää pienellä tipillä
+Anna Pro lahjaksi ystävälle
+VoiceOver lukee linjojen nimet ääneen
+Kameratarkistuksen voi sulkea äänellä
+```
+
+### 앱스토어 (인도네시아어 id)
+
+```
+Beri tip kecil untuk pengembang
+Kini bisa menghadiahkan Pro ke teman
+VoiceOver membacakan nama jalur kereta
+Tutup cek arah kamera dengan suara
+```
+
+### 앱스토어 (노르웨이어 보크말 nb)
+
+```
+Gi utvikleren litt tips som takk
+Nå kan du gi bort Pro til en venn
+VoiceOver leser opp navnet på linjene
+Lukk kamerasjekken med stemmen
+```
+
+### 앱스토어 (네덜란드어 nl)
+
+```
+Bedank de maker met een kleine fooi
+Geef Pro cadeau aan een vriend
+VoiceOver leest de namen van lijnen voor
+Sluit de cameracheck met je stem
+```
+
+### 앱스토어 (폴란드어 pl)
+
+```
+Podziękuj twórcy drobnym napiwkiem
+Podaruj Pro znajomemu
+VoiceOver odczytuje nazwy linii
+Zamknij sprawdzanie kamerą głosem
+```
+
+### 앱스토어 (스웨덴어 sv)
+
+```
+Tacka utvecklaren med lite dricks
+Ge bort Pro i present till en vän
+VoiceOver läser upp linjernas namn
+Stäng kamerakollen med rösten
+```
+
+### 앱스토어 (태국어 th)
+
+```
+ส่งทิปเล็กๆ ให้นักพัฒนาเพื่อขอบคุณได้
+มอบ Pro เป็นของขวัญให้เพื่อนได้แล้ว
+VoiceOver อ่านชื่อสายรถไฟ เช่น สาย 2
+ปิดการเช็กทิศทางด้วยกล้องได้ด้วยเสียง
+```
+
+### 앱스토어 (튀르키예어 tr)
+
+```
+Geliştiriciye küçük bir bahşiş bırakın
+Pro’yu bir arkadaşınıza hediye edin
+VoiceOver hat adlarını sesli okur
+Kamera kontrolünü sesinizle kapatın
+```
+
+### 앱스토어 (베트남어 vi)
+
+```
+Gửi nhà phát triển chút tiền tip cảm ơn
+Giờ đây có thể tặng Pro cho bạn bè
+VoiceOver đọc tên tuyến, ví dụ Tuyến 2
+Đóng màn kiểm tra hướng bằng giọng nói
+```
+
 ## 1.0.10
 
 ### 앱스토어 (한국어 ko)
