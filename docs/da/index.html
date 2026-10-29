@@ -1,137 +1,193 @@
 <!doctype html>
 <html lang="da">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>KORA: metroen i Korea for rejsende</title>
-<meta name="description" content="Vælg hvor du er, og hvor du skal hen: KORA viser skift, rejsetid og retning og siger til, når du skal af. Seoul-området, Busan, Daegu, Gwangju og Daejeon.">
-<link rel="canonical" href="https://m1zz.github.io/KORA/da/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
-<link rel="stylesheet" href="../style.css">
-<link rel="icon" href="../icon.png">
-<link rel="apple-touch-icon" href="../icon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KORA: metroen i Korea for rejsende</title>
+  <meta name="description" content="Vælg start og mål, så viser KORA skift, antal stationer og præcis det skilt, toget du skal med, har. Undervejs fortæller den dig, hvornår du skal af.">
+  <meta name="theme-color" content="#CD2E3A" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0d0f" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6775176578">
+  <link rel="canonical" href="https://m1zz.github.io/KORA/da/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KORA: metroen i Korea for rejsende">
+  <meta property="og:description" content="Vælg start og mål, så viser KORA skift, antal stationer og præcis det skilt, toget du skal med, har. Undervejs fortæller den dig, hvornår du skal af.">
+  <meta property="og:url" content="https://m1zz.github.io/KORA/da/">
+  <meta property="og:image" content="https://m1zz.github.io/KORA/img/da/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../sitegen.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#CD2E3A}@media (prefers-color-scheme:dark){:root{--accent:#E5505B}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-<div class="container">
-
-  <header class="site">
-    <img src="../icon.png" alt="KORA-appikon">
-    <div>
-      <div class="title">KORA</div>
-      <div class="subtitle">Metroen i Korea for rejsende</div>
-    </div>
+  <a class="skip" href="#main">Gå til indhold</a>
+  <header class="bar">
+    <a class="brand" href="../da/"><img src="../icon.png" alt="" width="32" height="32">KORA</a>
+    <a class="lang-link" href="#languages">Sprog</a>
   </header>
 
-  <nav class="langs" aria-label="Language">
-    <a href="../ko/index.html" hreflang="ko" lang="ko">한국어</a>
-    <a href="../en/index.html" hreflang="en" lang="en">English</a>
-    <a href="../ja/index.html" hreflang="ja" lang="ja">日本語</a>
-    <a href="../zh-Hans/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
-    <a href="../zh-Hant/index.html" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
-    <a href="../de/index.html" hreflang="de" lang="de">Deutsch</a>
-    <a href="../es/index.html" hreflang="es" lang="es">Español</a>
-    <a href="../fr/index.html" hreflang="fr" lang="fr">Français</a>
-    <a href="../it/index.html" hreflang="it" lang="it">Italiano</a>
-    <a href="../pt-BR/index.html" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
-    <a href="../ru/index.html" hreflang="ru" lang="ru">Русский</a>
-    <a href="../cs/index.html" hreflang="cs" lang="cs">Čeština</a>
-    <a href="../da/index.html" hreflang="da" lang="da" aria-current="true">Dansk</a>
-    <a href="../el/index.html" hreflang="el" lang="el">Ελληνικά</a>
-    <a href="../fi/index.html" hreflang="fi" lang="fi">Suomi</a>
-    <a href="../id/index.html" hreflang="id" lang="id">Bahasa Indonesia</a>
-    <a href="../nb/index.html" hreflang="nb" lang="nb">Norsk</a>
-    <a href="../nl/index.html" hreflang="nl" lang="nl">Nederlands</a>
-    <a href="../pl/index.html" hreflang="pl" lang="pl">Polski</a>
-    <a href="../sv/index.html" hreflang="sv" lang="sv">Svenska</a>
-    <a href="../th/index.html" hreflang="th" lang="th">ไทย</a>
-    <a href="../tr/index.html" hreflang="tr" lang="tr">Türkçe</a>
-    <a href="../vi/index.html" hreflang="vi" lang="vi">Tiếng Việt</a>
-  </nav>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Den rigtige perron.<br>Den rigtige station.</h1>
+        <p class="lead">Vælg start og mål, og KORA fortæller, hvilket tog du skal med, skrevet præcis som på skiltet på perronen. Under turen følger den din station og siger til, når du skal af.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6775176578">Hent gratis i App Store</a><a class="try" href="#try">Tag en prøvetur ↓</a></div>
+        <p class="muted small">Rutesøgning, kørselsretning og ankomster i realtid er gratis.</p>
+      </div>
+      <div class="phone"><img src="../img/da/route.jpg" alt="Den rigtige perron. Den rigtige station." width="600" height="1303" decoding="async"></div>
+    </section>
 
-  <nav class="pages" aria-label="Pages">
-    <a href="index.html" aria-current="page">Forside</a>
-    <a href="support.html">Support</a>
-    <a href="privacy.html">Privatliv</a>
-  </nav>
 
-  <main>
-<h1>Fra den rigtige perron til det rigtige stop</h1>
-    <p class="lead">KORA er metroguiden til alle, der rejser i Korea. Vælg startstation og destination, og appen viser skift, antal stationer, forventet rejsetid og hvilken retning du skal tage – præcis som på togets destinationsskilt. Undervejs følger den din station og siger til, når du skal af.</p>
+    <section class="reveal" id="try">
+      <h2>Tag en prøvetur</h2>
+      <p class="muted">Du står på Hongik Univ. på AREX-linjen. Vælg, hvor du skal af, og tryk på Start turen for at se togets retning og beskederne om at stå af, ligesom i appen.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Tag en prøvetur&quot;, &quot;lead&quot;: &quot;Du står på Hongik Univ. på AREX-linjen. Vælg, hvor du skal af, og tryk på Start turen for at se togets retning og beskederne om at stå af, ligesom i appen.&quot;, &quot;from&quot;: &quot;Fra&quot;, &quot;pick&quot;: &quot;Hvor skal du af?&quot;, &quot;take&quot;: &quot;Tag dette tog&quot;, &quot;again&quot;: &quot;Kør igen&quot;, &quot;note&quot;: &quot;I webdemoen kører stationerne hurtigt forbi. Appen følger din rigtige position med ankomster i realtid, GPS og meddelelserne i toget.&quot;, &quot;left&quot;: {&quot;one&quot;: &quot;1 station tilbage&quot;, &quot;other&quot;: &quot;{0} stationer tilbage&quot;}, &quot;calm&quot;: &quot;Stå af ved&quot;, &quot;prepare&quot;: &quot;Gør dig klar til at stå af&quot;, &quot;imminent&quot;: &quot;Stå af ved næste station&quot;, &quot;now&quot;: &quot;Stå af nu!&quot;, &quot;bound&quot;: &quot;Mod {0}&quot;, &quot;onBoard&quot;: &quot;Om bord&quot;, &quot;current&quot;: &quot;Nuværende station&quot;, &quot;go&quot;: &quot;Start turen&quot;, &quot;before&quot;: &quot;Før påstigning&quot;}"></div>
+    </section>
 
-    <h2>Funktioner</h2>
-    <div class="features">
-      <div class="card">
-        <h3>Din station findes automatisk</h3>
-        <p>Find den nærmeste station med GPS, eller vælg den selv. KORA husker den til næste gang.</p>
-      </div>
-      <div class="card">
-        <h3>Rute og retning</h3>
-        <p>Skift, stationer og rejsetid samt det tog, du skal med, vist som på dets destinationsskilt.</p>
-      </div>
-      <div class="card">
-        <h3>Tjek retningen med kameraet</h3>
-        <p>Ret kameraet mod et skilt eller togets destinationsskilt, så fortæller KORA, om retningen er rigtig. Tekstgenkendelsen sker helt på din iPhone.</p>
-      </div>
-      <div class="card">
-        <h3>Vid hvor du er</h3>
-        <p>Seouls ankomstdata i realtid, GPS, accelerometer og genkendelse af udkald i toget på enheden viser din station – og hvilken side dørene åbner i.</p>
-      </div>
-      <div class="card">
-        <h3>Besked om at stå af</h3>
-        <p>Før dit stop: "Gør dig klar til at stå af" og så "Stå af nu!" med vibration. Et diagram viser toget og målet.</p>
-      </div>
-      <div class="card">
-        <h3>Låseskærm og Dynamic Island</h3>
-        <p>En Live Activity viser turens fremskridt uden at låse iPhone op.</p>
-      </div>
-      <div class="card">
-        <h3>23 sprog</h3>
-        <p>Hele appen findes på dansk og 22 andre sprog. Stationsnavne vises på koreansk sammen med den latinske stavemåde fra skiltene.</p>
-      </div>
-      <div class="card">
-        <h3>Rutesøgning offline</h3>
-        <p>Ruter beregnes på enheden. Kun ankomster i realtid bruger netværket.</p>
-      </div>
-    </div>
+    <section class="problem reveal">
+      <h2>Har du stået på perronen uden at vide, hvilket tog du skal tage?</h2>
+      <p>Kortapps viser linjen, men på perronen hænger der kun skilte med navne på stationer, du aldrig har hørt om. Tager du den forkerte retning, skal du flere stationer tilbage. Overhører du meddelelsen, kører du forbi. KORA kalder dit tog det samme som skiltet og advarer dig før din station.</p>
+    </section>
 
-    <h2>Dækning</h2>
-    <p>Omkring 930 stationer i Seoul-området (Seoul, Gyeonggi og Incheon, inkl. GTX-A, AREX, Shinbundang-linjen og letbaner) samt Busan, Daegu, Gwangju og Daejeon. Skift by med regionsknapperne øverst i stationsvælgeren.</p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Med skiltets egne ord</h2>
+        <p>Toget, du skal med, vises præcis som destinationen står på perronen og på toget. I tvivl? Ret kameraet mod skiltet på perronen eller togets destinationsskilt, så siger KORA med det samme, om det er den rigtige retning.<br>Teksten genkendes helt på din iPhone.</p>
+      </div>
+      <div class="phone"><img src="../img/da/board.jpg" alt="Med skiltets egne ord" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <h2>Privatliv først</h2>
-    <p>Ingen konto, ingen reklamer, ingen køb i appen og ingen egne servere. Lokalitet, kamera og genkendelse af udkald behandles på enheden og bliver aldrig gemt eller sendt. Vi indsamler kun anonym brugsstatistik. Læs mere i <a href="privacy.html">privatlivspolitikken</a>.</p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Kør aldrig forbi igen</h2>
+        <p>KORA kombinerer ankomster i realtid, GPS, togets afgange og stop og meddelelserne i toget for at vide, hvor du er. Når din station nærmer sig, får du „Gør dig klar til at stå af“ og derefter „Stå af nu!“ med vibration.<br>Turens fremskridt ses også på låseskærmen og i Dynamic Island.</p>
+      </div>
+      <div class="phone"><img src="../img/da/ride.jpg" alt="Kør aldrig forbi igen" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <div class="contact">
-      Fundet en fejl eller har du en idé? Skriv til <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a>. Svar på almindelige spørgsmål finder du under <a href="support.html">Support</a>.
-    </div>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>23 sprog, koreanske navne bevaret</h2>
+        <p>Brug hele appen på 23 sprog. Den starter på din iPhones sprog. Stationsnavne vises på koreansk ved siden af den latinske stavemåde fra skiltene, så du nemt kan genkende dem på perronen.</p>
+      </div>
+      <div class="phone"><img src="../img/da/language.jpg" alt="23 sprog, koreanske navne bevaret" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Kom i gang på tre trin</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Vælg start</h3><p>GPS finder den nærmeste station, eller du vælger selv.</p></li>
+<li class="card"><span class="n">2</span><h3>Vælg mål</h3><p>Skift, stationer og det rigtige tog vises med det samme.</p></li>
+<li class="card"><span class="n">3</span><h3>Tryk på Start turen</h3><p>Skærmen og en vibration siger til, når du skal af.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Hvad tilladelserne bruges til</h2>
+      <div class="card table">
+        <dl><div><dt>Lokalitet</dt><dd>Finde den nærmeste station</dd></div><div><dt>Kamera</dt><dd>Læse skilte og destinationsskilte for at tjekke retningen</dd></div><div><dt>Mikrofon og talegenkendelse</dt><dd>Fange stationsnavnet og dørsiden i meddelelserne i toget</dd></div><div><dt>Bevægelse og fitness</dt><dd>Mærke afgange og stop, så den aktuelle station er mere præcis</dd></div></dl>
+      </div>
+      <p class="muted">Alle tilladelser er frivillige. Uden dem vælger du selv stationer og får stadig rute og beskeder om at stå af. Lokalitet, kamera og meddelelser behandles på din enhed og bliver aldrig optaget, gemt eller sendt.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>At finde vej er altid gratis. Guide under turen er KORA Pro.</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>Gratis</h3>
+          <ul><li>Rutesøgning og skift</li><li>Destinationsskiltet på det tog, du skal med</li><li>Ankomster i realtid</li><li>Retningstjek med kameraet</li><li>Aktuel station og besked om at stå af på skærmen</li><li>Alle Pro-funktioner på dine første tre ture</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>KORA Pro</h3>
+          <ul><li>På hver tur: guide på låseskærmen, genkendelse af meddelelser og vibration, når du skal af</li><li>Udgange: hvad der ligger ved hver udgang på Seouls linje 1 til 8</li><li>Påmindelse om sidste tog på linje 1 til 9</li><li>Bagagetilstand: vognen tættest på elevatoren på linje 1 til 8</li></ul>
+          <p class="muted">Betal én gang, og behold det. Intet abonnement.</p>
+        </div>
+      </div>
+      <p class="muted">Når de gratis ture er brugt, kan du stadig køre. Fremskridtet på skærmen bliver; kun låseskærm, genkendelse af meddelelser og vibration holder pause.</p>
+    </section>
+
+    <section class="reveal" id="faq">
+      <h2>Ofte stillede spørgsmål</h2>
+      <div class="faq"><details><summary>Appen kan ikke finde min station eller viser en forkert.</summary><p>Gå til Indstillinger &gt; Anonymitet &amp; sikkerhed &gt; Lokalitetstjenester &gt; KORA, vælg „Når appen bruges“, og slå „Nøjagtig lokalitet“ til. Under jorden eller i store bygninger kan GPS tage fejl: tryk på kortet med den aktuelle station øverst, og vælg selv. Alt virker også uden adgang til lokalitet.</p></details>
+<details><summary>Hvordan bruger jeg retningstjekket med kameraet?</summary><p>Når ruten vises, åbner du retningstjekket og fylder billedet med skiltet på perronen eller togets destinationsskilt. Det virker bedst med den koreanske tekst. Er skiltet mørkt, langt væk eller meget skråt, så gå tættere på og sigt lige på. Resultatet er en hjælp, så kig også på stationens skilte, hvis du er i tvivl.</p></details>
+<details><summary>Ankomster i realtid vises ikke.</summary><p>Dataene kommer fra Seoul Open Data Plaza, kræver internet og findes mest for linjer i Seoul-området. Uden forbindelse eller realtidsdata skifter KORA automatisk til et skøn ud fra køreplan, GPS og accelerometer og guider dig videre. Rutesøgning virker offline.</p></details>
+<details><summary>Beskeden om at stå af kom lidt for tidligt eller sent.</summary><p>Under jorden er GPS svag, så den aktuelle station kan halte efter. Giver du adgang til mikrofonen, retter KORA positionen ud fra meddelelserne i toget. Beskederne er en hjælp, så lyt også efter meddelelserne og hold øje med skiltene.</p></details>
+<details><summary>Hvordan skifter jeg sprog?</summary><p>KORA starter på din iPhones sprog. Tryk og hold på et stationskort på hovedskærmen (aktuel station eller mål) for at åbne valget mellem 23 sprog.</p></details>
+<details><summary>Live Activity vises ikke på låseskærmen.</summary><p>Tjek under Indstillinger &gt; Apps &gt; KORA (på ældre iOS Indstillinger &gt; KORA), at Live Activities er slået til. Den dukker op, når du starter guiden for turen, og slutter, hvis du lukker appen helt. Dynamic Island findes kun på de iPhone-modeller, der har den.</p></details>
+<details><summary>Hvilke byer er med?</summary><p>Omkring 930 stationer i Seoul-området (Seoul, Gyeonggi og Incheon, inklusive GTX-A, AREX, Shinbundang-linjen og letbaner), Busan, Daegu, Gwangju og Daejeon. Skift by med regionsknapperne øverst i stationsvalget.</p></details>
+<details><summary>Kan jeg prøve den før rejsen?</summary><p>Ja. Vælg selv start og mål, så kan du se ruter, skift og kørselsretning fra hvor som helst i verden.</p></details>
+<details><summary>Er KORA Pro et abonnement?</summary><p>Nej. Det er et engangskøb, du beholder, og det virker med Familiedeling. Geninstallerer du appen, så tryk på Gendan køb på Pro-skærmen.</p></details>
+<details><summary>Hvad sker der med mine data?</summary><p>Ingen konto og ingen reklamer. Lokalitet, kamera og genkendelse af meddelelser behandles på din enhed og bliver aldrig gemt eller sendt. Vi indsamler kun anonym brugsstatistik for at gøre appen bedre.</p></details>
+<details><summary>Er appen tilgængelig?</summary><p>KORA understøtter VoiceOver og større tekst. Forslag til bedre tilgængelighed er altid velkomne.</p></details></div>
+      <p class="contact">Mangler en station, ser et navn mærkeligt ud, eller har du et andet spørgsmål? Skriv til <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a>. Skriv gerne appversion, iPhone-model og de stationer, du brugte, så kan vi hjælpe hurtigere.</p>
+    </section>
+
+    <section class="closing reveal">
+      <h2>På næste rejse<br>stiger du på det rigtige tog</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6775176578">Hent gratis i App Store</a>
+    </section>
   </main>
 
-  <footer class="site">
-    © 2026 Leeo · <a href="support.html">Support</a> · <a href="privacy.html">Privatliv</a>
+  <footer>
+    <nav id="languages" class="langs" aria-label="Sprog"><a href="../ko/" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da" aria-current="page">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Bahasa Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a></nav>
+    <p><a href="privacy.html">Privatlivspolitik</a> · <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> · © 2026 Leeo</p>
   </footer>
-</div>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

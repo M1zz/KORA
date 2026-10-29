@@ -1,0 +1,176 @@
+{
+  "title": "KORA: tunnelbanan i Korea för resenärer",
+  "description": "Välj start och mål så visar KORA byten, antal stationer och exakt den skylt som tåget du ska ta har. Under resan säger den till när du ska kliva av.",
+  "hero": {
+    "headline": "Rätt plattform.\nRätt station.",
+    "lead": "Välj start och mål så talar KORA om vilket tåg du ska ta, skrivet precis som på skylten på plattformen. Under resan följer den din station och säger till när du ska kliva av.",
+    "cta": "Hämta gratis i App Store",
+    "note": "Ruttsökning, färdriktning och ankomster i realtid är gratis."
+  },
+  "demo": {
+    "title": "Ta en provtur",
+    "lead": "Du står på Hongik Univ. på AREX-linjen. Välj var du ska av och tryck på Starta resan för att se tågets riktning och aviseringarna om att kliva av, precis som i appen.",
+    "from": "Från",
+    "pick": "Var ska du av?",
+    "take": "Ta det här tåget",
+    "again": "Åk igen",
+    "note": "I webbdemon susar stationerna förbi. Appen följer din verkliga position med ankomster i realtid, GPS och utropen ombord.",
+    "left": {
+      "one": "1 station kvar",
+      "other": "{0} stationer kvar"
+    },
+    "calm": "Kliv av vid",
+    "prepare": "Gör dig redo att kliva av",
+    "imminent": "Kliv av vid nästa station",
+    "now": "Kliv av nu!",
+    "bound": "Mot {0}",
+    "onBoard": "Ombord",
+    "current": "Nuvarande station",
+    "go": "Starta resan",
+    "before": "Före påstigning"
+  },
+  "problem": {
+    "title": "Har du stått på plattformen utan att veta vilket tåg du ska ta?",
+    "text": "Kartappar visar linjen, men på plattformen finns bara skyltar med namn på stationer du aldrig hört talas om. Tar du fel håll får du åka tillbaka flera stationer. Missar du utropet åker du förbi. KORA kallar ditt tåg samma sak som skylten och varnar dig före din station."
+  },
+  "features": [
+    {
+      "title": "Med skyltens egna ord",
+      "text": "Tåget du ska ta visas precis som destinationen står på plattformen och på tåget. Osäker? Rikta kameran mot skylten på plattformen eller tågets destinationsskylt så säger KORA direkt om det är rätt håll.\nTexten känns igen helt på din iPhone.",
+      "shot": "board"
+    },
+    {
+      "title": "Åk aldrig förbi igen",
+      "text": "KORA kombinerar ankomster i realtid, GPS, tågets avgångar och stopp och utropen ombord för att veta var du är. När din station närmar sig får du ”Gör dig redo att kliva av” och sedan ”Kliv av nu!” med vibration.\nResans förlopp syns också på låsskärmen och i Dynamic Island.",
+      "shot": "ride"
+    },
+    {
+      "title": "23 språk, koreanska namn kvar",
+      "text": "Använd hela appen på 23 språk. Den startar på din iPhones språk. Stationsnamn visas på koreanska bredvid den latinska stavningen från skyltarna, så du känner igen dem på plattformen.",
+      "shot": "language"
+    }
+  ],
+  "steps": {
+    "title": "Kom igång i tre steg",
+    "items": [
+      {
+        "title": "Välj start",
+        "text": "GPS hittar närmaste station, eller välj själv."
+      },
+      {
+        "title": "Välj mål",
+        "text": "Byten, stationer och rätt tåg visas direkt."
+      },
+      {
+        "title": "Tryck på Starta resan",
+        "text": "Skärmen och en vibration säger till när du ska av."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Vad behörigheterna används till",
+    "rows": [
+      [
+        "Plats",
+        "Hitta närmaste station"
+      ],
+      [
+        "Kamera",
+        "Läsa skyltar och destinationsskyltar för att kolla riktningen"
+      ],
+      [
+        "Mikrofon och taligenkänning",
+        "Uppfatta stationsnamn och dörrsida i utropen ombord"
+      ],
+      [
+        "Rörelse och träning",
+        "Känna av avgångar och stopp så att aktuell station blir mer exakt"
+      ]
+    ],
+    "note": "Alla behörigheter är frivilliga. Utan dem väljer du stationer själv och får ändå rutt och aviseringar om att kliva av. Plats, kamera och utrop behandlas på enheten och spelas aldrig in, sparas eller skickas."
+  },
+  "pricing": {
+    "title": "Att hitta vägen är alltid gratis. Guidning ombord är KORA Pro.",
+    "free": {
+      "name": "Gratis",
+      "items": [
+        "Ruttsökning och byten",
+        "Destinationsskylten på tåget du ska ta",
+        "Ankomster i realtid",
+        "Riktningskoll med kameran",
+        "Aktuell station och avisering om att kliva av på skärmen",
+        "Alla Pro-funktioner på dina tre första resor"
+      ]
+    },
+    "pro": {
+      "name": "KORA Pro",
+      "items": [
+        "På varje resa: guidning på låsskärmen, igenkänning av utrop och vibration när du ska av",
+        "Utgångar: vad som finns vid varje utgång på Seouls linje 1 till 8",
+        "Påminnelse om sista tåget på linje 1 till 9",
+        "Bagageläge: vagnen närmast hissen på linje 1 till 8"
+      ],
+      "note": "Betala en gång och behåll det. Ingen prenumeration."
+    },
+    "note": "När de gratis resorna är slut kan du fortfarande åka. Förloppet på skärmen finns kvar; bara låsskärmen, igenkänningen av utrop och vibrationen pausar."
+  },
+  "faq": {
+    "title": "Vanliga frågor",
+    "items": [
+      {
+        "q": "Appen hittar inte min station eller visar fel.",
+        "a": "Gå till Inställningar > Integritet och säkerhet > Platstjänster > KORA, välj ”När appen används” och slå på ”Exakt plats”. Under jord eller i stora byggnader kan GPS slå fel: tryck på kortet med aktuell station högst upp och välj själv. Allt fungerar även utan platsåtkomst."
+      },
+      {
+        "q": "Hur använder jag riktningskollen med kameran?",
+        "a": "När rutten visas öppnar du riktningskollen och fyller bilden med skylten på plattformen eller tågets destinationsskylt. Det fungerar bäst med den koreanska texten. Är skylten mörk, långt bort eller väldigt sned, gå närmare och sikta rakt mot den. Resultatet är ett stöd, så titta också på stationens skyltar om du är osäker."
+      },
+      {
+        "q": "Ankomster i realtid visas inte.",
+        "a": "Datan kommer från Seoul Open Data Plaza, kräver internet och finns främst för linjer i Seoulområdet. Utan uppkoppling eller realtidsdata går KORA automatiskt över till en uppskattning från tidtabell, GPS och accelerometer och fortsätter guida dig. Ruttsökning fungerar offline."
+      },
+      {
+        "q": "Aviseringen om att kliva av kom lite tidigt eller sent.",
+        "a": "Under jord är GPS svag, så aktuell station kan släpa efter. Ger du åtkomst till mikrofonen rättar KORA positionen efter utropen ombord. Aviseringarna är ett stöd, så lyssna även på utropen och håll koll på skyltarna."
+      },
+      {
+        "q": "Hur byter jag språk?",
+        "a": "KORA startar på din iPhones språk. Tryck och håll på ett stationskort på huvudskärmen (aktuell station eller mål) för att öppna valet mellan 23 språk."
+      },
+      {
+        "q": "Live Activity syns inte på låsskärmen.",
+        "a": "Kontrollera under Inställningar > Appar > KORA (på äldre iOS Inställningar > KORA) att Live Activities är på. Den dyker upp när du startar guidningen för resan och avslutas om du stänger appen helt. Dynamic Island finns bara på iPhone-modeller som har den."
+      },
+      {
+        "q": "Vilka städer finns med?",
+        "a": "Runt 930 stationer i Seoulområdet (Seoul, Gyeonggi och Incheon, inklusive GTX-A, AREX, Shinbundang-linjen och lättbanor), Busan, Daegu, Gwangju och Daejeon. Byt stad med regionknapparna högst upp i stationsvalet."
+      },
+      {
+        "q": "Kan jag testa före resan?",
+        "a": "Ja. Välj start och mål själv så kan du se rutter, byten och färdriktning var du än är i världen."
+      },
+      {
+        "q": "Är KORA Pro en prenumeration?",
+        "a": "Nej. Det är ett engångsköp som du behåller, och det fungerar med Familjedelning. Installerar du om appen trycker du på Återställ köp på Pro-skärmen."
+      },
+      {
+        "q": "Vad händer med mina data?",
+        "a": "Inget konto och ingen reklam. Plats, kamera och igenkänning av utrop behandlas på enheten och sparas eller skickas aldrig. Vi samlar bara in anonym användningsstatistik för att förbättra appen."
+      },
+      {
+        "q": "Är appen tillgänglig?",
+        "a": "KORA har stöd för VoiceOver och större text. Förslag på bättre tillgänglighet är alltid välkomna."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "På nästa resa\nkliver du på rätt tåg",
+    "cta": "Hämta gratis i App Store"
+  },
+  "ui": {
+    "skip": "Hoppa till innehållet",
+    "languages": "Språk",
+    "privacy": "Integritetspolicy",
+    "contact": "Saknas en station, ser ett namn konstigt ut eller har du en annan fråga? Skriv till {email}. Ange gärna appversion, iPhone-modell och vilka stationer du använde, så kan vi hjälpa snabbare."
+  }
+}

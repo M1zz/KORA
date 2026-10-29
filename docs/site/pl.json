@@ -1,0 +1,178 @@
+{
+  "title": "KORA: metro w Korei dla podróżnych",
+  "description": "Wybierz start i cel: KORA pokaże przesiadki i dokładny napis na pociągu, do którego trzeba wsiąść, a w trakcie jazdy powie, kiedy wysiąść.",
+  "hero": {
+    "headline": "Właściwy peron.\nWłaściwa stacja.",
+    "lead": "Wybierz stację początkową i docelową, a KORA powie Ci, do którego pociągu wsiąść, dokładnie tak, jak napisano na tablicy na peronie. W czasie jazdy śledzi stacje i daje znać, kiedy wysiąść.",
+    "cta": "Pobierz za darmo",
+    "note": "Wyszukiwanie trasy, kierunek pociągu i przyjazdy na żywo są za darmo."
+  },
+  "demo": {
+    "title": "Przejedź się na próbę",
+    "lead": "Jesteś na stacji Hongik Univ. na linii AREX. Wybierz, gdzie wysiadasz, i stuknij Ruszamy, a zobaczysz kierunek pociągu i powiadomienia o wysiadaniu tak jak w aplikacji.",
+    "from": "Skąd",
+    "pick": "Gdzie wysiadasz?",
+    "take": "Wsiądź do tego pociągu",
+    "again": "Jedź jeszcze raz",
+    "note": "W wersji na stronie stacje mijają szybko. Aplikacja śledzi Twoją prawdziwą pozycję dzięki przyjazdom na żywo, GPS i komunikatom w pociągu.",
+    "left": {
+      "one": "Została {0} stacja",
+      "few": "Zostały {0} stacje",
+      "many": "Zostało {0} stacji",
+      "other": "Zostało {0} stacji"
+    },
+    "calm": "Stacja docelowa",
+    "prepare": "Przygotuj się do wyjścia",
+    "imminent": "Wysiądź na następnej stacji",
+    "now": "Wysiądź teraz!",
+    "bound": "Do {0}",
+    "onBoard": "W pociągu",
+    "current": "Bieżąca stacja",
+    "go": "Ruszamy",
+    "before": "Przed wejściem"
+  },
+  "problem": {
+    "title": "Stałeś kiedyś na peronie, nie wiedząc, do którego pociągu wsiąść?",
+    "text": "Aplikacje z mapami podają linię, a na peronie wiszą tylko tablice z nazwami stacji, których nigdy nie słyszałeś. Wsiądziesz w złą stronę i wracasz kilka stacji. Przegapisz komunikat i przejeżdżasz swoją. KORA nazywa Twój pociąg tak samo jak tablica i ostrzega przed Twoją stacją."
+  },
+  "features": [
+    {
+      "title": "Tymi samymi słowami co tablica",
+      "text": "Właściwy pociąg widzisz dokładnie tak, jak jego cel jest napisany na peronie i na samym pociągu. Masz wątpliwości? Skieruj aparat na tablicę na peronie lub tablicę kierunkową pociągu, a KORA od razu powie, czy to dobry kierunek.\nRozpoznawanie tekstu odbywa się w całości na Twoim iPhonie.",
+      "shot": "board"
+    },
+    {
+      "title": "Nie przegapisz swojej stacji",
+      "text": "KORA łączy przyjazdy na żywo, GPS, ruszanie i zatrzymywanie się pociągu oraz komunikaty w wagonie, żeby wiedzieć, gdzie jesteś. Przed Twoją stacją pojawi się „Przygotuj się do wyjścia”, a potem „Wysiądź teraz!”, z wibracją.\nPostęp jazdy widać też na ekranie blokady i w Dynamic Island.",
+      "shot": "ride"
+    },
+    {
+      "title": "23 języki, koreańskie nazwy zostają",
+      "text": "Całej aplikacji używasz w 23 językach, a startuje w języku Twojego iPhone’a. Nazwy stacji są pokazane w koreańskim oryginale obok zapisu łacińskiego z tablic, więc łatwo je odnaleźć na peronie.",
+      "shot": "language"
+    }
+  ],
+  "steps": {
+    "title": "Trzy kroki i jedziesz",
+    "items": [
+      {
+        "title": "Ustaw start",
+        "text": "GPS znajdzie najbliższą stację albo wybierz ją sam."
+      },
+      {
+        "title": "Wybierz cel",
+        "text": "Przesiadki, stacje i właściwy pociąg pojawią się od razu."
+      },
+      {
+        "title": "Stuknij Ruszamy",
+        "text": "Ekran i wibracja powiedzą Ci, kiedy wysiąść."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Do czego służą uprawnienia",
+    "rows": [
+      [
+        "Lokalizacja",
+        "Znaleźć najbliższą stację"
+      ],
+      [
+        "Aparat",
+        "Odczytać tablice na peronie i kierunkowe, aby sprawdzić kierunek"
+      ],
+      [
+        "Mikrofon i rozpoznawanie mowy",
+        "Wyłapać z komunikatów nazwę stacji i stronę wyjścia"
+      ],
+      [
+        "Ruch i sprawność",
+        "Wykryć ruszanie i postoje, by dokładniej znać obecną stację"
+      ]
+    ],
+    "note": "Wszystkie uprawnienia są opcjonalne. Bez nich wybierasz stacje sam i nadal masz trasę oraz powiadomienia o wysiadaniu. Lokalizacja, aparat i komunikaty są przetwarzane na urządzeniu i nigdy nie są nagrywane, zapisywane ani wysyłane."
+  },
+  "pricing": {
+    "title": "Szukanie drogi zawsze za darmo. Prowadzenie w trakcie jazdy to KORA Pro.",
+    "free": {
+      "name": "Za darmo",
+      "items": [
+        "Wyszukiwanie trasy i przesiadki",
+        "Napis kierunku na właściwym pociągu",
+        "Przyjazdy na żywo",
+        "Sprawdzanie kierunku aparatem",
+        "Obecna stacja i powiadomienie o wysiadaniu na ekranie",
+        "Wszystkie funkcje Pro w pierwszych trzech podróżach"
+      ]
+    },
+    "pro": {
+      "name": "KORA Pro",
+      "items": [
+        "W każdej podróży: prowadzenie na ekranie blokady, rozpoznawanie komunikatów i wibracja przy wysiadaniu",
+        "Wyjścia ze stacji: co jest przy każdym wyjściu na liniach 1–8 w Seulu",
+        "Przypomnienie o ostatnim pociągu na liniach 1–9",
+        "Tryb bagażu: wagon najbliżej windy na liniach 1–8"
+      ],
+      "note": "Płacisz raz i masz na zawsze. To nie subskrypcja."
+    },
+    "note": "Gdy darmowe podróże się skończą, nadal możesz jeździć. Postęp na ekranie zostaje, wstrzymują się tylko ekran blokady, rozpoznawanie komunikatów i wibracja."
+  },
+  "faq": {
+    "title": "Pytania",
+    "items": [
+      {
+        "q": "Aplikacja nie znajduje mojej stacji albo pokazuje inną.",
+        "a": "Wejdź w Ustawienia > Prywatność i ochrona > Usługi lokalizacji > KORA, wybierz „Podczas używania aplikacji” i włącz „Dokładna lokalizacja”. Pod ziemią i w dużych budynkach GPS bywa niedokładny: stuknij kartę obecnej stacji u góry i wybierz ją sam. Wszystko działa też bez dostępu do lokalizacji."
+      },
+      {
+        "q": "Jak działa sprawdzanie aparatem?",
+        "a": "Gdy trasa jest na ekranie, otwórz sprawdzanie aparatem i wypełnij kadr tablicą na peronie lub tablicą kierunkową pociągu. Najlepiej działa z koreańskim tekstem. Jeśli tablica jest ciemna, daleko albo mocno pod kątem, podejdź bliżej i celuj na wprost. Wynik to pomoc, w razie wątpliwości sprawdź też oznaczenia na stacji."
+      },
+      {
+        "q": "Nie widać przyjazdów na żywo.",
+        "a": "Dane pochodzą z Seoul Open Data Plaza, wymagają internetu i są dostępne głównie dla linii w aglomeracji Seulu. Bez sieci lub danych KORA automatycznie przechodzi na szacowanie z rozkładu, GPS i akcelerometru i dalej Cię prowadzi. Wyszukiwanie trasy działa offline."
+      },
+      {
+        "q": "Powiadomienie o wysiadaniu przyszło trochę za wcześnie lub za późno.",
+        "a": "Pod ziemią GPS jest słaby i obecna stacja może się spóźniać. Jeśli zezwolisz na mikrofon, KORA poprawi pozycję na podstawie komunikatów w pociągu. Powiadomienia to pomoc, słuchaj też komunikatów i patrz na tablice."
+      },
+      {
+        "q": "Jak zmienić język?",
+        "a": "KORA startuje w języku Twojego iPhone’a. Przytrzymaj kartę stacji na ekranie głównym (obecnej lub docelowej), a otworzy się wybór spośród 23 języków."
+      },
+      {
+        "q": "Na ekranie blokady nie ma aktywności na żywo.",
+        "a": "Sprawdź w Ustawienia > Aplikacje > KORA (w starszym iOS Ustawienia > KORA), czy aktywności na żywo są włączone. Pojawia się po rozpoczęciu prowadzenia w podróży i kończy, gdy całkiem zamkniesz aplikację. Dynamic Island jest tylko w modelach iPhone’a, które ją mają."
+      },
+      {
+        "q": "Które miasta są obsługiwane?",
+        "a": "Około 930 stacji w aglomeracji Seulu (Seul, Gyeonggi i Incheon, w tym GTX-A, AREX, linia Shinbundang i kolej lekka), w Busanie, Daegu, Gwangju i Daejeon. Miasto zmienisz etykietami regionów u góry wyboru stacji."
+      },
+      {
+        "q": "Czy mogę wypróbować aplikację przed podróżą?",
+        "a": "Tak. Wybierz sam start i cel, a trasy, przesiadki i kierunek pociągu zobaczysz z dowolnego miejsca na świecie."
+      },
+      {
+        "q": "Czy KORA Pro to subskrypcja?",
+        "a": "Nie. To jednorazowy zakup, który zostaje z Tobą i działa z Chmurą rodzinną. Po ponownej instalacji stuknij Przywróć zakup na ekranie Pro."
+      },
+      {
+        "q": "Co dzieje się z moimi danymi?",
+        "a": "Bez konta i bez reklam. Lokalizacja, aparat i rozpoznawanie komunikatów są przetwarzane na urządzeniu i nigdy nie są zapisywane ani wysyłane. Zbieramy tylko anonimowe statystyki użycia, żeby ulepszać aplikację."
+      },
+      {
+        "q": "Czy aplikacja jest dostępna?",
+        "a": "KORA obsługuje VoiceOver i większy tekst. Pomysły na lepszą dostępność są zawsze mile widziane."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "W następnej podróży\nbez błądzenia po peronie",
+    "cta": "Pobierz za darmo"
+  },
+  "ui": {
+    "skip": "Przejdź do treści",
+    "languages": "Język",
+    "privacy": "Polityka prywatności",
+    "contact": "Brakuje stacji, nazwa wygląda dziwnie albo masz inne pytanie? Napisz na {email}. Podaj wersję aplikacji, model iPhone’a i stacje, z których korzystałeś, a sprawdzimy to szybciej."
+  }
+}

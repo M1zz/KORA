@@ -1,132 +1,193 @@
 <!doctype html>
 <html lang="ja">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>KORA: 旅行者のための韓国地下鉄ガイド</title>
-<meta name="description" content="出発駅と到着駅を選ぶだけで、乗り換え・所要時間・乗る方向を案内し、乗車中は降りる駅を知らせる韓国の地下鉄アプリ。ソウル首都圏、釜山、大邱、光州、大田に対応。">
-<link rel="canonical" href="https://m1zz.github.io/KORA/ja/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
-<link rel="stylesheet" href="../style.css">
-<link rel="icon" href="../icon.png">
-<link rel="apple-touch-icon" href="../icon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KORA: 旅行者のための韓国地下鉄ガイド</title>
+  <meta name="description" content="出発駅と到着駅を選ぶだけで、乗り換え、駅数、乗るべき電車の「○○行き」表示まで案内し、乗車中は降りる駅をお知らせする地下鉄ガイドアプリです。">
+  <meta name="theme-color" content="#CD2E3A" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0d0f" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6775176578">
+  <link rel="canonical" href="https://m1zz.github.io/KORA/ja/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KORA: 旅行者のための韓国地下鉄ガイド">
+  <meta property="og:description" content="出発駅と到着駅を選ぶだけで、乗り換え、駅数、乗るべき電車の「○○行き」表示まで案内し、乗車中は降りる駅をお知らせする地下鉄ガイドアプリです。">
+  <meta property="og:url" content="https://m1zz.github.io/KORA/ja/">
+  <meta property="og:image" content="https://m1zz.github.io/KORA/img/ja/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../sitegen.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#CD2E3A}@media (prefers-color-scheme:dark){:root{--accent:#E5505B}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-<div class="container">
-
-  <header class="site">
-    <img src="../icon.png" alt="KORA アプリアイコン">
-    <div>
-      <div class="title">KORA</div>
-      <div class="subtitle">旅行者のための韓国地下鉄ガイド</div>
-    </div>
+  <a class="skip" href="#main">本文へスキップ</a>
+  <header class="bar">
+    <a class="brand" href="../ja/"><img src="../icon.png" alt="" width="32" height="32">KORA</a>
+    <a class="lang-link" href="#languages">言語</a>
   </header>
 
-  <nav class="langs" aria-label="言語">
-    <a href="../ko/index.html" hreflang="ko" lang="ko">한국어</a>
-    <a href="../en/index.html" hreflang="en" lang="en">English</a>
-    <a href="../ja/index.html" hreflang="ja" lang="ja" aria-current="true">日本語</a>
-    <a href="../zh-Hans/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
-    <a href="../zh-Hant/index.html" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
-  </nav>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>乗る方向から<br>降りる駅まで</h1>
+        <p class="lead">出発駅と到着駅を選ぶだけで、乗るべき電車をホームの「○○行き」表示そのままで案内します。乗車中は今どの駅かを追いかけ、降りるタイミングでお知らせします。</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6775176578">App Storeで無料ダウンロード</a><a class="try" href="#try">乗ってみる ↓</a></div>
+        <p class="muted small">ルート検索、乗る方向、リアルタイム到着情報は無料です。</p>
+      </div>
+      <div class="phone"><img src="../img/ja/route.jpg" alt="乗る方向から 降りる駅まで" width="600" height="1303" decoding="async"></div>
+    </section>
 
-  <nav class="pages" aria-label="ページ">
-    <a href="index.html" aria-current="page">ホーム</a>
-    <a href="support.html">サポート</a>
-    <a href="privacy.html">プライバシーポリシー</a>
-  </nav>
 
-  <main>
-<h1>乗る方向から降りる駅まで、1画面で</h1>
-    <p class="lead">
-      KORA は、韓国を旅するすべての人のための地下鉄ガイドアプリです。
-      出発駅と到着駅を選ぶだけで、乗り換え、駅数、所要時間の目安、そしてどちら方面の電車に乗ればいいかを、
-      電車の行先表示「○○行き」そのままの形で案内します。
-      乗車中は今どの駅かを追いかけ、降りるタイミングでお知らせします。
-    </p>
+    <section class="reveal" id="try">
+      <h2>乗ってみる</h2>
+      <p class="muted">空港鉄道の弘大入口（ホンデイック）駅から出発します。降りる駅を選んで「出発する」を押すと、アプリと同じように乗る方向と降車のお知らせが順に表示されます。</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;乗ってみる&quot;, &quot;lead&quot;: &quot;空港鉄道の弘大入口（ホンデイック）駅から出発します。降りる駅を選んで「出発する」を押すと、アプリと同じように乗る方向と降車のお知らせが順に表示されます。&quot;, &quot;from&quot;: &quot;出発&quot;, &quot;pick&quot;: &quot;どこで降りますか？&quot;, &quot;take&quot;: &quot;この電車に乗ってください&quot;, &quot;again&quot;: &quot;もう一度乗る&quot;, &quot;note&quot;: &quot;Web体験では駅が早く進むように短縮しています。アプリではリアルタイム到着情報、GPS、車内アナウンスで実際の位置を追跡します。&quot;, &quot;left&quot;: {&quot;other&quot;: &quot;降車駅まであと{0}駅&quot;}, &quot;calm&quot;: &quot;降車駅&quot;, &quot;prepare&quot;: &quot;そろそろ降車の準備&quot;, &quot;imminent&quot;: &quot;次の駅で降りてください&quot;, &quot;now&quot;: &quot;今降りてください!&quot;, &quot;bound&quot;: &quot;{0}行き&quot;, &quot;onBoard&quot;: &quot;乗車中&quot;, &quot;current&quot;: &quot;現在地&quot;, &quot;go&quot;: &quot;出発する&quot;, &quot;before&quot;: &quot;乗車前&quot;}"></div>
+    </section>
 
-    <h2>主な機能</h2>
-    <div class="features">
-      <div class="card">
-        <h3>出発駅はおまかせ</h3>
-        <p>GPS で最寄り駅を探すか、自分で選べます。選んだ駅は次にアプリを開いたときも覚えています。</p>
-      </div>
-      <div class="card">
-        <h3>ルートと乗る方向</h3>
-        <p>乗り換え、駅数、所要時間の目安に加えて、乗るべき電車を「○○行き」の表示で示します。</p>
-      </div>
-      <div class="card">
-        <h3>カメラで方向チェック</h3>
-        <p>ホームの案内板や電車の行先表示にカメラを向けると、正しい方向かどうかを判定します。文字認識はすべて iPhone の中で行います。</p>
-      </div>
-      <div class="card">
-        <h3>今どこにいるか</h3>
-        <p>ソウルのリアルタイム到着情報、GPS、加速度センサー（発車・停車の検知）、車内アナウンスの端末内認識を組み合わせて現在の駅を追跡します。アナウンスから、どちら側のドアが開くかもお知らせします。</p>
-      </div>
-      <div class="card">
-        <h3>降車のお知らせ</h3>
-        <p>降りる駅が近づくと「そろそろ降車の準備」、到着すると「今降りてください!」を振動でお知らせします。路線の進行図には電車アイコンと到着駅のピンが表示されます。</p>
-      </div>
-      <div class="card">
-        <h3>ロック画面と Dynamic Island</h3>
-        <p>乗車中はライブアクティビティで、iPhone を開かなくても進み具合を確認できます。</p>
-      </div>
-      <div class="card">
-        <h3>23の言語</h3>
-        <p>アプリ全体を日本語、韓国語、英語、中国語に加え、ドイツ語、フランス語、スペイン語、タイ語、ベトナム語など23の言語で使えます。最初は iPhone の言語設定に合わせます。駅名はハングルと一緒に、カタカナ、漢字、または駅の案内板のローマ字表記で表示します。</p>
-      </div>
-      <div class="card">
-        <h3>オフラインでルート検索</h3>
-        <p>ルートは端末内で計算するので、インターネットがなくても検索できます。ネットワークを使うのはリアルタイム到着情報だけです。</p>
-      </div>
-    </div>
+    <section class="problem reveal">
+      <h2>ホームで、どちらの電車に乗ればいいか迷ったことはありませんか？</h2>
+      <p>地図アプリが教えてくれるのは路線だけ。ホームにあるのは、知らない駅名が書かれた「○○行き」の案内板です。逆方向に乗れば何駅も戻ることになり、アナウンスを聞き逃せば降りる駅を通り過ぎてしまいます。KORAは乗る電車を案内板と同じ言葉で示し、降りる駅が近づくと先にお知らせします。</p>
+    </section>
 
-    <h2>対応エリア</h2>
-    <p>
-      ソウル首都圏（ソウル・京畿・仁川。GTX-A、空港鉄道、新盆唐線、軽電鉄を含む）、釜山、大邱、光州、大田の
-      約930駅に対応しています。駅選択画面の上にある地域チップで都市を切り替えられます。
-    </p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>案内板と同じ言葉で案内</h2>
+        <p>乗るべき電車を、ホームや車両に表示される「○○行き」そのままで示します。迷ったら、ホームの案内板や電車の行先表示にカメラを向けてください。今乗ろうとしている方向が正しいかどうか、すぐにわかります。<br>文字認識はすべてiPhoneの中で行います。</p>
+      </div>
+      <div class="phone"><img src="../img/ja/board.jpg" alt="案内板と同じ言葉で案内" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <h2>プライバシーを大切に</h2>
-    <p>
-      アカウント登録も広告もなく、開発者が運営するサーバーもありません。
-      位置情報、カメラ、アナウンス認識はすべて端末内で処理し、保存も送信もしません。
-      アプリ改善のために匿名の利用統計だけを収集しています。詳しくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。
-    </p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>降りる駅を乗り過ごさない</h2>
+        <p>リアルタイム到着情報、GPS、電車の発車と停車、車内アナウンスを組み合わせて、今どの駅かを追いかけます。降りる駅が近づくと「そろそろ降車の準備」、到着すると「今降りてください!」を振動でお知らせします。<br>ロック画面とDynamic Islandでも進み具合を確認できます。</p>
+      </div>
+      <div class="phone"><img src="../img/ja/ride.jpg" alt="降りる駅を乗り過ごさない" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <div class="contact">
-      不具合やご要望は <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> までお気軽にどうぞ。
-      よくある質問は<a href="support.html">サポート</a>ページにまとめています。
-    </div>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>23の言語、駅名は原文のまま</h2>
+        <p>アプリ全体を23の言語で使え、最初はiPhoneの言語設定に合わせます。駅名はハングルと一緒にカタカナ、漢字、または案内板のローマ字表記で表示するので、ホームですぐに照らし合わせられます。</p>
+      </div>
+      <div class="phone"><img src="../img/ja/language.jpg" alt="23の言語、駅名は原文のまま" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>はじめかたは3ステップ</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>出発駅を決める</h3><p>GPSで最寄り駅を探すか、自分で選びます。</p></li>
+<li class="card"><span class="n">2</span><h3>到着駅を選ぶ</h3><p>乗り換え、駅数、乗るべき電車がすぐに表示されます。</p></li>
+<li class="card"><span class="n">3</span><h3>「出発する」を押す</h3><p>降りるタイミングを画面と振動でお知らせします。</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>各権限の使いみち</h2>
+      <div class="card table">
+        <dl><div><dt>位置情報</dt><dd>最寄り駅を探す</dd></div><div><dt>カメラ</dt><dd>ホームの案内板や電車の行先表示を読み取り、方向を確認</dd></div><div><dt>マイクと音声認識</dt><dd>車内アナウンスから駅名と開くドアの側を聞き取る</dd></div><div><dt>モーションとフィットネス</dt><dd>電車の発車と停車を検知し、現在の駅をより正確に</dd></div></dl>
+      </div>
+      <p class="muted">どの権限も任意です。許可しなくても駅を自分で選べば、ルート案内と降車のお知らせを使えます。位置情報、カメラ、アナウンスは端末内だけで処理し、録音・保存・送信はしません。</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>ルート案内はずっと無料、乗車ガイドはKORA Pro</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>無料</h3>
+          <ul><li>ルート検索と乗り換え案内</li><li>乗るべき電車の「○○行き」表示</li><li>リアルタイム到着情報</li><li>カメラで方向チェック</li><li>乗車中の現在駅と降車案内の画面</li><li>最初の3回の移動はPro機能もすべて</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>KORA Pro</h3>
+          <ul><li>すべての移動でロック画面の案内、アナウンス認識、降車の振動通知</li><li>出口案内：ソウル地下鉄1〜8号線の出口ごとの周辺スポット</li><li>終電通知：1〜9号線の終電時刻</li><li>スーツケースモード：1〜8号線でエレベーターに近い車両</li></ul>
+          <p class="muted">一度の購入でずっと使えます。サブスクリプションではありません。</p>
+        </div>
+      </div>
+      <p class="muted">無料の回数を使い切っても乗車は止まりません。画面上の進み具合はそのままで、ロック画面の案内、アナウンス認識、振動だけが休みます。</p>
+    </section>
+
+    <section class="reveal" id="faq">
+      <h2>よくある質問</h2>
+      <div class="faq"><details><summary>最寄り駅が見つからない、違う駅が表示される</summary><p>設定 &gt; プライバシーとセキュリティ &gt; 位置情報サービス &gt; KORA で「このAppの使用中」を選び、「正確な位置情報」をオンにしてください。地下や大きな建物の中ではGPSが不正確になることがあるので、画面上部の現在駅カードをタップして駅を自分で選んでください。位置情報を許可しなくてもすべての機能を使えます。</p></details>
+<details><summary>カメラで方向チェックはどう使いますか？</summary><p>ルートが表示されたらカメラで方向チェックを開き、ホームの案内板や電車の行先表示（「○○行き」）を画面いっぱいに写します。ハングルの表示を写すといちばん正確です。暗い、遠い、斜めすぎるときは、少し近づいて正面から写してください。結果は目安なので、迷ったら駅の案内板もあわせて確認してください。</p></details>
+<details><summary>リアルタイム到着情報が表示されません</summary><p>リアルタイム到着情報はソウル市のオープンデータ広場が提供しており、インターネット接続が必要で、主に首都圏の路線で利用できます。オフラインのときやその路線にリアルタイム情報がないときは、時刻表による推定とGPS、加速度センサーに自動で切り替えて案内を続けます。ルート検索はインターネットなしでも使えます。</p></details>
+<details><summary>降車のお知らせが少し早い、または遅い</summary><p>地下区間ではGPSの電波が弱く、現在駅の推定が遅れることがあります。マイクを許可すると車内アナウンスで位置を補正し、より正確になります。お知らせは目安なので、アナウンスと駅の案内板もあわせて確認してください。</p></details>
+<details><summary>言語を変えるには？</summary><p>最初はiPhoneの言語に合わせます。メイン画面の駅カード（現在駅または到着駅）を長押しすると言語選択が開き、23の言語から選べます。</p></details>
+<details><summary>ロック画面にライブアクティビティが表示されません</summary><p>設定 &gt; アプリ &gt; KORA（以前のiOSでは 設定 &gt; KORA）で「ライブアクティビティ」がオンになっているか確認してください。乗車案内を始めると表示され、アプリを完全に終了すると一緒に終わります。Dynamic Islandは対応するiPhoneでのみ表示されます。</p></details>
+<details><summary>どの都市に対応していますか？</summary><p>ソウル首都圏（ソウル・京畿・仁川。GTX-A、空港鉄道、新盆唐線、軽電鉄を含む）、釜山、大邱、光州、大田の約930駅です。駅選択画面の上にある地域チップで都市を切り替えられます。</p></details>
+<details><summary>韓国に行く前に試せますか？</summary><p>はい。出発駅と到着駅を自分で選べば、どこからでもルート、乗り換え、乗る方向を確認できます。</p></details>
+<details><summary>KORA Proはサブスクリプションですか？</summary><p>いいえ。一度の購入でずっと使える買い切りで、ファミリー共有にも対応しています。アプリを入れ直したときは、Pro画面の「購入を復元」をタップしてください。</p></details>
+<details><summary>個人情報はどう扱われますか？</summary><p>アカウント登録も広告もありません。位置情報、カメラ、アナウンス認識はすべて端末内で処理し、保存も送信もしません。アプリ改善のために匿名の利用統計だけを収集しています。</p></details>
+<details><summary>アクセシビリティに対応していますか？</summary><p>VoiceOverと大きな文字サイズに対応しています。アクセシビリティに関するご要望もお気軽にお寄せください。</p></details></div>
+      <p class="contact">駅が見つからない、駅名がおかしいなど、ご質問は <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> までお送りください。アプリのバージョン、iPhoneの機種、利用した駅を書いていただくと、早く確認できます。</p>
+    </section>
+
+    <section class="closing reveal">
+      <h2>次の旅では<br>ホームで迷わない</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6775176578">App Storeで無料ダウンロード</a>
+    </section>
   </main>
 
-  <footer class="site">
-    © 2026 Leeo · <a href="support.html">サポート</a> · <a href="privacy.html">プライバシーポリシー</a>
+  <footer>
+    <nav id="languages" class="langs" aria-label="言語"><a href="../ko/" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../ja/" hreflang="ja" lang="ja" aria-current="page">日本語</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Bahasa Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a></nav>
+    <p><a href="privacy.html">プライバシーポリシー</a> · <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> · © 2026 Leeo</p>
   </footer>
-</div>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

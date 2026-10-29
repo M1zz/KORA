@@ -1,0 +1,176 @@
+{
+  "title": "KORA: el metro de Corea para viajeros",
+  "description": "Elige origen y destino: KORA muestra los transbordos y el letrero exacto del tren que debes tomar, y te avisa cuándo bajar.",
+  "hero": {
+    "headline": "El andén correcto.\nLa parada correcta.",
+    "lead": "Elige origen y destino y KORA te dice qué tren tomar, tal como aparece en el letrero del andén. Durante el viaje sigue tu estación y te avisa cuándo bajar.",
+    "cta": "Gratis en el App Store",
+    "note": "La búsqueda de rutas, el sentido del tren y las llegadas en tiempo real son gratis."
+  },
+  "demo": {
+    "title": "Haz un viaje de prueba",
+    "lead": "Estás en Hongik Univ., en la línea AREX. Elige dónde bajar y toca Empezar viaje para ver el sentido del tren y los avisos de bajada, como en la app.",
+    "from": "Origen",
+    "pick": "¿Dónde te bajas?",
+    "take": "Sube a este tren",
+    "again": "Viajar otra vez",
+    "note": "En esta demo web las estaciones pasan rápido. La app sigue tu posición real con las llegadas en tiempo real, el GPS y los anuncios del tren.",
+    "left": {
+      "one": "Queda 1 parada",
+      "other": "Quedan {0} paradas"
+    },
+    "calm": "Bajar en",
+    "prepare": "Prepárate para bajar",
+    "imminent": "Baja en la próxima parada",
+    "now": "¡Baja ahora!",
+    "bound": "A {0}",
+    "onBoard": "A bordo",
+    "current": "Estación actual",
+    "go": "Empezar viaje",
+    "before": "Antes de subir"
+  },
+  "problem": {
+    "title": "¿Alguna vez dudaste en el andén sin saber qué tren tomar?",
+    "text": "Las apps de mapas te dicen la línea, pero en el andén solo hay letreros con nombres de estaciones que nunca has oído. Si subes en el sentido contrario, te toca volver varias paradas. Si no oyes el anuncio, te pasas de estación. KORA nombra tu tren igual que el letrero y te avisa antes de tu parada."
+  },
+  "features": [
+    {
+      "title": "Tal como dice el letrero",
+      "text": "El tren que debes tomar aparece tal cual se lee su destino en el andén y en el propio tren. ¿Sigues con dudas? Apunta la cámara al letrero del andén o al de destino del tren y KORA te dice al instante si vas en el sentido correcto.\nEl reconocimiento de texto se hace por completo en tu iPhone.",
+      "shot": "board"
+    },
+    {
+      "title": "No te pasarás de parada",
+      "text": "KORA combina llegadas en tiempo real, GPS, las salidas y paradas del tren y los anuncios a bordo para saber dónde estás. Al acercarte a tu parada recibes “Prepárate para bajar” y luego “¡Baja ahora!”, con vibración.\nTambién ves el progreso en la pantalla bloqueada y en la Dynamic Island.",
+      "shot": "ride"
+    },
+    {
+      "title": "23 idiomas, con el nombre coreano",
+      "text": "Usa toda la app en 23 idiomas; empieza en el idioma de tu iPhone. Los nombres de las estaciones muestran el original en coreano junto a la grafía latina de los letreros, para que los reconozcas en el andén.",
+      "shot": "language"
+    }
+  ],
+  "steps": {
+    "title": "Empieza en tres pasos",
+    "items": [
+      {
+        "title": "Fija el origen",
+        "text": "El GPS encuentra la estación más cercana, o elígela tú."
+      },
+      {
+        "title": "Elige el destino",
+        "text": "Los transbordos, las paradas y el tren aparecen al momento."
+      },
+      {
+        "title": "Toca Empezar viaje",
+        "text": "La pantalla y una vibración te avisan cuándo bajar."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Para qué sirve cada permiso",
+    "rows": [
+      [
+        "Ubicación",
+        "Encontrar la estación más cercana"
+      ],
+      [
+        "Cámara",
+        "Leer letreros del andén y de destino para comprobar el sentido"
+      ],
+      [
+        "Micrófono y reconocimiento de voz",
+        "Entender en los anuncios del tren el nombre de la estación y el lado de las puertas"
+      ],
+      [
+        "Movimiento y forma física",
+        "Detectar salidas y paradas para acertar mejor la estación actual"
+      ]
+    ],
+    "note": "Todos los permisos son opcionales. Sin ellos puedes elegir las estaciones tú mismo y seguir teniendo la ruta y los avisos de bajada. La ubicación, la cámara y los anuncios se procesan en tu dispositivo y nunca se graban, guardan ni envían."
+  },
+  "pricing": {
+    "title": "Encontrar la ruta siempre es gratis. La guía a bordo es KORA Pro.",
+    "free": {
+      "name": "Gratis",
+      "items": [
+        "Búsqueda de rutas y transbordos",
+        "El letrero de destino del tren que debes tomar",
+        "Llegadas en tiempo real",
+        "Comprobación del sentido con la cámara",
+        "Estación actual y aviso de bajada en pantalla",
+        "Todas las funciones Pro en tus tres primeros trayectos"
+      ]
+    },
+    "pro": {
+      "name": "KORA Pro",
+      "items": [
+        "En cada trayecto: guía en la pantalla bloqueada, reconocimiento de anuncios y vibración al bajar",
+        "Guía de salidas: qué hay en cada salida de las líneas 1 a 8 de Seúl",
+        "Aviso del último tren en las líneas 1 a 9",
+        "Modo equipaje: el vagón más cercano al ascensor en las líneas 1 a 8"
+      ],
+      "note": "Pagas una vez y es tuyo. No es una suscripción."
+    },
+    "note": "Cuando se acaban los trayectos gratis puedes seguir viajando. El progreso en pantalla se mantiene; solo se pausan la pantalla bloqueada, el reconocimiento de anuncios y la vibración."
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "items": [
+      {
+        "q": "La app no encuentra mi estación o muestra otra.",
+        "a": "Ve a Ajustes > Privacidad y seguridad > Localización > KORA, elige “Cuando se use la app” y activa “Ubicación exacta”. Bajo tierra o dentro de edificios grandes el GPS puede fallar; toca la tarjeta de la estación actual arriba y elígela tú. Todo funciona también sin acceso a la ubicación."
+      },
+      {
+        "q": "¿Cómo uso la comprobación con la cámara?",
+        "a": "Con la ruta en pantalla, abre la comprobación con la cámara y encuadra el letrero del andén o el de destino del tren. Funciona mejor con el texto en coreano. Si el letrero está oscuro, lejos o muy inclinado, acércate y apunta de frente. Tómalo como una ayuda y, si dudas, mira también los letreros de la estación."
+      },
+      {
+        "q": "No aparecen las llegadas en tiempo real.",
+        "a": "Los datos vienen del Seoul Open Data Plaza, necesitan conexión y están disponibles sobre todo en las líneas del área metropolitana de Seúl. Sin conexión o sin datos en tiempo real, KORA pasa automáticamente a una estimación basada en horarios, GPS y acelerómetro, y sigue guiándote. La búsqueda de rutas funciona sin internet."
+      },
+      {
+        "q": "El aviso de bajada llegó un poco antes o después.",
+        "a": "Bajo tierra el GPS es débil y la estación actual puede ir con retraso. Si permites el micrófono, KORA corrige la posición con los anuncios del tren. Los avisos son una ayuda: presta atención también a los anuncios y a los letreros."
+      },
+      {
+        "q": "¿Cómo cambio el idioma?",
+        "a": "KORA empieza en el idioma de tu iPhone. Mantén pulsada una tarjeta de estación en la pantalla principal (la actual o el destino) para abrir el selector y elegir entre 23 idiomas."
+      },
+      {
+        "q": "La actividad en vivo no aparece en la pantalla bloqueada.",
+        "a": "Comprueba en Ajustes > Apps > KORA (en iOS anteriores, Ajustes > KORA) que las actividades en vivo están activadas. Aparece al empezar la guía del trayecto y termina si cierras la app por completo. La Dynamic Island solo aparece en los modelos de iPhone que la tienen."
+      },
+      {
+        "q": "¿Qué ciudades incluye?",
+        "a": "Unas 930 estaciones del área metropolitana de Seúl (Seúl, Gyeonggi e Incheon, con GTX-A, AREX, la línea Shinbundang y los trenes ligeros), Busan, Daegu, Gwangju y Daejeon. Cambia de ciudad con las etiquetas de región arriba en el selector de estaciones."
+      },
+      {
+        "q": "¿Puedo probarla antes del viaje?",
+        "a": "Sí. Elige tú el origen y el destino y podrás ver rutas, transbordos y el sentido del tren desde cualquier lugar del mundo."
+      },
+      {
+        "q": "¿KORA Pro es una suscripción?",
+        "a": "No. Es una compra única que conservas, y funciona con En familia. Si reinstalas la app, toca Restaurar compra en la pantalla de Pro."
+      },
+      {
+        "q": "¿Qué pasa con mis datos?",
+        "a": "No hay cuenta ni anuncios. La ubicación, la cámara y el reconocimiento de anuncios se procesan en tu dispositivo y nunca se guardan ni se envían. Solo recopilamos estadísticas de uso anónimas para mejorar la app."
+      },
+      {
+        "q": "¿Es accesible?",
+        "a": "KORA es compatible con VoiceOver y con tamaños de texto grandes. Las sugerencias para mejorar la accesibilidad siempre son bienvenidas."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "En tu próximo viaje,\nsube al tren sin dudar",
+    "cta": "Gratis en el App Store"
+  },
+  "ui": {
+    "skip": "Saltar al contenido",
+    "languages": "Idioma",
+    "privacy": "Política de privacidad",
+    "contact": "¿Falta una estación, hay un nombre raro o tienes otra duda? Escríbenos a {email}. Si incluyes la versión de la app, tu modelo de iPhone y las estaciones que usaste, lo revisaremos antes."
+  }
+}

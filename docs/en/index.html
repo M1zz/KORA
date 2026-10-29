@@ -1,151 +1,193 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>KORA: Subway guide for travelers in Korea</title>
-<meta name="description" content="Pick where you are and where you're going: KORA shows transfers, travel time and which way to board, then tells you when to get off. Seoul area, Busan, Daegu, Gwangju and Daejeon.">
-<link rel="canonical" href="https://m1zz.github.io/KORA/en/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
-<link rel="stylesheet" href="../style.css">
-<link rel="icon" href="../icon.png">
-<link rel="apple-touch-icon" href="../icon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KORA: Subway guide for travelers in Korea</title>
+  <meta name="description" content="Pick a start and destination. KORA shows the transfers and the exact sign of the train to board, then tells you when to get off.">
+  <meta name="theme-color" content="#CD2E3A" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0d0f" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6775176578">
+  <link rel="canonical" href="https://m1zz.github.io/KORA/en/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KORA: Subway guide for travelers in Korea">
+  <meta property="og:description" content="Pick a start and destination. KORA shows the transfers and the exact sign of the train to board, then tells you when to get off.">
+  <meta property="og:url" content="https://m1zz.github.io/KORA/en/">
+  <meta property="og:image" content="https://m1zz.github.io/KORA/img/en/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../sitegen.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#CD2E3A}@media (prefers-color-scheme:dark){:root{--accent:#E5505B}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-<div class="container">
-
-  <header class="site">
-    <img src="../icon.png" alt="KORA app icon">
-    <div>
-      <div class="title">KORA</div>
-      <div class="subtitle">Korea subway guide for travelers</div>
-    </div>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="bar">
+    <a class="brand" href="../en/"><img src="../icon.png" alt="" width="32" height="32">KORA</a>
+    <a class="lang-link" href="#languages">Language</a>
   </header>
 
-  <nav class="langs" aria-label="Language">
-    <a href="../ko/index.html" hreflang="ko" lang="ko">한국어</a>
-    <a href="../en/index.html" hreflang="en" lang="en" aria-current="true">English</a>
-    <a href="../ja/index.html" hreflang="ja" lang="ja">日本語</a>
-    <a href="../zh-Hans/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
-    <a href="../zh-Hant/index.html" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
-    <a href="../de/index.html" hreflang="de" lang="de">Deutsch</a>
-    <a href="../es/index.html" hreflang="es" lang="es">Español</a>
-    <a href="../fr/index.html" hreflang="fr" lang="fr">Français</a>
-    <a href="../it/index.html" hreflang="it" lang="it">Italiano</a>
-    <a href="../pt-BR/index.html" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
-    <a href="../ru/index.html" hreflang="ru" lang="ru">Русский</a>
-    <a href="../cs/index.html" hreflang="cs" lang="cs">Čeština</a>
-    <a href="../da/index.html" hreflang="da" lang="da">Dansk</a>
-    <a href="../el/index.html" hreflang="el" lang="el">Ελληνικά</a>
-    <a href="../fi/index.html" hreflang="fi" lang="fi">Suomi</a>
-    <a href="../id/index.html" hreflang="id" lang="id">Bahasa Indonesia</a>
-    <a href="../nb/index.html" hreflang="nb" lang="nb">Norsk</a>
-    <a href="../nl/index.html" hreflang="nl" lang="nl">Nederlands</a>
-    <a href="../pl/index.html" hreflang="pl" lang="pl">Polski</a>
-    <a href="../sv/index.html" hreflang="sv" lang="sv">Svenska</a>
-    <a href="../th/index.html" hreflang="th" lang="th">ไทย</a>
-    <a href="../tr/index.html" hreflang="tr" lang="tr">Türkçe</a>
-    <a href="../vi/index.html" hreflang="vi" lang="vi">Tiếng Việt</a>
-  </nav>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>The right platform.<br>The right stop.</h1>
+        <p class="lead">Choose your start and destination, and KORA tells you which train to board, worded exactly like the “To ○○” sign on the platform. While you ride, it follows your station and tells you when to get off.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6775176578">Get it free on the App Store</a><a class="try" href="#try">Take a test ride ↓</a></div>
+        <p class="muted small">Route search, boarding direction and live arrivals are free.</p>
+      </div>
+      <div class="phone"><img src="../img/en/route.jpg" alt="The right platform. The right stop." width="600" height="1303" decoding="async"></div>
+    </section>
 
-  <nav class="pages" aria-label="Pages">
-    <a href="index.html" aria-current="page">Home</a>
-    <a href="support.html">Support</a>
-    <a href="privacy.html">Privacy Policy</a>
-  </nav>
 
-  <main>
-<h1>From the right platform to the right stop</h1>
-    <p class="lead">
-      KORA is a subway guide for anyone visiting Korea.
-      Choose your starting station and destination, and it shows the transfers, number of stops,
-      estimated time, and which direction to board, exactly as the train's “To ○○” sign reads.
-      While you ride, it follows your current station and tells you when to get off.
-    </p>
+    <section class="reveal" id="try">
+      <h2>Take a test ride</h2>
+      <p class="muted">You're at Hongik Univ. on the AREX line. Pick where to get off and tap Start Journey to see the boarding direction and stop alerts, just as the app shows them.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Take a test ride&quot;, &quot;lead&quot;: &quot;You&#x27;re at Hongik Univ. on the AREX line. Pick where to get off and tap Start Journey to see the boarding direction and stop alerts, just as the app shows them.&quot;, &quot;from&quot;: &quot;From&quot;, &quot;pick&quot;: &quot;Where are you getting off?&quot;, &quot;take&quot;: &quot;Board this train&quot;, &quot;again&quot;: &quot;Ride again&quot;, &quot;note&quot;: &quot;This web demo runs through the stations quickly. The app follows your real position using live arrivals, GPS and the in-train announcements.&quot;, &quot;calm&quot;: &quot;Get off at&quot;, &quot;prepare&quot;: &quot;Prepare to get off&quot;, &quot;imminent&quot;: &quot;Get off at the next stop&quot;, &quot;now&quot;: &quot;Get off now!&quot;, &quot;bound&quot;: &quot;To {0}&quot;, &quot;onBoard&quot;: &quot;On board&quot;, &quot;current&quot;: &quot;Current station&quot;, &quot;go&quot;: &quot;Start Journey&quot;, &quot;before&quot;: &quot;Before boarding&quot;, &quot;left&quot;: {&quot;one&quot;: &quot;1 stop to go&quot;, &quot;other&quot;: &quot;{0} stops to go&quot;}}"></div>
+    </section>
 
-    <h2>Features</h2>
-    <div class="features">
-      <div class="card">
-        <h3>Your station, found for you</h3>
-        <p>Find the nearest station with GPS or pick one yourself. KORA remembers it the next time you open the app.</p>
-      </div>
-      <div class="card">
-        <h3>Route and boarding direction</h3>
-        <p>Transfers, stops and estimated time, plus the train to take shown as its “To ○○” destination sign.</p>
-      </div>
-      <div class="card">
-        <h3>Check the direction with your camera</h3>
-        <p>Point your camera at the platform sign or the train's destination display and KORA tells you whether it's the right way. Text recognition happens entirely on your iPhone.</p>
-      </div>
-      <div class="card">
-        <h3>Know where you are</h3>
-        <p>KORA combines Seoul's real-time arrival data, GPS, the accelerometer (to sense departures and stops) and on-device recognition of the in-train announcements to track your station. It even tells you which side the doors will open.</p>
-      </div>
-      <div class="card">
-        <h3>Stop alerts</h3>
-        <p>As your stop approaches you get “Prepare to get off”, then “Get off now!”, with haptics. A progress diagram shows the train and a pin on your destination.</p>
-      </div>
-      <div class="card">
-        <h3>Lock Screen and Dynamic Island</h3>
-        <p>A Live Activity keeps your ride progress visible without unlocking your phone.</p>
-      </div>
-      <div class="card">
-        <h3>23 languages</h3>
-        <p>Use the whole app in 23 languages, from English, Japanese and Chinese to German, French, Spanish, Thai and Vietnamese; it starts in your phone's language. Station names show the Korean original with katakana, Chinese characters or the romanized spelling on the signs.</p>
-      </div>
-      <div class="card">
-        <h3>Offline route search</h3>
-        <p>Routes are calculated on your device with no internet needed. Only real-time arrivals use the network.</p>
-      </div>
-    </div>
+    <section class="problem reveal">
+      <h2>Ever stood on a platform unsure which train to take?</h2>
+      <p>Map apps show you the line, but the platform only shows “To ○○” signs naming stations you've never heard of. Board the wrong way and you're backtracking several stops. Miss the announcement and you ride past your station. KORA names your train the way the sign does, and warns you before your stop.</p>
+    </section>
 
-    <h2>Coverage</h2>
-    <p>
-      About 930 stations in the Seoul metropolitan area (Seoul, Gyeonggi and Incheon, including GTX-A,
-      AREX, the Shinbundang Line and light rail lines), Busan, Daegu, Gwangju and Daejeon.
-      Use the region chips at the top of the station picker to switch cities.
-    </p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Worded like the signs</h2>
+        <p>The train to take is shown exactly as its “To ○○” sign reads on the platform and the train. Still unsure? Point your camera at the platform sign or the train's destination display and KORA tells you right away if it's the right way.<br>Text recognition happens entirely on your iPhone.</p>
+      </div>
+      <div class="phone"><img src="../img/en/board.jpg" alt="Worded like the signs" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <h2>Private by design</h2>
-    <p>
-      No account, no ads, and no server of our own.
-      Location, camera and announcement recognition are processed on your device and are never stored or sent anywhere.
-      We only collect anonymous usage statistics to improve the app. See the <a href="privacy.html">Privacy Policy</a> for details.
-    </p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Never miss your stop</h2>
+        <p>KORA combines live arrival data, GPS, the train's departures and stops, and the in-train announcements to know where you are. As your stop approaches you get “Prepare to get off”, then “Get off now!”, with haptics.<br>Your ride progress also shows on the Lock Screen and in the Dynamic Island.</p>
+      </div>
+      <div class="phone"><img src="../img/en/ride.jpg" alt="Never miss your stop" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <div class="contact">
-      Found a bug or have an idea? Email <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a>.
-      Common questions are answered on the <a href="support.html">Support</a> page.
-    </div>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>23 languages, Korean names kept</h2>
+        <p>Use the whole app in 23 languages. It starts in your phone's language. Station names show the Korean original next to katakana, Chinese characters or the romanized spelling printed on the signs, so you can match them on the platform.</p>
+      </div>
+      <div class="phone"><img src="../img/en/language.jpg" alt="23 languages, Korean names kept" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Three steps to start</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Set your start</h3><p>Let GPS find the nearest station, or pick one.</p></li>
+<li class="card"><span class="n">2</span><h3>Pick a destination</h3><p>Transfers, stops and the train to board appear right away.</p></li>
+<li class="card"><span class="n">3</span><h3>Tap Start Journey</h3><p>Your screen and a buzz tell you when to get off.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>What each permission is for</h2>
+      <div class="card table">
+        <dl><div><dt>Location</dt><dd>Find the nearest station</dd></div><div><dt>Camera</dt><dd>Read platform signs and destination displays to check your direction</dd></div><div><dt>Microphone and speech recognition</dt><dd>Catch station names and the door side in the in-train announcements</dd></div><div><dt>Motion &amp; Fitness</dt><dd>Sense departures and stops for a more accurate current station</dd></div></dl>
+      </div>
+      <p class="muted">Every permission is optional. Without them you can still pick stations yourself and get routes and stop alerts. Location, camera and announcements are processed on your device and never recorded, stored or sent.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Directions are always free. Ride guidance is KORA Pro.</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>Free</h3>
+          <ul><li>Route search and transfers</li><li>The “To ○○” sign of the train to board</li><li>Live arrival information</li><li>Camera direction check</li><li>On-screen current station and stop alerts</li><li>Every Pro feature on your first three journeys</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>KORA Pro</h3>
+          <ul><li>Lock Screen guidance, announcement recognition and get-off haptics on every journey</li><li>Exit guide: what's near each exit on Seoul Lines 1 to 8</li><li>Last train alert for Lines 1 to 9</li><li>Luggage mode: the car closest to the elevator on Lines 1 to 8</li></ul>
+          <p class="muted">Pay once, keep it. Not a subscription.</p>
+        </div>
+      </div>
+      <p class="muted">When the free journeys run out, you can still ride. The on-screen progress stays; only Lock Screen guidance, announcement recognition and haptics pause.</p>
+    </section>
+
+    <section class="reveal" id="faq">
+      <h2>Questions</h2>
+      <div class="faq"><details><summary>It can't find my station, or shows the wrong one.</summary><p>Go to Settings &gt; Privacy &amp; Security &gt; Location Services &gt; KORA, choose “While Using the App” and turn on “Precise Location”. GPS can be off underground or inside large buildings, so tap the current-station card at the top to pick your station yourself. Everything works without location access too.</p></details>
+<details><summary>How do I use the camera direction check?</summary><p>Once your route is shown, open the camera direction check and fill the frame with the platform sign or the train's destination display (the “To ○○” sign). It works best on the Korean text. If the sign is dark, far away or at a steep angle, move closer and aim straight on. Treat the result as a helper and double-check the station signs if in doubt.</p></details>
+<details><summary>Live arrival information isn't showing.</summary><p>Live arrivals come from the Seoul Open Data Plaza, need an internet connection and are mainly available in the Seoul metropolitan area. If you're offline or the line has no live data, KORA switches to a timetable-based estimate with GPS and the accelerometer and keeps guiding you. Route search works offline.</p></details>
+<details><summary>The stop alert came a little early or late.</summary><p>GPS is weak underground, so the current-station estimate can lag. Allow the microphone and KORA uses the in-train announcements to correct its position. Alerts are a helper, so keep an ear on the announcements and an eye on the station signs.</p></details>
+<details><summary>How do I change the language?</summary><p>KORA starts in your phone's language. Press and hold a station card on the main screen (your current station or destination) to open the language picker, then choose from 23 languages.</p></details>
+<details><summary>The Live Activity doesn't appear on my Lock Screen.</summary><p>Check that Live Activities are on in Settings &gt; Apps &gt; KORA (on older iOS, Settings &gt; KORA). It appears once you start ride guidance and ends if you fully close the app. The Dynamic Island only shows on iPhone models that have it.</p></details>
+<details><summary>Which cities are covered?</summary><p>About 930 stations in the Seoul metropolitan area (Seoul, Gyeonggi and Incheon, including GTX-A, AREX, the Shinbundang Line and light rail), Busan, Daegu, Gwangju and Daejeon. Switch cities with the region chips at the top of the station picker.</p></details>
+<details><summary>Can I try it before my trip?</summary><p>Yes. Pick the start and destination yourself and you can check routes, transfers and boarding directions from anywhere in the world.</p></details>
+<details><summary>Is KORA Pro a subscription?</summary><p>No. It's a one-time purchase you keep, and it works with Family Sharing. If you reinstall the app, tap Restore Purchase on the Pro screen.</p></details>
+<details><summary>What happens to my data?</summary><p>There's no account and no ads. Location, camera and announcement recognition are processed on your device and never stored or sent. We only collect anonymous usage statistics to improve the app.</p></details>
+<details><summary>Is it accessible?</summary><p>KORA supports VoiceOver and larger text sizes. Suggestions to make it more accessible are always welcome.</p></details></div>
+      <p class="contact">Missing station, odd name or any question? Email <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a>. Including the app version, your iPhone model and the stations you used helps us look into it faster.</p>
+    </section>
+
+    <section class="closing reveal">
+      <h2>On your next trip,<br>board with confidence</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6775176578">Get it free on the App Store</a>
+    </section>
   </main>
 
-  <footer class="site">
-    © 2026 Leeo · <a href="support.html">Support</a> · <a href="privacy.html">Privacy Policy</a>
+  <footer>
+    <nav id="languages" class="langs" aria-label="Language"><a href="../ko/" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en" aria-current="page">English</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Bahasa Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a></nav>
+    <p><a href="privacy.html">Privacy Policy</a> · <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> · © 2026 Leeo</p>
   </footer>
-</div>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

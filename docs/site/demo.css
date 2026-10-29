@@ -1,0 +1,68 @@
+/* KORA 웹 체험. 노선 색은 공항철도(SubwayLineData.line10), 알림 색은 앱의 AlightWarningLevel 과 같다. */
+.demo-card { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); align-items: start; --ar: #73C7E3; }
+.kd-stage { background: var(--bg); border-radius: var(--r-inner); padding: var(--s5); min-height: 300px; }
+.kd-status { display: flex; align-items: center; gap: var(--s2); margin: 0 0 var(--s5); font-weight: 600; color: var(--muted); }
+.kd-badge { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
+            background: var(--ar); color: #fff; font-size: .8rem; font-weight: 800; }
+
+.kd-track { display: flex; align-items: center; justify-content: space-between; position: relative; min-height: 22px; }
+.kd-track:not(:empty)::before { content: ""; position: absolute; left: 6px; right: 6px; height: 4px; border-radius: 2px;
+                                background: color-mix(in srgb, var(--ar) 40%, transparent); }
+.kd-track i { position: relative; width: 14px; height: 14px; border-radius: 50%; background: var(--surface);
+              border: 3px solid var(--ar); transition: transform .3s var(--ease), background .3s var(--ease); }
+.kd-track i.past { background: var(--ar); }
+.kd-track i.end { border-color: var(--accent); }
+.kd-track i.on { background: var(--ar); transform: scale(1.5); }
+.kd-here { margin: var(--s4) 0 var(--s4); min-height: 1.6em; }
+.kd-here b, .kd-dest b, .kd-from b { font-weight: 700; }
+.kd-here small, .kd-dest small, .kd-from small { color: var(--muted); font-size: .85em; margin-left: var(--s2); font-weight: 500; }
+
+.kd-alert { display: grid; gap: var(--s1); padding: var(--s4); border-radius: var(--r-inner);
+            background: var(--surface); border: 2px solid var(--line);
+            transition: background .3s var(--ease), border-color .3s var(--ease); }
+.kd-alert[hidden] { display: none; }
+.kd-head { font-weight: 700; color: var(--muted); }
+.kd-dest { font-size: 1.6rem; line-height: 1.2; }
+.kd-dest small { display: block; margin: 0; font-size: 1rem; }
+.kd-left { color: var(--muted); font-variant-numeric: tabular-nums; min-height: 1.6em; }
+.kd-alert[data-level="prepare"] { border-color: #F59E0B; background: color-mix(in srgb, #F59E0B 12%, var(--surface)); }
+.kd-alert[data-level="prepare"] .kd-head { color: #B45309; }
+.kd-alert[data-level="imminent"] { border-color: #E5484D; background: color-mix(in srgb, #E5484D 12%, var(--surface)); }
+.kd-alert[data-level="imminent"] .kd-head { color: #C62A2F; }
+.kd-alert[data-level="now"] { border-color: #22A559; background: color-mix(in srgb, #22A559 18%, var(--surface)); }
+.kd-alert[data-level="now"] .kd-head { color: #15803D; font-size: 1.25rem; }
+@media (prefers-color-scheme: dark) {
+  .kd-alert[data-level="prepare"] .kd-head { color: #FBBF24; }
+  .kd-alert[data-level="imminent"] .kd-head { color: #FF8A8E; }
+  .kd-alert[data-level="now"] .kd-head { color: #4ADE80; }
+}
+
+.kd-from { margin: 0 0 var(--s3); }
+.kd-ask { margin: 0 0 var(--s2); font-weight: 600; }
+.kd-chips { display: flex; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s4); }
+.chip { font: inherit; font-weight: 600; color: var(--accent); background: var(--bg); border: 2px solid transparent;
+        border-radius: 999px; padding: var(--s2) var(--s4); min-height: 44px; cursor: pointer;
+        transition: transform .15s var(--ease), background .15s var(--ease); }
+.chip:hover:not(:disabled) { background: color-mix(in srgb, var(--accent) 12%, var(--bg)); }
+.chip:active:not(:disabled) { transform: scale(.95); }
+.chip[aria-pressed="true"] { border-color: var(--accent); }
+.chip:disabled { cursor: default; opacity: .55; }
+.kd-go.hint { animation: hint 1.6s var(--ease) infinite; }
+@keyframes hint { 50% { box-shadow: 0 0 0 8px color-mix(in srgb, var(--accent) 20%, transparent); } }
+
+.kd-sign { display: grid; gap: var(--s1); margin-bottom: var(--s4); padding: var(--s3) var(--s4);
+           border-radius: var(--r-inner); background: #1d2327; color: #fff; }
+.kd-sign[hidden] { display: none; }
+.kd-sign .muted { color: #b9c3c8; }
+.kd-sign strong { font-size: 1.35rem; color: var(--ar); }
+.kd-go { font: inherit; font-weight: 700; min-height: 48px; width: 100%; border: 0; border-radius: 999px; cursor: pointer;
+         background: var(--accent); color: var(--on-accent); transition: opacity .2s var(--ease), transform .15s var(--ease); }
+.kd-go:active:not(:disabled) { transform: scale(.98); }
+.kd-go:disabled { opacity: .4; cursor: default; }
+.kd-note { margin-top: var(--s3); }
+
+@media (prefers-reduced-motion: reduce) {
+  .kd-go.hint { animation: none; }
+  .kd-track i, .kd-alert { transition: none; }
+}
+@media (max-width: 760px) { .demo-card { grid-template-columns: 1fr; } .kd-stage { order: 2; min-height: 0; } }

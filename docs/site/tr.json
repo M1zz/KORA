@@ -1,0 +1,175 @@
+{
+  "title": "KORA: gezginler için Kore metro rehberi",
+  "description": "Nereden nereye gideceğini seç: KORA aktarmaları ve binmen gereken trenin tabelasını aynen gösterir, yolda ne zaman ineceğini söyler.",
+  "hero": {
+    "headline": "Doğru peron.\nDoğru durak.",
+    "lead": "Başlangıç ve varış istasyonunu seç, KORA hangi trene bineceğini peron tabelasında yazdığı gibi söylesin. Yolculuk boyunca hangi istasyonda olduğunu izler, inme zamanı gelince haber verir.",
+    "cta": "Ücretsiz indir",
+    "note": "Rota arama, trenin yönü ve gerçek zamanlı varışlar ücretsizdir."
+  },
+  "demo": {
+    "title": "Bir deneme yolculuğu yap",
+    "lead": "AREX hattında Hongik Univ. istasyonundasın. İneceğin yeri seç ve Yolculuğa başla’ya dokun; trenin yönünü ve inme uyarılarını uygulamadaki gibi gör.",
+    "from": "Nereden",
+    "pick": "Nerede ineceksin?",
+    "take": "Bu trene bin",
+    "again": "Tekrar bin",
+    "note": "Bu web denemesinde istasyonlar hızla geçer. Uygulama gerçek konumunu gerçek zamanlı varışlar, GPS ve tren içi anonslarla izler.",
+    "left": {
+      "other": "{0} durak kaldı"
+    },
+    "calm": "İneceğin istasyon",
+    "prepare": "İnmeye hazırlan",
+    "imminent": "Sonraki istasyonda in",
+    "now": "Şimdi in!",
+    "bound": "{0} yönü",
+    "onBoard": "Trende",
+    "current": "Bulunduğun istasyon",
+    "go": "Yolculuğa başla",
+    "before": "Binmeden önce"
+  },
+  "problem": {
+    "title": "Peronda hangi trene bineceğini bilemediğin oldu mu?",
+    "text": "Harita uygulamaları hattı söyler ama peronda yalnızca hiç duymadığın istasyon adlarının yazdığı tabelalar vardır. Ters yöne binersen birkaç durak geri dönersin. Anonsu kaçırırsan durağını geçersin. KORA treni tabelanın söylediği gibi adlandırır ve durağından önce seni uyarır."
+  },
+  "features": [
+    {
+      "title": "Tabeladaki kelimelerle",
+      "text": "Binmen gereken tren, varış yeri peronda ve trenin üstünde nasıl yazıyorsa öyle gösterilir. Emin değil misin? Kamerayı perondaki tabelaya ya da trenin gideceği yer tabelasına tut, KORA doğru yönde olup olmadığını hemen söylesin.\nMetin tanıma tamamen iPhone’unda yapılır.",
+      "shot": "board"
+    },
+    {
+      "title": "Durağını bir daha kaçırma",
+      "text": "KORA nerede olduğunu bilmek için gerçek zamanlı varışları, GPS’i, trenin kalkış ve duruşlarını ve tren içi anonsları birleştirir. Durağın yaklaşınca “İnmeye hazırlan”, ardından “Şimdi in!” uyarısı titreşimle gelir.\nYolculuğun ilerleyişi Kilitli Ekran’da ve Dynamic Island’da da görünür.",
+      "shot": "ride"
+    },
+    {
+      "title": "23 dil, Korece adlar yerinde",
+      "text": "Uygulamanın tamamını 23 dilde kullan; iPhone’unun diliyle açılır. İstasyon adları, tabelalardaki Latin harfli yazımın yanında Korece aslıyla gösterilir, böylece peronda hemen eşleştirirsin.",
+      "shot": "language"
+    }
+  ],
+  "steps": {
+    "title": "Üç adımda başla",
+    "items": [
+      {
+        "title": "Başlangıcı belirle",
+        "text": "GPS en yakın istasyonu bulsun ya da kendin seç."
+      },
+      {
+        "title": "Varış yerini seç",
+        "text": "Aktarmalar, duraklar ve doğru tren hemen görünür."
+      },
+      {
+        "title": "Yolculuğa başla’ya dokun",
+        "text": "Ekran ve titreşim ne zaman ineceğini söyler."
+      }
+    ]
+  },
+  "reference": {
+    "title": "İzinler ne için",
+    "rows": [
+      [
+        "Konum",
+        "En yakın istasyonu bulmak"
+      ],
+      [
+        "Kamera",
+        "Yönü kontrol etmek için peron ve varış tabelalarını okumak"
+      ],
+      [
+        "Mikrofon ve konuşma tanıma",
+        "Tren içi anonslardan istasyon adını ve açılacak kapı tarafını yakalamak"
+      ],
+      [
+        "Hareket ve Fitness",
+        "Kalkış ve duruşları algılayıp bulunduğun istasyonu daha doğru bilmek"
+      ]
+    ],
+    "note": "Tüm izinler isteğe bağlıdır. İzin vermesen de istasyonları kendin seçer, rotayı ve inme uyarılarını yine alırsın. Konum, kamera ve anonslar cihazında işlenir; asla kaydedilmez, saklanmaz ya da gönderilmez."
+  },
+  "pricing": {
+    "title": "Yol bulmak her zaman ücretsiz. Yolculuk rehberi KORA Pro’da.",
+    "free": {
+      "name": "Ücretsiz",
+      "items": [
+        "Rota arama ve aktarmalar",
+        "Binmen gereken trenin varış tabelası",
+        "Gerçek zamanlı varışlar",
+        "Kamerayla yön kontrolü",
+        "Ekranda bulunduğun istasyon ve inme uyarısı",
+        "İlk üç yolculukta tüm Pro özellikleri"
+      ]
+    },
+    "pro": {
+      "name": "KORA Pro",
+      "items": [
+        "Her yolculukta: Kilitli Ekran rehberi, anons tanıma ve inerken titreşim",
+        "Çıkış rehberi: Seul 1–8. hatlarda her çıkışın çevresindeki yerler",
+        "1–9. hatlar için son tren uyarısı",
+        "Bavul modu: 1–8. hatlarda asansöre en yakın vagon"
+      ],
+      "note": "Bir kez öde, hep senin olsun. Abonelik değil."
+    },
+    "note": "Ücretsiz yolculuklar bitince de binmeye devam edebilirsin. Ekrandaki ilerleme kalır; yalnızca Kilitli Ekran, anons tanıma ve titreşim durur."
+  },
+  "faq": {
+    "title": "Sık sorulan sorular",
+    "items": [
+      {
+        "q": "Uygulama istasyonumu bulamıyor ya da yanlış istasyon gösteriyor.",
+        "a": "Ayarlar > Gizlilik ve Güvenlik > Konum Servisleri > KORA’ya git, “Uygulamayı Kullanırken”i seç ve “Kesin Konum”u aç. Yer altında ya da büyük binalarda GPS şaşabilir: üstteki bulunduğun istasyon kartına dokunup istasyonu kendin seç. Konum izni olmadan da her şey çalışır."
+      },
+      {
+        "q": "Kamerayla yön kontrolü nasıl kullanılır?",
+        "a": "Rota ekrandayken kamerayla yön kontrolünü aç ve perondaki tabelayı ya da trenin gideceği yer tabelasını kadraja doldur. En iyi sonucu Korece yazı verir. Tabela karanlık, uzak ya da çok yamuksa biraz yaklaş ve tam karşıdan tut. Sonuç bir yardımcıdır; emin olamazsan istasyondaki tabelalara da bak."
+      },
+      {
+        "q": "Gerçek zamanlı varışlar görünmüyor.",
+        "a": "Veriler Seoul Open Data Plaza’dan gelir, internet gerektirir ve çoğunlukla Seul metropol bölgesindeki hatlar için vardır. Bağlantı ya da veri yoksa KORA otomatik olarak sefer saatleri, GPS ve ivmeölçere dayalı tahmine geçer ve sana rehberlik etmeye devam eder. Rota arama internetsiz çalışır."
+      },
+      {
+        "q": "İnme uyarısı biraz erken ya da geç geldi.",
+        "a": "Yer altında GPS zayıftır, bu yüzden bulunduğun istasyon geriden gelebilir. Mikrofona izin verirsen KORA konumu tren içi anonslarla düzeltir. Uyarılar yardımcıdır; anonsları da dinle, tabelaları da takip et."
+      },
+      {
+        "q": "Dili nasıl değiştiririm?",
+        "a": "KORA iPhone’unun diliyle açılır. Ana ekrandaki istasyon kartına (bulunduğun istasyon ya da varış) basılı tut, 23 dil arasından seçim yapabileceğin dil seçici açılır."
+      },
+      {
+        "q": "Canlı Etkinlik Kilitli Ekran’da görünmüyor.",
+        "a": "Ayarlar > Uygulamalar > KORA’da (eski iOS’ta Ayarlar > KORA) Canlı Etkinlikler’in açık olduğunu kontrol et. Yolculuk rehberini başlatınca görünür, uygulamayı tamamen kapatırsan sona erer. Dynamic Island yalnızca onu destekleyen iPhone modellerinde bulunur."
+      },
+      {
+        "q": "Hangi şehirler var?",
+        "a": "Seul metropol bölgesinde (Seul, Gyeonggi ve Incheon; GTX-A, AREX, Shinbundang hattı ve hafif raylılar dahil), Busan, Daegu, Gwangju ve Daejeon’da yaklaşık 930 istasyon. Şehri istasyon seçicinin üstündeki bölge düğmeleriyle değiştirirsin."
+      },
+      {
+        "q": "Yolculuktan önce deneyebilir miyim?",
+        "a": "Evet. Başlangıç ve varışı kendin seç; rotaları, aktarmaları ve trenin yönünü dünyanın her yerinden görebilirsin."
+      },
+      {
+        "q": "KORA Pro abonelik mi?",
+        "a": "Hayır. Bir kez satın alınır ve hep senin kalır, Aile Paylaşımı ile de çalışır. Uygulamayı yeniden yüklersen Pro ekranında Satın Alımı Geri Yükle’ye dokun."
+      },
+      {
+        "q": "Verilerime ne oluyor?",
+        "a": "Hesap yok, reklam yok. Konum, kamera ve anons tanıma cihazında işlenir; asla saklanmaz ya da gönderilmez. Uygulamayı geliştirmek için yalnızca anonim kullanım istatistikleri toplarız."
+      },
+      {
+        "q": "Uygulama erişilebilir mi?",
+        "a": "KORA VoiceOver’ı ve büyük metin boyutlarını destekler. Erişilebilirliği iyileştirmek için önerilerine her zaman açığız."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Bir sonraki yolculukta\ndoğru trene bin",
+    "cta": "Ücretsiz indir"
+  },
+  "ui": {
+    "skip": "İçeriğe geç",
+    "languages": "Dil",
+    "privacy": "Gizlilik Politikası",
+    "contact": "Eksik istasyon, tuhaf bir ad ya da başka bir soru mu var? {email} adresine yaz. Uygulama sürümünü, iPhone modelini ve kullandığın istasyonları yazarsan daha hızlı bakarız."
+  }
+}

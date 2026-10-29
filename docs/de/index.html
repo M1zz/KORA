@@ -1,137 +1,193 @@
 <!doctype html>
 <html lang="de">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>KORA: U-Bahn-Guide für Reisende in Korea</title>
-<meta name="description" content="Start und Ziel wählen: KORA zeigt Umstiege, Fahrzeit und Einstiegsrichtung und sagt dir, wann du aussteigen musst. Großraum Seoul, Busan, Daegu, Gwangju und Daejeon.">
-<link rel="canonical" href="https://m1zz.github.io/KORA/de/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
-<link rel="stylesheet" href="../style.css">
-<link rel="icon" href="../icon.png">
-<link rel="apple-touch-icon" href="../icon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KORA: U-Bahn-Guide für Reisende in Korea</title>
+  <meta name="description" content="Start und Ziel wählen: KORA zeigt Umstiege und genau das Zugschild, nach dem du suchst, und sagt dir unterwegs, wann du aussteigen musst.">
+  <meta name="theme-color" content="#CD2E3A" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0d0f" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6775176578">
+  <link rel="canonical" href="https://m1zz.github.io/KORA/de/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KORA: U-Bahn-Guide für Reisende in Korea">
+  <meta property="og:description" content="Start und Ziel wählen: KORA zeigt Umstiege und genau das Zugschild, nach dem du suchst, und sagt dir unterwegs, wann du aussteigen musst.">
+  <meta property="og:url" content="https://m1zz.github.io/KORA/de/">
+  <meta property="og:image" content="https://m1zz.github.io/KORA/img/de/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../sitegen.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#CD2E3A}@media (prefers-color-scheme:dark){:root{--accent:#E5505B}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-<div class="container">
-
-  <header class="site">
-    <img src="../icon.png" alt="KORA App-Symbol">
-    <div>
-      <div class="title">KORA</div>
-      <div class="subtitle">U-Bahn-Guide für Reisende in Korea</div>
-    </div>
+  <a class="skip" href="#main">Zum Inhalt springen</a>
+  <header class="bar">
+    <a class="brand" href="../de/"><img src="../icon.png" alt="" width="32" height="32">KORA</a>
+    <a class="lang-link" href="#languages">Sprache</a>
   </header>
 
-  <nav class="langs" aria-label="Language">
-    <a href="../ko/index.html" hreflang="ko" lang="ko">한국어</a>
-    <a href="../en/index.html" hreflang="en" lang="en">English</a>
-    <a href="../ja/index.html" hreflang="ja" lang="ja">日本語</a>
-    <a href="../zh-Hans/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
-    <a href="../zh-Hant/index.html" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
-    <a href="../de/index.html" hreflang="de" lang="de" aria-current="true">Deutsch</a>
-    <a href="../es/index.html" hreflang="es" lang="es">Español</a>
-    <a href="../fr/index.html" hreflang="fr" lang="fr">Français</a>
-    <a href="../it/index.html" hreflang="it" lang="it">Italiano</a>
-    <a href="../pt-BR/index.html" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
-    <a href="../ru/index.html" hreflang="ru" lang="ru">Русский</a>
-    <a href="../cs/index.html" hreflang="cs" lang="cs">Čeština</a>
-    <a href="../da/index.html" hreflang="da" lang="da">Dansk</a>
-    <a href="../el/index.html" hreflang="el" lang="el">Ελληνικά</a>
-    <a href="../fi/index.html" hreflang="fi" lang="fi">Suomi</a>
-    <a href="../id/index.html" hreflang="id" lang="id">Bahasa Indonesia</a>
-    <a href="../nb/index.html" hreflang="nb" lang="nb">Norsk</a>
-    <a href="../nl/index.html" hreflang="nl" lang="nl">Nederlands</a>
-    <a href="../pl/index.html" hreflang="pl" lang="pl">Polski</a>
-    <a href="../sv/index.html" hreflang="sv" lang="sv">Svenska</a>
-    <a href="../th/index.html" hreflang="th" lang="th">ไทย</a>
-    <a href="../tr/index.html" hreflang="tr" lang="tr">Türkçe</a>
-    <a href="../vi/index.html" hreflang="vi" lang="vi">Tiếng Việt</a>
-  </nav>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Richtiger Bahnsteig.<br>Richtige Station.</h1>
+        <p class="lead">Wähle Start und Ziel, und KORA zeigt dir den richtigen Zug so, wie er auf dem Schild am Bahnsteig steht. Während der Fahrt verfolgt KORA deine Station und sagt dir, wann du aussteigen musst.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6775176578">Gratis im App Store laden</a><a class="try" href="#try">Probefahrt ↓</a></div>
+        <p class="muted small">Routensuche, Fahrtrichtung und Echtzeit-Ankünfte sind kostenlos.</p>
+      </div>
+      <div class="phone"><img src="../img/de/route.jpg" alt="Richtiger Bahnsteig. Richtige Station." width="600" height="1303" decoding="async"></div>
+    </section>
 
-  <nav class="pages" aria-label="Pages">
-    <a href="index.html" aria-current="page">Start</a>
-    <a href="support.html">Hilfe</a>
-    <a href="privacy.html">Datenschutz</a>
-  </nav>
 
-  <main>
-<h1>Vom richtigen Bahnsteig bis zur richtigen Station</h1>
-    <p class="lead">KORA ist dein U-Bahn-Begleiter für Korea. Wähle Start und Ziel, und KORA zeigt Umstiege, Anzahl der Stationen, die ungefähre Fahrzeit und die Einstiegsrichtung – genau so, wie sie auf der Zielanzeige des Zugs steht. Während der Fahrt verfolgt KORA deine Station und sagt dir, wann du aussteigen musst.</p>
+    <section class="reveal" id="try">
+      <h2>Probefahrt</h2>
+      <p class="muted">Du stehst an der Station Hongik Univ. auf der AREX-Linie. Wähle dein Ziel und tippe auf „Los geht's“: Fahrtrichtung und Aussteige-Hinweise erscheinen wie in der App.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Probefahrt&quot;, &quot;lead&quot;: &quot;Du stehst an der Station Hongik Univ. auf der AREX-Linie. Wähle dein Ziel und tippe auf „Los geht&#x27;s“: Fahrtrichtung und Aussteige-Hinweise erscheinen wie in der App.&quot;, &quot;from&quot;: &quot;Start&quot;, &quot;pick&quot;: &quot;Wo steigst du aus?&quot;, &quot;take&quot;: &quot;Steig in diesen Zug&quot;, &quot;again&quot;: &quot;Noch mal fahren&quot;, &quot;note&quot;: &quot;In dieser Web-Demo fahren die Stationen im Zeitraffer vorbei. Die App verfolgt deine echte Position mit Echtzeit-Ankünften, GPS und den Ansagen im Zug.&quot;, &quot;left&quot;: {&quot;one&quot;: &quot;Noch 1 Station&quot;, &quot;other&quot;: &quot;Noch {0} Stationen&quot;}, &quot;calm&quot;: &quot;Aussteigen an&quot;, &quot;prepare&quot;: &quot;Bald aussteigen&quot;, &quot;imminent&quot;: &quot;An der nächsten Station aussteigen&quot;, &quot;now&quot;: &quot;Jetzt aussteigen!&quot;, &quot;bound&quot;: &quot;Nach {0}&quot;, &quot;onBoard&quot;: &quot;Im Zug&quot;, &quot;current&quot;: &quot;Aktuelle Station&quot;, &quot;go&quot;: &quot;Los geht&#x27;s&quot;, &quot;before&quot;: &quot;Vor dem Einsteigen&quot;}"></div>
+    </section>
 
-    <h2>Funktionen</h2>
-    <div class="features">
-      <div class="card">
-        <h3>Deine Station, automatisch gefunden</h3>
-        <p>Finde die nächste Station per GPS oder wähle sie selbst. KORA merkt sie sich bis zum nächsten Öffnen.</p>
-      </div>
-      <div class="card">
-        <h3>Route und Einstiegsrichtung</h3>
-        <p>Umstiege, Stationen und Fahrzeit auf einen Blick, dazu der richtige Zug – angezeigt wie auf seiner Zielanzeige.</p>
-      </div>
-      <div class="card">
-        <h3>Richtung mit der Kamera prüfen</h3>
-        <p>Richte die Kamera auf ein Bahnsteigschild oder die Zielanzeige des Zugs, und KORA sagt dir, ob die Richtung stimmt. Die Texterkennung läuft komplett auf deinem iPhone.</p>
-      </div>
-      <div class="card">
-        <h3>Immer wissen, wo du bist</h3>
-        <p>Echtzeit-Ankunftsdaten aus Seoul, GPS, Beschleunigungssensor und die Erkennung der Durchsagen im Zug auf dem Gerät zeigen deine aktuelle Station – und auf welcher Seite sich die Türen öffnen.</p>
-      </div>
-      <div class="card">
-        <h3>Ausstiegshinweise</h3>
-        <p>Kurz vor deiner Station: „Bald aussteigen“, dann „Jetzt aussteigen!“ – mit Vibration. Eine Fortschrittsanzeige zeigt Zug und Ziel.</p>
-      </div>
-      <div class="card">
-        <h3>Sperrbildschirm und Dynamic Island</h3>
-        <p>Eine Live-Aktivität zeigt den Fahrtfortschritt, ohne dass du das iPhone entsperren musst.</p>
-      </div>
-      <div class="card">
-        <h3>23 Sprachen</h3>
-        <p>Die ganze App gibt es auf Deutsch und in 22 weiteren Sprachen. Stationsnamen erscheinen im koreanischen Original mit der lateinischen Schreibweise von den Schildern.</p>
-      </div>
-      <div class="card">
-        <h3>Routensuche offline</h3>
-        <p>Routen werden auf dem Gerät berechnet. Nur die Echtzeit-Ankünfte brauchen Internet.</p>
-      </div>
-    </div>
+    <section class="problem reveal">
+      <h2>Schon mal am Bahnsteig gestanden und nicht gewusst, welcher Zug?</h2>
+      <p>Karten-Apps zeigen dir die Linie, am Bahnsteig hängen aber nur Schilder mit Stationsnamen, die du noch nie gehört hast. Steigst du in die falsche Richtung, fährst du mehrere Stationen zurück. Verpasst du die Ansage, fährst du an deinem Ziel vorbei. KORA nennt deinen Zug so, wie er auf dem Schild steht, und warnt dich vor deiner Station.</p>
+    </section>
 
-    <h2>Abdeckung</h2>
-    <p>Rund 930 Stationen im Großraum Seoul (Seoul, Gyeonggi und Incheon, inklusive GTX-A, AREX, Shinbundang-Linie und Stadtbahnen) sowie in Busan, Daegu, Gwangju und Daejeon. Mit den Regions-Chips oben in der Stationsauswahl wechselst du die Stadt.</p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>So, wie es auf dem Schild steht</h2>
+        <p>Der richtige Zug wird genau so angezeigt, wie sein Ziel am Bahnsteig und am Zug steht. Unsicher? Richte die Kamera auf das Bahnsteigschild oder die Zielanzeige des Zugs, und KORA sagt dir sofort, ob die Richtung stimmt.<br>Die Texterkennung läuft komplett auf deinem iPhone.</p>
+      </div>
+      <div class="phone"><img src="../img/de/board.jpg" alt="So, wie es auf dem Schild steht" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <h2>Datenschutz ab Werk</h2>
-    <p>Kein Konto, keine Werbung, keine In-App-Käufe und kein eigener Server. Standort, Kamera und Durchsagenerkennung werden auf deinem Gerät verarbeitet und nie gespeichert oder versendet. Wir erfassen nur anonyme Nutzungsstatistiken. Details in der <a href="privacy.html">Datenschutzerklärung</a>.</p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Nie wieder vorbeifahren</h2>
+        <p>KORA kombiniert Echtzeit-Ankünfte, GPS, Anfahren und Halten des Zugs sowie die Ansagen im Zug, um zu wissen, wo du bist. Kurz vor deinem Ziel kommt „Bald aussteigen“, dann „Jetzt aussteigen!“, jeweils mit Vibration.<br>Den Fahrtfortschritt siehst du auch auf dem Sperrbildschirm und in der Dynamic Island.</p>
+      </div>
+      <div class="phone"><img src="../img/de/ride.jpg" alt="Nie wieder vorbeifahren" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <div class="contact">
-      Fehler gefunden oder eine Idee? Schreib an <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a>. Häufige Fragen beantwortet die <a href="support.html">Hilfe</a>.
-    </div>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>23 Sprachen, koreanische Namen bleiben</h2>
+        <p>Die ganze App gibt es in 23 Sprachen, sie startet in der Sprache deines iPhones. Stationsnamen stehen im koreanischen Original neben der lateinischen Schreibweise von den Schildern, so findest du sie am Bahnsteig sofort wieder.</p>
+      </div>
+      <div class="phone"><img src="../img/de/language.jpg" alt="23 Sprachen, koreanische Namen bleiben" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>In drei Schritten los</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Start festlegen</h3><p>GPS findet die nächste Station, oder du wählst selbst.</p></li>
+<li class="card"><span class="n">2</span><h3>Ziel wählen</h3><p>Umstiege, Stationen und der richtige Zug erscheinen sofort.</p></li>
+<li class="card"><span class="n">3</span><h3>Auf „Los geht's“ tippen</h3><p>Bildschirm und Vibration sagen dir, wann du aussteigen musst.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>Wofür die Berechtigungen sind</h2>
+      <div class="card table">
+        <dl><div><dt>Standort</dt><dd>Die nächste Station finden</dd></div><div><dt>Kamera</dt><dd>Bahnsteigschilder und Zielanzeigen lesen, um die Richtung zu prüfen</dd></div><div><dt>Mikrofon und Spracherkennung</dt><dd>Stationsnamen und Ausstiegsseite aus den Ansagen im Zug heraushören</dd></div><div><dt>Bewegung &amp; Fitness</dt><dd>Anfahren und Halten erkennen, damit die aktuelle Station genauer stimmt</dd></div></dl>
+      </div>
+      <p class="muted">Alle Berechtigungen sind freiwillig. Ohne sie wählst du Stationen einfach selbst und bekommst trotzdem Route und Aussteige-Hinweise. Standort, Kamera und Ansagen werden nur auf deinem Gerät verarbeitet und nie aufgenommen, gespeichert oder gesendet.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Wegfinden ist immer gratis. Fahrtbegleitung gibt es mit KORA Pro.</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>Gratis</h3>
+          <ul><li>Routensuche und Umstiege</li><li>Das Zielschild des richtigen Zugs</li><li>Echtzeit-Ankünfte</li><li>Richtungscheck mit der Kamera</li><li>Aktuelle Station und Aussteige-Hinweis auf dem Bildschirm</li><li>Alle Pro-Funktionen auf deinen ersten drei Fahrten</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>KORA Pro</h3>
+          <ul><li>Auf jeder Fahrt: Hinweise auf dem Sperrbildschirm, Erkennung der Ansagen und Vibration beim Aussteigen</li><li>Ausgänge: was an jedem Ausgang der Seouler Linien 1 bis 8 liegt</li><li>Letzte-Bahn-Hinweis für die Linien 1 bis 9</li><li>Gepäckmodus: der Wagen am nächsten zum Aufzug auf den Linien 1 bis 8</li></ul>
+          <p class="muted">Einmal kaufen, für immer behalten. Kein Abo.</p>
+        </div>
+      </div>
+      <p class="muted">Sind die Gratisfahrten aufgebraucht, kannst du trotzdem weiterfahren. Die Anzeige im Bildschirm bleibt, nur Sperrbildschirm, Ansagenerkennung und Vibration pausieren.</p>
+    </section>
+
+    <section class="reveal" id="faq">
+      <h2>Häufige Fragen</h2>
+      <div class="faq"><details><summary>Die App findet meine Station nicht oder zeigt die falsche.</summary><p>Öffne Einstellungen &gt; Datenschutz &amp; Sicherheit &gt; Ortungsdienste &gt; KORA, wähle „Beim Verwenden der App“ und aktiviere „Genauer Standort“. Unter der Erde oder in großen Gebäuden ist GPS oft ungenau. Tippe dann oben auf die Karte der aktuellen Station und wähle sie selbst. Alles funktioniert auch ohne Standortzugriff.</p></details>
+<details><summary>Wie funktioniert der Richtungscheck mit der Kamera?</summary><p>Sobald die Route angezeigt wird, öffne den Kamera-Richtungscheck und fülle das Bild mit dem Bahnsteigschild oder der Zielanzeige des Zugs. Am besten klappt es mit der koreanischen Schrift. Ist das Schild dunkel, weit weg oder sehr schräg, geh etwas näher heran und halte gerade drauf. Das Ergebnis ist eine Hilfe, im Zweifel schau auch auf die Schilder in der Station.</p></details>
+<details><summary>Echtzeit-Ankünfte werden nicht angezeigt.</summary><p>Die Echtzeitdaten kommen vom Seoul Open Data Plaza, brauchen Internet und gibt es vor allem für Linien im Großraum Seoul. Ohne Verbindung oder Echtzeitdaten schätzt KORA die Position automatisch anhand des Fahrplans, GPS und des Beschleunigungssensors und führt dich weiter. Die Routensuche klappt auch offline.</p></details>
+<details><summary>Der Aussteige-Hinweis kam etwas zu früh oder zu spät.</summary><p>Unter der Erde ist GPS schwach, deshalb kann die aktuelle Station hinterherhinken. Erlaubst du das Mikrofon, korrigiert KORA die Position anhand der Ansagen im Zug. Die Hinweise sind eine Hilfe, hör also auch auf die Ansagen und achte auf die Stationsschilder.</p></details>
+<details><summary>Wie ändere ich die Sprache?</summary><p>KORA startet in der Sprache deines iPhones. Halte auf dem Hauptbildschirm eine Stationskarte (aktuelle Station oder Ziel) gedrückt, dann öffnet sich die Sprachauswahl mit 23 Sprachen.</p></details>
+<details><summary>Die Live-Aktivität erscheint nicht auf dem Sperrbildschirm.</summary><p>Prüfe unter Einstellungen &gt; Apps &gt; KORA (bei älterem iOS Einstellungen &gt; KORA), ob Live-Aktivitäten eingeschaltet sind. Sie erscheint, sobald du die Fahrtbegleitung startest, und endet, wenn du die App ganz schließt. Die Dynamic Island gibt es nur auf iPhone-Modellen, die sie haben.</p></details>
+<details><summary>Welche Städte sind dabei?</summary><p>Rund 930 Stationen im Großraum Seoul (Seoul, Gyeonggi und Incheon, inklusive GTX-A, AREX, Shinbundang-Linie und Stadtbahnen), in Busan, Daegu, Gwangju und Daejeon. Die Stadt wechselst du mit den Regions-Chips oben in der Stationsauswahl.</p></details>
+<details><summary>Kann ich die App schon vor der Reise ausprobieren?</summary><p>Ja. Wähle Start und Ziel selbst, dann siehst du Routen, Umstiege und Fahrtrichtung von überall auf der Welt.</p></details>
+<details><summary>Ist KORA Pro ein Abo?</summary><p>Nein. Du kaufst es einmal und behältst es, auch mit der Familienfreigabe. Nach einer Neuinstallation tippst du im Pro-Bildschirm auf „Kauf wiederherstellen“.</p></details>
+<details><summary>Was passiert mit meinen Daten?</summary><p>Kein Konto, keine Werbung. Standort, Kamera und Ansagenerkennung werden auf deinem Gerät verarbeitet und nie gespeichert oder gesendet. Wir erfassen nur anonyme Nutzungsstatistiken, um die App zu verbessern.</p></details>
+<details><summary>Ist die App barrierefrei?</summary><p>KORA unterstützt VoiceOver und größere Schrift. Vorschläge für mehr Barrierefreiheit sind jederzeit willkommen.</p></details></div>
+      <p class="contact">Station fehlt, Name falsch oder eine andere Frage? Schreib an <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a>. Mit App-Version, iPhone-Modell und den genutzten Stationen können wir schneller helfen.</p>
+    </section>
+
+    <section class="closing reveal">
+      <h2>Auf der nächsten Reise<br>sicher in den richtigen Zug</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6775176578">Gratis im App Store laden</a>
+    </section>
   </main>
 
-  <footer class="site">
-    © 2026 Leeo · <a href="support.html">Hilfe</a> · <a href="privacy.html">Datenschutz</a>
+  <footer>
+    <nav id="languages" class="langs" aria-label="Sprache"><a href="../ko/" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../de/" hreflang="de" lang="de" aria-current="page">Deutsch</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Bahasa Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a></nav>
+    <p><a href="privacy.html">Datenschutzerklärung</a> · <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> · © 2026 Leeo</p>
   </footer>
-</div>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

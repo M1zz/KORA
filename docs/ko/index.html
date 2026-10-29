@@ -1,132 +1,193 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>KORA: 여행자를 위한 한국 지하철 안내</title>
-<meta name="description" content="출발역과 도착역만 고르면 환승, 소요 시간, 타는 방향을 알려 주고 탑승 중에는 내릴 역을 알려 주는 한국 지하철 안내 앱. 서울·수도권, 부산, 대구, 광주, 대전 지원.">
-<link rel="canonical" href="https://m1zz.github.io/KORA/ko/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
-<link rel="stylesheet" href="../style.css">
-<link rel="icon" href="../icon.png">
-<link rel="apple-touch-icon" href="../icon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KORA: 여행자를 위한 한국 지하철 안내</title>
+  <meta name="description" content="출발역과 도착역만 고르면 환승, 정거장 수, 타야 할 열차의 ○○행 표시까지 알려 주고, 탑승 중에는 내릴 역을 알려 주는 지하철 안내 앱입니다.">
+  <meta name="theme-color" content="#CD2E3A" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0d0f" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6775176578">
+  <link rel="canonical" href="https://m1zz.github.io/KORA/ko/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KORA: 여행자를 위한 한국 지하철 안내">
+  <meta property="og:description" content="출발역과 도착역만 고르면 환승, 정거장 수, 타야 할 열차의 ○○행 표시까지 알려 주고, 탑승 중에는 내릴 역을 알려 주는 지하철 안내 앱입니다.">
+  <meta property="og:url" content="https://m1zz.github.io/KORA/ko/">
+  <meta property="og:image" content="https://m1zz.github.io/KORA/img/ko/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../sitegen.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#CD2E3A}@media (prefers-color-scheme:dark){:root{--accent:#E5505B}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-<div class="container">
-
-  <header class="site">
-    <img src="../icon.png" alt="KORA 앱 아이콘">
-    <div>
-      <div class="title">KORA</div>
-      <div class="subtitle">여행자를 위한 한국 지하철 안내</div>
-    </div>
+  <a class="skip" href="#main">본문으로 건너뛰기</a>
+  <header class="bar">
+    <a class="brand" href="../ko/"><img src="../icon.png" alt="" width="32" height="32">KORA</a>
+    <a class="lang-link" href="#languages">언어</a>
   </header>
 
-  <nav class="langs" aria-label="언어 선택">
-    <a href="../ko/index.html" hreflang="ko" lang="ko" aria-current="true">한국어</a>
-    <a href="../en/index.html" hreflang="en" lang="en">English</a>
-    <a href="../ja/index.html" hreflang="ja" lang="ja">日本語</a>
-    <a href="../zh-Hans/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
-    <a href="../zh-Hant/index.html" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
-  </nav>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>타는 방향부터<br>내릴 역까지</h1>
+        <p class="lead">출발역과 도착역만 고르면 타야 할 열차를 승강장에 걸린 “○○행” 표시 그대로 알려 드립니다. 탑승 중에는 지금 어느 역인지 따라가다가 내릴 때가 되면 알려 드립니다.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6775176578">App Store에서 무료로 받기</a><a class="try" href="#try">직접 타 보세요 ↓</a></div>
+        <p class="muted small">길찾기, 타는 방향, 실시간 도착 정보는 무료입니다.</p>
+      </div>
+      <div class="phone"><img src="../img/ko/route.jpg" alt="타는 방향부터 내릴 역까지" width="600" height="1303" decoding="async"></div>
+    </section>
 
-  <nav class="pages" aria-label="페이지">
-    <a href="index.html" aria-current="page">홈</a>
-    <a href="support.html">지원</a>
-    <a href="privacy.html">개인정보 처리방침</a>
-  </nav>
 
-  <main>
-<h1>타는 방향부터 내릴 역까지, 한 화면에서</h1>
-    <p class="lead">
-      KORA는 한국을 여행하는 사람을 위한 지하철 안내 앱입니다.
-      출발역과 도착역만 고르면 환승, 정거장 수, 예상 시간, 그리고 어느 방향 열차를 타야 하는지
-      열차에 표시되는 “○○행” 그대로 알려 드립니다.
-      탑승 중에는 지금 어느 역인지 따라가다가 내릴 때가 되면 알려 드립니다.
-    </p>
+    <section class="reveal" id="try">
+      <h2>직접 타 보세요</h2>
+      <p class="muted">공항철도 홍대입구역에서 출발합니다. 내릴 역을 고르고 출발하기를 누르면, 앱처럼 타는 방향과 하차 알림이 차례로 나옵니다.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;직접 타 보세요&quot;, &quot;lead&quot;: &quot;공항철도 홍대입구역에서 출발합니다. 내릴 역을 고르고 출발하기를 누르면, 앱처럼 타는 방향과 하차 알림이 차례로 나옵니다.&quot;, &quot;from&quot;: &quot;출발&quot;, &quot;pick&quot;: &quot;어디서 내리세요?&quot;, &quot;take&quot;: &quot;이 열차를 타세요&quot;, &quot;again&quot;: &quot;다시 타 보기&quot;, &quot;note&quot;: &quot;웹 체험은 역이 빠르게 지나가도록 줄인 것입니다. 앱은 실시간 도착 정보와 GPS, 안내방송으로 실제 위치를 따라갑니다.&quot;, &quot;calm&quot;: &quot;내릴 역&quot;, &quot;prepare&quot;: &quot;곧 내릴 준비하세요&quot;, &quot;imminent&quot;: &quot;다음 정거장에서 내리세요&quot;, &quot;now&quot;: &quot;지금 내리세요!&quot;, &quot;bound&quot;: &quot;{0}행&quot;, &quot;onBoard&quot;: &quot;탑승 중&quot;, &quot;current&quot;: &quot;현재 역&quot;, &quot;go&quot;: &quot;출발하기&quot;, &quot;before&quot;: &quot;탑승 전&quot;, &quot;left&quot;: {&quot;other&quot;: &quot;내릴 곳까지 {0}정거장&quot;}}"></div>
+    </section>
 
-    <h2>주요 기능</h2>
-    <div class="features">
-      <div class="card">
-        <h3>출발역은 자동으로</h3>
-        <p>GPS로 가장 가까운 역을 찾거나 직접 고를 수 있습니다. 고른 역은 다음에 앱을 열 때도 기억합니다.</p>
-      </div>
-      <div class="card">
-        <h3>경로와 타는 방향</h3>
-        <p>환승, 정거장 수, 예상 소요 시간과 함께 타야 할 열차를 “○○행” 표시로 보여 줍니다.</p>
-      </div>
-      <div class="card">
-        <h3>카메라로 방향 확인</h3>
-        <p>승강장 표지판이나 열차 행선지 표시를 카메라로 비추면 맞는 방향인지 알려 줍니다. 글자 인식은 기기 안에서만 이뤄집니다.</p>
-      </div>
-      <div class="card">
-        <h3>지금 어느 역인지</h3>
-        <p>서울 실시간 도착 정보, GPS, 가속도계(출발·정차 감지), 차내 안내방송 인식을 함께 써서 현재 역을 따라갑니다. 안내방송에서 내리는 문 방향도 알려 드립니다.</p>
-      </div>
-      <div class="card">
-        <h3>내릴 역 알림</h3>
-        <p>내릴 역이 가까워지면 “곧 내릴 준비하세요”, 도착하면 “지금 내리세요!”를 진동과 함께 알려 드립니다. 노선 진행도에 열차 아이콘과 도착역 핀이 표시됩니다.</p>
-      </div>
-      <div class="card">
-        <h3>잠금 화면과 Dynamic Island</h3>
-        <p>탑승 중에는 라이브 액티비티로 휴대폰을 열지 않고도 진행 상황을 볼 수 있습니다.</p>
-      </div>
-      <div class="card">
-        <h3>23개 언어</h3>
-        <p>앱 화면을 한국어, 영어, 일본어, 중국어와 독일어, 프랑스어, 스페인어, 태국어, 베트남어 등 23개 언어로 쓸 수 있고, 기본값은 휴대폰 언어입니다. 역 이름은 한글과 함께 가타카나, 한자, 또는 역 표지판의 영문 표기로 보여 줍니다.</p>
-      </div>
-      <div class="card">
-        <h3>오프라인 경로 검색</h3>
-        <p>경로 검색은 인터넷 없이 기기 안에서 계산합니다. 실시간 도착 정보만 네트워크가 필요합니다.</p>
-      </div>
-    </div>
+    <section class="problem reveal">
+      <h2>승강장에서 어느 쪽 열차를 타야 할지 망설인 적 있나요?</h2>
+      <p>지도 앱은 노선만 알려 주고, 승강장에는 낯선 역 이름이 적힌 “○○행” 표지판만 있습니다. 반대 방향을 타면 몇 정거장을 되돌아와야 하고, 안내방송을 놓치면 내릴 역을 지나칩니다. KORA는 탈 열차를 표지판과 같은 말로 알려 주고, 내릴 역이 가까워지면 먼저 알려 드립니다.</p>
+    </section>
 
-    <h2>지원 지역</h2>
-    <p>
-      수도권(서울, 경기, 인천 — GTX-A, 공항철도, 신분당선, 경전철 포함), 부산, 대구, 광주, 대전의
-      약 930개 역을 지원합니다. 역 선택 화면 위쪽의 지역 칩으로 도시를 바꿀 수 있습니다.
-    </p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>표지판과 같은 말로 알려 드립니다</h2>
+        <p>타야 할 열차를 승강장과 열차에 적힌 “○○행” 그대로 보여 드립니다. 헷갈리면 승강장 표지판이나 열차 행선지 표시를 카메라로 비춰 보세요. 지금 타려는 방향이 맞는지 바로 알려 줍니다.<br>글자 인식은 기기 안에서만 이뤄집니다.</p>
+      </div>
+      <div class="phone"><img src="../img/ko/board.jpg" alt="표지판과 같은 말로 알려 드립니다" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <h2>개인정보를 아낍니다</h2>
-    <p>
-      회원가입과 광고가 없고 개발자가 운영하는 서버도 없습니다.
-      위치, 카메라, 안내방송 인식은 모두 기기 안에서 처리되며 저장하거나 전송하지 않습니다.
-      앱 개선을 위해 익명 이용 통계만 수집합니다. 자세한 내용은 <a href="privacy.html">개인정보 처리방침</a>을 참고해 주세요.
-    </p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>내릴 역을 놓치지 않습니다</h2>
+        <p>실시간 도착 정보, GPS, 열차의 출발과 정차, 차내 안내방송을 함께 써서 지금 어느 역인지 따라갑니다. 내릴 역이 가까워지면 “곧 내릴 준비하세요”, 도착하면 “지금 내리세요!”를 진동과 함께 알려 드립니다.<br>잠금 화면과 Dynamic Island에서도 진행 상황이 보입니다.</p>
+      </div>
+      <div class="phone"><img src="../img/ko/ride.jpg" alt="내릴 역을 놓치지 않습니다" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <div class="contact">
-      문제가 있거나 제안이 있으신가요? <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> 으로 보내 주세요.
-      자주 묻는 질문은 <a href="support.html">지원</a> 페이지에 있습니다.
-    </div>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>23개 언어, 역 이름은 원문 그대로</h2>
+        <p>앱 화면을 23개 언어로 쓸 수 있고 처음에는 휴대폰 언어를 따릅니다. 역 이름은 한글 원문과 함께 가타카나, 한자, 또는 역 표지판의 영문 표기로 보여 줘서 승강장에서 바로 맞춰 볼 수 있습니다.</p>
+      </div>
+      <div class="phone"><img src="../img/ko/language.jpg" alt="23개 언어, 역 이름은 원문 그대로" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>시작은 세 단계면 됩니다</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>출발역을 정합니다</h3><p>GPS로 가장 가까운 역을 찾거나 직접 고릅니다.</p></li>
+<li class="card"><span class="n">2</span><h3>도착역을 고릅니다</h3><p>환승, 정거장 수, 타야 할 열차가 바로 나옵니다.</p></li>
+<li class="card"><span class="n">3</span><h3>출발하기를 누릅니다</h3><p>내릴 때가 되면 화면과 진동으로 알려 드립니다.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>권한은 이렇게 씁니다</h2>
+      <div class="card table">
+        <dl><div><dt>위치</dt><dd>가장 가까운 역 찾기</dd></div><div><dt>카메라</dt><dd>승강장 표지판과 열차 행선지 표시를 읽어 방향 확인</dd></div><div><dt>마이크와 음성 인식</dt><dd>차내 안내방송에서 역 이름과 내리는 문 방향 알아듣기</dd></div><div><dt>동작 및 피트니스</dt><dd>열차의 출발과 정차를 감지해 현재 역을 더 정확하게</dd></div></dl>
+      </div>
+      <p class="muted">모든 권한은 선택 사항입니다. 허용하지 않아도 역을 직접 골라 경로 안내와 하차 알림을 쓸 수 있습니다. 위치, 카메라, 안내방송은 기기 안에서만 처리하고 녹음하거나 저장, 전송하지 않습니다.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>길찾기는 늘 무료, 탑승 안내는 KORA Pro</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>무료</h3>
+          <ul><li>경로 검색과 환승 안내</li><li>타야 할 열차의 “○○행” 표시</li><li>실시간 도착 정보</li><li>카메라로 방향 확인</li><li>탑승 중 현재 역과 하차 안내 화면</li><li>처음 세 번의 여정은 Pro 기능도 모두</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>KORA Pro</h3>
+          <ul><li>모든 여정에서 잠금 화면 안내, 안내방송 인식, 하차 진동 알림</li><li>출구 안내: 서울 지하철 1~8호선 출구별 주변 장소</li><li>막차 알림: 1~9호선 막차 시간</li><li>캐리어 모드: 1~8호선에서 엘리베이터와 가까운 칸</li></ul>
+          <p class="muted">한 번 결제로 계속 씁니다. 구독이 아닙니다.</p>
+        </div>
+      </div>
+      <p class="muted">무료 여정이 끝나도 탑승을 막지 않습니다. 화면 안 진행 표시는 그대로 두고 잠금 화면 안내, 안내방송 인식, 진동만 쉽니다.</p>
+    </section>
+
+    <section class="reveal" id="faq">
+      <h2>자주 묻는 질문</h2>
+      <div class="faq"><details><summary>가까운 역을 못 찾거나 엉뚱한 역이 나와요.</summary><p>설정 &gt; 개인정보 보호 및 보안 &gt; 위치 서비스 &gt; KORA에서 “앱을 사용하는 동안”을 고르고 “정확한 위치”를 켜 주세요. 지하나 큰 건물 안에서는 GPS가 부정확할 수 있으니, 화면 위쪽의 현재 역 카드를 눌러 역을 직접 고르면 됩니다. 위치 권한 없이도 모든 기능을 쓸 수 있습니다.</p></details>
+<details><summary>카메라 방향 확인은 어떻게 쓰나요?</summary><p>경로가 나온 뒤 카메라 방향 확인을 열고, 승강장 표지판이나 열차 행선지 표시(“○○행”)를 화면에 크게 비춥니다. 한글 표시를 비출 때 가장 정확합니다. 너무 어둡거나 멀거나 비스듬하면 조금 가까이서 정면으로 비춰 보세요. 결과는 참고용이니 헷갈리면 역의 안내 표지판도 함께 확인해 주세요.</p></details>
+<details><summary>실시간 도착 정보가 안 나와요.</summary><p>실시간 도착 정보는 서울 열린데이터광장이 제공하며 인터넷 연결이 필요하고, 주로 수도권 노선에서 나옵니다. 네트워크가 없거나 그 노선에 실시간 정보가 없으면 시간표 기반 추정과 GPS, 가속도계로 자동 전환해 계속 안내합니다. 경로 검색은 인터넷 없이도 됩니다.</p></details>
+<details><summary>하차 알림이 조금 빠르거나 늦어요.</summary><p>지하 구간에서는 GPS 신호가 약해 현재 역 추정이 늦어질 수 있습니다. 마이크 권한을 허용하면 차내 안내방송으로 위치를 보정해 더 정확해집니다. 알림은 참고용이니 안내방송과 역 표지판도 함께 확인해 주세요.</p></details>
+<details><summary>언어는 어떻게 바꾸나요?</summary><p>처음에는 휴대폰 언어를 따릅니다. 메인 화면의 역 카드(현재 역 또는 도착역)를 길게 누르면 언어 선택 창이 열리고, 23개 언어 중에서 고를 수 있습니다.</p></details>
+<details><summary>잠금 화면에 라이브 액티비티가 안 보여요.</summary><p>설정 &gt; 앱 &gt; KORA(이전 iOS에서는 설정 &gt; KORA)에서 “실시간 현황”이 켜져 있는지 확인해 주세요. 라이브 액티비티는 탑승 안내를 시작하면 나타나고, 앱을 완전히 종료하면 함께 끝납니다. Dynamic Island는 이를 지원하는 iPhone에서만 보입니다.</p></details>
+<details><summary>어떤 도시를 지원하나요?</summary><p>수도권(서울, 경기, 인천, GTX-A, 공항철도, 신분당선, 경전철 포함), 부산, 대구, 광주, 대전의 약 930개 역입니다. 역 선택 화면 위쪽의 지역 칩으로 도시를 바꿀 수 있습니다.</p></details>
+<details><summary>한국에 가기 전에 미리 써 볼 수 있나요?</summary><p>네. 출발역과 도착역을 직접 고르면 어디서든 경로, 환승, 타는 방향을 미리 확인할 수 있습니다.</p></details>
+<details><summary>KORA Pro는 구독인가요?</summary><p>아니요. 한 번 결제로 계속 쓰는 평생 이용권이고 가족 공유도 됩니다. 앱을 다시 설치했다면 결제 화면에서 구매 복원을 누르면 됩니다.</p></details>
+<details><summary>개인정보는 어떻게 다루나요?</summary><p>회원가입과 광고가 없습니다. 위치, 카메라, 안내방송 인식은 모두 기기 안에서 처리하며 저장하거나 전송하지 않습니다. 앱 개선을 위한 익명 이용 통계만 수집합니다.</p></details>
+<details><summary>접근성을 지원하나요?</summary><p>VoiceOver와 큰 글자 크기를 지원합니다. 접근성 관련 개선 요청은 언제든 환영합니다.</p></details></div>
+      <p class="contact">역이 없거나 이름이 이상하면, 또는 궁금한 점은 <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a>로 보내 주세요. 앱 버전, iPhone 모델, 이용한 역을 함께 적어 주시면 더 빨리 확인할 수 있습니다.</p>
+    </section>
+
+    <section class="closing reveal">
+      <h2>다음 여행에서는<br>승강장에서 헤매지 마세요</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6775176578">App Store에서 무료로 받기</a>
+    </section>
   </main>
 
-  <footer class="site">
-    © 2026 Leeo · <a href="support.html">지원</a> · <a href="privacy.html">개인정보 처리방침</a>
+  <footer>
+    <nav id="languages" class="langs" aria-label="언어"><a href="../ko/" hreflang="ko" lang="ko" aria-current="page">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Bahasa Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a></nav>
+    <p><a href="privacy.html">개인정보 처리방침</a> · <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> · © 2026 Leeo</p>
   </footer>
-</div>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

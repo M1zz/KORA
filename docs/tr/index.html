@@ -1,137 +1,193 @@
 <!doctype html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>KORA: gezginler için Kore metro rehberi</title>
-<meta name="description" content="Nerede olduğunu ve nereye gittiğini seç: KORA aktarmaları, süreyi ve biniş yönünü gösterir, inme zamanında haber verir. Seul bölgesi, Busan, Daegu, Gwangju ve Daejeon.">
-<link rel="canonical" href="https://m1zz.github.io/KORA/tr/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
-<link rel="stylesheet" href="../style.css">
-<link rel="icon" href="../icon.png">
-<link rel="apple-touch-icon" href="../icon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KORA: gezginler için Kore metro rehberi</title>
+  <meta name="description" content="Nereden nereye gideceğini seç: KORA aktarmaları ve binmen gereken trenin tabelasını aynen gösterir, yolda ne zaman ineceğini söyler.">
+  <meta name="theme-color" content="#CD2E3A" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0d0f" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6775176578">
+  <link rel="canonical" href="https://m1zz.github.io/KORA/tr/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KORA: gezginler için Kore metro rehberi">
+  <meta property="og:description" content="Nereden nereye gideceğini seç: KORA aktarmaları ve binmen gereken trenin tabelasını aynen gösterir, yolda ne zaman ineceğini söyler.">
+  <meta property="og:url" content="https://m1zz.github.io/KORA/tr/">
+  <meta property="og:image" content="https://m1zz.github.io/KORA/img/tr/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../sitegen.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#CD2E3A}@media (prefers-color-scheme:dark){:root{--accent:#E5505B}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-<div class="container">
-
-  <header class="site">
-    <img src="../icon.png" alt="KORA uygulama simgesi">
-    <div>
-      <div class="title">KORA</div>
-      <div class="subtitle">Gezginler için Kore metro rehberi</div>
-    </div>
+  <a class="skip" href="#main">İçeriğe geç</a>
+  <header class="bar">
+    <a class="brand" href="../tr/"><img src="../icon.png" alt="" width="32" height="32">KORA</a>
+    <a class="lang-link" href="#languages">Dil</a>
   </header>
 
-  <nav class="langs" aria-label="Language">
-    <a href="../ko/index.html" hreflang="ko" lang="ko">한국어</a>
-    <a href="../en/index.html" hreflang="en" lang="en">English</a>
-    <a href="../ja/index.html" hreflang="ja" lang="ja">日本語</a>
-    <a href="../zh-Hans/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
-    <a href="../zh-Hant/index.html" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
-    <a href="../de/index.html" hreflang="de" lang="de">Deutsch</a>
-    <a href="../es/index.html" hreflang="es" lang="es">Español</a>
-    <a href="../fr/index.html" hreflang="fr" lang="fr">Français</a>
-    <a href="../it/index.html" hreflang="it" lang="it">Italiano</a>
-    <a href="../pt-BR/index.html" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
-    <a href="../ru/index.html" hreflang="ru" lang="ru">Русский</a>
-    <a href="../cs/index.html" hreflang="cs" lang="cs">Čeština</a>
-    <a href="../da/index.html" hreflang="da" lang="da">Dansk</a>
-    <a href="../el/index.html" hreflang="el" lang="el">Ελληνικά</a>
-    <a href="../fi/index.html" hreflang="fi" lang="fi">Suomi</a>
-    <a href="../id/index.html" hreflang="id" lang="id">Bahasa Indonesia</a>
-    <a href="../nb/index.html" hreflang="nb" lang="nb">Norsk</a>
-    <a href="../nl/index.html" hreflang="nl" lang="nl">Nederlands</a>
-    <a href="../pl/index.html" hreflang="pl" lang="pl">Polski</a>
-    <a href="../sv/index.html" hreflang="sv" lang="sv">Svenska</a>
-    <a href="../th/index.html" hreflang="th" lang="th">ไทย</a>
-    <a href="../tr/index.html" hreflang="tr" lang="tr" aria-current="true">Türkçe</a>
-    <a href="../vi/index.html" hreflang="vi" lang="vi">Tiếng Việt</a>
-  </nav>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Doğru peron.<br>Doğru durak.</h1>
+        <p class="lead">Başlangıç ve varış istasyonunu seç, KORA hangi trene bineceğini peron tabelasında yazdığı gibi söylesin. Yolculuk boyunca hangi istasyonda olduğunu izler, inme zamanı gelince haber verir.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6775176578">Ücretsiz indir</a><a class="try" href="#try">Bir deneme yolculuğu yap ↓</a></div>
+        <p class="muted small">Rota arama, trenin yönü ve gerçek zamanlı varışlar ücretsizdir.</p>
+      </div>
+      <div class="phone"><img src="../img/tr/route.jpg" alt="Doğru peron. Doğru durak." width="600" height="1303" decoding="async"></div>
+    </section>
 
-  <nav class="pages" aria-label="Pages">
-    <a href="index.html" aria-current="page">Ana Sayfa</a>
-    <a href="support.html">Destek</a>
-    <a href="privacy.html">Gizlilik</a>
-  </nav>
 
-  <main>
-<h1>Doğru perondan doğru durağa</h1>
-    <p class="lead">KORA, Kore'yi gezen herkes için bir metro rehberi. Başlangıç ve varış istasyonunu seç; aktarmaları, durak sayısını, tahmini süreyi ve biniş yönünü trenin tabelasında yazdığı gibi göstersin. Yolculuk boyunca istasyonunu takip eder ve inme zamanı gelince haber verir.</p>
+    <section class="reveal" id="try">
+      <h2>Bir deneme yolculuğu yap</h2>
+      <p class="muted">AREX hattında Hongik Univ. istasyonundasın. İneceğin yeri seç ve Yolculuğa başla’ya dokun; trenin yönünü ve inme uyarılarını uygulamadaki gibi gör.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Bir deneme yolculuğu yap&quot;, &quot;lead&quot;: &quot;AREX hattında Hongik Univ. istasyonundasın. İneceğin yeri seç ve Yolculuğa başla’ya dokun; trenin yönünü ve inme uyarılarını uygulamadaki gibi gör.&quot;, &quot;from&quot;: &quot;Nereden&quot;, &quot;pick&quot;: &quot;Nerede ineceksin?&quot;, &quot;take&quot;: &quot;Bu trene bin&quot;, &quot;again&quot;: &quot;Tekrar bin&quot;, &quot;note&quot;: &quot;Bu web denemesinde istasyonlar hızla geçer. Uygulama gerçek konumunu gerçek zamanlı varışlar, GPS ve tren içi anonslarla izler.&quot;, &quot;left&quot;: {&quot;other&quot;: &quot;{0} durak kaldı&quot;}, &quot;calm&quot;: &quot;İneceğin istasyon&quot;, &quot;prepare&quot;: &quot;İnmeye hazırlan&quot;, &quot;imminent&quot;: &quot;Sonraki istasyonda in&quot;, &quot;now&quot;: &quot;Şimdi in!&quot;, &quot;bound&quot;: &quot;{0} yönü&quot;, &quot;onBoard&quot;: &quot;Trende&quot;, &quot;current&quot;: &quot;Bulunduğun istasyon&quot;, &quot;go&quot;: &quot;Yolculuğa başla&quot;, &quot;before&quot;: &quot;Binmeden önce&quot;}"></div>
+    </section>
 
-    <h2>Özellikler</h2>
-    <div class="features">
-      <div class="card">
-        <h3>İstasyonun senin için bulunur</h3>
-        <p>En yakın istasyonu GPS ile bul ya da kendin seç. KORA bir sonraki açılışta hatırlar.</p>
-      </div>
-      <div class="card">
-        <h3>Rota ve biniş yönü</h3>
-        <p>Aktarmalar, duraklar ve süre, üstüne binmen gereken tren, tabelasında yazdığı gibi.</p>
-      </div>
-      <div class="card">
-        <h3>Yönü kamerayla kontrol et</h3>
-        <p>Kamerayı tabelaya ya da trenin gideceği yer tabelasına tut, KORA yönün doğru olup olmadığını söylesin. Metin tanıma tamamen iPhone'da yapılır.</p>
-      </div>
-      <div class="card">
-        <h3>Nerede olduğunu hep bil</h3>
-        <p>Seul'ün gerçek zamanlı varış verileri, GPS, ivmeölçer ve vagondaki anonsların cihazda tanınması istasyonunu ve kapıların hangi taraftan açılacağını gösterir.</p>
-      </div>
-      <div class="card">
-        <h3>İniş uyarıları</h3>
-        <p>Durağa yaklaşınca "İnmeye hazırlan", sonra "Şimdi in!" uyarısı titreşimle gelir. Şemada tren ve varış noktası görünür.</p>
-      </div>
-      <div class="card">
-        <h3>Kilitli Ekran ve Dynamic Island</h3>
-        <p>Canlı Etkinlik, kilidi açmadan yolculuğun ilerleyişini gösterir.</p>
-      </div>
-      <div class="card">
-        <h3>23 dil</h3>
-        <p>Uygulamanın tamamı Türkçe ve 22 dilde daha. İstasyon adları Korece aslıyla birlikte tabelalardaki Latin harfli yazımla gösterilir.</p>
-      </div>
-      <div class="card">
-        <h3>Çevrimdışı rota arama</h3>
-        <p>Rotalar cihazda hesaplanır. Yalnızca gerçek zamanlı varışlar internet kullanır.</p>
-      </div>
-    </div>
+    <section class="problem reveal">
+      <h2>Peronda hangi trene bineceğini bilemediğin oldu mu?</h2>
+      <p>Harita uygulamaları hattı söyler ama peronda yalnızca hiç duymadığın istasyon adlarının yazdığı tabelalar vardır. Ters yöne binersen birkaç durak geri dönersin. Anonsu kaçırırsan durağını geçersin. KORA treni tabelanın söylediği gibi adlandırır ve durağından önce seni uyarır.</p>
+    </section>
 
-    <h2>Kapsam</h2>
-    <p>Seul metropol bölgesinde (Seul, Gyeonggi ve Incheon; GTX-A, AREX, Shinbundang Hattı ve hafif raylılar dahil), Busan, Daegu, Gwangju ve Daejeon'da yaklaşık 930 istasyon. İstasyon seçicinin üstündeki bölge düğmeleriyle şehir değiştir.</p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Tabeladaki kelimelerle</h2>
+        <p>Binmen gereken tren, varış yeri peronda ve trenin üstünde nasıl yazıyorsa öyle gösterilir. Emin değil misin? Kamerayı perondaki tabelaya ya da trenin gideceği yer tabelasına tut, KORA doğru yönde olup olmadığını hemen söylesin.<br>Metin tanıma tamamen iPhone’unda yapılır.</p>
+      </div>
+      <div class="phone"><img src="../img/tr/board.jpg" alt="Tabeladaki kelimelerle" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <h2>Gizlilik önce gelir</h2>
-    <p>Hesap yok, reklam yok, uygulama içi satın alma yok, kendi sunucumuz yok. Konum, kamera ve anons tanıma cihazında işlenir; asla kaydedilmez veya gönderilmez. Yalnızca anonim kullanım istatistikleri toplarız. Ayrıntılar <a href="privacy.html">Gizlilik Politikası</a>nda.</p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Durağını bir daha kaçırma</h2>
+        <p>KORA nerede olduğunu bilmek için gerçek zamanlı varışları, GPS’i, trenin kalkış ve duruşlarını ve tren içi anonsları birleştirir. Durağın yaklaşınca “İnmeye hazırlan”, ardından “Şimdi in!” uyarısı titreşimle gelir.<br>Yolculuğun ilerleyişi Kilitli Ekran’da ve Dynamic Island’da da görünür.</p>
+      </div>
+      <div class="phone"><img src="../img/tr/ride.jpg" alt="Durağını bir daha kaçırma" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <div class="contact">
-      Hata mı buldun, fikrin mi var? <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> adresine yaz. Sık sorulan sorular <a href="support.html">Destek</a> sayfasında.
-    </div>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>23 dil, Korece adlar yerinde</h2>
+        <p>Uygulamanın tamamını 23 dilde kullan; iPhone’unun diliyle açılır. İstasyon adları, tabelalardaki Latin harfli yazımın yanında Korece aslıyla gösterilir, böylece peronda hemen eşleştirirsin.</p>
+      </div>
+      <div class="phone"><img src="../img/tr/language.jpg" alt="23 dil, Korece adlar yerinde" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Üç adımda başla</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Başlangıcı belirle</h3><p>GPS en yakın istasyonu bulsun ya da kendin seç.</p></li>
+<li class="card"><span class="n">2</span><h3>Varış yerini seç</h3><p>Aktarmalar, duraklar ve doğru tren hemen görünür.</p></li>
+<li class="card"><span class="n">3</span><h3>Yolculuğa başla’ya dokun</h3><p>Ekran ve titreşim ne zaman ineceğini söyler.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>İzinler ne için</h2>
+      <div class="card table">
+        <dl><div><dt>Konum</dt><dd>En yakın istasyonu bulmak</dd></div><div><dt>Kamera</dt><dd>Yönü kontrol etmek için peron ve varış tabelalarını okumak</dd></div><div><dt>Mikrofon ve konuşma tanıma</dt><dd>Tren içi anonslardan istasyon adını ve açılacak kapı tarafını yakalamak</dd></div><div><dt>Hareket ve Fitness</dt><dd>Kalkış ve duruşları algılayıp bulunduğun istasyonu daha doğru bilmek</dd></div></dl>
+      </div>
+      <p class="muted">Tüm izinler isteğe bağlıdır. İzin vermesen de istasyonları kendin seçer, rotayı ve inme uyarılarını yine alırsın. Konum, kamera ve anonslar cihazında işlenir; asla kaydedilmez, saklanmaz ya da gönderilmez.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Yol bulmak her zaman ücretsiz. Yolculuk rehberi KORA Pro’da.</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>Ücretsiz</h3>
+          <ul><li>Rota arama ve aktarmalar</li><li>Binmen gereken trenin varış tabelası</li><li>Gerçek zamanlı varışlar</li><li>Kamerayla yön kontrolü</li><li>Ekranda bulunduğun istasyon ve inme uyarısı</li><li>İlk üç yolculukta tüm Pro özellikleri</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>KORA Pro</h3>
+          <ul><li>Her yolculukta: Kilitli Ekran rehberi, anons tanıma ve inerken titreşim</li><li>Çıkış rehberi: Seul 1–8. hatlarda her çıkışın çevresindeki yerler</li><li>1–9. hatlar için son tren uyarısı</li><li>Bavul modu: 1–8. hatlarda asansöre en yakın vagon</li></ul>
+          <p class="muted">Bir kez öde, hep senin olsun. Abonelik değil.</p>
+        </div>
+      </div>
+      <p class="muted">Ücretsiz yolculuklar bitince de binmeye devam edebilirsin. Ekrandaki ilerleme kalır; yalnızca Kilitli Ekran, anons tanıma ve titreşim durur.</p>
+    </section>
+
+    <section class="reveal" id="faq">
+      <h2>Sık sorulan sorular</h2>
+      <div class="faq"><details><summary>Uygulama istasyonumu bulamıyor ya da yanlış istasyon gösteriyor.</summary><p>Ayarlar &gt; Gizlilik ve Güvenlik &gt; Konum Servisleri &gt; KORA’ya git, “Uygulamayı Kullanırken”i seç ve “Kesin Konum”u aç. Yer altında ya da büyük binalarda GPS şaşabilir: üstteki bulunduğun istasyon kartına dokunup istasyonu kendin seç. Konum izni olmadan da her şey çalışır.</p></details>
+<details><summary>Kamerayla yön kontrolü nasıl kullanılır?</summary><p>Rota ekrandayken kamerayla yön kontrolünü aç ve perondaki tabelayı ya da trenin gideceği yer tabelasını kadraja doldur. En iyi sonucu Korece yazı verir. Tabela karanlık, uzak ya da çok yamuksa biraz yaklaş ve tam karşıdan tut. Sonuç bir yardımcıdır; emin olamazsan istasyondaki tabelalara da bak.</p></details>
+<details><summary>Gerçek zamanlı varışlar görünmüyor.</summary><p>Veriler Seoul Open Data Plaza’dan gelir, internet gerektirir ve çoğunlukla Seul metropol bölgesindeki hatlar için vardır. Bağlantı ya da veri yoksa KORA otomatik olarak sefer saatleri, GPS ve ivmeölçere dayalı tahmine geçer ve sana rehberlik etmeye devam eder. Rota arama internetsiz çalışır.</p></details>
+<details><summary>İnme uyarısı biraz erken ya da geç geldi.</summary><p>Yer altında GPS zayıftır, bu yüzden bulunduğun istasyon geriden gelebilir. Mikrofona izin verirsen KORA konumu tren içi anonslarla düzeltir. Uyarılar yardımcıdır; anonsları da dinle, tabelaları da takip et.</p></details>
+<details><summary>Dili nasıl değiştiririm?</summary><p>KORA iPhone’unun diliyle açılır. Ana ekrandaki istasyon kartına (bulunduğun istasyon ya da varış) basılı tut, 23 dil arasından seçim yapabileceğin dil seçici açılır.</p></details>
+<details><summary>Canlı Etkinlik Kilitli Ekran’da görünmüyor.</summary><p>Ayarlar &gt; Uygulamalar &gt; KORA’da (eski iOS’ta Ayarlar &gt; KORA) Canlı Etkinlikler’in açık olduğunu kontrol et. Yolculuk rehberini başlatınca görünür, uygulamayı tamamen kapatırsan sona erer. Dynamic Island yalnızca onu destekleyen iPhone modellerinde bulunur.</p></details>
+<details><summary>Hangi şehirler var?</summary><p>Seul metropol bölgesinde (Seul, Gyeonggi ve Incheon; GTX-A, AREX, Shinbundang hattı ve hafif raylılar dahil), Busan, Daegu, Gwangju ve Daejeon’da yaklaşık 930 istasyon. Şehri istasyon seçicinin üstündeki bölge düğmeleriyle değiştirirsin.</p></details>
+<details><summary>Yolculuktan önce deneyebilir miyim?</summary><p>Evet. Başlangıç ve varışı kendin seç; rotaları, aktarmaları ve trenin yönünü dünyanın her yerinden görebilirsin.</p></details>
+<details><summary>KORA Pro abonelik mi?</summary><p>Hayır. Bir kez satın alınır ve hep senin kalır, Aile Paylaşımı ile de çalışır. Uygulamayı yeniden yüklersen Pro ekranında Satın Alımı Geri Yükle’ye dokun.</p></details>
+<details><summary>Verilerime ne oluyor?</summary><p>Hesap yok, reklam yok. Konum, kamera ve anons tanıma cihazında işlenir; asla saklanmaz ya da gönderilmez. Uygulamayı geliştirmek için yalnızca anonim kullanım istatistikleri toplarız.</p></details>
+<details><summary>Uygulama erişilebilir mi?</summary><p>KORA VoiceOver’ı ve büyük metin boyutlarını destekler. Erişilebilirliği iyileştirmek için önerilerine her zaman açığız.</p></details></div>
+      <p class="contact">Eksik istasyon, tuhaf bir ad ya da başka bir soru mu var? <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> adresine yaz. Uygulama sürümünü, iPhone modelini ve kullandığın istasyonları yazarsan daha hızlı bakarız.</p>
+    </section>
+
+    <section class="closing reveal">
+      <h2>Bir sonraki yolculukta<br>doğru trene bin</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6775176578">Ücretsiz indir</a>
+    </section>
   </main>
 
-  <footer class="site">
-    © 2026 Leeo · <a href="support.html">Destek</a> · <a href="privacy.html">Gizlilik</a>
+  <footer>
+    <nav id="languages" class="langs" aria-label="Dil"><a href="../ko/" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../cs/" hreflang="cs" lang="cs">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Bahasa Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../tr/" hreflang="tr" lang="tr" aria-current="page">Türkçe</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a></nav>
+    <p><a href="privacy.html">Gizlilik Politikası</a> · <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> · © 2026 Leeo</p>
   </footer>
-</div>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

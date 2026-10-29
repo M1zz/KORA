@@ -1,137 +1,193 @@
 <!doctype html>
 <html lang="cs">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="color-scheme" content="light dark">
-<title>KORA: metro v Koreji pro cestovatele</title>
-<meta name="description" content="Vyberte, kde jste a kam jedete: KORA ukáže přestupy, dobu jízdy a směr nástupu a řekne vám, kdy vystoupit. Oblast Soulu, Pusan, Tegu, Kwangdžu a Tedžon.">
-<link rel="canonical" href="https://m1zz.github.io/KORA/cs/">
-<link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
-<link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
-<link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
-<link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
-<link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
-<link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
-<link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
-<link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
-<link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
-<link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
-<link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
-<link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
-<link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
-<link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
-<link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
-<link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
-<link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
-<link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
-<link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
-<link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
-<link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
-<link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
-<link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
-<link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
-<link rel="stylesheet" href="../style.css">
-<link rel="icon" href="../icon.png">
-<link rel="apple-touch-icon" href="../icon.png">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KORA: metro v Koreji pro cestovatele</title>
+  <meta name="description" content="Vyberte odkud a kam a KORA ukáže přestupy, počet stanic i přesný nápis vlaku, do kterého máte nastoupit. Cestou vám řekne, kdy vystoupit.">
+  <meta name="theme-color" content="#CD2E3A" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0a0d0f" media="(prefers-color-scheme: dark)">
+  <meta name="apple-itunes-app" content="app-id=6775176578">
+  <link rel="canonical" href="https://m1zz.github.io/KORA/cs/">
+  <link rel="alternate" hreflang="ko" href="https://m1zz.github.io/KORA/ko/">
+  <link rel="alternate" hreflang="en" href="https://m1zz.github.io/KORA/en/">
+  <link rel="alternate" hreflang="ja" href="https://m1zz.github.io/KORA/ja/">
+  <link rel="alternate" hreflang="zh-Hans" href="https://m1zz.github.io/KORA/zh-Hans/">
+  <link rel="alternate" hreflang="zh-Hant" href="https://m1zz.github.io/KORA/zh-Hant/">
+  <link rel="alternate" hreflang="de" href="https://m1zz.github.io/KORA/de/">
+  <link rel="alternate" hreflang="es" href="https://m1zz.github.io/KORA/es/">
+  <link rel="alternate" hreflang="fr" href="https://m1zz.github.io/KORA/fr/">
+  <link rel="alternate" hreflang="it" href="https://m1zz.github.io/KORA/it/">
+  <link rel="alternate" hreflang="pt-BR" href="https://m1zz.github.io/KORA/pt-BR/">
+  <link rel="alternate" hreflang="ru" href="https://m1zz.github.io/KORA/ru/">
+  <link rel="alternate" hreflang="cs" href="https://m1zz.github.io/KORA/cs/">
+  <link rel="alternate" hreflang="da" href="https://m1zz.github.io/KORA/da/">
+  <link rel="alternate" hreflang="el" href="https://m1zz.github.io/KORA/el/">
+  <link rel="alternate" hreflang="fi" href="https://m1zz.github.io/KORA/fi/">
+  <link rel="alternate" hreflang="id" href="https://m1zz.github.io/KORA/id/">
+  <link rel="alternate" hreflang="nb" href="https://m1zz.github.io/KORA/nb/">
+  <link rel="alternate" hreflang="nl" href="https://m1zz.github.io/KORA/nl/">
+  <link rel="alternate" hreflang="pl" href="https://m1zz.github.io/KORA/pl/">
+  <link rel="alternate" hreflang="sv" href="https://m1zz.github.io/KORA/sv/">
+  <link rel="alternate" hreflang="th" href="https://m1zz.github.io/KORA/th/">
+  <link rel="alternate" hreflang="tr" href="https://m1zz.github.io/KORA/tr/">
+  <link rel="alternate" hreflang="vi" href="https://m1zz.github.io/KORA/vi/">
+  <link rel="alternate" hreflang="x-default" href="https://m1zz.github.io/KORA/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="KORA: metro v Koreji pro cestovatele">
+  <meta property="og:description" content="Vyberte odkud a kam a KORA ukáže přestupy, počet stanic i přesný nápis vlaku, do kterého máte nastoupit. Cestou vám řekne, kdy vystoupit.">
+  <meta property="og:url" content="https://m1zz.github.io/KORA/cs/">
+  <meta property="og:image" content="https://m1zz.github.io/KORA/img/cs/og.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="../icon.png">
+  <link rel="apple-touch-icon" href="../icon.png">
+  <link rel="stylesheet" href="../sitegen.css">
+  <link rel="stylesheet" href="../demo.css">
+  <style>:root{--accent:#CD2E3A}@media (prefers-color-scheme:dark){:root{--accent:#E5505B}}</style>
+  <script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-<div class="container">
-
-  <header class="site">
-    <img src="../icon.png" alt="Ikona aplikace KORA">
-    <div>
-      <div class="title">KORA</div>
-      <div class="subtitle">Metro v Koreji pro cestovatele</div>
-    </div>
+  <a class="skip" href="#main">Přeskočit na obsah</a>
+  <header class="bar">
+    <a class="brand" href="../cs/"><img src="../icon.png" alt="" width="32" height="32">KORA</a>
+    <a class="lang-link" href="#languages">Jazyk</a>
   </header>
 
-  <nav class="langs" aria-label="Language">
-    <a href="../ko/index.html" hreflang="ko" lang="ko">한국어</a>
-    <a href="../en/index.html" hreflang="en" lang="en">English</a>
-    <a href="../ja/index.html" hreflang="ja" lang="ja">日本語</a>
-    <a href="../zh-Hans/index.html" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
-    <a href="../zh-Hant/index.html" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
-    <a href="../de/index.html" hreflang="de" lang="de">Deutsch</a>
-    <a href="../es/index.html" hreflang="es" lang="es">Español</a>
-    <a href="../fr/index.html" hreflang="fr" lang="fr">Français</a>
-    <a href="../it/index.html" hreflang="it" lang="it">Italiano</a>
-    <a href="../pt-BR/index.html" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
-    <a href="../ru/index.html" hreflang="ru" lang="ru">Русский</a>
-    <a href="../cs/index.html" hreflang="cs" lang="cs" aria-current="true">Čeština</a>
-    <a href="../da/index.html" hreflang="da" lang="da">Dansk</a>
-    <a href="../el/index.html" hreflang="el" lang="el">Ελληνικά</a>
-    <a href="../fi/index.html" hreflang="fi" lang="fi">Suomi</a>
-    <a href="../id/index.html" hreflang="id" lang="id">Bahasa Indonesia</a>
-    <a href="../nb/index.html" hreflang="nb" lang="nb">Norsk</a>
-    <a href="../nl/index.html" hreflang="nl" lang="nl">Nederlands</a>
-    <a href="../pl/index.html" hreflang="pl" lang="pl">Polski</a>
-    <a href="../sv/index.html" hreflang="sv" lang="sv">Svenska</a>
-    <a href="../th/index.html" hreflang="th" lang="th">ไทย</a>
-    <a href="../tr/index.html" hreflang="tr" lang="tr">Türkçe</a>
-    <a href="../vi/index.html" hreflang="vi" lang="vi">Tiếng Việt</a>
-  </nav>
+  <main id="main">
+    <section class="hero">
+      <div class="copy">
+        <h1>Správné nástupiště.<br>Správná stanice.</h1>
+        <p class="lead">Vyberte výchozí a cílovou stanici a KORA vám řekne, do kterého vlaku nastoupit, přesně tak, jak to stojí na ceduli na nástupišti. Za jízdy sleduje, kde jste, a ozve se, když máte vystoupit.</p>
+        <div class="actions"><a class="cta" href="https://apps.apple.com/app/id6775176578">Stáhnout zdarma</a><a class="try" href="#try">Zkušební jízda ↓</a></div>
+        <p class="muted small">Hledání trasy, směr vlaku i příjezdy v reálném čase jsou zdarma.</p>
+      </div>
+      <div class="phone"><img src="../img/cs/route.jpg" alt="Správné nástupiště. Správná stanice." width="600" height="1303" decoding="async"></div>
+    </section>
 
-  <nav class="pages" aria-label="Pages">
-    <a href="index.html" aria-current="page">Úvod</a>
-    <a href="support.html">Podpora</a>
-    <a href="privacy.html">Soukromí</a>
-  </nav>
 
-  <main>
-<h1>Od správného nástupiště ke správné stanici</h1>
-    <p class="lead">KORA je průvodce metrem pro každého, kdo cestuje po Koreji. Vyberte výchozí a cílovou stanici a ukáže přestupy, počet stanic, odhadovaný čas a směr nástupu – přesně tak, jak stojí na směrové tabuli vlaku. Během jízdy sleduje vaši stanici a řekne vám, kdy vystoupit.</p>
+    <section class="reveal" id="try">
+      <h2>Zkušební jízda</h2>
+      <p class="muted">Stojíte ve stanici Hongik Univ. na lince AREX. Vyberte, kde vystoupíte, a klepněte na Vyrazit. Uvidíte směr vlaku a upozornění na výstup stejně jako v aplikaci.</p>
+      <div id="demo" class="card demo-card" data-text="{&quot;title&quot;: &quot;Zkušební jízda&quot;, &quot;lead&quot;: &quot;Stojíte ve stanici Hongik Univ. na lince AREX. Vyberte, kde vystoupíte, a klepněte na Vyrazit. Uvidíte směr vlaku a upozornění na výstup stejně jako v aplikaci.&quot;, &quot;from&quot;: &quot;Odkud&quot;, &quot;pick&quot;: &quot;Kde vystupujete?&quot;, &quot;take&quot;: &quot;Nastupte do tohoto vlaku&quot;, &quot;again&quot;: &quot;Jet znovu&quot;, &quot;note&quot;: &quot;Ve webové ukázce stanice ubíhají rychle. Aplikace sleduje vaši skutečnou polohu podle příjezdů v reálném čase, GPS a hlášení ve vlaku.&quot;, &quot;left&quot;: {&quot;one&quot;: &quot;Zbývá {0} stanice&quot;, &quot;few&quot;: &quot;Zbývají {0} stanice&quot;, &quot;many&quot;: &quot;Zbývá {0} stanic&quot;, &quot;other&quot;: &quot;Zbývá {0} stanic&quot;}, &quot;calm&quot;: &quot;Výstup ve stanici&quot;, &quot;prepare&quot;: &quot;Připravte se k výstupu&quot;, &quot;imminent&quot;: &quot;Vystupte na příští stanici&quot;, &quot;now&quot;: &quot;Vystupte teď!&quot;, &quot;bound&quot;: &quot;Do {0}&quot;, &quot;onBoard&quot;: &quot;Ve vlaku&quot;, &quot;current&quot;: &quot;Aktuální stanice&quot;, &quot;go&quot;: &quot;Vyrazit&quot;, &quot;before&quot;: &quot;Před nástupem&quot;}"></div>
+    </section>
 
-    <h2>Funkce</h2>
-    <div class="features">
-      <div class="card">
-        <h3>Stanice se najde sama</h3>
-        <p>Najděte nejbližší stanici přes GPS nebo ji vyberte sami. KORA si ji zapamatuje do příštího spuštění.</p>
-      </div>
-      <div class="card">
-        <h3>Trasa a směr nástupu</h3>
-        <p>Přestupy, stanice a doba jízdy a k tomu správný vlak – zobrazený jako na jeho směrové tabuli.</p>
-      </div>
-      <div class="card">
-        <h3>Ověřte směr fotoaparátem</h3>
-        <p>Namiřte fotoaparát na ceduli nebo tabuli vlaku a KORA řekne, zda je směr správný. Rozpoznávání textu probíhá výhradně v iPhonu.</p>
-      </div>
-      <div class="card">
-        <h3>Vždy víte, kde jste</h3>
-        <p>Příjezdy v Soulu v reálném čase, GPS, akcelerometr a rozpoznávání hlášení ve voze přímo v zařízení ukážou vaši stanici i stranu výstupu.</p>
-      </div>
-      <div class="card">
-        <h3>Upozornění na výstup</h3>
-        <p>Před stanicí: „Připravte se k výstupu“, pak „Vystupte teď!“ s vibrací. Schéma ukazuje vlak a cíl.</p>
-      </div>
-      <div class="card">
-        <h3>Zamčená obrazovka a Dynamic Island</h3>
-        <p>Živá aktivita ukazuje průběh jízdy bez odemykání iPhonu.</p>
-      </div>
-      <div class="card">
-        <h3>23 jazyků</h3>
-        <p>Celá aplikace je česky a v dalších 22 jazycích. Názvy stanic jsou korejsky spolu s latinkovým přepisem z cedulí.</p>
-      </div>
-      <div class="card">
-        <h3>Vyhledávání offline</h3>
-        <p>Trasy se počítají v zařízení. Síť potřebují jen příjezdy v reálném čase.</p>
-      </div>
-    </div>
+    <section class="problem reveal">
+      <h2>Stáli jste na nástupišti a nevěděli, do kterého vlaku?</h2>
+      <p>Mapové aplikace vám řeknou linku, ale na nástupišti visí jen cedule s názvy stanic, které jste nikdy neslyšeli. Nastoupíte opačným směrem a vracíte se několik stanic. Přeslechnete hlášení a přejedete. KORA pojmenuje váš vlak stejně jako cedule a upozorní vás před vaší stanicí.</p>
+    </section>
 
-    <h2>Pokrytí</h2>
-    <p>Asi 930 stanic v metropolitní oblasti Soulu (Soul, Kjonggi a Inčchon včetně GTX-A, AREX, linky Shinbundang a lehkého metra), v Pusanu, Tegu, Kwangdžu a Tedžonu. Město přepnete tlačítky regionů nahoře ve výběru stanic.</p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Stejnými slovy jako cedule</h2>
+        <p>Správný vlak vidíte přesně tak, jak je jeho cíl napsaný na nástupišti i na vlaku. Nejste si jistí? Namiřte fotoaparát na ceduli na nástupišti nebo směrovou tabuli vlaku a KORA vám hned řekne, jestli je to správný směr.<br>Rozpoznávání textu probíhá celé ve vašem iPhonu.</p>
+      </div>
+      <div class="phone"><img src="../img/cs/board.jpg" alt="Stejnými slovy jako cedule" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <h2>Soukromí na prvním místě</h2>
-    <p>Žádný účet, reklamy, nákupy v aplikaci ani vlastní servery. Poloha, fotoaparát i rozpoznávání hlášení se zpracovávají v zařízení a nikdy se neukládají ani neodesílají. Sbíráme jen anonymní statistiky. Podrobnosti v <a href="privacy.html">zásadách ochrany soukromí</a>.</p>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>Už žádné přejeté stanice</h2>
+        <p>KORA kombinuje příjezdy v reálném čase, GPS, rozjezdy a zastavení vlaku i hlášení ve vlaku, aby věděla, kde jste. Před vaší stanicí přijde „Připravte se k výstupu“ a pak „Vystupte teď!“ s vibrací.<br>Průběh jízdy uvidíte i na zamčené obrazovce a v Dynamic Islandu.</p>
+      </div>
+      <div class="phone"><img src="../img/cs/ride.jpg" alt="Už žádné přejeté stanice" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
 
-    <div class="contact">
-      Našli jste chybu nebo máte nápad? Napište na <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a>. Odpovědi na časté dotazy najdete na stránce <a href="support.html">Podpora</a>.
-    </div>
+    <section class="feature reveal">
+      <div class="copy">
+        <h2>23 jazyků, korejské názvy zůstávají</h2>
+        <p>Celou aplikaci můžete používat ve 23 jazycích, spustí se v jazyce vašeho iPhonu. Názvy stanic ukazuje v korejském originále vedle latinského přepisu z cedulí, takže je na nástupišti snadno najdete.</p>
+      </div>
+      <div class="phone"><img src="../img/cs/language.jpg" alt="23 jazyků, korejské názvy zůstávají" width="600" height="1303" loading="lazy" decoding="async"></div>
+    </section>
+
+    <section class="reveal">
+      <h2>Začnete ve třech krocích</h2>
+      <ol class="steps"><li class="card"><span class="n">1</span><h3>Nastavte start</h3><p>GPS najde nejbližší stanici, nebo si ji vyberte.</p></li>
+<li class="card"><span class="n">2</span><h3>Vyberte cíl</h3><p>Přestupy, stanice a správný vlak se ukážou hned.</p></li>
+<li class="card"><span class="n">3</span><h3>Klepněte na Vyrazit</h3><p>Obrazovka a vibrace vám řeknou, kdy vystoupit.</p></li></ol>
+    </section>
+
+    <section class="reveal" id="commands">
+      <h2>K čemu jsou oprávnění</h2>
+      <div class="card table">
+        <dl><div><dt>Poloha</dt><dd>Najít nejbližší stanici</dd></div><div><dt>Fotoaparát</dt><dd>Přečíst cedule a směrové tabule a ověřit směr</dd></div><div><dt>Mikrofon a rozpoznávání řeči</dt><dd>Zachytit v hlášení název stanice a stranu výstupu</dd></div><div><dt>Pohyb a kondice</dt><dd>Poznat rozjezd a zastavení, aby aktuální stanice seděla přesněji</dd></div></dl>
+      </div>
+      <p class="muted">Všechna oprávnění jsou nepovinná. Bez nich si stanice vyberete sami a trasu i upozornění na výstup máte dál. Poloha, fotoaparát i hlášení se zpracovávají ve vašem zařízení a nikdy se nenahrávají, neukládají ani neodesílají.</p>
+    </section>
+
+
+    <section class="reveal" id="pricing">
+      <h2>Hledání cesty je vždy zdarma. Doprovod za jízdy je KORA Pro.</h2>
+      <div class="plans">
+        <div class="card plan free">
+          <h3>Zdarma</h3>
+          <ul><li>Hledání trasy a přestupy</li><li>Nápis cíle na správném vlaku</li><li>Příjezdy v reálném čase</li><li>Ověření směru fotoaparátem</li><li>Aktuální stanice a upozornění na výstup na obrazovce</li><li>Všechny funkce Pro na prvních třech cestách</li></ul>
+          
+        </div>
+        <div class="card plan pro">
+          <h3>KORA Pro</h3>
+          <ul><li>Na každé cestě: navigace na zamčené obrazovce, rozpoznávání hlášení a vibrace při výstupu</li><li>Průvodce východy: co je u každého východu na linkách 1–8 v Soulu</li><li>Upozornění na poslední vlak na linkách 1–9</li><li>Režim zavazadel: vůz nejblíž k výtahu na linkách 1–8</li></ul>
+          <p class="muted">Zaplatíte jednou a máte navždy. Není to předplatné.</p>
+        </div>
+      </div>
+      <p class="muted">Když bezplatné cesty dojdou, jezdit můžete dál. Průběh na obrazovce zůstane, pozastaví se jen zamčená obrazovka, rozpoznávání hlášení a vibrace.</p>
+    </section>
+
+    <section class="reveal" id="faq">
+      <h2>Časté otázky</h2>
+      <div class="faq"><details><summary>Aplikace nenajde mou stanici nebo ukazuje jinou.</summary><p>Otevřete Nastavení &gt; Soukromí a zabezpečení &gt; Polohové služby &gt; KORA, zvolte „Při používání aplikace“ a zapněte „Přesná poloha“. V podzemí nebo velkých budovách může GPS chybovat: klepněte nahoře na kartu aktuální stanice a vyberte ji sami. Vše funguje i bez přístupu k poloze.</p></details>
+<details><summary>Jak funguje ověření fotoaparátem?</summary><p>Když je trasa na obrazovce, otevřete ověření fotoaparátem a vyplňte záběr cedulí na nástupišti nebo směrovou tabulí vlaku. Nejlépe funguje korejský text. Je-li cedule tmavá, daleko nebo hodně šikmo, přistupte blíž a miřte zpříma. Výsledek je jen pomůcka, v případě pochybností se podívejte i na cedule ve stanici.</p></details>
+<details><summary>Nezobrazují se příjezdy v reálném čase.</summary><p>Data pocházejí ze Seoul Open Data Plaza, potřebují internet a jsou hlavně pro linky v soulské metropolitní oblasti. Bez připojení nebo dat přejde KORA automaticky na odhad podle jízdního řádu, GPS a akcelerometru a dál vás vede. Hledání trasy funguje i offline.</p></details>
+<details><summary>Upozornění na výstup přišlo trochu dřív nebo později.</summary><p>V podzemí je GPS slabé a aktuální stanice se může opožďovat. Když povolíte mikrofon, KORA polohu upřesní podle hlášení ve vlaku. Upozornění jsou pomůcka, poslouchejte i hlášení a sledujte cedule.</p></details>
+<details><summary>Jak změním jazyk?</summary><p>KORA se spustí v jazyce vašeho iPhonu. Podržte na hlavní obrazovce kartu stanice (aktuální nebo cílovou) a otevře se výběr z 23 jazyků.</p></details>
+<details><summary>Na zamčené obrazovce se neukazuje živá aktivita.</summary><p>Zkontrolujte v Nastavení &gt; Aplikace &gt; KORA (ve starším iOS Nastavení &gt; KORA), že jsou živé aktivity zapnuté. Objeví se, jakmile spustíte doprovod jízdy, a skončí, když aplikaci úplně zavřete. Dynamic Island mají jen modely iPhonu, které ho podporují.</p></details>
+<details><summary>Která města jsou podporovaná?</summary><p>Asi 930 stanic v soulské metropolitní oblasti (Soul, Kjonggi a Inčchon včetně GTX-A, AREX, linky Shinbundang a lehkého metra), v Pusanu, Tegu, Kwangdžu a Tedžonu. Město přepnete štítky regionů nahoře ve výběru stanice.</p></details>
+<details><summary>Můžu si ji vyzkoušet před cestou?</summary><p>Ano. Vyberte výchozí a cílovou stanici sami a trasy, přestupy i směr vlaku uvidíte odkudkoli na světě.</p></details>
+<details><summary>Je KORA Pro předplatné?</summary><p>Ne. Je to jednorázový nákup, který vám zůstane, a funguje i s Rodinným sdílením. Po přeinstalování klepněte na obrazovce Pro na Obnovit nákup.</p></details>
+<details><summary>Co se děje s mými daty?</summary><p>Žádný účet, žádné reklamy. Poloha, fotoaparát i rozpoznávání hlášení se zpracovávají ve vašem zařízení a nikdy se neukládají ani neodesílají. Sbíráme jen anonymní statistiky používání, abychom aplikaci zlepšovali.</p></details>
+<details><summary>Je aplikace přístupná?</summary><p>KORA podporuje VoiceOver a větší písmo. Návrhy, jak přístupnost zlepšit, jsou vždy vítané.</p></details></div>
+      <p class="contact">Chybí stanice, je název divný nebo máte jiný dotaz? Napište na <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a>. Uveďte verzi aplikace, model iPhonu a stanice, které jste použili, a podíváme se na to rychleji.</p>
+    </section>
+
+    <section class="closing reveal">
+      <h2>Na příští cestě<br>nastoupíte správně</h2>
+      <a class="cta" href="https://apps.apple.com/app/id6775176578">Stáhnout zdarma</a>
+    </section>
   </main>
 
-  <footer class="site">
-    © 2026 Leeo · <a href="support.html">Podpora</a> · <a href="privacy.html">Soukromí</a>
+  <footer>
+    <nav id="languages" class="langs" aria-label="Jazyk"><a href="../ko/" hreflang="ko" lang="ko">한국어</a>
+<a href="../en/" hreflang="en" lang="en">English</a>
+<a href="../ja/" hreflang="ja" lang="ja">日本語</a>
+<a href="../zh-Hans/" hreflang="zh-Hans" lang="zh-Hans">简体中文</a>
+<a href="../zh-Hant/" hreflang="zh-Hant" lang="zh-Hant">繁體中文</a>
+<a href="../de/" hreflang="de" lang="de">Deutsch</a>
+<a href="../es/" hreflang="es" lang="es">Español</a>
+<a href="../fr/" hreflang="fr" lang="fr">Français</a>
+<a href="../it/" hreflang="it" lang="it">Italiano</a>
+<a href="../pt-BR/" hreflang="pt-BR" lang="pt-BR">Português (Brasil)</a>
+<a href="../ru/" hreflang="ru" lang="ru">Русский</a>
+<a href="../cs/" hreflang="cs" lang="cs" aria-current="page">Čeština</a>
+<a href="../da/" hreflang="da" lang="da">Dansk</a>
+<a href="../el/" hreflang="el" lang="el">Ελληνικά</a>
+<a href="../fi/" hreflang="fi" lang="fi">Suomi</a>
+<a href="../id/" hreflang="id" lang="id">Bahasa Indonesia</a>
+<a href="../nb/" hreflang="nb" lang="nb">Norsk</a>
+<a href="../nl/" hreflang="nl" lang="nl">Nederlands</a>
+<a href="../pl/" hreflang="pl" lang="pl">Polski</a>
+<a href="../sv/" hreflang="sv" lang="sv">Svenska</a>
+<a href="../th/" hreflang="th" lang="th">ไทย</a>
+<a href="../tr/" hreflang="tr" lang="tr">Türkçe</a>
+<a href="../vi/" hreflang="vi" lang="vi">Tiếng Việt</a></nav>
+    <p><a href="privacy.html">Zásady ochrany osobních údajů</a> · <a href="mailto:mizzking75@gmail.com">mizzking75@gmail.com</a> · © 2026 Leeo</p>
   </footer>
-</div>
+
+  <script>
+    const io = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target) }
+    }), { rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  </script>
+  <script src="../demo.js"></script>
 </body>
 </html>

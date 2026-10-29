@@ -1,0 +1,176 @@
+{
+  "title": "KORA: de metro in Korea voor reizigers",
+  "description": "Kies vertrek en bestemming: KORA toont de overstappen en precies het bord van de trein die je neemt, en zegt wanneer je moet uitstappen.",
+  "hero": {
+    "headline": "Het juiste perron.\nDe juiste halte.",
+    "lead": "Kies je vertrek en bestemming en KORA vertelt welke trein je moet nemen, precies zoals het op het bord op het perron staat. Onderweg volgt hij je station en zegt hij wanneer je moet uitstappen.",
+    "cta": "Gratis downloaden",
+    "note": "Route zoeken, rijrichting en realtime aankomsten zijn gratis."
+  },
+  "demo": {
+    "title": "Maak een proefrit",
+    "lead": "Je staat op Hongik Univ. aan de AREX-lijn. Kies waar je uitstapt en tik op Start reis om de rijrichting en de uitstapmeldingen te zien, net als in de app.",
+    "from": "Van",
+    "pick": "Waar stap je uit?",
+    "take": "Neem deze trein",
+    "again": "Nog een keer",
+    "note": "In deze webdemo schieten de stations snel voorbij. De app volgt je echte positie met realtime aankomsten, gps en de omroep in de trein.",
+    "left": {
+      "one": "Nog 1 halte",
+      "other": "Nog {0} haltes"
+    },
+    "calm": "Uitstappen bij",
+    "prepare": "Maak je klaar om uit te stappen",
+    "imminent": "Stap uit bij de volgende halte",
+    "now": "Nu uitstappen!",
+    "bound": "Naar {0}",
+    "onBoard": "Onderweg",
+    "current": "Huidig station",
+    "go": "Start reis",
+    "before": "Voor instappen"
+  },
+  "problem": {
+    "title": "Ooit op het perron gestaan zonder te weten welke trein je moest nemen?",
+    "text": "Kaartapps geven je de lijn, maar op het perron hangen alleen borden met namen van stations waar je nooit van gehoord hebt. Stap je in de verkeerde richting, dan moet je een paar haltes terug. Mis je de omroep, dan rijd je door. KORA noemt je trein zoals het bord dat doet en waarschuwt je vóór je halte."
+  },
+  "features": [
+    {
+      "title": "Met de woorden van het bord",
+      "text": "De trein die je moet nemen staat er precies zo als de bestemming op het perron en op de trein. Twijfel je? Richt de camera op het bord op het perron of de bestemmingsaanduiding van de trein en KORA zegt meteen of het de goede richting is.\nDe tekstherkenning gebeurt volledig op je iPhone.",
+      "shot": "board"
+    },
+    {
+      "title": "Nooit meer doorrijden",
+      "text": "KORA combineert realtime aankomsten, gps, het vertrekken en stoppen van de trein en de omroep aan boord om te weten waar je bent. Als je halte nadert krijg je ‘Maak je klaar om uit te stappen’ en daarna ‘Nu uitstappen!’, met trilling.\nDe voortgang zie je ook op het toegangsscherm en in het Dynamic Island.",
+      "shot": "ride"
+    },
+    {
+      "title": "23 talen, Koreaanse namen blijven",
+      "text": "Gebruik de hele app in 23 talen; hij start in de taal van je iPhone. Stationsnamen staan in het Koreaans naast de Latijnse spelling van de borden, zodat je ze op het perron meteen herkent.",
+      "shot": "language"
+    }
+  ],
+  "steps": {
+    "title": "In drie stappen op weg",
+    "items": [
+      {
+        "title": "Kies je vertrek",
+        "text": "Gps vindt het dichtstbijzijnde station, of kies zelf."
+      },
+      {
+        "title": "Kies je bestemming",
+        "text": "Overstappen, haltes en de juiste trein staan er meteen."
+      },
+      {
+        "title": "Tik op Start reis",
+        "text": "Het scherm en een trilling zeggen wanneer je eruit moet."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Waarvoor de toestemmingen dienen",
+    "rows": [
+      [
+        "Locatie",
+        "Het dichtstbijzijnde station vinden"
+      ],
+      [
+        "Camera",
+        "Borden en bestemmingsaanduidingen lezen om de richting te checken"
+      ],
+      [
+        "Microfoon en spraakherkenning",
+        "Stationsnaam en deurzijde uit de omroep in de trein halen"
+      ],
+      [
+        "Beweging en fitness",
+        "Vertrek en stops merken zodat het huidige station nauwkeuriger is"
+      ]
+    ],
+    "note": "Alle toestemmingen zijn optioneel. Zonder kies je zelf de stations en krijg je nog steeds route en uitstapmeldingen. Locatie, camera en omroep worden op je toestel verwerkt en nooit opgenomen, bewaard of verstuurd."
+  },
+  "pricing": {
+    "title": "De weg vinden is altijd gratis. Begeleiding onderweg is KORA Pro.",
+    "free": {
+      "name": "Gratis",
+      "items": [
+        "Route zoeken en overstappen",
+        "Het bestemmingsbord van de juiste trein",
+        "Realtime aankomsten",
+        "Richtingscheck met de camera",
+        "Huidig station en uitstapmelding op het scherm",
+        "Alle Pro-functies op je eerste drie reizen"
+      ]
+    },
+    "pro": {
+      "name": "KORA Pro",
+      "items": [
+        "Op elke reis: begeleiding op het toegangsscherm, herkenning van de omroep en trilling bij het uitstappen",
+        "Uitgangen: wat er bij elke uitgang ligt op de Seoelse lijnen 1 tot en met 8",
+        "Melding voor de laatste trein op lijn 1 tot en met 9",
+        "Bagagemodus: de wagon het dichtst bij de lift op lijn 1 tot en met 8"
+      ],
+      "note": "Eén keer betalen en houden. Geen abonnement."
+    },
+    "note": "Zijn de gratis reizen op, dan kun je gewoon blijven reizen. De voortgang op het scherm blijft; alleen het toegangsscherm, de omroepherkenning en de trilling pauzeren."
+  },
+  "faq": {
+    "title": "Veelgestelde vragen",
+    "items": [
+      {
+        "q": "De app vindt mijn station niet of toont een verkeerd station.",
+        "a": "Ga naar Instellingen > Privacy en beveiliging > Locatievoorzieningen > KORA, kies ‘Bij gebruik van app’ en zet ‘Nauwkeurige locatie’ aan. Onder de grond of in grote gebouwen kan gps ernaast zitten: tik bovenaan op de kaart van het huidige station en kies zelf. Alles werkt ook zonder locatietoegang."
+      },
+      {
+        "q": "Hoe werkt de richtingscheck met de camera?",
+        "a": "Zodra de route in beeld is, open je de richtingscheck en vul je het beeld met het bord op het perron of de bestemmingsaanduiding van de trein. Koreaanse tekst werkt het best. Is het bord donker, ver weg of erg schuin, ga dan dichterbij staan en richt recht. Het resultaat is een hulpmiddel, kijk bij twijfel ook naar de borden in het station."
+      },
+      {
+        "q": "Realtime aankomsten worden niet getoond.",
+        "a": "De gegevens komen van het Seoul Open Data Plaza, hebben internet nodig en zijn er vooral voor lijnen in de regio Seoel. Zonder verbinding of realtime gegevens schakelt KORA automatisch over op een schatting op basis van dienstregeling, gps en versnellingsmeter en blijft je begeleiden. Route zoeken werkt offline."
+      },
+      {
+        "q": "De uitstapmelding kwam iets te vroeg of te laat.",
+        "a": "Onder de grond is gps zwak, waardoor het huidige station achter kan lopen. Geef je toegang tot de microfoon, dan corrigeert KORA de positie met de omroep in de trein. Meldingen zijn een hulpmiddel, dus luister ook naar de omroep en let op de borden."
+      },
+      {
+        "q": "Hoe verander ik de taal?",
+        "a": "KORA start in de taal van je iPhone. Houd op het hoofdscherm een stationskaart ingedrukt (huidig station of bestemming) om de taalkeuze met 23 talen te openen."
+      },
+      {
+        "q": "De live-activiteit verschijnt niet op het toegangsscherm.",
+        "a": "Controleer bij Instellingen > Apps > KORA (in oudere iOS Instellingen > KORA) of live-activiteiten aan staan. Hij verschijnt zodra je de begeleiding start en stopt als je de app helemaal sluit. Dynamic Island is er alleen op iPhone-modellen die het hebben."
+      },
+      {
+        "q": "Welke steden doen mee?",
+        "a": "Ongeveer 930 stations in de regio Seoel (Seoel, Gyeonggi en Incheon, inclusief GTX-A, AREX, de Shinbundang-lijn en lightrail), Busan, Daegu, Gwangju en Daejeon. Wissel van stad met de regioknoppen bovenaan de stationskeuze."
+      },
+      {
+        "q": "Kan ik de app voor mijn reis uitproberen?",
+        "a": "Ja. Kies zelf vertrek en bestemming en bekijk routes, overstappen en rijrichting vanaf elke plek ter wereld."
+      },
+      {
+        "q": "Is KORA Pro een abonnement?",
+        "a": "Nee. Het is een eenmalige aankoop die je houdt, en het werkt met Delen met gezin. Heb je de app opnieuw geïnstalleerd, tik dan op Herstel aankoop in het Pro-scherm."
+      },
+      {
+        "q": "Wat gebeurt er met mijn gegevens?",
+        "a": "Geen account en geen advertenties. Locatie, camera en omroepherkenning worden op je toestel verwerkt en nooit bewaard of verstuurd. We verzamelen alleen anonieme gebruiksstatistieken om de app te verbeteren."
+      },
+      {
+        "q": "Is de app toegankelijk?",
+        "a": "KORA ondersteunt VoiceOver en grotere tekst. Suggesties voor betere toegankelijkheid zijn altijd welkom."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Op je volgende reis\nstap je in de juiste trein",
+    "cta": "Gratis downloaden"
+  },
+  "ui": {
+    "skip": "Naar de inhoud",
+    "languages": "Taal",
+    "privacy": "Privacybeleid",
+    "contact": "Ontbreekt er een station, klopt een naam niet of heb je een andere vraag? Mail naar {email}. Vermeld de appversie, je iPhone-model en de stations die je gebruikte, dan helpen we je sneller."
+  }
+}

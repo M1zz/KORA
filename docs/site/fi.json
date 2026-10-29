@@ -1,0 +1,176 @@
+{
+  "title": "KORA: Korean metro matkailijoille",
+  "description": "Valitse lähtö ja määränpää: KORA näyttää vaihdot ja junasi kyltin juuri sellaisena kuin se lukee, ja kertoo, milloin jäädä pois.",
+  "hero": {
+    "headline": "Oikea laituri.\nOikea asema.",
+    "lead": "Valitse lähtö- ja määräasema, niin KORA kertoo, mihin junaan nousta, juuri niin kuin laiturin kyltissä lukee. Matkan aikana se seuraa asemaasi ja kertoo, milloin jäädä pois.",
+    "cta": "Lataa ilmaiseksi",
+    "note": "Reittihaku, ajosuunta ja reaaliaikaiset saapumiset ovat ilmaisia."
+  },
+  "demo": {
+    "title": "Kokeile matkaa",
+    "lead": "Olet Hongik Univ. -asemalla AREX-linjalla. Valitse, missä jäät pois, ja napauta Aloita matka. Näet junan suunnan ja poisjäämisilmoitukset niin kuin sovelluksessa.",
+    "from": "Lähtö",
+    "pick": "Missä jäät pois?",
+    "take": "Nouse tähän junaan",
+    "again": "Aja uudelleen",
+    "note": "Verkkodemossa asemat vilahtavat ohi nopeasti. Sovellus seuraa todellista sijaintiasi reaaliaikaisten saapumisten, GPS:n ja junan kuulutusten avulla.",
+    "left": {
+      "one": "1 asema jäljellä",
+      "other": "{0} asemaa jäljellä"
+    },
+    "calm": "Jää pois asemalla",
+    "prepare": "Valmistaudu jäämään pois",
+    "imminent": "Jää pois seuraavalla asemalla",
+    "now": "Jää pois nyt!",
+    "bound": "Määränpää {0}",
+    "onBoard": "Kyydissä",
+    "current": "Nykyinen asema",
+    "go": "Aloita matka",
+    "before": "Ennen nousua"
+  },
+  "problem": {
+    "title": "Oletko seissyt laiturilla tietämättä, mihin junaan nousta?",
+    "text": "Karttasovellukset kertovat linjan, mutta laiturilla on vain kylttejä, joissa on ennestään tuntemattomia asemien nimiä. Väärään suuntaan noustessa joudut palaamaan monta asemaa. Kuulutuksen ohi mennessä ajat ohi omasta asemastasi. KORA nimeää junasi samoin kuin kyltti ja varoittaa ennen asemaasi."
+  },
+  "features": [
+    {
+      "title": "Samoin sanoin kuin kyltissä",
+      "text": "Oikea juna näytetään juuri niin kuin sen määränpää lukee laiturilla ja junassa. Epäilyttääkö? Suuntaa kamera laiturin kylttiin tai junan määränpääkylttiin, niin KORA kertoo heti, onko suunta oikea.\nTeksti tunnistetaan kokonaan iPhonessasi.",
+      "shot": "board"
+    },
+    {
+      "title": "Et enää aja ohi",
+      "text": "KORA yhdistää reaaliaikaiset saapumiset, GPS:n, junan lähdöt ja pysähdykset sekä junan kuulutukset tietääkseen, missä olet. Kun asemasi lähestyy, saat ilmoituksen ”Valmistaudu jäämään pois” ja sitten ”Jää pois nyt!” värinän kera.\nMatkan eteneminen näkyy myös lukitusnäytöllä ja Dynamic Islandissa.",
+      "shot": "ride"
+    },
+    {
+      "title": "23 kieltä, korealaiset nimet tallessa",
+      "text": "Koko sovellus toimii 23 kielellä ja käynnistyy iPhonesi kielellä. Asemien nimet näkyvät koreaksi kylttien latinalaisen kirjoitusasun vieressä, joten tunnistat ne laiturilla heti.",
+      "shot": "language"
+    }
+  ],
+  "steps": {
+    "title": "Alkuun kolmessa vaiheessa",
+    "items": [
+      {
+        "title": "Aseta lähtö",
+        "text": "GPS löytää lähimmän aseman, tai valitse itse."
+      },
+      {
+        "title": "Valitse määränpää",
+        "text": "Vaihdot, asemat ja oikea juna näkyvät heti."
+      },
+      {
+        "title": "Napauta Aloita matka",
+        "text": "Näyttö ja värinä kertovat, milloin jäädä pois."
+      }
+    ]
+  },
+  "reference": {
+    "title": "Mihin luvat tarvitaan",
+    "rows": [
+      [
+        "Sijainti",
+        "Lähimmän aseman löytäminen"
+      ],
+      [
+        "Kamera",
+        "Kylttien ja määränpääkylttien lukeminen suunnan tarkistamiseksi"
+      ],
+      [
+        "Mikrofoni ja puheentunnistus",
+        "Aseman nimen ja oven puolen poimiminen junan kuulutuksista"
+      ],
+      [
+        "Liike ja kunto",
+        "Lähtöjen ja pysähdysten tunnistaminen, jotta nykyinen asema on tarkempi"
+      ]
+    ],
+    "note": "Kaikki luvat ovat vapaaehtoisia. Ilman niitä valitset asemat itse ja saat silti reitin ja poisjäämisilmoitukset. Sijainti, kamera ja kuulutukset käsitellään laitteella, eikä niitä koskaan tallenneta, säilytetä tai lähetetä."
+  },
+  "pricing": {
+    "title": "Reitin löytäminen on aina ilmaista. Opastus matkan aikana on KORA Pro.",
+    "free": {
+      "name": "Ilmainen",
+      "items": [
+        "Reittihaku ja vaihdot",
+        "Oikean junan määränpääkyltti",
+        "Reaaliaikaiset saapumiset",
+        "Suunnan tarkistus kameralla",
+        "Nykyinen asema ja poisjäämisilmoitus näytöllä",
+        "Kaikki Pro-ominaisuudet kolmella ensimmäisellä matkalla"
+      ]
+    },
+    "pro": {
+      "name": "KORA Pro",
+      "items": [
+        "Jokaisella matkalla: opastus lukitusnäytöllä, kuulutusten tunnistus ja värinä poisjäädessä",
+        "Uloskäynnit: mitä kunkin uloskäynnin lähellä on Soulin linjoilla 1–8",
+        "Muistutus viimeisestä junasta linjoilla 1–9",
+        "Matkatavaratila: hissiä lähin vaunu linjoilla 1–8"
+      ],
+      "note": "Maksat kerran ja pidät sen. Ei tilausta."
+    },
+    "note": "Kun ilmaiset matkat on käytetty, voit silti matkustaa. Eteneminen näytöllä pysyy, vain lukitusnäyttö, kuulutusten tunnistus ja värinä pitävät taukoa."
+  },
+  "faq": {
+    "title": "Usein kysyttyä",
+    "items": [
+      {
+        "q": "Sovellus ei löydä asemaani tai näyttää väärän.",
+        "a": "Avaa Asetukset > Tietosuoja ja suojaus > Sijaintipalvelut > KORA, valitse ”Kun appia käytetään” ja laita ”Tarkka sijainti” päälle. Maan alla tai isoissa rakennuksissa GPS voi heittää: napauta ylhäällä nykyisen aseman korttia ja valitse itse. Kaikki toimii myös ilman sijaintilupaa."
+      },
+      {
+        "q": "Miten suunnan tarkistus kameralla toimii?",
+        "a": "Kun reitti näkyy, avaa suunnan tarkistus ja täytä kuva laiturin kyltillä tai junan määränpääkyltillä. Korealainen teksti toimii parhaiten. Jos kyltti on hämärä, kaukana tai hyvin vinossa, mene lähemmäs ja kuvaa suoraan edestä. Tulos on apuväline, joten katso epävarmana myös aseman kylttejä."
+      },
+      {
+        "q": "Reaaliaikaiset saapumiset eivät näy.",
+        "a": "Tiedot tulevat Seoul Open Data Plazasta, vaativat verkkoyhteyden ja ovat saatavilla lähinnä Soulin seudun linjoilla. Ilman yhteyttä tai reaaliaikaisia tietoja KORA siirtyy automaattisesti aikatauluun, GPS:ään ja kiihtyvyysanturiin perustuvaan arvioon ja jatkaa opastusta. Reittihaku toimii ilman verkkoa."
+      },
+      {
+        "q": "Poisjäämisilmoitus tuli vähän liian aikaisin tai myöhään.",
+        "a": "Maan alla GPS on heikko, joten nykyinen asema voi laahata perässä. Kun sallit mikrofonin, KORA korjaa sijaintia junan kuulutusten perusteella. Ilmoitukset ovat apuväline, joten kuuntele myös kuulutuksia ja seuraa kylttejä."
+      },
+      {
+        "q": "Miten vaihdan kielen?",
+        "a": "KORA käynnistyy iPhonesi kielellä. Pidä päänäkymässä asemakorttia painettuna (nykyinen asema tai määränpää), niin kielivalinta aukeaa ja voit valita 23 kielestä."
+      },
+      {
+        "q": "Live Activity ei näy lukitusnäytöllä.",
+        "a": "Tarkista kohdasta Asetukset > Apit > KORA (vanhemmassa iOS:ssä Asetukset > KORA), että Live Activityt ovat päällä. Se ilmestyy, kun aloitat matkan opastuksen, ja päättyy, jos suljet sovelluksen kokonaan. Dynamic Island on vain iPhone-malleissa, joissa se on."
+      },
+      {
+        "q": "Mitkä kaupungit ovat mukana?",
+        "a": "Noin 930 asemaa Soulin seudulla (Soul, Gyeonggi ja Incheon, mukaan lukien GTX-A, AREX, Shinbundang-linja ja kevytraiteet) sekä Busanissa, Daegussa, Gwangjussa ja Daejeonissa. Vaihda kaupunkia aseman valinnan yläosan aluepainikkeilla."
+      },
+      {
+        "q": "Voinko kokeilla ennen matkaa?",
+        "a": "Voit. Valitse lähtö ja määränpää itse, niin näet reitit, vaihdot ja ajosuunnan mistä päin maailmaa tahansa."
+      },
+      {
+        "q": "Onko KORA Pro tilaus?",
+        "a": "Ei. Se on kertaosto, joka jää sinulle, ja se toimii Perhejaon kanssa. Jos asennat sovelluksen uudelleen, napauta Pro-näkymässä Palauta osto."
+      },
+      {
+        "q": "Mitä tiedoilleni tapahtuu?",
+        "a": "Ei tiliä eikä mainoksia. Sijainti, kamera ja kuulutusten tunnistus käsitellään laitteella, eikä niitä koskaan tallenneta tai lähetetä. Keräämme vain nimetöntä käyttötilastoa sovelluksen parantamiseksi."
+      },
+      {
+        "q": "Onko sovellus saavutettava?",
+        "a": "KORA tukee VoiceOveria ja suurempaa tekstiä. Ehdotukset saavutettavuuden parantamiseksi ovat aina tervetulleita."
+      }
+    ]
+  },
+  "closing": {
+    "headline": "Seuraavalla matkalla\nnouset oikeaan junaan",
+    "cta": "Lataa ilmaiseksi"
+  },
+  "ui": {
+    "skip": "Siirry sisältöön",
+    "languages": "Kieli",
+    "privacy": "Tietosuojakäytäntö",
+    "contact": "Puuttuuko asema, onko nimi outo tai onko muuta kysyttävää? Kirjoita osoitteeseen {email}. Kerro sovelluksen versio, iPhonen malli ja käyttämäsi asemat, niin pääsemme asiaan nopeammin."
+  }
+}
