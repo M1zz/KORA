@@ -798,6 +798,7 @@ struct SubwayNavigatorView: View {
                             .padding(.horizontal, 2)
                             .background(seg.line.color)
                             .clipShape(Circle())
+                            .accessibilityLabel(seg.line.localizedName(displayLanguage))
                         directionLabelBlock(seg: seg, displayedTerminus: displayedTerminus, segDestKo: segDestKo)
                         Spacer(minLength: 0)
                     }
@@ -1929,7 +1930,7 @@ struct SubwayNavigatorView: View {
         let lines = MetroLineData.linesContaining(ko)
         let primaryColor = lines.first.map { MetroLineData.lineColor($0) } ?? KORATheme.accent
 
-        let lineNames = lines.map { MetroLineData.lineBadgeText($0) }.joined(separator: ", ")
+        let lineNames = lines.map { MetroLineData.lineSpokenName($0, displayLanguage) }.joined(separator: ", ")
         let stationName = MetroLineData.displayName(for: ko, language: displayLanguage)
         let lineSuffix = lines.isEmpty ? "" : ", \(lineNames)"
         let headerLabel = NavLoc.currentStationA11y.fill(displayLanguage, stationName, lineSuffix)
@@ -1948,7 +1949,7 @@ struct SubwayNavigatorView: View {
                             .frame(minWidth: compact ? 30 : 36, minHeight: compact ? 30 : 36)
                             .background(MetroLineData.lineColor(num))
                             .clipShape(Capsule())
-                            .accessibilityLabel(MetroLineData.lineBadgeText(num))
+                            .accessibilityLabel(MetroLineData.lineSpokenName(num, displayLanguage))
                     }
                 }
 
@@ -2071,6 +2072,7 @@ struct SubwayNavigatorView: View {
                                 .frame(minWidth: compact ? 30 : 36, minHeight: compact ? 30 : 36)
                                 .background(MetroLineData.lineColor(num))
                                 .clipShape(Capsule())
+                                .accessibilityLabel(MetroLineData.lineSpokenName(num, displayLanguage))
                         }
                     }
                     VStack(alignment: .leading, spacing: 2) {
@@ -2252,6 +2254,7 @@ struct SubwayNavigatorView: View {
                                 .frame(minWidth: compact ? 30 : 36, minHeight: compact ? 30 : 36)
                                 .background(MetroLineData.lineColor(num))
                                 .clipShape(Capsule())
+                                .accessibilityLabel(MetroLineData.lineSpokenName(num, displayLanguage))
                         }
                     }
                     VStack(alignment: .leading, spacing: 2) {
@@ -2618,6 +2621,7 @@ struct SubwayNavigatorView: View {
                         .frame(width: 36, height: 36)
                         .background(MetroLineData.lineColor(num))
                         .clipShape(Circle())
+                        .accessibilityLabel(MetroLineData.lineSpokenName(num, displayLanguage))
                 }
             }
             .frame(minWidth: 40)
@@ -3131,6 +3135,9 @@ struct StationSearchSheet: View {
             .background(isSelected ? line.color : line.color.opacity(0.12))
             .clipShape(Capsule())
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(line.localizedName(displayLanguage))
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 
     // MARK: - Row
@@ -3170,6 +3177,7 @@ struct StationSearchSheet: View {
                         .frame(minWidth: 20, minHeight: 18)
                         .background(MetroLineData.lineColor(num))
                         .clipShape(Capsule())
+                        .accessibilityLabel(MetroLineData.lineSpokenName(num, displayLanguage))
                 }
             }
         }

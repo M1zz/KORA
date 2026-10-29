@@ -26,10 +26,10 @@ extension KORASpec {
         return [
             // MARK: 만들고 있어요
             item("gift", .roadmapGift, .roadmapGiftDetail, .building),
+            item("a11y.voiceover", .roadmapVoiceOver, .roadmapVoiceOverDetail, .building),
 
             // MARK: 다음에 만들어요
             item("autosave", .roadmapResume, .roadmapResumeDetail),
-            item("a11y.voiceover", .roadmapVoiceOver, .roadmapVoiceOverDetail),
             item("a11y.largetext", .roadmapLargeText, .roadmapLargeTextDetail),
             item("a11y.keyboard", .roadmapKeyboard, .roadmapKeyboardDetail),
             item("fold", .roadmapFold, .roadmapFoldDetail),

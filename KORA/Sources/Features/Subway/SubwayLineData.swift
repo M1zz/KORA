@@ -626,6 +626,11 @@ enum MetroLineData {
         seoulLines.first(where: { $0.number == number })?.badgeText ?? "\(number)"
     }
 
+    /// VoiceOver 가 읽는 노선 이름 — 배지의 "2"·"K" 대신 "2호선"·"경의중앙선"처럼, 고른 언어로.
+    static func lineSpokenName(_ number: Int, _ lang: StationLanguage) -> String {
+        seoulLines.first(where: { $0.number == number })?.localizedName(lang) ?? NavLoc.lineLabel(number, lang)
+    }
+
     static func transferBadges(for station: String, excluding lineNumber: Int) -> [(number: Int, color: Color)] {
         return linesContaining(station)
             .filter { $0 != lineNumber }

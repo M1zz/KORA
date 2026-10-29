@@ -4573,5 +4573,30 @@
   "th": "ค้นหาสถานที่อย่าง COEX แล้วเราจะบอกสถานีและทางออกที่ใกล้ที่สุด เลือกสถานีจากแผนที่ได้โดยตรงด้วย",
   "tr": "COEX gibi bir yer ara, en yakın istasyonları ve çıkışları gösterelim. İstasyonu doğrudan haritadan da seçebilirsin.",
   "vi": "Tìm một nơi như COEX, ứng dụng sẽ chỉ ga và lối ra gần nhất. Bạn cũng có thể chọn ga ngay trên bản đồ."
+ },
+ "close": {
+  "ko": "닫기",
+  "ja": "閉じる",
+  "en": "Close",
+  "zh-Hans": "关闭",
+  "zh-Hant": "關閉",
+  "de": "Schließen",
+  "es": "Cerrar",
+  "fr": "Fermer",
+  "it": "Chiudi",
+  "pt-BR": "Fechar",
+  "ru": "Закрыть",
+  "cs": "Zavřít",
+  "da": "Luk",
+  "el": "Κλείσιμο",
+  "fi": "Sulje",
+  "id": "Tutup",
+  "nb": "Lukk",
+  "nl": "Sluit",
+  "pl": "Zamknij",
+  "sv": "Stäng",
+  "th": "ปิด",
+  "tr": "Kapat",
+  "vi": "Đóng"
  }
 }

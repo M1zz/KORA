@@ -210,6 +210,8 @@ struct PlatformDirectionScanner: View {
                     .foregroundStyle(.white.opacity(0.85))
                     .symbolRenderingMode(.hierarchical)
             }
+            .accessibilityLabel(NavLoc.close.resolved(displayLanguage))
+            .accessibilityInputLabels([Text(NavLoc.close.resolved(displayLanguage))])
         }
         .padding(.horizontal, 20)
         .padding(.top, 16)

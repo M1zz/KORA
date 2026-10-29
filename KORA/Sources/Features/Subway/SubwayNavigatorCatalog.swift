@@ -4576,4 +4576,29 @@ extension NavLoc {
         tr: "COEX gibi bir yer ara, en yakın istasyonları ve çıkışları gösterelim. İstasyonu doğrudan haritadan da seçebilirsin.",
         vi: "Tìm một nơi như COEX, ứng dụng sẽ chỉ ga và lối ra gần nhất. Bạn cũng có thể chọn ga ngay trên bản đồ."
     )
+    static let close = NavLoc(
+        ko: "닫기",
+        ja: "閉じる",
+        en: "Close",
+        zh: "关闭",
+        zhHant: "關閉",
+        de: "Schließen",
+        es: "Cerrar",
+        fr: "Fermer",
+        it: "Chiudi",
+        ptBR: "Fechar",
+        ru: "Закрыть",
+        cs: "Zavřít",
+        da: "Luk",
+        el: "Κλείσιμο",
+        fi: "Sulje",
+        id: "Tutup",
+        nb: "Lukk",
+        nl: "Sluit",
+        pl: "Zamknij",
+        sv: "Stäng",
+        th: "ปิด",
+        tr: "Kapat",
+        vi: "Đóng"
+    )
 }
