@@ -1,5 +1,14 @@
 # KORA Todo
 
+## 아이폰 듀오 대응 (2026-10-31, 듀오 시뮬레이터 빌드 · `-FoldPretend` 화면 확인 · 실기기 확인 안 함)
+- [x] 앱 루트에 `.foldAware()` (LeeoKit Fold). 시트 · 알림창이 접힌 선을 비킨다
+- [x] 펴면 고르는 쪽(가로면 왼쪽, 세로면 아래)에 지금 길찾기 화면, 결과 쪽(오른쪽, 위)에 경로 한 장(`routeSummaryCard`). 경로가 없으면 역 지도에서 출발 · 도착역을 고른다 (`SubwayNavigatorView.foldResultPane`)
+- [x] `FoldSplitView` 로 나눠 펴고 접어도 고르던 역 · 타는 중 단계가 이어진다. 펼친 화면에서는 경로 확인 화면의 경로 카드를 결과 쪽에만 그린다
+- [x] 온보딩 전체 화면은 `.foldConfined()`, 글자만 있던 툴바 버튼(완료 · 닫기)에 아이콘
+- [ ] 가로로 편 화면 · 타는 중 화면 · 실기기 확인
+- [ ] ⚠️ Xcode 27.0 빌드는 듀오에서 호환 틀(아이폰 크기)로 뜬다. 27.1 로 빌드해야 펼친 배치가 켜진다
+- 확인: 듀오 시뮬레이터에 Debug 빌드 → `xcrun simctl launch <기기> com.kora.leeo -FoldPretend -KORAShotScene route`
+
 ## 완료
 - [x] Google Analytics(Firebase) 수집 활성화: Firebase SDK(SPM) 연동, KORAApp에 FirebaseApp.configure()
 - [x] GA 데이터 미수집 근본 원인 수정: 앱 타깃에 OTHER_LDFLAGS=-ObjC 추가(정적 Analytics 등록 누락) + Info.plist FIREBASE_ANALYTICS_COLLECTION_ENABLED=YES. 시뮬레이터 실행으로 first_open/session_start 이벤트 기록·measurement DB 생성 확인

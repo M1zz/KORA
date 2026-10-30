@@ -89,7 +89,9 @@ struct WhatsNewView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(NavLoc.done.resolved(lang)) { dismiss() }
+                    Button { dismiss() } label: {
+                        Label(NavLoc.done.resolved(lang), systemImage: "checkmark")
+                    }
                         .accessibilityIdentifier("whatsNew.done")
                 }
             }

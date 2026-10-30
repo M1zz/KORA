@@ -1,4 +1,5 @@
 import SwiftUI
+import LeeoKit
 
 /// Single-screen subway navigation host. Wraps the navigator in a
 /// NavigationStack so the language picker can live in the standard
@@ -18,6 +19,7 @@ struct SubwayView: View {
                 hasCompletedOnboarding = true
                 showOnboarding = false
             }
+            .foldConfined()
         }
         .sheet(isPresented: $showWhatsNew) {
             WhatsNewView(lang: .inAppChoice, items: KORAWhatsNew.currentItems)

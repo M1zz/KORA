@@ -65,6 +65,7 @@ struct NextStopVerifyTip: Tip {
 // MARK: - Navigator View
 
 struct SubwayNavigatorView: View {
+    @Environment(\.foldLayout) private var fold
     @AppStorage("kora.current_station") private var persistedFromStation: String = ""
     @AppStorage("kora.destination_station") private var persistedToStation: String = ""
     @State private var fromStation: String? = nil
@@ -188,7 +189,14 @@ struct SubwayNavigatorView: View {
     }
 
     var body: some View {
-        navigatorBody
+        // 아이폰 듀오를 펴면 고르는 쪽(가로면 왼쪽, 세로면 아래)에 지금 화면, 결과 쪽에 경로가 선다.
+        // 접혀 있거나 보통 아이폰이면 지금 화면 그대로다 (LeeoKit Fold).
+        FoldSplitView {
+            navigatorBody
+        } result: {
+            foldResultPane
+                .environment(\.foldLayout, .single)
+        }
         .sheet(isPresented: $showFromPicker) {
             StationSearchSheet(
                 title: NavLoc.currentStationTitle.resolved(displayLanguage),
@@ -2517,38 +2525,16 @@ struct SubwayNavigatorView: View {
     // MARK: - Journey confirmation
 
     private func journeyConfirmView(for j: TransferJourney) -> some View {
-        let fromKo = fromStation ?? ""
-        let toKo   = toStation   ?? ""
-        let fromDisplay = MetroLineData.displayBilingual(for: fromKo, language: displayLanguage)
-        let toDisplay   = MetroLineData.displayBilingual(for: toKo,   language: displayLanguage)
-        let fromRelevantLines = j.segments.isEmpty ? [] : [j.segments[0].line.number]
-        let toRelevantLines   = j.segments.last.map { [$0.line.number] } ?? []
+        let toKo = toStation ?? ""
 
         return ScrollView {
             VStack(spacing: 20) {
 
                 // ── Route summary card ────────────────────────────────
-                VStack(spacing: 0) {
-                    // Departure
-                    routeStationRow(ko: fromKo, display: fromDisplay, lines: fromRelevantLines)
-
-                    // Per-segment: connector rail then transfer station (except last)
-                    ForEach(j.segments.indices, id: \.self) { idx in
-                        let seg = j.segments[idx]
-                        routeSegmentRail(seg: seg)
-                        if idx < j.segments.count - 1, let xfrKo = seg.stations.last {
-                            let xfrDisplay = MetroLineData.displayBilingual(for: xfrKo, language: displayLanguage)
-                            let xfrLines   = [seg.line.number, j.segments[idx + 1].line.number]
-                            routeStationRow(ko: xfrKo, display: xfrDisplay, lines: xfrLines)
-                        }
-                    }
-
-                    // Destination
-                    routeStationRow(ko: toKo, display: toDisplay, lines: toRelevantLines)
+                // 펼친 화면에서는 결과 쪽 판에 같은 경로가 서므로 여기서는 그리지 않는다.
+                if !fold.isUnfolded {
+                    routeSummaryCard(for: j)
                 }
-                .background(Color(.systemBackground))
-                .clipShape(RoundedRectangle(cornerRadius: 18))
-                .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
 
                 // 밤에는 이 경로의 막차 (Pro, 1~9호선만).
                 LastTrainCard(journey: j, lang: displayLanguage, unlocked: exitGuideUnlocked) {
@@ -2606,6 +2592,73 @@ struct SubwayNavigatorView: View {
             .padding(.bottom, 40)
         }
         .scrollIndicators(.hidden)
+    }
+
+    /// 출발 → 갈아타는 역 → 도착을 한 장에. 경로 확인 화면과 펼친 화면의 결과 쪽이 같이 쓴다.
+    private func routeSummaryCard(for j: TransferJourney) -> some View {
+        let fromKo = fromStation ?? ""
+        let toKo   = toStation   ?? ""
+        let fromDisplay = MetroLineData.displayBilingual(for: fromKo, language: displayLanguage)
+        let toDisplay   = MetroLineData.displayBilingual(for: toKo,   language: displayLanguage)
+        let fromRelevantLines = j.segments.isEmpty ? [] : [j.segments[0].line.number]
+        let toRelevantLines   = j.segments.last.map { [$0.line.number] } ?? []
+
+        return VStack(spacing: 0) {
+            // Departure
+            routeStationRow(ko: fromKo, display: fromDisplay, lines: fromRelevantLines)
+
+            // Per-segment: connector rail then transfer station (except last)
+            ForEach(j.segments.indices, id: \.self) { idx in
+                let seg = j.segments[idx]
+                routeSegmentRail(seg: seg)
+                if idx < j.segments.count - 1, let xfrKo = seg.stations.last {
+                    let xfrDisplay = MetroLineData.displayBilingual(for: xfrKo, language: displayLanguage)
+                    let xfrLines   = [seg.line.number, j.segments[idx + 1].line.number]
+                    routeStationRow(ko: xfrKo, display: xfrDisplay, lines: xfrLines)
+                }
+            }
+
+            // Destination
+            routeStationRow(ko: toKo, display: toDisplay, lines: toRelevantLines)
+        }
+        .background(Color(.systemBackground))
+        .clipShape(RoundedRectangle(cornerRadius: 18))
+        .shadow(color: .black.opacity(0.06), radius: 8, x: 0, y: 2)
+    }
+
+    // MARK: - 아이폰 듀오: 결과 쪽
+
+    /// 펼친 화면의 결과 쪽 판. 경로가 있으면 그 경로(타는 중에도 어디로 가는지 늘 보인다),
+    /// 아직 없으면 역 지도. 지도에서 고른 역은 출발역이 없으면 출발역, 있으면 도착역이 된다.
+    @ViewBuilder
+    private var foldResultPane: some View {
+        if let j = journey {
+            ScrollView {
+                routeSummaryCard(for: j)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 24)
+            }
+            .scrollIndicators(.hidden)
+            .background(KORATheme.background)
+        } else {
+            NavigationStack {
+                StationMapPicker(excluding: fromStation, lang: displayLanguage,
+                                 category: foldMapCategory) { picked in
+                    if fromStation == nil {
+                        fromStation = picked
+                    } else {
+                        toStation = picked
+                    }
+                    selectedJourneyIdx = 0
+                }
+            }
+        }
+    }
+
+    /// 지도는 출발역이 있는 권역에서 시작한다.
+    private var foldMapCategory: MetroCategory {
+        let line = fromStation.flatMap { MetroLineData.linesContaining($0).first }
+        return MetroLineData.seoulLines.first { $0.number == line }?.category ?? .seoulGyeonggi
     }
 
     private func routeStationRow(ko: String, display: String, lines: [Int]) -> some View {
@@ -2872,7 +2925,9 @@ struct StationSearchSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(NavLoc.done.resolved(displayLanguage)) { dismiss() }
+                    Button { dismiss() } label: {
+                        Label(NavLoc.done.resolved(displayLanguage), systemImage: "xmark")
+                    }
                 }
                 ToolbarItem(placement: .primaryAction) {
                     Button {
@@ -3299,7 +3354,9 @@ struct PositionCorrectionSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(NavLoc.done.resolved(displayLanguage)) { dismiss() }
+                    Button { dismiss() } label: {
+                        Label(NavLoc.done.resolved(displayLanguage), systemImage: "checkmark")
+                    }
                 }
             }
             .task { await tryLocate() }
@@ -3467,6 +3524,7 @@ struct LanguagePickerSheet: View {
             }
             .fullScreenCover(isPresented: $showOnboarding) {
                 KORAOnboardingView(lang: sheetLang) { showOnboarding = false }
+                    .foldConfined()
             }
             .sheet(isPresented: $showWhatsNew) {
                 WhatsNewView(lang: sheetLang, items: KORAWhatsNew.currentItems)
@@ -3475,8 +3533,10 @@ struct LanguagePickerSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button(NavLoc.done.resolved(sheetLang)) { dismiss() }
-                        .accessibilityInputLabels([Text(NavLoc.done.resolved(sheetLang))])
+                    Button { dismiss() } label: {
+                        Label(NavLoc.done.resolved(sheetLang), systemImage: "checkmark")
+                    }
+                    .accessibilityInputLabels([Text(NavLoc.done.resolved(sheetLang))])
                 }
             }
         }

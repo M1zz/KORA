@@ -77,6 +77,8 @@ struct KORAApp: App {
             // Single screen — the subway navigator is the whole app.
             SubwayView()
                 .tint(KORATheme.accent)
+                // 아이폰 듀오: 접힘을 재서 아래로 흘린다. 시트 · 알림창도 접힌 선을 비킨다.
+                .foldAware()
         }
     }
 }
