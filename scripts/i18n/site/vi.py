@@ -1,4 +1,4 @@
-E = "mizzking75@gmail.com"
+E = "leeo@kakao.com"
 M = f'<a href="mailto:{E}">{E}</a>'
 T = dict(
 icon_alt="Biểu tượng ứng dụng KORA", site_title="KORA", site_subtitle="Chỉ đường tàu điện ngầm Hàn Quốc cho du khách",

@@ -14,7 +14,7 @@ SNS 없이 영어권·일본어권 사람에게 닿는 곳의 **제출 양식 �
 | 웹사이트 | https://m1zz.github.io/KORA/en/ (일본어 https://m1zz.github.io/KORA/ja/) |
 | 지원 | https://m1zz.github.io/KORA/en/support.html |
 | 개발자 | Leeo (리이오), 한국의 1인 개발자 |
-| 연락처 | mizzking75@gmail.com (APPSTORE.md 에 공개된 문의 주소) |
+| 연락처 | leeo@kakao.com (APPSTORE.md 에 공개된 문의 주소) |
 | 플랫폼 | iPhone (iOS) |
 | 언어 (23) | Japanese, Korean, English, Chinese (Simplified), Chinese (Traditional), German, Spanish, French, Italian, Portuguese (Brazil), Russian, Czech, Danish, Greek, Finnish, Indonesian, Norwegian, Dutch, Polish, Swedish, Thai, Turkish, Vietnamese |
 | 가격 | 무료 다운로드. 길찾기·타는 방향·실시간 도착·카메라 방향 확인은 늘 무료. 잠금 화면 안내·안내방송 인식·하차 진동은 처음 3번의 여정 무료, 그 뒤 KORA Pro 1회 구매 (구독 아님) |
@@ -102,7 +102,7 @@ If you try it, I'd love to hear where VoiceOver gets stuck, in this thread or th
 | Developer / Team Name | `Leeo` |
 | Platforms | `iOS (iPhone)` |
 | Languages | `23 languages: Japanese, Korean, English, Chinese (Simplified and Traditional), German, Spanish, French, Italian, Portuguese (Brazil), Russian, Czech, Danish, Greek, Finnish, Indonesian, Norwegian, Dutch, Polish, Swedish, Thai, Turkish, Vietnamese` |
-| Email Address | `mizzking75@gmail.com` |
+| Email Address | `leeo@kakao.com` |
 | Website / Social Media Links | `https://m1zz.github.io/KORA/en/` 와 `https://apps.apple.com/app/id6775176578` (SNS 계정은 없다고 적는다) |
 
 **Description**

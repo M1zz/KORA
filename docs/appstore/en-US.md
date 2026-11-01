@@ -83,7 +83,7 @@ No account, no ads, no in-app purchases. Location, camera and announcement recog
 
 Camera, microphone, speech recognition and motion access are all optional. Without them you can still pick stations yourself and get full route guidance.
 
-Contact: mizzking75@gmail.com
+Contact: leeo@kakao.com
 ```
 
 ## Keywords

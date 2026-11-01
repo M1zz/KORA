@@ -60,7 +60,7 @@ KORA Pro
 
 카메라, 마이크, 음성 인식, 동작 권한은 모두 선택 사항입니다. 허용하지 않아도 역을 직접 골라 경로 안내를 이용할 수 있습니다.
 
-문의: mizzking75@gmail.com
+문의: leeo@kakao.com
 
 ### 지원 URL
 
@@ -132,7 +132,7 @@ No account, no ads. Location, camera and announcement recognition are processed 
 
 Camera, microphone, speech recognition and motion access are all optional. Without them you can still pick stations yourself and get full route guidance.
 
-Contact: mizzking75@gmail.com
+Contact: leeo@kakao.com
 
 ### 지원 URL
 
@@ -204,7 +204,7 @@ No account, no ads. Location, camera and announcement recognition are processed 
 
 Camera, microphone, speech recognition and motion access are all optional. Without them you can still pick stations yourself and get full route guidance.
 
-Contact: mizzking75@gmail.com
+Contact: leeo@kakao.com
 
 ### 지원 URL
 
@@ -276,7 +276,7 @@ GPS で最寄り駅を探すか、自分で選べます。選んだ駅は次に�
 
 カメラ、マイク、音声認識、モーションの許可はすべて任意です。許可しなくても、駅を自分で選べばルート案内を使えます。
 
-お問い合わせ：mizzking75@gmail.com
+お問い合わせ：leeo@kakao.com
 
 ### 지원 URL
 
@@ -348,7 +348,7 @@ KORA 是一款为来韩国旅行的人打造的地铁指南 App。
 
 相机、麦克风、语音识别和运动权限都是可选的。即使不允许，也可以手动选择车站并使用路线导航。
 
-联系我们：mizzking75@gmail.com
+联系我们：leeo@kakao.com
 
 ### 지원 URL
 
@@ -420,7 +420,7 @@ KORA 是專為來韓國旅遊的人設計的地鐵指南 App。
 
 相機、麥克風、語音辨識和動作權限都是選用的。就算不允許，也可以手動選擇車站並使用路線導航。
 
-聯絡我們：mizzking75@gmail.com
+聯絡我們：leeo@kakao.com
 
 ### 지원 URL
 
@@ -492,7 +492,7 @@ Kein Konto, keine Werbung. Standort, Kamera und Durchsagenerkennung werden auf d
 
 Zugriff auf Kamera, Mikrofon, Spracherkennung und Bewegungsdaten ist freiwillig. Auch ohne kannst du Stationen selbst wählen und die volle Routenführung nutzen.
 
-Kontakt: mizzking75@gmail.com
+Kontakt: leeo@kakao.com
 
 ### 지원 URL
 
@@ -564,7 +564,7 @@ Sin cuentas, sin anuncios. La ubicación, la cámara y el reconocimiento de avis
 
 El acceso a la cámara, el micrófono, el reconocimiento de voz y el movimiento es opcional. Sin ellos puedes elegir las estaciones tú mismo y usar toda la guía de rutas.
 
-Contacto: mizzking75@gmail.com
+Contacto: leeo@kakao.com
 
 ### 지원 URL
 
@@ -636,7 +636,7 @@ Pas de compte, pas de publicité. Position, caméra et reconnaissance des annonc
 
 L'accès à la caméra, au micro, à la reconnaissance vocale et aux données de mouvement est facultatif. Sans eux, vous pouvez choisir vos stations vous-même et profiter de tout le guidage.
 
-Contact : mizzking75@gmail.com
+Contact : leeo@kakao.com
 
 ### 지원 URL
 
@@ -708,7 +708,7 @@ Nessun account, nessuna pubblicità. Posizione, fotocamera e riconoscimento degl
 
 L'accesso a fotocamera, microfono, riconoscimento vocale e movimento è facoltativo. Anche senza puoi scegliere le stazioni da solo e usare tutta la guida al percorso.
 
-Contatti: mizzking75@gmail.com
+Contatti: leeo@kakao.com
 
 ### 지원 URL
 
@@ -780,7 +780,7 @@ Sem conta, sem anúncios. Localização, câmera e reconhecimento de avisos são
 
 O acesso à câmera, ao microfone, ao reconhecimento de fala e aos dados de movimento é opcional. Sem eles, você ainda escolhe as estações e usa todo o guia de rotas.
 
-Contato: mizzking75@gmail.com
+Contato: leeo@kakao.com
 
 ### 지원 URL
 
@@ -852,7 +852,7 @@ KORA PRO
 
 Доступ к камере, микрофону, распознаванию речи и датчикам движения необязателен. Без него можно выбирать станции вручную и пользоваться всеми маршрутами.
 
-Связь: mizzking75@gmail.com
+Связь: leeo@kakao.com
 
 ### 지원 URL
 
@@ -924,7 +924,7 @@ SOUKROMÍ NA PRVNÍM MÍSTĚ
 
 Přístup k fotoaparátu, mikrofonu, rozpoznávání řeči a pohybu je dobrovolný. I bez něj můžete vybírat stanice sami a využít celé navádění.
 
-Kontakt: mizzking75@gmail.com
+Kontakt: leeo@kakao.com
 
 ### 지원 URL
 
@@ -996,7 +996,7 @@ Ingen konto, ingen reklamer. Lokalitet, kamera og genkendelse af udkald behandle
 
 Adgang til kamera, mikrofon, talegenkendelse og bevægelse er frivillig. Uden den kan du stadig selv vælge stationer og få fuld rutevejledning.
 
-Kontakt: mizzking75@gmail.com
+Kontakt: leeo@kakao.com
 
 ### 지원 URL
 
@@ -1068,7 +1068,7 @@ KORA PRO
 
 Η πρόσβαση σε κάμερα, μικρόφωνο, αναγνώριση ομιλίας και κίνηση είναι προαιρετική. Χωρίς αυτήν μπορείτε να επιλέγετε σταθμούς μόνοι σας και να έχετε πλήρη καθοδήγηση.
 
-Επικοινωνία: mizzking75@gmail.com
+Επικοινωνία: leeo@kakao.com
 
 ### 지원 URL
 
@@ -1140,7 +1140,7 @@ Ei tiliä, ei mainoksia. Sijainti, kamera ja kuulutusten tunnistus käsitellää
 
 Kameran, mikrofonin, puheentunnistuksen ja liiketietojen käyttö on vapaaehtoista. Ilman niitäkin voit valita asemat itse ja saada täyden reittiopastuksen.
 
-Yhteystiedot: mizzking75@gmail.com
+Yhteystiedot: leeo@kakao.com
 
 ### 지원 URL
 
@@ -1212,7 +1212,7 @@ Tanpa akun, tanpa iklan. Lokasi, kamera, dan pengenalan pengumuman diproses di p
 
 Akses kamera, mikrofon, pengenalan suara, dan gerakan bersifat opsional. Tanpa itu, kamu tetap bisa memilih stasiun sendiri dan memakai panduan rute lengkap.
 
-Kontak: mizzking75@gmail.com
+Kontak: leeo@kakao.com
 
 ### 지원 URL
 
@@ -1284,7 +1284,7 @@ Ingen konto, ingen reklame. Posisjon, kamera og gjenkjenning av annonseringer be
 
 Tilgang til kamera, mikrofon, talegjenkjenning og bevegelse er valgfritt. Uten det kan du fortsatt velge stasjoner selv og få full veiledning.
 
-Kontakt: mizzking75@gmail.com
+Kontakt: leeo@kakao.com
 
 ### 지원 URL
 
@@ -1356,7 +1356,7 @@ Geen account, geen advertenties. Locatie, camera en omroepherkenning worden op j
 
 Toegang tot camera, microfoon, spraakherkenning en beweging is optioneel. Zonder kun je nog steeds zelf stations kiezen en de volledige routebegeleiding gebruiken.
 
-Contact: mizzking75@gmail.com
+Contact: leeo@kakao.com
 
 ### 지원 URL
 
@@ -1428,7 +1428,7 @@ Bez konta i bez reklam. Lokalizacja, aparat i rozpoznawanie komunikatów są prz
 
 Dostęp do aparatu, mikrofonu, rozpoznawania mowy i ruchu jest opcjonalny. Bez niego nadal wybierzesz stacje samodzielnie i skorzystasz z pełnego prowadzenia.
 
-Kontakt: mizzking75@gmail.com
+Kontakt: leeo@kakao.com
 
 ### 지원 URL
 
@@ -1500,7 +1500,7 @@ Inget konto, ingen reklam. Plats, kamera och igenkänning av utrop behandlas på
 
 Åtkomst till kamera, mikrofon, taligenkänning och rörelse är frivillig. Utan den kan du ändå välja stationer själv och få full vägledning.
 
-Kontakt: mizzking75@gmail.com
+Kontakt: leeo@kakao.com
 
 ### 지원 URL
 
@@ -1572,7 +1572,7 @@ KORA Pro
 
 การอนุญาตกล้อง ไมโครโฟน การรู้จำเสียงพูด และการเคลื่อนไหวเป็นตัวเลือกทั้งหมด หากไม่อนุญาตก็ยังเลือกสถานีเองและใช้การนำทางได้ครบ
 
-ติดต่อ: mizzking75@gmail.com
+ติดต่อ: leeo@kakao.com
 
 ### 지원 URL
 
@@ -1644,7 +1644,7 @@ Hesap yok, reklam yok. Konum, kamera ve anons tanıma cihazında işlenir; asla 
 
 Kamera, mikrofon, konuşma tanıma ve hareket izinleri isteğe bağlıdır. Bunlar olmadan da istasyonları kendin seçip rota rehberliğinin tamamını kullanabilirsin.
 
-İletişim: mizzking75@gmail.com
+İletişim: leeo@kakao.com
 
 ### 지원 URL
 
@@ -1716,7 +1716,7 @@ Không cần tài khoản, không quảng cáo. Vị trí, camera và nhận d�
 
 Quyền truy cập camera, micrô, nhận dạng giọng nói và chuyển động đều không bắt buộc. Không cấp quyền, bạn vẫn có thể tự chọn ga và dùng đầy đủ tính năng chỉ đường.
 
-Liên hệ: mizzking75@gmail.com
+Liên hệ: leeo@kakao.com
 
 ### 지원 URL
 

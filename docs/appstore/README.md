@@ -99,7 +99,7 @@ Apple 기준에서 “수집”은 데이터가 기기 밖으로 나가 개발�
 ## 6. 앱 심사 정보 (App Review Information)
 
 - 로그인 필요: 아니요 (데모 계정 없음)
-- 연락처: Leeo, mizzking75@gmail.com (전화번호는 App Store Connect 계정 값 사용)
+- 연락처: Leeo, leeo@kakao.com (전화번호는 App Store Connect 계정 값 사용)
 
 **심사 메모 (영어, 그대로 붙여 넣기)**
 

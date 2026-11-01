@@ -19,7 +19,7 @@ LANGS = [("ko", "한국어"), ("en", "English"), ("ja", "日本語"), ("zh-Hans"
          ("th", "ไทย"), ("tr", "Türkçe"), ("vi", "Tiếng Việt")]
 HANDWRITTEN = {"ko", "en", "ja", "zh-Hans", "zh-Hant"}
 PAGES = {"index": "", "support": "support.html", "privacy": "privacy.html"}
-EMAIL = "mizzking75@gmail.com"
+EMAIL = "leeo@kakao.com"
 
 
 def page_url(loc, page):
