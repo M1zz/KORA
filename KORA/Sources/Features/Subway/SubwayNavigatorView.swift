@@ -68,6 +68,8 @@ struct SubwayNavigatorView: View {
     @Environment(\.foldLayout) private var fold
     @AppStorage("kora.current_station") private var persistedFromStation: String = ""
     @AppStorage("kora.destination_station") private var persistedToStation: String = ""
+    /// Siri 로 고른 도착역 (→ Common/Services/KORAIntents.swift)
+    @Bindable private var intentRouter = KORAIntentRouter.shared
     @State private var fromStation: String? = nil
     @State private var toStation: String? = nil
     @State private var showFromPicker = false
@@ -249,6 +251,13 @@ struct SubwayNavigatorView: View {
         }
         .onChange(of: hasCompletedOnboarding) { _, done in
             if done { autoLocateIfNeeded() }
+        }
+        .onChange(of: intentRouter.destination, initial: true) { _, destination in
+            // Siri 에서 "○○ 가는 길"을 고르면 도착역을 채우고, 출발역은 지금 위치로 찾는다.
+            guard let destination else { return }
+            toStation = destination
+            intentRouter.destination = nil
+            if fromStation == nil, !isLocating { Task { await detectCurrentStation() } }
         }
         .onChange(of: fromStation) { _, new in
             persistedFromStation = new ?? ""

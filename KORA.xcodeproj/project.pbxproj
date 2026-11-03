@@ -8,10 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		178554DE9CC7D8AF586969BA /* SubwayStationChineseTraditionalNames.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C1F37D764C0981336FB8ED /* SubwayStationChineseTraditionalNames.swift */; };
+		290461C75D6D853C173B9666 /* KORAIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA67AC0EDB3F7840F439533A /* KORAIntents.swift */; };
 		52C1E797CE3FF9EB6B79569B /* KORAOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C8E41CBC41FA1E01C421558 /* KORAOps.swift */; };
 		6F5D0AC2E2C8C983A7D6D753 /* KORATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DA18C0A341E50817C804 /* KORATests.swift */; };
 		749636181A0BA9BFD20746A2 /* KORARoadmap.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30AA3727A6C748762BDB882 /* KORARoadmap.swift */; };
+		7B0A1C2D3E4F5061728394A1 /* TrainBoardKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7B0A1C2D3E4F5061728394A2 /* TrainBoardKit */; };
 		818B386BB6FEB822B14E7710 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D017B436A4BFC9338A4A8F52 /* Foundation.framework */; };
+		8A14F36F5007632AAE94FA30 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6F81E7A000AC68E81820E191 /* Localizable.xcstrings */; };
+		906C5019070D1AFE659AC91C /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 38CA31785B27E7019934DE3B /* AppShortcuts.xcstrings */; };
 		98123AE006EE0BEC4B878BA6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D017B436A4BFC9338A4A8F52 /* Foundation.framework */; };
 		9C8F74612FC6E3A000B6DA22 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */; };
 		9C8F74632FC6E3A000B6DA22 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */; };
@@ -46,18 +50,17 @@
 		AA090 /* KORAPro.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA190 /* KORAPro.swift */; };
 		AA091 /* KORAPaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA191 /* KORAPaywallView.swift */; };
 		AA092 /* KORAExitGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA192 /* KORAExitGuideView.swift */; };
-		AAAT1 /* KORAAttractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAT2 /* KORAAttractions.swift */; };
-		AAMP1 /* KORAStationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAMP2 /* KORAStationMapView.swift */; };
-		AAAT3 /* attractions.json in Resources */ = {isa = PBXBuildFile; fileRef = AAAT4 /* attractions.json */; };
 		AA093 /* station_exits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA193 /* station_exits.json */; };
 		AA094 /* KORALastTrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA194 /* KORALastTrain.swift */; };
 		AA095 /* last_trains.json in Resources */ = {isa = PBXBuildFile; fileRef = AA195 /* last_trains.json */; };
 		AA096 /* KORALuggageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA196 /* KORALuggageMode.swift */; };
 		AA097 /* quick_exits.json in Resources */ = {isa = PBXBuildFile; fileRef = AA197 /* quick_exits.json */; };
+		AAAT1 /* KORAAttractions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAT2 /* KORAAttractions.swift */; };
+		AAAT3 /* attractions.json in Resources */ = {isa = PBXBuildFile; fileRef = AAAT4 /* attractions.json */; };
+		AAMP1 /* KORAStationMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAMP2 /* KORAStationMapView.swift */; };
 		B28BC43FCA7E3ADCCCD4EB7A /* WhatsNewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8B0BC9C834088B328FF6507 /* WhatsNewView.swift */; };
 		C62E585A5BD40DD03A69611E /* KORASpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D94BF998F4FA289367D996 /* KORASpec.swift */; };
 		D1286038A08AD446436B2949 /* LeeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = B166D3AACB5B9C90AC428313 /* LeeoKit */; };
-		7B0A1C2D3E4F5061728394A1 /* TrainBoardKit in Frameworks */ = {isa = PBXBuildFile; productRef = 7B0A1C2D3E4F5061728394A2 /* TrainBoardKit */; };
 		D999DB981385F94B4D7355AB /* KORAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A2D1E8A09BD26E4BFA2F /* KORAUITests.swift */; };
 		F9C1A5B07B654E85BB6129D6 /* KORAOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F01AD801998564ABFD99FEA /* KORAOnboardingView.swift */; };
 /* End PBXBuildFile section */
@@ -104,9 +107,11 @@
 		0E04A2D1E8A09BD26E4BFA2F /* KORAUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KORAUITests.swift; sourceTree = "<group>"; };
 		153D72F9D07DFBA98CE0E192 /* KORAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KORAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C8E41CBC41FA1E01C421558 /* KORAOps.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KORAOps.swift; sourceTree = "<group>"; };
+		38CA31785B27E7019934DE3B /* AppShortcuts.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json.xcstrings; path = AppShortcuts.xcstrings; sourceTree = "<group>"; };
 		4F01AD801998564ABFD99FEA /* KORAOnboardingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KORAOnboardingView.swift; sourceTree = "<group>"; };
 		53D94BF998F4FA289367D996 /* KORASpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORASpec.swift; sourceTree = "<group>"; };
 		58FF4F082FC47ADC00DF7156 /* KORA.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KORA.entitlements; sourceTree = "<group>"; };
+		6F81E7A000AC68E81820E191 /* Localizable.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = widgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C8F74602FC6E3A000B6DA22 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		9C8F74622FC6E3A000B6DA22 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -141,15 +146,16 @@
 		AA190 /* KORAPro.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAPro.swift; sourceTree = "<group>"; };
 		AA191 /* KORAPaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAPaywallView.swift; sourceTree = "<group>"; };
 		AA192 /* KORAExitGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAExitGuideView.swift; sourceTree = "<group>"; };
-		AAAT2 /* KORAAttractions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAAttractions.swift; sourceTree = "<group>"; };
-		AAMP2 /* KORAStationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAStationMapView.swift; sourceTree = "<group>"; };
-		AAAT4 /* attractions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = attractions.json; sourceTree = "<group>"; };
 		AA193 /* station_exits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = station_exits.json; sourceTree = "<group>"; };
 		AA194 /* KORALastTrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORALastTrain.swift; sourceTree = "<group>"; };
 		AA195 /* last_trains.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = last_trains.json; sourceTree = "<group>"; };
 		AA196 /* KORALuggageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORALuggageMode.swift; sourceTree = "<group>"; };
 		AA197 /* quick_exits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = quick_exits.json; sourceTree = "<group>"; };
 		AA200 /* KORA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA67AC0EDB3F7840F439533A /* KORAIntents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KORAIntents.swift; sourceTree = "<group>"; };
+		AAAT2 /* KORAAttractions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAAttractions.swift; sourceTree = "<group>"; };
+		AAAT4 /* attractions.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = attractions.json; sourceTree = "<group>"; };
+		AAMP2 /* KORAStationMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAStationMapView.swift; sourceTree = "<group>"; };
 		B0BF0AF98EA2E04687A92072 /* SubwayNavigatorCatalog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubwayNavigatorCatalog.swift; sourceTree = "<group>"; };
 		B80A15DD4F041A3443CC9668 /* KORATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KORATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBC1DA18C0A341E50817C804 /* KORATests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KORATests.swift; sourceTree = "<group>"; };
@@ -281,6 +287,8 @@
 				AA197 /* quick_exits.json */,
 				AAAT4 /* attractions.json */,
 				F30AA3727A6C748762BDB882 /* KORARoadmap.swift */,
+				6F81E7A000AC68E81820E191 /* Localizable.xcstrings */,
+				38CA31785B27E7019934DE3B /* AppShortcuts.xcstrings */,
 			);
 			path = KORA;
 			sourceTree = "<group>";
@@ -404,6 +412,7 @@
 				AA144 /* KORALiveActivityManager.swift */,
 				AA190 /* KORAPro.swift */,
 				2C8E41CBC41FA1E01C421558 /* KORAOps.swift */,
+				AA67AC0EDB3F7840F439533A /* KORAIntents.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -602,6 +611,8 @@
 				AA095 /* last_trains.json in Resources */,
 				AA097 /* quick_exits.json in Resources */,
 				AAAT3 /* attractions.json in Resources */,
+				8A14F36F5007632AAE94FA30 /* Localizable.xcstrings in Resources */,
+				906C5019070D1AFE659AC91C /* AppShortcuts.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -661,6 +672,7 @@
 				52C1E797CE3FF9EB6B79569B /* KORAOps.swift in Sources */,
 				F9C1A5B07B654E85BB6129D6 /* KORAOnboardingView.swift in Sources */,
 				B28BC43FCA7E3ADCCCD4EB7A /* WhatsNewView.swift in Sources */,
+				290461C75D6D853C173B9666 /* KORAIntents.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1090,15 +1102,15 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		B166D3AACB5B9C90AC428313 /* LeeoKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0F3D8391B5D89060B177C096 /* XCRemoteSwiftPackageReference "LeeoKit" */;
-			productName = LeeoKit;
-		};
 		7B0A1C2D3E4F5061728394A2 /* TrainBoardKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7B0A1C2D3E4F5061728394A3 /* XCRemoteSwiftPackageReference "TrainBoardKit" */;
 			productName = TrainBoardKit;
+		};
+		B166D3AACB5B9C90AC428313 /* LeeoKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F3D8391B5D89060B177C096 /* XCRemoteSwiftPackageReference "LeeoKit" */;
+			productName = LeeoKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
