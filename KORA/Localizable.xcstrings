@@ -1420,6 +1420,149 @@
           }
         }
       }
+    },
+    "The station you’re going to. Its name works in any language the app supports." : {
+      "comment" : "Siri: destination station parameter description",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stanice, kam jedete. Její název můžete říct v kterémkoli jazyce aplikace."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Den station, du skal til. Navnet virker på alle appens sprog."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Station, zu der du willst. Ihr Name funktioniert in jeder Sprache der App."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ο σταθμός όπου πηγαίνετε. Το όνομά του λειτουργεί σε όποια γλώσσα υποστηρίζει η εφαρμογή."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The station you’re going to. Its name works in any language the app supports."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La estación a la que vas. Puedes decir su nombre en cualquier idioma de la app."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Asema, jolle olet menossa. Nimen voi sanoa millä tahansa apin kielellä."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La station où vous allez. Son nom fonctionne dans toutes les langues de l’app."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stasiun tujuan Anda. Namanya bisa disebut dalam bahasa apa pun yang didukung app."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La stazione dove vuoi andare. Puoi dirne il nome in qualsiasi lingua dell’app."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "行きたい駅。アプリが対応しているどの言語の駅名でも探せます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "가려는 역. 앱이 지원하는 어느 언어로 말해도 찾아요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stasjonen du skal til. Navnet fungerer på alle språkene appen støtter."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het station waar je heen gaat. De naam werkt in elke taal van de app."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stacja, do której jedziesz. Jej nazwę możesz podać w dowolnym języku aplikacji."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A estação para onde você vai. O nome funciona em qualquer idioma do app."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Станция, куда вы едете. Название можно сказать на любом языке приложения."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stationen du ska till. Namnet fungerar på alla språk som appen stöder."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "สถานีที่จะไป พูดชื่อสถานีเป็นภาษาใดก็ได้ที่แอปรองรับ"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gideceğin istasyon. Adını uygulamanın desteklediği her dilde söyleyebilirsin."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ga bạn muốn đến. Có thể nói tên ga bằng bất kỳ ngôn ngữ nào ứng dụng hỗ trợ."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要去的车站。用 App 支持的任何语言说出站名都能找到。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "要去的車站。用 App 支援的任何語言說出站名都能找到。"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

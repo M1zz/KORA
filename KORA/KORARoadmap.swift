@@ -33,6 +33,7 @@ extension KORASpec {
             item("a11y.largetext", .roadmapLargeText, .roadmapLargeTextDetail),
             item("a11y.keyboard", .roadmapKeyboard, .roadmapKeyboardDetail),
             item("fold", .roadmapFold, .roadmapFoldDetail),
+            item("siri-ai", .roadmapSiriAI, .roadmapSiriAIDetail),
 
             // MARK: 내보냈어요
             item("places", .roadmapPlaces, .roadmapPlacesDetail, .shipped("1.0.10")),

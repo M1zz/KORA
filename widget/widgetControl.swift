@@ -29,6 +29,7 @@ extension KoreaWayNavigatorControl {
 
 struct OpenNavigatorIntent: AppIntent {
     static let title: LocalizedStringResource = "Open subway directions"
+    static let description = IntentDescription("Open the subway navigator in one tap.")
     static let openAppWhenRun: Bool = true
 
     func perform() async throws -> some IntentResult {

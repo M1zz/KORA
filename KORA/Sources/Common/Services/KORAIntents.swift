@@ -87,6 +87,7 @@ struct KORARouteIntent: AppIntent {
     static let openAppWhenRun = true
 
     @Parameter(title: LocalizedStringResource("Destination", comment: "Siri: destination station parameter"),
+               description: LocalizedStringResource("The station you’re going to. Its name works in any language the app supports.", comment: "Siri: destination station parameter description"),
                requestValueDialog: IntentDialog(LocalizedStringResource("Which station are you going to?", comment: "Siri: ask destination")))
     var station: KORAStationEntity
 
