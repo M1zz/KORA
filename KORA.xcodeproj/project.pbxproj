@@ -63,6 +63,9 @@
 		D1286038A08AD446436B2949 /* LeeoKit in Frameworks */ = {isa = PBXBuildFile; productRef = B166D3AACB5B9C90AC428313 /* LeeoKit */; };
 		D999DB981385F94B4D7355AB /* KORAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A2D1E8A09BD26E4BFA2F /* KORAUITests.swift */; };
 		F9C1A5B07B654E85BB6129D6 /* KORAOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F01AD801998564ABFD99FEA /* KORAOnboardingView.swift */; };
+		7A0C0A010000000000000001 /* KORAWatchLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0C0A010000000000000002 /* KORAWatchLink.swift */; };
+		7A0C0A010000000000000003 /* KORAWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 7A0C0A020000000000000001 /* KORAWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7A0C0A010000000000000004 /* KORAWatchWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7A0C0A030000000000000001 /* KORAWatchWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,20 @@
 			remoteGlobalIDString = 9C8F745D2FC6E3A000B6DA22;
 			remoteInfo = widgetExtension;
 		};
+		7A0C0A060000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA700 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A0C0A020000000000000002;
+			remoteInfo = KORAWatch;
+		};
+		7A0C0A060000000000000002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AA700 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7A0C0A030000000000000002;
+			remoteInfo = KORAWatchWidget;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -97,6 +114,28 @@
 			dstSubfolderSpec = 13;
 			files = (
 				9C8F74722FC6E3A100B6DA22 /* widgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A0C0A050000000000000001 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				7A0C0A010000000000000003 /* KORAWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A0C0A050000000000000002 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7A0C0A010000000000000004 /* KORAWatchWidget.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,6 +203,9 @@
 		F30AA3727A6C748762BDB882 /* KORARoadmap.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KORARoadmap.swift; sourceTree = "<group>"; };
 		F3C1F37D764C0981336FB8ED /* SubwayStationChineseTraditionalNames.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubwayStationChineseTraditionalNames.swift; sourceTree = "<group>"; };
 		F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
+		7A0C0A010000000000000002 /* KORAWatchLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KORAWatchLink.swift; sourceTree = "<group>"; };
+		7A0C0A020000000000000001 /* KORAWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KORAWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A0C0A030000000000000001 /* KORAWatchWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KORAWatchWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -173,6 +215,13 @@
 				Info.plist,
 			);
 			target = 9C8F745D2FC6E3A000B6DA22 /* widgetExtension */;
+		};
+		7A0C0A040000000000000002 /* Exceptions for "KORAWatchWidget" folder in "KORAWatchWidget" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 7A0C0A030000000000000002 /* KORAWatchWidget */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -187,6 +236,24 @@
 			explicitFolders = (
 			);
 			path = widget;
+			sourceTree = "<group>";
+		};
+		7A0C0A020000000000000003 /* KORAWatch */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = KORAWatch;
+			sourceTree = "<group>";
+		};
+		7A0C0A030000000000000003 /* KORAWatchWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				7A0C0A040000000000000002 /* Exceptions for "KORAWatchWidget" folder in "KORAWatchWidget" target */,
+			);
+			path = KORAWatchWidget;
+			sourceTree = "<group>";
+		};
+		7A0C0A040000000000000001 /* Shared */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Shared;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -226,6 +293,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A0C0A070000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A0C0A080000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -260,6 +341,9 @@
 		AA400 = {
 			isa = PBXGroup;
 			children = (
+				7A0C0A040000000000000001 /* Shared */,
+				7A0C0A020000000000000003 /* KORAWatch */,
+				7A0C0A030000000000000003 /* KORAWatchWidget */,
 				AA401 /* KORA */,
 				9C8F74642FC6E3A000B6DA22 /* widget */,
 				9C8F745F2FC6E3A000B6DA22 /* Frameworks */,
@@ -296,6 +380,8 @@
 		AA402 /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				7A0C0A020000000000000001 /* KORAWatch.app */,
+				7A0C0A030000000000000001 /* KORAWatchWidget.appex */,
 				AA200 /* KORA.app */,
 				9C8F745E2FC6E3A000B6DA22 /* widgetExtension.appex */,
 				B80A15DD4F041A3443CC9668 /* KORATests.xctest */,
@@ -410,6 +496,7 @@
 				AA160 /* SeoulTransitConfig.swift */,
 				AA131 /* LocationService.swift */,
 				AA144 /* KORALiveActivityManager.swift */,
+				7A0C0A010000000000000002 /* KORAWatchLink.swift */,
 				AA190 /* KORAPro.swift */,
 				2C8E41CBC41FA1E01C421558 /* KORAOps.swift */,
 				AA67AC0EDB3F7840F439533A /* KORAIntents.swift */,
@@ -502,11 +589,16 @@
 				AA501 /* Sources */,
 				AA502 /* Resources */,
 				58FF4F022FC47AC600DF7156 /* Embed Foundation Extensions */,
+				7A0C0A050000000000000001 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				9C8F74712FC6E3A100B6DA22 /* PBXTargetDependency */,
+				7A0C0A060000000000000003 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7A0C0A040000000000000001 /* Shared */,
 			);
 			name = KORA;
 			packageProductDependencies = (
@@ -516,6 +608,50 @@
 			productName = KORA;
 			productReference = AA200 /* KORA.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7A0C0A020000000000000002 /* KORAWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A0C0A090000000000000001 /* Build configuration list for PBXNativeTarget "KORAWatch" */;
+			buildPhases = (
+				7A0C0A070000000000000001 /* Sources */,
+				7A0C0A070000000000000002 /* Frameworks */,
+				7A0C0A070000000000000003 /* Resources */,
+				7A0C0A050000000000000002 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7A0C0A060000000000000004 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7A0C0A020000000000000003 /* KORAWatch */,
+				7A0C0A040000000000000001 /* Shared */,
+			);
+			name = KORAWatch;
+			productName = KORAWatch;
+			productReference = 7A0C0A020000000000000001 /* KORAWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7A0C0A030000000000000002 /* KORAWatchWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A0C0A0A0000000000000001 /* Build configuration list for PBXNativeTarget "KORAWatchWidget" */;
+			buildPhases = (
+				7A0C0A080000000000000001 /* Sources */,
+				7A0C0A080000000000000002 /* Frameworks */,
+				7A0C0A080000000000000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7A0C0A030000000000000003 /* KORAWatchWidget */,
+				7A0C0A040000000000000001 /* Shared */,
+			);
+			name = KORAWatchWidget;
+			productName = KORAWatchWidget;
+			productReference = 7A0C0A030000000000000001 /* KORAWatchWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -579,6 +715,8 @@
 				9C8F745D2FC6E3A000B6DA22 /* widgetExtension */,
 				1FA560C9B1FB3270E34FD269 /* KORATests */,
 				4C3D32A10F270FFBDBE69807 /* KORAUITests */,
+				7A0C0A020000000000000002 /* KORAWatch */,
+				7A0C0A030000000000000002 /* KORAWatchWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -623,6 +761,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A0C0A070000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A0C0A080000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -643,6 +795,7 @@
 				AA060 /* SeoulTransitConfig.swift in Sources */,
 				AA031 /* LocationService.swift in Sources */,
 				AA044 /* KORALiveActivityManager.swift in Sources */,
+				7A0C0A010000000000000001 /* KORAWatchLink.swift in Sources */,
 				AA023 /* SubwayView.swift in Sources */,
 				AA025 /* SubwayLineData.swift in Sources */,
 				AA070 /* SubwayLineDataExpansion.swift in Sources */,
@@ -692,6 +845,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7A0C0A070000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7A0C0A080000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -711,6 +878,16 @@
 			isa = PBXTargetDependency;
 			target = 9C8F745D2FC6E3A000B6DA22 /* widgetExtension */;
 			targetProxy = 9C8F74702FC6E3A100B6DA22 /* PBXContainerItemProxy */;
+		};
+		7A0C0A060000000000000003 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A0C0A020000000000000002 /* KORAWatch */;
+			targetProxy = 7A0C0A060000000000000001 /* PBXContainerItemProxy */;
+		};
+		7A0C0A060000000000000004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7A0C0A030000000000000002 /* KORAWatchWidget */;
+			targetProxy = 7A0C0A060000000000000002 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1032,6 +1209,120 @@
 			};
 			name = Debug;
 		};
+		7A0C0A090000000000000002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = KORAWatch/KORAWatch.entitlements;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kora.leeo;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.watchkitapp;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = KORA;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		7A0C0A090000000000000003 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = KORAWatch/KORAWatch.entitlements;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.kora.leeo;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.watchkitapp;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = KORA;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7A0C0A0A0000000000000002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = KORAWatchWidget/KORAWatchWidget.entitlements;
+				INFOPLIST_FILE = KORAWatchWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.watchkitapp.widget;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = KORA;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		7A0C0A0A0000000000000003 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F9DAF9F41F3F11EB6784EA2F /* Version.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = KORAWatchWidget/KORAWatchWidget.entitlements;
+				INFOPLIST_FILE = KORAWatchWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kora.leeo.watchkitapp.widget;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = KORA;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1076,6 +1367,24 @@
 			buildConfigurations = (
 				2567600EBE8FA53C4EB4C6AE /* Release */,
 				2A7FA2F309DDE1CE19114D25 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7A0C0A090000000000000001 /* Build configuration list for PBXNativeTarget "KORAWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A0C0A090000000000000002 /* Debug */,
+				7A0C0A090000000000000003 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7A0C0A0A0000000000000001 /* Build configuration list for PBXNativeTarget "KORAWatchWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A0C0A0A0000000000000002 /* Debug */,
+				7A0C0A0A0000000000000003 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

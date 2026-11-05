@@ -284,6 +284,10 @@ struct SubwayNavigatorView: View {
             revisitFromIdx = nil
             terminiOverride = [:]
         }
+        // 열차에서 내렸거나 경로를 바꿨다 — 손목의 남은 정거장도 거둔다.
+        .onChange(of: boardedAt == nil) { _, unboarded in
+            if unboarded { KORAWatchLink.shared.publish(nil) }
+        }
     }
 
     private var navigatorBody: some View {
@@ -1247,6 +1251,7 @@ struct SubwayNavigatorView: View {
 
             guard #available(iOS 16.1, *) else { return }
             var lastLiveIdx = -1
+            var lastWatchIdx = -1
             while !Task.isCancelled {
                 // Feed the schedule-based floor every few seconds. Sensor/realtime
                 // arrivals publish on their own (event-driven), so the index stays
@@ -1257,6 +1262,11 @@ struct SubwayNavigatorView: View {
 
                 // Push the Live Activity only when the station actually changes.
                 let idx = positionTracker.stationIndex
+                // 손목에도 — 아이폰이 잠들어 더 못 보내도 워치가 이 역부터 혼자 센다.
+                if idx != lastWatchIdx {
+                    lastWatchIdx = idx
+                    KORAWatchLink.shared.publish(watchRide(seg: seg, index: idx))
+                }
                 if guidedRide, idx != lastLiveIdx {
                     lastLiveIdx = idx
                     let currentKo = seg.stations[min(idx, seg.stations.count - 1)]
@@ -1474,6 +1484,34 @@ struct SubwayNavigatorView: View {
         .accessibilityElement(children: .combine)
         .accessibilityLabel(a11yStopsToAlight(alightKo: alightKo, stops: stopsRemaining, mins: nil)
                             + ". " + level.headline(lang: displayLanguage))
+    }
+
+    /// Apple Watch 로 보낼 '지금 열차' 한 장. 글은 라이브 액티비티처럼 앱 안 언어로 바꿔 보낸다.
+    private func watchRide(seg: JourneySegment, index: Int) -> RideSnapshot {
+        let lang = displayLanguage
+        let segCount = journey?.segments.count ?? 1
+        return RideSnapshot(
+            id: seg.id.uuidString,
+            line: seg.line.localizedName(lang),
+            lineColorHex: seg.line.color.hexString,
+            stations: seg.stations.map { MetroLineData.displayName(for: $0, language: lang) },
+            index: min(index, max(seg.stations.count - 1, 0)),
+            at: Date(),
+            secondsPerStop: secondsPerStop(for: seg),
+            transfers: boardedSegmentIdx < segCount - 1,
+            vibrate: guidedRide,
+            // "3 정거장" 에서 숫자를 뺀 말 — 러시아어 · 폴란드어처럼 수에 따라 바뀌는 말도 맞게
+            stopsUnits: (0..<max(seg.stations.count, 1)).map {
+                String(NavLoc.stopsRemaining($0, lang).dropFirst("\($0) ".count))
+            },
+            labels: .init(
+                getOffAt: NavLoc.alightCalm.resolved(lang),
+                nextStation: NavLoc.nextStationShort.resolved(lang),
+                nextStopGetOff: NavLoc.nextStopGetOff.resolved(lang),
+                getOffNow: NavLoc.getOffNow.resolved(lang),
+                transfer: NavLoc.transferLabel.resolved(lang)
+            )
+        )
     }
 
     /// Average seconds-per-stop for a segment — derived from `SegmentTiming`

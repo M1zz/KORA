@@ -39,7 +39,8 @@ echo "   $(grep -E '^[[:space:]]*MARKETING_VERSION' "$VERSION_XCCONFIG" | tr -s 
 
 # ── 2. 카탈로그가 모든 언어로 다 찼는지 ──────────────────────────────────
 echo "🌐 [2/4] 카탈로그 언어 확인 ($LANGS)"
-python3 - "$LANGS" KORA/InfoPlist.xcstrings widget/Localizable.xcstrings <<'PY'
+python3 - "$LANGS" KORA/InfoPlist.xcstrings widget/Localizable.xcstrings \
+  KORAWatch/Localizable.xcstrings KORAWatchWidget/Localizable.xcstrings <<'PY'
 import json, sys
 langs = sys.argv[1].split()
 bad = []

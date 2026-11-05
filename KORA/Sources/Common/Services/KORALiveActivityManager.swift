@@ -107,9 +107,9 @@ final class KORALiveActivityManager {
     }
 }
 
-// MARK: - Color → hex helper
+// MARK: - Color → hex helper (라이브 액티비티 · 워치가 함께 쓴다)
 
-private extension Color {
+extension Color {
     var hexString: String {
         let ui = UIColor(self)
         var r: CGFloat = 0, g: CGFloat = 0, b: CGFloat = 0, a: CGFloat = 0

@@ -5,6 +5,200 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 언어마다 `### ...` 제목에 언어 이름이 들어 있고, 코드 블록 안의 글만 올라간다.
 코드 블록 안은 한 줄에 한 문장, 이모지나 마크다운 기호 없이 평문으로 쓴다.
 
+## 1.1.0
+
+### 앱스토어 (한국어 ko)
+
+```
+Apple Watch에서 남은 정거장을 확인하세요
+내리기 한 정거장 전에 손목이 울려요
+시계 화면에 남은 정거장을 띄울 수 있어요
+```
+
+### 앱스토어 (English en-US)
+
+```
+See stops left on your Apple Watch
+Your wrist buzzes one stop before yours
+Add stops left to your watch face
+```
+
+### 앱스토어 (영국 영어 en-GB)
+
+```
+See stops left on your Apple Watch
+Your wrist buzzes one stop before yours
+Add stops left to your watch face
+```
+
+### 앱스토어 (日本語 ja)
+
+```
+Apple Watchで残りの駅数を確認できます
+降りる駅の一つ手前で手首が振動します
+文字盤に残りの駅数を表示できます
+```
+
+### 앱스토어 (중국어 간체 zh-Hans)
+
+```
+在 Apple Watch 上查看剩余站数
+下车前一站，手腕振动提醒
+可在表盘上显示剩余站数
+```
+
+### 앱스토어 (중국어 번체 zh-Hant)
+
+```
+在 Apple Watch 上查看剩餘站數
+下車前一站，手腕震動提醒
+可在錶面上顯示剩餘站數
+```
+
+### 앱스토어 (독일어 de)
+
+```
+Restliche Stationen auf der Apple Watch
+Eine Station vorher vibriert die Uhr
+Stationen direkt auf dem Zifferblatt
+```
+
+### 앱스토어 (스페인어 es)
+
+```
+Paradas restantes en tu Apple Watch
+Tu muñeca vibra una parada antes
+Añade las paradas a la esfera
+```
+
+### 앱스토어 (프랑스어 fr)
+
+```
+Arrêts restants sur votre Apple Watch
+Votre poignet vibre un arrêt avant
+Les arrêts restants sur le cadran
+```
+
+### 앱스토어 (이탈리아어 it)
+
+```
+Fermate mancanti sull’Apple Watch
+Il polso vibra una fermata prima
+Fermate mancanti sul quadrante
+```
+
+### 앱스토어 (포르투갈어 브라질 pt-BR)
+
+```
+Estações restantes no Apple Watch
+O pulso vibra uma estação antes
+Mostre as estações no mostrador
+```
+
+### 앱스토어 (러시아어 ru)
+
+```
+Оставшиеся станции на Apple Watch
+За станцию до выхода часы вибрируют
+Оставшиеся станции на циферблате
+```
+
+### 앱스토어 (체코어 cs)
+
+```
+Zbývající stanice na Apple Watch
+Stanici před výstupem hodinky zavibrují
+Zbývající stanice na ciferníku
+```
+
+### 앱스토어 (덴마크어 da)
+
+```
+Stationer tilbage på dit Apple Watch
+Uret vibrerer én station før
+Vis stationer tilbage på urskiven
+```
+
+### 앱스토어 (그리스어 el)
+
+```
+Οι στάσεις που μένουν στο Apple Watch
+Το ρολόι δονείται μία στάση πριν
+Οι στάσεις που μένουν στην πρόσοψη
+```
+
+### 앱스토어 (핀란드어 fi)
+
+```
+Jäljellä olevat asemat Apple Watchissa
+Kello värisee asemaa ennen poistumista
+Asemat näkyvät kellotaulussa
+```
+
+### 앱스토어 (인도네시아어 id)
+
+```
+Sisa stasiun di Apple Watch
+Jam bergetar satu stasiun sebelum turun
+Tampilkan sisa stasiun di muka jam
+```
+
+### 앱스토어 (노르웨이어 보크말 nb)
+
+```
+Stasjoner igjen på Apple Watch
+Klokka vibrerer én stasjon før
+Vis stasjoner igjen på urskiven
+```
+
+### 앱스토어 (네덜란드어 nl)
+
+```
+Resterende haltes op je Apple Watch
+Je pols trilt één halte van tevoren
+Zet de haltes op je wijzerplaat
+```
+
+### 앱스토어 (폴란드어 pl)
+
+```
+Pozostałe stacje na Apple Watch
+Zegarek zawibruje stację przed wysiadką
+Pozostałe stacje na tarczy zegarka
+```
+
+### 앱스토어 (스웨덴어 sv)
+
+```
+Stationer kvar på din Apple Watch
+Klockan vibrerar en station innan
+Visa stationer kvar på urtavlan
+```
+
+### 앱스토어 (태국어 th)
+
+```
+ดูสถานีที่เหลือบน Apple Watch
+นาฬิกาสั่นเตือนก่อนถึงสถานีที่ต้องลง
+แสดงสถานีที่เหลือบนหน้าปัด
+```
+
+### 앱스토어 (튀르키예어 tr)
+
+```
+Kalan duraklar Apple Watch’ta
+İneceğin duraktan önce saat titrer
+Kalan durakları kadrana ekle
+```
+
+### 앱스토어 (베트남어 vi)
+
+```
+Xem số ga còn lại trên Apple Watch
+Đồng hồ rung trước ga cần xuống một ga
+Hiện số ga còn lại trên mặt đồng hồ
+```
+
 ## 1.0.11
 
 ### 앱스토어 (한국어 ko)

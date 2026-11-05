@@ -43,6 +43,9 @@ GPS로 가장 가까운 역을 찾거나 직접 고를 수 있습니다. 고른 
 잠금 화면과 Dynamic Island
 탑승 중에는 라이브 액티비티로 휴대폰을 열지 않고도 진행 상황을 확인할 수 있습니다.
 
+Apple Watch
+탑승 중에는 내릴 역까지 남은 정거장이 손목에 크게 보이고, 한 정거장 남으면 손목이 울립니다. 휴대폰이 주머니에 있어도 워치가 스스로 세어 알려 드립니다. 시계 화면에 남은 정거장을 올려 둘 수도 있습니다.
+
 23개 언어
 앱 화면을 한국어, 영어, 일본어, 중국어는 물론 독일어, 프랑스어, 스페인어, 태국어, 베트남어 등 23개 언어로 쓸 수 있고 처음에는 휴대폰 언어를 따릅니다. 역 이름은 한글 원문과 함께 가타카나, 한자, 또는 역 표지판에 적힌 영문 표기로 보여 줘서 승강장에서 바로 맞춰 볼 수 있습니다.
 
@@ -114,6 +117,9 @@ As your stop approaches you get "Prepare to get off", then "Get off now", with h
 
 LOCK SCREEN AND DYNAMIC ISLAND
 A Live Activity keeps your ride progress visible without unlocking your phone.
+
+APPLE WATCH
+While you ride, the stops left to your station show large on your wrist, and your watch taps you one stop before you get off. It keeps counting on its own even with your iPhone in your pocket. You can also put the stops left on your watch face.
 
 23 LANGUAGES
 Use the whole app in 23 languages, including English, Japanese, Chinese, German, French, Spanish, Thai and Vietnamese. It starts in your phone's language. Station names always show the Korean original next to katakana, Chinese characters or the romanized spelling printed on Korean station signs, so you can match them on the platform.
@@ -187,6 +193,9 @@ As your stop approaches you get "Prepare to get off", then "Get off now", with h
 LOCK SCREEN AND DYNAMIC ISLAND
 A Live Activity keeps your ride progress visible without unlocking your phone.
 
+APPLE WATCH
+While you travel, the stops left to your station show large on your wrist, and your watch taps you one stop before you get off. It keeps counting on its own even with your iPhone in your pocket. You can also put the stops left on your watch face.
+
 23 LANGUAGES
 Use the whole app in 23 languages, including English, Japanese, Chinese, German, French, Spanish, Thai and Vietnamese. It starts in your phone's language. Station names always show the Korean original next to katakana, Chinese characters or the romanized spelling printed on Korean station signs, so you can match them on the platform.
 
@@ -258,6 +267,9 @@ GPS で最寄り駅を探すか、自分で選べます。選んだ駅は次に�
 
 【ロック画面と Dynamic Island】
 乗車中はライブアクティビティで、iPhone を開かなくても進み具合を確認できます。
+
+【Apple Watch】
+乗車中は降りる駅までの残り駅数が手首に大きく表示され、一つ手前の駅で手首が振動してお知らせします。iPhoneをポケットに入れたままでも、Apple Watchが自分で数え続けます。残り駅数を文字盤に表示することもできます。
 
 【23の言語】
 アプリ全体を日本語、韓国語、英語、中国語に加え、ドイツ語、フランス語、スペイン語、タイ語、ベトナム語など23の言語で使えます。最初は iPhone の言語設定に合わせます。駅名はハングルの原文と一緒に、カタカナ、漢字、または駅の案内板にあるローマ字表記で表示するので、ホームの表示とそのまま見比べられます。
@@ -331,6 +343,9 @@ KORA 是一款为来韩国旅行的人打造的地铁指南 App。
 【锁定屏幕与灵动岛】
 乘车途中，通过实时活动无需解锁手机就能查看行程进度。
 
+【Apple Watch】
+乘车时，距下车站还剩几站会大字显示在手腕上，到站前一站手腕会振动提醒。即使 iPhone 放在口袋里，Apple Watch 也会自己继续计算。还可以把剩余站数放到表盘上。
+
 【23 种语言】
 整个 App 支持中文、韩语、日语、英语，以及德语、法语、西班牙语、泰语、越南语等 23 种语言，默认跟随手机语言。站名会在韩文原名旁显示中文、片假名或站牌上的罗马字拼写，方便在站台上直接对照。
 
@@ -402,6 +417,9 @@ KORA 是專為來韓國旅遊的人設計的地鐵指南 App。
 
 【鎖定畫面與動態島】
 搭車時透過即時動態，不必解鎖手機也能查看行程進度。
+
+【Apple Watch】
+搭車時，距離下車站還剩幾站會以大字顯示在手腕上，到站前一站手腕會震動提醒。即使 iPhone 放在口袋裡，Apple Watch 也會自己繼續計算。也可以把剩餘站數放到錶面上。
 
 【23 種語言】
 整個 App 支援中文、韓文、日文、英文，以及德文、法文、西班牙文、泰文、越南文等 23 種語言，預設跟隨手機語言。站名會在韓文原名旁顯示中文、片假名或站牌上的羅馬拼音，方便在月台上直接對照。
@@ -475,6 +493,9 @@ Kurz vor deiner Station heißt es „Bald aussteigen“, dann „Jetzt aussteige
 SPERRBILDSCHIRM UND DYNAMIC ISLAND
 Eine Live-Aktivität zeigt deinen Fahrtfortschritt, ohne dass du das iPhone entsperren musst.
 
+APPLE WATCH
+Während der Fahrt siehst du groß am Handgelenk, wie viele Stationen noch bis zum Aussteigen bleiben. Eine Station vorher vibriert die Uhr. Sie zählt selbstständig weiter, auch wenn dein iPhone in der Tasche steckt. Die verbleibenden Stationen kannst du auch aufs Zifferblatt legen.
+
 23 SPRACHEN
 Nutze die ganze App auf Deutsch oder in 22 weiteren Sprachen. Sie startet in der Sprache deines iPhone. Stationsnamen erscheinen immer im koreanischen Original zusammen mit der lateinischen Schreibweise von den Schildern in Korea – so findest du sie am Bahnsteig sofort wieder.
 
@@ -546,6 +567,9 @@ Cuando se acerca tu parada verás "Prepárate para bajar" y luego "¡Baja ahora!
 
 PANTALLA BLOQUEADA Y DYNAMIC ISLAND
 Una actividad en vivo muestra tu progreso sin desbloquear el iPhone.
+
+APPLE WATCH
+Durante el viaje, las paradas que faltan hasta tu estación se ven en grande en la muñeca, y el reloj vibra una parada antes de bajarte. Sigue contando por su cuenta aunque lleves el iPhone en el bolsillo. También puedes poner las paradas restantes en la esfera.
 
 23 IDIOMAS
 Usa toda la app en español o en otros 22 idiomas. Empieza en el idioma de tu iPhone. Los nombres de las estaciones aparecen siempre en coreano junto a la escritura en letras latinas de los letreros coreanos, para que los reconozcas al momento en el andén.
@@ -619,6 +643,9 @@ ALERTES D'ARRIVÉE
 ÉCRAN VERROUILLÉ ET DYNAMIC ISLAND
 Une activité en direct affiche votre progression sans déverrouiller l'iPhone.
 
+APPLE WATCH
+Pendant le trajet, le nombre d’arrêts avant votre station s’affiche en grand au poignet, et la montre vibre un arrêt avant de descendre. Elle continue de compter seule, même si l’iPhone reste dans votre poche. Vous pouvez aussi afficher les arrêts restants sur le cadran.
+
 23 LANGUES
 Utilisez toute l'app en français ou dans 22 autres langues. Elle démarre dans la langue de votre iPhone. Les noms de stations s'affichent toujours en coréen avec la transcription en lettres latines inscrite sur les panneaux coréens, pour les repérer facilement sur le quai.
 
@@ -690,6 +717,9 @@ Quando la fermata si avvicina compare "Preparati a scendere", poi "Scendi ora!",
 
 SCHERMATA DI BLOCCO E DYNAMIC ISLAND
 Un'attività in tempo reale mostra l'avanzamento del viaggio senza sbloccare l'iPhone.
+
+APPLE WATCH
+Durante il viaggio vedi in grande sul polso quante fermate mancano alla tua, e l’orologio vibra una fermata prima di scendere. Continua a contare da solo anche con l’iPhone in tasca. Puoi anche mettere le fermate mancanti sul quadrante.
 
 23 LINGUE
 Usa tutta l'app in italiano o in altre 22 lingue. Si avvia nella lingua del tuo iPhone. I nomi delle stazioni compaiono sempre in coreano insieme alla grafia in caratteri latini dei cartelli coreani, così li riconosci subito in banchina.
@@ -763,6 +793,9 @@ Quando sua estação estiver perto, aparece "Prepare-se para descer" e depois "D
 TELA BLOQUEADA E DYNAMIC ISLAND
 Uma Atividade ao Vivo mostra o progresso da viagem sem desbloquear o iPhone.
 
+APPLE WATCH
+Durante a viagem, as estações que faltam até a sua aparecem em destaque no pulso, e o relógio vibra uma estação antes de você descer. Ele continua contando sozinho mesmo com o iPhone no bolso. Você também pode colocar as estações restantes no mostrador.
+
 23 IDIOMAS
 Use o app inteiro em português ou em outros 22 idiomas. Ele começa no idioma do seu iPhone. Os nomes das estações aparecem sempre em coreano junto com a grafia em letras latinas das placas coreanas, para você reconhecer na plataforma na hora.
 
@@ -834,6 +867,9 @@ KORA объединяет данные о прибытии поездов в С�
 
 ЭКРАН БЛОКИРОВКИ И DYNAMIC ISLAND
 Live Activity показывает ход поездки без разблокировки iPhone.
+
+APPLE WATCH
+В пути на запястье крупно видно, сколько станций осталось до выхода, а за одну станцию часы вибрируют. Они считают сами, даже если iPhone лежит в кармане. Оставшиеся станции можно вывести и на циферблат.
 
 23 ЯЗЫКА
 Всё приложение доступно на русском и ещё 22 языках, по умолчанию — на языке iPhone. Названия станций всегда показаны на корейском вместе с латинской транскрипцией с корейских указателей, чтобы их было легко узнать на платформе.
@@ -907,6 +943,9 @@ Před vaší stanicí se objeví „Připravte se k výstupu“ a pak „Vystupt
 ZAMČENÁ OBRAZOVKA A DYNAMIC ISLAND
 Živá aktivita ukazuje průběh jízdy, aniž byste museli odemykat iPhone.
 
+APPLE WATCH
+Během jízdy uvidíte na zápěstí velkým písmem, kolik stanic zbývá do výstupu, a stanici předem hodinky zavibrují. Počítají samy, i když máte iPhone v kapse. Zbývající stanice si můžete dát i na ciferník.
+
 23 JAZYKŮ
 Celou aplikaci můžete používat česky nebo v dalších 22 jazycích. Spustí se v jazyce vašeho iPhonu. Názvy stanic jsou vždy v korejštině spolu s latinkovým přepisem z korejských cedulí, takže je na nástupišti hned poznáte.
 
@@ -978,6 +1017,9 @@ Når dit stop nærmer sig, får du "Gør dig klar til at stå af" og derefter "S
 
 LÅSESKÆRM OG DYNAMIC ISLAND
 En Live Activity viser turens fremskridt, uden at du skal låse iPhone op.
+
+APPLE WATCH
+Under turen ser du stort på håndleddet, hvor mange stationer der er tilbage, og uret vibrerer én station før, du skal af. Det tæller selv videre, også når din iPhone ligger i lommen. Du kan også vise stationerne på urskiven.
 
 23 SPROG
 Brug hele appen på dansk eller 22 andre sprog. Den starter på din iPhones sprog. Stationsnavne vises altid på koreansk sammen med den latinske stavemåde fra de koreanske skilte, så du nemt genkender dem på perronen.
@@ -1051,6 +1093,9 @@ busan,incheon,daegu,daejeon,gwangju,gtx,arex,αεροδρόμιο,τρένο,μ�
 ΟΘΟΝΗ ΚΛΕΙΔΩΣΗΣ ΚΑΙ DYNAMIC ISLAND
 Μια Ζωντανή δραστηριότητα δείχνει την πρόοδο της διαδρομής χωρίς ξεκλείδωμα του iPhone.
 
+APPLE WATCH
+Στη διαδρομή βλέπετε μεγάλα στον καρπό πόσες στάσεις μένουν μέχρι να κατεβείτε, και το ρολόι δονείται μία στάση πριν. Συνεχίζει να μετράει μόνο του, ακόμη κι αν το iPhone είναι στην τσέπη σας. Μπορείτε επίσης να βάλετε τις στάσεις που μένουν στην πρόσοψη.
+
 23 ΓΛΩΣΣΕΣ
 Χρησιμοποιήστε όλη την εφαρμογή στα ελληνικά ή σε άλλες 22 γλώσσες. Ξεκινά στη γλώσσα του iPhone σας. Τα ονόματα των σταθμών εμφανίζονται πάντα στα κορεατικά μαζί με τη λατινική γραφή των κορεατικών πινακίδων, ώστε να τα αναγνωρίζετε αμέσως στην αποβάθρα.
 
@@ -1122,6 +1167,9 @@ Kun asemasi lähestyy, saat ilmoituksen ”Valmistaudu jäämään pois” ja si
 
 LUKITUSNÄYTTÖ JA DYNAMIC ISLAND
 Live Activity näyttää matkan etenemisen avaamatta iPhonen lukitusta.
+
+APPLE WATCH
+Matkan aikana näet ranteesta isolla, montako asemaa on jäljellä, ja kello värisee asemaa ennen kuin jäät pois. Se laskee itse, vaikka iPhone olisi taskussa. Jäljellä olevat asemat voi lisätä myös kellotauluun.
 
 23 KIELTÄ
 Käytä koko appia suomeksi tai 22 muulla kielellä. Se käynnistyy iPhonen kielellä. Asemien nimet näkyvät aina koreaksi yhdessä korealaisten kylttien latinalaisen kirjoitusasun kanssa, joten tunnistat ne laiturilla heti.
@@ -1195,6 +1243,9 @@ Saat stasiun tujuan makin dekat, muncul "Bersiap turun", lalu "Turun sekarang!" 
 LAYAR KUNCI DAN DYNAMIC ISLAND
 Aktivitas Langsung menampilkan progres perjalanan tanpa perlu membuka kunci iPhone.
 
+APPLE WATCH
+Selama perjalanan, sisa stasiun sampai tempat turun tampil besar di pergelangan tangan, dan jam bergetar satu stasiun sebelum kamu turun. Jam terus menghitung sendiri meski iPhone ada di saku. Sisa stasiun juga bisa dipasang di muka jam.
+
 23 BAHASA
 Gunakan seluruh aplikasi dalam bahasa Indonesia atau 22 bahasa lain. Aplikasi otomatis memakai bahasa iPhone-mu. Nama stasiun selalu ditampilkan dalam bahasa Korea beserta ejaan latin yang tertulis di papan stasiun Korea, jadi mudah dicocokkan di peron.
 
@@ -1266,6 +1317,9 @@ Når stoppet ditt nærmer seg, får du «Gjør deg klar til å gå av» og så �
 
 LÅST SKJERM OG DYNAMIC ISLAND
 En Live Activity viser hvor langt du har kommet, uten at du må låse opp iPhone.
+
+APPLE WATCH
+Underveis ser du stort på håndleddet hvor mange stasjoner det er igjen, og klokka vibrerer én stasjon før du skal av. Den teller selv videre, også når iPhonen ligger i lomma. Du kan også vise stasjonene på urskiven.
 
 23 SPRÅK
 Bruk hele appen på norsk eller 22 andre språk. Den starter på iPhone-språket ditt. Stasjonsnavn vises alltid på koreansk sammen med den latinske skrivemåten fra de koreanske skiltene, så du kjenner dem igjen på plattformen.
@@ -1339,6 +1393,9 @@ Bij het naderen van je halte zie je 'Maak je klaar om uit te stappen' en daarna 
 TOEGANGSSCHERM EN DYNAMIC ISLAND
 Een live-activiteit toont de voortgang van je rit zonder dat je je iPhone hoeft te ontgrendelen.
 
+APPLE WATCH
+Tijdens de rit zie je groot op je pols hoeveel haltes je nog hebt, en je horloge trilt één halte voordat je moet uitstappen. Het telt zelf door, ook als je iPhone in je zak zit. Je kunt de resterende haltes ook op je wijzerplaat zetten.
+
 23 TALEN
 Gebruik de hele app in het Nederlands of in 22 andere talen. De app start in de taal van je iPhone. Stationsnamen staan altijd in het Koreaans samen met de Latijnse spelling van de Koreaanse borden, zodat je ze op het perron meteen herkent.
 
@@ -1410,6 +1467,9 @@ Przed Twoją stacją pojawi się „Przygotuj się do wyjścia”, a potem „Wy
 
 EKRAN BLOKADY I DYNAMIC ISLAND
 Aktywność na żywo pokazuje postęp podróży bez odblokowywania iPhone’a.
+
+APPLE WATCH
+W trakcie jazdy na nadgarstku widać dużymi cyframi, ile stacji zostało do wysiadki, a stację wcześniej zegarek zawibruje. Liczy sam, nawet gdy iPhone jest w kieszeni. Pozostałe stacje możesz też umieścić na tarczy zegarka.
 
 23 JĘZYKI
 Korzystaj z całej aplikacji po polsku lub w 22 innych językach. Na start wybiera język iPhone’a. Nazwy stacji są zawsze po koreańsku razem z zapisem łacińskim z koreańskich tablic, więc łatwo je rozpoznasz na peronie.
@@ -1483,6 +1543,9 @@ När din station närmar sig får du ”Gör dig redo att kliva av” och sedan 
 LÅSSKÄRM OCH DYNAMIC ISLAND
 En Live Activity visar hur långt du kommit utan att du behöver låsa upp din iPhone.
 
+APPLE WATCH
+Under resan ser du stort på handleden hur många stationer det är kvar, och klockan vibrerar en station innan du ska av. Den räknar själv vidare även när din iPhone ligger i fickan. Du kan också visa stationerna kvar på urtavlan.
+
 23 SPRÅK
 Använd hela appen på svenska eller 22 andra språk. Den startar på din iPhones språk. Stationsnamn visas alltid på koreanska tillsammans med den latinska stavningen från de koreanska skyltarna, så att du känner igen dem på plattformen.
 
@@ -1554,6 +1617,9 @@ KORA ใช้ข้อมูลเวลารถไฟเข้าสถาน
 
 หน้าจอล็อกและ Dynamic Island
 กิจกรรมสดแสดงความคืบหน้าของการเดินทางโดยไม่ต้องปลดล็อก iPhone
+
+Apple Watch
+ระหว่างนั่งรถไฟ จำนวนสถานีที่เหลือก่อนถึงสถานีที่ต้องลงจะแสดงตัวใหญ่บนข้อมือ และนาฬิกาจะสั่นเตือนก่อนถึงสถานีที่ต้องลงหนึ่งสถานี นาฬิกานับต่อเองได้แม้ iPhone อยู่ในกระเป๋า และยังแสดงสถานีที่เหลือบนหน้าปัดได้ด้วย
 
 23 ภาษา
 ใช้งานทั้งแอปเป็นภาษาไทยหรืออีก 22 ภาษา โดยเริ่มต้นตามภาษาของ iPhone ชื่อสถานีแสดงเป็นภาษาเกาหลีคู่กับตัวสะกดอักษรโรมันที่เขียนบนป้ายสถานีในเกาหลี จึงเทียบกับป้ายบนชานชาลาได้ทันที
@@ -1627,6 +1693,9 @@ Durağın yaklaşınca önce "İnmeye hazırlan", ardından "Şimdi in!" uyarıs
 KİLİTLİ EKRAN VE DYNAMIC ISLAND
 Canlı Etkinlik, iPhone'un kilidini açmadan yolculuğunun ilerleyişini gösterir.
 
+APPLE WATCH
+Yolculuk sırasında ineceğin yere kaç durak kaldığı bileğinde büyükçe görünür, saat de inmeden bir durak önce titrer. iPhone cebindeyken bile saymaya kendi başına devam eder. Kalan durakları kadrana da ekleyebilirsin.
+
 23 DİL
 Uygulamanın tamamını Türkçe ya da 22 dilde daha kullan. Uygulama iPhone'unun diliyle açılır. İstasyon adları her zaman Korece aslıyla birlikte Kore'deki tabelalarda yazan Latin harfli yazımla gösterilir; böylece peronda hemen eşleştirirsin.
 
@@ -1699,6 +1768,9 @@ Khi gần đến ga, bạn sẽ thấy "Chuẩn bị xuống tàu", rồi "Xuố
 MÀN HÌNH KHÓA VÀ DYNAMIC ISLAND
 Hoạt động trực tiếp cho bạn xem tiến trình chuyến đi mà không cần mở khóa iPhone.
 
+APPLE WATCH
+Trong lúc đi, số ga còn lại đến chỗ xuống hiện lớn trên cổ tay, và đồng hồ rung trước ga cần xuống một ga. Đồng hồ tự đếm tiếp ngay cả khi iPhone nằm trong túi. Bạn cũng có thể đưa số ga còn lại lên mặt đồng hồ.
+
 23 NGÔN NGỮ
 Dùng toàn bộ ứng dụng bằng tiếng Việt hoặc 22 ngôn ngữ khác. Ứng dụng tự mở theo ngôn ngữ của iPhone. Tên ga luôn hiển thị bằng tiếng Hàn kèm cách viết chữ Latinh ghi trên biển ga ở Hàn Quốc, nên bạn dễ dàng đối chiếu ngay trên sân ga.
 
@@ -1729,15 +1801,3 @@ https://m1zz.github.io/KORA/vi/privacy.html
 ### 마케팅 URL
 
 https://m1zz.github.io/KORA/vi/
-
-## 손쉬운 사용
-
-<!-- DeployBar 가 App Store Connect '앱의 손쉬운 사용' 에 올린다. 실제로 확인한 것만 적는다. -->
-
-### iPhone
-voiceOver
-voiceControl
-darkInterface
-differentiateWithoutColor
-sufficientContrast
-reducedMotion

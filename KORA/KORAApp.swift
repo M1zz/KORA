@@ -54,6 +54,10 @@ struct KORAApp: App {
             Task { @MainActor in await KORALiveActivityManager.shared.endAll() }
         }
 
+        // Apple Watch: 탑승 중 남은 정거장 · 하차 진동. 새로 켜진 앱은 타는 중이 아니므로
+        // 연결되면(활성화가 끝나면) 손목에 남은 지난 열차를 거둔다.
+        KORAWatchLink.shared.activate()
+
         // 막차 알림을 앱을 보고 있을 때도 배너로 띄운다.
         UNUserNotificationCenter.current().delegate = KORANotificationPresenter.shared
 

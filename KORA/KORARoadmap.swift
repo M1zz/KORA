@@ -36,6 +36,8 @@ extension KORASpec {
             item("siri-ai", .roadmapSiriAI, .roadmapSiriAIDetail),
 
             // MARK: 내보냈어요
+            item("watch", .roadmapWatch, .roadmapWatchDetail, .shipped("1.1.0")),
+            item("watch", .roadmapWatch, .roadmapWatchDetail, .shipped("1.1.0")),
             item("places", .roadmapPlaces, .roadmapPlacesDetail, .shipped("1.0.10")),
             item("express", .roadmapExpress, .roadmapExpressDetail, .shipped("1.0.9")),
             item("onboarding", .roadmapOnboarding, .roadmapOnboardingDetail, .shipped("1.0.9")),

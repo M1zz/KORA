@@ -1,0 +1,155 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Start a route on your iPhone and the stops left will show here.": {
+      "extractionState": "manual",
+      "localizations": {
+        "cs": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spusťte trasu na iPhonu a tady uvidíte, kolik stanic zbývá do výstupu."
+          }
+        },
+        "da": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start en rute på din iPhone, så kan du se her, hvor mange stationer der er tilbage, før du skal af."
+          }
+        },
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starte eine Route auf dem iPhone. Hier siehst du dann, wie viele Stationen bis zum Aussteigen bleiben."
+          }
+        },
+        "el": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ξεκινήστε μια διαδρομή στο iPhone και εδώ θα βλέπετε πόσες στάσεις μένουν μέχρι να κατεβείτε."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start a route on your iPhone and the stops left will show here."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start a route on your iPhone and the stops left will show here."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empieza una ruta en tu iPhone y aquí verás cuántas paradas faltan para bajarte."
+          }
+        },
+        "fi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aloita reitti iPhonessa, niin näet tästä, montako asemaa on jäljellä ennen kuin jäät pois."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lancez un itinéraire sur votre iPhone : le nombre d’arrêts avant de descendre s’affichera ici."
+          }
+        },
+        "id": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mulai rute di iPhone, lalu sisa stasiun sampai tempat turun akan muncul di sini."
+          }
+        },
+        "it": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avvia un percorso sull’iPhone e qui vedrai quante fermate mancano alla tua."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhoneで案内を始めると、降りる駅までの残り駅数がここに表示されます。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "아이폰에서 길 안내를 시작하면 내릴 역까지 남은 정거장이 여기 보여요."
+          }
+        },
+        "nb": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start en rute på iPhonen, så ser du her hvor mange stasjoner det er igjen til du skal av."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start een route op je iPhone en hier zie je hoeveel haltes je nog hebt tot je moet uitstappen."
+          }
+        },
+        "pl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zacznij trasę na iPhonie, a tutaj zobaczysz, ile stacji zostało do wysiadki."
+          }
+        },
+        "pt-BR": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comece uma rota no iPhone e aqui aparece quantas estações faltam para você descer."
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Начните маршрут на iPhone, и здесь появится, сколько станций осталось до выхода."
+          }
+        },
+        "sv": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starta en rutt på din iPhone så ser du här hur många stationer det är kvar tills du ska av."
+          }
+        },
+        "th": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "เริ่มนำทางบน iPhone แล้วจำนวนสถานีที่เหลือก่อนถึงสถานีที่ต้องลงจะแสดงที่นี่"
+          }
+        },
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "iPhone’da bir rota başlat; ineceğin yere kaç durak kaldığı burada görünür."
+          }
+        },
+        "vi": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bắt đầu chỉ đường trên iPhone, số ga còn lại đến chỗ xuống sẽ hiện ở đây."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 iPhone 上开始导航后，这里会显示到下车站还剩几站。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 iPhone 上開始導航後，這裡會顯示到下車站還剩幾站。"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
