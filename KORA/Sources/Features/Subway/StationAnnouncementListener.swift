@@ -105,8 +105,12 @@ final class StationAnnouncementListener: NSObject, ObservableObject {
 
     private func startEngine() throws {
         let input = audioEngine.inputNode
-        let format = input.outputFormat(forBus: 0)
-        input.installTap(onBus: 0, bufferSize: 1024, format: format) { [weak self] buffer, _ in
+        // 세션을 막 바꾼 뒤의 outputFormat 은 하드웨어와 어긋날 수 있고, 그 형식으로 탭을 걸면
+        // AVAudioEngine 이 ObjC 예외를 던져 앱이 죽는다(초견 1.0.6 에서 난 것과 같은 자리).
+        // 하드웨어 형식만 확인하고, 탭 형식은 버스에 맡긴다(nil).
+        let hardware = input.inputFormat(forBus: 0)
+        guard hardware.sampleRate > 0, hardware.channelCount > 0 else { throw CocoaError(.featureUnsupported) }
+        input.installTap(onBus: 0, bufferSize: 1024, format: nil) { [weak self] buffer, _ in
             self?.request?.append(buffer)
         }
         audioEngine.prepare()
