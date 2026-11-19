@@ -14,7 +14,7 @@ Seoul Metro Guide for Visitors
 
 ### 키워드
 
-incheon,arex,busan,gtx,ktx,exit,tourist,airport,transfer,station,line,train,english,daegu
+arex,train,gwangju,daejeon,korean,route,busan,daegu,incheon,exit,gtx,tourist,ktx,station,airport
 
 ### 프로모션 텍스트
 
@@ -239,7 +239,7 @@ https://m1zz.github.io/KORA/ko/
 
 ### 키워드
 
-乗り換え,乗換,電車,メトロ,路線図,駅,仁川,大邱,光州,大田,京畿,空港鉄道,GTX,旅行,観光,ハングル,リアルタイム,オフライン,車内アナウンス,到着,日本語,所要時間,ホーム,下車
+大邱,京畿,空港鉄道,GTX,車内アナウンス,所要時間,下車,ソウル地下鉄,地下鉄アプリ,韓国地下鉄,韓国 交通,韓国観光,韓国旅行,韓国語,大田,到着,仁川,日本語,ハングル,路線図,メトロ,光州
 
 ### 프로모션 텍스트
 
@@ -314,7 +314,7 @@ https://m1zz.github.io/KORA/ja/
 
 ### 키워드
 
-旅游,自由行,出行,线路图,路线,到站,实时,车站,仁川,大邱,光州,大田,京畿,机场铁路,GTX,中文,韩语,交通,离线,轨道交通,公共交通,旅行,列车,游客,攻略,站名,城铁,观光
+仁川,大邱,机场铁路,GTX,站名,城铁,韩国自由行,釜山旅游,首尔旅游,韩国地铁,釜山地铁,首尔地铁,韩国交通,韩国旅游,地铁线路图,大田,观光,线路图,游客,轨道交通,到站,光州,中文,列车,离线
 
 ### 프로모션 텍스트
 
