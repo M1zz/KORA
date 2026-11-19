@@ -37,7 +37,8 @@ final class WatchRideLink: NSObject, ObservableObject {
 
     fileprivate func receive(_ info: [String: Any]) {
         guard let data = info[RideLink.snapshotKey] as? Data else { return }
-        let new = RideLink.decode(data)
+        // 아이폰이 거두지 못한 지난 열차가 뒤늦게 올 수 있다. 끝난 열차는 없는 것으로 본다.
+        let new = RideLink.decode(data).flatMap { $0.expiresAt > .now ? $0 : nil }
         RideLink.save(new)
         scheduleAlert(new)
         guard new != ride else { return }

@@ -62,6 +62,7 @@ final class StationAnnouncementListener: NSObject, ObservableObject {
         self.candidates = candidates.map { $0.hasSuffix("역") ? String($0.dropLast()) : $0 }
         self.onConfirm = onConfirm
         self.lastConfirmed = nil
+        self.doorSide = nil   // 앞 열차의 내리실 문이 새 열차에 남지 않게
         guard KORAFlag.announcementListening.isEnabled else {
             KORALog.announcement.notice("안내방송 인식이 원격으로 꺼져 있어 듣지 않습니다")
             return
@@ -87,10 +88,10 @@ final class StationAnnouncementListener: NSObject, ObservableObject {
         isListening = false
         task?.cancel(); task = nil
         request?.endAudio(); request = nil
-        if audioEngine.isRunning {
-            audioEngine.stop()
-            audioEngine.inputNode.removeTap(onBus: 0)
-        }
+        // 전화 · Siri · 이어폰 바꿈으로 엔진이 저절로 꺼졌어도 탭은 버스에 남는다.
+        // 남은 탭 위에 다시 걸면 예외로 죽으므로, 엔진이 도는지와 상관없이 뗀다(없는 탭을 떼는 건 괜찮다).
+        audioEngine.stop()
+        audioEngine.inputNode.removeTap(onBus: 0)
         try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
     }
 
@@ -100,6 +101,8 @@ final class StationAnnouncementListener: NSObject, ObservableObject {
         let session = AVAudioSession.sharedInstance()
         // .mixWithOthers so the rider's music/podcast keeps playing while we listen.
         try session.setCategory(.record, mode: .measurement, options: [.mixWithOthers])
+        // 녹음 세션은 기본으로 진동을 막는다. 풀지 않으면 듣는 동안 하차 진동이 울리지 않는다.
+        try session.setAllowHapticsAndSystemSoundsDuringRecording(true)
         try session.setActive(true, options: .notifyOthersOnDeactivation)
     }
 
@@ -152,22 +155,39 @@ final class StationAnnouncementListener: NSObject, ObservableObject {
     private func handle(text: String) {
         let t = text.replacingOccurrences(of: " ", with: "")
 
-        // Door side — both "내리실 문은 오른쪽" and the trailing "오른쪽입니다" form.
-        if t.contains("오른쪽") { doorSide = .right }
-        else if t.contains("왼쪽") { doorSide = .left }
-
         detectStation(in: t)
+
+        // Door side — both "내리실 문은 오른쪽" and the trailing "오른쪽입니다" form.
+        // 인식 글은 여러 역의 방송이 이어 붙는다. 마지막 "이번역" 뒤에서, 더 뒤에 나온 쪽을 따른다.
+        let scope = t.range(of: "이번역", options: .backwards).map { t[$0.upperBound...] } ?? t[...]
+        let right = scope.range(of: "오른쪽", options: .backwards)?.lowerBound
+        let left = scope.range(of: "왼쪽", options: .backwards)?.lowerBound
+        switch (right, left) {
+        case let (r?, l?): doorSide = r > l ? .right : .left
+        case (_?, nil): doorSide = .right
+        case (nil, _?): doorSide = .left
+        case (nil, nil): break
+        }
     }
 
     /// Find the station named right after the most recent "이번역"/"다음역" cue.
     private func detectStation(in t: String) {
         for (keyword, isCurrent) in [("이번역", true), ("다음역", false)] {
             guard let r = t.range(of: keyword, options: .backwards) else { continue }
-            let window = String(t[r.upperBound...].prefix(8))   // "은강남역입니다…"
+            // "은강남역입니다…" 가장 긴 역 이름("동대문역사문화공원")까지 들어오는 길이로 본다.
+            let longest = candidates.map(\.count).max() ?? 0
+            let window = String(t[r.upperBound...].prefix(max(8, longest + 2)))
             // Prefer the longest candidate so "양재시민의숲" wins over "양재".
             if let station = candidates
                 .filter({ window.contains($0) })
-                .max(by: { $0.count < $1.count }) {
+                .max(by: { $0.count < $1.count }),
+               let found = window.range(of: station) {
+                // 부분 결과는 "잠실"이 "잠실새내"보다 먼저 온다. 뒤 글자가 더 긴 이름과 갈릴 때까지 기다린다.
+                let rest = window[found.upperBound...]
+                let stillAmbiguous = candidates.contains {
+                    $0.count > station.count && $0.hasPrefix(station) && $0.dropFirst(station.count).hasPrefix(rest)
+                }
+                if stillAmbiguous { return }
                 confirm(station: station, isCurrent: isCurrent)
                 return
             }
@@ -178,7 +198,10 @@ final class StationAnnouncementListener: NSObject, ObservableObject {
         // Debounce: the same phrase streams in repeatedly as partial results.
         if let last = lastConfirmed, last.station == station, last.isCurrent == isCurrent { return }
         lastConfirmed = (station, isCurrent)
-        if isCurrent { lastHeardStation = station }
+        if isCurrent {
+            if lastHeardStation != station { doorSide = nil }   // 새 역이면 앞 역의 내리실 문을 지운다
+            lastHeardStation = station
+        }
         onConfirm?(station, isCurrent)
     }
 }

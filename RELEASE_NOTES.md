@@ -5,6 +5,224 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 언어마다 `### ...` 제목에 언어 이름이 들어 있고, 코드 블록 안의 글만 올라간다.
 코드 블록 안은 한 줄에 한 문장, 이모지나 마크다운 기호 없이 평문으로 쓴다.
 
+## 1.1.1
+
+### 앱스토어 (English en-US)
+
+```
+New name: Korea Navigator
+Line 2 now takes the shorter way around
+Your stop alert buzzes while it listens
+More accurate door side after transfers
+```
+
+### 앱스토어 (영국 영어 en-GB)
+
+```
+New name: Korea Navigator
+Line 2 now takes the shorter way round
+Your stop alert buzzes while it listens
+More accurate door side after changes
+```
+
+### 앱스토어 (한국어 ko)
+
+```
+앱 이름이 한국길찾기로 바뀌었어요
+2호선에서 더 가까운 방향으로 안내해요
+안내방송을 듣는 중에도 하차 진동이 울려요
+환승 뒤 내리실 문 안내가 더 정확해졌어요
+```
+
+### 앱스토어 (日本語 ja)
+
+```
+アプリ名が「韓国ナビ」になりました
+2号線で近い方向を案内します
+車内放送の認識中も降車の振動が届きます
+乗り換え後のドア案内が正確になりました
+```
+
+### 앱스토어 (중국어 간체 zh-Hans)
+
+```
+应用更名为“韩国导航”
+2号线会按更近的方向指引
+识别车内广播时也会振动提醒下车
+换乘后的开门方向提示更准确
+```
+
+### 앱스토어 (중국어 번체 zh-Hant)
+
+```
+App 更名為「韓國導航」
+2號線會依較近的方向指引
+辨識車內廣播時也會震動提醒下車
+轉乘後的開門方向提示更準確
+```
+
+### 앱스토어 (독일어 de)
+
+```
+Neuer Name: Korea Navi
+Linie 2 führt jetzt den kürzeren Weg
+Ausstiegsalarm vibriert beim Zuhören
+Türseite nach dem Umsteigen genauer
+```
+
+### 앱스토어 (스페인어 es)
+
+```
+Nuevo nombre: Rutas por Corea
+La línea 2 va por el lado más corto
+El aviso de bajada vibra al escuchar
+Lado de puertas más preciso al cambiar
+```
+
+### 앱스토어 (프랑스어 fr)
+
+```
+Nouveau nom : Trajets en Corée
+La ligne 2 prend le sens le plus court
+L'alerte de descente vibre à l'écoute
+Côté des portes plus fiable en changeant
+```
+
+### 앱스토어 (이탈리아어 it)
+
+```
+Nuovo nome: Percorsi in Corea
+La linea 2 sceglie il verso più breve
+L'avviso di discesa vibra in ascolto
+Lato porte più preciso dopo il cambio
+```
+
+### 앱스토어 (포르투갈어 브라질 pt-BR)
+
+```
+Novo nome: Rotas na Coreia
+A linha 2 segue pelo lado mais curto
+O aviso de descida vibra ao ouvir
+Lado das portas mais exato na baldeação
+```
+
+### 앱스토어 (러시아어 ru)
+
+```
+Новое название: Маршруты Кореи
+Линия 2 ведёт по короткой стороне
+Сигнал выхода вибрирует и при слушании
+Сторона дверей точнее после пересадки
+```
+
+### 앱스토어 (체코어 cs)
+
+```
+Nový název: Trasy v Koreji
+Linka 2 vede kratším směrem
+Výstupní upozornění vibruje při poslechu
+Strana dveří po přestupu je přesnější
+```
+
+### 앱스토어 (덴마크어 da)
+
+```
+Nyt navn: Ruter i Korea
+Linje 2 vælger nu den korteste vej
+Stopalarmen vibrerer, mens appen lytter
+Mere præcis dørside efter skift
+```
+
+### 앱스토어 (그리스어 el)
+
+```
+Νέο όνομα: Διαδρομές Κορέας
+Η γραμμή 2 πάει από τον σύντομο δρόμο
+Η ειδοποίηση στάσης δονείται ενώ ακούει
+Πιο ακριβής πλευρά θυρών μετά την αλλαγή
+```
+
+### 앱스토어 (핀란드어 fi)
+
+```
+Uusi nimi: Korean reitit
+Linja 2 ohjaa nyt lyhyempää suuntaa
+Poistumishälytys värisee kuunnellessa
+Ovien puoli tarkempi vaihdon jälkeen
+```
+
+### 앱스토어 (인도네시아어 id)
+
+```
+Nama baru: Navigasi Korea
+Jalur 2 kini lewat arah yang lebih dekat
+Pengingat turun bergetar saat mendengar
+Sisi pintu lebih akurat setelah transit
+```
+
+### 앱스토어 (노르웨이어 보크말 nb)
+
+```
+Nytt navn: Ruter i Korea
+Linje 2 velger nå den korteste veien
+Stoppvarselet vibrerer mens appen lytter
+Mer presis dørside etter bytte
+```
+
+### 앱스토어 (네덜란드어 nl)
+
+```
+Nieuwe naam: Routes in Korea
+Lijn 2 kiest nu de kortste kant
+Uitstapmelding trilt tijdens luisteren
+Deurkant nauwkeuriger na het overstappen
+```
+
+### 앱스토어 (폴란드어 pl)
+
+```
+Nowa nazwa: Trasy w Korei
+Linia 2 prowadzi krótszą stroną
+Alarm wysiadania wibruje przy słuchaniu
+Strona drzwi dokładniejsza po przesiadce
+```
+
+### 앱스토어 (스웨덴어 sv)
+
+```
+Nytt namn: Rutter i Korea
+Linje 2 väljer nu den kortaste vägen
+Avstigningslarmet vibrerar vid lyssning
+Mer exakt dörrsida efter byte
+```
+
+### 앱스토어 (태국어 th)
+
+```
+ชื่อใหม่: นำทางเกาหลี
+สาย 2 นำทางไปทางที่ใกล้กว่า
+แจ้งเตือนลงรถสั่นได้แม้กำลังฟังประกาศ
+ฝั่งประตูแม่นยำขึ้นหลังเปลี่ยนสาย
+```
+
+### 앱스토어 (튀르키예어 tr)
+
+```
+Yeni ad: Kore Yol Tarifi
+2. hat artık kısa yönden götürüyor
+İniş uyarısı dinleme sırasında da titrer
+Aktarmadan sonra kapı yönü daha doğru
+```
+
+### 앱스토어 (베트남어 vi)
+
+```
+Tên mới: Chỉ đường Hàn Quốc
+Tuyến 2 nay đi theo hướng gần hơn
+Báo xuống ga vẫn rung khi đang nghe loa
+Bên cửa mở chính xác hơn sau khi đổi tàu
+```
+
 ## 1.1.0
 
 ### 앱스토어 (한국어 ko)

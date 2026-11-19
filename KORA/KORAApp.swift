@@ -83,8 +83,22 @@ struct KORAApp: App {
                 .tint(KORATheme.accent)
                 // 개발자가 보낸 의견에 답장하면, 앱이 앞으로 올 때 답장을 시트로 보여 준다 (LeeoKit).
                 .leeoFeedbackReplyNotice(KORASpec.self)
+                // 유료가 되면 콘페티, 모든 사용자가 한 번은 감사를 받는다 (LeeoKit). 판정은 LeeoStore 가 한다.
+                .koraCelebrations()
                 // 아이폰 듀오: 접힘을 재서 아래로 흘린다. 시트 · 알림창도 접힌 선을 비킨다.
                 .foldAware()
+        }
+    }
+}
+
+private extension View {
+    /// 축하 · 감사 화면. 스크린샷 · UI 시험에서는 화면을 가리지 않게 붙이지 않는다.
+    @ViewBuilder
+    func koraCelebrations() -> some View {
+        if ScreenshotScene.isActive || ProcessInfo.processInfo.arguments.contains("-KORAUITest") {
+            self
+        } else {
+            leeoCelebrations(appName: KORASpec.appName)
         }
     }
 }

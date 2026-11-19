@@ -4,7 +4,7 @@ App Store Connect ▸ 앱 ▸ **Featuring** ▸ **Nominations** ▸ (+) 에 그�
 DeployBar 는 이 칸을 올리지 못하므로 사람이 웹에서 넣는다.
 
 작성일 2026-10-21. 지금 스토어에 있는 버전은 **1.0.8** (빌드 11), 1.0.9 는 레포에 커밋·릴리즈 노트까지 끝났고 아직 배포 전이다.
-앱 ID 6775176578 · 번들 com.kora.leeo · 스토어 이름 `KORA: Korea Subway Navigator` (한국어 `KORA: 한국 지하철 길찾기`).
+앱 ID 6775176578 · 번들 com.kora.leeo · 스토어 이름 `Korea Navigator: KORA Subway` (한국어 `한국길찾기: KORA 지하철`).
 
 ## 폼의 칸과 규칙 (Apple 문서로 확인한 것)
 

@@ -47,6 +47,16 @@ final class RouteFindingTests: XCTestCase {
         }
     }
 
+    /// 2호선은 배열의 끝과 처음이 이어져 있다. 이음매(시청 ↔ 충정로)를 넘는 짧은 쪽으로 가야 한다.
+    func testLine2LoopTakesTheShortWayAcrossTheSeam() throws {
+        let oneStop = try XCTUnwrap(MetroLineData.findAnyJourneys(from: "시청", to: "충정로").first)
+        XCTAssertEqual(oneStop.segments.first?.stations, ["시청", "충정로"])
+        let short = try XCTUnwrap(MetroLineData.findAnyJourneys(from: "홍대입구", to: "시청").first)
+        XCTAssertEqual(short.segments.count, 1)
+        XCTAssertLessThan(short.segments[0].stations.count, 10)
+        XCTAssertEqual(short.segments[0].stations.last, "시청")
+    }
+
     func testSameStationHasNoRoute() {
         XCTAssertTrue(MetroLineData.findAnyJourneys(from: "서울역", to: "서울역").isEmpty)
     }

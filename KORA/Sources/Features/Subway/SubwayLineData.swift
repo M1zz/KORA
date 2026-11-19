@@ -756,10 +756,20 @@ enum MetroLineData {
                 guard let fi = route.stations.firstIndex(of: from),
                       let ti = route.stations.firstIndex(of: to),
                       fi != ti else { continue }
-                let reversed = ti < fi
-                let slice = reversed
-                    ? Array(route.stations[ti...fi].reversed())
-                    : Array(route.stations[fi...ti])
+                // 순환선은 배열의 끝과 처음이 이어져 있다. 짧은 쪽으로 돈다(시청 ↔ 충정로는 한 정거장).
+                let reversed: Bool
+                let slice: [String]
+                if route.isCircular {
+                    let count = route.stations.count
+                    let forwardLen = (ti - fi + count) % count
+                    reversed = forwardLen > count - forwardLen
+                    slice = buildCircularSlice(route.stations, from: fi, to: ti, forward: !reversed)
+                } else {
+                    reversed = ti < fi
+                    slice = reversed
+                        ? Array(route.stations[ti...fi].reversed())
+                        : Array(route.stations[fi...ti])
+                }
                 let terminus: String
                 if route.isCircular {
                     terminus = reversed

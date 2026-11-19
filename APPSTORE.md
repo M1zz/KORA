@@ -2,86 +2,11 @@
 
 원본은 scripts/i18n/store/<로케일>.json — 고친 뒤 python3 scripts/i18n/gen_appstore.py <버전> 으로 다시 만든다.
 
-## ko
-
-### 이름
-
-KORA: 한국 지하철 길찾기
-
-### 부제
-
-서울·부산 타는 방향과 하차 알림
-
-### 키워드
-
-신분당선,경전철,안내방송,출구정보,지하철노선도,GTX,부산지하철,빠른환승,공항철도,수도권,막차,동해선,수인분당선,경의중앙선,대구지하철,인천지하철,대전지하철,subway,metro
-
-### 프로모션 텍스트
-
-타야 할 방향은 열차 표시 그대로, 내릴 역은 진동으로 알려 드려요. 이제 독일어, 프랑스어, 태국어 등 23개 언어로 쓸 수 있습니다.
-
-### 설명
-
-KORA는 한국을 여행하는 사람을 위한 지하철 안내 앱입니다.
-출발역과 도착역만 고르면 환승, 정거장 수, 예상 시간, 그리고 어느 방향 열차를 타야 하는지 열차에 표시되는 "○○행" 그대로 알려 드립니다. 탑승 중에는 지금 어느 역인지 따라가다가 내릴 때가 되면 알려 드립니다.
-
-출발역은 자동으로
-GPS로 가장 가까운 역을 찾거나 직접 고를 수 있습니다. 고른 역은 다음에 앱을 열 때도 기억합니다.
-
-경로와 타는 방향
-환승, 정거장 수, 예상 소요 시간을 보여 주고 타야 할 열차를 "○○행" 표시로 알려 드립니다.
-
-카메라로 방향 확인
-승강장 표지판이나 열차 행선지 표시를 카메라로 비추면 지금 타려는 방향이 맞는지 바로 알려 줍니다. 글자 인식은 기기 안에서만 이뤄집니다.
-
-지금 어느 역인지 정확하게
-서울 실시간 도착 정보, GPS, 가속도계로 감지한 출발과 정차, 차내 안내방송 인식을 함께 써서 현재 역을 따라갑니다. 안내방송에서 내리는 문 방향도 알려 드립니다.
-
-내릴 역 알림
-내릴 역이 가까워지면 "곧 내릴 준비하세요", 도착하면 "지금 내리세요"를 진동과 함께 알려 드립니다. 노선 진행도에는 열차 아이콘과 도착역 핀이 표시됩니다.
-
-잠금 화면과 Dynamic Island
-탑승 중에는 라이브 액티비티로 휴대폰을 열지 않고도 진행 상황을 확인할 수 있습니다.
-
-Apple Watch
-탑승 중에는 내릴 역까지 남은 정거장이 손목에 크게 보이고, 한 정거장 남으면 손목이 울립니다. 휴대폰이 주머니에 있어도 워치가 스스로 세어 알려 드립니다. 시계 화면에 남은 정거장을 올려 둘 수도 있습니다.
-
-23개 언어
-앱 화면을 한국어, 영어, 일본어, 중국어는 물론 독일어, 프랑스어, 스페인어, 태국어, 베트남어 등 23개 언어로 쓸 수 있고 처음에는 휴대폰 언어를 따릅니다. 역 이름은 한글 원문과 함께 가타카나, 한자, 또는 역 표지판에 적힌 영문 표기로 보여 줘서 승강장에서 바로 맞춰 볼 수 있습니다.
-
-지원 지역
-수도권(서울, 경기, 인천, GTX-A, 공항철도, 신분당선, 경전철 포함), 부산, 대구, 광주, 대전의 약 930개 역을 지원합니다. 역 선택 화면의 지역 칩으로 도시를 바꿀 수 있습니다.
-
-인터넷이 없어도
-경로 검색은 기기 안에서 계산하므로 오프라인에서도 됩니다. 실시간 도착 정보만 네트워크가 필요합니다.
-
-KORA Pro
-경로 검색, 타는 방향, 실시간 도착 정보, 카메라 방향 확인은 언제나 무료입니다. 잠금 화면 안내, 안내방송 인식, 하차 진동 알림은 처음 세 번의 여정 동안 무료로 써 볼 수 있고, 그 뒤에는 KORA Pro를 한 번 구매하면 계속 쓸 수 있습니다. 서울 지하철 1~8호선 역의 출구별 주변 장소를 알려 주는 출구 안내도 KORA Pro에 들어 있습니다. 1~9호선 막차 시간을 미리 알려 주는 막차 알림, 짐이 많을 때 엘리베이터와 가까운 칸을 알려 주는 캐리어 모드(1~8호선)도 들어 있습니다. 구독이 아닙니다.
-
-개인정보를 아낍니다
-회원가입과 광고가 없습니다. 위치, 카메라, 안내방송 인식은 모두 기기 안에서 처리되며 저장하거나 전송하지 않습니다. 앱 개선을 위한 익명 이용 통계만 수집합니다.
-
-카메라, 마이크, 음성 인식, 동작 권한은 모두 선택 사항입니다. 허용하지 않아도 역을 직접 골라 경로 안내를 이용할 수 있습니다.
-
-문의: leeo@kakao.com
-
-### 지원 URL
-
-https://m1zz.github.io/KORA/ko/support.html
-
-### 개인정보처리방침 URL
-
-https://m1zz.github.io/KORA/ko/privacy.html
-
-### 마케팅 URL
-
-https://m1zz.github.io/KORA/ko/
-
 ## en-US
 
 ### 이름
 
-KORA: Korea Subway Navigator
+Korea Navigator: KORA Subway
 
 ### 부제
 
@@ -156,7 +81,7 @@ https://m1zz.github.io/KORA/en/
 
 ### 이름
 
-KORA: Korea Subway Navigator
+Korea Navigator: KORA Subway
 
 ### 부제
 
@@ -227,11 +152,86 @@ https://m1zz.github.io/KORA/en/privacy.html
 
 https://m1zz.github.io/KORA/en/
 
+## ko
+
+### 이름
+
+한국길찾기: KORA 지하철
+
+### 부제
+
+서울·부산 타는 방향과 하차 알림
+
+### 키워드
+
+신분당선,경전철,안내방송,출구정보,지하철노선도,GTX,부산지하철,빠른환승,공항철도,수도권,막차,동해선,수인분당선,경의중앙선,대구지하철,인천지하철,대전지하철,subway,metro
+
+### 프로모션 텍스트
+
+타야 할 방향은 열차 표시 그대로, 내릴 역은 진동으로 알려 드려요. 이제 독일어, 프랑스어, 태국어 등 23개 언어로 쓸 수 있습니다.
+
+### 설명
+
+KORA는 한국을 여행하는 사람을 위한 지하철 안내 앱입니다.
+출발역과 도착역만 고르면 환승, 정거장 수, 예상 시간, 그리고 어느 방향 열차를 타야 하는지 열차에 표시되는 "○○행" 그대로 알려 드립니다. 탑승 중에는 지금 어느 역인지 따라가다가 내릴 때가 되면 알려 드립니다.
+
+출발역은 자동으로
+GPS로 가장 가까운 역을 찾거나 직접 고를 수 있습니다. 고른 역은 다음에 앱을 열 때도 기억합니다.
+
+경로와 타는 방향
+환승, 정거장 수, 예상 소요 시간을 보여 주고 타야 할 열차를 "○○행" 표시로 알려 드립니다.
+
+카메라로 방향 확인
+승강장 표지판이나 열차 행선지 표시를 카메라로 비추면 지금 타려는 방향이 맞는지 바로 알려 줍니다. 글자 인식은 기기 안에서만 이뤄집니다.
+
+지금 어느 역인지 정확하게
+서울 실시간 도착 정보, GPS, 가속도계로 감지한 출발과 정차, 차내 안내방송 인식을 함께 써서 현재 역을 따라갑니다. 안내방송에서 내리는 문 방향도 알려 드립니다.
+
+내릴 역 알림
+내릴 역이 가까워지면 "곧 내릴 준비하세요", 도착하면 "지금 내리세요"를 진동과 함께 알려 드립니다. 노선 진행도에는 열차 아이콘과 도착역 핀이 표시됩니다.
+
+잠금 화면과 Dynamic Island
+탑승 중에는 라이브 액티비티로 휴대폰을 열지 않고도 진행 상황을 확인할 수 있습니다.
+
+Apple Watch
+탑승 중에는 내릴 역까지 남은 정거장이 손목에 크게 보이고, 한 정거장 남으면 손목이 울립니다. 휴대폰이 주머니에 있어도 워치가 스스로 세어 알려 드립니다. 시계 화면에 남은 정거장을 올려 둘 수도 있습니다.
+
+23개 언어
+앱 화면을 한국어, 영어, 일본어, 중국어는 물론 독일어, 프랑스어, 스페인어, 태국어, 베트남어 등 23개 언어로 쓸 수 있고 처음에는 휴대폰 언어를 따릅니다. 역 이름은 한글 원문과 함께 가타카나, 한자, 또는 역 표지판에 적힌 영문 표기로 보여 줘서 승강장에서 바로 맞춰 볼 수 있습니다.
+
+지원 지역
+수도권(서울, 경기, 인천, GTX-A, 공항철도, 신분당선, 경전철 포함), 부산, 대구, 광주, 대전의 약 930개 역을 지원합니다. 역 선택 화면의 지역 칩으로 도시를 바꿀 수 있습니다.
+
+인터넷이 없어도
+경로 검색은 기기 안에서 계산하므로 오프라인에서도 됩니다. 실시간 도착 정보만 네트워크가 필요합니다.
+
+KORA Pro
+경로 검색, 타는 방향, 실시간 도착 정보, 카메라 방향 확인은 언제나 무료입니다. 잠금 화면 안내, 안내방송 인식, 하차 진동 알림은 처음 세 번의 여정 동안 무료로 써 볼 수 있고, 그 뒤에는 KORA Pro를 한 번 구매하면 계속 쓸 수 있습니다. 서울 지하철 1~8호선 역의 출구별 주변 장소를 알려 주는 출구 안내도 KORA Pro에 들어 있습니다. 1~9호선 막차 시간을 미리 알려 주는 막차 알림, 짐이 많을 때 엘리베이터와 가까운 칸을 알려 주는 캐리어 모드(1~8호선)도 들어 있습니다. 구독이 아닙니다.
+
+개인정보를 아낍니다
+회원가입과 광고가 없습니다. 위치, 카메라, 안내방송 인식은 모두 기기 안에서 처리되며 저장하거나 전송하지 않습니다. 앱 개선을 위한 익명 이용 통계만 수집합니다.
+
+카메라, 마이크, 음성 인식, 동작 권한은 모두 선택 사항입니다. 허용하지 않아도 역을 직접 골라 경로 안내를 이용할 수 있습니다.
+
+문의: leeo@kakao.com
+
+### 지원 URL
+
+https://m1zz.github.io/KORA/ko/support.html
+
+### 개인정보처리방침 URL
+
+https://m1zz.github.io/KORA/ko/privacy.html
+
+### 마케팅 URL
+
+https://m1zz.github.io/KORA/ko/
+
 ## ja
 
 ### 이름
 
-KORA 韓国ナビ：地下鉄ルート案内
+韓国ナビ：KORA 地下鉄ルート案内
 
 ### 부제
 
@@ -306,7 +306,7 @@ https://m1zz.github.io/KORA/ja/
 
 ### 이름
 
-KORA 韩国导航：地铁换乘指南
+韩国导航：KORA 地铁换乘指南
 
 ### 부제
 
@@ -381,7 +381,7 @@ https://m1zz.github.io/KORA/zh-Hans/
 
 ### 이름
 
-KORA 韓國導航：地鐵轉乘指南
+韓國導航：KORA 地鐵轉乘指南
 
 ### 부제
 
@@ -456,7 +456,7 @@ https://m1zz.github.io/KORA/zh-Hant/
 
 ### 이름
 
-KORA: U-Bahn-Navi für Korea
+Korea Navi: KORA U-Bahn
 
 ### 부제
 
@@ -531,7 +531,7 @@ https://m1zz.github.io/KORA/de/
 
 ### 이름
 
-KORA: metro de Corea
+Rutas por Corea: KORA metro
 
 ### 부제
 
@@ -606,7 +606,7 @@ https://m1zz.github.io/KORA/es/
 
 ### 이름
 
-KORA : métro en Corée
+Trajets en Corée : KORA métro
 
 ### 부제
 
@@ -681,7 +681,7 @@ https://m1zz.github.io/KORA/fr/
 
 ### 이름
 
-KORA: metro in Corea
+Percorsi in Corea: KORA metro
 
 ### 부제
 
@@ -756,7 +756,7 @@ https://m1zz.github.io/KORA/it/
 
 ### 이름
 
-KORA: metrô na Coreia
+Rotas na Coreia: KORA metrô
 
 ### 부제
 
@@ -831,7 +831,7 @@ https://m1zz.github.io/KORA/pt-BR/
 
 ### 이름
 
-KORA: метро Кореи
+Маршруты Кореи: KORA метро
 
 ### 부제
 
@@ -906,7 +906,7 @@ https://m1zz.github.io/KORA/ru/
 
 ### 이름
 
-KORA: metro v Koreji
+Trasy v Koreji: KORA metro
 
 ### 부제
 
@@ -981,7 +981,7 @@ https://m1zz.github.io/KORA/cs/
 
 ### 이름
 
-KORA: metro i Korea
+Ruter i Korea: KORA metro
 
 ### 부제
 
@@ -1056,7 +1056,7 @@ https://m1zz.github.io/KORA/da/
 
 ### 이름
 
-KORA: Μετρό στην Κορέα
+Διαδρομές Κορέας: KORA μετρό
 
 ### 부제
 
@@ -1131,7 +1131,7 @@ https://m1zz.github.io/KORA/el/
 
 ### 이름
 
-KORA: Korean metro-opas
+Korean reitit: KORA metro
 
 ### 부제
 
@@ -1206,7 +1206,7 @@ https://m1zz.github.io/KORA/fi/
 
 ### 이름
 
-KORA: Panduan MRT Korea
+Navigasi Korea: KORA MRT
 
 ### 부제
 
@@ -1281,7 +1281,7 @@ https://m1zz.github.io/KORA/id/
 
 ### 이름
 
-KORA: T-bane i Korea
+Ruter i Korea: KORA T-bane
 
 ### 부제
 
@@ -1356,7 +1356,7 @@ https://m1zz.github.io/KORA/nb/
 
 ### 이름
 
-KORA: metro in Korea
+Routes in Korea: KORA metro
 
 ### 부제
 
@@ -1431,7 +1431,7 @@ https://m1zz.github.io/KORA/nl/
 
 ### 이름
 
-KORA: metro w Korei
+Trasy w Korei: KORA metro
 
 ### 부제
 
@@ -1506,7 +1506,7 @@ https://m1zz.github.io/KORA/pl/
 
 ### 이름
 
-KORA: tunnelbana i Korea
+Rutter i Korea: KORA t-bana
 
 ### 부제
 
@@ -1581,7 +1581,7 @@ https://m1zz.github.io/KORA/sv/
 
 ### 이름
 
-KORA: นำทางรถไฟใต้ดินเกาหลี
+นำทางเกาหลี: KORA รถไฟใต้ดิน
 
 ### 부제
 
@@ -1656,7 +1656,7 @@ https://m1zz.github.io/KORA/th/
 
 ### 이름
 
-KORA: Kore Metro Rehberi
+Kore Yol Tarifi: KORA Metro
 
 ### 부제
 
@@ -1731,7 +1731,7 @@ https://m1zz.github.io/KORA/tr/
 
 ### 이름
 
-KORA: Tàu điện ngầm Hàn Quốc
+Chỉ đường Hàn Quốc: KORA metro
 
 ### 부제
 
@@ -1739,7 +1739,7 @@ KORA: Tàu điện ngầm Hàn Quốc
 
 ### 키워드
 
-incheon,daegu,daejeon,gwangju,gtx,arex,metro,ga,sân,bay,chuyển,tuyến,lộ,trình,du,lịch,khách,phượt
+incheon,daegu,daejeon,gwangju,gtx,arex,tàu,điện,ngầm,ga,sân,bay,chuyển,tuyến,lộ,trình,du,lịch,khách
 
 ### 프로모션 텍스트
 

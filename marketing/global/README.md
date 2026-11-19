@@ -1,6 +1,6 @@
 # 글로벌 마케팅 1단계 키트 (SNS 없이)
 
-한국길찾기(KORA: Korea Subway Navigator)를 외국인 여행자와 VoiceOver 사용자에게 **SNS 운영 없이** 닿게 하는 원고 모음이다.
+한국길찾기(Korea Navigator: KORA Subway)를 외국인 여행자와 VoiceOver 사용자에게 **SNS 운영 없이** 닿게 하는 원고 모음이다.
 목표는 첫 사용자와 첫 평점이다 (2026-10-21 기준 평점 0개).
 DeployBar 는 인앱 이벤트·피처링 추천을 올리지 못하므로, 여기 글을 사람이 App Store Connect 와 각 사이트에 붙여 넣는다.
 

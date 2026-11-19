@@ -400,7 +400,8 @@ struct SubwayNavigatorView: View {
                     guard abs(v.translation.width) > abs(v.translation.height),
                           v.translation.width > 80 else { return }
                     let prev = currentBlockIdx - 1
-                    guard prev >= 0, prev <= maxCompletedIdx else { return }
+                    // 타는 중에는 지난 구간으로 돌아가지 않는다. 돌아가면 탑승 상태와 화면이 어긋나 빠져나올 수 없다.
+                    guard boardedAt == nil, prev >= 0, prev <= maxCompletedIdx else { return }
                     revisitFromIdx = prev
                     showRevisitAlert = true
                 }
@@ -1937,8 +1938,10 @@ struct SubwayNavigatorView: View {
         let dest = seg.stations.last ?? ""
         guard let route = seg.line.routes.first(where: { $0.stations.contains(boarding) && $0.stations.contains(dest) }),
               let bi = route.stations.firstIndex(of: boarding),
-              let di = route.stations.firstIndex(of: dest), bi != di else {
+              let di = route.stations.firstIndex(of: dest), bi != di,
+              !route.isCircular else {
             // Circular / unknown route: green = the actual path this train takes.
+            // 순환선은 배열 순서가 방향이 아니다(이음매를 넘는 길은 배열에서 거꾸로 보인다).
             return (Set(seg.stations.dropFirst()), [], [])
         }
         let stations = route.stations

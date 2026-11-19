@@ -22,6 +22,8 @@ final class KORAUITests: XCTestCase {
             "-kora.whatsNew.lastSeenVersion", "9999",
             // 영어 화면으로 고정해 문구를 찾는다.
             "-kora.display_language", "english",
+            // 축하 · 감사 화면이 첫 화면을 가리지 않게.
+            "-KORAUITest",
         ]
         app.launch()
         return app

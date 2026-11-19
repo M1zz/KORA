@@ -5,12 +5,12 @@
   name · subtitle · keywords · promo · description · release_notes[] · shots[] · creative{}
   python3 scripts/i18n/gen_appstore.py <버전>
 """
-import json, pathlib, sys
+import json, pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 SRC = ROOT / "scripts/i18n/store"
 # deploy.env LOCALES 순서 → 웹 페이지 폴더
-LOCALES = ["ko", "en-US", "en-GB", "ja", "zh-Hans", "zh-Hant", "de", "es", "fr", "it", "pt-BR", "ru", "cs",
+LOCALES = ["en-US", "en-GB", "ko", "ja", "zh-Hans", "zh-Hant", "de", "es", "fr", "it", "pt-BR", "ru", "cs",
            "da", "el", "fi", "id", "nb", "nl", "pl", "sv", "th", "tr", "vi"]
 WEB = {"en-US": "en", "en-GB": "en"}
 LANGNAME = {"ko": "한국어", "en-US": "English", "en-GB": "영국 영어", "ja": "日本語", "zh-Hans": "중국어 간체", "zh-Hant": "중국어 번체",
@@ -39,7 +39,11 @@ def appstore():
                 "### 지원 URL", "", f"https://m1zz.github.io/KORA/{web}/support.html", "",
                 "### 개인정보처리방침 URL", "", f"https://m1zz.github.io/KORA/{web}/privacy.html", "",
                 "### 마케팅 URL", "", f"https://m1zz.github.io/KORA/{web}/", ""]
-    (ROOT / "APPSTORE.md").write_text("\n".join(out), encoding="utf-8")
+    # 언어 절이 아닌 절(손으로 적는 `## 손쉬운 사용`)은 그대로 둔다. 다시 만들 때 지워지면 선언이 사라진다.
+    path = ROOT / "APPSTORE.md"
+    kept = [s for s in re.split(r"\n(?=## )", path.read_text(encoding="utf-8"))[1:]
+            if s.split("\n", 1)[0][3:].strip() not in LOCALES] if path.exists() else []
+    path.write_text("\n".join(out) + "".join("\n" + s.rstrip("\n") + "\n" for s in kept), encoding="utf-8")
 
 
 def release_notes(version):

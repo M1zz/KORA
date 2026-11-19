@@ -1,5 +1,5 @@
 {
-  "sourceLanguage" : "ko",
+  "sourceLanguage" : "en",
   "strings" : {
     "CFBundleDisplayName" : {
       "comment" : "Bundle display name",
@@ -14,25 +14,25 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "韓国ナビ"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "한국길찾기"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "韩国导航"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "韓國導航"
           }
         },
         "de" : {

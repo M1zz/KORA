@@ -52,7 +52,12 @@ struct WatchRideView: View {
         NavigationStack {
             if let ride = link.ride {
                 TimelineView(.periodic(from: .now, by: 5)) { context in
-                    RideBody(ride: ride, now: context.date)
+                    // 열어 둔 채로 끝난 열차는 "지금 내리세요"로 남기지 않는다.
+                    if ride.expiresAt > context.date {
+                        RideBody(ride: ride, now: context.date)
+                    } else {
+                        waiting
+                    }
                 }
             } else {
                 waiting
