@@ -10,7 +10,7 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 ### 앱스토어 (English en-US)
 
 ```
-New name: Korea Navigator
+New name: Korea Navi
 Line 2 now takes the shorter way around
 Your stop alert buzzes while it listens
 More accurate door side after transfers
@@ -19,7 +19,7 @@ More accurate door side after transfers
 ### 앱스토어 (영국 영어 en-GB)
 
 ```
-New name: Korea Navigator
+New name: Korea Navi
 Line 2 now takes the shorter way round
 Your stop alert buzzes while it listens
 More accurate door side after changes
@@ -73,7 +73,7 @@ Türseite nach dem Umsteigen genauer
 ### 앱스토어 (스페인어 es)
 
 ```
-Nuevo nombre: Rutas por Corea
+Nuevo nombre: Korea Navi
 La línea 2 va por el lado más corto
 El aviso de bajada vibra al escuchar
 Lado de puertas más preciso al cambiar
@@ -82,7 +82,7 @@ Lado de puertas más preciso al cambiar
 ### 앱스토어 (프랑스어 fr)
 
 ```
-Nouveau nom : Trajets en Corée
+Nouveau nom : Korea Navi
 La ligne 2 prend le sens le plus court
 L'alerte de descente vibre à l'écoute
 Côté des portes plus fiable en changeant
@@ -91,7 +91,7 @@ Côté des portes plus fiable en changeant
 ### 앱스토어 (이탈리아어 it)
 
 ```
-Nuovo nome: Percorsi in Corea
+Nuovo nome: Korea Navi
 La linea 2 sceglie il verso più breve
 L'avviso di discesa vibra in ascolto
 Lato porte più preciso dopo il cambio
@@ -100,7 +100,7 @@ Lato porte più preciso dopo il cambio
 ### 앱스토어 (포르투갈어 브라질 pt-BR)
 
 ```
-Novo nome: Rotas na Coreia
+Novo nome: Korea Navi
 A linha 2 segue pelo lado mais curto
 O aviso de descida vibra ao ouvir
 Lado das portas mais exato na baldeação
@@ -109,7 +109,7 @@ Lado das portas mais exato na baldeação
 ### 앱스토어 (러시아어 ru)
 
 ```
-Новое название: Маршруты Кореи
+Новое название: Korea Navi
 Линия 2 ведёт по короткой стороне
 Сигнал выхода вибрирует и при слушании
 Сторона дверей точнее после пересадки
@@ -118,7 +118,7 @@ Lado das portas mais exato na baldeação
 ### 앱스토어 (체코어 cs)
 
 ```
-Nový název: Trasy v Koreji
+Nový název: Korea Navi
 Linka 2 vede kratším směrem
 Výstupní upozornění vibruje při poslechu
 Strana dveří po přestupu je přesnější
@@ -127,7 +127,7 @@ Strana dveří po přestupu je přesnější
 ### 앱스토어 (덴마크어 da)
 
 ```
-Nyt navn: Ruter i Korea
+Nyt navn: Korea Navi
 Linje 2 vælger nu den korteste vej
 Stopalarmen vibrerer, mens appen lytter
 Mere præcis dørside efter skift
@@ -136,7 +136,7 @@ Mere præcis dørside efter skift
 ### 앱스토어 (그리스어 el)
 
 ```
-Νέο όνομα: Διαδρομές Κορέας
+Νέο όνομα: Korea Navi
 Η γραμμή 2 πάει από τον σύντομο δρόμο
 Η ειδοποίηση στάσης δονείται ενώ ακούει
 Πιο ακριβής πλευρά θυρών μετά την αλλαγή
@@ -145,7 +145,7 @@ Mere præcis dørside efter skift
 ### 앱스토어 (핀란드어 fi)
 
 ```
-Uusi nimi: Korean reitit
+Uusi nimi: Korea Navi
 Linja 2 ohjaa nyt lyhyempää suuntaa
 Poistumishälytys värisee kuunnellessa
 Ovien puoli tarkempi vaihdon jälkeen
@@ -154,7 +154,7 @@ Ovien puoli tarkempi vaihdon jälkeen
 ### 앱스토어 (인도네시아어 id)
 
 ```
-Nama baru: Navigasi Korea
+Nama baru: Korea Navi
 Jalur 2 kini lewat arah yang lebih dekat
 Pengingat turun bergetar saat mendengar
 Sisi pintu lebih akurat setelah transit
@@ -163,7 +163,7 @@ Sisi pintu lebih akurat setelah transit
 ### 앱스토어 (노르웨이어 보크말 nb)
 
 ```
-Nytt navn: Ruter i Korea
+Nytt navn: Korea Navi
 Linje 2 velger nå den korteste veien
 Stoppvarselet vibrerer mens appen lytter
 Mer presis dørside etter bytte
@@ -172,7 +172,7 @@ Mer presis dørside etter bytte
 ### 앱스토어 (네덜란드어 nl)
 
 ```
-Nieuwe naam: Routes in Korea
+Nieuwe naam: Korea Navi
 Lijn 2 kiest nu de kortste kant
 Uitstapmelding trilt tijdens luisteren
 Deurkant nauwkeuriger na het overstappen
@@ -181,7 +181,7 @@ Deurkant nauwkeuriger na het overstappen
 ### 앱스토어 (폴란드어 pl)
 
 ```
-Nowa nazwa: Trasy w Korei
+Nowa nazwa: Korea Navi
 Linia 2 prowadzi krótszą stroną
 Alarm wysiadania wibruje przy słuchaniu
 Strona drzwi dokładniejsza po przesiadce
@@ -190,7 +190,7 @@ Strona drzwi dokładniejsza po przesiadce
 ### 앱스토어 (스웨덴어 sv)
 
 ```
-Nytt namn: Rutter i Korea
+Nytt namn: Korea Navi
 Linje 2 väljer nu den kortaste vägen
 Avstigningslarmet vibrerar vid lyssning
 Mer exakt dörrsida efter byte
@@ -199,7 +199,7 @@ Mer exakt dörrsida efter byte
 ### 앱스토어 (태국어 th)
 
 ```
-ชื่อใหม่: นำทางเกาหลี
+ชื่อใหม่: Korea Navi
 สาย 2 นำทางไปทางที่ใกล้กว่า
 แจ้งเตือนลงรถสั่นได้แม้กำลังฟังประกาศ
 ฝั่งประตูแม่นยำขึ้นหลังเปลี่ยนสาย
@@ -208,7 +208,7 @@ Mer exakt dörrsida efter byte
 ### 앱스토어 (튀르키예어 tr)
 
 ```
-Yeni ad: Kore Yol Tarifi
+Yeni ad: Korea Navi
 2. hat artık kısa yönden götürüyor
 İniş uyarısı dinleme sırasında da titrer
 Aktarmadan sonra kapı yönü daha doğru
@@ -217,7 +217,7 @@ Aktarmadan sonra kapı yönü daha doğru
 ### 앱스토어 (베트남어 vi)
 
 ```
-Tên mới: Chỉ đường Hàn Quốc
+Tên mới: Korea Navi
 Tuyến 2 nay đi theo hướng gần hơn
 Báo xuống ga vẫn rung khi đang nghe loa
 Bên cửa mở chính xác hơn sau khi đổi tàu

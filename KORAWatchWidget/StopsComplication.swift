@@ -116,10 +116,10 @@ struct StopsComplicationView: View {
                 .font(.title3)
                 .widgetAccentable()
         case .accessoryInline:
-            Text(verbatim: "KORA")
+            Text(verbatim: RideLink.appName)
         default:
             VStack(alignment: .leading, spacing: 2) {
-                Label { Text(verbatim: "KORA") } icon: { Image(systemName: "tram.fill") }
+                Label { Text(verbatim: RideLink.appName) } icon: { Image(systemName: "tram.fill") }
                     .font(.headline)
                     .widgetAccentable()
                 Text("Not on a train")

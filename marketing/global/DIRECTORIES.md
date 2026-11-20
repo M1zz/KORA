@@ -9,7 +9,7 @@ SNS 없이 영어권·일본어권 사람에게 닿는 곳의 **제출 양식 �
 
 | 항목 | 값 |
 |---|---|
-| 앱 이름 | Korea Navigator: KORA Subway (홈 화면 이름 KORA) |
+| 앱 이름 | Korea Navi: Subway Routes (홈 화면 이름 Korea Navi) |
 | App Store | https://apps.apple.com/app/id6775176578 |
 | 웹사이트 | https://m1zz.github.io/KORA/en/ (일본어 https://m1zz.github.io/KORA/ja/) |
 | 지원 | https://m1zz.github.io/KORA/en/support.html |
@@ -56,7 +56,7 @@ SNS 없이 영어권·일본어권 사람에게 닿는 곳의 **제출 양식 �
 
 **제목**
 ```
-Korea Navigator: KORA Subway — VoiceOver feedback wanted (I'm the developer)
+Korea Navi: Subway Routes — VoiceOver feedback wanted (I'm the developer)
 ```
 
 **본문**
@@ -96,7 +96,7 @@ If you try it, I'd love to hear where VoiceOver gets stuck, in this thread or th
 
 | 칸 (양식 그대로) | 넣을 값 |
 |---|---|
-| Name of the App | `Korea Navigator: KORA Subway` |
+| Name of the App | `Korea Navi: Subway Routes` |
 | Description | 아래 |
 | Category | `Travel` |
 | Developer / Team Name | `Leeo` |
@@ -197,7 +197,7 @@ Hi, I read your list of Korea travel apps for tourists and wanted to suggest a s
 
 **문의 내용** (일본어, 1,000자 이내 — 568자)
 ```
-アプリ開発者のLeeo（リーオ）と申します。韓国で個人開発している地下鉄案内アプリ「韓国ナビ：KORA 地下鉄ルート案内」のレビューをご検討いただけないでしょうか。
+アプリ開発者のLeeo（リーオ）と申します。韓国で個人開発している地下鉄案内アプリ「韓国ナビ：地下鉄ルート案内」のレビューをご検討いただけないでしょうか。
 
 KORAは韓国を旅行する方のためのiPhoneアプリです。出発駅と到着駅を選ぶだけで、乗り換え、駅数、所要時間の目安、そして乗るべき電車を行先表示「○○行き」のまま案内します。乗車中は現在の駅を追いかけ、降りる駅が近づくと振動とロック画面でお知らせします。ホームの案内板にカメラを向けると、乗る方向が合っているかもその場で確認できます。
 

@@ -98,7 +98,7 @@ private extension View {
         if ScreenshotScene.isActive || ProcessInfo.processInfo.arguments.contains("-KORAUITest") {
             self
         } else {
-            leeoCelebrations(appName: KORASpec.appName)
+            leeoCelebrations(appName: KORASpec.displayName)
         }
     }
 }

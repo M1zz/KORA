@@ -77,7 +77,7 @@ struct WatchRideView: View {
                 .foregroundStyle(.secondary)
         }
         .padding(.horizontal, 4)
-        .navigationTitle(Text(verbatim: "KORA"))
+        .navigationTitle(Text(verbatim: RideLink.appName))
     }
 }
 

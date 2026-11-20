@@ -68,8 +68,8 @@ struct KORAPaywallView: View {
                 .font(.title).fontWeight(.black)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(KORATheme.labelPrimary)
-            // "KORA Pro" 가 두 줄로 갈라지지 않게 (띄어쓰기 없는 일본어·중국어에서 특히).
-            Text(NavLoc.proSubtitle.resolved(lang).replacingOccurrences(of: "KORA Pro", with: "KORA\u{00A0}Pro"))
+            // "Korea Navi Pro" 같은 상품 이름이 두 줄로 갈라지지 않게 (띄어쓰기 없는 일본어·중국어에서 특히).
+            Text(NavLoc.proSubtitle.resolved(lang).replacingOccurrences(of: " Pro", with: "\u{00A0}Pro").replacingOccurrences(of: "Korea Navi", with: "Korea\u{00A0}Navi"))
                 .font(.callout)
                 .multilineTextAlignment(.center)
                 .foregroundStyle(KORATheme.labelSecondary)

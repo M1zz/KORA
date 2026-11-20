@@ -8,7 +8,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "ja" : {
@@ -38,115 +38,115 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "KORA"
+            "value" : "Korea Navi"
           }
         }
       }
@@ -158,7 +158,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "KORA"
+            "value" : "한국길찾기"
           }
         }
       },

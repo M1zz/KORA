@@ -9,17 +9,17 @@
       "localizations" : [
         {
           "description" : "Lock Screen, announcement and get-off alerts on every ride",
-          "displayName" : "KORA Pro",
+          "displayName" : "Korea Navi Pro",
           "locale" : "en_US"
         },
         {
           "description" : "모든 탑승에서 잠금 화면, 안내방송, 하차 알림",
-          "displayName" : "KORA Pro",
+          "displayName" : "Korea Navi Pro",
           "locale" : "ko"
         }
       ],
       "productID" : "com.kora.leeo.pro",
-      "referenceName" : "KORA Pro Lifetime",
+      "referenceName" : "Korea Navi Pro Lifetime",
       "type" : "NonConsumable"
     },
     {
@@ -28,13 +28,13 @@
       "internalID" : "4B0A7E22",
       "localizations" : [
         {
-          "description" : "Give KORA Pro to someone else with a gift code.",
-          "displayName" : "Gift KORA Pro",
+          "description" : "Give Korea Navi Pro to someone else with a gift code.",
+          "displayName" : "Gift Korea Navi Pro",
           "locale" : "en_US"
         },
         {
-          "description" : "다른 사람에게 KORA Pro 를 선물합니다. 코드를 보내 주세요.",
-          "displayName" : "KORA Pro 선물",
+          "description" : "다른 사람에게 한국길찾기 Pro 를 선물합니다. 코드를 보내 주세요.",
+          "displayName" : "한국길찾기 Pro 선물",
           "locale" : "ko"
         }
       ],
@@ -48,7 +48,7 @@
       "internalID" : "4B0A7E31",
       "localizations" : [
         {
-          "description" : "Support the developer of KORA.",
+          "description" : "Support the developer of Korea Navi.",
           "displayName" : "Small Tip",
           "locale" : "en_US"
         }
@@ -63,7 +63,7 @@
       "internalID" : "4B0A7E32",
       "localizations" : [
         {
-          "description" : "Support the developer of KORA.",
+          "description" : "Support the developer of Korea Navi.",
           "displayName" : "Medium Tip",
           "locale" : "en_US"
         }
@@ -78,7 +78,7 @@
       "internalID" : "4B0A7E33",
       "localizations" : [
         {
-          "description" : "Support the developer of KORA.",
+          "description" : "Support the developer of Korea Navi.",
           "displayName" : "Large Tip",
           "locale" : "en_US"
         }

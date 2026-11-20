@@ -4,8 +4,8 @@
 //
 //  Siri · 단축어로 길 안내를 시작한다.
 //
-//  - "KORA, route to Gangnam": 말한 역을 도착역으로, 지금 위치에서 가까운 역을 출발역으로 연다.
-//  - "KORA nearest station": 가장 가까운 역과 거리를 알려 준다.
+//  - "Korea Navi, route to Gangnam": 말한 역을 도착역으로, 지금 위치에서 가까운 역을 출발역으로 연다.
+//  - "Korea Navi nearest station": 가장 가까운 역과 거리를 알려 준다.
 //
 //  역 이름은 앱이 아는 모든 언어 표기(한국어 · 영어 · 일본어 · 중국어 …)로 찾는다.
 //
@@ -107,7 +107,7 @@ struct KORANearestStationIntent: AppIntent {
 
     func perform() async throws -> some IntentResult & ReturnsValue<KORAStationEntity?> & ProvidesDialog {
         guard let here = CLLocationManager().location else {
-            return .result(value: nil, dialog: IntentDialog(LocalizedStringResource("I don’t know where you are yet. Open KORA once and allow location.", comment: "Siri: location unknown")))
+            return .result(value: nil, dialog: IntentDialog(LocalizedStringResource("I don’t know where you are yet. Open Korea Navi once and allow location.", comment: "Siri: location unknown")))
         }
         guard let nearest = MetroLineData.nearestStation(latitude: here.coordinate.latitude, longitude: here.coordinate.longitude) else {
             return .result(value: nil, dialog: IntentDialog(LocalizedStringResource("There’s no station within 2 km.", comment: "Siri: no station nearby")))

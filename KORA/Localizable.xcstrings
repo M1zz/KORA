@@ -995,148 +995,6 @@
         }
       }
     },
-    "I don’t know where you are yet. Open KORA once and allow location." : {
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Zatím nevím, kde jste. Otevřete KORA a povolte polohu."
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jeg ved endnu ikke, hvor du er. Åbn KORA, og tillad lokalitet."
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ich weiß noch nicht, wo du bist. Öffne KORA einmal und erlaube den Standort."
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Δεν ξέρω ακόμα πού βρίσκεστε. Ανοίξτε το KORA και επιτρέψτε την τοποθεσία."
-          }
-        },
-        "en-GB" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "I don’t know where you are yet. Open KORA once and allow location."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aún no sé dónde estás. Abre KORA y permite la ubicación."
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "En vielä tiedä sijaintiasi. Avaa KORA ja salli sijainti."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Je ne sais pas encore où vous êtes. Ouvrez KORA et autorisez la localisation."
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lokasi Anda belum diketahui. Buka KORA sekali dan izinkan lokasi."
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Non so ancora dove sei. Apri KORA e consenti la posizione."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "まだ現在地がわかりません。KORAを一度開いて位置情報を許可してください。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "아직 위치를 몰라요. KORA를 한 번 열어 위치를 허용해 주세요."
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jeg vet ikke hvor du er ennå. Åpne KORA og tillat posisjon."
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ik weet nog niet waar je bent. Open KORA en sta locatie toe."
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nie wiem jeszcze, gdzie jesteś. Otwórz KORA i zezwól na lokalizację."
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ainda não sei onde você está. Abra o KORA e permita a localização."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Пока не знаю, где вы. Откройте KORA и разрешите доступ к геопозиции."
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Jag vet inte var du är än. Öppna KORA och tillåt plats."
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ยังไม่ทราบตำแหน่งของคุณ เปิด KORA หนึ่งครั้งแล้วอนุญาตตำแหน่ง"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Henüz neredesin bilmiyorum. KORA’yı bir kez aç ve konuma izin ver."
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chưa biết bạn đang ở đâu. Hãy mở KORA và cho phép vị trí."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "还不知道你的位置。请打开一次 KORA 并允许定位。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "還不知道你的位置。請打開一次 KORA 並允許定位。"
-          }
-        }
-      }
-    },
     "There’s no station within 2 km." : {
       "localizations" : {
         "cs" : {
@@ -1560,6 +1418,148 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "要去的車站。用 App 支援的任何語言說出站名都能找到。"
+          }
+        }
+      }
+    },
+    "I don’t know where you are yet. Open Korea Navi once and allow location." : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zatím nevím, kde jste. Otevřete Korea Navi a povolte polohu."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeg ved endnu ikke, hvor du er. Åbn Korea Navi, og tillad lokalitet."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ich weiß noch nicht, wo du bist. Öffne Korea Navi einmal und erlaube den Standort."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δεν ξέρω ακόμα πού βρίσκεστε. Ανοίξτε το Korea Navi και επιτρέψτε την τοποθεσία."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I don’t know where you are yet. Open Korea Navi once and allow location."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aún no sé dónde estás. Abre Korea Navi y permite la ubicación."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "En vielä tiedä sijaintiasi. Avaa Korea Navi ja salli sijainti."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je ne sais pas encore où vous êtes. Ouvrez Korea Navi et autorisez la localisation."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lokasi Anda belum diketahui. Buka Korea Navi sekali dan izinkan lokasi."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non so ancora dove sei. Apri Korea Navi e consenti la posizione."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "まだ現在地がわかりません。韓国ナビを一度開いて位置情報を許可してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아직 위치를 몰라요. 한국길찾기를 한 번 열어 위치를 허용해 주세요."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jeg vet ikke hvor du er ennå. Åpne Korea Navi og tillat posisjon."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ik weet nog niet waar je bent. Open Korea Navi en sta locatie toe."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie wiem jeszcze, gdzie jesteś. Otwórz Korea Navi i zezwól na lokalizację."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ainda não sei onde você está. Abra o Korea Navi e permita a localização."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пока не знаю, где вы. Откройте Korea Navi и разрешите доступ к геопозиции."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jag vet inte var du är än. Öppna Korea Navi och tillåt plats."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ยังไม่ทราบตำแหน่งของคุณ เปิด Korea Navi หนึ่งครั้งแล้วอนุญาตตำแหน่ง"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Henüz neredesin bilmiyorum. Korea Navi’yı bir kez aç ve konuma izin ver."
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chưa biết bạn đang ở đâu. Hãy mở Korea Navi và cho phép vị trí."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "还不知道你的位置。请打开一次韩国导航并允许定位。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還不知道你的位置。請打開一次韓國導航並允許定位。"
           }
         }
       }

@@ -78,6 +78,11 @@ enum RideLink {
     static let snapshotKey = "ride"
     /// 워치 앱과 컴플리케이션이 함께 여는 저장소
     static let group = "group.com.kora.leeo"
+    /// 화면에 보이는 앱 이름 (언어마다 다르다: 한국길찾기 · 韓国ナビ · Korea Navi)
+    static var appName: String {
+        (Bundle.main.localizedInfoDictionary?["CFBundleDisplayName"]
+            ?? Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName")) as? String ?? "Korea Navi"
+    }
 
     static func encode(_ ride: RideSnapshot?) -> Data {
         guard let ride else { return Data() }
