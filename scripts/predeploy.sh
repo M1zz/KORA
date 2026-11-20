@@ -9,14 +9,14 @@
 #   NavLoc 은 모든 언어가 필수 인자라 빠지면 컴파일이 멈춘다 - 그래서 빌드가 곧 검사다.
 #   NavLoc 카탈로그는 scripts/i18n/navloc.json 에서 생성한다 - 생성본이 원본과 같은지도 본다.
 #
-# 단위 시험(KORATests)·UI 시험(KORAUITests)은 CI(.github/workflows/ci.yml)와 Xcode 에서 돈다.
+# 단위 시험(KoreaNaviTests)·UI 시험(KoreaNaviUITests)은 CI(.github/workflows/ci.yml)와 Xcode 에서 돈다.
 set -e
 ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 cd "$ROOT"
 
-SCHEME="KORA"
-PROJECT="KORA.xcodeproj"
-VERSION_XCCONFIG="KORA/Config/Version.xcconfig"
+SCHEME="KoreaNavi"
+PROJECT="KoreaNavi.xcodeproj"
+VERSION_XCCONFIG="KoreaNavi/Config/Version.xcconfig"
 LANGS="en en-GB ja ko zh-Hans zh-Hant de es fr it pt-BR ru cs da el fi id nb nl pl sv th tr vi"
 
 # ── 1. 버전 소스가 한 곳인지 ────────────────────────────────────────────
@@ -39,8 +39,8 @@ echo "   $(grep -E '^[[:space:]]*MARKETING_VERSION' "$VERSION_XCCONFIG" | tr -s 
 
 # ── 2. 카탈로그가 모든 언어로 다 찼는지 ──────────────────────────────────
 echo "🌐 [2/4] 카탈로그 언어 확인 ($LANGS)"
-python3 - "$LANGS" KORA/InfoPlist.xcstrings widget/Localizable.xcstrings \
-  KORAWatch/Localizable.xcstrings KORAWatch/InfoPlist.xcstrings KORAWatchWidget/InfoPlist.xcstrings widget/InfoPlist.xcstrings KORAWatchWidget/Localizable.xcstrings <<'PY'
+python3 - "$LANGS" KoreaNavi/InfoPlist.xcstrings widget/Localizable.xcstrings \
+  KoreaNaviWatch/Localizable.xcstrings KoreaNaviWatch/InfoPlist.xcstrings KoreaNaviWatchWidget/InfoPlist.xcstrings widget/InfoPlist.xcstrings KoreaNaviWatchWidget/Localizable.xcstrings <<'PY'
 import json, sys
 langs = sys.argv[1].split()
 bad = []
@@ -61,7 +61,7 @@ PY
 # ── 3. 역 이름 번체 표가 간체 표와 맞는지 ────────────────────────────────
 echo "🀄 [3/4] 역 이름 번체 표 · 화면 문구 카탈로그 확인"
 python3 scripts/i18n/gen_station_zh_hant.py --check
-CATALOG="KORA/Sources/Features/Subway/SubwayNavigatorCatalog.swift"
+CATALOG="KoreaNavi/Sources/Features/Subway/SubwayNavigatorCatalog.swift"
 cp "$CATALOG" "$CATALOG.bak"
 python3 scripts/i18n/gen_navloc.py >/dev/null
 if ! cmp -s "$CATALOG" "$CATALOG.bak"; then

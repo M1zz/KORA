@@ -1100,7 +1100,7 @@ Báo khi tàu tốc hành tuyến 9 bỏ qua ga
 ### 앱스토어 (한국어 ko)
 
 ```
-홈 화면의 앱 이름이 KORA로 바뀌었어요
+홈 화면의 앱 이름이 한국길찾기로 바뀌었어요
 앱이 더 가벼워졌어요
 다른 회사의 분석 도구를 더 이상 쓰지 않아요
 문제가 생기면 더 빨리 찾아 고칠 수 있어요
@@ -1109,7 +1109,7 @@ Báo khi tàu tốc hành tuyến 9 bỏ qua ga
 ### 앱스토어 (English en-US)
 
 ```
-The app is now called KORA on your Home Screen
+The app is now called 한국길찾기 on your Home Screen
 The app is now lighter
 We no longer use third-party analytics
 We can find and fix problems faster
@@ -1118,7 +1118,7 @@ We can find and fix problems faster
 ### 앱스토어 (日本語 ja)
 
 ```
-ホーム画面のアプリ名がKORAになりました
+ホーム画面のアプリ名が한국길찾기になりました
 アプリが軽くなりました
 他社の分析ツールを使わなくなりました
 不具合をより早く見つけて直せるようになりました
@@ -1127,7 +1127,7 @@ We can find and fix problems faster
 ### 앱스토어 (중국어 간체 zh-Hans)
 
 ```
-主屏幕上的应用名称已改为 KORA
+主屏幕上的应用名称已改为 한국길찾기
 应用变得更轻巧
 不再使用第三方分析工具
 出现问题时能更快发现并修复
@@ -1136,7 +1136,7 @@ We can find and fix problems faster
 ### 앱스토어 (중국어 번체 zh-Hant)
 
 ```
-主畫面上的 App 名稱已改為 KORA
+主畫面上的 App 名稱已改為 한국길찾기
 App 變得更輕巧
 不再使用第三方分析工具
 出現問題時能更快發現並修正
@@ -1145,7 +1145,7 @@ App 變得更輕巧
 ### 앱스토어 (독일어 de)
 
 ```
-Auf dem Home-Bildschirm heißt die App jetzt KORA
+Auf dem Home-Bildschirm heißt die App jetzt 한국길찾기
 Die App ist jetzt schlanker
 Keine Analysedienste von Drittanbietern mehr
 Fehler finden und beheben wir jetzt schneller
@@ -1154,7 +1154,7 @@ Fehler finden und beheben wir jetzt schneller
 ### 앱스토어 (스페인어 es)
 
 ```
-En la pantalla de inicio, la app ahora se llama KORA
+En la pantalla de inicio, la app ahora se llama 한국길찾기
 La app ahora es más ligera
 Ya no usamos analítica de terceros
 Detectamos y corregimos errores más rápido
@@ -1163,7 +1163,7 @@ Detectamos y corregimos errores más rápido
 ### 앱스토어 (프랑스어 fr)
 
 ```
-Sur l'écran d'accueil, l'app s'appelle désormais KORA
+Sur l'écran d'accueil, l'app s'appelle désormais 한국길찾기
 L'app est désormais plus légère
 Plus aucun outil d'analyse tiers
 Nous repérons et corrigeons les bugs plus vite
@@ -1172,7 +1172,7 @@ Nous repérons et corrigeons les bugs plus vite
 ### 앱스토어 (이탈리아어 it)
 
 ```
-Nella schermata Home l'app ora si chiama KORA
+Nella schermata Home l'app ora si chiama 한국길찾기
 L'app ora è più leggera
 Niente più strumenti di analisi di terze parti
 Troviamo e risolviamo i problemi più in fretta
@@ -1181,7 +1181,7 @@ Troviamo e risolviamo i problemi più in fretta
 ### 앱스토어 (포르투갈어 브라질 pt-BR)
 
 ```
-Na tela de início, o app agora se chama KORA
+Na tela de início, o app agora se chama 한국길찾기
 O app ficou mais leve
 Não usamos mais análises de terceiros
 Encontramos e corrigimos problemas mais rápido
@@ -1190,7 +1190,7 @@ Encontramos e corrigimos problemas mais rápido
 ### 앱스토어 (러시아어 ru)
 
 ```
-На экране «Домой» приложение теперь называется KORA
+На экране «Домой» приложение теперь называется 한국길찾기
 Приложение стало легче
 Больше никакой сторонней аналитики
 Мы быстрее находим и исправляем ошибки
@@ -1199,7 +1199,7 @@ Encontramos e corrigimos problemas mais rápido
 ### 앱스토어 (체코어 cs)
 
 ```
-Na ploše se aplikace nyní jmenuje KORA
+Na ploše se aplikace nyní jmenuje 한국길찾기
 Aplikace je teď menší a lehčí
 Už nepoužíváme analytiku třetích stran
 Chyby najdeme a opravíme rychleji
@@ -1208,7 +1208,7 @@ Chyby najdeme a opravíme rychleji
 ### 앱스토어 (덴마크어 da)
 
 ```
-På hjemmeskærmen hedder appen nu KORA
+På hjemmeskærmen hedder appen nu 한국길찾기
 Appen fylder nu mindre
 Vi bruger ikke længere analyse fra tredjeparter
 Vi kan finde og rette fejl hurtigere
@@ -1217,7 +1217,7 @@ Vi kan finde og rette fejl hurtigere
 ### 앱스토어 (그리스어 el)
 
 ```
-Στην οθόνη Αφετηρίας η εφαρμογή λέγεται πλέον KORA
+Στην οθόνη Αφετηρίας η εφαρμογή λέγεται πλέον 한국길찾기
 Η εφαρμογή έγινε πιο ελαφριά
 Δεν χρησιμοποιούμε πια εργαλεία ανάλυσης τρίτων
 Βρίσκουμε και διορθώνουμε προβλήματα πιο γρήγορα
@@ -1226,7 +1226,7 @@ Vi kan finde og rette fejl hurtigere
 ### 앱스토어 (핀란드어 fi)
 
 ```
-Kotinäytöllä sovelluksen nimi on nyt KORA
+Kotinäytöllä sovelluksen nimi on nyt 한국길찾기
 Sovellus on nyt kevyempi
 Emme enää käytä ulkopuolisia analytiikkapalveluja
 Löydämme ja korjaamme ongelmat nopeammin
@@ -1235,7 +1235,7 @@ Löydämme ja korjaamme ongelmat nopeammin
 ### 앱스토어 (인도네시아어 id)
 
 ```
-Di Layar Utama, nama aplikasi kini KORA
+Di Layar Utama, nama aplikasi kini 한국길찾기
 Aplikasi kini lebih ringan
 Kami tidak lagi memakai analitik pihak ketiga
 Masalah bisa kami temukan dan perbaiki lebih cepat
@@ -1244,7 +1244,7 @@ Masalah bisa kami temukan dan perbaiki lebih cepat
 ### 앱스토어 (노르웨이어 보크말 nb)
 
 ```
-På Hjem-skjermen heter appen nå KORA
+På Hjem-skjermen heter appen nå 한국길찾기
 Appen tar nå mindre plass
 Vi bruker ikke lenger analyse fra tredjeparter
 Vi kan finne og rette feil raskere
@@ -1253,7 +1253,7 @@ Vi kan finne og rette feil raskere
 ### 앱스토어 (네덜란드어 nl)
 
 ```
-Op het beginscherm heet de app nu KORA
+Op het beginscherm heet de app nu 한국길찾기
 De app is nu lichter
 We gebruiken geen analyse van derden meer
 We vinden en verhelpen problemen sneller
@@ -1262,7 +1262,7 @@ We vinden en verhelpen problemen sneller
 ### 앱스토어 (폴란드어 pl)
 
 ```
-Na ekranie początkowym aplikacja nazywa się teraz KORA
+Na ekranie początkowym aplikacja nazywa się teraz 한국길찾기
 Aplikacja jest teraz lżejsza
 Nie używamy już zewnętrznych narzędzi analitycznych
 Szybciej znajdujemy i naprawiamy błędy
@@ -1271,7 +1271,7 @@ Szybciej znajdujemy i naprawiamy błędy
 ### 앱스토어 (스웨덴어 sv)
 
 ```
-På hemskärmen heter appen nu KORA
+På hemskärmen heter appen nu 한국길찾기
 Appen tar nu mindre plats
 Vi använder inte längre analys från tredje part
 Vi hittar och rättar fel snabbare
@@ -1280,7 +1280,7 @@ Vi hittar och rättar fel snabbare
 ### 앱스토어 (태국어 th)
 
 ```
-ชื่อแอปบนหน้าจอโฮมเปลี่ยนเป็น KORA แล้ว
+ชื่อแอปบนหน้าจอโฮมเปลี่ยนเป็น 한국길찾기 แล้ว
 แอปมีขนาดเล็กลง
 เลิกใช้เครื่องมือวิเคราะห์จากบริษัทอื่นแล้ว
 ค้นหาและแก้ไขปัญหาได้เร็วขึ้น
@@ -1289,7 +1289,7 @@ Vi hittar och rättar fel snabbare
 ### 앱스토어 (튀르키예어 tr)
 
 ```
-Ana ekranda uygulamanın adı artık KORA
+Ana ekranda uygulamanın adı artık 한국길찾기
 Uygulama artık daha hafif
 Artık üçüncü taraf analiz araçları kullanmıyoruz
 Sorunları daha hızlı bulup düzeltiyoruz
@@ -1298,7 +1298,7 @@ Sorunları daha hızlı bulup düzeltiyoruz
 ### 앱스토어 (베트남어 vi)
 
 ```
-Tên ứng dụng trên Màn hình chính giờ là KORA
+Tên ứng dụng trên Màn hình chính giờ là 한국길찾기
 Ứng dụng nhẹ hơn
 Không còn dùng công cụ phân tích của bên thứ ba
 Phát hiện và sửa lỗi nhanh hơn
@@ -1312,7 +1312,7 @@ Phát hiện và sửa lỗi nhanh hơn
 출구마다 가까운 장소를 미리 볼 수 있어요
 막차 시간을 알려 주고 미리 알림도 보내요
 짐이 많으면 엘리베이터와 가까운 칸을 알려 줘요
-새 기능은 KORA Pro에서 쓸 수 있어요
+새 기능은 한국길찾기 Pro에서 쓸 수 있어요
 이미 쓰던 분은 모든 기능을 그대로 써요
 ```
 
@@ -1322,7 +1322,7 @@ Phát hiện và sửa lỗi nhanh hơn
 See what's near each station exit
 Last train times with a reminder
 Find the car closest to the elevator
-New features come with KORA Pro
+New features come with 한국길찾기 Pro
 Existing users keep every feature
 ```
 
@@ -1332,7 +1332,7 @@ Existing users keep every feature
 出口ごとの周辺スポットを確認できます
 終電時刻と事前の通知に対応しました
 エレベーターに近い車両がわかります
-新機能はKORA Proで使えます
+新機能は한국길찾기 Proで使えます
 これまでの利用者は全機能をそのまま使えます
 ```
 
@@ -1342,7 +1342,7 @@ Existing users keep every feature
 可以查看每个出口附近的地点
 显示末班车时间并提前提醒
 告诉你离电梯最近的车厢
-新功能包含在 KORA Pro 中
+新功能包含在 한국길찾기 Pro 中
 老用户可继续使用全部功能
 ```
 
@@ -1352,7 +1352,7 @@ Existing users keep every feature
 可以查看每個出口附近的地點
 顯示末班車時間並提前提醒
 告訴你離電梯最近的車廂
-新功能包含在 KORA Pro 中
+新功能包含在 한국길찾기 Pro 中
 既有使用者可繼續使用所有功能
 ```
 
@@ -1362,7 +1362,7 @@ Existing users keep every feature
 Sieh, was an jedem Ausgang liegt
 Letzter Zug mit Erinnerung
 Der Wagen nah am Aufzug für Gepäck
-Neue Funktionen gibt es mit KORA Pro
+Neue Funktionen gibt es mit 한국길찾기 Pro
 Bisherige Nutzer behalten alles
 ```
 
@@ -1372,8 +1372,8 @@ Bisherige Nutzer behalten alles
 Mira qué hay cerca de cada salida
 Hora del último tren con aviso
 El vagón más cerca del ascensor
-Las novedades llegan con KORA Pro
-Si ya usabas KORA, lo conservas todo
+Las novedades llegan con 한국길찾기 Pro
+Si ya usabas 한국길찾기, lo conservas todo
 ```
 
 ### 앱스토어 (프랑스어 fr)
@@ -1382,7 +1382,7 @@ Si ya usabas KORA, lo conservas todo
 Voyez ce qui entoure chaque sortie
 Heure du dernier train avec rappel
 La voiture la plus proche de l'ascenseur
-Les nouveautés arrivent avec KORA Pro
+Les nouveautés arrivent avec 한국길찾기 Pro
 Les anciens utilisateurs gardent tout
 ```
 
@@ -1392,8 +1392,8 @@ Les anciens utilisateurs gardent tout
 Scopri cosa c'è vicino a ogni uscita
 Orario dell'ultimo treno con avviso
 La carrozza più vicina all'ascensore
-Le novità arrivano con KORA Pro
-Chi usava già KORA mantiene tutto
+Le novità arrivano con 한국길찾기 Pro
+Chi usava già 한국길찾기 mantiene tutto
 ```
 
 ### 앱스토어 (포르투갈어 브라질 pt-BR)
@@ -1402,7 +1402,7 @@ Chi usava già KORA mantiene tutto
 Veja o que fica perto de cada saída
 Horário do último trem com aviso
 O vagão mais perto do elevador
-As novidades vêm com o KORA Pro
+As novidades vêm com o 한국길찾기 Pro
 Quem já usava mantém tudo
 ```
 
@@ -1412,7 +1412,7 @@ Quem já usava mantém tudo
 Что рядом с каждым выходом
 Время последнего поезда с напоминанием
 Вагон ближе всего к лифту
-Новые функции входят в KORA Pro
+Новые функции входят в 한국길찾기 Pro
 Прежние пользователи сохраняют всё
 ```
 
@@ -1422,7 +1422,7 @@ Quem já usava mantém tudo
 Co je poblíž každého východu
 Poslední vlak s připomenutím
 Vůz nejblíž k výtahu pro zavazadla
-Novinky jsou součástí KORA Pro
+Novinky jsou součástí 한국길찾기 Pro
 Stávající uživatelé si vše ponechají
 ```
 
@@ -1432,7 +1432,7 @@ Stávající uživatelé si vše ponechají
 Se, hvad der ligger ved hver udgang
 Sidste tog med påmindelse
 Vognen tættest på elevatoren
-Nye funktioner følger med KORA Pro
+Nye funktioner følger med 한국길찾기 Pro
 Eksisterende brugere beholder alt
 ```
 
@@ -1442,7 +1442,7 @@ Eksisterende brugere beholder alt
 Δείτε τι υπάρχει σε κάθε έξοδο
 Τελευταίο τρένο με υπενθύμιση
 Το βαγόνι πιο κοντά στον ανελκυστήρα
-Οι νέες λειτουργίες με το KORA Pro
+Οι νέες λειτουργίες με το 한국길찾기 Pro
 Οι παλιοί χρήστες κρατούν τα πάντα
 ```
 
@@ -1452,7 +1452,7 @@ Eksisterende brugere beholder alt
 Katso, mitä uloskäyntien lähellä on
 Viimeinen juna ja muistutus
 Hissiä lähin vaunu matkatavaroille
-Uudet ominaisuudet KORA Prossa
+Uudet ominaisuudet 한국길찾기 Prossa
 Nykyiset käyttäjät pitävät kaiken
 ```
 
@@ -1462,7 +1462,7 @@ Nykyiset käyttäjät pitävät kaiken
 Lihat tempat di dekat tiap pintu keluar
 Jam kereta terakhir dengan pengingat
 Gerbong terdekat ke lift
-Fitur baru hadir di KORA Pro
+Fitur baru hadir di 한국길찾기 Pro
 Pengguna lama tetap dapat semua fitur
 ```
 
@@ -1472,7 +1472,7 @@ Pengguna lama tetap dapat semua fitur
 Se hva som ligger ved hver utgang
 Siste tog med påminnelse
 Vognen nærmest heisen
-Nye funksjoner følger med KORA Pro
+Nye funksjoner følger med 한국길찾기 Pro
 Eksisterende brukere beholder alt
 ```
 
@@ -1482,7 +1482,7 @@ Eksisterende brukere beholder alt
 Zie wat er bij elke uitgang ligt
 Laatste trein met herinnering
 De wagon het dichtst bij de lift
-Nieuwe functies zitten in KORA Pro
+Nieuwe functies zitten in 한국길찾기 Pro
 Bestaande gebruikers houden alles
 ```
 
@@ -1492,7 +1492,7 @@ Bestaande gebruikers houden alles
 Zobacz, co jest przy każdym wyjściu
 Ostatni pociąg z przypomnieniem
 Wagon najbliżej windy
-Nowości są w KORA Pro
+Nowości są w 한국길찾기 Pro
 Dotychczasowi użytkownicy mają wszystko
 ```
 
@@ -1502,7 +1502,7 @@ Dotychczasowi użytkownicy mają wszystko
 Se vad som finns vid varje utgång
 Sista tåget med påminnelse
 Vagnen närmast hissen
-Nya funktioner ingår i KORA Pro
+Nya funktioner ingår i 한국길찾기 Pro
 Befintliga användare behåller allt
 ```
 
@@ -1512,7 +1512,7 @@ Befintliga användare behåller allt
 ดูสถานที่ใกล้แต่ละทางออกได้
 บอกเวลารถเที่ยวสุดท้ายและเตือนล่วงหน้า
 บอกตู้ที่ใกล้ลิฟต์ที่สุด
-ฟีเจอร์ใหม่มีใน KORA Pro
+ฟีเจอร์ใหม่มีใน 한국길찾기 Pro
 ผู้ใช้เดิมใช้ได้ทุกฟีเจอร์เหมือนเดิม
 ```
 
@@ -1522,7 +1522,7 @@ Befintliga användare behåller allt
 Her çıkışın yakınında ne var görün
 Son tren saati ve hatırlatma
 Asansöre en yakın vagon
-Yenilikler KORA Pro ile geliyor
+Yenilikler 한국길찾기 Pro ile geliyor
 Mevcut kullanıcılar her şeyi korur
 ```
 
@@ -1532,7 +1532,7 @@ Mevcut kullanıcılar her şeyi korur
 Xem địa điểm gần mỗi lối ra
 Giờ tàu cuối kèm lời nhắc
 Toa gần thang máy nhất
-Tính năng mới có trong KORA Pro
+Tính năng mới có trong 한국길찾기 Pro
 Người dùng cũ vẫn dùng mọi tính năng
 ```
 
@@ -1551,7 +1551,7 @@ Người dùng cũ vẫn dùng mọi tính năng
 ### 앱스토어 (English en-US)
 
 ```
-KORA now speaks 23 languages
+한국길찾기 now speaks 23 languages
 Added German, French, Thai and more
 Station names match the romanized signs
 Widgets and prompts follow your language
@@ -1591,7 +1591,7 @@ Next stop shows a name you can read too
 ### 앱스토어 (독일어 de)
 
 ```
-KORA gibt es jetzt in 23 Sprachen
+한국길찾기 gibt es jetzt in 23 Sprachen
 Auch auf Deutsch, Französisch und Thai
 Stationsnamen wie auf den Schildern
 Widgets und Hinweise in deiner Sprache
@@ -1601,7 +1601,7 @@ Nächste Station auch in Lateinschrift
 ### 앱스토어 (스페인어 es)
 
 ```
-KORA ya está disponible en 23 idiomas
+한국길찾기 ya está disponible en 23 idiomas
 Ahora en español, francés, alemán y más
 Estaciones escritas como en los letreros
 Widgets y avisos en el idioma del iPhone
@@ -1611,7 +1611,7 @@ Próxima estación también en letra latina
 ### 앱스토어 (프랑스어 fr)
 
 ```
-KORA est disponible en 23 langues
+한국길찾기 est disponible en 23 langues
 Nouveau en français, allemand et thaï
 Noms de stations comme sur les panneaux
 Widgets et alertes dans votre langue
@@ -1621,7 +1621,7 @@ Prochain arrêt aussi en lettres latines
 ### 앱스토어 (이탈리아어 it)
 
 ```
-KORA ora è disponibile in 23 lingue
+한국길찾기 ora è disponibile in 23 lingue
 Anche in italiano, francese e tedesco
 Nomi delle stazioni come sui cartelli
 Widget e avvisi nella lingua dell'iPhone
@@ -1631,7 +1631,7 @@ Prossima fermata anche in lettere latine
 ### 앱스토어 (포르투갈어 브라질 pt-BR)
 
 ```
-O KORA agora está em 23 idiomas
+O 한국길찾기 agora está em 23 idiomas
 Chegaram português, francês, tailandês
 Estações escritas como nas placas
 Widgets e avisos no idioma do iPhone
@@ -1641,7 +1641,7 @@ Próxima estação também em letra latina
 ### 앱스토어 (러시아어 ru)
 
 ```
-KORA теперь на 23 языках
+한국길찾기 теперь на 23 языках
 Добавлены русский, немецкий и тайский
 Станции подписаны как на указателях
 Виджеты и запросы на языке iPhone
@@ -1651,7 +1651,7 @@ KORA теперь на 23 языках
 ### 앱스토어 (체코어 cs)
 
 ```
-KORA je teď ve 23 jazycích
+한국길찾기 je teď ve 23 jazycích
 Nově i česky, německy nebo thajsky
 Názvy stanic jako na cedulích
 Widgety a dotazy v jazyce iPhonu
@@ -1661,7 +1661,7 @@ Další stanice nově i latinkou
 ### 앱스토어 (덴마크어 da)
 
 ```
-KORA findes nu på 23 sprog
+한국길찾기 findes nu på 23 sprog
 Nyt med dansk, tysk, fransk og thai
 Stationsnavne som på skiltene
 Widgets og beskeder på iPhones sprog
@@ -1671,7 +1671,7 @@ Næste station også med latinsk skrift
 ### 앱스토어 (그리스어 el)
 
 ```
-Το KORA μιλά πλέον 23 γλώσσες
+Το 한국길찾기 μιλά πλέον 23 γλώσσες
 Νέα ελληνικά, γερμανικά και ταϊλανδικά
 Σταθμοί γραμμένοι όπως στις πινακίδες
 Widget και μηνύματα στη γλώσσα σας
@@ -1681,7 +1681,7 @@ Widget και μηνύματα στη γλώσσα σας
 ### 앱스토어 (핀란드어 fi)
 
 ```
-KORA puhuu nyt 23 kieltä
+한국길찾기 puhuu nyt 23 kieltä
 Uutena suomi, saksa, ranska ja thai
 Asemien nimet kuten kylteissä
 Widgetit ja kehotteet iPhonen kielellä
@@ -1691,7 +1691,7 @@ Seuraava asema myös tutuin kirjaimin
 ### 앱스토어 (인도네시아어 id)
 
 ```
-KORA kini hadir dalam 23 bahasa
+한국길찾기 kini hadir dalam 23 bahasa
 Termasuk Indonesia, Thailand, Vietnam
 Nama stasiun sesuai papan di stasiun
 Widget dan izin ikut bahasa iPhone
@@ -1701,7 +1701,7 @@ Stasiun berikut juga dalam huruf Latin
 ### 앱스토어 (노르웨이어 보크말 nb)
 
 ```
-KORA finnes nå på 23 språk
+한국길찾기 finnes nå på 23 språk
 Nytt med norsk, tysk, fransk og thai
 Stasjonsnavn som på skiltene
 Widgeter og varsler på iPhone-språket
@@ -1711,7 +1711,7 @@ Neste stasjon også i latinske bokstaver
 ### 앱스토어 (네덜란드어 nl)
 
 ```
-KORA is nu in 23 talen beschikbaar
+한국길찾기 is nu in 23 talen beschikbaar
 Nieuw in het Nederlands, Duits en Thai
 Stationsnamen zoals op de borden
 Widgets en meldingen in je eigen taal
@@ -1721,7 +1721,7 @@ Volgend station ook in Latijnse letters
 ### 앱스토어 (폴란드어 pl)
 
 ```
-KORA działa teraz w 23 językach
+한국길찾기 działa teraz w 23 językach
 Doszły m.in. polski, niemiecki, tajski
 Nazwy stacji jak na tablicach
 Widżety i prośby w języku iPhone’a
@@ -1731,7 +1731,7 @@ Następna stacja też łacińskimi literami
 ### 앱스토어 (스웨덴어 sv)
 
 ```
-KORA finns nu på 23 språk
+한국길찾기 finns nu på 23 språk
 Nytt med svenska, tyska, franska, thai
 Stationsnamn som på skyltarna
 Widgetar och frågor på iPhones språk
@@ -1741,7 +1741,7 @@ Nästa station också i latinsk skrift
 ### 앱스토어 (태국어 th)
 
 ```
-ตอนนี้ KORA ใช้ได้ 23 ภาษา
+ตอนนี้ 한국길찾기 ใช้ได้ 23 ภาษา
 เพิ่มภาษาไทย เยอรมัน ฝรั่งเศส และอื่นๆ
 ชื่อสถานีสะกดตรงกับป้ายสถานี
 วิดเจ็ตและคำขอสิทธิ์ตามภาษาเครื่อง
@@ -1751,7 +1751,7 @@ Nästa station också i latinsk skrift
 ### 앱스토어 (튀르키예어 tr)
 
 ```
-KORA artık 23 dilde
+한국길찾기 artık 23 dilde
 Türkçe, Almanca ve Tayca da eklendi
 İstasyon adları tabelalardaki gibi
 Widget ve izin metinleri iPhone dilinde
@@ -1761,7 +1761,7 @@ Sonraki istasyon Latin harfleriyle de
 ### 앱스토어 (베트남어 vi)
 
 ```
-KORA nay có 23 ngôn ngữ
+한국길찾기 nay có 23 ngôn ngữ
 Thêm tiếng Việt, tiếng Thái, tiếng Đức
 Tên ga ghi giống biển trong ga
 Tiện ích và lời xin quyền theo máy
@@ -1783,7 +1783,7 @@ Ga tiếp theo hiện cả tên chữ Latinh
 ### App Store (English)
 
 ```
-KORA is now a single screen focused on subway guidance, without tabs or the map
+한국길찾기 is now a single screen focused on subway guidance, without tabs or the map
 While riding, the station you get off at now shows a pin so your destination is easy to spot
 Closing the app now also ends the Live Activity on the Lock Screen
 Added Traditional Chinese, and the whole app is now available in English, Japanese and Simplified Chinese

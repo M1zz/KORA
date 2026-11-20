@@ -31,16 +31,16 @@ DeployBar 는 이 칸을 올리지 못하므로 사람이 웹에서 넣는다.
 
 | # | 유형 | 이름 | 게시 예정 | 지금 낼 수 있나 |
 |---|---|---|---|---|
-| N1 | App Enhancements | KORA 1.0.9: Ride with VoiceOver | 2026-11-19 ~ 2026-12-17 | 예. 1.0.9 를 **11월 5일까지** 배포해야 한다 |
-| N2 | App Enhancements | KORA: Line 9 Express Check for Winter Travel | 2026-12-18 ~ 2027-01-16 | 예. 단 급행 구별을 **12월 10일까지** 내보낼 수 있을 때만 |
-| N3 | App Enhancements | KORA for Global Accessibility Awareness Day 2027 | 2027-05-20 (GAAD) | **다음 기회.** 3개월 밖이라 2027-02-20 ~ 04-29 사이에 낸다 |
+| N1 | App Enhancements | 한국길찾기 1.0.9: Ride with VoiceOver | 2026-11-19 ~ 2026-12-17 | 예. 1.0.9 를 **11월 5일까지** 배포해야 한다 |
+| N2 | App Enhancements | 한국길찾기: Line 9 Express Check for Winter Travel | 2026-12-18 ~ 2027-01-16 | 예. 단 급행 구별을 **12월 10일까지** 내보낼 수 있을 때만 |
+| N3 | App Enhancements | 한국길찾기 for Global Accessibility Awareness Day 2027 | 2027-05-20 (GAAD) | **다음 기회.** 3개월 밖이라 2027-02-20 ~ 04-29 사이에 낸다 |
 
 ---
 
 ## N1. 1.0.9 접근성 업데이트
 
 - **Type**: App Enhancements
-- **Name**: `KORA 1.0.9: Ride with VoiceOver`
+- **Name**: `KoreaNavi 1.0.9: Ride with VoiceOver`
 - **Publish Date**: Range `2026-11-19` ~ `2026-12-17` (인앱 이벤트 E1 과 같은 기간)
 - **선행 조건**: 1.0.9 가 2026-11-05 까지 스토어에 나가 있어야 한다 (`DeployBar --deploy 한국길찾기`).
 - **Platforms**: iPhone
@@ -55,17 +55,17 @@ DeployBar 는 이 칸을 올리지 못하므로 사람이 웹에서 넣는다.
 **Description** (붙여 넣기)
 
 ```
-KORA is a subway guide built for people visiting Korea, and version 1.0.9 makes the whole ride work without looking at the screen.
+한국길찾기 is a subway guide built for people visiting Korea, and version 1.0.9 makes the whole ride work without looking at the screen.
 
-The core of KORA is three slide gestures: slide to board, slide to transfer and slide to get off. In 1.0.9 each of them is also an accessibility action, so VoiceOver users can board, transfer and get off with a single action, and Voice Control users can say the same command by name. When a stop approaches, KORA shows "Prepare to get off" and then "Get off now" with haptics, so the cue is felt as well as seen (vibration alerts are free for the first three journeys, then part of a one-time KORA Pro purchase; route guidance itself is always free).
+The core of 한국길찾기 is three slide gestures: slide to board, slide to transfer and slide to get off. In 1.0.9 each of them is also an accessibility action, so VoiceOver users can board, transfer and get off with a single action, and Voice Control users can say the same command by name. When a stop approaches, 한국길찾기 shows "Prepare to get off" and then "Get off now" with haptics, so the cue is felt as well as seen (vibration alerts are free for the first three journeys, then part of a one-time 한국길찾기 Pro purchase; route guidance itself is always free).
 
 The update also respects system display settings across the app: Increase Contrast switches to a high-contrast accent palette with stronger borders and secondary text, small accent text keeps at least 4.5:1 contrast, Reduce Motion replaces sliding pages and flowing arrows with calm cross-fades, Reduce Transparency makes bars opaque, and Differentiate Without Color marks unvisited stations with an outline instead of colour alone. Large text no longer truncates the first screen.
 
 For first-time riders there is a short three-page guide, shown before any permission request, and a What's New page after updates. Feedback and replies now live inside the app.
 
-KORA covers about 930 stations in the Seoul area, Busan, Daegu, Gwangju and Daejeon, works offline for route search, and is fully localized in 23 languages, with station names shown in Korean next to katakana, Chinese characters or the romanized spelling on Korean station signs. Location, camera and announcement recognition stay on the device. No account, no ads.
+한국길찾기 covers about 930 stations in the Seoul area, Busan, Daegu, Gwangju and Daejeon, works offline for route search, and is fully localized in 23 languages, with station names shown in Korean next to katakana, Chinese characters or the romanized spelling on Korean station signs. Location, camera and announcement recognition stay on the device. No account, no ads.
 
-KORA is made by one independent developer in Korea. The UI test suite runs Xcode's accessibility audit on the main screen and the onboarding on every change.
+한국길찾기 is made by one independent developer in Korea. The UI test suite runs Xcode's accessibility audit on the main screen and the onboarding on every change.
 ```
 
 **Helpful Details** (붙여 넣기)
@@ -78,9 +78,9 @@ Honest scope: boarding, transferring and getting off are fully operable with Voi
 
 - `6cc2d08` feat: 사용법 안내·새로 생긴 것·앱 안 의견·접근성·운영 장치 (1.0.9)
 - `SubwayNavigatorView.swift` 의 `.accessibilityAction` — 밀어서 타기(540행)·갈아타기(602행)·내리기(664행)
-- `accessibilityReduceMotion`, `accessibilityDifferentiateWithoutColor`, `colorSchemeContrast` 대응, `KORAAccentText` 색 에셋
-- `KORAUITests.swift` 의 `performAccessibilityAudit` 두 건 (첫 화면 · 사용법)
-- `KORARoadmap.swift`: `a11y.contrast`, `a11y.motion` 이 1.0.9 로 내보냄, `a11y.voiceover`(전 화면 VoiceOver)는 아직 계획 — 그래서 위 Helpful Details 에 정직하게 적었다.
+- `accessibilityReduceMotion`, `accessibilityDifferentiateWithoutColor`, `colorSchemeContrast` 대응, `KoreaNaviAccentText` 색 에셋
+- `KoreaNaviUITests.swift` 의 `performAccessibilityAudit` 두 건 (첫 화면 · 사용법)
+- `KoreaNaviRoadmap.swift`: `a11y.contrast`, `a11y.motion` 이 1.0.9 로 내보냄, `a11y.voiceover`(전 화면 VoiceOver)는 아직 계획 — 그래서 위 Helpful Details 에 정직하게 적었다.
 - `RELEASE_NOTES.md` 1.0.9: "VoiceOver로도 타고 내릴 수 있어요"
 
 **한국어 요약**: 1.0.9 에서 밀어서 타기·갈아타기·내리기가 VoiceOver·음성 제어 동작이 되고, 대비 증가·동작 줄이기·투명도 줄이기·색 없이 구별에 맞춰 화면이 바뀐다. 첫 사용 안내·앱 안 의견도 들어갔다. 모든 화면의 VoiceOver 정리는 아직 로드맵이라는 점은 숨기지 않았다.
@@ -90,7 +90,7 @@ Honest scope: boarding, transferring and getting off are fully operable with Voi
 ## N2. 9호선 급행 구별 (겨울 여행 시즌)
 
 - **Type**: App Enhancements
-- **Name**: `KORA: Line 9 Express Check for Winter Travel`
+- **Name**: `KoreaNavi: Line 9 Express Check for Winter Travel`
 - **Publish Date**: Range `2026-12-18` ~ `2027-01-16` (인앱 이벤트 E2 와 같은 기간)
 - **선행 조건**: 급행 구별(로드맵 `express`, 지금 `.building`)이 들어간 다음 버전(1.0.10 예상)이 **2026-12-10 까지** 배포돼야 한다. 못 맞추면 이 추천은 내지 않거나 날짜를 미룬다 (Draft 상태면 날짜를 고칠 수 있다).
 - **Relevant Countries or Regions** (근거: 한국관광공사 2025년 국적별 입국 — 1~5월 누계 중국 205만·일본 133만·대만 70만·미국 56만, 11월 한 달 중국 37.8만·일본 36.3만·대만 15.8만·미국 13.3만·필리핀 6만):
@@ -108,11 +108,11 @@ Seoul Subway Line 9 runs express and local trains on the same tracks. Express tr
 
 Line 9 is also the line many visitors meet first: it starts at Gimpo International Airport, where flights from Tokyo Haneda, Osaka Kansai and Taipei Songshan land, and runs through Yeouido, the Express Bus Terminal and Gangnam to Olympic Park.
 
-KORA's camera direction check already tells riders, on the platform, whether the train in front of them goes the right way. This update teaches it to read the top line of the Line 9 platform board, the next train, and to recognise express trains. If the next express will not stop at the rider's destination, KORA says so in their language and suggests taking the local train instead. Text recognition runs entirely on the device, and the camera check is free for everyone.
+한국길찾기's camera direction check already tells riders, on the platform, whether the train in front of them goes the right way. This update teaches it to read the top line of the Line 9 platform board, the next train, and to recognise express trains. If the next express will not stop at the rider's destination, 한국길찾기 says so in their language and suggests taking the local train instead. Text recognition runs entirely on the device, and the camera check is free for everyone.
 
 We are timing this for the winter travel season, from the year-end holidays in Japan, Taiwan and the US through mid-January, when first-time riders arrive at Gimpo with luggage and little Korean.
 
-KORA covers about 930 stations across Seoul, Busan, Daegu, Gwangju and Daejeon in 23 languages, finds routes offline, follows the ride on the Lock Screen and alerts riders before their stop. Made by one independent developer in Korea.
+한국길찾기 covers about 930 stations across Seoul, Busan, Daegu, Gwangju and Daejeon in 23 languages, finds routes offline, follows the ride on the Lock Screen and alerts riders before their stop. Made by one independent developer in Korea.
 ```
 
 **Helpful Details** (붙여 넣기)
@@ -138,14 +138,14 @@ Scope: express detection starts with Line 9 only, which is the only Seoul line w
 - **GAAD 2027**: 5월 셋째 목요일 = **2027-05-20 (목)**
 - **오늘(2026-10-21) 기준 3개월 밖**이므로 지금 내지 않는다. 제출 창: **2027-02-20 ~ 2027-04-29** (3개월 전 ~ 3주 전).
 - **Type**: App Enhancements (그때 내보낼 접근성 개선이 있어야 한다. 로드맵의 `a11y.voiceover` 전 화면 VoiceOver, `a11y.largetext` 큰 글씨 배치가 그 후보다. 둘 다 아직 `.planned`.)
-- **Name**: `KORA for Global Accessibility Awareness Day 2027`
+- **Name**: `KoreaNavi for Global Accessibility Awareness Day 2027`
 - **Publish Date**: Range `2027-05-13` ~ `2027-05-27`
 - **할 일**: 2월까지 `a11y.voiceover` 를 만들기 시작하고, 실제 시각장애 사용자(AppleVis 포럼 등)의 확인을 받은 뒤 그 이야기를 Description 에 넣는다.
 
 **Description 초안** (그때 사실에 맞게 고친다)
 
 ```
-For Global Accessibility Awareness Day, KORA brings full VoiceOver support to every screen of its Korea subway guide. [Describe exactly what shipped: reading order, labels, announcements, larger text layouts.] Riders who are blind or have low vision can now plan a route, board, transfer and get off in any of Korea's five metro cities without sighted help. [Add a quote or feedback from a VoiceOver user, with permission.]
+For Global Accessibility Awareness Day, 한국길찾기 brings full VoiceOver support to every screen of its Korea subway guide. [Describe exactly what shipped: reading order, labels, announcements, larger text layouts.] Riders who are blind or have low vision can now plan a route, board, transfer and get off in any of Korea's five metro cities without sighted help. [Add a quote or feedback from a VoiceOver user, with permission.]
 ```
 
 **한국어 요약**: GAAD 는 2027년 5월 20일이고 지금은 너무 이르다. 2월 20일 이후, 전 화면 VoiceOver 같은 실제 개선이 준비되면 그 내용으로 낸다.

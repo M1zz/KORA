@@ -1,4 +1,4 @@
-// KORA 웹 체험: 공항철도에서 홍대입구 출발, 내릴 역을 고르면 타는 방향과 하차 알림을 앱과 같은 규칙으로 보여 준다.
+// KoreaNavi 웹 체험: 공항철도에서 홍대입구 출발, 내릴 역을 고르면 타는 방향과 하차 알림을 앱과 같은 규칙으로 보여 준다.
 // 역 순서는 SubwayLineData.line10, 역 이름 표기는 SubwayStationLocale · SubwayStationChinese(Traditional)Names,
 // 알림 단계는 AlightWarningLevel.from(stopsRemaining:) 과 같다: 0 지금 내리세요 · 1 다음 정거장 · 2~3 준비 · 그 밖 내릴 역.
 (() => {

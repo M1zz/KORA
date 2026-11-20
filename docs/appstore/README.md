@@ -1,4 +1,4 @@
-# App Store Connect 공통 입력값 (KORA 1.0.5)
+# App Store Connect 공통 입력값 (한국길찾기 1.0.5)
 
 언어별 이름, 부제, 설명, 키워드, 새로운 기능은 같은 폴더의 언어별 파일에 있다.
 
@@ -18,7 +18,7 @@
 |---|---|
 | 기본 카테고리 | 내비게이션 (Navigation) |
 | 보조 카테고리 | 여행 (Travel) |
-| 가격 | 무료 + 비소모성 인앱 결제 `com.kora.leeo.pro` (KORA Pro 평생 이용권, 처음 3번의 여정은 무료) |
+| 가격 | 무료 + 비소모성 인앱 결제 `com.kora.leeo.pro` (한국길찾기 Pro 평생 이용권, 처음 3번의 여정은 무료) |
 | 저작권 | `2026 Leeo` |
 | 번들 ID | `com.kora.leeo` |
 | 기본 언어 | 한국어 권장 (기존 설정 유지) |
@@ -78,9 +78,9 @@ Apple 기준에서 “수집”은 데이터가 기기 밖으로 나가 개발�
 
 **코드 쪽 정리 (1.0.5에서 반영함)**
 
-- `KORA/PrivacyInfo.xcprivacy`: 예전의 정확한 위치(앱 기능) 선언을 빼고 위 표와 같은 세 항목(Device ID, Product Interaction, Coarse Location, 분석 목적, 연결 안 함, 추적 안 함)으로 바꿨다. Firebase SDK도 자체 매니페스트를 포함한다.
+- `KoreaNavi/PrivacyInfo.xcprivacy`: 예전의 정확한 위치(앱 기능) 선언을 빼고 위 표와 같은 세 항목(Device ID, Product Interaction, Coarse Location, 분석 목적, 연결 안 함, 추적 안 함)으로 바꿨다. Firebase SDK도 자체 매니페스트를 포함한다.
 - 사진 보관함 권한 문구(`NSPhotoLibraryUsageDescription`)와 카카오·네이버 키를 `Info.plist`에서 뺐다.
-- 공유 익스텐션(KORAShare)과 저장 장소 위젯을 빌드에서 뺐다.
+- 공유 익스텐션(KoreaNaviShare)과 저장 장소 위젯을 빌드에서 뺐다.
 
 ## 4. 수출 규정 준수 (Export Compliance)
 
@@ -104,7 +104,7 @@ Apple 기준에서 “수집”은 데이터가 기기 밖으로 나가 개발�
 **심사 메모 (영어, 그대로 붙여 넣기)**
 
 ```
-KORA is a single-screen subway guide for travelers in Korea. No account or login is required, and there are no ads. KORA Pro (non-consumable, com.kora.leeo.pro) unlocks Lock Screen tracking, announcement recognition, get-off vibration alerts the exit guide (places near each exit, Lines 1 to 8), last train alerts (Lines 1 to 9, local notifications the user turns on) and luggage mode (car closest to the elevator, Lines 1 to 8), all from Seoul open data; the first three journeys include them for free. To reach the purchase screen without riding, open the language sheet (long-press the station name) and tap "Get KORA Pro". Restore Purchase is on the same screen.
+한국길찾기 is a single-screen subway guide for travelers in Korea. No account or login is required, and there are no ads. 한국길찾기 Pro (non-consumable, com.kora.leeo.pro) unlocks Lock Screen tracking, announcement recognition, get-off vibration alerts the exit guide (places near each exit, Lines 1 to 8), last train alerts (Lines 1 to 9, local notifications the user turns on) and luggage mode (car closest to the elevator, Lines 1 to 8), all from Seoul open data; the first three journeys include them for free. To reach the purchase screen without riding, open the language sheet (long-press the station name) and tap "Get 한국길찾기 Pro". Restore Purchase is on the same screen.
 
 How to test route guidance:
 1. Tap the current-station card at the top and choose a station, for example Seoul Station. If you allow location while outside Korea, the nearest station will be far away, so please pick stations manually.

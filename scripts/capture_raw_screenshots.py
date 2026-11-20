@@ -3,7 +3,7 @@
 
   python3 scripts/capture_raw_screenshots.py <UDID> [로케일 ...]     (없으면 23개 전부)
 
-- 앱은 Debug 빌드로 미리 설치해 둔다(-KORAShotScene 은 Debug 에서만 듣는다).
+- 앱은 Debug 빌드로 미리 설치해 둔다(-KoreaNaviShotScene 은 Debug 에서만 듣는다).
 - 위치 권한은 미리 허용해 둔다(`xcrun simctl privacy <UDID> grant location com.kora.leeo`).
   스크린샷 모드는 출발역을 고정하므로 위치 팝업이 뜨지 않는다.
 - 상태 막대는 `xcrun simctl status_bar <UDID> override --time 9:41 ...` 로 고정해 둔다.
@@ -61,7 +61,7 @@ def shoot(udid, loc, scene):
         try:
             ensure_booted(udid)
             subprocess.run(["xcrun", "simctl", "launch", "--terminate-running-process", udid, BUNDLE,
-                            "-KORAShotScene", scene, "-kora.display_language", app_lang,
+                            "-KoreaNaviShotScene", scene, "-kora.display_language", app_lang,
                             "-AppleLanguages", f"({apple_lang})", "-AppleLocale", apple_locale],
                            check=True, capture_output=True, timeout=240)
             time.sleep(7 + min(attempt, 4) * 2)

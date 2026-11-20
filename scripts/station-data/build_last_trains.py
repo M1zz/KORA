@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""막차 데이터 생성기 (KORA Pro 막차 알림).
+"""막차 데이터 생성기 (KoreaNavi Pro 막차 알림).
 
 원본: 서울 열린데이터광장
   SearchSTNBySubwayLineInfo       역 코드 목록 (노선별)
   SearchLastTrainTimeByIDService  역·요일·방향별 마지막 열차들 (늦은 시각부터)
-키:   KORA/Config/Secrets.xcconfig 의 SEOUL_DATA_KEY (또는 같은 이름의 환경 변수).
+키:   KoreaNavi/Config/Secrets.xcconfig 의 SEOUL_DATA_KEY (또는 같은 이름의 환경 변수).
       키는 이 스크립트만 쓴다. 앱에는 결과 JSON 만 들어간다.
-출력: KORA/last_trains.json
+출력: KoreaNavi/last_trains.json
       { "앱역이름|노선번호": { "평일/토/휴일 태그": { "방향 태그": [[행선지, 출발분], …] } } }
       출발분은 자정 기준 분이고 자정 넘김은 24시 이후로 센다 (00:46 → 1486).
       행선지마다 그 행선지로 가는 마지막 열차 하나만 남긴다.
@@ -18,8 +18,8 @@
 import concurrent.futures as cf, json, os, pathlib, re, sys, time, urllib.parse, urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-OUT = ROOT / "KORA/last_trains.json"
-CACHE = pathlib.Path(os.environ.get("KORA_LASTTRAIN_CACHE", "/tmp/kora-lasttrain-cache"))
+OUT = ROOT / "KoreaNavi/last_trains.json"
+CACHE = pathlib.Path(os.environ.get("KoreaNavi_LASTTRAIN_CACHE", "/tmp/kora-lasttrain-cache"))
 
 # API 노선 이름 → 앱 노선 번호 (SubwayLineData*.swift 의 number)
 LINES = {
@@ -43,9 +43,9 @@ INOUT_TAGS = ("1", "2")       # 상행·내선, 하행·외선
 def api_key():
     if os.environ.get("SEOUL_DATA_KEY"):
         return os.environ["SEOUL_DATA_KEY"].strip()
-    m = re.search(r"^SEOUL_DATA_KEY\s*=\s*(\S+)", (ROOT / "KORA/Config/Secrets.xcconfig").read_text(), re.M)
+    m = re.search(r"^SEOUL_DATA_KEY\s*=\s*(\S+)", (ROOT / "KoreaNavi/Config/Secrets.xcconfig").read_text(), re.M)
     if not m:
-        sys.exit("SEOUL_DATA_KEY 가 없다: KORA/Config/Secrets.xcconfig 에 넣을 것")
+        sys.exit("SEOUL_DATA_KEY 가 없다: KoreaNavi/Config/Secrets.xcconfig 에 넣을 것")
     return m.group(1)
 
 
@@ -62,7 +62,7 @@ def get(key, path):
 
 def app_station_names():
     names = set()
-    for f in (ROOT / "KORA/Sources/Features/Subway").glob("SubwayLineData*.swift"):
+    for f in (ROOT / "KoreaNavi/Sources/Features/Subway").glob("SubwayLineData*.swift"):
         names |= set(re.findall(r'"([가-힣][가-힣0-9()·]*)"', f.read_text()))
     return names
 

@@ -1,9 +1,9 @@
 {
-  "title": "KORA: metro w Korei dla podróżnych",
-  "description": "Wybierz start i cel: KORA pokaże przesiadki i dokładny napis na pociągu, do którego trzeba wsiąść, a w trakcie jazdy powie, kiedy wysiąść.",
+  "title": "KoreaNavi: metro w Korei dla podróżnych",
+  "description": "Wybierz start i cel: KoreaNavi pokaże przesiadki i dokładny napis na pociągu, do którego trzeba wsiąść, a w trakcie jazdy powie, kiedy wysiąść.",
   "hero": {
     "headline": "Właściwy peron.\nWłaściwa stacja.",
-    "lead": "Wybierz stację początkową i docelową, a KORA powie Ci, do którego pociągu wsiąść, dokładnie tak, jak napisano na tablicy na peronie. W czasie jazdy śledzi stacje i daje znać, kiedy wysiąść.",
+    "lead": "Wybierz stację początkową i docelową, a KoreaNavi powie Ci, do którego pociągu wsiąść, dokładnie tak, jak napisano na tablicy na peronie. W czasie jazdy śledzi stacje i daje znać, kiedy wysiąść.",
     "cta": "Pobierz za darmo",
     "note": "Wyszukiwanie trasy, kierunek pociągu i przyjazdy na żywo są za darmo."
   },
@@ -33,17 +33,17 @@
   },
   "problem": {
     "title": "Stałeś kiedyś na peronie, nie wiedząc, do którego pociągu wsiąść?",
-    "text": "Aplikacje z mapami podają linię, a na peronie wiszą tylko tablice z nazwami stacji, których nigdy nie słyszałeś. Wsiądziesz w złą stronę i wracasz kilka stacji. Przegapisz komunikat i przejeżdżasz swoją. KORA nazywa Twój pociąg tak samo jak tablica i ostrzega przed Twoją stacją."
+    "text": "Aplikacje z mapami podają linię, a na peronie wiszą tylko tablice z nazwami stacji, których nigdy nie słyszałeś. Wsiądziesz w złą stronę i wracasz kilka stacji. Przegapisz komunikat i przejeżdżasz swoją. KoreaNavi nazywa Twój pociąg tak samo jak tablica i ostrzega przed Twoją stacją."
   },
   "features": [
     {
       "title": "Tymi samymi słowami co tablica",
-      "text": "Właściwy pociąg widzisz dokładnie tak, jak jego cel jest napisany na peronie i na samym pociągu. Masz wątpliwości? Skieruj aparat na tablicę na peronie lub tablicę kierunkową pociągu, a KORA od razu powie, czy to dobry kierunek.\nRozpoznawanie tekstu odbywa się w całości na Twoim iPhonie.",
+      "text": "Właściwy pociąg widzisz dokładnie tak, jak jego cel jest napisany na peronie i na samym pociągu. Masz wątpliwości? Skieruj aparat na tablicę na peronie lub tablicę kierunkową pociągu, a KoreaNavi od razu powie, czy to dobry kierunek.\nRozpoznawanie tekstu odbywa się w całości na Twoim iPhonie.",
       "shot": "board"
     },
     {
       "title": "Nie przegapisz swojej stacji",
-      "text": "KORA łączy przyjazdy na żywo, GPS, ruszanie i zatrzymywanie się pociągu oraz komunikaty w wagonie, żeby wiedzieć, gdzie jesteś. Przed Twoją stacją pojawi się „Przygotuj się do wyjścia”, a potem „Wysiądź teraz!”, z wibracją.\nPostęp jazdy widać też na ekranie blokady i w Dynamic Island.",
+      "text": "KoreaNavi łączy przyjazdy na żywo, GPS, ruszanie i zatrzymywanie się pociągu oraz komunikaty w wagonie, żeby wiedzieć, gdzie jesteś. Przed Twoją stacją pojawi się „Przygotuj się do wyjścia”, a potem „Wysiądź teraz!”, z wibracją.\nPostęp jazdy widać też na ekranie blokady i w Dynamic Island.",
       "shot": "ride"
     },
     {
@@ -92,7 +92,7 @@
     "note": "Wszystkie uprawnienia są opcjonalne. Bez nich wybierasz stacje sam i nadal masz trasę oraz powiadomienia o wysiadaniu. Lokalizacja, aparat i komunikaty są przetwarzane na urządzeniu i nigdy nie są nagrywane, zapisywane ani wysyłane."
   },
   "pricing": {
-    "title": "Szukanie drogi zawsze za darmo. Prowadzenie w trakcie jazdy to KORA Pro.",
+    "title": "Szukanie drogi zawsze za darmo. Prowadzenie w trakcie jazdy to KoreaNavi Pro.",
     "free": {
       "name": "Za darmo",
       "items": [
@@ -105,7 +105,7 @@
       ]
     },
     "pro": {
-      "name": "KORA Pro",
+      "name": "KoreaNavi Pro",
       "items": [
         "W każdej podróży: prowadzenie na ekranie blokady, rozpoznawanie komunikatów i wibracja przy wysiadaniu",
         "Wyjścia ze stacji: co jest przy każdym wyjściu na liniach 1–8 w Seulu",
@@ -121,7 +121,7 @@
     "items": [
       {
         "q": "Aplikacja nie znajduje mojej stacji albo pokazuje inną.",
-        "a": "Wejdź w Ustawienia > Prywatność i ochrona > Usługi lokalizacji > KORA, wybierz „Podczas używania aplikacji” i włącz „Dokładna lokalizacja”. Pod ziemią i w dużych budynkach GPS bywa niedokładny: stuknij kartę obecnej stacji u góry i wybierz ją sam. Wszystko działa też bez dostępu do lokalizacji."
+        "a": "Wejdź w Ustawienia > Prywatność i ochrona > Usługi lokalizacji > KoreaNavi, wybierz „Podczas używania aplikacji” i włącz „Dokładna lokalizacja”. Pod ziemią i w dużych budynkach GPS bywa niedokładny: stuknij kartę obecnej stacji u góry i wybierz ją sam. Wszystko działa też bez dostępu do lokalizacji."
       },
       {
         "q": "Jak działa sprawdzanie aparatem?",
@@ -129,19 +129,19 @@
       },
       {
         "q": "Nie widać przyjazdów na żywo.",
-        "a": "Dane pochodzą z Seoul Open Data Plaza, wymagają internetu i są dostępne głównie dla linii w aglomeracji Seulu. Bez sieci lub danych KORA automatycznie przechodzi na szacowanie z rozkładu, GPS i akcelerometru i dalej Cię prowadzi. Wyszukiwanie trasy działa offline."
+        "a": "Dane pochodzą z Seoul Open Data Plaza, wymagają internetu i są dostępne głównie dla linii w aglomeracji Seulu. Bez sieci lub danych KoreaNavi automatycznie przechodzi na szacowanie z rozkładu, GPS i akcelerometru i dalej Cię prowadzi. Wyszukiwanie trasy działa offline."
       },
       {
         "q": "Powiadomienie o wysiadaniu przyszło trochę za wcześnie lub za późno.",
-        "a": "Pod ziemią GPS jest słaby i obecna stacja może się spóźniać. Jeśli zezwolisz na mikrofon, KORA poprawi pozycję na podstawie komunikatów w pociągu. Powiadomienia to pomoc, słuchaj też komunikatów i patrz na tablice."
+        "a": "Pod ziemią GPS jest słaby i obecna stacja może się spóźniać. Jeśli zezwolisz na mikrofon, KoreaNavi poprawi pozycję na podstawie komunikatów w pociągu. Powiadomienia to pomoc, słuchaj też komunikatów i patrz na tablice."
       },
       {
         "q": "Jak zmienić język?",
-        "a": "KORA startuje w języku Twojego iPhone’a. Przytrzymaj kartę stacji na ekranie głównym (obecnej lub docelowej), a otworzy się wybór spośród 23 języków."
+        "a": "KoreaNavi startuje w języku Twojego iPhone’a. Przytrzymaj kartę stacji na ekranie głównym (obecnej lub docelowej), a otworzy się wybór spośród 23 języków."
       },
       {
         "q": "Na ekranie blokady nie ma aktywności na żywo.",
-        "a": "Sprawdź w Ustawienia > Aplikacje > KORA (w starszym iOS Ustawienia > KORA), czy aktywności na żywo są włączone. Pojawia się po rozpoczęciu prowadzenia w podróży i kończy, gdy całkiem zamkniesz aplikację. Dynamic Island jest tylko w modelach iPhone’a, które ją mają."
+        "a": "Sprawdź w Ustawienia > Aplikacje > KoreaNavi (w starszym iOS Ustawienia > KoreaNavi), czy aktywności na żywo są włączone. Pojawia się po rozpoczęciu prowadzenia w podróży i kończy, gdy całkiem zamkniesz aplikację. Dynamic Island jest tylko w modelach iPhone’a, które ją mają."
       },
       {
         "q": "Które miasta są obsługiwane?",
@@ -152,7 +152,7 @@
         "a": "Tak. Wybierz sam start i cel, a trasy, przesiadki i kierunek pociągu zobaczysz z dowolnego miejsca na świecie."
       },
       {
-        "q": "Czy KORA Pro to subskrypcja?",
+        "q": "Czy KoreaNavi Pro to subskrypcja?",
         "a": "Nie. To jednorazowy zakup, który zostaje z Tobą i działa z Chmurą rodzinną. Po ponownej instalacji stuknij Przywróć zakup na ekranie Pro."
       },
       {
@@ -161,7 +161,7 @@
       },
       {
         "q": "Czy aplikacja jest dostępna?",
-        "a": "KORA obsługuje VoiceOver i większy tekst. Pomysły na lepszą dostępność są zawsze mile widziane."
+        "a": "KoreaNavi obsługuje VoiceOver i większy tekst. Pomysły na lepszą dostępność są zawsze mile widziane."
       }
     ]
   },

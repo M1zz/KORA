@@ -1,4 +1,4 @@
-# 인앱 이벤트 그림(글자 없음): 레포 스크린샷을 휴대폰 틀에 넣어 KORA 바탕에 놓는다.
+# 인앱 이벤트 그림(글자 없음): 레포 스크린샷을 휴대폰 틀에 넣어 KoreaNavi 바탕에 놓는다.
 import sys, math
 from PIL import Image, ImageDraw, ImageFilter
 BG=(253,250,247); RED=(205,46,58); BLUE=(120,190,225)

@@ -45,7 +45,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 ### 넣지 않은 것 (그리고 그 까닭)
 
 - **연말·설 시즌 "여행 안내" 이벤트 (Special Event)**: 앱 안에서 그 기간에만 달라지는 것이 없다. 있는 기능을 다시 알리는 것은 Apple 이 비권장하는 "앱 일반 홍보"라 거절될 가능성이 크다. 대신 E2 를 일본·대만·미국의 연말 휴가 기간에 맞췄다.
-- **Pro 할인·무료 기간**: 앱에 기간 한정 무료를 켜는 장치가 없고(`KORAPro` 는 3회 무료 + 평생권 고정), 새 내용 없는 가격 이벤트는 비권장이다.
+- **Pro 할인·무료 기간**: 앱에 기간 한정 무료를 켜는 장치가 없고(`KoreaNaviPro` 는 3회 무료 + 평생권 고정), 새 내용 없는 가격 이벤트는 비권장이다.
 - **설·춘절 2027 (2월 6일 전후)**: 3개월 밖이다. 그때 실제로 내보낼 기능이 있으면 2027-01-23 무렵(시작 14일 전 노출)에 맞춰 새로 만든다.
 
 ---
@@ -69,7 +69,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 **왜 Major Update 인가**: 1.0.9 는 핵심 동작(타기·갈아타기·내리기)을 VoiceOver·음성 제어로 열고, 대비 증가·동작 줄이기·투명도 줄이기·색 없이 구별 네 가지 시스템 설정을 앱 전체에 반영하고, 첫 사용 안내·앱 안 의견을 새로 넣은 업데이트다 (`6cc2d08`). 단순 UI 손질이 아니다.
 **위험**: 심사관이 "접근성 개선은 작은 변경"으로 볼 수 있다. 거절되면 이름을 바꾸지 말고 긴 설명에 첫 사용 안내를 더 드러내 다시 낸다.
 
-**근거**: `SubwayNavigatorView.swift` `.accessibilityAction` (탑승·환승·하차), `accessibilityReduceMotion` · `accessibilityDifferentiateWithoutColor` · `colorSchemeContrast`, `KORAOnboardingView.swift`, `RELEASE_NOTES.md` 1.0.9.
+**근거**: `SubwayNavigatorView.swift` `.accessibilityAction` (탑승·환승·하차), `accessibilityReduceMotion` · `accessibilityDifferentiateWithoutColor` · `colorSchemeContrast`, `KoreaNaviOnboardingView.swift`, `RELEASE_NOTES.md` 1.0.9.
 **쓰지 않은 말**: "화면 전체를 VoiceOver 로" — 로드맵 `a11y.voiceover` 가 아직 계획이다. 그래서 문구는 "타고·갈아타고·내리기"에만 VoiceOver 를 붙였다.
 
 ### 언어별 문구 (23개)
@@ -275,7 +275,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 | 딥링크 | 비움 (앱 첫 화면 → 경로 고르기 → 카메라로 방향 확인) |
 | 카드·상세 그림 | **아직 없음** — 아래 "필요한 것" |
 
-**선행 조건**: 로드맵 `express` 가 `.building` 이다. 커밋 `2e236ce`·`68e0c56` 으로 판정은 들어갔지만 아직 배포되지 않았다. 12-10 까지 배포하지 못하면 이 이벤트는 만들지 않는다 (없는 기능을 이벤트로 내면 거절되고 신뢰도 잃는다). 배포하면 `KORARoadmap.swift` 의 `express` 를 `.shipped("<버전>")` 로 옮긴다.
+**선행 조건**: 로드맵 `express` 가 `.building` 이다. 커밋 `2e236ce`·`68e0c56` 으로 판정은 들어갔지만 아직 배포되지 않았다. 12-10 까지 배포하지 못하면 이 이벤트는 만들지 않는다 (없는 기능을 이벤트로 내면 거절되고 신뢰도 잃는다). 배포하면 `KoreaNaviRoadmap.swift` 의 `express` 를 `.shipped("<버전>")` 로 옮긴다.
 
 **왜 Major Update 인가**: 카메라 방향 확인이 처음으로 열차 종류(급행/일반)를 읽는다. 9호선 38개 역 중 급행은 16곳에만 서므로, 잘못 타면 실제로 내릴 역을 지나친다.
 
@@ -310,7 +310,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Line 9 Express Check | 20 / 30 |
 | 짧은 설명 | Find out if the express skips your stop | 39 / 50 |
-| 긴 설명 | On Line 9, aim your camera at the platform board. KORA tells you if the next train is an express that skips your stop. | 118 / 120 |
+| 긴 설명 | On Line 9, aim your camera at the platform board. 한국길찾기 tells you if the next train is an express that skips your stop. | 118 / 120 |
 
 #### zh-Hans
 
@@ -334,7 +334,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Expresszug-Check Linie 9 | 24 / 30 |
 | 짧은 설명 | Sieh sofort, ob der Express bei dir hält | 40 / 50 |
-| 긴 설명 | Richte auf Linie 9 die Kamera auf die Anzeige am Bahnsteig. KORA sagt dir, ob der nächste Express deinen Halt auslässt. | 119 / 120 |
+| 긴 설명 | Richte auf Linie 9 die Kamera auf die Anzeige am Bahnsteig. 한국길찾기 sagt dir, ob der nächste Express deinen Halt auslässt. | 119 / 120 |
 
 #### es
 
@@ -342,7 +342,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Exprés de la línea 9 | 20 / 30 |
 | 짧은 설명 | Comprueba si el exprés para en tu estación | 42 / 50 |
-| 긴 설명 | En la línea 9, apunta la cámara al panel del andén y KORA te dice si el próximo exprés se salta tu parada. | 106 / 120 |
+| 긴 설명 | En la línea 9, apunta la cámara al panel del andén y 한국길찾기 te dice si el próximo exprés se salta tu parada. | 106 / 120 |
 
 #### fr
 
@@ -350,7 +350,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | L’express de la ligne 9 | 23 / 30 |
 | 짧은 설명 | Sachez si l’express s’arrête à votre station | 44 / 50 |
-| 긴 설명 | Sur la ligne 9, visez l’écran du quai : KORA vous dit si le prochain express ne s’arrête pas à votre station. | 109 / 120 |
+| 긴 설명 | Sur la ligne 9, visez l’écran du quai : 한국길찾기 vous dit si le prochain express ne s’arrête pas à votre station. | 109 / 120 |
 
 #### it
 
@@ -358,7 +358,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Espressi sulla linea 9 | 22 / 30 |
 | 짧은 설명 | Scopri se l’espresso salta la tua fermata | 41 / 50 |
-| 긴 설명 | Sulla linea 9 inquadra il tabellone in banchina: KORA ti dice se il prossimo espresso salta la tua fermata. | 107 / 120 |
+| 긴 설명 | Sulla linea 9 inquadra il tabellone in banchina: 한국길찾기 ti dice se il prossimo espresso salta la tua fermata. | 107 / 120 |
 
 #### pt-BR
 
@@ -366,7 +366,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Expresso da Linha 9 | 19 / 30 |
 | 짧은 설명 | Saiba se o expresso para na sua estação | 39 / 50 |
-| 긴 설명 | Na Linha 9, aponte a câmera para o painel da plataforma e o KORA avisa se o próximo expresso pula sua estação. | 110 / 120 |
+| 긴 설명 | Na Linha 9, aponte a câmera para o painel da plataforma e o 한국길찾기 avisa se o próximo expresso pula sua estação. | 110 / 120 |
 
 #### ru
 
@@ -374,7 +374,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Экспрессы на линии 9 | 20 / 30 |
 | 짧은 설명 | Узнайте, остановится ли экспресс на вашей станции | 49 / 50 |
-| 긴 설명 | На линии 9 наведите камеру на табло на платформе, и KORA подскажет, не проедет ли следующий экспресс вашу станцию. | 114 / 120 |
+| 긴 설명 | На линии 9 наведите камеру на табло на платформе, и 한국길찾기 подскажет, не проедет ли следующий экспресс вашу станцию. | 114 / 120 |
 
 #### cs
 
@@ -382,7 +382,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Rozpoznání expresů na lince 9 | 29 / 30 |
 | 짧은 설명 | Zjistěte, jestli expres staví ve vaší stanici | 45 / 50 |
-| 긴 설명 | Na lince 9 namiřte fotoaparát na tabuli na nástupišti a KORA vám řekne, jestli další expres vaši stanici přejede. | 113 / 120 |
+| 긴 설명 | Na lince 9 namiřte fotoaparát na tabuli na nástupišti a 한국길찾기 vám řekne, jestli další expres vaši stanici přejede. | 113 / 120 |
 
 #### da
 
@@ -390,7 +390,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Ekspresstog på linje 9 | 22 / 30 |
 | 짧은 설명 | Se, om ekspressen standser ved din station | 42 / 50 |
-| 긴 설명 | Ret kameraet mod tavlen på perronen på linje 9, så fortæller KORA, om næste eksprestog springer din station over. | 113 / 120 |
+| 긴 설명 | Ret kameraet mod tavlen på perronen på linje 9, så fortæller 한국길찾기, om næste eksprestog springer din station over. | 113 / 120 |
 
 #### el
 
@@ -398,7 +398,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Ταχείς συρμοί στη γραμμή 9 | 26 / 30 |
 | 짧은 설명 | Μάθετε αν ο ταχύς σταματά στη στάση σας | 39 / 50 |
-| 긴 설명 | Στη γραμμή 9 στρέψτε την κάμερα στην πινακίδα της αποβάθρας και το KORA σας λέει αν ο επόμενος ταχύς δεν σταματά. | 113 / 120 |
+| 긴 설명 | Στη γραμμή 9 στρέψτε την κάμερα στην πινακίδα της αποβάθρας και το 한국길찾기 σας λέει αν ο επόμενος ταχύς δεν σταματά. | 113 / 120 |
 
 #### fi
 
@@ -406,7 +406,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Linjan 9 pikajunat | 18 / 30 |
 | 짧은 설명 | Näe heti, pysähtyykö pikajuna asemallasi | 40 / 50 |
-| 긴 설명 | Osoita linjalla 9 kameralla laiturin näyttötauluun, niin KORA kertoo, ohittaako seuraava pikajuna asemasi. | 106 / 120 |
+| 긴 설명 | Osoita linjalla 9 kameralla laiturin näyttötauluun, niin 한국길찾기 kertoo, ohittaako seuraava pikajuna asemasi. | 106 / 120 |
 
 #### id
 
@@ -414,7 +414,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Cek Kereta Ekspres Jalur 9 | 26 / 30 |
 | 짧은 설명 | Cek apakah kereta ekspres berhenti di stasiunmu | 47 / 50 |
-| 긴 설명 | Di Jalur 9, arahkan kamera ke papan peron. KORA memberi tahu jika kereta berikutnya ekspres yang melewati stasiunmu. | 116 / 120 |
+| 긴 설명 | Di Jalur 9, arahkan kamera ke papan peron. 한국길찾기 memberi tahu jika kereta berikutnya ekspres yang melewati stasiunmu. | 116 / 120 |
 
 #### nb
 
@@ -422,7 +422,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Ekspresstog på linje 9 | 22 / 30 |
 | 짧은 설명 | Se om ekspressen stopper på stasjonen din | 41 / 50 |
-| 긴 설명 | Rett kameraet mot tavlen på perrongen på linje 9, så sier KORA fra om neste tog er et ekspresstog som hopper over deg. | 118 / 120 |
+| 긴 설명 | Rett kameraet mot tavlen på perrongen på linje 9, så sier 한국길찾기 fra om neste tog er et ekspresstog som hopper over deg. | 118 / 120 |
 
 #### nl
 
@@ -430,7 +430,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Sneltreincheck lijn 9 | 21 / 30 |
 | 짧은 설명 | Zie meteen of de sneltrein bij jou stopt | 40 / 50 |
-| 긴 설명 | Richt op lijn 9 je camera op het bord op het perron. KORA zegt of de volgende sneltrein jouw station overslaat. | 111 / 120 |
+| 긴 설명 | Richt op lijn 9 je camera op het bord op het perron. 한국길찾기 zegt of de volgende sneltrein jouw station overslaat. | 111 / 120 |
 
 #### pl
 
@@ -438,7 +438,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Ekspresy na linii 9 | 19 / 30 |
 | 짧은 설명 | Sprawdź, czy ekspres zatrzyma się na twojej stacji | 50 / 50 |
-| 긴 설명 | Na linii 9 skieruj aparat na tablicę na peronie, a KORA powie, czy następny ekspres pominie twoją stację. | 105 / 120 |
+| 긴 설명 | Na linii 9 skieruj aparat na tablicę na peronie, a 한국길찾기 powie, czy następny ekspres pominie twoją stację. | 105 / 120 |
 
 #### sv
 
@@ -446,7 +446,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Expresståg på linje 9 | 21 / 30 |
 | 짧은 설명 | Se om expressen stannar vid din station | 39 / 50 |
-| 긴 설명 | Rikta kameran mot skylten på perrongen på linje 9, så säger KORA om nästa expresståg hoppar över din station. | 109 / 120 |
+| 긴 설명 | Rikta kameran mot skylten på perrongen på linje 9, så säger 한국길찾기 om nästa expresståg hoppar över din station. | 109 / 120 |
 
 #### th
 
@@ -454,7 +454,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | เช็กขบวนด่วนสาย 9 | 17 / 30 |
 | 짧은 설명 | รู้ทันทีว่าขบวนด่วนจอดสถานีของคุณไหม | 36 / 50 |
-| 긴 설명 | บนชานชาลาสาย 9 ส่องกล้องไปที่ป้ายบอกขบวน แล้ว KORA จะบอกว่าขบวนถัดไปเป็นขบวนด่วนที่ไม่จอดสถานีของคุณหรือไม่ | 107 / 120 |
+| 긴 설명 | บนชานชาลาสาย 9 ส่องกล้องไปที่ป้ายบอกขบวน แล้ว 한국길찾기 จะบอกว่าขบวนถัดไปเป็นขบวนด่วนที่ไม่จอดสถานีของคุณหรือไม่ | 107 / 120 |
 
 #### tr
 
@@ -462,7 +462,7 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | 9. Hatta Ekspres Kontrolü | 25 / 30 |
 | 짧은 설명 | Ekspresin durağında durup durmadığını gör | 41 / 50 |
-| 긴 설명 | 9. hatta kamerayı perondaki tabelaya tut. KORA, sıradaki trenin durağını atlayan bir ekspres olup olmadığını söyler. | 116 / 120 |
+| 긴 설명 | 9. hatta kamerayı perondaki tabelaya tut. 한국길찾기, sıradaki trenin durağını atlayan bir ekspres olup olmadığını söyler. | 116 / 120 |
 
 #### vi
 
@@ -470,4 +470,4 @@ App Store Connect ▸ 앱 ▸ **인앱 이벤트** ▸ (+) 에 넣는 원고다.
 |---|---|---|
 | 이벤트 이름 | Nhận biết tàu nhanh tuyến 9 | 27 / 30 |
 | 짧은 설명 | Biết ngay tàu nhanh có dừng ở ga bạn không | 42 / 50 |
-| 긴 설명 | Ở tuyến số 9, hướng camera vào bảng điện tử trên sân ga. KORA cho biết chuyến tàu nhanh kế tiếp có bỏ qua ga bạn không. | 119 / 120 |
+| 긴 설명 | Ở tuyến số 9, hướng camera vào bảng điện tử trên sân ga. 한국길찾기 cho biết chuyến tàu nhanh kế tiếp có bỏ qua ga bạn không. | 119 / 120 |

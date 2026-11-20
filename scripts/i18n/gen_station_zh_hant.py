@@ -15,7 +15,7 @@ import re
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-SUBWAY = os.path.join(ROOT, "KORA", "Sources", "Features", "Subway")
+SUBWAY = os.path.join(ROOT, "KoreaNavi", "Sources", "Features", "Subway")
 OUT = os.path.join(SUBWAY, "SubwayStationChineseTraditionalNames.swift")
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import zh_hant  # noqa: E402

@@ -44,7 +44,7 @@ def copy(lang, kind):
 # 노선 색(장식): 2호선 · 4호선 · 공항철도 · 1호선 · 3호선
 LINES = ["#00A84D", "#00A5DE", "#0090D2", "#0052A4", "#EF7C1C"]
 
-# ⚠️ 바탕 · 글자색은 앱 · 소개 페이지 팔레트(docs/style.css, KORATheme)와 같다: 태극 빨강 #CD2E3A.
+# ⚠️ 바탕 · 글자색은 앱 · 소개 페이지 팔레트(docs/style.css, KoreaNaviTheme)와 같다: 태극 빨강 #CD2E3A.
 BASE_CSS = """
 * { margin:0; padding:0; box-sizing:border-box; }
 html,body { width:%(W)dpx; height:%(H)dpx; overflow:hidden; }

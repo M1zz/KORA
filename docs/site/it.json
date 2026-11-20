@@ -1,9 +1,9 @@
 {
-  "title": "KORA: la metro coreana per chi viaggia",
-  "description": "Scegli partenza e arrivo: KORA mostra i cambi, le fermate e il cartello esatto del treno da prendere, poi ti avvisa quando scendere.",
+  "title": "KoreaNavi: la metro coreana per chi viaggia",
+  "description": "Scegli partenza e arrivo: KoreaNavi mostra i cambi, le fermate e il cartello esatto del treno da prendere, poi ti avvisa quando scendere.",
   "hero": {
     "headline": "La banchina giusta.\nLa fermata giusta.",
-    "lead": "Scegli partenza e arrivo e KORA ti dice quale treno prendere, scritto proprio come sul cartello della banchina. Durante il viaggio segue la tua stazione e ti avvisa quando scendere.",
+    "lead": "Scegli partenza e arrivo e KoreaNavi ti dice quale treno prendere, scritto proprio come sul cartello della banchina. Durante il viaggio segue la tua stazione e ti avvisa quando scendere.",
     "cta": "Gratis sull’App Store",
     "note": "Ricerca del percorso, direzione del treno e arrivi in tempo reale sono gratis."
   },
@@ -31,17 +31,17 @@
   },
   "problem": {
     "title": "Ti è mai capitato di restare sulla banchina senza sapere quale treno prendere?",
-    "text": "Le app di mappe ti danno la linea, ma sulla banchina ci sono solo cartelli con nomi di stazioni mai sentiti. Se sali nella direzione sbagliata devi tornare indietro di varie fermate. Se perdi l’annuncio, superi la tua stazione. KORA indica il tuo treno come il cartello e ti avvisa prima della tua fermata."
+    "text": "Le app di mappe ti danno la linea, ma sulla banchina ci sono solo cartelli con nomi di stazioni mai sentiti. Se sali nella direzione sbagliata devi tornare indietro di varie fermate. Se perdi l’annuncio, superi la tua stazione. KoreaNavi indica il tuo treno come il cartello e ti avvisa prima della tua fermata."
   },
   "features": [
     {
       "title": "Con le parole del cartello",
-      "text": "Il treno da prendere appare esattamente come la sua destinazione sulla banchina e sul treno. Hai un dubbio? Inquadra con la fotocamera il cartello della banchina o l’indicatore di destinazione del treno e KORA ti dice subito se è la direzione giusta.\nIl riconoscimento del testo avviene tutto sul tuo iPhone.",
+      "text": "Il treno da prendere appare esattamente come la sua destinazione sulla banchina e sul treno. Hai un dubbio? Inquadra con la fotocamera il cartello della banchina o l’indicatore di destinazione del treno e KoreaNavi ti dice subito se è la direzione giusta.\nIl riconoscimento del testo avviene tutto sul tuo iPhone.",
       "shot": "board"
     },
     {
       "title": "Mai più una fermata persa",
-      "text": "KORA combina arrivi in tempo reale, GPS, partenze e soste del treno e gli annunci a bordo per sapere dove sei. Quando la fermata si avvicina ricevi “Preparati a scendere” e poi “Scendi ora!”, con una vibrazione.\nVedi l’avanzamento anche nella schermata di blocco e nella Dynamic Island.",
+      "text": "KoreaNavi combina arrivi in tempo reale, GPS, partenze e soste del treno e gli annunci a bordo per sapere dove sei. Quando la fermata si avvicina ricevi “Preparati a scendere” e poi “Scendi ora!”, con una vibrazione.\nVedi l’avanzamento anche nella schermata di blocco e nella Dynamic Island.",
       "shot": "ride"
     },
     {
@@ -90,7 +90,7 @@
     "note": "Tutti i permessi sono facoltativi. Senza, puoi scegliere tu le stazioni e avere comunque percorso e avvisi di discesa. Posizione, fotocamera e annunci vengono elaborati sul dispositivo e mai registrati, salvati o inviati."
   },
   "pricing": {
-    "title": "Il percorso è sempre gratis. La guida a bordo è KORA Pro.",
+    "title": "Il percorso è sempre gratis. La guida a bordo è KoreaNavi Pro.",
     "free": {
       "name": "Gratis",
       "items": [
@@ -103,7 +103,7 @@
       ]
     },
     "pro": {
-      "name": "KORA Pro",
+      "name": "KoreaNavi Pro",
       "items": [
         "In ogni viaggio: guida nella schermata di blocco, riconoscimento degli annunci e vibrazione alla discesa",
         "Guida alle uscite: cosa c’è a ogni uscita delle linee 1–8 di Seul",
@@ -119,7 +119,7 @@
     "items": [
       {
         "q": "L’app non trova la mia stazione o ne mostra un’altra.",
-        "a": "Vai in Impostazioni > Privacy e sicurezza > Localizzazione > KORA, scegli “Mentre usi l’app” e attiva “Posizione esatta”. Sottoterra o in grandi edifici il GPS può sbagliare: tocca la scheda della stazione attuale in alto e sceglila tu. Tutto funziona anche senza accesso alla posizione."
+        "a": "Vai in Impostazioni > Privacy e sicurezza > Localizzazione > KoreaNavi, scegli “Mentre usi l’app” e attiva “Posizione esatta”. Sottoterra o in grandi edifici il GPS può sbagliare: tocca la scheda della stazione attuale in alto e sceglila tu. Tutto funziona anche senza accesso alla posizione."
       },
       {
         "q": "Come funziona la verifica con la fotocamera?",
@@ -127,19 +127,19 @@
       },
       {
         "q": "Gli arrivi in tempo reale non compaiono.",
-        "a": "I dati arrivano dal Seoul Open Data Plaza, richiedono una connessione e sono disponibili soprattutto sulle linee dell’area metropolitana di Seul. Offline o senza dati in tempo reale, KORA passa automaticamente a una stima basata su orari, GPS e accelerometro e continua a guidarti. La ricerca del percorso funziona anche offline."
+        "a": "I dati arrivano dal Seoul Open Data Plaza, richiedono una connessione e sono disponibili soprattutto sulle linee dell’area metropolitana di Seul. Offline o senza dati in tempo reale, KoreaNavi passa automaticamente a una stima basata su orari, GPS e accelerometro e continua a guidarti. La ricerca del percorso funziona anche offline."
       },
       {
         "q": "L’avviso di discesa arriva un po’ prima o dopo.",
-        "a": "Sottoterra il GPS è debole e la stazione attuale può restare indietro. Se consenti il microfono, KORA corregge la posizione con gli annunci a bordo. Gli avvisi sono un aiuto: ascolta anche gli annunci e guarda i cartelli."
+        "a": "Sottoterra il GPS è debole e la stazione attuale può restare indietro. Se consenti il microfono, KoreaNavi corregge la posizione con gli annunci a bordo. Gli avvisi sono un aiuto: ascolta anche gli annunci e guarda i cartelli."
       },
       {
         "q": "Come cambio lingua?",
-        "a": "KORA parte nella lingua del tuo iPhone. Tieni premuta una scheda stazione nella schermata principale (stazione attuale o arrivo) per aprire la scelta della lingua tra 23."
+        "a": "KoreaNavi parte nella lingua del tuo iPhone. Tieni premuta una scheda stazione nella schermata principale (stazione attuale o arrivo) per aprire la scelta della lingua tra 23."
       },
       {
         "q": "L’attività in tempo reale non appare nella schermata di blocco.",
-        "a": "Controlla in Impostazioni > App > KORA (su iOS meno recenti, Impostazioni > KORA) che le Attività in tempo reale siano attive. Appare quando avvii la guida del viaggio e termina se chiudi del tutto l’app. La Dynamic Island c’è solo sui modelli di iPhone che ce l’hanno."
+        "a": "Controlla in Impostazioni > App > KoreaNavi (su iOS meno recenti, Impostazioni > KoreaNavi) che le Attività in tempo reale siano attive. Appare quando avvii la guida del viaggio e termina se chiudi del tutto l’app. La Dynamic Island c’è solo sui modelli di iPhone che ce l’hanno."
       },
       {
         "q": "Quali città sono incluse?",
@@ -150,7 +150,7 @@
         "a": "Sì. Scegli tu partenza e arrivo e potrai vedere percorsi, cambi e direzione del treno da qualsiasi parte del mondo."
       },
       {
-        "q": "KORA Pro è un abbonamento?",
+        "q": "KoreaNavi Pro è un abbonamento?",
         "a": "No. È un acquisto unico che resta tuo e funziona con In famiglia. Se reinstalli l’app, tocca Ripristina acquisto nella schermata Pro."
       },
       {
@@ -159,7 +159,7 @@
       },
       {
         "q": "L’app è accessibile?",
-        "a": "KORA supporta VoiceOver e le dimensioni del testo più grandi. I suggerimenti per renderla più accessibile sono sempre benvenuti."
+        "a": "KoreaNavi supporta VoiceOver e le dimensioni del testo più grandi. I suggerimenti per renderla più accessibile sono sempre benvenuti."
       }
     ]
   },

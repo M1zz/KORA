@@ -1,4 +1,4 @@
-/* KORA 웹 체험. 노선 색은 공항철도(SubwayLineData.line10), 알림 색은 앱의 AlightWarningLevel 과 같다. */
+/* KoreaNavi 웹 체험. 노선 색은 공항철도(SubwayLineData.line10), 알림 색은 앱의 AlightWarningLevel 과 같다. */
 .demo-card { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); align-items: start; --ar: #73C7E3; }
 .kd-stage { background: var(--bg); border-radius: var(--r-inner); padding: var(--s5); min-height: 300px; }
 .kd-status { display: flex; align-items: center; gap: var(--s2); margin: 0 0 var(--s5); font-weight: 600; color: var(--muted); }

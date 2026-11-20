@@ -1,6 +1,6 @@
-# KORA — 日本人向け韓国旅行アプリ
+# Korea Navi — 日本人向け韓国旅行アプリ
 
-> インスタで見つけて、KORAで行く。
+> インスタで見つけて、Korea Naviで行く。
 
 ## サポート / Support
 
@@ -10,7 +10,7 @@
 
 ## 概要
 
-KORAは、日本人旅行者が韓国を「現地人のように」旅するためのiOSアプリです。
+Korea Naviは、日本人旅行者が韓国を「現地人のように」旅するためのiOSアプリです。
 
 ### 4つのコア機能
 
@@ -32,15 +32,15 @@ KORAは、日本人旅行者が韓国を「現地人のように」旅するた�
 
 ```bash
 git clone <repo>
-cd KORA
-open KORA.xcodeproj
+cd Korea Navi
+open KoreaNavi.xcodeproj
 ```
 
 ## アーキテクチャ
 
 ```
-KORA/
-├── KORAApp.swift          # App entry point
+KoreaNavi/
+├── KoreaNaviApp.swift          # App entry point
 ├── MainTabView.swift      # Tab navigation
 ├── Sources/
 │   ├── Features/
@@ -51,7 +51,7 @@ KORA/
 │   └── Common/
 │       ├── Models/        # Place, Review
 │       ├── Components/    # Shared UI
-│       └── Theme/         # KORATheme design system
+│       └── Theme/         # KoreaNaviTheme design system
 └── Assets.xcassets
 ```
 

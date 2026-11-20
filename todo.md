@@ -1,4 +1,4 @@
-# KORA Todo
+# 한국길찾기 Todo
 
 ## 아이폰 듀오 대응 (2026-10-31, 듀오 시뮬레이터 빌드 · `-FoldPretend` 화면 확인 · 실기기 확인 안 함)
 - [x] 앱 루트에 `.foldAware()` (LeeoKit Fold). 시트 · 알림창이 접힌 선을 비킨다
@@ -7,10 +7,10 @@
 - [x] 온보딩 전체 화면은 `.foldConfined()`, 글자만 있던 툴바 버튼(완료 · 닫기)에 아이콘
 - [ ] 가로로 편 화면 · 타는 중 화면 · 실기기 확인
 - [ ] ⚠️ Xcode 27.0 빌드는 듀오에서 호환 틀(아이폰 크기)로 뜬다. 27.1 로 빌드해야 펼친 배치가 켜진다
-- 확인: 듀오 시뮬레이터에 Debug 빌드 → `xcrun simctl launch <기기> com.kora.leeo -FoldPretend -KORAShotScene route`
+- 확인: 듀오 시뮬레이터에 Debug 빌드 → `xcrun simctl launch <기기> com.kora.leeo -FoldPretend -KoreaNaviShotScene route`
 
 ## 완료
-- [x] Google Analytics(Firebase) 수집 활성화: Firebase SDK(SPM) 연동, KORAApp에 FirebaseApp.configure()
+- [x] Google Analytics(Firebase) 수집 활성화: Firebase SDK(SPM) 연동, KoreaNaviApp에 FirebaseApp.configure()
 - [x] GA 데이터 미수집 근본 원인 수정: 앱 타깃에 OTHER_LDFLAGS=-ObjC 추가(정적 Analytics 등록 누락) + Info.plist FIREBASE_ANALYTICS_COLLECTION_ENABLED=YES. 시뮬레이터 실행으로 first_open/session_start 이벤트 기록·measurement DB 생성 확인
 - [x] 빌드 에러 수정
 - [x] Deprecated Map API 교체 (Map(position:) + Annotation + MapPolyline)
@@ -103,13 +103,13 @@
 - [x] 지도·저장(가고 싶은) 화면 제거: Features/Save 전체(SaveView, PlaceMapView, PlaceCardView,
       PlaceDetailSheet, SaveViewModel, LinkParserService) + 전용 의존성(Kakao/Naver 검색,
       PlaceSearchService, CachedAsyncImage, EmptyStateView, SafariView) 삭제, 빌드 확인
-- [x] 공유 익스텐션(KORAShare) 타깃·저장 장소 위젯·Place/PlaceStore/SharedInbox/NavigationCoordinator·
+- [x] 공유 익스텐션(KoreaNaviShare) 타깃·저장 장소 위젯·Place/PlaceStore/SharedInbox/NavigationCoordinator·
       출구 안내(SubwayExitService, 저장 장소 좌표 전용) 제거
 - [x] 다국어: 번체 중국어 추가(StationLanguage.chineseTraditional, NavLoc.zhHant, 역 이름 518건 생성),
       이름 있는 노선 27개 다국어화, 위치 오류 메시지 5개 언어, Live Activity 앱 언어로 표시,
       위젯·InfoPlist 카탈로그 5개 언어, 시뮬레이터에서 번체(zh-TW 자동 선택)·영어 화면 확인
 - [x] PrivacyInfo.xcprivacy 를 Firebase Analytics 실제 수집 항목으로, ITSAppUsesNonExemptEncryption = NO
-- [x] DeployBar 준비: deploy.env, KORA/Config/Version.xcconfig(버전 단일 소스), scripts/predeploy.sh, RELEASE_NOTES.md
+- [x] DeployBar 준비: deploy.env, KoreaNavi/Config/Version.xcconfig(버전 단일 소스), scripts/predeploy.sh, RELEASE_NOTES.md
 - [x] docs/: 언어별 소개·지원·개인정보 처리방침(5개 언어 × 3), docs/appstore/ 스토어 메타데이터
 - [ ] App Store Connect: 번체 중국어 등 없는 현지화 칸을 웹에서 먼저 추가 (API 로는 못 만든다)
 - [ ] App Store Connect: 이름·부제·설명·키워드·프로모션 텍스트·URL 입력 (docs/appstore/*.md), 앱 개인정보 보호 답변 갱신

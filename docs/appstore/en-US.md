@@ -12,7 +12,7 @@ chars: **28** / limit 30
 홈 화면 이름(CFBundleDisplayName)과 별개. App Store 이름은 스토어 전체에서 고유해야 하므로, 이미 쓰이고 있으면 아래 대체안을 쓴다.
 
 ```
-KORA: Korea Subway Navigator
+한국길찾기: Korea Subway Navigator
 ```
 
 ## Name (fallback)
@@ -20,7 +20,7 @@ KORA: Korea Subway Navigator
 chars: **28** / limit 30
 
 ```
-KORA - Korea Metro Wayfinder
+한국길찾기 - Korea Metro Wayfinder
 ```
 
 ## Subtitle
@@ -38,7 +38,7 @@ chars: **135** / limit 170
 버전 심사 없이 언제든 바꿀 수 있는 칸.
 
 ```
-Board the right train and never miss your stop. KORA is now one simple screen and speaks five languages, including Traditional Chinese.
+Board the right train and never miss your stop. 한국길찾기 is now one simple screen and speaks five languages, including Traditional Chinese.
 ```
 
 ## Description
@@ -48,20 +48,20 @@ chars: **2426** / limit 4000
 평문. 마크다운 기호 없음.
 
 ```
-KORA is a subway guide for anyone visiting Korea.
-Choose your starting station and destination, and KORA shows the transfers, number of stops, estimated time, and which direction to board, exactly as the train's "To ○○" sign reads. While you ride, it follows your current station and tells you when to get off.
+한국길찾기 is a subway guide for anyone visiting Korea.
+Choose your starting station and destination, and 한국길찾기 shows the transfers, number of stops, estimated time, and which direction to board, exactly as the train's "To ○○" sign reads. While you ride, it follows your current station and tells you when to get off.
 
 YOUR STATION, FOUND FOR YOU
-Find the nearest station with GPS or pick one yourself. KORA remembers it the next time you open the app.
+Find the nearest station with GPS or pick one yourself. 한국길찾기 remembers it the next time you open the app.
 
 ROUTE AND BOARDING DIRECTION
 See transfers, stops and estimated travel time, plus the train to take, shown as its "To ○○" destination sign. You get a heads-up when the last train is near.
 
 CHECK THE DIRECTION WITH YOUR CAMERA
-Point your camera at the platform sign or the train's destination display and KORA tells you right away whether it's the right way. Text recognition happens entirely on your iPhone.
+Point your camera at the platform sign or the train's destination display and 한국길찾기 tells you right away whether it's the right way. Text recognition happens entirely on your iPhone.
 
 KNOW WHERE YOU ARE
-KORA combines Seoul's real-time arrival data, GPS, the accelerometer (to sense departures and stops) and on-device recognition of the in-train announcements to track your current station. It even tells you which side the doors will open.
+한국길찾기 combines Seoul's real-time arrival data, GPS, the accelerometer (to sense departures and stops) and on-device recognition of the in-train announcements to track your current station. It even tells you which side the doors will open.
 
 STOP ALERTS
 As your stop approaches you get "Prepare to get off", then "Get off now", with haptics. A progress diagram shows the train and a pin on your destination.
@@ -121,7 +121,7 @@ chars: **483** / limit 4000
 RELEASE_NOTES.md 의 같은 언어 절과 동일.
 
 ```
-KORA is now a single screen focused on subway guidance, without tabs or the map
+한국길찾기 is now a single screen focused on subway guidance, without tabs or the map
 While riding, the station you get off at now shows a pin so your destination is easy to spot
 Closing the app now also ends the Live Activity on the Lock Screen
 Added Traditional Chinese, and the whole app is now available in English, Japanese and Simplified Chinese

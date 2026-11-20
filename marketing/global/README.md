@@ -41,7 +41,7 @@ python3 marketing/global/events/make_event_images.py docs/screenshots/raw market
 - **중국 본토 스토어**: 방한객 1위지만 중국 스토어에 나가 있는지(ICP 비안)를 확인해야 N2 지역에 넣을지 정한다.
 - **Appliv**: 리뷰 의뢰 페이지가 404 였다. 사이트에서 의뢰 경로를 찾고, 없으면 일반 문의로 낸다.
 - **E1 거절 위험**: 심사관이 접근성 개선을 "작은 변경"으로 볼 수 있다. `IN_APP_EVENTS.md` E1 의 "위험" 참고.
-- **인앱 구매 오퍼 코드**: AppleVis 사용자에게 KORA Pro 를 써 보게 하려면 App Store Connect 에서 오퍼 코드를 만든다 (선택, 가격·결제는 사람이 정한다).
+- **인앱 구매 오퍼 코드**: AppleVis 사용자에게 한국길찾기 Pro 를 써 보게 하려면 App Store Connect 에서 오퍼 코드를 만든다 (선택, 가격·결제는 사람이 정한다).
 
 ## 지키는 것
 

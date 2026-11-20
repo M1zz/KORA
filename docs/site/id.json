@@ -1,9 +1,9 @@
 {
-  "title": "KORA: panduan kereta bawah tanah Korea untuk wisatawan",
-  "description": "Pilih stasiun awal dan tujuan: KORA menunjukkan transit dan papan tujuan kereta yang harus dinaiki, lalu memberi tahu kapan harus turun.",
+  "title": "KoreaNavi: panduan kereta bawah tanah Korea untuk wisatawan",
+  "description": "Pilih stasiun awal dan tujuan: KoreaNavi menunjukkan transit dan papan tujuan kereta yang harus dinaiki, lalu memberi tahu kapan harus turun.",
   "hero": {
     "headline": "Peron yang tepat.\nStasiun yang tepat.",
-    "lead": "Pilih stasiun awal dan tujuan, dan KORA memberi tahu kereta mana yang harus dinaiki, persis seperti tulisan di papan peron. Selama perjalanan, KORA mengikuti stasiunmu dan memberi tahu kapan harus turun.",
+    "lead": "Pilih stasiun awal dan tujuan, dan KoreaNavi memberi tahu kereta mana yang harus dinaiki, persis seperti tulisan di papan peron. Selama perjalanan, KoreaNavi mengikuti stasiunmu dan memberi tahu kapan harus turun.",
     "cta": "Unduh gratis",
     "note": "Pencarian rute, arah kereta, dan info kedatangan real-time gratis."
   },
@@ -30,17 +30,17 @@
   },
   "problem": {
     "title": "Pernah bingung di peron, kereta mana yang harus dinaiki?",
-    "text": "Aplikasi peta hanya menunjukkan jalurnya, sedangkan di peron cuma ada papan berisi nama stasiun yang belum pernah kamu dengar. Salah arah, kamu harus balik beberapa stasiun. Terlewat pengumuman, kamu kebablasan. KORA menyebut keretamu sama seperti papannya dan mengingatkanmu sebelum stasiun tujuan."
+    "text": "Aplikasi peta hanya menunjukkan jalurnya, sedangkan di peron cuma ada papan berisi nama stasiun yang belum pernah kamu dengar. Salah arah, kamu harus balik beberapa stasiun. Terlewat pengumuman, kamu kebablasan. KoreaNavi menyebut keretamu sama seperti papannya dan mengingatkanmu sebelum stasiun tujuan."
   },
   "features": [
     {
       "title": "Sama persis dengan papannya",
-      "text": "Kereta yang harus dinaiki ditampilkan persis seperti tulisan tujuannya di peron dan di kereta. Masih ragu? Arahkan kamera ke papan di peron atau papan tujuan kereta, dan KORA langsung memberi tahu apakah arahnya benar.\nPengenalan teks berlangsung sepenuhnya di iPhone-mu.",
+      "text": "Kereta yang harus dinaiki ditampilkan persis seperti tulisan tujuannya di peron dan di kereta. Masih ragu? Arahkan kamera ke papan di peron atau papan tujuan kereta, dan KoreaNavi langsung memberi tahu apakah arahnya benar.\nPengenalan teks berlangsung sepenuhnya di iPhone-mu.",
       "shot": "board"
     },
     {
       "title": "Tidak kebablasan lagi",
-      "text": "KORA menggabungkan info kedatangan real-time, GPS, saat kereta berangkat dan berhenti, serta pengumuman di dalam kereta untuk tahu posisimu. Saat stasiun tujuan dekat, muncul “Bersiap turun”, lalu “Turun sekarang!”, disertai getaran.\nProgres perjalanan juga tampil di Layar Kunci dan Dynamic Island.",
+      "text": "KoreaNavi menggabungkan info kedatangan real-time, GPS, saat kereta berangkat dan berhenti, serta pengumuman di dalam kereta untuk tahu posisimu. Saat stasiun tujuan dekat, muncul “Bersiap turun”, lalu “Turun sekarang!”, disertai getaran.\nProgres perjalanan juga tampil di Layar Kunci dan Dynamic Island.",
       "shot": "ride"
     },
     {
@@ -89,7 +89,7 @@
     "note": "Semua izin bersifat opsional. Tanpa izin, kamu tetap bisa memilih stasiun sendiri dan mendapat rute serta pengingat turun. Lokasi, kamera, dan pengumuman diproses di perangkatmu dan tidak pernah direkam, disimpan, atau dikirim."
   },
   "pricing": {
-    "title": "Mencari rute selalu gratis. Pemandu selama perjalanan ada di KORA Pro.",
+    "title": "Mencari rute selalu gratis. Pemandu selama perjalanan ada di KoreaNavi Pro.",
     "free": {
       "name": "Gratis",
       "items": [
@@ -102,7 +102,7 @@
       ]
     },
     "pro": {
-      "name": "KORA Pro",
+      "name": "KoreaNavi Pro",
       "items": [
         "Di setiap perjalanan: panduan di Layar Kunci, pengenalan pengumuman, dan getaran saat turun",
         "Panduan pintu keluar: tempat di sekitar tiap pintu keluar jalur 1–8 Seoul",
@@ -118,7 +118,7 @@
     "items": [
       {
         "q": "Aplikasi tidak menemukan stasiunku atau menampilkan stasiun yang salah.",
-        "a": "Buka Pengaturan > Privasi & Keamanan > Layanan Lokasi > KORA, pilih “Saat Menggunakan App”, lalu nyalakan “Lokasi Akurat”. Di bawah tanah atau di gedung besar GPS bisa meleset: ketuk kartu stasiun saat ini di atas dan pilih sendiri. Semua fitur tetap jalan tanpa akses lokasi."
+        "a": "Buka Pengaturan > Privasi & Keamanan > Layanan Lokasi > KoreaNavi, pilih “Saat Menggunakan App”, lalu nyalakan “Lokasi Akurat”. Di bawah tanah atau di gedung besar GPS bisa meleset: ketuk kartu stasiun saat ini di atas dan pilih sendiri. Semua fitur tetap jalan tanpa akses lokasi."
       },
       {
         "q": "Bagaimana cara memakai cek arah dengan kamera?",
@@ -126,19 +126,19 @@
       },
       {
         "q": "Info kedatangan real-time tidak muncul.",
-        "a": "Datanya berasal dari Seoul Open Data Plaza, butuh internet, dan tersedia terutama untuk jalur di wilayah metropolitan Seoul. Tanpa koneksi atau data real-time, KORA otomatis beralih ke perkiraan berdasarkan jadwal, GPS, dan akselerometer, lalu tetap memandumu. Pencarian rute bisa tanpa internet."
+        "a": "Datanya berasal dari Seoul Open Data Plaza, butuh internet, dan tersedia terutama untuk jalur di wilayah metropolitan Seoul. Tanpa koneksi atau data real-time, KoreaNavi otomatis beralih ke perkiraan berdasarkan jadwal, GPS, dan akselerometer, lalu tetap memandumu. Pencarian rute bisa tanpa internet."
       },
       {
         "q": "Pengingat turun datang sedikit terlalu cepat atau lambat.",
-        "a": "Di bawah tanah sinyal GPS lemah, jadi stasiun saat ini bisa tertinggal. Kalau kamu mengizinkan mikrofon, KORA mengoreksi posisi lewat pengumuman di kereta. Pengingat hanya bantuan, jadi dengarkan juga pengumuman dan perhatikan papan stasiun."
+        "a": "Di bawah tanah sinyal GPS lemah, jadi stasiun saat ini bisa tertinggal. Kalau kamu mengizinkan mikrofon, KoreaNavi mengoreksi posisi lewat pengumuman di kereta. Pengingat hanya bantuan, jadi dengarkan juga pengumuman dan perhatikan papan stasiun."
       },
       {
         "q": "Bagaimana cara mengganti bahasa?",
-        "a": "KORA mulai dalam bahasa iPhone-mu. Tekan lama kartu stasiun di layar utama (stasiun saat ini atau tujuan) untuk membuka pilihan 23 bahasa."
+        "a": "KoreaNavi mulai dalam bahasa iPhone-mu. Tekan lama kartu stasiun di layar utama (stasiun saat ini atau tujuan) untuk membuka pilihan 23 bahasa."
       },
       {
         "q": "Aktivitas Langsung tidak muncul di Layar Kunci.",
-        "a": "Periksa di Pengaturan > App > KORA (di iOS lama, Pengaturan > KORA) bahwa Aktivitas Langsung menyala. Aktivitas ini muncul saat kamu memulai panduan perjalanan dan berakhir jika aplikasi ditutup sepenuhnya. Dynamic Island hanya ada di model iPhone yang memilikinya."
+        "a": "Periksa di Pengaturan > App > KoreaNavi (di iOS lama, Pengaturan > KoreaNavi) bahwa Aktivitas Langsung menyala. Aktivitas ini muncul saat kamu memulai panduan perjalanan dan berakhir jika aplikasi ditutup sepenuhnya. Dynamic Island hanya ada di model iPhone yang memilikinya."
       },
       {
         "q": "Kota mana saja yang didukung?",
@@ -149,7 +149,7 @@
         "a": "Bisa. Pilih sendiri stasiun awal dan tujuan, lalu lihat rute, transit, dan arah kereta dari mana saja di dunia."
       },
       {
-        "q": "Apakah KORA Pro langganan?",
+        "q": "Apakah KoreaNavi Pro langganan?",
         "a": "Bukan. Ini pembelian sekali yang tetap jadi milikmu dan bisa dipakai dengan Berbagi Keluarga. Kalau kamu memasang ulang aplikasi, ketuk Pulihkan Pembelian di layar Pro."
       },
       {
@@ -158,7 +158,7 @@
       },
       {
         "q": "Apakah aplikasinya mendukung aksesibilitas?",
-        "a": "KORA mendukung VoiceOver dan ukuran teks yang lebih besar. Saran untuk aksesibilitas yang lebih baik selalu kami sambut."
+        "a": "KoreaNavi mendukung VoiceOver dan ukuran teks yang lebih besar. Saran untuk aksesibilitas yang lebih baik selalu kami sambut."
       }
     ]
   },

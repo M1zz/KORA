@@ -16,7 +16,7 @@ import re
 import sys
 import pathlib
 
-LOCALE_FILE = pathlib.Path(__file__).resolve().parent.parent / "KORA/Sources/Features/Subway/SubwayStationLocale.swift"
+LOCALE_FILE = pathlib.Path(__file__).resolve().parent.parent / "KoreaNavi/Sources/Features/Subway/SubwayStationLocale.swift"
 
 # Mirror the Swift `officialTranslationExceptions` whitelist.
 EXCEPTIONS = {

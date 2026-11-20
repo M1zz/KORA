@@ -13,15 +13,15 @@ only_rules:
   - file_length        # 파일 비대화 방지
 
 included:
-  - KORA
+  - KoreaNavi
   - widget
-# KORATests · KORAUITests 는 제외 - 시험에서 강제 언랩은 "여기서 바로 실패하라"는 관용 표현이다.
+# KoreaNaviTests · KoreaNaviUITests 는 제외 - 시험에서 강제 언랩은 "여기서 바로 실패하라"는 관용 표현이다.
 
 excluded:
   - build
-  - KORA/Sources/Features/Subway/SubwayNavigatorCatalog.swift   # 생성 파일 (gen_navloc.py)
-  - KORA/Sources/Features/Subway/SubwayStationDataExpansion.swift
-  - KORA/Sources/Features/Subway/SubwayStationChineseTraditionalNames.swift
+  - KoreaNavi/Sources/Features/Subway/SubwayNavigatorCatalog.swift   # 생성 파일 (gen_navloc.py)
+  - KoreaNavi/Sources/Features/Subway/SubwayStationDataExpansion.swift
+  - KoreaNavi/Sources/Features/Subway/SubwayStationChineseTraditionalNames.swift
 
 file_length:
   # SubwayNavigatorView(주석 빼고 2900줄대)를 화면 단위로 쪼개는 게 목표. 지금은 더 커지지 않게만 막는다.

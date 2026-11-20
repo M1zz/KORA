@@ -1,9 +1,9 @@
 {
-  "title": "KORA: metro v Koreji pro cestovatele",
-  "description": "Vyberte odkud a kam a KORA ukáže přestupy, počet stanic i přesný nápis vlaku, do kterého máte nastoupit. Cestou vám řekne, kdy vystoupit.",
+  "title": "KoreaNavi: metro v Koreji pro cestovatele",
+  "description": "Vyberte odkud a kam a KoreaNavi ukáže přestupy, počet stanic i přesný nápis vlaku, do kterého máte nastoupit. Cestou vám řekne, kdy vystoupit.",
   "hero": {
     "headline": "Správné nástupiště.\nSprávná stanice.",
-    "lead": "Vyberte výchozí a cílovou stanici a KORA vám řekne, do kterého vlaku nastoupit, přesně tak, jak to stojí na ceduli na nástupišti. Za jízdy sleduje, kde jste, a ozve se, když máte vystoupit.",
+    "lead": "Vyberte výchozí a cílovou stanici a KoreaNavi vám řekne, do kterého vlaku nastoupit, přesně tak, jak to stojí na ceduli na nástupišti. Za jízdy sleduje, kde jste, a ozve se, když máte vystoupit.",
     "cta": "Stáhnout zdarma",
     "note": "Hledání trasy, směr vlaku i příjezdy v reálném čase jsou zdarma."
   },
@@ -33,17 +33,17 @@
   },
   "problem": {
     "title": "Stáli jste na nástupišti a nevěděli, do kterého vlaku?",
-    "text": "Mapové aplikace vám řeknou linku, ale na nástupišti visí jen cedule s názvy stanic, které jste nikdy neslyšeli. Nastoupíte opačným směrem a vracíte se několik stanic. Přeslechnete hlášení a přejedete. KORA pojmenuje váš vlak stejně jako cedule a upozorní vás před vaší stanicí."
+    "text": "Mapové aplikace vám řeknou linku, ale na nástupišti visí jen cedule s názvy stanic, které jste nikdy neslyšeli. Nastoupíte opačným směrem a vracíte se několik stanic. Přeslechnete hlášení a přejedete. KoreaNavi pojmenuje váš vlak stejně jako cedule a upozorní vás před vaší stanicí."
   },
   "features": [
     {
       "title": "Stejnými slovy jako cedule",
-      "text": "Správný vlak vidíte přesně tak, jak je jeho cíl napsaný na nástupišti i na vlaku. Nejste si jistí? Namiřte fotoaparát na ceduli na nástupišti nebo směrovou tabuli vlaku a KORA vám hned řekne, jestli je to správný směr.\nRozpoznávání textu probíhá celé ve vašem iPhonu.",
+      "text": "Správný vlak vidíte přesně tak, jak je jeho cíl napsaný na nástupišti i na vlaku. Nejste si jistí? Namiřte fotoaparát na ceduli na nástupišti nebo směrovou tabuli vlaku a KoreaNavi vám hned řekne, jestli je to správný směr.\nRozpoznávání textu probíhá celé ve vašem iPhonu.",
       "shot": "board"
     },
     {
       "title": "Už žádné přejeté stanice",
-      "text": "KORA kombinuje příjezdy v reálném čase, GPS, rozjezdy a zastavení vlaku i hlášení ve vlaku, aby věděla, kde jste. Před vaší stanicí přijde „Připravte se k výstupu“ a pak „Vystupte teď!“ s vibrací.\nPrůběh jízdy uvidíte i na zamčené obrazovce a v Dynamic Islandu.",
+      "text": "KoreaNavi kombinuje příjezdy v reálném čase, GPS, rozjezdy a zastavení vlaku i hlášení ve vlaku, aby věděla, kde jste. Před vaší stanicí přijde „Připravte se k výstupu“ a pak „Vystupte teď!“ s vibrací.\nPrůběh jízdy uvidíte i na zamčené obrazovce a v Dynamic Islandu.",
       "shot": "ride"
     },
     {
@@ -92,7 +92,7 @@
     "note": "Všechna oprávnění jsou nepovinná. Bez nich si stanice vyberete sami a trasu i upozornění na výstup máte dál. Poloha, fotoaparát i hlášení se zpracovávají ve vašem zařízení a nikdy se nenahrávají, neukládají ani neodesílají."
   },
   "pricing": {
-    "title": "Hledání cesty je vždy zdarma. Doprovod za jízdy je KORA Pro.",
+    "title": "Hledání cesty je vždy zdarma. Doprovod za jízdy je KoreaNavi Pro.",
     "free": {
       "name": "Zdarma",
       "items": [
@@ -105,7 +105,7 @@
       ]
     },
     "pro": {
-      "name": "KORA Pro",
+      "name": "KoreaNavi Pro",
       "items": [
         "Na každé cestě: navigace na zamčené obrazovce, rozpoznávání hlášení a vibrace při výstupu",
         "Průvodce východy: co je u každého východu na linkách 1–8 v Soulu",
@@ -121,7 +121,7 @@
     "items": [
       {
         "q": "Aplikace nenajde mou stanici nebo ukazuje jinou.",
-        "a": "Otevřete Nastavení > Soukromí a zabezpečení > Polohové služby > KORA, zvolte „Při používání aplikace“ a zapněte „Přesná poloha“. V podzemí nebo velkých budovách může GPS chybovat: klepněte nahoře na kartu aktuální stanice a vyberte ji sami. Vše funguje i bez přístupu k poloze."
+        "a": "Otevřete Nastavení > Soukromí a zabezpečení > Polohové služby > KoreaNavi, zvolte „Při používání aplikace“ a zapněte „Přesná poloha“. V podzemí nebo velkých budovách může GPS chybovat: klepněte nahoře na kartu aktuální stanice a vyberte ji sami. Vše funguje i bez přístupu k poloze."
       },
       {
         "q": "Jak funguje ověření fotoaparátem?",
@@ -129,19 +129,19 @@
       },
       {
         "q": "Nezobrazují se příjezdy v reálném čase.",
-        "a": "Data pocházejí ze Seoul Open Data Plaza, potřebují internet a jsou hlavně pro linky v soulské metropolitní oblasti. Bez připojení nebo dat přejde KORA automaticky na odhad podle jízdního řádu, GPS a akcelerometru a dál vás vede. Hledání trasy funguje i offline."
+        "a": "Data pocházejí ze Seoul Open Data Plaza, potřebují internet a jsou hlavně pro linky v soulské metropolitní oblasti. Bez připojení nebo dat přejde KoreaNavi automaticky na odhad podle jízdního řádu, GPS a akcelerometru a dál vás vede. Hledání trasy funguje i offline."
       },
       {
         "q": "Upozornění na výstup přišlo trochu dřív nebo později.",
-        "a": "V podzemí je GPS slabé a aktuální stanice se může opožďovat. Když povolíte mikrofon, KORA polohu upřesní podle hlášení ve vlaku. Upozornění jsou pomůcka, poslouchejte i hlášení a sledujte cedule."
+        "a": "V podzemí je GPS slabé a aktuální stanice se může opožďovat. Když povolíte mikrofon, KoreaNavi polohu upřesní podle hlášení ve vlaku. Upozornění jsou pomůcka, poslouchejte i hlášení a sledujte cedule."
       },
       {
         "q": "Jak změním jazyk?",
-        "a": "KORA se spustí v jazyce vašeho iPhonu. Podržte na hlavní obrazovce kartu stanice (aktuální nebo cílovou) a otevře se výběr z 23 jazyků."
+        "a": "KoreaNavi se spustí v jazyce vašeho iPhonu. Podržte na hlavní obrazovce kartu stanice (aktuální nebo cílovou) a otevře se výběr z 23 jazyků."
       },
       {
         "q": "Na zamčené obrazovce se neukazuje živá aktivita.",
-        "a": "Zkontrolujte v Nastavení > Aplikace > KORA (ve starším iOS Nastavení > KORA), že jsou živé aktivity zapnuté. Objeví se, jakmile spustíte doprovod jízdy, a skončí, když aplikaci úplně zavřete. Dynamic Island mají jen modely iPhonu, které ho podporují."
+        "a": "Zkontrolujte v Nastavení > Aplikace > KoreaNavi (ve starším iOS Nastavení > KoreaNavi), že jsou živé aktivity zapnuté. Objeví se, jakmile spustíte doprovod jízdy, a skončí, když aplikaci úplně zavřete. Dynamic Island mají jen modely iPhonu, které ho podporují."
       },
       {
         "q": "Která města jsou podporovaná?",
@@ -152,7 +152,7 @@
         "a": "Ano. Vyberte výchozí a cílovou stanici sami a trasy, přestupy i směr vlaku uvidíte odkudkoli na světě."
       },
       {
-        "q": "Je KORA Pro předplatné?",
+        "q": "Je KoreaNavi Pro předplatné?",
         "a": "Ne. Je to jednorázový nákup, který vám zůstane, a funguje i s Rodinným sdílením. Po přeinstalování klepněte na obrazovce Pro na Obnovit nákup."
       },
       {
@@ -161,7 +161,7 @@
       },
       {
         "q": "Je aplikace přístupná?",
-        "a": "KORA podporuje VoiceOver a větší písmo. Návrhy, jak přístupnost zlepšit, jsou vždy vítané."
+        "a": "KoreaNavi podporuje VoiceOver a větší písmo. Návrhy, jak přístupnost zlepšit, jsou vždy vítané."
       }
     ]
   },

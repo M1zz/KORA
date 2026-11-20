@@ -2,7 +2,7 @@
 """화면 문구 카탈로그(NavLoc) 생성기.
 
 원본: scripts/i18n/navloc.json  — { 키: { 로케일: 문구 } }, 23개 언어 전부.
-출력: KORA/Sources/Features/Subway/SubwayNavigatorCatalog.swift (손으로 고치지 않는다)
+출력: KoreaNavi/Sources/Features/Subway/SubwayNavigatorCatalog.swift (손으로 고치지 않는다)
 
   python3 scripts/i18n/gen_navloc.py
 
@@ -13,7 +13,7 @@ import json, pathlib, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
 SRC = ROOT / "scripts/i18n/navloc.json"
-OUT = ROOT / "KORA/Sources/Features/Subway/SubwayNavigatorCatalog.swift"
+OUT = ROOT / "KoreaNavi/Sources/Features/Subway/SubwayNavigatorCatalog.swift"
 
 # JSON 로케일 → NavLoc 필드 이름 (순서 = init 인자 순서)
 FIELDS = [

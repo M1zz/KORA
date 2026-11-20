@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""빠른 하차 데이터 생성기 (KORA Pro 캐리어 모드).
+"""빠른 하차 데이터 생성기 (KoreaNavi Pro 캐리어 모드).
 
 원본: 공공데이터포털 "서울교통공사_빠른하차정보" (getFstExit)
       https://www.data.go.kr/data/15143840/openapi.do
       역·진행 방향마다 엘리베이터·에스컬레이터·계단에 가장 가까운 열차 칸-문 번호.
-키:   KORA/Config/Secrets.xcconfig 의 DATA_GO_KR_KEY (Encoding 키, 또는 같은 이름의 환경 변수).
+키:   KoreaNavi/Config/Secrets.xcconfig 의 DATA_GO_KR_KEY (Encoding 키, 또는 같은 이름의 환경 변수).
       키는 이 스크립트만 쓴다. 앱에는 결과 JSON 만 들어간다.
-출력: KORA/quick_exits.json
+출력: KoreaNavi/quick_exits.json
       { "앱역이름|노선번호": { "진행 방향 다음 역": { "e": [문, …], "s": [문, …] } } }
       e = 엘리베이터, s = 에스컬레이터. (계단은 짐이 있을 때 피할 곳이라 넣지 않는다)
 
@@ -15,7 +15,7 @@
 import json, os, pathlib, re, sys, time, urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-OUT = ROOT / "KORA/quick_exits.json"
+OUT = ROOT / "KoreaNavi/quick_exits.json"
 URL = "https://apis.data.go.kr/B553766/inout/getFstExit"
 
 LINES = {f"{n}호선": n for n in range(1, 10)}
@@ -31,9 +31,9 @@ DOOR = re.compile(r"^\d{1,2}-\d$")
 def api_key():
     if os.environ.get("DATA_GO_KR_KEY"):
         return os.environ["DATA_GO_KR_KEY"].strip()
-    m = re.search(r"^DATA_GO_KR_KEY\s*=\s*(\S+)", (ROOT / "KORA/Config/Secrets.xcconfig").read_text(), re.M)
+    m = re.search(r"^DATA_GO_KR_KEY\s*=\s*(\S+)", (ROOT / "KoreaNavi/Config/Secrets.xcconfig").read_text(), re.M)
     if not m:
-        sys.exit("DATA_GO_KR_KEY 가 없다: KORA/Config/Secrets.xcconfig 에 넣을 것")
+        sys.exit("DATA_GO_KR_KEY 가 없다: KoreaNavi/Config/Secrets.xcconfig 에 넣을 것")
     return m.group(1)
 
 
@@ -52,7 +52,7 @@ def page(key, n):
 
 def app_station_names():
     names = set()
-    for f in (ROOT / "KORA/Sources/Features/Subway").glob("SubwayLineData*.swift"):
+    for f in (ROOT / "KoreaNavi/Sources/Features/Subway").glob("SubwayLineData*.swift"):
         names |= set(re.findall(r'"([가-힣][가-힣0-9()·]*)"', f.read_text()))
     return names
 

@@ -1,9 +1,9 @@
 {
-  "title": "KORA: o metrô da Coreia para viajantes",
-  "description": "Escolha a origem e o destino: o KORA mostra as baldeações, as estações e o letreiro exato do trem que você precisa pegar, e avisa a hora de descer.",
+  "title": "KoreaNavi: o metrô da Coreia para viajantes",
+  "description": "Escolha a origem e o destino: o KoreaNavi mostra as baldeações, as estações e o letreiro exato do trem que você precisa pegar, e avisa a hora de descer.",
   "hero": {
     "headline": "A plataforma certa.\nA estação certa.",
-    "lead": "Escolha a origem e o destino e o KORA diz qual trem pegar, escrito exatamente como no letreiro da plataforma. Durante a viagem, ele acompanha sua estação e avisa a hora de descer.",
+    "lead": "Escolha a origem e o destino e o KoreaNavi diz qual trem pegar, escrito exatamente como no letreiro da plataforma. Durante a viagem, ele acompanha sua estação e avisa a hora de descer.",
     "cta": "Baixe grátis na App Store",
     "note": "Busca de rotas, sentido do trem e chegadas em tempo real são grátis."
   },
@@ -31,17 +31,17 @@
   },
   "problem": {
     "title": "Já ficou na plataforma sem saber qual trem pegar?",
-    "text": "Os apps de mapa mostram a linha, mas na plataforma só há letreiros com nomes de estações que você nunca ouviu. Pegou o sentido errado, volta várias estações. Perdeu o aviso, passa do ponto. O KORA chama o seu trem do mesmo jeito que o letreiro e avisa antes da sua estação."
+    "text": "Os apps de mapa mostram a linha, mas na plataforma só há letreiros com nomes de estações que você nunca ouviu. Pegou o sentido errado, volta várias estações. Perdeu o aviso, passa do ponto. O KoreaNavi chama o seu trem do mesmo jeito que o letreiro e avisa antes da sua estação."
   },
   "features": [
     {
       "title": "Do jeito que está no letreiro",
-      "text": "O trem certo aparece exatamente como o destino escrito na plataforma e no próprio trem. Ficou na dúvida? Aponte a câmera para a placa da plataforma ou o letreiro de destino do trem e o KORA diz na hora se é o sentido certo.\nO reconhecimento de texto acontece todo no seu iPhone.",
+      "text": "O trem certo aparece exatamente como o destino escrito na plataforma e no próprio trem. Ficou na dúvida? Aponte a câmera para a placa da plataforma ou o letreiro de destino do trem e o KoreaNavi diz na hora se é o sentido certo.\nO reconhecimento de texto acontece todo no seu iPhone.",
       "shot": "board"
     },
     {
       "title": "Nunca mais passe do ponto",
-      "text": "O KORA junta chegadas em tempo real, GPS, as partidas e paradas do trem e os avisos de bordo para saber onde você está. Perto da sua estação vem “Prepare-se para descer” e depois “Desça agora!”, com vibração.\nO progresso também aparece na Tela Bloqueada e na Dynamic Island.",
+      "text": "O KoreaNavi junta chegadas em tempo real, GPS, as partidas e paradas do trem e os avisos de bordo para saber onde você está. Perto da sua estação vem “Prepare-se para descer” e depois “Desça agora!”, com vibração.\nO progresso também aparece na Tela Bloqueada e na Dynamic Island.",
       "shot": "ride"
     },
     {
@@ -90,7 +90,7 @@
     "note": "Todas as permissões são opcionais. Sem elas, você escolhe as estações e continua com rota e avisos de descida. Localização, câmera e avisos são processados no seu aparelho e nunca gravados, guardados ou enviados."
   },
   "pricing": {
-    "title": "Achar o caminho é sempre grátis. O guia a bordo é KORA Pro.",
+    "title": "Achar o caminho é sempre grátis. O guia a bordo é KoreaNavi Pro.",
     "free": {
       "name": "Grátis",
       "items": [
@@ -103,7 +103,7 @@
       ]
     },
     "pro": {
-      "name": "KORA Pro",
+      "name": "KoreaNavi Pro",
       "items": [
         "Em toda viagem: guia na Tela Bloqueada, reconhecimento dos avisos e vibração na hora de descer",
         "Guia de saídas: o que há em cada saída das linhas 1 a 8 de Seul",
@@ -119,7 +119,7 @@
     "items": [
       {
         "q": "O app não acha minha estação ou mostra outra.",
-        "a": "Vá em Ajustes > Privacidade e Segurança > Serviços de Localização > KORA, escolha “Durante o Uso do App” e ative “Localização Precisa”. No subsolo ou em prédios grandes o GPS pode errar: toque no cartão da estação atual, no topo, e escolha você mesmo. Tudo funciona também sem acesso à localização."
+        "a": "Vá em Ajustes > Privacidade e Segurança > Serviços de Localização > KoreaNavi, escolha “Durante o Uso do App” e ative “Localização Precisa”. No subsolo ou em prédios grandes o GPS pode errar: toque no cartão da estação atual, no topo, e escolha você mesmo. Tudo funciona também sem acesso à localização."
       },
       {
         "q": "Como uso a conferência pela câmera?",
@@ -127,19 +127,19 @@
       },
       {
         "q": "As chegadas em tempo real não aparecem.",
-        "a": "Os dados vêm do Seoul Open Data Plaza, precisam de internet e existem principalmente nas linhas da região metropolitana de Seul. Sem conexão ou sem dados em tempo real, o KORA passa automaticamente para uma estimativa com horários, GPS e acelerômetro e continua guiando você. A busca de rotas funciona offline."
+        "a": "Os dados vêm do Seoul Open Data Plaza, precisam de internet e existem principalmente nas linhas da região metropolitana de Seul. Sem conexão ou sem dados em tempo real, o KoreaNavi passa automaticamente para uma estimativa com horários, GPS e acelerômetro e continua guiando você. A busca de rotas funciona offline."
       },
       {
         "q": "O aviso de descida veio um pouco cedo ou tarde.",
-        "a": "No subsolo o GPS é fraco e a estação atual pode atrasar. Se você liberar o microfone, o KORA corrige a posição com os avisos de bordo. Os avisos são uma ajuda: preste atenção também aos anúncios e às placas."
+        "a": "No subsolo o GPS é fraco e a estação atual pode atrasar. Se você liberar o microfone, o KoreaNavi corrige a posição com os avisos de bordo. Os avisos são uma ajuda: preste atenção também aos anúncios e às placas."
       },
       {
         "q": "Como mudo o idioma?",
-        "a": "O KORA começa no idioma do seu iPhone. Toque e segure um cartão de estação na tela principal (estação atual ou destino) para abrir a escolha entre 23 idiomas."
+        "a": "O KoreaNavi começa no idioma do seu iPhone. Toque e segure um cartão de estação na tela principal (estação atual ou destino) para abrir a escolha entre 23 idiomas."
       },
       {
         "q": "A Atividade ao Vivo não aparece na Tela Bloqueada.",
-        "a": "Confira em Ajustes > Apps > KORA (no iOS mais antigo, Ajustes > KORA) se as Atividades ao Vivo estão ativadas. Ela aparece quando você começa o guia da viagem e termina se você fechar o app por completo. A Dynamic Island só aparece nos modelos de iPhone que a têm."
+        "a": "Confira em Ajustes > Apps > KoreaNavi (no iOS mais antigo, Ajustes > KoreaNavi) se as Atividades ao Vivo estão ativadas. Ela aparece quando você começa o guia da viagem e termina se você fechar o app por completo. A Dynamic Island só aparece nos modelos de iPhone que a têm."
       },
       {
         "q": "Quais cidades estão incluídas?",
@@ -150,7 +150,7 @@
         "a": "Sim. Escolha você mesmo a origem e o destino e veja rotas, baldeações e sentido do trem de qualquer lugar do mundo."
       },
       {
-        "q": "O KORA Pro é uma assinatura?",
+        "q": "O KoreaNavi Pro é uma assinatura?",
         "a": "Não. É uma compra única que fica com você e funciona com o Compartilhamento Familiar. Se reinstalar o app, toque em Restaurar compra na tela do Pro."
       },
       {
@@ -159,7 +159,7 @@
       },
       {
         "q": "O app é acessível?",
-        "a": "O KORA é compatível com o VoiceOver e com tamanhos de texto maiores. Sugestões para melhorar a acessibilidade são sempre bem-vindas."
+        "a": "O KoreaNavi é compatível com o VoiceOver e com tamanhos de texto maiores. Sugestões para melhorar a acessibilidade são sempre bem-vindas."
       }
     ]
   },

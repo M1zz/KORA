@@ -43,14 +43,14 @@ jobs:
       - name: 배포 게이트 (predeploy.sh)
         run: sh scripts/predeploy.sh
 
-      - name: 단위 시험 (KORATests)
+      - name: 단위 시험 (KoreaNaviTests)
         run: |
           DEST=$(xcrun simctl list devices available | grep -m1 -oE 'iPhone [0-9]+( Pro)? \(' | sed 's/ ($//')
           echo "시뮬레이터: $DEST"
           xcodebuild test \
-            -project KORA.xcodeproj \
-            -scheme KORA \
-            -only-testing:KORATests \
+            -project KoreaNavi.xcodeproj \
+            -scheme KoreaNavi \
+            -only-testing:KoreaNaviTests \
             -destination "platform=iOS Simulator,name=$DEST" \
             CODE_SIGNING_ALLOWED=NO \
             -quiet

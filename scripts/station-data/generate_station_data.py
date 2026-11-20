@@ -80,9 +80,9 @@ def parse(path):
 def core_keys():
     keys = set()
     for f, pat in [
-        (f"{REPO}/KORA/Sources/Features/Subway/SubwayStationCoordinates.swift",
+        (f"{REPO}/KoreaNavi/Sources/Features/Subway/SubwayStationCoordinates.swift",
          re.compile(r'^\s*"([^"]+)":\s*\(')),
-        (f"{REPO}/KORA/Sources/Features/Subway/SubwayStationLocale.swift",
+        (f"{REPO}/KoreaNavi/Sources/Features/Subway/SubwayStationLocale.swift",
          re.compile(r'^\s*"([^"]+)":\s*\.init')),
     ]:
         s = set()

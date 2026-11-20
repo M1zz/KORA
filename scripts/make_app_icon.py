@@ -4,10 +4,10 @@
   python3 scripts/make_app_icon.py
 
 일본길찾기의 아이콘과 같은 그림이다. 두 앱이 한 시리즈로 보이도록
-모양은 그대로 두고 색만 나라에 맞춘다 (KORA = 태극 빨강·파랑, 일본길찾기 = 남색·빨강).
+모양은 그대로 두고 색만 나라에 맞춘다 (KoreaNavi = 태극 빨강·파랑, 일본길찾기 = 남색·빨강).
 모양을 고치면 ../일본길찾기/scripts/make_app_icon.py 도 같이 고친다.
 
-출력: KORA/Assets.xcassets/AppIcon.appiconset/AppIcon.png (1024, 모서리 없음, 투명 없음)
+출력: KoreaNavi/Assets.xcassets/AppIcon.appiconset/AppIcon.png (1024, 모서리 없음, 투명 없음)
       docs/icon.png (웹사이트용 같은 그림)
 iOS 가 모서리를 깎으므로 그림은 정사각형 꽉 채워 그린다.
 """
@@ -52,7 +52,7 @@ def main():
     d.rounded_rectangle(s(232, 852, 792, 892), radius=20 * S, fill=WHITE)
 
     out = img.resize((1024, 1024), Image.LANCZOS)
-    out.save(ROOT / "KORA/Assets.xcassets/AppIcon.appiconset/AppIcon.png")
+    out.save(ROOT / "KoreaNavi/Assets.xcassets/AppIcon.appiconset/AppIcon.png")
     out.save(ROOT / "docs/icon.png")
     print("AppIcon.png, docs/icon.png")
 

@@ -17,7 +17,7 @@ SNS 없이 영어권·일본어권 사람에게 닿는 곳의 **제출 양식 �
 | 연락처 | leeo@kakao.com (APPSTORE.md 에 공개된 문의 주소) |
 | 플랫폼 | iPhone (iOS) |
 | 언어 (23) | Japanese, Korean, English, Chinese (Simplified), Chinese (Traditional), German, Spanish, French, Italian, Portuguese (Brazil), Russian, Czech, Danish, Greek, Finnish, Indonesian, Norwegian, Dutch, Polish, Swedish, Thai, Turkish, Vietnamese |
-| 가격 | 무료 다운로드. 길찾기·타는 방향·실시간 도착·카메라 방향 확인은 늘 무료. 잠금 화면 안내·안내방송 인식·하차 진동은 처음 3번의 여정 무료, 그 뒤 KORA Pro 1회 구매 (구독 아님) |
+| 가격 | 무료 다운로드. 길찾기·타는 방향·실시간 도착·카메라 방향 확인은 늘 무료. 잠금 화면 안내·안내방송 인식·하차 진동은 처음 3번의 여정 무료, 그 뒤 한국길찾기 Pro 1회 구매 (구독 아님) |
 
 **제출 전 확인할 것**: 1.0.9 가 스토어에 나간 뒤에 낸다. 아래 글은 1.0.9 기준이다 (VoiceOver 로 타기·갈아타기·내리기, 사용법 안내). 1.0.8 에는 없다.
 
@@ -48,7 +48,7 @@ SNS 없이 영어권·일본어권 사람에게 닿는 곳의 **제출 양식 �
 4. 같은 앱의 소식은 **한 스레드에서 이어 간다** (업데이트마다 새 글 금지). 같은 글 반복 게시는 스팸.
 5. 판매 광고, 제휴·추천 링크 금지.
 6. **글은 본인 계정으로 본인이 직접 검토해 올린다.** AI·봇이 대신 올리면 안 되고, AI 로 초안을 썼다면 꼼꼼히 읽고 본인 목소리로 고친다. → 아래 초안은 **출발점**이다. Leeo 가 직접 VoiceOver 로 앱을 다시 써 보고, 본인 말투로 고친 뒤 올린다.
-7. 접근 가능하지 않거나 그럴 계획이 없는 앱의 글은 지워질 수 있다. 유료 앱이면 프로모션 코드를 나눠 의견을 받는 것을 권한다 → KORA Pro 는 인앱 구매이므로 App Store Connect 의 **인앱 구매 오퍼 코드**를 몇 개 만들어 피드백을 준 사람에게 줄 수 있다 (선택).
+7. 접근 가능하지 않거나 그럴 계획이 없는 앱의 글은 지워질 수 있다. 유료 앱이면 프로모션 코드를 나눠 의견을 받는 것을 권한다 → 한국길찾기 Pro 는 인앱 구매이므로 App Store Connect 의 **인앱 구매 오퍼 코드**를 몇 개 만들어 피드백을 준 사람에게 줄 수 있다 (선택).
 
 **어디에**: 포럼 ▸ iOS·iPadOS 앱 이야기를 하는 게시판 (가장 알맞은 한 곳. 게시판 이름은 올릴 때 사이트에서 확인). 새 글: https://www.applevis.com/node/add/forum
 
@@ -61,14 +61,14 @@ Korea Navi: Subway Routes — VoiceOver feedback wanted (I'm the developer)
 
 **본문**
 ```
-Hi everyone. I'm Leeo, an independent developer in Korea, and I make KORA, a subway guide for people visiting Korea. I'd like honest feedback from VoiceOver users before I go further, so here is exactly what works today and what doesn't.
+Hi everyone. I'm Leeo, an independent developer in Korea, and I make 한국길찾기, a subway guide for people visiting Korea. I'd like honest feedback from VoiceOver users before I go further, so here is exactly what works today and what doesn't.
 
-What KORA does
-You pick a start station and a destination. KORA tells you the transfers, the number of stops, the estimated time and which direction to board, written the way the train's destination sign reads. During the ride it follows your current station and tells you when to get off. It covers about 930 stations in the Seoul area, Busan, Daegu, Gwangju and Daejeon, and the whole app is available in 23 languages. Station names are shown in Korean together with the romanized spelling used on Korean station signs. Route search works offline.
+What 한국길찾기 does
+You pick a start station and a destination. 한국길찾기 tells you the transfers, the number of stops, the estimated time and which direction to board, written the way the train's destination sign reads. During the ride it follows your current station and tells you when to get off. It covers about 930 stations in the Seoul area, Busan, Daegu, Gwangju and Daejeon, and the whole app is available in 23 languages. Station names are shown in Korean together with the romanized spelling used on Korean station signs. Route search works offline.
 
 What works with VoiceOver (version 1.0.9)
 - Boarding, transferring and getting off are slide gestures for sighted users. Each one is also an accessibility action, so with VoiceOver you can perform it from the rotor or with a double tap, and with Voice Control you can say its name.
-- As your stop approaches you get "Prepare to get off" and then "Get off now", with vibration. The vibration alerts, the Lock Screen Live Activity and in-train announcement recognition are free for your first three journeys; after that they need a one-time KORA Pro purchase. Route search and boarding direction are always free.
+- As your stop approaches you get "Prepare to get off" and then "Get off now", with vibration. The vibration alerts, the Lock Screen Live Activity and in-train announcement recognition are free for your first three journeys; after that they need a one-time 한국길찾기 Pro purchase. Route search and boarding direction are always free.
 - The first-time guide and the main screen pass Xcode's automated accessibility audit.
 - The app follows Increase Contrast, Reduce Motion, Reduce Transparency and Differentiate Without Color.
 
@@ -107,7 +107,7 @@ If you try it, I'd love to hear where VoiceOver gets stuck, in this thread or th
 
 **Description**
 ```
-KORA is a subway guide for people visiting Korea. Pick a start and a destination and it shows the transfers, stops, time and which way to board, written exactly as the train's destination sign reads. During the ride it follows your current station using Seoul's real-time arrivals, GPS, motion and on-device recognition of the in-train announcements, then tells you when to get off, with a Live Activity on the Lock Screen. Point the camera at a platform sign and it tells you if you're facing the right way. About 930 stations in Seoul, Busan, Daegu, Gwangju and Daejeon, offline route search, 23 languages, and station names shown in Korean next to the spelling you'll see on the signs. Boarding, transferring and getting off also work with VoiceOver and Voice Control. No account, no ads, and location and camera stay on the device. Route guidance is free; a one-time KORA Pro purchase adds Lock Screen tracking, stop alerts, last-train alerts and exit guides after three free journeys. Made by one independent developer in Korea.
+한국길찾기 is a subway guide for people visiting Korea. Pick a start and a destination and it shows the transfers, stops, time and which way to board, written exactly as the train's destination sign reads. During the ride it follows your current station using Seoul's real-time arrivals, GPS, motion and on-device recognition of the in-train announcements, then tells you when to get off, with a Live Activity on the Lock Screen. Point the camera at a platform sign and it tells you if you're facing the right way. About 930 stations in Seoul, Busan, Daegu, Gwangju and Daejeon, offline route search, 23 languages, and station names shown in Korean next to the spelling you'll see on the signs. Boarding, transferring and getting off also work with VoiceOver and Voice Control. No account, no ads, and location and camera stay on the device. Route guidance is free; a one-time 한국길찾기 Pro purchase adds Lock Screen tracking, stop alerts, last-train alerts and exit guides after three free journeys. Made by one independent developer in Korea.
 ```
 
 **한국어 요약**: 양식 8칸을 그대로 채웠다. SNS 가 없으므로 웹사이트·스토어 주소만 넣는다.
@@ -126,7 +126,7 @@ KORA is a subway guide for people visiting Korea. Pick a start and a destination
 |---|---|
 | URL | `https://m1zz.github.io/KORA/en/` |
 | Download link | `https://apps.apple.com/app/id6775176578` |
-| Name | `KORA` |
+| Name | `KoreaNavi` |
 | Tagline | `Board the right train in Korea, in 23 languages` (47자) |
 | Topics | Travel, iOS, Accessibility |
 | Pricing | Free (with in-app purchase) |
@@ -140,7 +140,7 @@ Subway guide for visitors to Korea. Shows which way to board as the train sign r
 
 **First comment**
 ```
-Hi, I'm Leeo, a solo developer in Korea. I built KORA after watching visitors on Seoul platforms stare at signs that only make sense if you know which terminus your train heads to. KORA tells you the terminus to look for, checks it with your camera, and buzzes before your stop. Everything runs on the phone; there's no account. It's in 23 languages, and the core ride (board, transfer, get off) works with VoiceOver. I'd love feedback, especially from anyone who has ridden Korean subways.
+Hi, I'm Leeo, a solo developer in Korea. I built 한국길찾기 after watching visitors on Seoul platforms stare at signs that only make sense if you know which terminus your train heads to. 한국길찾기 tells you the terminus to look for, checks it with your camera, and buzzes before your stop. Everything runs on the phone; there's no account. It's in 23 languages, and the core ride (board, transfer, get off) works with VoiceOver. I'd love feedback, especially from anyone who has ridden Korean subways.
 ```
 
 ---
@@ -151,14 +151,14 @@ Hi, I'm Leeo, a solo developer in Korea. I built KORA after watching visitors on
 
 **제목**
 ```
-App suggestion for your Korea transit apps guide: KORA
+App suggestion for your Korea transit apps guide: 한국길찾기
 ```
 
 **본문**
 ```
 Hi Seoul Start team,
 
-I read your guide to Korea transit apps and wanted to suggest one more for visitors: KORA, a subway guide I make as an independent developer in Korea.
+I read your guide to Korea transit apps and wanted to suggest one more for visitors: 한국길찾기, a subway guide I make as an independent developer in Korea.
 
 What it adds to the apps you list:
 - It tells you which way to board in the same words as the train's destination sign, and you can point the camera at a platform sign to check you're facing the right way.
@@ -185,7 +185,7 @@ Leeo
 
 **본문**: 4번 Seoul Start 메일에서 첫 문단만 바꿔 쓴다.
 ```
-Hi, I read your list of Korea travel apps for tourists and wanted to suggest a subway app for it: KORA, which I make as an independent developer in Korea.
+Hi, I read your list of Korea travel apps for tourists and wanted to suggest a subway app for it: 한국길찾기, which I make as an independent developer in Korea.
 ```
 
 ---
@@ -199,11 +199,11 @@ Hi, I read your list of Korea travel apps for tourists and wanted to suggest a s
 ```
 アプリ開発者のLeeo（リーオ）と申します。韓国で個人開発している地下鉄案内アプリ「韓国ナビ：地下鉄ルート案内」のレビューをご検討いただけないでしょうか。
 
-KORAは韓国を旅行する方のためのiPhoneアプリです。出発駅と到着駅を選ぶだけで、乗り換え、駅数、所要時間の目安、そして乗るべき電車を行先表示「○○行き」のまま案内します。乗車中は現在の駅を追いかけ、降りる駅が近づくと振動とロック画面でお知らせします。ホームの案内板にカメラを向けると、乗る方向が合っているかもその場で確認できます。
+한국길찾기は韓国を旅行する方のためのiPhoneアプリです。出発駅と到着駅を選ぶだけで、乗り換え、駅数、所要時間の目安、そして乗るべき電車を行先表示「○○行き」のまま案内します。乗車中は現在の駅を追いかけ、降りる駅が近づくと振動とロック画面でお知らせします。ホームの案内板にカメラを向けると、乗る方向が合っているかもその場で確認できます。
 
 ソウル首都圏・釜山・大邱・光州・大田の約930駅に対応し、ルート検索はオフラインでも使えます。駅名はハングルとカタカナを並べて表示するので、ホームの表示とそのまま見比べられます。アプリは日本語を含む23言語に対応しています。
 
-経路検索はいつでも無料で、一部の乗車中機能は3回まで無料、その後は買い切りのKORA Proで使えます（サブスクリプションではありません）。会員登録も広告もありません。
+経路検索はいつでも無料で、一部の乗車中機能は3回まで無料、その後は買い切りの한국길찾기 Proで使えます（サブスクリプションではありません）。会員登録も広告もありません。
 
 App Store: https://apps.apple.com/jp/app/id6775176578
 公式サイト: https://m1zz.github.io/KORA/ja/

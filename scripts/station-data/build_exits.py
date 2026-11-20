@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""출구 안내 데이터 생성기 (KORA Pro).
+"""출구 안내 데이터 생성기 (KoreaNavi Pro).
 
 원본: 공공데이터포털 "서울교통공사_역별 역세권 현황" (파일데이터, 인증키 필요 없음)
       https://www.data.go.kr/data/15044230/fileData.do
       1~8호선, 9호선 2·3단계 역의 출구번호별 주변 장소 (한글, 역 안 표지판 표기).
-출력: KORA/station_exits.json  — { 앱 역 이름: [[출구번호, [장소, …]], …] }
+출력: KoreaNavi/station_exits.json  — { 앱 역 이름: [[출구번호, [장소, …]], …] }
 
   python3 scripts/station-data/build_exits.py            # 내려받아서 생성
   python3 scripts/station-data/build_exits.py 원본.csv   # 받아 둔 CSV 로 생성
@@ -14,7 +14,7 @@
 import csv, io, json, pathlib, re, sys, urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[2]
-OUT = ROOT / "KORA/station_exits.json"
+OUT = ROOT / "KoreaNavi/station_exits.json"
 URL = ("https://www.data.go.kr/cmm/cmm/fileDownload.do"
        "?atchFileId=FILE_000000007644618&fileDetailSn=1&insertDataPrcus=N")
 
@@ -28,7 +28,7 @@ ALIASES = {
 
 def app_station_names():
     names = set()
-    for f in (ROOT / "KORA/Sources/Features/Subway").glob("SubwayLineData*.swift"):
+    for f in (ROOT / "KoreaNavi/Sources/Features/Subway").glob("SubwayLineData*.swift"):
         names |= set(re.findall(r'"([가-힣][가-힣0-9()·]*)"', f.read_text()))
     return names
 

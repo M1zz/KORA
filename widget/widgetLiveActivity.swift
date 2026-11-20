@@ -2,7 +2,7 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
-// MARK: - Color helper (widget-local, mirrors KORATheme)
+// MARK: - Color helper (widget-local, mirrors KoreaNaviTheme)
 
 private extension Color {
     init(hex: String) {
@@ -27,8 +27,8 @@ private extension Color {
 // MARK: - Lock-screen / banner view
 
 @available(iOS 16.1, *)
-private struct KORALockScreenView: View {
-    let context: ActivityViewContext<KORALiveActivityAttributes>
+private struct KoreaNaviLockScreenView: View {
+    let context: ActivityViewContext<KoreaNaviLiveActivityAttributes>
 
     private var lineColor: Color { Color(hex: context.state.lineColorHex) }
 
@@ -83,8 +83,8 @@ private struct KORALockScreenView: View {
 @available(iOS 16.1, *)
 struct widgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
-        ActivityConfiguration(for: KORALiveActivityAttributes.self) { context in
-            KORALockScreenView(context: context)
+        ActivityConfiguration(for: KoreaNaviLiveActivityAttributes.self) { context in
+            KoreaNaviLockScreenView(context: context)
         } dynamicIsland: { context in
             let lineColor = Color(hex: context.state.lineColorHex)
 

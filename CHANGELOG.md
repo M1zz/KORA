@@ -1,6 +1,6 @@
 # Changelog
 
-KORA のリリースノート / KORA 릴리즈 노트.
+한국길찾기 のリリースノート / 한국길찾기 릴리즈 노트.
 
 ## 1.0.5 (2026-09-19)
 
@@ -29,7 +29,7 @@ KORA のリリースノート / KORA 릴리즈 노트.
 
 **English**
 
-KORA is now a single screen focused on subway guidance, without tabs or the map
+한국길찾기 is now a single screen focused on subway guidance, without tabs or the map
 While riding, the station you get off at now shows a pin so your destination is easy to spot
 Closing the app now also ends the Live Activity on the Lock Screen
 Added Traditional Chinese, and the whole app is now available in English, Japanese and Simplified Chinese
@@ -60,7 +60,7 @@ Fixed platform sign scanning sometimes marking the next station as the wrong dir
   PlaceSearchService, CachedAsyncImage, EmptyStateView, SafariView,
   Place·PlaceStore·SharedInbox·NavigationCoordinator, 출구 안내(SubwayExitService·
   SubwayExits.json — 저장 장소 좌표가 있어야만 동작했음).
-- 공유 익스텐션(KORAShare) 타깃 삭제. 홈 위젯은 저장 장소 목록을 빼고
+- 공유 익스텐션(KoreaNaviShare) 타깃 삭제. 홈 위젯은 저장 장소 목록을 빼고
   "지하철 길 안내" 바로가기(small) 하나로.
 - Info.plist: NSPhotoLibraryUsageDescription·Kakao/Naver 키 제거,
   ITSAppUsesNonExemptEncryption = NO 추가.
@@ -77,10 +77,10 @@ Fixed platform sign scanning sometimes marking the next station as the wrong dir
   (SeoulMetroLineInfo.localizedName). 전에는 모든 언어에서 한국어로 보였음.
 - 위치 오류 메시지가 일본어로만 나오던 것 → 5개 언어.
 - Live Activity: 역·노선 이름과 정거장 단위를 앱 표시 언어로 넘김
-  (KORALiveActivityAttributes.stopsUnit 추가 — 앱·위젯 두 사본 동기화).
+  (KoreaNaviLiveActivityAttributes.stopsUnit 추가 — 앱·위젯 두 사본 동기화).
 - 위젯·컨트롤 위젯: widget/Localizable.xcstrings (5개 언어).
 - InfoPlist.xcstrings: 표시 이름·권한 문구 5개 언어 완비. knownRegions 에 zh-Hans·zh-Hant.
-- 쓰이지 않던 KORA/Localizable.xcstrings(저장 화면용 307키)와 NavLoc 32건 삭제.
+- 쓰이지 않던 KoreaNavi/Localizable.xcstrings(저장 화면용 307키)와 NavLoc 32건 삭제.
 
 **Live Activity / UI**
 - willTerminate 시 모든 Live Activity 종료 + 다음 실행 시 잔여 정리.
@@ -90,7 +90,7 @@ Fixed platform sign scanning sometimes marking the next station as the wrong dir
 **Deploy (DeployBar)**
 - deploy.env, scripts/predeploy.sh (버전 단일 소스·카탈로그 빈칸·역 이름 번체 표·
   Release 빌드), RELEASE_NOTES.md.
-- 버전은 KORA/Config/Version.xcconfig 한 곳 (앱·위젯 base config, Secrets.xcconfig 를 include).
+- 버전은 KoreaNavi/Config/Version.xcconfig 한 곳 (앱·위젯 base config, Secrets.xcconfig 를 include).
 - docs/: 언어별 소개·지원·개인정보 처리방침, docs/appstore/ 스토어 메타데이터.
 
 **App**
@@ -154,7 +154,7 @@ Fixed platform sign scanning sometimes marking the next station as the wrong dir
   대곡(대구)·양평(서울)·신촌(경의중앙)·부전(동해선) 등. 실시간 API 조회 시
   괄호 표기를 벗겨 원 역명으로 질의.
 - MetroCategory (서울/경기·인천·부산·대구·광주·대전): 역 선택 화면 상단
-  카테고리 칩, @AppStorage("KORA.metroCategory")로 영구 저장. 검색은 전국,
+  카테고리 칩, @AppStorage("한국길찾기.metroCategory")로 영구 저장. 검색은 전국,
   둘러보기는 선택 권역만.
 
 **App**

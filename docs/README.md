@@ -1,6 +1,6 @@
-# KORA Pages
+# 한국길찾기 Pages
 
-KORA(한국 길찾기)의 소개·지원·개인정보 처리방침 사이트. GitHub Pages 로 `main` 브랜치의 `/docs` 를 그대로 싣는다.
+한국길찾기(한국 길찾기)의 소개·지원·개인정보 처리방침 사이트. GitHub Pages 로 `main` 브랜치의 `/docs` 를 그대로 싣는다.
 
 ## 언어별 주소
 
@@ -28,7 +28,7 @@ App Store Connect 의 언어별 칸(마케팅 URL, 지원 URL, 개인정보 처�
 ## 고칠 때
 
 - 한 언어를 고치면 다섯 언어를 모두 고친다. 개인정보 처리방침은 한국어판이 우선한다.
-- 앱이 새로 데이터를 보내게 되면(예: Crashlytics 추가) 처리방침 다섯 벌, `appstore/README.md` 의 앱 개인정보 보호 표, `KORA/PrivacyInfo.xcprivacy` 를 같이 고친다.
+- 앱이 새로 데이터를 보내게 되면(예: Crashlytics 추가) 처리방침 다섯 벌, `appstore/README.md` 의 앱 개인정보 보호 표, `KoreaNavi/PrivacyInfo.xcprivacy` 를 같이 고친다.
 
 ## GitHub Pages 활성화
 
