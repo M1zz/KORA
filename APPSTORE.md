@@ -18,12 +18,12 @@ arex,train,gwangju,daejeon,korean,route,busan,daegu,incheon,exit,gtx,tourist,ktx
 
 ### 프로모션 텍스트
 
-Board the right train and never miss your stop. Korea Navi now speaks 23 languages, from German and Spanish to Thai and Vietnamese.
+Board in the right direction every time. Korea Navi shows it exactly as the train's sign reads and buzzes as your stop approaches, all in your own language.
 
 ### 설명
 
-Korea Navi is a subway guide for anyone visiting Korea.
-Choose your starting station and destination, and Korea Navi shows the transfers, number of stops, estimated time, and which direction to board, exactly as the train's destination sign reads. While you ride, it follows your current station and tells you when to get off.
+Board in the right direction every time: Korea Navi shows it exactly as the train's destination sign reads, and buzzes when it's time to get off. It's a subway guide for anyone visiting Korea.
+Choose your starting station and destination to see transfers, number of stops and estimated time. While you ride, it follows your current station.
 
 YOUR STATION, FOUND FOR YOU
 Find the nearest station with GPS or pick one yourself. Korea Navi remembers it the next time you open the app.
@@ -93,12 +93,12 @@ busan,incheon,daegu,daejeon,gwangju,gtx,arex,airport,train,transfer,station,tube
 
 ### 프로모션 텍스트
 
-Board the right train and never miss your stop. Korea Navi now speaks 23 languages, from German and Spanish to Thai and Vietnamese.
+Board in the right direction every time. Korea Navi shows it exactly as the train's sign reads and buzzes as your stop approaches, all in your own language.
 
 ### 설명
 
-Korea Navi is a subway guide for anyone visiting Korea.
-Choose your starting station and destination, and Korea Navi shows the transfers, number of stops, estimated time, and which direction to board, exactly as the train's destination sign reads. While you ride, it follows your current station and tells you when to get off.
+Board in the right direction every time: Korea Navi shows it exactly as the train's destination sign reads, and buzzes when it's time to get off. It's a subway guide for anyone visiting Korea.
+Choose your starting station and destination to see transfers, number of stops and estimated time. While you ride, it follows your current station.
 
 YOUR STATION, FOUND FOR YOU
 Find the nearest station with GPS or choose one yourself. Korea Navi remembers it the next time you open the app.
@@ -168,12 +168,12 @@ https://m1zz.github.io/KORA/en/
 
 ### 프로모션 텍스트
 
-타야 할 방향은 열차 표시 그대로, 내릴 역은 진동으로 알려 드려요. 이제 독일어, 프랑스어, 태국어 등 23개 언어로 쓸 수 있습니다.
+타야 할 방향은 열차에 뜬 표시 그대로, 내릴 역은 진동으로 알려 드려요. 출발역과 도착역만 고르면 환승과 정거장 수, 예상 시간까지 한 번에 보입니다.
 
 ### 설명
 
-한국길찾기는 한국을 여행하는 사람을 위한 지하철 안내 앱입니다.
-출발역과 도착역만 고르면 환승, 정거장 수, 예상 시간, 그리고 어느 방향 열차를 타야 하는지 열차에 표시되는 "○○행" 그대로 알려 드립니다. 탑승 중에는 지금 어느 역인지 따라가다가 내릴 때가 되면 알려 드립니다.
+타야 할 방향은 열차에 표시되는 "○○행" 그대로, 내릴 역은 진동으로 알려 드립니다. 한국을 여행하는 사람을 위한 지하철 안내 앱입니다.
+출발역과 도착역만 고르면 환승, 정거장 수, 예상 시간이 바로 나옵니다. 탑승 중에는 지금 어느 역인지 따라갑니다.
 
 출발역은 자동으로
 GPS로 가장 가까운 역을 찾거나 직접 고를 수 있습니다. 고른 역은 다음에 앱을 열 때도 기억합니다.
@@ -243,12 +243,12 @@ https://m1zz.github.io/KORA/ko/
 
 ### 프로모션 텍스트
 
-乗る方向は電車の行先表示そのままで、降りる駅は振動でお知らせ。ドイツ語やタイ語なども加わり、23の言語で使えるようになりました。
+乗る方向は電車の行先表示そのままで、降りる駅が近づくと振動でお知らせ。出発駅と到着駅を選ぶだけで、乗り換えも駅数もひと目でわかり、日本語でそのまま使えます。
 
 ### 설명
 
-韓国ナビは、韓国を旅するすべての人のための地下鉄ガイドアプリです。
-出発駅と到着駅を選ぶだけで、乗り換え、駅数、所要時間の目安、そしてどちら方面の電車に乗ればいいかを、電車の行先表示「○○行き」そのままの形で案内します。乗車中は今どの駅かを追いかけ、降りるタイミングでお知らせします。
+乗る方向は電車の行先表示「○○行き」そのままで、降りる駅は振動でお知らせします。韓国を旅するすべての人のための地下鉄ガイドアプリです。
+出発駅と到着駅を選ぶだけで、乗り換え、駅数、所要時間の目安がわかります。乗車中は今どの駅かを追いかけます。
 
 【出発駅はおまかせ】
 GPS で最寄り駅を探すか、自分で選べます。選んだ駅は次にアプリを開いたときも覚えています。
@@ -318,12 +318,12 @@ https://m1zz.github.io/KORA/ja/
 
 ### 프로모션 텍스트
 
-按列车上的“开往○○”告诉你该坐哪个方向，快到站时振动提醒下车。现已支持德语、泰语等 23 种语言。
+按列车上显示的“开往○○”告诉你该坐哪个方向，快到站时振动提醒下车。选好出发站和目的站，换乘和站数一目了然，全中文界面。
 
 ### 설명
 
-韩国导航是一款为来韩国旅行的人打造的地铁指南 App。
-只要选好出发站和目的站，就能看到换乘、经过站数、预计时间，以及该坐哪个方向的列车，直接按照列车上显示的“开往○○”告诉你。乘车时它会跟踪你所在的车站，快到站时提醒你下车。
+该坐哪个方向，直接按照列车上显示的“开往○○”告诉你；快到站时，手机振动提醒你下车。这是一款为来韩国旅行的人打造的地铁指南 App。
+只要选好出发站和目的站，就能看到换乘、经过站数和预计时间。乘车时它会跟踪你所在的车站。
 
 【自动找到出发站】
 用 GPS 查找最近的车站，也可以手动选择。选好的车站下次打开 App 时依然记得。
@@ -393,12 +393,12 @@ https://m1zz.github.io/KORA/zh-Hans/
 
 ### 프로모션 텍스트
 
-照列車上的「往○○」告訴你該搭哪個方向，快到站時震動提醒下車。現在支援德文、泰文等 23 種語言。
+照列車上顯示的「往○○」告訴你該搭哪個方向，快到站時震動提醒下車。選好出發站和目的地，轉乘和站數一目了然，全中文介面。
 
 ### 설명
 
-韓國導航是專為來韓國旅遊的人設計的地鐵指南 App。
-只要選好出發站和目的地，就會顯示轉乘、經過站數、預估時間，以及該搭哪個方向的列車，直接照列車上顯示的「往○○」告訴你。搭車時會持續追蹤你目前所在的車站，快到站時提醒你下車。
+該搭哪個方向，直接照列車上顯示的「往○○」告訴你；快到站時，手機震動提醒你下車。這是專為來韓國旅遊的人設計的地鐵指南 App。
+只要選好出發站和目的地，就會顯示轉乘、經過站數和預估時間。搭車時會持續追蹤你目前所在的車站。
 
 【自動找到出發站】
 用 GPS 找出最近的車站，也可以自己選擇。選好的車站下次開啟 App 時還會記得。
@@ -468,12 +468,12 @@ busan,incheon,daegu,daejeon,gwangju,gtx,arex,flughafen,zug,umsteigen,route,stati
 
 ### 프로모션 텍스트
 
-Steig immer in den richtigen Zug und verpass nie deine Station. Korea Navi spricht jetzt 23 Sprachen, darunter Deutsch.
+Steig immer in die richtige Richtung ein: Korea Navi zeigt sie genau so, wie sie auf dem Zug steht, und vibriert, wenn deine Station naht. Komplett auf Deutsch.
 
 ### 설명
 
-Korea Navi ist dein U-Bahn-Begleiter für die Reise durch Korea.
-Wähle Start und Ziel, und Korea Navi zeigt dir Umstiege, Anzahl der Stationen, die ungefähre Fahrzeit und in welche Richtung du einsteigen musst – genau so, wie es auf der Zielanzeige des Zugs steht. Während der Fahrt verfolgt Korea Navi deine aktuelle Station und sagt dir rechtzeitig, wann du aussteigen musst.
+Steig immer in die richtige Richtung ein: Korea Navi zeigt sie genau so, wie sie auf der Zielanzeige des Zugs steht, und meldet sich mit Vibration, wenn du aussteigen musst. Dein U-Bahn-Begleiter für die Reise durch Korea.
+Wähle Start und Ziel, und Korea Navi zeigt dir Umstiege, Anzahl der Stationen und die ungefähre Fahrzeit. Während der Fahrt verfolgt es deine aktuelle Station.
 
 DEINE STATION, AUTOMATISCH GEFUNDEN
 Finde die nächste Station per GPS oder wähle sie selbst. Korea Navi merkt sie sich bis zum nächsten Öffnen.
@@ -543,12 +543,12 @@ busan,incheon,daegu,daejeon,gwangju,gtx,arex,aeropuerto,tren,transbordo,ruta,est
 
 ### 프로모션 텍스트
 
-Sube siempre al tren correcto y no te pases de parada. Korea Navi ya habla 23 idiomas, entre ellos el español.
+Sube siempre en el sentido correcto: Korea Navi lo muestra tal como aparece en el letrero del tren y vibra cuando se acerca tu parada. Todo en español.
 
 ### 설명
 
-Korea Navi es la guía de metro para quien viaja por Corea.
-Elige tu estación de salida y tu destino, y Korea Navi te muestra los transbordos, el número de paradas, el tiempo estimado y en qué sentido subir, tal como aparece en el letrero del tren. Durante el viaje sigue tu estación actual y te avisa cuándo bajar.
+Sube siempre en el sentido correcto: Korea Navi te lo muestra tal como aparece en el letrero del tren y te avisa con una vibración cuando toca bajar. Es la guía de metro para quien viaja por Corea.
+Elige tu estación de salida y tu destino, y verás los transbordos, el número de paradas y el tiempo estimado. Durante el viaje sigue tu estación actual.
 
 TU ESTACIÓN, SIN BUSCARLA
 Encuentra la estación más cercana con GPS o elígela tú. Korea Navi la recuerda la próxima vez que abras la app.
@@ -618,12 +618,12 @@ incheon,daegu,daejeon,gwangju,gtx,arex,aéroport,train,correspondance,itinérair
 
 ### 프로모션 텍스트
 
-Montez dans le bon train et ne ratez plus votre arrêt. Korea Navi parle désormais 23 langues, dont le français.
+Montez toujours dans le bon sens : Korea Navi l'affiche exactement comme sur le train et vibre à l'approche de votre arrêt. Entièrement en français.
 
 ### 설명
 
-Korea Navi est le guide du métro pour tous ceux qui voyagent en Corée.
-Choisissez votre station de départ et votre destination : Korea Navi indique les correspondances, le nombre d'arrêts, la durée estimée et le sens dans lequel monter, tel qu'il s'affiche sur le train. Pendant le trajet, il suit votre station actuelle et vous prévient quand descendre.
+Montez toujours dans le bon sens : Korea Navi l'indique exactement comme sur le train et vous prévient d'une vibration quand il faut descendre. C'est le guide du métro pour tous ceux qui voyagent en Corée.
+Choisissez votre station de départ et votre destination pour voir les correspondances, le nombre d'arrêts et la durée estimée. Pendant le trajet, il suit votre station actuelle.
 
 VOTRE STATION, TROUVÉE POUR VOUS
 Trouvez la station la plus proche par GPS ou choisissez-la vous-même. Korea Navi s'en souvient à la prochaine ouverture.
@@ -693,12 +693,12 @@ incheon,daegu,daejeon,gwangju,gtx,arex,aeroporto,treno,cambio,percorso,stazione,
 
 ### 프로모션 텍스트
 
-Sali sempre sul treno giusto e non perdere mai la tua fermata. Korea Navi ora parla 23 lingue, italiano compreso.
+Sali sempre nella direzione giusta: Korea Navi te la mostra proprio come appare sul treno e vibra quando la tua fermata si avvicina. Tutto in italiano.
 
 ### 설명
 
-Korea Navi è la guida alla metro per chi viaggia in Corea.
-Scegli la stazione di partenza e la destinazione: Korea Navi ti mostra i cambi, il numero di fermate, il tempo stimato e in quale direzione salire, proprio come appare sull'indicatore del treno. Durante il viaggio segue la tua stazione e ti avvisa quando scendere.
+Sali sempre nella direzione giusta: Korea Navi te la mostra proprio come appare sull'indicatore del treno e ti avvisa con una vibrazione quando è ora di scendere. È la guida alla metro per chi viaggia in Corea.
+Scegli la stazione di partenza e la destinazione per vedere i cambi, il numero di fermate e il tempo stimato. Durante il viaggio segue la tua stazione.
 
 LA TUA STAZIONE, TROVATA PER TE
 Trova la stazione più vicina con il GPS o sceglila tu. Korea Navi la ricorda alla prossima apertura.
@@ -768,12 +768,12 @@ busan,incheon,daegu,daejeon,gwangju,gtx,arex,aeroporto,trem,baldeação,rota,est
 
 ### 프로모션 텍스트
 
-Embarque sempre no trem certo e nunca perca sua estação. O Korea Navi agora fala 23 idiomas, incluindo português.
+Embarque sempre no sentido certo: o Korea Navi mostra a direção do jeito que aparece no letreiro do trem e vibra quando sua estação se aproxima. Tudo em português.
 
 ### 설명
 
-O Korea Navi é o guia de metrô para quem viaja pela Coreia.
-Escolha a estação de partida e o destino, e o Korea Navi mostra as baldeações, o número de estações, o tempo estimado e em que sentido embarcar, do jeito que aparece no letreiro do trem. Durante a viagem, ele acompanha a estação em que você está e avisa a hora de descer.
+Embarque sempre no sentido certo: o Korea Navi mostra a direção do jeito que aparece no letreiro do trem e vibra para avisar a hora de descer. É o guia de metrô para quem viaja pela Coreia.
+Escolha a estação de partida e o destino para ver as baldeações, o número de estações e o tempo estimado. Durante a viagem, ele acompanha a estação em que você está.
 
 SUA ESTAÇÃO, ENCONTRADA PARA VOCÊ
 Encontre a estação mais próxima pelo GPS ou escolha você mesmo. O Korea Navi lembra dela da próxima vez que você abrir o app.
@@ -843,12 +843,12 @@ Korea Navi: маршруты метро
 
 ### 프로모션 텍스트
 
-Садитесь в нужный поезд и не проезжайте свою станцию. Теперь Korea Navi говорит на 23 языках, в том числе на русском.
+Садитесь в нужном направлении: Korea Navi показывает его точно так, как на табло поезда, и вибрирует, когда подъезжаете к своей станции. Всё на русском.
 
 ### 설명
 
-Korea Navi — путеводитель по метро для всех, кто путешествует по Корее.
-Выберите станцию отправления и назначения, и Korea Navi покажет пересадки, число станций, примерное время в пути и направление, в котором нужно садиться, — точно так, как написано на табло поезда. В дороге приложение следит за текущей станцией и подскажет, когда выходить.
+Садитесь в нужном направлении: Korea Navi показывает его точно так, как написано на табло поезда, а когда пора выходить, напомнит вибрацией. Это путеводитель по метро для всех, кто путешествует по Корее.
+Выберите станцию отправления и назначения, и приложение покажет пересадки, число станций и примерное время в пути. В дороге оно следит за текущей станцией.
 
 СТАНЦИЯ НАЙДЁТСЯ САМА
 Найдите ближайшую станцию по GPS или выберите её вручную. Korea Navi запомнит её до следующего запуска.
@@ -918,12 +918,12 @@ busan,incheon,daegu,daejeon,gwangju,gtx,arex,letiště,vlak,přestup,trasa,stani
 
 ### 프로모션 텍스트
 
-Nastupte vždy do správného vlaku a nepropásněte svou stanici. Korea Navi teď mluví 23 jazyky včetně češtiny.
+Nastupujte vždy správným směrem: Korea Navi ho ukáže přesně tak, jak stojí na vlaku, a zavibruje, když se blíží vaše stanice. Celé v češtině.
 
 ### 설명
 
-Korea Navi je průvodce metrem pro každého, kdo cestuje po Koreji.
-Vyberte výchozí a cílovou stanici a Korea Navi ukáže přestupy, počet stanic, odhadovaný čas a směr, kterým nastoupit – přesně tak, jak to stojí na směrové tabuli vlaku. Během jízdy sleduje aktuální stanici a řekne vám, kdy vystoupit.
+Nastupujte vždy správným směrem: Korea Navi ho ukáže přesně tak, jak stojí na směrové tabuli vlaku, a když máte vystoupit, zavibruje. Je to průvodce metrem pro každého, kdo cestuje po Koreji.
+Vyberte výchozí a cílovou stanici a uvidíte přestupy, počet stanic a odhadovaný čas. Během jízdy Korea Navi sleduje vaši aktuální stanici.
 
 STANICE SE NAJDE SAMA
 Najděte nejbližší stanici přes GPS nebo ji vyberte sami. Korea Navi si ji zapamatuje do příštího spuštění.
@@ -993,12 +993,12 @@ incheon,daegu,daejeon,gwangju,gtx,arex,lufthavn,tog,skift,rute,station,rejse,tur
 
 ### 프로모션 텍스트
 
-Tag altid det rigtige tog, og kør aldrig forbi dit stop. Korea Navi taler nu 23 sprog, også dansk.
+Stig altid på i den rigtige retning: Korea Navi viser den præcis, som der står på toget, og vibrerer, når dit stop nærmer sig. Det hele på dansk.
 
 ### 설명
 
-Korea Navi er metroguiden til alle, der rejser i Korea.
-Vælg din startstation og din destination, og Korea Navi viser skift, antal stationer, forventet rejsetid og hvilken retning du skal tage – præcis som der står på togets destinationsskilt. Undervejs følger Korea Navi din nuværende station og siger til, når du skal af.
+Stig altid på i den rigtige retning: Korea Navi viser den præcis, som der står på togets destinationsskilt, og vibrerer, når du skal af. Det er metroguiden til alle, der rejser i Korea.
+Vælg din startstation og din destination, og se skift, antal stationer og forventet rejsetid. Undervejs følger Korea Navi din nuværende station.
 
 DIN STATION FINDES AUTOMATISK
 Find den nærmeste station med GPS, eller vælg den selv. Korea Navi husker den til næste gang.
@@ -1068,12 +1068,12 @@ busan,incheon,daegu,daejeon,gwangju,gtx,arex,αεροδρόμιο,τρένο,μ�
 
 ### 프로모션 텍스트
 
-Μπείτε πάντα στο σωστό τρένο και μη χάσετε ποτέ τη στάση σας. Το Korea Navi μιλά πλέον 23 γλώσσες, και ελληνικά.
+Μπείτε πάντα προς τη σωστή κατεύθυνση: το Korea Navi τη δείχνει ακριβώς όπως γράφει το τρένο και δονείται όταν πλησιάζει η στάση σας. Όλα στα ελληνικά.
 
 ### 설명
 
-Το Korea Navi είναι ο οδηγός μετρό για όσους ταξιδεύουν στην Κορέα.
-Επιλέξτε σταθμό αφετηρίας και προορισμό και το Korea Navi δείχνει τις μετεπιβιβάσεις, τον αριθμό στάσεων, τον εκτιμώμενο χρόνο και προς ποια κατεύθυνση να επιβιβαστείτε, ακριβώς όπως γράφει η ένδειξη του τρένου. Κατά τη διαδρομή παρακολουθεί τον τρέχοντα σταθμό και σας λέει πότε να κατεβείτε.
+Μπείτε πάντα προς τη σωστή κατεύθυνση: το Korea Navi τη δείχνει ακριβώς όπως γράφει η ένδειξη του τρένου και σας ειδοποιεί με δόνηση όταν πρέπει να κατεβείτε. Είναι ο οδηγός μετρό για όσους ταξιδεύουν στην Κορέα.
+Επιλέξτε σταθμό αφετηρίας και προορισμό για να δείτε τις μετεπιβιβάσεις, τον αριθμό στάσεων και τον εκτιμώμενο χρόνο. Κατά τη διαδρομή παρακολουθεί τον τρέχοντα σταθμό.
 
 Ο ΣΤΑΘΜΟΣ ΣΑΣ, ΑΥΤΟΜΑΤΑ
 Βρείτε τον πλησιέστερο σταθμό με GPS ή επιλέξτε τον μόνοι σας. Το Korea Navi τον θυμάται την επόμενη φορά.
@@ -1143,12 +1143,12 @@ incheon,daegu,daejeon,gwangju,gtx,arex,lentokenttä,juna,vaihto,reitti,asema,mat
 
 ### 프로모션 텍스트
 
-Nouse aina oikeaan junaan äläkä koskaan ohita pysäkkiäsi. Korea Navi puhuu nyt 23 kieltä, myös suomea.
+Nouse aina oikeaan suuntaan: Korea Navi näyttää sen juuri niin kuin junassa lukee ja värisee, kun pysäkkisi lähestyy. Kaikki suomeksi.
 
 ### 설명
 
-Korea Navi on metro-opas kaikille, jotka matkustavat Koreassa.
-Valitse lähtöasema ja määränpää, niin Korea Navi näyttää vaihdot, asemien määrän, arvioidun matka-ajan ja sen, mihin suuntaan noustaan – juuri niin kuin junan määränpääkyltissä lukee. Matkan aikana se seuraa nykyistä asemaa ja kertoo, milloin jäädä pois.
+Nouse aina oikeaan suuntaan: Korea Navi näyttää sen juuri niin kuin junan määränpääkyltissä lukee ja värisee, kun on aika jäädä pois. Se on metro-opas kaikille, jotka matkustavat Koreassa.
+Valitse lähtöasema ja määränpää, niin näet vaihdot, asemien määrän ja arvioidun matka-ajan. Matkan aikana se seuraa nykyistä asemaa.
 
 ASEMASI LÖYTYY ITSESTÄÄN
 Etsi lähin asema GPS:llä tai valitse se itse. Korea Navi muistaa sen ensi kerralla.
@@ -1218,12 +1218,12 @@ incheon,daegu,daejeon,gwangju,gtx,arex,bandara,kereta,subway,transit,rute,stasiu
 
 ### 프로모션 텍스트
 
-Selalu naik kereta yang benar dan jangan sampai kelewatan stasiun. Korea Navi kini tersedia dalam 23 bahasa, termasuk bahasa Indonesia.
+Selalu naik ke arah yang benar: Korea Navi menunjukkannya persis seperti tulisan di kereta dan bergetar saat stasiun tujuanmu sudah dekat. Semua dalam bahasa Indonesia.
 
 ### 설명
 
-Korea Navi adalah panduan kereta bawah tanah untuk siapa pun yang berlibur ke Korea.
-Pilih stasiun asal dan tujuan, lalu Korea Navi menunjukkan transit, jumlah stasiun, perkiraan waktu, dan arah kereta yang harus dinaiki, persis seperti tulisan di papan tujuan kereta. Selama perjalanan, Korea Navi mengikuti stasiun tempatmu berada dan memberi tahu kapan harus turun.
+Selalu naik ke arah yang benar: Korea Navi menunjukkannya persis seperti tulisan di papan tujuan kereta dan bergetar saat waktunya turun. Inilah panduan kereta bawah tanah untuk siapa pun yang berlibur ke Korea.
+Pilih stasiun asal dan tujuan untuk melihat transit, jumlah stasiun, dan perkiraan waktu. Selama perjalanan, Korea Navi mengikuti stasiun tempatmu berada.
 
 STASIUNMU, LANGSUNG KETEMU
 Cari stasiun terdekat dengan GPS atau pilih sendiri. Korea Navi mengingatnya saat kamu membuka aplikasi lagi.
@@ -1293,12 +1293,12 @@ incheon,daegu,daejeon,gwangju,gtx,arex,flyplass,tog,bytte,rute,stasjon,reise,tur
 
 ### 프로모션 텍스트
 
-Ta alltid riktig tog, og kjør aldri forbi stoppet ditt. Korea Navi snakker nå 23 språk, også norsk.
+Gå alltid på i riktig retning: Korea Navi viser den akkurat slik det står på toget, og vibrerer når stoppet ditt nærmer seg. Alt på norsk.
 
 ### 설명
 
-Korea Navi er T-baneguiden for alle som reiser i Korea.
-Velg startstasjon og reisemål, så viser Korea Navi bytter, antall stasjoner, beregnet reisetid og hvilken retning du skal ta – akkurat slik det står på togets destinasjonsskilt. Underveis følger Korea Navi med på hvor du er, og sier fra når du skal av.
+Gå alltid på i riktig retning: Korea Navi viser den akkurat slik det står på togets destinasjonsskilt, og vibrerer når du skal av. Det er T-baneguiden for alle som reiser i Korea.
+Velg startstasjon og reisemål, så ser du bytter, antall stasjoner og beregnet reisetid. Underveis følger Korea Navi med på hvor du er.
 
 STASJONEN DIN, FUNNET FOR DEG
 Finn nærmeste stasjon med GPS eller velg selv. Korea Navi husker den til neste gang.
@@ -1368,12 +1368,12 @@ incheon,daegu,daejeon,gwangju,gtx,arex,luchthaven,trein,overstappen,route,statio
 
 ### 프로모션 텍스트
 
-Stap altijd in de juiste trein en mis nooit meer je halte. Korea Navi spreekt nu 23 talen, ook Nederlands.
+Stap altijd in de juiste richting in: Korea Navi toont die precies zoals op de trein staat en trilt als je halte nadert. Helemaal in het Nederlands.
 
 ### 설명
 
-Korea Navi is de metrogids voor iedereen die door Korea reist.
-Kies je vertrekstation en bestemming, en Korea Navi toont de overstappen, het aantal haltes, de geschatte reistijd en in welke richting je moet instappen – precies zoals het op de bestemmingsaanduiding van de trein staat. Onderweg volgt Korea Navi je huidige station en zegt het wanneer je moet uitstappen.
+Stap altijd in de juiste richting in: Korea Navi toont die precies zoals op de bestemmingsaanduiding van de trein staat en trilt als je moet uitstappen. De metrogids voor iedereen die door Korea reist.
+Kies je vertrekstation en bestemming en zie de overstappen, het aantal haltes en de geschatte reistijd. Onderweg volgt Korea Navi je huidige station.
 
 JE STATION, VANZELF GEVONDEN
 Vind het dichtstbijzijnde station via gps of kies het zelf. Korea Navi onthoudt het voor de volgende keer.
@@ -1443,12 +1443,12 @@ busan,incheon,daegu,daejeon,gwangju,gtx,arex,lotnisko,pociąg,przesiadka,trasa,s
 
 ### 프로모션 텍스트
 
-Wsiadaj do właściwego pociągu i nie przegap swojej stacji. Korea Navi mówi teraz w 23 językach, także po polsku.
+Wsiadaj zawsze w dobrym kierunku: Korea Navi pokazuje go dokładnie tak, jak na tablicy pociągu, i wibruje, gdy zbliża się Twoja stacja. Wszystko po polsku.
 
 ### 설명
 
-Korea Navi to przewodnik po metrze dla każdego, kto podróżuje po Korei.
-Wybierz stację początkową i docelową, a Korea Navi pokaże przesiadki, liczbę stacji, szacowany czas i kierunek, w którym trzeba wsiąść – dokładnie tak, jak na tablicy pociągu. W trakcie jazdy śledzi bieżącą stację i mówi, kiedy wysiąść.
+Wsiadaj zawsze w dobrym kierunku: Korea Navi pokazuje go dokładnie tak, jak na tablicy pociągu, i wibruje, gdy trzeba wysiąść. To przewodnik po metrze dla każdego, kto podróżuje po Korei.
+Wybierz stację początkową i docelową, a zobaczysz przesiadki, liczbę stacji i szacowany czas. W trakcie jazdy Korea Navi śledzi bieżącą stację.
 
 TWOJA STACJA ZNAJDZIE SIĘ SAMA
 Znajdź najbliższą stację przez GPS albo wybierz ją sam. Korea Navi zapamięta ją do następnego uruchomienia.
@@ -1518,12 +1518,12 @@ incheon,daegu,daejeon,gwangju,gtx,arex,flygplats,tåg,byte,rutt,station,resa,tur
 
 ### 프로모션 텍스트
 
-Kliv alltid på rätt tåg och missa aldrig din station. Korea Navi talar nu 23 språk, även svenska.
+Kliv alltid på åt rätt håll: Korea Navi visar riktningen precis som det står på tåget och vibrerar när din station närmar sig. Allt på svenska.
 
 ### 설명
 
-Korea Navi är tunnelbaneguiden för alla som reser i Korea.
-Välj startstation och resmål, så visar Korea Navi byten, antal stationer, beräknad restid och åt vilket håll du ska kliva på – precis som det står på tågets destinationsskylt. Under resan följer Korea Navi var du är och säger till när du ska av.
+Kliv alltid på åt rätt håll: Korea Navi visar riktningen precis som det står på tågets destinationsskylt och vibrerar när du ska av. Tunnelbaneguiden för alla som reser i Korea.
+Välj startstation och resmål, så ser du byten, antal stationer och beräknad restid. Under resan följer Korea Navi var du är.
 
 DIN STATION HITTAS ÅT DIG
 Hitta närmaste station med GPS eller välj själv. Korea Navi kommer ihåg den till nästa gång.
@@ -1593,12 +1593,12 @@ Korea Navi: นำทางรถไฟใต้ดิน
 
 ### 프로모션 텍스트
 
-ขึ้นรถไฟถูกขบวน และไม่เลยสถานีที่ต้องลงอีกต่อไป ตอนนี้ Korea Navi รองรับ 23 ภาษา รวมถึงภาษาไทย
+ขึ้นรถไฟถูกทิศทุกครั้ง Korea Navi บอกทิศทางตรงตามป้ายบนขบวนรถ และสั่นเตือนเมื่อใกล้ถึงสถานีที่ต้องลง ใช้งานเป็นภาษาไทยได้ทั้งหมด
 
 ### 설명
 
-Korea Navi คือแอปนำทางรถไฟใต้ดินสำหรับทุกคนที่มาเที่ยวเกาหลี
-แค่เลือกสถานีต้นทางและปลายทาง Korea Navi จะบอกจุดต่อรถ จำนวนสถานี เวลาโดยประมาณ และทิศทางที่ต้องขึ้น ตรงตามป้ายปลายทางบนขบวนรถ ระหว่างเดินทางแอปจะติดตามว่าคุณอยู่สถานีไหน และเตือนเมื่อถึงเวลาลง
+ขึ้นรถไฟถูกทิศทุกครั้ง Korea Navi บอกทิศทางตรงตามป้ายปลายทางบนขบวนรถ และสั่นเตือนเมื่อถึงเวลาลง แอปนำทางรถไฟใต้ดินสำหรับทุกคนที่มาเที่ยวเกาหลี
+แค่เลือกสถานีต้นทางและปลายทาง ก็จะเห็นจุดต่อรถ จำนวนสถานี และเวลาโดยประมาณ ระหว่างเดินทางแอปจะติดตามว่าคุณอยู่สถานีไหน
 
 หาสถานีให้อัตโนมัติ
 ค้นหาสถานีที่ใกล้ที่สุดด้วย GPS หรือเลือกเองก็ได้ Korea Navi จะจำไว้ให้ในครั้งถัดไป
@@ -1668,12 +1668,12 @@ incheon,daegu,daejeon,gwangju,gtx,arex,havalimanı,tren,aktarma,rota,istasyon,se
 
 ### 프로모션 텍스트
 
-Hep doğru trene bin, durağını asla kaçırma. Korea Navi artık Türkçe dahil 23 dil konuşuyor.
+Hep doğru yöne bin: Korea Navi yönü trenin tabelasında yazdığı gibi gösterir, durağın yaklaşınca titreşimle haber verir. Hepsi Türkçe.
 
 ### 설명
 
-Korea Navi, Kore'yi gezen herkes için bir metro rehberi.
-Başlangıç ve varış istasyonunu seç; Korea Navi aktarmaları, durak sayısını, tahmini süreyi ve hangi yöne binmen gerektiğini trenin tabelasında yazdığı gibi göstersin. Yolculuk boyunca bulunduğun istasyonu takip eder ve inme zamanı geldiğinde haber verir.
+Hep doğru yöne bin: Korea Navi yönü trenin tabelasında yazdığı gibi gösterir, inme zamanı gelince titreşimle haber verir. Kore'yi gezen herkes için bir metro rehberi.
+Başlangıç ve varış istasyonunu seç; aktarmaları, durak sayısını ve tahmini süreyi gör. Yolculuk boyunca bulunduğun istasyonu takip eder.
 
 İSTASYONUN SENİN İÇİN BULUNUR
 En yakın istasyonu GPS ile bul ya da kendin seç. Korea Navi bir sonraki açılışta hatırlar.
@@ -1743,12 +1743,12 @@ incheon,daegu,daejeon,gwangju,gtx,arex,tàu,điện,ngầm,ga,sân,bay,chuyển,
 
 ### 프로모션 텍스트
 
-Luôn lên đúng tàu và không bao giờ lỡ ga xuống. Korea Navi nay hỗ trợ 23 ngôn ngữ, có cả tiếng Việt.
+Luôn lên tàu đúng hướng: Korea Navi hiển thị hướng đúng như bảng trên tàu và rung báo khi sắp đến ga bạn xuống. Toàn bộ bằng tiếng Việt.
 
 ### 설명
 
-Korea Navi là ứng dụng chỉ đường tàu điện ngầm dành cho mọi người đi du lịch Hàn Quốc.
-Chỉ cần chọn ga đi và ga đến, Korea Navi sẽ cho biết các lần chuyển tuyến, số ga, thời gian dự kiến và hướng tàu cần lên, đúng như bảng điểm đến trên tàu. Trong lúc đi, ứng dụng theo dõi bạn đang ở ga nào và nhắc bạn khi đến lúc xuống.
+Luôn lên tàu đúng hướng: Korea Navi hiển thị hướng đi đúng như bảng điểm đến trên tàu và rung báo khi đến lúc xuống. Ứng dụng chỉ đường tàu điện ngầm dành cho mọi người đi du lịch Hàn Quốc.
+Chỉ cần chọn ga đi và ga đến để xem các lần chuyển tuyến, số ga và thời gian dự kiến. Trong lúc đi, ứng dụng theo dõi bạn đang ở ga nào.
 
 TỰ TÌM GA CHO BẠN
 Tìm ga gần nhất bằng GPS hoặc tự chọn. Korea Navi sẽ nhớ ga đó cho lần mở sau.
