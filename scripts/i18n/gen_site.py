@@ -3,7 +3,7 @@
 
 - scripts/i18n/site/<로케일>.py 의 T 사전으로 그 언어의 세 페이지를 만든다
   (ko·en·ja·zh-Hans·zh-Hant 다섯 언어는 손으로 쓴 페이지라 생성하지 않는다).
-- 모든 페이지(손으로 쓴 것 포함)의 언어 메뉴와 hreflang 을 23개 언어로 맞춘다.
+- 모든 페이지(손으로 쓴 것 포함)의 언어 메뉴와 hreflang 을 24개 언어로 맞춘다.
 
   python3 scripts/i18n/gen_site.py
 """
@@ -16,7 +16,8 @@ LANGS = [("ko", "한국어"), ("en", "English"), ("ja", "日本語"), ("zh-Hans"
          ("de", "Deutsch"), ("es", "Español"), ("fr", "Français"), ("it", "Italiano"), ("pt-BR", "Português (Brasil)"),
          ("ru", "Русский"), ("cs", "Čeština"), ("da", "Dansk"), ("el", "Ελληνικά"), ("fi", "Suomi"),
          ("id", "Bahasa Indonesia"), ("nb", "Norsk"), ("nl", "Nederlands"), ("pl", "Polski"), ("sv", "Svenska"),
-         ("th", "ไทย"), ("tr", "Türkçe"), ("vi", "Tiếng Việt")]
+         ("th", "ไทย"), ("tr", "Türkçe"), ("vi", "Tiếng Việt"), ("ar", "العربية")]
+RTL = {"ar"}   # 오른쪽에서 왼쪽으로 쓰는 언어 — <html dir="rtl">
 HANDWRITTEN = {"ko", "en", "ja", "zh-Hans", "zh-Hant"}
 PAGES = {"index": "", "support": "support.html", "privacy": "privacy.html"}
 EMAIL = "leeo@kakao.com"
@@ -43,7 +44,7 @@ def lang_nav(loc, page):
 
 
 def fix_nav(text, loc, page):
-    """언어 메뉴와 hreflang 블록을 23개 언어로 바꾼다."""
+    """언어 메뉴와 hreflang 블록을 24개 언어로 바꾼다."""
     text = re.sub(r'(<link rel="alternate" hreflang="[^"]+" href="[^"]+">\n?)+', alternates(page) + "\n", text, count=1)
     text = re.sub(r'  <nav class="langs" aria-label="Language">.*?</nav>', lambda m: lang_nav(loc, page), text,
                   count=1, flags=re.S)
@@ -56,8 +57,9 @@ def li(items):
 
 def shell(loc, page, T, title, desc, main):
     nav_cur = {p: (' aria-current="page"' if p == page else "") for p in PAGES}
+    dir_attr = ' dir="rtl"' if loc in RTL else ""
     return f"""<!doctype html>
-<html lang="{loc}">
+<html lang="{loc}"{dir_attr}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
