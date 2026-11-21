@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """App Store 원본 캡처: 시뮬레이터에서 언어마다 같은 여정(홍대입구 → 명동)을 찍는다.
 
-  python3 scripts/capture_raw_screenshots.py <UDID> [로케일 ...]     (없으면 23개 전부)
+  python3 scripts/capture_raw_screenshots.py <UDID> [로케일 ...]     (없으면 24개 전부)
 
 - 앱은 Debug 빌드로 미리 설치해 둔다(-KoreaNaviShotScene 은 Debug 에서만 듣는다).
 - 위치 권한은 미리 허용해 둔다(`xcrun simctl privacy <UDID> grant location com.kora.leeo`).
@@ -29,6 +29,7 @@ LOCALES = {
     "nb": ("norwegian", "nb", "nb_NO"), "nl": ("dutch", "nl", "nl_NL"), "pl": ("polish", "pl", "pl_PL"),
     "sv": ("swedish", "sv", "sv_SE"), "th": ("thai", "th", "th_TH"), "tr": ("turkish", "tr", "tr_TR"),
     "vi": ("vietnamese", "vi", "vi_VN"),
+    "ar": ("arabic", "ar", "ar_SA"),
 }
 
 

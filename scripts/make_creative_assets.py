@@ -34,7 +34,9 @@ SPEC = {
 # ⚠️ 기계번역하지 않는다. 언어마다 따로 쓴다.
 STORE_DIR = ROOT / "scripts" / "i18n" / "store"
 LOCALES = ["ko", "en-US", "en-GB", "ja", "zh-Hans", "zh-Hant", "de", "es", "fr", "it", "pt-BR", "ru", "cs",
-           "da", "el", "fi", "id", "nb", "nl", "pl", "sv", "th", "tr", "vi"]
+           "da", "el", "fi", "id", "nb", "nl", "pl", "sv", "th", "tr", "vi", "ar"]
+# 오른쪽에서 왼쪽으로 쓰는 언어: 글 상자 · 기기 · 노선 장식을 좌우 거울로 놓는다
+RTL = {"ar"}
 
 
 def copy(lang, kind):
@@ -54,6 +56,8 @@ body:lang(ja) { font-family:-apple-system, "Hiragino Sans", sans-serif; }
 body:lang(zh-Hans) { font-family:-apple-system, "PingFang SC", sans-serif; }
 body:lang(zh-Hant) { font-family:-apple-system, "PingFang TC", sans-serif; }
 body:lang(th) { font-family:-apple-system, "Thonburi", sans-serif; }
+body:lang(ar) { font-family:"SF Arabic", "Geeza Pro", sans-serif; }
+:lang(ar) .eyebrow, :lang(ar) .headline, :lang(ar) .sub { letter-spacing:0; line-height:1.4; }
 .glow { position:absolute; border-radius:50%%; filter:blur(170px); pointer-events:none; }
 .text { position:absolute; display:flex; flex-direction:column; justify-content:center; }
 .eyebrow { font-weight:700; color:#CD2E3A; letter-spacing:-0.01em; line-height:1.15; }
@@ -101,7 +105,9 @@ TMP = pathlib.Path(tempfile.gettempdir()) / "kora-creative"
 PROFILE = TMP / "chrome-profile"
 
 
-def phone(lang, img, left, top, width, rotate=0):
+def phone(lang, img, left, top, width, rotate=0, W=0):
+    if lang in RTL:
+        left, rotate = W - left - width, -rotate
     pad = round(width * 0.04)
     src = (RAW / lang / img).as_uri()
     return (f'<div class="phone" style="left:{left}px;top:{top}px;width:{width}px;padding:{pad}px;'
@@ -109,8 +115,10 @@ def phone(lang, img, left, top, width, rotate=0):
             f'<img src="{src}" style="border-radius:{round(width * 0.155)}px"></div>')
 
 
-def metro(W, H, paths):
+def metro(W, H, paths, rtl=False):
     """노선도처럼 꺾인 굵은 선과 역 동그라미(장식). 글 뒤에 깔리므로 옅게."""
+    if rtl:
+        paths = [(c, [(W - x, y) for x, y in pts]) for c, pts in paths]
     out = []
     for color, pts in paths:
         d = " ".join(f"{x},{y}" for x, y in pts)
@@ -124,17 +132,20 @@ def metro(W, H, paths):
 def search_html(lang):
     W, H, (l, t, r, b) = SPEC["search"]
     eyebrow, headline, sub = copy(lang, "search")
+    rtl = lang in RTL
     sw, sh = r - l, b - t
     col = int(sw * 0.58)
     x = l + col + 40
+    text_left = W - l - col if rtl else l
+    glow_left = W - (x - 200) - 1800 if rtl else x - 200
     deco = metro(W, H, [(LINES[0], [(-40, 2350), (420, 2350), (700, 2070), (1400, 2070)]),
-                        (LINES[1], [(3400, -40), (3400, 300), (3600, 500), (3900, 500)])])
+                        (LINES[1], [(3400, -40), (3400, 300), (3600, 500), (3900, 500)])], rtl)
     return f"""
 {deco}
-<div class="glow" style="left:{x - 200}px;top:500px;width:1800px;height:1800px;background:rgba(205,46,58,.12)"></div>
-{phone(lang, "route.png", x + 680, t - 300, 820, 7)}
-{phone(lang, "ride.png", x + 110, t - 200, 860, -4)}
-<div class="text" style="left:{l}px;top:{t}px;width:{col}px;height:{sh}px">
+<div class="glow" style="left:{glow_left}px;top:500px;width:1800px;height:1800px;background:rgba(205,46,58,.12)"></div>
+{phone(lang, "route.png", x + 680, t - 300, 820, 7, W)}
+{phone(lang, "ride.png", x + 110, t - 200, 860, -4, W)}
+<div class="text" style="left:{text_left}px;top:{t}px;width:{col}px;height:{sh}px">
   <div class="eyebrow" style="font-size:92px">{eyebrow}</div>
   <div class="headline" data-max="220" data-min="120" style="margin-top:40px">{headline}</div>
   <div class="sub" style="font-size:78px;margin-top:56px">{sub}</div>
@@ -146,12 +157,12 @@ def header_html(lang):
     eyebrow, headline = copy(lang, "header")
     sw, sh = r - l, b - t
     deco = metro(W, H, [(LINES[2], [(-40, 160), (1000, 160), (1180, 340), (1180, 420)]),
-                        (LINES[4], [(3900, 1500), (2900, 1500), (2700, 1300), (2700, 1250)])])
+                        (LINES[4], [(3900, 1500), (2900, 1500), (2700, 1300), (2700, 1250)])], lang in RTL)
     return f"""
 {deco}
 <div class="glow" style="left:{l - 200}px;top:{t - 400}px;width:{sw + 400}px;height:{sh + 800}px;background:rgba(205,46,58,.10)"></div>
-{phone(lang, "route.png", 330, 330, 640, -8)}
-{phone(lang, "ride.png", 2870, 330, 640, 8)}
+{phone(lang, "route.png", 330, 330, 640, -8, W)}
+{phone(lang, "ride.png", 2870, 330, 640, 8, W)}
 <div class="text" style="left:{l}px;top:{t}px;width:{sw}px;height:{sh}px;align-items:center;text-align:center">
   <div class="eyebrow" style="font-size:76px">{eyebrow}</div>
   <div class="headline" data-max="200" data-min="110" style="margin-top:28px">{headline}</div>
@@ -199,7 +210,8 @@ def chrome(args, log, done, timeout=300):
 def render(lang, kind):
     W, H, _ = SPEC[kind]
     body = search_html(lang) if kind == "search" else header_html(lang)
-    page = (f'<!doctype html><html lang="{html_lang(lang)}"><head><meta charset="utf-8"><style>'
+    dir_attr = ' dir="rtl"' if lang in RTL else ""
+    page = (f'<!doctype html><html lang="{html_lang(lang)}"{dir_attr}><head><meta charset="utf-8"><style>'
             f'{BASE_CSS % {"W": W, "H": H}}</style></head><body>{body}{FIT_JS}</body></html>')
     html_path = pathlib.Path(tempfile.gettempdir()) / f"kora-creative-{lang}-{kind}.html"
     html_path.write_text(page, encoding="utf-8")

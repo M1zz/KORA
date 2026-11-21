@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """App Store 마케팅 스크린샷(아이폰 1242x2688): 헤드라인 + 서브카피 + 기기 목업, HTML → 헤드리스 Chrome.
 
-  python3 scripts/make_marketing_screenshots.py [로케일 ...]     (없으면 23개 전부)
+  python3 scripts/make_marketing_screenshots.py [로케일 ...]     (없으면 24개 전부)
 
 재료
   docs/screenshots/raw/<로케일>/{route,board,ride,search,language}.png   (scripts/capture_raw_screenshots.py)
@@ -23,8 +23,9 @@ RAW = ROOT / "docs" / "screenshots" / "raw"
 OUT = ROOT / "docs" / "screenshots" / "marketing"
 STORE = ROOT / "scripts" / "i18n" / "store"
 W, H = 1242, 2688
+RTL = {"ar"}   # 오른쪽에서 왼쪽으로 쓰는 언어 — 글 방향 · 기운 폰을 거울로
 LOCALES = ["ko", "en-US", "en-GB", "ja", "zh-Hans", "zh-Hant", "de", "es", "fr", "it", "pt-BR", "ru", "cs",
-           "da", "el", "fi", "id", "nb", "nl", "pl", "sv", "th", "tr", "vi"]
+           "da", "el", "fi", "id", "nb", "nl", "pl", "sv", "th", "tr", "vi", "ar"]
 
 # (파일 이름, 원본 화면, 배치) — 순서가 스토어 순서이고 shots[] 순서와 같다
 SLIDES = [
@@ -44,6 +45,8 @@ body:lang(ja) {{ font-family:-apple-system, "Hiragino Sans", sans-serif; }}
 body:lang(zh-Hans) {{ font-family:-apple-system, "PingFang SC", sans-serif; }}
 body:lang(zh-Hant) {{ font-family:-apple-system, "PingFang TC", sans-serif; }}
 body:lang(th) {{ font-family:-apple-system, "Thonburi", sans-serif; }}
+body:lang(ar) {{ font-family:"SF Arabic", "Geeza Pro", sans-serif; }}
+:lang(ar) .headline, :lang(ar) .sub {{ letter-spacing:0; line-height:1.4; }}
 .glow {{ position:absolute; border-radius:50%; filter:blur(140px); pointer-events:none; }}
 .text {{ position:absolute; left:90px; right:90px; top:190px; height:540px; text-align:center;
   display:flex; flex-direction:column; align-items:center; }}
@@ -66,6 +69,10 @@ LAYOUTS = {
     # 살짝 기운 폰, 아래로 블리드
     "tilt": """
 .phone { left:150px; top:800px; width:980px; transform:rotate(-5deg); }
+""",
+    # 오른쪽에서 왼쪽으로 쓰는 언어: 기운 방향도 거울로
+    "tilt-rtl": """
+.phone { left:112px; top:800px; width:980px; transform:rotate(5deg); }
 """,
     # 빨강 바탕 반전
     "accent": """
@@ -115,7 +122,11 @@ def page(loc, headline, sub, raw, layout):
     glow = ('<div class="glow" style="left:120px;top:1100px;width:1000px;height:1200px;'
             'background:rgba(205,46,58,.14)"></div>') if layout in ("hero", "tilt") else ""
     lang = "en" if loc in ("en-US", "en-GB") else loc
-    return (f'<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><style>{BASE_CSS}{LAYOUTS[layout]}'
+    rtl = loc in RTL
+    if rtl and layout == "tilt":
+        layout = "tilt-rtl"
+    dir_attr = ' dir="rtl"' if rtl else ""
+    return (f'<!doctype html><html lang="{lang}"{dir_attr}><head><meta charset="utf-8"><style>{BASE_CSS}{LAYOUTS[layout]}'
             f'</style></head><body>{glow}'
             f'<div class="text"><div class="bar"></div><div class="headline">{headline}</div>'
             f'<div class="sub">{sub}</div></div>'
