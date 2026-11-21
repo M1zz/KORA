@@ -5,6 +5,208 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 언어마다 `### ...` 제목에 언어 이름이 들어 있고, 코드 블록 안의 글만 올라간다.
 코드 블록 안은 한 줄에 한 문장, 이모지나 마크다운 기호 없이 평문으로 쓴다.
 
+## 1.1.2
+
+### 앱스토어 (English en-US)
+
+```
+Korea Navi now speaks Arabic
+Arabic screens read right to left
+Long-press a station card to pick Arabic
+```
+
+### 앱스토어 (영국 영어 en-GB)
+
+```
+Korea Navi now speaks Arabic
+Arabic screens read right to left
+Long-press a station card to pick Arabic
+```
+
+### 앱스토어 (한국어 ko)
+
+```
+이제 아랍어로도 쓸 수 있어요
+아랍어에서는 화면이 오른쪽에서 왼쪽으로 놓여요
+역 카드를 길게 눌러 아랍어를 고를 수 있어요
+```
+
+### 앱스토어 (日本語 ja)
+
+```
+アラビア語に対応しました
+アラビア語では画面が右から左に並びます
+駅カードを長押ししてアラビア語を選べます
+```
+
+### 앱스토어 (중국어 간체 zh-Hans)
+
+```
+现已支持阿拉伯语
+阿拉伯语界面从右向左排列
+长按车站卡片即可切换为阿拉伯语
+```
+
+### 앱스토어 (중국어 번체 zh-Hant)
+
+```
+現已支援阿拉伯文
+阿拉伯文介面由右至左排列
+長按車站卡片即可切換為阿拉伯文
+```
+
+### 앱스토어 (독일어 de)
+
+```
+Jetzt auch auf Arabisch
+Arabische Ansicht von rechts nach links
+Station gedrückt halten, Arabisch wählen
+```
+
+### 앱스토어 (스페인어 es)
+
+```
+Ahora también en árabe
+En árabe, todo va de derecha a izquierda
+Elige árabe manteniendo una estación
+```
+
+### 앱스토어 (프랑스어 fr)
+
+```
+Désormais disponible en arabe
+En arabe, lecture de droite à gauche
+Appui long sur une station pour l'arabe
+```
+
+### 앱스토어 (이탈리아어 it)
+
+```
+Ora disponibile anche in arabo
+In arabo si legge da destra a sinistra
+Tieni premuta una stazione per l'arabo
+```
+
+### 앱스토어 (포르투갈어 브라질 pt-BR)
+
+```
+Agora também em árabe
+Em árabe, leitura da direita à esquerda
+Segure uma estação para escolher árabe
+```
+
+### 앱스토어 (러시아어 ru)
+
+```
+Теперь есть арабский язык
+На арабском экран идёт справа налево
+Арабский выбирается удержанием станции
+```
+
+### 앱스토어 (체코어 cs)
+
+```
+Nově v arabštině
+Arabština se zobrazuje zprava doleva
+Arabštinu zvolíte podržením stanice
+```
+
+### 앱스토어 (덴마크어 da)
+
+```
+Nu også på arabisk
+Arabisk vises fra højre mod venstre
+Hold på en station for at vælge arabisk
+```
+
+### 앱스토어 (그리스어 el)
+
+```
+Τώρα και στα αραβικά
+Αραβικά με διάταξη δεξιά προς αριστερά
+Κρατήστε πατημένο σταθμό για αραβικά
+```
+
+### 앱스토어 (핀란드어 fi)
+
+```
+Nyt myös arabiaksi
+Arabia näkyy oikealta vasemmalle
+Valitse arabia painamalla asemaa pitkään
+```
+
+### 앱스토어 (인도네시아어 id)
+
+```
+Kini tersedia dalam bahasa Arab
+Tampilan bahasa Arab dari kanan ke kiri
+Tekan lama stasiun untuk memilih Arab
+```
+
+### 앱스토어 (노르웨이어 보크말 nb)
+
+```
+Nå også på arabisk
+Arabisk vises fra høyre mot venstre
+Hold inne en stasjon for å velge arabisk
+```
+
+### 앱스토어 (네덜란드어 nl)
+
+```
+Nu ook in het Arabisch
+Arabisch loopt van rechts naar links
+Houd een station ingedrukt voor Arabisch
+```
+
+### 앱스토어 (폴란드어 pl)
+
+```
+Teraz także po arabsku
+Arabski wyświetla się od prawej do lewej
+Przytrzymaj stację, by wybrać arabski
+```
+
+### 앱스토어 (스웨덴어 sv)
+
+```
+Nu även på arabiska
+Arabiska visas från höger till vänster
+Håll ned en station och välj arabiska
+```
+
+### 앱스토어 (태국어 th)
+
+```
+รองรับภาษาอาหรับแล้ว
+ภาษาอาหรับแสดงผลจากขวาไปซ้าย
+กดค้างที่การ์ดสถานีเพื่อเลือกภาษาอาหรับ
+```
+
+### 앱스토어 (튀르키예어 tr)
+
+```
+Artık Arapça da var
+Arapçada ekran sağdan sola akar
+Arapça için bir istasyona basılı tut
+```
+
+### 앱스토어 (베트남어 vi)
+
+```
+Đã hỗ trợ tiếng Ả Rập
+Tiếng Ả Rập hiển thị từ phải sang trái
+Nhấn giữ thẻ ga để chọn tiếng Ả Rập
+```
+
+### 앱스토어 (아랍어 ar)
+
+```
+أصبح Korea Navi متاحًا بالعربية
+الواجهة العربية من اليمين إلى اليسار
+اختر العربية بالضغط مطولًا على محطة
+```
+
 ## 1.1.1
 
 ### 앱스토어 (English en-US)

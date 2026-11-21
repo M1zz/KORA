@@ -11,13 +11,13 @@ ROOT = pathlib.Path(__file__).resolve().parents[2]
 SRC = ROOT / "scripts/i18n/store"
 # deploy.env LOCALES 순서 → 웹 페이지 폴더
 LOCALES = ["en-US", "en-GB", "ko", "ja", "zh-Hans", "zh-Hant", "de", "es", "fr", "it", "pt-BR", "ru", "cs",
-           "da", "el", "fi", "id", "nb", "nl", "pl", "sv", "th", "tr", "vi"]
+           "da", "el", "fi", "id", "nb", "nl", "pl", "sv", "th", "tr", "vi", "ar"]
 WEB = {"en-US": "en", "en-GB": "en"}
 LANGNAME = {"ko": "한국어", "en-US": "English", "en-GB": "영국 영어", "ja": "日本語", "zh-Hans": "중국어 간체", "zh-Hant": "중국어 번체",
             "de": "독일어", "es": "스페인어", "fr": "프랑스어", "it": "이탈리아어", "pt-BR": "포르투갈어 브라질",
             "ru": "러시아어", "cs": "체코어", "da": "덴마크어", "el": "그리스어", "fi": "핀란드어",
             "id": "인도네시아어", "nb": "노르웨이어 보크말", "nl": "네덜란드어", "pl": "폴란드어", "sv": "스웨덴어",
-            "th": "태국어", "tr": "튀르키예어", "vi": "베트남어"}
+            "th": "태국어", "tr": "튀르키예어", "vi": "베트남어", "ar": "아랍어"}
 
 
 def load(loc):
