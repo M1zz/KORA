@@ -68,7 +68,7 @@ struct ExitGuideButton: View {
                         .font(.body).fontWeight(.semibold)
                     Spacer(minLength: 4)
                     if unlocked {
-                        Image(systemName: "chevron.right")
+                        Image(systemName: "chevron.forward")
                             .font(.footnote).fontWeight(.bold)
                     } else {
                         Label("Pro", systemImage: "lock.fill")

@@ -700,6 +700,7 @@
 				th,
 				tr,
 				vi,
+				ar,
 				Base,
 			);
 			mainGroup = AA400;

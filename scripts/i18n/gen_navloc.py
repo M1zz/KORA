@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """화면 문구 카탈로그(NavLoc) 생성기.
 
-원본: scripts/i18n/navloc.json  — { 키: { 로케일: 문구 } }, 23개 언어 전부.
+원본: scripts/i18n/navloc.json  — { 키: { 로케일: 문구 } }, 24개 언어 전부.
 출력: KoreaNavi/Sources/Features/Subway/SubwayNavigatorCatalog.swift (손으로 고치지 않는다)
 
   python3 scripts/i18n/gen_navloc.py
@@ -21,7 +21,7 @@ FIELDS = [
     ("de", "de"), ("es", "es"), ("fr", "fr"), ("it", "it"), ("pt-BR", "ptBR"),
     ("ru", "ru"), ("cs", "cs"), ("da", "da"), ("el", "el"), ("fi", "fi"),
     ("id", "id"), ("nb", "nb"), ("nl", "nl"), ("pl", "pl"), ("sv", "sv"),
-    ("th", "th"), ("tr", "tr"), ("vi", "vi"),
+    ("th", "th"), ("tr", "tr"), ("vi", "vi"), ("ar", "ar"),
 ]
 
 

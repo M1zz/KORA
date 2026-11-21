@@ -175,7 +175,7 @@ struct AttractionCard: View {
                 }
             }
             Spacer(minLength: 4)
-            Image(systemName: "chevron.right")
+            Image(systemName: "chevron.forward")
                 .font(.footnote).fontWeight(.semibold)
                 .foregroundStyle(KoreaNaviTheme.labelTertiary)
                 .accessibilityHidden(true)

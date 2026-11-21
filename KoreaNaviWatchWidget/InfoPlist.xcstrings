@@ -147,6 +147,12 @@
             "state" : "translated",
             "value" : "韓國導航"
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korea Navi"
+          }
         }
       }
     }

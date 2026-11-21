@@ -140,6 +140,12 @@
             "state" : "translated",
             "value" : "車站"
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المحطة"
+          }
         }
       }
     },
@@ -281,6 +287,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "前往車站的路線"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الطريق إلى محطة"
           }
         }
       }
@@ -424,6 +436,12 @@
             "state" : "translated",
             "value" : "打開從最近的車站到所選車站的路線。"
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يفتح الطريق من أقرب محطة إليك إلى المحطة التي تختارها."
+          }
         }
       }
     },
@@ -565,6 +583,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "目的地"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الوجهة"
           }
         }
       }
@@ -708,6 +732,12 @@
             "state" : "translated",
             "value" : "你要去哪一站？"
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إلى أي محطة تريد الذهاب؟"
+          }
         }
       }
     },
@@ -849,6 +879,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最近的車站"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أقرب محطة"
           }
         }
       }
@@ -992,6 +1028,12 @@
             "state" : "translated",
             "value" : "告訴你離你最近的捷運站。"
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يخبرك بأقرب محطة مترو إليك."
+          }
         }
       }
     },
@@ -1134,6 +1176,12 @@
             "state" : "translated",
             "value" : "2 公里內沒有車站。"
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا توجد محطة في نطاق 2 كم."
+          }
         }
       }
     },
@@ -1275,6 +1323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最近的車站是%1$@，距離 %2$lld 公尺。"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أقرب محطة هي %1$@، على بُعد %2$lld م."
           }
         }
       }
@@ -1419,6 +1473,12 @@
             "state" : "translated",
             "value" : "要去的車站。用 App 支援的任何語言說出站名都能找到。"
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "المحطة التي تقصدها. يمكنك قول اسمها بأي لغة يدعمها التطبيق."
+          }
         }
       }
     },
@@ -1560,6 +1620,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "還不知道你的位置。請打開一次韓國導航並允許定位。"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لا أعرف موقعك بعد. افتح Korea Navi مرة واحدة واسمح بالوصول إلى الموقع."
           }
         }
       }

@@ -42,6 +42,7 @@ enum StationLanguage: String, CaseIterable, Codable {
     case thai
     case turkish
     case vietnamese
+    case arabic              // 화면은 오른쪽에서 왼쪽으로 (앱 루트에서 방향을 바꾼다)
 
     /// Human-readable label shown in the language picker menu.
     var displayName: String {
@@ -69,6 +70,7 @@ enum StationLanguage: String, CaseIterable, Codable {
         case .thai:     return "ไทย"
         case .turkish:  return "Türkçe"
         case .vietnamese: return "Tiếng Việt"
+        case .arabic:   return "العربية"
         }
     }
 
@@ -114,6 +116,7 @@ enum StationLanguage: String, CaseIterable, Codable {
         case "th": return .thai
         case "tr": return .turkish
         case "vi": return .vietnamese
+        case "ar": return .arabic
         default:   return .english
         }
     }

@@ -26,6 +26,17 @@ private extension Color {
 
 // MARK: - Lock-screen / banner view
 
+/// "→ 명동" — 화살표는 글 방향을 따른다(아랍어 기기에선 ←).
+private struct DestinationLabel: View {
+    let station: String
+    var body: some View {
+        HStack(spacing: 3) {
+            Image(systemName: "arrow.forward")
+            Text(verbatim: station)
+        }
+    }
+}
+
 @available(iOS 16.1, *)
 private struct KoreaNaviLockScreenView: View {
     let context: ActivityViewContext<KoreaNaviLiveActivityAttributes>
@@ -43,7 +54,7 @@ private struct KoreaNaviLockScreenView: View {
                     .font(.caption).fontWeight(.bold)
                     .foregroundStyle(lineColor)
                 Spacer()
-                Text(verbatim: "→ \(context.attributes.destinationStation)")
+                DestinationLabel(station: context.attributes.destinationStation)
                     .font(.caption2)
                     .foregroundStyle(.secondary)
             }
@@ -54,7 +65,7 @@ private struct KoreaNaviLockScreenView: View {
                     .font(.title3).fontWeight(.black)
                     .foregroundStyle(.primary)
                     .lineLimit(1)
-                Image(systemName: "arrow.right")
+                Image(systemName: "arrow.forward")
                     .font(.body).fontWeight(.bold)
                     .foregroundStyle(lineColor)
                 Text(context.state.nextStation)
@@ -66,7 +77,7 @@ private struct KoreaNaviLockScreenView: View {
                     Text(verbatim: "\(context.state.stopsRemaining)")
                         .font(.title2).fontWeight(.black)
                         .foregroundStyle(.primary)
-                    Text(context.attributes.stopsUnit)
+                    Text(context.attributes.stopsUnit(for: context.state.stopsRemaining))
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
@@ -95,7 +106,7 @@ struct widgetLiveActivity: Widget {
                         .foregroundStyle(lineColor)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text(verbatim: "→ \(context.attributes.destinationStation)")
+                    DestinationLabel(station: context.attributes.destinationStation)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                         .lineLimit(1)
@@ -105,7 +116,7 @@ struct widgetLiveActivity: Widget {
                         Text(context.state.currentStation)
                             .font(.title2).fontWeight(.black)
                             .lineLimit(1)
-                        Image(systemName: "arrow.right")
+                        Image(systemName: "arrow.forward")
                             .fontWeight(.bold)
                             .foregroundStyle(lineColor)
                         Text(context.state.nextStation)
@@ -113,7 +124,7 @@ struct widgetLiveActivity: Widget {
                             .foregroundStyle(lineColor)
                             .lineLimit(1)
                         Spacer()
-                        Text(verbatim: "\(context.state.stopsRemaining) \(context.attributes.stopsUnit)")
+                        Text(verbatim: "\(context.state.stopsRemaining) \(context.attributes.stopsUnit(for: context.state.stopsRemaining))")
                             .font(.body).fontWeight(.semibold)
                             .foregroundStyle(.secondary)
                     }

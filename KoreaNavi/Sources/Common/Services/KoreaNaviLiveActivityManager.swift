@@ -18,6 +18,14 @@ struct KoreaNaviLiveActivityAttributes: ActivityAttributes {
     /// Localized unit under the stop count ("정거장", "stops" …). Station and
     /// line names arrive already localized in the app's display language.
     var stopsUnit: String
+    /// 남은 정거장 수마다의 낱말 (칸 번호 = 남은 수). 아랍어 · 러시아어처럼 수에 따라 바뀌는 말을 맞게 쓴다.
+    /// 없으면(옛 액티비티) `stopsUnit`.
+    var stopsUnits: [String]? = nil
+
+    func stopsUnit(for n: Int) -> String {
+        guard let units = stopsUnits, units.indices.contains(n) else { return stopsUnit }
+        return units[n]
+    }
 }
 
 // MARK: - Manager
@@ -36,6 +44,7 @@ final class KoreaNaviLiveActivityManager {
         next: String,
         stopsRemaining: Int,
         stopsUnit: String,
+        stopsUnits: [String],
         lineColor: Color,
         lineName: String
     ) async {
@@ -45,7 +54,8 @@ final class KoreaNaviLiveActivityManager {
         }
         guard ActivityAuthorizationInfo().areActivitiesEnabled else { return }
         await end()
-        let attributes = KoreaNaviLiveActivityAttributes(destinationStation: destination, stopsUnit: stopsUnit)
+        let attributes = KoreaNaviLiveActivityAttributes(destinationStation: destination, stopsUnit: stopsUnit,
+                                                         stopsUnits: stopsUnits)
         let state = KoreaNaviLiveActivityAttributes.ContentState(
             currentStation: current,
             nextStation: next,

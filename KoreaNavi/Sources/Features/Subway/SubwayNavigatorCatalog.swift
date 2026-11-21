@@ -24,7 +24,8 @@ extension NavLoc {
         sv: "Vart ska du?",
         th: "จะไปไหนดี?",
         tr: "Nereye gidiyorsun?",
-        vi: "Bạn muốn đi đâu?"
+        vi: "Bạn muốn đi đâu?",
+        ar: "إلى أين تريد الذهاب؟"
     )
     static let tapStationForRoute = NavLoc(
         ko: "역을 탭하면 경로가 보여요",
@@ -49,7 +50,8 @@ extension NavLoc {
         sv: "Tryck på en station för att se rutten",
         th: "แตะสถานีเพื่อดูเส้นทาง",
         tr: "Rotayı görmek için bir istasyona dokun",
-        vi: "Chạm vào ga để xem lộ trình"
+        vi: "Chạm vào ga để xem lộ trình",
+        ar: "اضغط على محطة لترى المسار"
     )
     static let currentStationTitle = NavLoc(
         ko: "현재 역",
@@ -74,7 +76,8 @@ extension NavLoc {
         sv: "Nuvarande station",
         th: "สถานีปัจจุบัน",
         tr: "Bulunduğun istasyon",
-        vi: "Ga hiện tại"
+        vi: "Ga hiện tại",
+        ar: "المحطة الحالية"
     )
     static let destinationTitle = NavLoc(
         ko: "목적지",
@@ -99,7 +102,8 @@ extension NavLoc {
         sv: "Resmål",
         th: "ปลายทาง",
         tr: "Varış noktası",
-        vi: "Điểm đến"
+        vi: "Điểm đến",
+        ar: "الوجهة"
     )
     static let searchPrompt = NavLoc(
         ko: "역 또는 명소",
@@ -124,7 +128,8 @@ extension NavLoc {
         sv: "Station eller plats",
         th: "สถานีหรือสถานที่",
         tr: "İstasyon veya yer",
-        vi: "Ga hoặc địa điểm"
+        vi: "Ga hoặc địa điểm",
+        ar: "محطة أو مكان"
     )
     static let allLines = NavLoc(
         ko: "전체 노선",
@@ -149,7 +154,8 @@ extension NavLoc {
         sv: "Alla linjer",
         th: "ทุกสาย",
         tr: "Tüm hatlar",
-        vi: "Tất cả tuyến"
+        vi: "Tất cả tuyến",
+        ar: "كل الخطوط"
     )
     static let noMatchingStation = NavLoc(
         ko: "일치하는 역이 없어요",
@@ -174,7 +180,8 @@ extension NavLoc {
         sv: "Ingen station hittades",
         th: "ไม่พบสถานีที่ตรงกัน",
         tr: "Eşleşen istasyon yok",
-        vi: "Không tìm thấy ga phù hợp"
+        vi: "Không tìm thấy ga phù hợp",
+        ar: "لا توجد محطة مطابقة"
     )
     static let verifyTipTitle = NavLoc(
         ko: "다음 정거장 확인",
@@ -199,7 +206,8 @@ extension NavLoc {
         sv: "Kolla nästa station",
         th: "เช็กสถานีถัดไป",
         tr: "Sonraki durağı kontrol et",
-        vi: "Kiểm tra ga tiếp theo"
+        vi: "Kiểm tra ga tiếp theo",
+        ar: "تأكد من المحطة التالية"
     )
     static let verifyTipMessage = NavLoc(
         ko: "차량 안내판에 이 역명이 나오면 맞는 열차예요. 다른 역이면 내려서 반대편 승강장으로 가세요.",
@@ -224,7 +232,8 @@ extension NavLoc {
         sv: "Om det här stationsnamnet visas på skärmen i tåget sitter du på rätt tåg. Om inte, kliv av och ta tåget från motsatta plattformen.",
         th: "ถ้าจอในขบวนแสดงชื่อสถานีนี้ แปลว่าขึ้นถูกขบวนแล้ว ถ้าไม่ใช่ ให้ลงแล้วไปที่ชานชาลาฝั่งตรงข้าม",
         tr: "Bu istasyon adı vagondaki ekranda görünüyorsa doğru trendesin. Görünmüyorsa in ve karşı perondaki trene bin.",
-        vi: "Nếu tên ga này hiện trên màn hình trong toa, bạn đã lên đúng tàu. Nếu không, hãy xuống và sang sân ga đối diện."
+        vi: "Nếu tên ga này hiện trên màn hình trong toa, bạn đã lên đúng tàu. Nếu không, hãy xuống và sang sân ga đối diện.",
+        ar: "إذا ظهر اسم هذه المحطة على شاشة القطار فأنت في القطار الصحيح. وإن ظهرت محطة أخرى فانزل وانتقل إلى الرصيف المقابل."
     )
     static let arrived = NavLoc(
         ko: "도착!",
@@ -249,7 +258,8 @@ extension NavLoc {
         sv: "Framme!",
         th: "ถึงแล้ว!",
         tr: "Vardın!",
-        vi: "Đã đến nơi!"
+        vi: "Đã đến nơi!",
+        ar: "وصلت!"
     )
     static let arrivingSoon = NavLoc(
         ko: "곧 도착",
@@ -274,7 +284,8 @@ extension NavLoc {
         sv: "Snart framme",
         th: "ใกล้ถึงแล้ว",
         tr: "Varmak üzeresin",
-        vi: "Sắp đến"
+        vi: "Sắp đến",
+        ar: "الوصول قريبًا"
     )
     static let startOver = NavLoc(
         ko: "다른 곳 찾아가기",
@@ -299,7 +310,8 @@ extension NavLoc {
         sv: "Åk någon annanstans",
         th: "ไปที่อื่น",
         tr: "Başka yere git",
-        vi: "Đi nơi khác"
+        vi: "Đi nơi khác",
+        ar: "ابحث عن وجهة أخرى"
     )
     static let correctPosition = NavLoc(
         ko: "현재 위치 수정",
@@ -324,7 +336,8 @@ extension NavLoc {
         sv: "Rätta min position",
         th: "แก้ไขตำแหน่งของฉัน",
         tr: "Konumumu düzelt",
-        vi: "Sửa vị trí của tôi"
+        vi: "Sửa vị trí của tôi",
+        ar: "صحّح موقعي"
     )
     static let changeDepartureStation = NavLoc(
         ko: "출발역 변경",
@@ -349,7 +362,8 @@ extension NavLoc {
         sv: "Byt start",
         th: "เปลี่ยนต้นทาง",
         tr: "Başlangıcı değiştir",
-        vi: "Đổi ga đi"
+        vi: "Đổi ga đi",
+        ar: "غيّر محطة الانطلاق"
     )
     static let changeLanguageAction = NavLoc(
         ko: "언어 변경",
@@ -374,7 +388,8 @@ extension NavLoc {
         sv: "Byt språk",
         th: "เปลี่ยนภาษา",
         tr: "Dili değiştir",
-        vi: "Đổi ngôn ngữ"
+        vi: "Đổi ngôn ngữ",
+        ar: "غيّر اللغة"
     )
     static let longPressLanguageHint = NavLoc(
         ko: "길게 누르면 언어를 바꿀 수 있어요",
@@ -399,7 +414,8 @@ extension NavLoc {
         sv: "Håll ned för att byta språk",
         th: "กดค้างเพื่อเปลี่ยนภาษา",
         tr: "Dili değiştirmek için basılı tut",
-        vi: "Nhấn giữ để đổi ngôn ngữ"
+        vi: "Nhấn giữ để đổi ngôn ngữ",
+        ar: "اضغط مطولًا لتغيير اللغة"
     )
     static let pickCurrentStation = NavLoc(
         ko: "지금 어느 역인가요?",
@@ -424,7 +440,8 @@ extension NavLoc {
         sv: "Vilken station är du på nu?",
         th: "ตอนนี้อยู่สถานีไหน?",
         tr: "Şu an hangi istasyondasın?",
-        vi: "Bạn đang ở ga nào?"
+        vi: "Bạn đang ở ga nào?",
+        ar: "في أي محطة أنت الآن؟"
     )
     static let nextStationShort = NavLoc(
         ko: "다음역",
@@ -449,7 +466,8 @@ extension NavLoc {
         sv: "Nästa station",
         th: "สถานีถัดไป",
         tr: "Sonraki istasyon",
-        vi: "Ga tiếp theo"
+        vi: "Ga tiếp theo",
+        ar: "المحطة التالية"
     )
     static let nearbyStations = NavLoc(
         ko: "가까운 역",
@@ -474,7 +492,8 @@ extension NavLoc {
         sv: "Stationer i närheten",
         th: "สถานีใกล้เคียง",
         tr: "Yakındaki istasyonlar",
-        vi: "Ga gần đây"
+        vi: "Ga gần đây",
+        ar: "محطات قريبة"
     )
     static let verifyStationNameAlight = NavLoc(
         ko: "역 이름을 확인하고 내리세요",
@@ -499,7 +518,8 @@ extension NavLoc {
         sv: "Kolla stationsnamnet innan du kliver av",
         th: "เช็กชื่อสถานีก่อนลง",
         tr: "İnmeden önce istasyon adını kontrol et",
-        vi: "Kiểm tra tên ga trước khi xuống"
+        vi: "Kiểm tra tên ga trước khi xuống",
+        ar: "تأكد من اسم المحطة قبل النزول"
     )
     static let alightPositionUnconfirmed = NavLoc(
         ko: "위치 미확정 — 안내방송·역명으로 확인하세요",
@@ -524,7 +544,8 @@ extension NavLoc {
         sv: "Uppskattad position — kolla skylt eller utrop",
         th: "ตำแหน่งโดยประมาณ — เช็กจากป้ายหรือประกาศ",
         tr: "Tahmini konum — tabela veya anonsla doğrula",
-        vi: "Vị trí ước tính — kiểm tra biển ga hoặc thông báo"
+        vi: "Vị trí ước tính — kiểm tra biển ga hoặc thông báo",
+        ar: "الموقع تقديري، تأكد من اللافتة أو الإعلان"
     )
     static let alightPositionConfirmed = NavLoc(
         ko: "위치 확인됨",
@@ -549,7 +570,8 @@ extension NavLoc {
         sv: "Position bekräftad",
         th: "ยืนยันตำแหน่งแล้ว",
         tr: "Konum doğrulandı",
-        vi: "Đã xác nhận vị trí"
+        vi: "Đã xác nhận vị trí",
+        ar: "تم تأكيد الموقع"
     )
     static let positionUncertain = NavLoc(
         ko: "위치가 정확하지 않나요? 탭하여 보정",
@@ -574,7 +596,8 @@ extension NavLoc {
         sv: "Fel position? Tryck för att rätta",
         th: "ตำแหน่งไม่ตรง? แตะเพื่อแก้ไข",
         tr: "Konum yanlış mı? Düzeltmek için dokun",
-        vi: "Sai vị trí? Chạm để sửa"
+        vi: "Sai vị trí? Chạm để sửa",
+        ar: "الموقع غير دقيق؟ اضغط للتصحيح"
     )
     static let approachingNext = NavLoc(
         ko: "다음 역 접근 중",
@@ -599,7 +622,8 @@ extension NavLoc {
         sv: "Närmar sig nästa station",
         th: "กำลังถึงสถานีถัดไป",
         tr: "Sonraki istasyona yaklaşılıyor",
-        vi: "Sắp đến ga tiếp theo"
+        vi: "Sắp đến ga tiếp theo",
+        ar: "يقترب من المحطة التالية"
     )
     static let heardFromAnnouncement = NavLoc(
         ko: "안내방송으로 확인됨",
@@ -624,7 +648,8 @@ extension NavLoc {
         sv: "Bekräftat av utrop",
         th: "ยืนยันจากเสียงประกาศ",
         tr: "Anonsla doğrulandı",
-        vi: "Đã xác nhận qua thông báo"
+        vi: "Đã xác nhận qua thông báo",
+        ar: "تأكّد من إعلان القطار"
     )
     static let doorOpensRight = NavLoc(
         ko: "내리실 문: 오른쪽",
@@ -649,7 +674,8 @@ extension NavLoc {
         sv: "Avstigning: höger sida",
         th: "ประตูเปิดด้านขวา",
         tr: "İniş: sağ taraf",
-        vi: "Cửa xuống: bên phải"
+        vi: "Cửa xuống: bên phải",
+        ar: "تُفتح الأبواب على اليمين"
     )
     static let doorOpensLeft = NavLoc(
         ko: "내리실 문: 왼쪽",
@@ -674,7 +700,8 @@ extension NavLoc {
         sv: "Avstigning: vänster sida",
         th: "ประตูเปิดด้านซ้าย",
         tr: "İniş: sol taraf",
-        vi: "Cửa xuống: bên trái"
+        vi: "Cửa xuống: bên trái",
+        ar: "تُفتح الأبواب على اليسار"
     )
     static let scanDirectionButton = NavLoc(
         ko: "어느 쪽인지 카메라로 확인",
@@ -699,7 +726,8 @@ extension NavLoc {
         sv: "Kolla riktningen med kameran",
         th: "เช็กทิศทางด้วยกล้อง",
         tr: "Yönü kamerayla kontrol et",
-        vi: "Kiểm tra hướng bằng camera"
+        vi: "Kiểm tra hướng bằng camera",
+        ar: "تحقق من الاتجاه بالكاميرا"
     )
     static let scanAimPrompt = NavLoc(
         ko: "열차 행선지(전광판)를 비춰주세요",
@@ -724,7 +752,8 @@ extension NavLoc {
         sv: "Rikta kameran mot tågets destinationsskylt",
         th: "ส่องกล้องไปที่ป้ายปลายทางของรถไฟ",
         tr: "Kamerayı trenin gideceği yer tabelasına tut",
-        vi: "Hướng camera vào bảng điểm đến của tàu"
+        vi: "Hướng camera vào bảng điểm đến của tàu",
+        ar: "وجّه الكاميرا إلى شاشة وجهة القطار"
     )
     static let scanCorrect = NavLoc(
         ko: "이 방향이 맞아요 — 타세요",
@@ -749,7 +778,8 @@ extension NavLoc {
         sv: "Rätt riktning — kliv på",
         th: "ทิศทางถูกต้อง — ขึ้นได้เลย",
         tr: "Doğru yön — binebilirsin",
-        vi: "Đúng hướng — lên tàu"
+        vi: "Đúng hướng — lên tàu",
+        ar: "الاتجاه صحيح، اركب هنا"
     )
     static let scanWrong = NavLoc(
         ko: "반대 방향이에요 — 타지 마세요",
@@ -774,7 +804,8 @@ extension NavLoc {
         sv: "Fel riktning — kliv inte på",
         th: "ผิดทิศทาง — อย่าขึ้น",
         tr: "Ters yön — binme",
-        vi: "Ngược hướng — đừng lên"
+        vi: "Ngược hướng — đừng lên",
+        ar: "الاتجاه المعاكس، لا تركب"
     )
     static let scanSearching = NavLoc(
         ko: "행선지를 찾는 중…",
@@ -799,7 +830,8 @@ extension NavLoc {
         sv: "Letar efter destinationsskylt…",
         th: "กำลังหาป้ายปลายทาง…",
         tr: "Yön tabelası aranıyor…",
-        vi: "Đang tìm bảng điểm đến…"
+        vi: "Đang tìm bảng điểm đến…",
+        ar: "جارٍ البحث عن لافتة الوجهة…"
     )
     static let scanNoCamera = NavLoc(
         ko: "카메라 권한이 필요해요",
@@ -824,7 +856,8 @@ extension NavLoc {
         sv: "Kameraåtkomst krävs",
         th: "ต้องอนุญาตให้ใช้กล้อง",
         tr: "Kamera izni gerekli",
-        vi: "Cần quyền truy cập camera"
+        vi: "Cần quyền truy cập camera",
+        ar: "يلزم السماح بالوصول إلى الكاميرا"
     )
     static let gpsSuggestion = NavLoc(
         ko: "위치 기반 추천",
@@ -849,7 +882,8 @@ extension NavLoc {
         sv: "Förslag utifrån plats",
         th: "แนะนำตามตำแหน่ง",
         tr: "Konuma göre öneri",
-        vi: "Gợi ý theo vị trí"
+        vi: "Gợi ý theo vị trí",
+        ar: "اقتراح حسب موقعك"
     )
     static let searchingLocation = NavLoc(
         ko: "현재 위치 확인 중...",
@@ -874,7 +908,8 @@ extension NavLoc {
         sv: "Hämtar din plats…",
         th: "กำลังหาตำแหน่ง…",
         tr: "Konum bulunuyor…",
-        vi: "Đang xác định vị trí…"
+        vi: "Đang xác định vị trí…",
+        ar: "جارٍ تحديد موقعك..."
     )
     static let stopsToAlight = NavLoc(
         ko: "내릴 곳까지",
@@ -899,7 +934,8 @@ extension NavLoc {
         sv: "Tills du ska av",
         th: "ก่อนถึงสถานีที่ต้องลง",
         tr: "İneceğin yere",
-        vi: "Đến ga xuống"
+        vi: "Đến ga xuống",
+        ar: "حتى محطة نزولك"
     )
     static let etaLabel = NavLoc(
         ko: "도착 예정",
@@ -924,7 +960,8 @@ extension NavLoc {
         sv: "Ankomst",
         th: "ถึงประมาณ",
         tr: "Tahmini varış",
-        vi: "Dự kiến đến"
+        vi: "Dự kiến đến",
+        ar: "الوصول المتوقع"
     )
     static let alightCalm = NavLoc(
         ko: "내릴 역",
@@ -949,7 +986,8 @@ extension NavLoc {
         sv: "Kliv av vid",
         th: "ลงที่",
         tr: "İneceğin istasyon",
-        vi: "Xuống tại"
+        vi: "Xuống tại",
+        ar: "انزل في"
     )
     static let prepareToGetOff = NavLoc(
         ko: "곧 내릴 준비하세요",
@@ -974,7 +1012,8 @@ extension NavLoc {
         sv: "Gör dig redo att kliva av",
         th: "เตรียมตัวลง",
         tr: "İnmeye hazırlan",
-        vi: "Chuẩn bị xuống tàu"
+        vi: "Chuẩn bị xuống tàu",
+        ar: "استعد للنزول"
     )
     static let nextStopGetOff = NavLoc(
         ko: "다음 정거장에서 내리세요",
@@ -999,7 +1038,8 @@ extension NavLoc {
         sv: "Kliv av vid nästa station",
         th: "ลงสถานีถัดไป",
         tr: "Sonraki istasyonda in",
-        vi: "Xuống ở ga tiếp theo"
+        vi: "Xuống ở ga tiếp theo",
+        ar: "انزل في المحطة التالية"
     )
     static let getOffNow = NavLoc(
         ko: "지금 내리세요!",
@@ -1024,7 +1064,8 @@ extension NavLoc {
         sv: "Kliv av nu!",
         th: "ลงเดี๋ยวนี้!",
         tr: "Şimdi in!",
-        vi: "Xuống ngay!"
+        vi: "Xuống ngay!",
+        ar: "انزل الآن!"
     )
     static let noRouteFound = NavLoc(
         ko: "경로를 찾을 수 없어요",
@@ -1049,7 +1090,8 @@ extension NavLoc {
         sv: "Ingen rutt hittades",
         th: "ไม่พบเส้นทาง",
         tr: "Rota bulunamadı",
-        vi: "Không tìm thấy lộ trình"
+        vi: "Không tìm thấy lộ trình",
+        ar: "لم يُعثر على مسار"
     )
     static let noRouteHint = NavLoc(
         ko: "최대 2회 환승으로 도달할 수 있는 경로가 없어요",
@@ -1074,7 +1116,8 @@ extension NavLoc {
         sv: "Ingen rutt med högst två byten",
         th: "ไม่มีเส้นทางที่ต่อรถไม่เกินสองครั้ง",
         tr: "En fazla iki aktarmayla gidilebilen rota yok",
-        vi: "Không có lộ trình nào với tối đa hai lần chuyển tuyến"
+        vi: "Không có lộ trình nào với tối đa hai lần chuyển tuyến",
+        ar: "لا يوجد مسار يصل إلى هناك بتبديلين كحد أقصى"
     )
     static let pickAnotherDestination = NavLoc(
         ko: "다른 목적지 선택",
@@ -1099,7 +1142,8 @@ extension NavLoc {
         sv: "Välj ett annat resmål",
         th: "เลือกปลายทางอื่น",
         tr: "Başka bir yer seç",
-        vi: "Chọn điểm đến khác"
+        vi: "Chọn điểm đến khác",
+        ar: "اختر وجهة أخرى"
     )
     static let languagePickerTitle = NavLoc(
         ko: "언어",
@@ -1124,7 +1168,8 @@ extension NavLoc {
         sv: "Språk",
         th: "ภาษา",
         tr: "Dil",
-        vi: "Ngôn ngữ"
+        vi: "Ngôn ngữ",
+        ar: "اللغة"
     )
     static let done = NavLoc(
         ko: "완료",
@@ -1149,7 +1194,8 @@ extension NavLoc {
         sv: "Klar",
         th: "เสร็จสิ้น",
         tr: "Bitti",
-        vi: "Xong"
+        vi: "Xong",
+        ar: "تم"
     )
     static let autoLabel = NavLoc(
         ko: "자동",
@@ -1174,7 +1220,8 @@ extension NavLoc {
         sv: "Automatiskt",
         th: "อัตโนมัติ",
         tr: "Otomatik",
-        vi: "Tự động"
+        vi: "Tự động",
+        ar: "تلقائي"
     )
     static let contactSectionTitle = NavLoc(
         ko: "개발자에게 문의",
@@ -1199,7 +1246,8 @@ extension NavLoc {
         sv: "Kontakta utvecklaren",
         th: "ติดต่อผู้พัฒนา",
         tr: "Geliştiriciyle iletişim",
-        vi: "Liên hệ nhà phát triển"
+        vi: "Liên hệ nhà phát triển",
+        ar: "تواصل مع المطوّر"
     )
     static let contactEmail = NavLoc(
         ko: "이메일로 문의하기",
@@ -1224,7 +1272,8 @@ extension NavLoc {
         sv: "Skicka mejl",
         th: "ส่งอีเมล",
         tr: "E-posta gönder",
-        vi: "Gửi email"
+        vi: "Gửi email",
+        ar: "راسلنا بالبريد الإلكتروني"
     )
     static let contactInstagram = NavLoc(
         ko: "인스타그램 DM (@lee25_ios)",
@@ -1249,7 +1298,8 @@ extension NavLoc {
         sv: "Meddelande på Instagram (@lee25_ios)",
         th: "DM ทาง Instagram (@lee25_ios)",
         tr: "Instagram DM (@lee25_ios)",
-        vi: "Nhắn tin Instagram (@lee25_ios)"
+        vi: "Nhắn tin Instagram (@lee25_ios)",
+        ar: "رسالة على Instagram (@lee25_ios)"
     )
     static let contactFooter = NavLoc(
         ko: "버그 제보와 기능 제안을 환영합니다.",
@@ -1274,7 +1324,8 @@ extension NavLoc {
         sv: "Felrapporter och idéer är varmt välkomna.",
         th: "ยินดีรับแจ้งปัญหาและข้อเสนอแนะเสมอ",
         tr: "Hata bildirimleri ve öneriler her zaman memnuniyetle karşılanır.",
-        vi: "Rất hoan nghênh báo lỗi và góp ý tính năng."
+        vi: "Rất hoan nghênh báo lỗi và góp ý tính năng.",
+        ar: "نرحب ببلاغات الأخطاء واقتراحات الميزات."
     )
     static let locationErrorNoStation = NavLoc(
         ko: "근처에서 역을 찾을 수 없어요",
@@ -1299,7 +1350,8 @@ extension NavLoc {
         sv: "Ingen station i närheten",
         th: "ไม่พบสถานีใกล้เคียง",
         tr: "Yakında istasyon bulunamadı",
-        vi: "Không tìm thấy ga nào gần đây"
+        vi: "Không tìm thấy ga nào gần đây",
+        ar: "لا توجد محطة قريبة"
     )
     static let locationErrorFetchFailed = NavLoc(
         ko: "현재 위치를 가져오지 못했어요",
@@ -1324,7 +1376,8 @@ extension NavLoc {
         sv: "Det gick inte att hämta din plats",
         th: "ไม่สามารถหาตำแหน่งของคุณได้",
         tr: "Konumun alınamadı",
-        vi: "Không thể lấy vị trí của bạn"
+        vi: "Không thể lấy vị trí của bạn",
+        ar: "تعذّر تحديد موقعك"
     )
     static let locationErrorDenied = NavLoc(
         ko: "위치 권한이 꺼져 있어요 (설정 → 한국길찾기 → 위치)",
@@ -1349,7 +1402,8 @@ extension NavLoc {
         sv: "Platsåtkomst är avstängd (Inställningar → Korea Navi → Plats)",
         th: "ปิดการเข้าถึงตำแหน่งอยู่ (การตั้งค่า → Korea Navi → ตำแหน่งที่ตั้ง)",
         tr: "Konum erişimi kapalı (Ayarlar → Korea Navi → Konum)",
-        vi: "Quyền truy cập vị trí đang tắt (Cài đặt → Korea Navi → Vị trí)"
+        vi: "Quyền truy cập vị trí đang tắt (Cài đặt → Korea Navi → Vị trí)",
+        ar: "الوصول إلى الموقع متوقف (الإعدادات ← Korea Navi ← الموقع)"
     )
     static let locationErrorUnavailable = NavLoc(
         ko: "현재 위치를 가져오지 못했어요. 출발역을 직접 골라주세요",
@@ -1374,7 +1428,8 @@ extension NavLoc {
         sv: "Det gick inte att hämta din plats. Välj startstation själv.",
         th: "ไม่สามารถหาตำแหน่งของคุณได้ โปรดเลือกสถานีต้นทางเอง",
         tr: "Konumun alınamadı. Lütfen başlangıç istasyonunu kendin seç.",
-        vi: "Không thể lấy vị trí của bạn. Hãy tự chọn ga xuất phát."
+        vi: "Không thể lấy vị trí của bạn. Hãy tự chọn ga xuất phát.",
+        ar: "تعذّر تحديد موقعك. اختر محطة الانطلاق بنفسك"
     )
     static let locationErrorTimeout = NavLoc(
         ko: "위치를 가져오는 데 시간이 너무 오래 걸려요",
@@ -1399,7 +1454,8 @@ extension NavLoc {
         sv: "Det tog för lång tid att hämta din plats",
         th: "การหาตำแหน่งใช้เวลานานเกินไป",
         tr: "Konum alma çok uzun sürdü",
-        vi: "Lấy vị trí mất quá nhiều thời gian"
+        vi: "Lấy vị trí mất quá nhiều thời gian",
+        ar: "استغرق تحديد موقعك وقتًا أطول من اللازم"
     )
     static let stopsUnit = NavLoc(
         ko: "정거장",
@@ -1424,7 +1480,8 @@ extension NavLoc {
         sv: "stationer",
         th: "สถานี",
         tr: "durak",
-        vi: "ga"
+        vi: "ga",
+        ar: "محطات متبقية"
     )
     static let tipTitle = NavLoc(
         ko: "언어 전환",
@@ -1449,7 +1506,8 @@ extension NavLoc {
         sv: "Byt språk",
         th: "เปลี่ยนภาษา",
         tr: "Dil değiştir",
-        vi: "Đổi ngôn ngữ"
+        vi: "Đổi ngôn ngữ",
+        ar: "تبديل اللغة"
     )
     static let tipMessage = NavLoc(
         ko: "역 이름을 길게 누르면 표시 언어를 바꿀 수 있어요.",
@@ -1474,7 +1532,8 @@ extension NavLoc {
         sv: "Håll ned ett stationsnamn för att byta visningsspråk.",
         th: "กดชื่อสถานีค้างไว้เพื่อเปลี่ยนภาษาที่แสดง",
         tr: "Görüntüleme dilini değiştirmek için bir istasyon adına basılı tut.",
-        vi: "Nhấn giữ tên ga để đổi ngôn ngữ hiển thị."
+        vi: "Nhấn giữ tên ga để đổi ngôn ngữ hiển thị.",
+        ar: "اضغط مطولًا على اسم المحطة لتغيير لغة العرض."
     )
     static let a11yNextStop = NavLoc(
         ko: "{0}역 출발, 다음 정거장 {1}역",
@@ -1499,7 +1558,8 @@ extension NavLoc {
         sv: "Avgång från {0}, nästa station {1}",
         th: "ออกจาก {0} สถานีถัดไป {1}",
         tr: "{0} istasyonundan kalkış, sonraki durak {1}",
-        vi: "Rời ga {0}, ga tiếp theo {1}"
+        vi: "Rời ga {0}, ga tiếp theo {1}",
+        ar: "الانطلاق من {0}، المحطة التالية {1}"
     )
     static let a11yNearCurrent = NavLoc(
         ko: "현재 {0}역 근처, 다음 {1}역",
@@ -1524,7 +1584,8 @@ extension NavLoc {
         sv: "Nära {0}, nästa station {1}",
         th: "ใกล้ {0} สถานีถัดไป {1}",
         tr: "{0} yakınında, sonraki durak {1}",
-        vi: "Gần ga {0}, ga tiếp theo {1}"
+        vi: "Gần ga {0}, ga tiếp theo {1}",
+        ar: "قرب {0}، التالية {1}"
     )
     static let a11yStopsToDest = NavLoc(
         ko: "{1}역까지 {0} 남음",
@@ -1549,7 +1610,8 @@ extension NavLoc {
         sv: "{0} till {1}",
         th: "อีก {0} ถึง {1}",
         tr: "{1} istasyonuna {0} kaldı",
-        vi: "Còn {0} đến {1}"
+        vi: "Còn {0} đến {1}",
+        ar: "{0} حتى {1}"
     )
     static let a11yAboutMinutes = NavLoc(
         ko: "{0}, 약 {1}분",
@@ -1574,7 +1636,8 @@ extension NavLoc {
         sv: "{0}, cirka {1} minuter",
         th: "{0} ประมาณ {1} นาที",
         tr: "{0}, yaklaşık {1} dakika",
-        vi: "{0}, khoảng {1} phút"
+        vi: "{0}, khoảng {1} phút",
+        ar: "{0}، نحو {1} د"
     )
     static let toStation = NavLoc(
         ko: "{0}까지",
@@ -1599,7 +1662,8 @@ extension NavLoc {
         sv: "Till {0}",
         th: "ไป {0}",
         tr: "{0} istasyonuna",
-        vi: "Đến {0}"
+        vi: "Đến {0}",
+        ar: "إلى {0}"
     )
     static let anyDirectionWorks = NavLoc(
         ko: "어느 방향이든 가능",
@@ -1624,7 +1688,8 @@ extension NavLoc {
         sv: "Alla dessa fungerar",
         th: "ขึ้นขบวนไหนก็ได้",
         tr: "Bunların hepsi olur",
-        vi: "Tàu nào dưới đây cũng được"
+        vi: "Tàu nào dưới đây cũng được",
+        ar: "أيٌّ منها مناسب"
     )
     static let trainBoundFor = NavLoc(
         ko: "{0}행",
@@ -1649,7 +1714,8 @@ extension NavLoc {
         sv: "Mot {0}",
         th: "ไป {0}",
         tr: "{0} yönü",
-        vi: "Đi {0}"
+        vi: "Đi {0}",
+        ar: "متجه إلى {0}"
     )
     static let landmarksDirection = NavLoc(
         ko: "{0} 방향",
@@ -1674,7 +1740,8 @@ extension NavLoc {
         sv: "Riktning {0}",
         th: "ทาง {0}",
         tr: "{0} yönü",
-        vi: "Hướng {0}"
+        vi: "Hướng {0}",
+        ar: "باتجاه {0}"
     )
     static let towardDestination = NavLoc(
         ko: "{0} 방면",
@@ -1699,7 +1766,8 @@ extension NavLoc {
         sv: "Riktning {0}",
         th: "ทาง {0}",
         tr: "{0} yönü",
-        vi: "Hướng {0}"
+        vi: "Hướng {0}",
+        ar: "باتجاه {0}"
     )
     static let innerLoop = NavLoc(
         ko: "내선순환",
@@ -1724,7 +1792,8 @@ extension NavLoc {
         sv: "Inre ringen",
         th: "วงใน",
         tr: "İç halka",
-        vi: "Vòng trong"
+        vi: "Vòng trong",
+        ar: "الحلقة الداخلية"
     )
     static let outerLoop = NavLoc(
         ko: "외선순환",
@@ -1749,7 +1818,8 @@ extension NavLoc {
         sv: "Yttre ringen",
         th: "วงนอก",
         tr: "Dış halka",
-        vi: "Vòng ngoài"
+        vi: "Vòng ngoài",
+        ar: "الحلقة الخارجية"
     )
     static let towardTerminus = NavLoc(
         ko: "{0}행",
@@ -1774,7 +1844,8 @@ extension NavLoc {
         sv: "Riktning {0}",
         th: "ทาง {0}",
         tr: "{0} yönü",
-        vi: "Hướng {0}"
+        vi: "Hướng {0}",
+        ar: "باتجاه {0}"
     )
     static let currentStationA11y = NavLoc(
         ko: "{0}역{1}. 현재역 변경하려면 탭하세요.",
@@ -1799,7 +1870,8 @@ extension NavLoc {
         sv: "Station {0}{1}. Tryck för att byta nuvarande station.",
         th: "สถานี {0}{1} แตะเพื่อเปลี่ยนสถานีปัจจุบัน",
         tr: "{0} istasyonu{1}. Bulunduğun istasyonu değiştirmek için dokun.",
-        vi: "Ga {0}{1}. Chạm để đổi ga hiện tại."
+        vi: "Ga {0}{1}. Chạm để đổi ga hiện tại.",
+        ar: "محطة {0}{1}. اضغط لتغيير المحطة الحالية."
     )
     static let departurePlaceholder = NavLoc(
         ko: "어디서 출발하시나요?",
@@ -1824,7 +1896,8 @@ extension NavLoc {
         sv: "Var reser du från?",
         th: "ออกเดินทางจากไหน?",
         tr: "Nereden yola çıkıyorsun?",
-        vi: "Bạn xuất phát từ đâu?"
+        vi: "Bạn xuất phát từ đâu?",
+        ar: "من أين تنطلق؟"
     )
     static let departureHint = NavLoc(
         ko: "탭 해서 출발지를 정해주세요",
@@ -1849,7 +1922,8 @@ extension NavLoc {
         sv: "Tryck för att välja start",
         th: "แตะเพื่อเลือกต้นทาง",
         tr: "Başlangıç noktası seçmek için dokun",
-        vi: "Chạm để chọn điểm xuất phát"
+        vi: "Chạm để chọn điểm xuất phát",
+        ar: "اضغط لتحديد نقطة الانطلاق"
     )
     static let locating = NavLoc(
         ko: "현재 위치 확인 중...",
@@ -1874,7 +1948,8 @@ extension NavLoc {
         sv: "Hämtar din plats…",
         th: "กำลังหาตำแหน่ง…",
         tr: "Konum bulunuyor…",
-        vi: "Đang xác định vị trí…"
+        vi: "Đang xác định vị trí…",
+        ar: "جارٍ تحديد الموقع..."
     )
     static let preBoardingStatus = NavLoc(
         ko: "탑승 전",
@@ -1899,7 +1974,8 @@ extension NavLoc {
         sv: "Före påstigning",
         th: "ก่อนขึ้นรถ",
         tr: "Binmeden önce",
-        vi: "Trước khi lên tàu"
+        vi: "Trước khi lên tàu",
+        ar: "قبل الركوب"
     )
     static let boardedStatus = NavLoc(
         ko: "탑승 중",
@@ -1924,7 +2000,8 @@ extension NavLoc {
         sv: "Ombord",
         th: "อยู่บนรถ",
         tr: "Trende",
-        vi: "Đang trên tàu"
+        vi: "Đang trên tàu",
+        ar: "في القطار"
     )
     static let slideToBoard = NavLoc(
         ko: "밀어서 탑승하기",
@@ -1949,7 +2026,8 @@ extension NavLoc {
         sv: "Dra för att kliva på",
         th: "เลื่อนเพื่อขึ้นรถ",
         tr: "Binmek için kaydır",
-        vi: "Trượt để lên tàu"
+        vi: "Trượt để lên tàu",
+        ar: "اسحب للركوب"
     )
     static let slideToTransfer = NavLoc(
         ko: "밀어서 환승하기",
@@ -1974,7 +2052,8 @@ extension NavLoc {
         sv: "Dra för att byta",
         th: "เลื่อนเพื่อต่อรถ",
         tr: "Aktarma için kaydır",
-        vi: "Trượt để chuyển tuyến"
+        vi: "Trượt để chuyển tuyến",
+        ar: "اسحب للتبديل"
     )
     static let slideToAlight = NavLoc(
         ko: "밀어서 내리기",
@@ -1999,7 +2078,8 @@ extension NavLoc {
         sv: "Dra för att kliva av",
         th: "เลื่อนเพื่อลงรถ",
         tr: "İnmek için kaydır",
-        vi: "Trượt để xuống tàu"
+        vi: "Trượt để xuống tàu",
+        ar: "اسحب للنزول"
     )
     static let revisitAlertTitle = NavLoc(
         ko: "이미 지나간 단계예요",
@@ -2024,7 +2104,8 @@ extension NavLoc {
         sv: "Redan klart",
         th: "ขั้นตอนนี้ผ่านไปแล้ว",
         tr: "Bu adım tamamlandı",
-        vi: "Bước này đã xong"
+        vi: "Bước này đã xong",
+        ar: "اكتملت هذه الخطوة"
     )
     static let revisitAlertMessage = NavLoc(
         ko: "이미 완료한 단계입니다. 다시 보시겠습니까?",
@@ -2049,7 +2130,8 @@ extension NavLoc {
         sv: "Det här steget är redan klart. Vill du gå tillbaka och titta igen?",
         th: "ขั้นตอนนี้เสร็จแล้ว ต้องการย้อนกลับไปดูไหม?",
         tr: "Bu adımı zaten tamamladın. Tekrar bakmak için geri dönmek ister misin?",
-        vi: "Bạn đã hoàn thành bước này. Bạn có muốn quay lại xem không?"
+        vi: "Bạn đã hoàn thành bước này. Bạn có muốn quay lại xem không?",
+        ar: "أنهيت هذه الخطوة من قبل. هل تريد الرجوع لمراجعتها؟"
     )
     static let revisitContinue = NavLoc(
         ko: "계속 진행",
@@ -2074,7 +2156,8 @@ extension NavLoc {
         sv: "Fortsätt",
         th: "ไปต่อ",
         tr: "Devam et",
-        vi: "Tiếp tục"
+        vi: "Tiếp tục",
+        ar: "متابعة"
     )
     static let revisitGoBack = NavLoc(
         ko: "돌아가서 보기",
@@ -2099,7 +2182,8 @@ extension NavLoc {
         sv: "Gå tillbaka",
         th: "ย้อนกลับไปดู",
         tr: "Geri dön",
-        vi: "Quay lại xem"
+        vi: "Quay lại xem",
+        ar: "ارجع للمراجعة"
     )
     static let transferLabel = NavLoc(
         ko: "환승",
@@ -2124,7 +2208,8 @@ extension NavLoc {
         sv: "Byte",
         th: "ต่อรถ",
         tr: "Aktarma",
-        vi: "Chuyển tuyến"
+        vi: "Chuyển tuyến",
+        ar: "تبديل"
     )
     static let departureLabel = NavLoc(
         ko: "출발",
@@ -2149,7 +2234,8 @@ extension NavLoc {
         sv: "Från",
         th: "ต้นทาง",
         tr: "Nereden",
-        vi: "Từ"
+        vi: "Từ",
+        ar: "من"
     )
     static let arrivalLabel = NavLoc(
         ko: "도착",
@@ -2174,7 +2260,8 @@ extension NavLoc {
         sv: "Till",
         th: "ปลายทาง",
         tr: "Nereye",
-        vi: "Đến"
+        vi: "Đến",
+        ar: "إلى"
     )
     static let noTransfer = NavLoc(
         ko: "환승 없음",
@@ -2199,7 +2286,8 @@ extension NavLoc {
         sv: "Inget byte",
         th: "ไม่ต้องต่อรถ",
         tr: "Aktarmasız",
-        vi: "Không chuyển tuyến"
+        vi: "Không chuyển tuyến",
+        ar: "بلا تبديل"
     )
     static let startJourney = NavLoc(
         ko: "출발하기",
@@ -2224,7 +2312,8 @@ extension NavLoc {
         sv: "Starta resan",
         th: "เริ่มเดินทาง",
         tr: "Yolculuğa başla",
-        vi: "Bắt đầu đi"
+        vi: "Bắt đầu đi",
+        ar: "ابدأ الرحلة"
     )
     static let changeDestination = NavLoc(
         ko: "목적지 다시 선택",
@@ -2249,7 +2338,8 @@ extension NavLoc {
         sv: "Byt resmål",
         th: "เปลี่ยนปลายทาง",
         tr: "Varış noktasını değiştir",
-        vi: "Đổi điểm đến"
+        vi: "Đổi điểm đến",
+        ar: "غيّر الوجهة"
     )
     static let proTitle = NavLoc(
         ko: "한국길찾기 Pro",
@@ -2274,7 +2364,8 @@ extension NavLoc {
         sv: "Korea Navi Pro",
         th: "Korea Navi Pro",
         tr: "Korea Navi Pro",
-        vi: "Korea Navi Pro"
+        vi: "Korea Navi Pro",
+        ar: "Korea Navi Pro"
     )
     static let proHeadline = NavLoc(
         ko: "내릴 역, 이제 놓치지 마세요",
@@ -2299,7 +2390,8 @@ extension NavLoc {
         sv: "Missa aldrig din hållplats igen",
         th: "ไม่พลาดสถานีที่ต้องลงอีกต่อไป",
         tr: "İneceğin durağı bir daha asla kaçırma",
-        vi: "Không bao giờ lỡ ga cần xuống nữa"
+        vi: "Không bao giờ lỡ ga cần xuống nữa",
+        ar: "لن تفوتك محطتك بعد الآن"
     )
     static let proSubtitle = NavLoc(
         ko: "한국길찾기 Pro가 탑승 내내 위치를 따라가며 내릴 때를 알려 드려요.",
@@ -2324,7 +2416,8 @@ extension NavLoc {
         sv: "Korea Navi Pro följer varje resa och säger till när du ska kliva av.",
         th: "Korea Navi Pro ติดตามทุกการเดินทาง และบอกคุณเมื่อถึงเวลาลง",
         tr: "Korea Navi Pro her yolculuğu takip eder ve ne zaman ineceğini söyler.",
-        vi: "Korea Navi Pro theo dõi từng chuyến đi và báo cho bạn khi nào cần xuống."
+        vi: "Korea Navi Pro theo dõi từng chuyến đi và báo cho bạn khi nào cần xuống.",
+        ar: "يتابع Korea Navi Pro رحلتك من البداية إلى النهاية ويخبرك متى تنزل."
     )
     static let proBenefitLockScreen = NavLoc(
         ko: "잠금 화면과 Dynamic Island에서 진행 상황 확인",
@@ -2349,7 +2442,8 @@ extension NavLoc {
         sv: "Resan på låsskärmen och i Dynamic Island",
         th: "ดูความคืบหน้าบนหน้าจอล็อกและ Dynamic Island",
         tr: "Yolculuğun Kilitli Ekran'da ve Dynamic Island'da",
-        vi: "Theo dõi chuyến đi trên Màn hình khóa và Dynamic Island"
+        vi: "Theo dõi chuyến đi trên Màn hình khóa và Dynamic Island",
+        ar: "تابع رحلتك على شاشة القفل وفي Dynamic Island"
     )
     static let proBenefitAnnouncement = NavLoc(
         ko: "차내 안내방송으로 현재 역과 내리는 문 방향 확인",
@@ -2374,7 +2468,8 @@ extension NavLoc {
         sv: "Aktuell station och dörrsida från tågets utrop",
         th: "รู้สถานีปัจจุบันและฝั่งประตูที่จะเปิดจากประกาศในขบวน",
         tr: "Trendeki anonslardan mevcut istasyon ve açılacak kapı tarafı",
-        vi: "Biết ga hiện tại và cửa mở bên nào qua thông báo trên tàu"
+        vi: "Biết ga hiện tại và cửa mở bên nào qua thông báo trên tàu",
+        ar: "المحطة الحالية وجهة فتح الأبواب من إعلانات القطار"
     )
     static let proBenefitAlight = NavLoc(
         ko: "내릴 역이 가까워질 때와 내릴 때 진동 알림",
@@ -2399,7 +2494,8 @@ extension NavLoc {
         sv: "Vibration när din hållplats närmar sig och när du ska kliva av",
         th: "สั่นเตือนเมื่อใกล้ถึงสถานีและเมื่อถึงเวลาลง",
         tr: "Durağın yaklaşınca ve inme zamanı gelince titreşimle uyarı",
-        vi: "Rung báo khi sắp đến ga và khi cần xuống"
+        vi: "Rung báo khi sắp đến ga và khi cần xuống",
+        ar: "اهتزاز ينبّهك عند اقتراب محطتك وعند وقت النزول"
     )
     static let proBenefitOneTime = NavLoc(
         ko: "한 번 결제하면 다음 여행에도 계속 쓸 수 있어요. 구독이 아니에요.",
@@ -2424,7 +2520,8 @@ extension NavLoc {
         sv: "Betala en gång och använd det på varje resa. Ingen prenumeration.",
         th: "จ่ายครั้งเดียว ใช้ได้ทุกทริป ไม่ใช่แบบสมัครสมาชิก",
         tr: "Bir kez öde, her seyahatte kullan. Abonelik yok.",
-        vi: "Trả một lần, dùng cho mọi chuyến du lịch. Không phải gói đăng ký."
+        vi: "Trả một lần, dùng cho mọi chuyến du lịch. Không phải gói đăng ký.",
+        ar: "ادفع مرة واحدة واستخدمه في كل رحلاتك القادمة. ليس اشتراكًا."
     )
     static let proUnlockPrice = NavLoc(
         ko: "{0}에 잠금 해제",
@@ -2449,7 +2546,8 @@ extension NavLoc {
         sv: "Lås upp för {0}",
         th: "ปลดล็อกในราคา {0}",
         tr: "{0} karşılığında kilidi aç",
-        vi: "Mở khóa với giá {0}"
+        vi: "Mở khóa với giá {0}",
+        ar: "افتح الميزات مقابل {0}"
     )
     static let proRestore = NavLoc(
         ko: "구매 복원",
@@ -2474,7 +2572,8 @@ extension NavLoc {
         sv: "Återställ köp",
         th: "กู้คืนการซื้อ",
         tr: "Satın Alımı Geri Yükle",
-        vi: "Khôi phục giao dịch mua"
+        vi: "Khôi phục giao dịch mua",
+        ar: "استعادة المشتريات"
     )
     static let proBilling = NavLoc(
         ko: "Apple 계정으로 한 번만 결제됩니다.",
@@ -2499,7 +2598,8 @@ extension NavLoc {
         sv: "Engångsdebitering via ditt Apple-konto.",
         th: "เรียกเก็บครั้งเดียวผ่านบัญชี Apple ของคุณ",
         tr: "Apple Hesabından tek seferlik ücret alınır.",
-        vi: "Chỉ tính phí một lần qua Tài khoản Apple của bạn."
+        vi: "Chỉ tính phí một lần qua Tài khoản Apple của bạn.",
+        ar: "تُدفع مرة واحدة فقط عبر حساب Apple."
     )
     static let proLoadFailed = NavLoc(
         ko: "가격을 불러오지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.",
@@ -2524,7 +2624,8 @@ extension NavLoc {
         sv: "Det gick inte att läsa in priset. Kontrollera anslutningen och försök igen.",
         th: "โหลดราคาไม่สำเร็จ ตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง",
         tr: "Fiyat yüklenemedi. Bağlantını kontrol edip tekrar dene.",
-        vi: "Không tải được giá. Hãy kiểm tra kết nối rồi thử lại."
+        vi: "Không tải được giá. Hãy kiểm tra kết nối rồi thử lại.",
+        ar: "تعذّر تحميل السعر. تحقق من اتصالك بالإنترنت وحاول مجددًا."
     )
     static let proRetry = NavLoc(
         ko: "다시 시도",
@@ -2549,7 +2650,8 @@ extension NavLoc {
         sv: "Försök igen",
         th: "ลองอีกครั้ง",
         tr: "Tekrar Dene",
-        vi: "Thử lại"
+        vi: "Thử lại",
+        ar: "حاول مجددًا"
     )
     static let proActive = NavLoc(
         ko: "한국길찾기 Pro를 쓰고 있어요. 고맙습니다!",
@@ -2574,7 +2676,8 @@ extension NavLoc {
         sv: "Korea Navi Pro är aktivt. Tack!",
         th: "เปิดใช้ Korea Navi Pro แล้ว ขอบคุณ!",
         tr: "Korea Navi Pro etkin. Teşekkürler!",
-        vi: "Korea Navi Pro đã được kích hoạt. Cảm ơn bạn!"
+        vi: "Korea Navi Pro đã được kích hoạt. Cảm ơn bạn!",
+        ar: "Korea Navi Pro مفعّل. شكرًا لك!"
     )
     static let proGet = NavLoc(
         ko: "한국길찾기 Pro 알아보기",
@@ -2599,7 +2702,8 @@ extension NavLoc {
         sv: "Skaffa Korea Navi Pro",
         th: "รับ Korea Navi Pro",
         tr: "Korea Navi Pro'yu al",
-        vi: "Nâng cấp Korea Navi Pro"
+        vi: "Nâng cấp Korea Navi Pro",
+        ar: "تعرّف على Korea Navi Pro"
     )
     static let proNotNow = NavLoc(
         ko: "나중에",
@@ -2624,7 +2728,8 @@ extension NavLoc {
         sv: "Inte nu",
         th: "ไว้ทีหลัง",
         tr: "Şimdi değil",
-        vi: "Để sau"
+        vi: "Để sau",
+        ar: "ليس الآن"
     )
     static let proBasicRide = NavLoc(
         ko: "무료 안내 탑승을 모두 썼어요. 이 화면을 켜 두고 내릴 역을 확인하세요.",
@@ -2649,7 +2754,8 @@ extension NavLoc {
         sv: "Dina gratis guidade resor är slut. Håll skärmen öppen för att hålla koll på din hållplats.",
         th: "ใช้สิทธิ์นำทางฟรีครบแล้ว เปิดหน้าจอนี้ไว้เพื่อดูสถานีที่จะลง",
         tr: "Ücretsiz rehberli yolculukların bitti. İneceğin durağı görmek için bu ekranı açık tut.",
-        vi: "Bạn đã dùng hết lượt dẫn đường miễn phí. Hãy để màn hình này mở để theo dõi ga cần xuống."
+        vi: "Bạn đã dùng hết lượt dẫn đường miễn phí. Hãy để màn hình này mở để theo dõi ga cần xuống.",
+        ar: "استنفدت الرحلات المجانية الموجَّهة. أبقِ هذه الشاشة مفتوحة وراقب محطتك."
     )
     static let proLastFreeRide = NavLoc(
         ko: "다음 탑승이 마지막 무료 안내 탑승이에요.",
@@ -2674,7 +2780,8 @@ extension NavLoc {
         sv: "Din nästa resa är din sista gratis guidade resa.",
         th: "การเดินทางครั้งถัดไปเป็นสิทธิ์นำทางฟรีครั้งสุดท้าย",
         tr: "Bir sonraki yolculuğun, son ücretsiz rehberli yolculuğun.",
-        vi: "Chuyến tiếp theo là lượt dẫn đường miễn phí cuối cùng của bạn."
+        vi: "Chuyến tiếp theo là lượt dẫn đường miễn phí cuối cùng của bạn.",
+        ar: "رحلتك القادمة هي آخر رحلة مجانية موجَّهة."
     )
     static let proUsedUp = NavLoc(
         ko: "무료 안내 탑승을 모두 썼어요.",
@@ -2699,7 +2806,8 @@ extension NavLoc {
         sv: "Du har använt alla dina gratis guidade resor.",
         th: "ใช้สิทธิ์นำทางฟรีครบแล้ว",
         tr: "Tüm ücretsiz rehberli yolculuklarını kullandın.",
-        vi: "Bạn đã dùng hết lượt dẫn đường miễn phí."
+        vi: "Bạn đã dùng hết lượt dẫn đường miễn phí.",
+        ar: "استنفدت كل الرحلات المجانية الموجَّهة."
     )
     static let exitGuide = NavLoc(
         ko: "출구 안내",
@@ -2724,7 +2832,8 @@ extension NavLoc {
         sv: "Utgångar",
         th: "คู่มือทางออก",
         tr: "Çıkış rehberi",
-        vi: "Hướng dẫn lối ra"
+        vi: "Hướng dẫn lối ra",
+        ar: "دليل المخارج"
     )
     static let exitGuideNote = NavLoc(
         ko: "출구마다 가까운 곳이에요. 이름은 역 안 표지판과 같은 한글로 적었어요.",
@@ -2749,7 +2858,8 @@ extension NavLoc {
         sv: "Vad som finns vid varje utgång. Namnen står på koreanska, precis som på skyltarna på stationen.",
         th: "สถานที่ใกล้แต่ละทางออก ชื่อเขียนเป็นภาษาเกาหลีตามป้ายในสถานี",
         tr: "Her çıkışın yakınındaki yerler. Adlar, istasyondaki tabelalarda olduğu gibi Korecedir.",
-        vi: "Những nơi gần mỗi lối ra. Tên được ghi bằng tiếng Hàn, giống hệt biển chỉ dẫn trong ga."
+        vi: "Những nơi gần mỗi lối ra. Tên được ghi bằng tiếng Hàn, giống hệt biển chỉ dẫn trong ga.",
+        ar: "ما يقع قرب كل مخرج. الأسماء مكتوبة بالكورية كما تظهر على لافتات المحطة تمامًا."
     )
     static let exitNumber = NavLoc(
         ko: "{0}번 출구",
@@ -2774,7 +2884,8 @@ extension NavLoc {
         sv: "Utgång {0}",
         th: "ทางออก {0}",
         tr: "{0} numaralı çıkış",
-        vi: "Lối ra số {0}"
+        vi: "Lối ra số {0}",
+        ar: "المخرج {0}"
     )
     static let proBenefitExitGuide = NavLoc(
         ko: "서울 지하철 1~8호선 역의 출구 번호와 가까운 장소를 알려 드려요.",
@@ -2799,7 +2910,8 @@ extension NavLoc {
         sv: "Utgångar och vad som finns nära dem på Seouls tunnelbanelinje 1 till 8.",
         th: "หมายเลขทางออกและสถานที่ใกล้เคียงของรถไฟใต้ดินโซลสาย 1 ถึง 8",
         tr: "Seul metrosunun 1-8 hatlarında çıkışlar ve yakındaki yerler.",
-        vi: "Số lối ra và địa điểm gần đó trên tuyến tàu điện ngầm Seoul số 1 đến 8."
+        vi: "Số lối ra và địa điểm gần đó trên tuyến tàu điện ngầm Seoul số 1 đến 8.",
+        ar: "أرقام المخارج والأماكن القريبة منها في محطات خطوط مترو سيول من 1 إلى 8."
     )
     static let lastTrainTonight = NavLoc(
         ko: "오늘 밤 막차",
@@ -2824,7 +2936,8 @@ extension NavLoc {
         sv: "Sista tåget i kväll",
         th: "รถไฟเที่ยวสุดท้ายคืนนี้",
         tr: "Bu geceki son tren",
-        vi: "Chuyến tàu cuối tối nay"
+        vi: "Chuyến tàu cuối tối nay",
+        ar: "آخر قطار الليلة"
     )
     static let lastTrainSoon = NavLoc(
         ko: "막차가 곧 떠나요",
@@ -2849,7 +2962,8 @@ extension NavLoc {
         sv: "Sista tåget går snart",
         th: "รถไฟเที่ยวสุดท้ายใกล้ออกแล้ว",
         tr: "Son tren birazdan kalkıyor",
-        vi: "Chuyến tàu cuối sắp chạy"
+        vi: "Chuyến tàu cuối sắp chạy",
+        ar: "آخر قطار سيغادر قريبًا"
     )
     static let lastTrainGone = NavLoc(
         ko: "오늘 막차가 끊겼을 수 있어요",
@@ -2874,7 +2988,8 @@ extension NavLoc {
         sv: "Sista tåget kan ha gått",
         th: "รถไฟเที่ยวสุดท้ายอาจออกไปแล้ว",
         tr: "Son tren kaçmış olabilir",
-        vi: "Chuyến tàu cuối có thể đã chạy"
+        vi: "Chuyến tàu cuối có thể đã chạy",
+        ar: "ربما فاتك آخر قطار الليلة"
     )
     static let lastTrainInfo = NavLoc(
         ko: "이 경로의 막차는 {0}에서 {1}에 출발해요.",
@@ -2899,7 +3014,8 @@ extension NavLoc {
         sv: "Sista tåget på den här rutten går från {0} kl. {1}.",
         th: "รถไฟเที่ยวสุดท้ายของเส้นทางนี้ออกจาก {0} เวลา {1}",
         tr: "Bu rotanın son treni: {0} istasyonundan saat {1}.",
-        vi: "Chuyến tàu cuối của lộ trình này rời {0} lúc {1}."
+        vi: "Chuyến tàu cuối của lộ trình này rời {0} lúc {1}.",
+        ar: "آخر قطار لهذا المسار يغادر {0} الساعة {1}."
     )
     static let lastTrainGoneHint = NavLoc(
         ko: "역무원에게 확인하거나 택시를 알아보세요.",
@@ -2924,7 +3040,8 @@ extension NavLoc {
         sv: "Fråga stationspersonalen eller ta en taxi.",
         th: "สอบถามเจ้าหน้าที่สถานีหรือหาแท็กซี่",
         tr: "İstasyon görevlilerine danışın ya da taksi bulun.",
-        vi: "Hãy hỏi nhân viên nhà ga hoặc tìm taxi."
+        vi: "Hãy hỏi nhân viên nhà ga hoặc tìm taxi.",
+        ar: "اسأل موظفي المحطة أو ابحث عن سيارة أجرة."
     )
     static let lastTrainNote = NavLoc(
         ko: "시간표 기준이에요. 열차가 늦어지면 달라질 수 있어요.",
@@ -2949,7 +3066,8 @@ extension NavLoc {
         sv: "Enligt tidtabellen. Förseningar kan ändra det.",
         th: "อ้างอิงตามตารางเวลา หากรถล่าช้าเวลาอาจเปลี่ยน",
         tr: "Tarifeye göre. Gecikmeler bunu değiştirebilir.",
-        vi: "Theo lịch chạy tàu. Tàu trễ có thể làm thay đổi giờ này."
+        vi: "Theo lịch chạy tàu. Tàu trễ có thể làm thay đổi giờ này.",
+        ar: "حسب الجدول الزمني، وقد يتغير إذا تأخر القطار."
     )
     static let lastTrainRemind = NavLoc(
         ko: "막차 30분 전에 알림 받기",
@@ -2974,7 +3092,8 @@ extension NavLoc {
         sv: "Påminn mig 30 min innan",
         th: "เตือนก่อน 30 นาที",
         tr: "30 dk önce hatırlat",
-        vi: "Nhắc tôi trước 30 phút"
+        vi: "Nhắc tôi trước 30 phút",
+        ar: "ذكّرني قبل 30 دقيقة"
     )
     static let lastTrainReminderSet = NavLoc(
         ko: "막차 30분 전과 10분 전에 알려 드릴게요.",
@@ -2999,7 +3118,8 @@ extension NavLoc {
         sv: "Vi påminner dig 30 och 10 minuter innan.",
         th: "เราจะเตือนก่อน 30 นาทีและ 10 นาที",
         tr: "30 ve 10 dakika önce hatırlatacağız.",
-        vi: "Chúng tôi sẽ nhắc bạn trước 30 phút và 10 phút."
+        vi: "Chúng tôi sẽ nhắc bạn trước 30 phút và 10 phút.",
+        ar: "سنذكّرك قبل 30 دقيقة ثم قبل 10 دقائق."
     )
     static let lastTrainNotifyTitle = NavLoc(
         ko: "막차 {0}분 전",
@@ -3024,7 +3144,8 @@ extension NavLoc {
         sv: "Sista tåget om {0} min",
         th: "อีก {0} นาทีรถไฟเที่ยวสุดท้ายจะออก",
         tr: "Son trene {0} dk",
-        vi: "Còn {0} phút đến chuyến cuối"
+        vi: "Còn {0} phút đến chuyến cuối",
+        ar: "آخر قطار بعد {0} د"
     )
     static let proBenefitLastTrain = NavLoc(
         ko: "1~9호선 막차 시간을 알려 주고, 떠나기 전에 미리 알려 드려요.",
@@ -3049,7 +3170,8 @@ extension NavLoc {
         sv: "Tider för sista tåget på linje 1 till 9, med en påminnelse innan det går.",
         th: "บอกเวลารถไฟเที่ยวสุดท้ายของสาย 1 ถึง 9 และเตือนก่อนรถออก",
         tr: "1-9 hatlarında son tren saatleri ve kalkmadan önce hatırlatma.",
-        vi: "Giờ tàu cuối trên tuyến 1 đến 9, kèm lời nhắc trước khi tàu chạy."
+        vi: "Giờ tàu cuối trên tuyến 1 đến 9, kèm lời nhắc trước khi tàu chạy.",
+        ar: "مواعيد آخر قطار على الخطوط من 1 إلى 9، مع تذكير قبل مغادرته."
     )
     static let luggageMode = NavLoc(
         ko: "캐리어 모드",
@@ -3074,7 +3196,8 @@ extension NavLoc {
         sv: "Bagageläge",
         th: "โหมดกระเป๋าเดินทาง",
         tr: "Bavul modu",
-        vi: "Chế độ hành lý"
+        vi: "Chế độ hành lý",
+        ar: "وضع الأمتعة"
     )
     static let luggageModeHint = NavLoc(
         ko: "짐이 많을 때 엘리베이터와 가까운 칸을 알려 드려요.",
@@ -3099,7 +3222,8 @@ extension NavLoc {
         sv: "Visar vagnen närmast hissen när du har bagage.",
         th: "บอกตู้ที่ใกล้ลิฟต์ที่สุดเมื่อคุณมีสัมภาระ",
         tr: "Bavulun varken asansöre en yakın vagonu gösterir.",
-        vi: "Cho biết toa gần thang máy nhất khi bạn mang hành lý."
+        vi: "Cho biết toa gần thang máy nhất khi bạn mang hành lý.",
+        ar: "يدلّك على العربة الأقرب إلى المصعد حين تحمل أمتعة كثيرة."
     )
     static let luggageBoardAt = NavLoc(
         ko: "{0} 표시 앞에서 타세요",
@@ -3124,7 +3248,8 @@ extension NavLoc {
         sv: "Kliv på vid dörr {0}",
         th: "ขึ้นที่ประตู {0}",
         tr: "{0} kapısından binin",
-        vi: "Lên tàu ở cửa {0}"
+        vi: "Lên tàu ở cửa {0}",
+        ar: "اركب عند الباب {0}"
     )
     static let luggageElevatorNear = NavLoc(
         ko: "{0}에서 내리면 엘리베이터가 가까워요.",
@@ -3149,7 +3274,8 @@ extension NavLoc {
         sv: "När du kliver av vid {0} är hissen nära.",
         th: "ลงที่ {0} แล้วลิฟต์จะอยู่ใกล้",
         tr: "{0} istasyonunda indiğinizde asansör yakında.",
-        vi: "Khi xuống ở {0}, thang máy ở ngay gần."
+        vi: "Khi xuống ở {0}, thang máy ở ngay gần.",
+        ar: "المصعد قريب إذا نزلت عند {0}."
     )
     static let luggageEscalatorNear = NavLoc(
         ko: "{0}에서 내리면 에스컬레이터가 가까워요.",
@@ -3174,7 +3300,8 @@ extension NavLoc {
         sv: "När du kliver av vid {0} är rulltrappan nära.",
         th: "ลงที่ {0} แล้วบันไดเลื่อนจะอยู่ใกล้",
         tr: "{0} istasyonunda indiğinizde yürüyen merdiven yakında.",
-        vi: "Khi xuống ở {0}, thang cuốn ở ngay gần."
+        vi: "Khi xuống ở {0}, thang cuốn ở ngay gần.",
+        ar: "السلّم المتحرك قريب إذا نزلت عند {0}."
     )
     static let luggageFloorSign = NavLoc(
         ko: "문 번호는 승강장 바닥과 스크린도어에 적혀 있어요.",
@@ -3199,7 +3326,8 @@ extension NavLoc {
         sv: "Dörrnumren står på perronggolvet och på plattformsdörrarna.",
         th: "หมายเลขประตูเขียนไว้ที่พื้นชานชาลาและประตูกั้นชานชาลา",
         tr: "Kapı numaraları peron zemininde ve peron kapılarında yazılıdır.",
-        vi: "Số cửa được ghi trên sàn sân ga và trên cửa chắn sân ga."
+        vi: "Số cửa được ghi trên sàn sân ga và trên cửa chắn sân ga.",
+        ar: "أرقام الأبواب مكتوبة على أرضية الرصيف وعلى الأبواب الزجاجية."
     )
     static let proBenefitLuggage = NavLoc(
         ko: "1~8호선에서 짐이 많을 때 엘리베이터와 가까운 칸을 알려 드려요.",
@@ -3224,7 +3352,8 @@ extension NavLoc {
         sv: "På linje 1 till 8 visar den vagnen närmast hissen när du har bagage.",
         th: "บนสาย 1 ถึง 8 บอกตู้ที่ใกล้ลิฟต์ที่สุดเมื่อคุณมีสัมภาระมาก",
         tr: "1-8 hatlarında, bavulun varken asansöre en yakın vagonu gösterir.",
-        vi: "Trên tuyến 1 đến 8, cho biết toa gần thang máy nhất khi bạn mang nhiều hành lý."
+        vi: "Trên tuyến 1 đến 8, cho biết toa gần thang máy nhất khi bạn mang nhiều hành lý.",
+        ar: "على الخطوط من 1 إلى 8، يدلّك على العربة الأقرب إلى المصعد حين تحمل أمتعة."
     )
     static let roadmapVoiceOver = NavLoc(
         ko: "VoiceOver로 더 편하게",
@@ -3249,7 +3378,8 @@ extension NavLoc {
         sv: "Bättre stöd för VoiceOver",
         th: "รองรับ VoiceOver ได้ดียิ่งขึ้น",
         tr: "Daha iyi VoiceOver desteği",
-        vi: "Hỗ trợ VoiceOver tốt hơn"
+        vi: "Hỗ trợ VoiceOver tốt hơn",
+        ar: "تجربة أفضل مع VoiceOver"
     )
     static let roadmapVoiceOverDetail = NavLoc(
         ko: "화면 읽기 기능이 단추와 내용을 빠짐없이, 알맞은 순서로 읽어 줘요.",
@@ -3274,7 +3404,8 @@ extension NavLoc {
         sv: "VoiceOver läser upp alla knappar och allt innehåll i rätt ordning.",
         th: "VoiceOver อ่านปุ่มและเนื้อหาได้ครบถ้วนตามลำดับที่ถูกต้อง",
         tr: "VoiceOver tüm düğmeleri ve içeriği doğru sırayla okur.",
-        vi: "VoiceOver đọc đầy đủ mọi nút và nội dung theo đúng thứ tự."
+        vi: "VoiceOver đọc đầy đủ mọi nút và nội dung theo đúng thứ tự.",
+        ar: "يقرأ VoiceOver كل زر وكل محتوى كاملًا وبالترتيب الصحيح."
     )
     static let roadmapLargeText = NavLoc(
         ko: "큰 글씨에 맞춘 화면",
@@ -3299,7 +3430,8 @@ extension NavLoc {
         sv: "Vyer för stor text",
         th: "หน้าจอที่รองรับตัวอักษรขนาดใหญ่",
         tr: "Büyük yazıya uygun ekranlar",
-        vi: "Giao diện cho chữ lớn"
+        vi: "Giao diện cho chữ lớn",
+        ar: "شاشات تناسب الخط الكبير"
     )
     static let roadmapLargeTextDetail = NavLoc(
         ko: "글자 크기를 키워도 잘리지 않고 보기 좋게 다시 배치돼요.",
@@ -3324,7 +3456,8 @@ extension NavLoc {
         sv: "När du gör texten större ordnas allt om snyggt och inget klipps av.",
         th: "เมื่อขยายตัวอักษร หน้าจอจะจัดวางใหม่อย่างเรียบร้อยโดยไม่มีส่วนใดถูกตัด",
         tr: "Yazıyı büyüttüğünde her şey düzgünce yeniden yerleşir, hiçbir şey kesilmez.",
-        vi: "Khi phóng to chữ, giao diện tự sắp xếp lại gọn gàng, không bị cắt chữ."
+        vi: "Khi phóng to chữ, giao diện tự sắp xếp lại gọn gàng, không bị cắt chữ.",
+        ar: "عند تكبير الخط تُعاد ترتيب الشاشات بشكل مريح دون أن يُقتطع شيء."
     )
     static let roadmapContrast = NavLoc(
         ko: "보기 편한 색과 대비",
@@ -3349,7 +3482,8 @@ extension NavLoc {
         sv: "Tydligare färger och kontrast",
         th: "สีและคอนทราสต์ที่มองเห็นง่าย",
         tr: "Daha kolay görülen renkler ve kontrast",
-        vi: "Màu sắc và độ tương phản dễ nhìn"
+        vi: "Màu sắc và độ tương phản dễ nhìn",
+        ar: "ألوان وتباين أوضح"
     )
     static let roadmapContrastDetail = NavLoc(
         ko: "대비를 높이거나 색을 구별하기 어려워도 내용을 알아볼 수 있어요.",
@@ -3374,7 +3508,8 @@ extension NavLoc {
         sv: "Allt syns tydligt med ökad kontrast eller om det är svårt att skilja färger åt.",
         th: "เนื้อหายังอ่านได้ชัดเมื่อเพิ่มคอนทราสต์ หรือเมื่อแยกสีได้ยาก",
         tr: "Kontrast artırıldığında ya da renkleri ayırt etmek zor olduğunda bile her şey okunur.",
-        vi: "Nội dung vẫn rõ ràng khi bật tăng tương phản hoặc khi khó phân biệt màu."
+        vi: "Nội dung vẫn rõ ràng khi bật tăng tương phản hoặc khi khó phân biệt màu.",
+        ar: "يبقى كل شيء واضحًا مع زيادة التباين أو إن صعب عليك تمييز الألوان."
     )
     static let roadmapMotion = NavLoc(
         ko: "움직임 줄이기",
@@ -3399,7 +3534,8 @@ extension NavLoc {
         sv: "Stöd för Minska rörelse",
         th: "รองรับการลดการเคลื่อนไหว",
         tr: "Hareketi Azalt desteği",
-        vi: "Hỗ trợ Giảm chuyển động"
+        vi: "Hỗ trợ Giảm chuyển động",
+        ar: "دعم تقليل الحركة"
     )
     static let roadmapMotionDetail = NavLoc(
         ko: "움직임 줄이기를 켜면 화면 효과가 차분해져요.",
@@ -3424,7 +3560,8 @@ extension NavLoc {
         sv: "Med Minska rörelse påslaget blir animationerna lugnare.",
         th: "เมื่อเปิดลดการเคลื่อนไหว เอฟเฟกต์บนหน้าจอจะนุ่มนวลขึ้น",
         tr: "Hareketi Azalt açıkken ekran efektleri daha sakin olur.",
-        vi: "Khi bật Giảm chuyển động, hiệu ứng trên màn hình sẽ nhẹ nhàng hơn."
+        vi: "Khi bật Giảm chuyển động, hiệu ứng trên màn hình sẽ nhẹ nhàng hơn.",
+        ar: "عند تفعيل تقليل الحركة تصبح مؤثرات الشاشة أهدأ."
     )
     static let roadmapKeyboard = NavLoc(
         ko: "키보드로 조작하기",
@@ -3449,7 +3586,8 @@ extension NavLoc {
         sv: "Styr med tangentbordet",
         th: "ควบคุมด้วยแป้นพิมพ์",
         tr: "Klavyeyle kontrol",
-        vi: "Điều khiển bằng bàn phím"
+        vi: "Điều khiển bằng bàn phím",
+        ar: "التحكم بلوحة المفاتيح"
     )
     static let roadmapKeyboardDetail = NavLoc(
         ko: "아이패드나 맥에서 키보드만으로 주요 기능을 쓸 수 있어요.",
@@ -3474,7 +3612,8 @@ extension NavLoc {
         sv: "Använd huvudfunktionerna med bara tangentbordet på iPad eller Mac.",
         th: "ใช้ฟีเจอร์หลักได้ด้วยแป้นพิมพ์อย่างเดียวบน iPad หรือ Mac",
         tr: "iPad veya Mac'te ana özellikleri yalnızca klavyeyle kullan.",
-        vi: "Dùng các tính năng chính chỉ với bàn phím trên iPad hoặc Mac."
+        vi: "Dùng các tính năng chính chỉ với bàn phím trên iPad hoặc Mac.",
+        ar: "استخدم الميزات الأساسية بلوحة المفاتيح وحدها على iPad أو Mac."
     )
     static let roadmapOnboarding = NavLoc(
         ko: "처음 쓰는 분을 위한 안내",
@@ -3499,7 +3638,8 @@ extension NavLoc {
         sv: "Kom igång-guide",
         th: "คำแนะนำสำหรับผู้ใช้ใหม่",
         tr: "Yeni başlayanlar için rehber",
-        vi: "Hướng dẫn cho người mới"
+        vi: "Hướng dẫn cho người mới",
+        ar: "دليل سريع لمن يستخدمه أول مرة"
     )
     static let roadmapOnboardingDetail = NavLoc(
         ko: "처음 열었을 때 무엇을 할 수 있는지 짧게 보여 줘요.",
@@ -3524,7 +3664,8 @@ extension NavLoc {
         sv: "Första gången du öppnar appen visas kort vad den kan göra.",
         th: "เมื่อเปิดครั้งแรก จะแนะนำสั้นๆ ว่าทำอะไรได้บ้าง",
         tr: "Uygulamayı ilk açtığında neler yapabileceğini kısaca gösterir.",
-        vi: "Lần đầu mở ứng dụng, bạn sẽ được giới thiệu ngắn gọn những gì có thể làm."
+        vi: "Lần đầu mở ứng dụng, bạn sẽ được giới thiệu ngắn gọn những gì có thể làm.",
+        ar: "عند فتح التطبيق أول مرة تعرض لك جولة قصيرة ما يمكنه فعله."
     )
     static let roadmapWhatsNew = NavLoc(
         ko: "업데이트 소식",
@@ -3549,7 +3690,8 @@ extension NavLoc {
         sv: "Nyheter efter uppdateringar",
         th: "มีอะไรใหม่ในอัปเดต",
         tr: "Güncelleme haberleri",
-        vi: "Tin cập nhật"
+        vi: "Tin cập nhật",
+        ar: "الجديد بعد كل تحديث"
     )
     static let roadmapWhatsNewDetail = NavLoc(
         ko: "업데이트 뒤 처음 열 때 무엇이 새로 생겼는지 알려 줘요.",
@@ -3574,7 +3716,8 @@ extension NavLoc {
         sv: "Första gången du öppnar appen efter en uppdatering ser du vad som är nytt.",
         th: "เมื่อเปิดครั้งแรกหลังอัปเดต จะบอกว่ามีอะไรใหม่บ้าง",
         tr: "Güncellemeden sonra ilk açtığında nelerin yeni olduğunu görürsün.",
-        vi: "Lần đầu mở sau khi cập nhật, bạn sẽ thấy có gì mới."
+        vi: "Lần đầu mở sau khi cập nhật, bạn sẽ thấy có gì mới.",
+        ar: "عند أول فتح بعد التحديث نعرّفك بما أُضيف."
     )
     static let roadmapFeedback = NavLoc(
         ko: "앱 안에서 의견 보내기",
@@ -3599,7 +3742,8 @@ extension NavLoc {
         sv: "Skicka feedback i appen",
         th: "ส่งความคิดเห็นในแอป",
         tr: "Uygulama içinden geri bildirim",
-        vi: "Gửi góp ý ngay trong ứng dụng"
+        vi: "Gửi góp ý ngay trong ứng dụng",
+        ar: "أرسل ملاحظاتك من داخل التطبيق"
     )
     static let roadmapFeedbackDetail = NavLoc(
         ko: "불편한 점이나 바라는 기능을 앱 안에서 바로 보낼 수 있어요.",
@@ -3624,7 +3768,8 @@ extension NavLoc {
         sv: "Berätta vad som stör eller vad du saknar, direkt i appen.",
         th: "แจ้งปัญหาหรือฟีเจอร์ที่อยากได้จากในแอปได้เลย",
         tr: "Sorunları ya da istediğin özellikleri doğrudan uygulamadan ilet.",
-        vi: "Gửi điều chưa ổn hoặc tính năng bạn mong muốn ngay trong ứng dụng."
+        vi: "Gửi điều chưa ổn hoặc tính năng bạn mong muốn ngay trong ứng dụng.",
+        ar: "أخبرنا بما يزعجك أو بما تتمنى إضافته مباشرة من التطبيق."
     )
     static let roadmapFeedbackReply = NavLoc(
         ko: "보낸 의견에 답장 받기",
@@ -3649,7 +3794,8 @@ extension NavLoc {
         sv: "Svar på din feedback",
         th: "รับคำตอบจากความคิดเห็นที่ส่ง",
         tr: "Geri bildirimine yanıt",
-        vi: "Nhận phản hồi cho góp ý"
+        vi: "Nhận phản hồi cho góp ý",
+        ar: "ردود على ملاحظاتك"
     )
     static let roadmapFeedbackReplyDetail = NavLoc(
         ko: "보내 주신 의견에 단 답장을 앱 안에서 볼 수 있어요.",
@@ -3674,7 +3820,8 @@ extension NavLoc {
         sv: "Se våra svar på din feedback direkt i appen.",
         th: "ดูคำตอบที่เราตอบกลับความคิดเห็นของคุณได้ในแอป",
         tr: "Geri bildirimine verdiğimiz yanıtları uygulamada gör.",
-        vi: "Xem phản hồi của chúng tôi cho góp ý của bạn ngay trong ứng dụng."
+        vi: "Xem phản hồi của chúng tôi cho góp ý của bạn ngay trong ứng dụng.",
+        ar: "اقرأ ردودنا على ملاحظاتك داخل التطبيق."
     )
     static let roadmapFold = NavLoc(
         ko: "펼치는 아이폰 화면",
@@ -3699,7 +3846,8 @@ extension NavLoc {
         sv: "Vy för vikbar iPhone",
         th: "หน้าจอสำหรับ iPhone แบบพับได้",
         tr: "Katlanabilir iPhone ekranı",
-        vi: "Giao diện cho iPhone gập"
+        vi: "Giao diện cho iPhone gập",
+        ar: "شاشة iPhone القابل للطي"
     )
     static let roadmapFoldDetail = NavLoc(
         ko: "펼치는 아이폰에서 넓은 화면을 두 쪽으로 나눠 써요.",
@@ -3724,7 +3872,8 @@ extension NavLoc {
         sv: "På en vikbar iPhone delas den breda skärmen i två delar.",
         th: "บน iPhone แบบพับได้ ใช้หน้าจอกว้างแบ่งเป็นสองฝั่ง",
         tr: "Katlanabilir iPhone'da geniş ekranı iki bölmeye ayırarak kullan.",
-        vi: "Trên iPhone gập, màn hình rộng được chia thành hai khung."
+        vi: "Trên iPhone gập, màn hình rộng được chia thành hai khung.",
+        ar: "على iPhone القابل للطي، استخدم الشاشة العريضة كلوحتين متجاورتين."
     )
     static let roadmapSiriAI = NavLoc(
         ko: "앱 이름 없이 Siri에게",
@@ -3749,7 +3898,8 @@ extension NavLoc {
         sv: "Fråga Siri utan appens namn",
         th: "สั่ง Siri โดยไม่ต้องบอกชื่อแอป",
         tr: "Uygulama adını söylemeden Siri",
-        vi: "Hỏi Siri mà không cần tên ứng dụng"
+        vi: "Hỏi Siri mà không cần tên ứng dụng",
+        ar: "اسأل Siri دون ذكر اسم التطبيق"
     )
     static let roadmapSiriAIDetail = NavLoc(
         ko: "Siri에게 앱 이름을 말하지 않아도 역까지 가는 길을 바로 열어요.",
@@ -3774,7 +3924,8 @@ extension NavLoc {
         sv: "Öppna vägen till en station med Siri, även utan att säga appens namn.",
         th: "เปิดเส้นทางไปสถานีด้วย Siri ได้ทันที แม้ไม่ได้บอกชื่อแอป",
         tr: "Uygulamanın adını söylemeden de Siri ile bir istasyona giden yolu aç.",
-        vi: "Mở đường đến ga bằng Siri, kể cả khi không nói tên ứng dụng."
+        vi: "Mở đường đến ga bằng Siri, kể cả khi không nói tên ứng dụng.",
+        ar: "افتح الطريق إلى أي محطة عبر Siri دون أن تذكر اسم التطبيق."
     )
     static let roadmapGift = NavLoc(
         ko: "Pro 선물하기",
@@ -3799,7 +3950,8 @@ extension NavLoc {
         sv: "Ge bort Pro",
         th: "มอบ Pro เป็นของขวัญ",
         tr: "Pro hediye et",
-        vi: "Tặng Pro"
+        vi: "Tặng Pro",
+        ar: "أهدِ Pro"
     )
     static let roadmapGiftDetail = NavLoc(
         ko: "내가 결제하면, 고른 사람이 한국길찾기 Pro 를 평생 써요. 한국 여행을 앞둔 친구에게 좋아요.",
@@ -3824,7 +3976,8 @@ extension NavLoc {
         sv: "Du betalar, och den du väljer får Korea Navi Pro för alltid. En fin present till en vän som ska till Korea.",
         th: "คุณเป็นคนจ่าย แล้วคนที่คุณเลือกจะได้ใช้ Korea Navi Pro ตลอดไป เหมาะเป็นของขวัญให้เพื่อนที่กำลังจะไปเกาหลี",
         tr: "Siz ödersiniz, seçtiğiniz kişi Korea Navi Pro'yu sonsuza dek kullanır. Kore'ye gidecek bir arkadaş için harika bir hediye.",
-        vi: "Bạn trả tiền, người bạn chọn sẽ dùng Korea Navi Pro mãi mãi. Món quà tuyệt vời cho bạn bè sắp đến Hàn Quốc."
+        vi: "Bạn trả tiền, người bạn chọn sẽ dùng Korea Navi Pro mãi mãi. Món quà tuyệt vời cho bạn bè sắp đến Hàn Quốc.",
+        ar: "تدفع أنت، ويحصل من تختاره على Korea Navi Pro مدى الحياة. هدية رائعة لصديق يستعد للسفر إلى كوريا."
     )
     static let roadmapVersion = NavLoc(
         ko: "앱 버전 보기",
@@ -3849,7 +4002,8 @@ extension NavLoc {
         sv: "Visa appversion",
         th: "ดูเวอร์ชันแอป",
         tr: "Uygulama sürümünü gör",
-        vi: "Xem phiên bản ứng dụng"
+        vi: "Xem phiên bản ứng dụng",
+        ar: "اعرف إصدار التطبيق"
     )
     static let roadmapVersionDetail = NavLoc(
         ko: "문의할 때 편하도록 앱 안에서 버전을 확인할 수 있어요.",
@@ -3874,7 +4028,8 @@ extension NavLoc {
         sv: "Se versionen i appen, smidigt när du kontaktar oss.",
         th: "ดูเวอร์ชันได้ในแอป สะดวกเวลาติดต่อเรา",
         tr: "Bize yazarken işine yarasın diye sürümü uygulamada görebilirsin.",
-        vi: "Xem phiên bản ngay trong ứng dụng, tiện khi liên hệ với chúng tôi."
+        vi: "Xem phiên bản ngay trong ứng dụng, tiện khi liên hệ với chúng tôi.",
+        ar: "اطّلع على رقم الإصدار داخل التطبيق، وهو مفيد عند التواصل معنا."
     )
     static let roadmapResume = NavLoc(
         ko: "길 안내 이어서 하기",
@@ -3899,7 +4054,8 @@ extension NavLoc {
         sv: "Fortsätt där du var",
         th: "ทำต่อจากที่ค้างไว้",
         tr: "Kaldığın yerden devam et",
-        vi: "Tiếp tục từ chỗ đang dừng"
+        vi: "Tiếp tục từ chỗ đang dừng",
+        ar: "تابع من حيث توقفت"
     )
     static let roadmapResumeDetail = NavLoc(
         ko: "앱이 꺼졌다 다시 열려도 타고 가던 길 안내가 그대로 이어져요.",
@@ -3924,7 +4080,8 @@ extension NavLoc {
         sv: "Om appen stängs under resan fortsätter vägvisningen när du öppnar den igen.",
         th: "หากแอปปิดไประหว่างเดินทาง เปิดใหม่แล้วการนำทางจะทำงานต่อทันที",
         tr: "Yolculuk sırasında uygulama kapanırsa, yeniden açtığında rota rehberi devam eder.",
-        vi: "Nếu ứng dụng bị đóng giữa chuyến, hướng dẫn lộ trình sẽ tiếp tục khi mở lại."
+        vi: "Nếu ứng dụng bị đóng giữa chuyến, hướng dẫn lộ trình sẽ tiếp tục khi mở lại.",
+        ar: "إذا أُغلق التطبيق أثناء الرحلة يستمر الإرشاد عند فتحه من جديد."
     )
     static let onboardingSkip = NavLoc(
         ko: "건너뛰기",
@@ -3949,7 +4106,8 @@ extension NavLoc {
         sv: "Hoppa över",
         th: "ข้าม",
         tr: "Atla",
-        vi: "Bỏ qua"
+        vi: "Bỏ qua",
+        ar: "تخطٍّ"
     )
     static let onboardingNext = NavLoc(
         ko: "다음",
@@ -3974,7 +4132,8 @@ extension NavLoc {
         sv: "Nästa",
         th: "ถัดไป",
         tr: "İleri",
-        vi: "Tiếp"
+        vi: "Tiếp",
+        ar: "التالي"
     )
     static let onboardingStart = NavLoc(
         ko: "시작하기",
@@ -3999,7 +4158,8 @@ extension NavLoc {
         sv: "Kom igång",
         th: "เริ่มใช้งาน",
         tr: "Başla",
-        vi: "Bắt đầu"
+        vi: "Bắt đầu",
+        ar: "ابدأ"
     )
     static let onboarding1Title = NavLoc(
         ko: "도착역만 고르세요",
@@ -4024,7 +4184,8 @@ extension NavLoc {
         sv: "Välj bara vart du ska",
         th: "แค่เลือกปลายทาง",
         tr: "Sadece varış yerini seç",
-        vi: "Chỉ cần chọn điểm đến"
+        vi: "Chỉ cần chọn điểm đến",
+        ar: "اختر وجهتك فقط"
     )
     static let onboarding1Body = NavLoc(
         ko: "가까운 역을 출발역으로 잡고, 갈아타는 길까지 찾아 드려요.",
@@ -4049,7 +4210,8 @@ extension NavLoc {
         sv: "Korea Navi utgår från närmaste station och hittar vägen, med byten.",
         th: "Korea Navi ตั้งสถานีที่ใกล้ที่สุดเป็นต้นทาง และหาเส้นทางให้รวมถึงการเปลี่ยนสาย",
         tr: "Korea Navi en yakın istasyondan başlar ve aktarmalarla birlikte rotayı bulur.",
-        vi: "Korea Navi lấy ga gần nhất làm điểm đi và tìm đường, kể cả đổi tuyến."
+        vi: "Korea Navi lấy ga gần nhất làm điểm đi và tìm đường, kể cả đổi tuyến.",
+        ar: "ينطلق Korea Navi من أقرب محطة إليك ويجد لك المسار كاملًا مع التبديلات."
     )
     static let onboarding2Title = NavLoc(
         ko: "타면 밀어 주세요",
@@ -4074,7 +4236,8 @@ extension NavLoc {
         sv: "Dra när du kliver på",
         th: "ขึ้นรถแล้วเลื่อน",
         tr: "Binince kaydır",
-        vi: "Lên tàu thì vuốt"
+        vi: "Lên tàu thì vuốt",
+        ar: "اسحب حين تركب"
     )
     static let onboarding2Body = NavLoc(
         ko: "열차에 타면 아래 막대를 밀어 주세요. 남은 정거장을 세다가 내릴 때 알려 드려요.",
@@ -4099,7 +4262,8 @@ extension NavLoc {
         sv: "När du är på tåget drar du i reglaget längst ned. Korea Navi räknar stationerna och säger till när du ska kliva av.",
         th: "เมื่อขึ้นรถไฟแล้ว ให้เลื่อนแถบด้านล่าง Korea Navi จะนับสถานีและบอกเมื่อถึงเวลาลง",
         tr: "Trene binince alttaki çubuğu kaydır. Korea Navi durakları sayar ve ne zaman ineceğini söyler.",
-        vi: "Khi đã lên tàu, hãy vuốt thanh ở dưới. Korea Navi sẽ đếm số ga và báo khi bạn cần xuống."
+        vi: "Khi đã lên tàu, hãy vuốt thanh ở dưới. Korea Navi sẽ đếm số ga và báo khi bạn cần xuống.",
+        ar: "عندما تصعد إلى القطار اسحب الشريط في الأسفل. يعدّ Korea Navi المحطات ويخبرك متى تنزل."
     )
     static let onboarding3Title = NavLoc(
         ko: "언어는 언제든 바꿔요",
@@ -4124,32 +4288,34 @@ extension NavLoc {
         sv: "Byt språk när du vill",
         th: "เปลี่ยนภาษาได้ทุกเมื่อ",
         tr: "Dili istediğin zaman değiştir",
-        vi: "Đổi ngôn ngữ bất cứ lúc nào"
+        vi: "Đổi ngôn ngữ bất cứ lúc nào",
+        ar: "غيّر اللغة متى شئت"
     )
     static let onboarding3Body = NavLoc(
-        ko: "역 이름 카드를 길게 누르면 23개 언어 중에 고를 수 있어요. 한글 역 이름도 늘 함께 보여요.",
-        ja: "駅名のカードを長押しすると、23の言語から選べます。ハングルの駅名もいつも一緒に表示します。",
-        en: "Long-press a station card to pick from 23 languages. The Korean station name is always shown too.",
-        zh: "长按车站卡片，可从 23 种语言中选择。韩文站名也会一直显示。",
-        zhHant: "長按車站卡片，可從 23 種語言中選擇。韓文站名也會一直顯示。",
-        de: "Halte eine Stationskarte gedrückt, um aus 23 Sprachen zu wählen. Der koreanische Stationsname steht immer mit dabei.",
-        es: "Mantén pulsada una tarjeta de estación para elegir entre 23 idiomas. El nombre en coreano siempre aparece también.",
-        fr: "Appuyez longuement sur une carte de station pour choisir parmi 23 langues. Le nom coréen de la station reste toujours affiché.",
-        it: "Tieni premuta una scheda della stazione per scegliere tra 23 lingue. Il nome coreano della stazione resta sempre visibile.",
-        ptBR: "Toque e segure o cartão de uma estação para escolher entre 23 idiomas. O nome em coreano sempre aparece junto.",
-        ru: "Удерживайте карточку станции, чтобы выбрать один из 23 языков. Корейское название станции всегда видно рядом.",
-        cs: "Podržením karty stanice vyberete z 23 jazyků. Korejský název stanice uvidíte vždy také.",
-        da: "Hold fingeren på et stationskort for at vælge mellem 23 sprog. Det koreanske stationsnavn vises altid med.",
-        el: "Πατήστε παρατεταμένα την κάρτα ενός σταθμού για να διαλέξετε ανάμεσα σε 23 γλώσσες. Το κορεατικό όνομα του σταθμού φαίνεται πάντα κι αυτό.",
-        fi: "Pidä aseman korttia painettuna ja valitse 23 kielestä. Aseman korealainen nimi näkyy aina mukana.",
-        id: "Tekan lama kartu stasiun untuk memilih dari 23 bahasa. Nama stasiun dalam bahasa Korea selalu ikut ditampilkan.",
-        nb: "Hold inne et stasjonskort for å velge blant 23 språk. Det koreanske stasjonsnavnet vises alltid også.",
-        nl: "Houd een stationskaart ingedrukt om uit 23 talen te kiezen. De Koreaanse stationsnaam staat er altijd bij.",
-        pl: "Przytrzymaj kartę stacji, by wybrać jeden z 23 języków. Koreańska nazwa stacji jest zawsze widoczna obok.",
-        sv: "Håll ned ett stationskort för att välja bland 23 språk. Det koreanska stationsnamnet visas alltid också.",
-        th: "กดค้างที่การ์ดสถานีเพื่อเลือกจาก 23 ภาษา ชื่อสถานีภาษาเกาหลีจะแสดงคู่กันเสมอ",
-        tr: "23 dil arasından seçmek için bir istasyon kartına basılı tut. İstasyonun Korece adı da hep görünür.",
-        vi: "Nhấn giữ thẻ ga để chọn trong 23 ngôn ngữ. Tên ga tiếng Hàn luôn hiện kèm."
+        ko: "역 이름 카드를 길게 누르면 24개 언어 중에 고를 수 있어요. 한글 역 이름도 늘 함께 보여요.",
+        ja: "駅名のカードを長押しすると、24の言語から選べます。ハングルの駅名もいつも一緒に表示します。",
+        en: "Long-press a station card to pick from 24 languages. The Korean station name is always shown too.",
+        zh: "长按车站卡片，可从 24 种语言中选择。韩文站名也会一直显示。",
+        zhHant: "長按車站卡片，可從 24 種語言中選擇。韓文站名也會一直顯示。",
+        de: "Halte eine Stationskarte gedrückt, um aus 24 Sprachen zu wählen. Der koreanische Stationsname steht immer mit dabei.",
+        es: "Mantén pulsada una tarjeta de estación para elegir entre 24 idiomas. El nombre en coreano siempre aparece también.",
+        fr: "Appuyez longuement sur une carte de station pour choisir parmi 24 langues. Le nom coréen de la station reste toujours affiché.",
+        it: "Tieni premuta una scheda della stazione per scegliere tra 24 lingue. Il nome coreano della stazione resta sempre visibile.",
+        ptBR: "Toque e segure o cartão de uma estação para escolher entre 24 idiomas. O nome em coreano sempre aparece junto.",
+        ru: "Удерживайте карточку станции, чтобы выбрать один из 24 языков. Корейское название станции всегда видно рядом.",
+        cs: "Podržením karty stanice vyberete z 24 jazyků. Korejský název stanice uvidíte vždy také.",
+        da: "Hold fingeren på et stationskort for at vælge mellem 24 sprog. Det koreanske stationsnavn vises altid med.",
+        el: "Πατήστε παρατεταμένα την κάρτα ενός σταθμού για να διαλέξετε ανάμεσα σε 24 γλώσσες. Το κορεατικό όνομα του σταθμού φαίνεται πάντα κι αυτό.",
+        fi: "Pidä aseman korttia painettuna ja valitse 24 kielestä. Aseman korealainen nimi näkyy aina mukana.",
+        id: "Tekan lama kartu stasiun untuk memilih dari 24 bahasa. Nama stasiun dalam bahasa Korea selalu ikut ditampilkan.",
+        nb: "Hold inne et stasjonskort for å velge blant 24 språk. Det koreanske stasjonsnavnet vises alltid også.",
+        nl: "Houd een stationskaart ingedrukt om uit 24 talen te kiezen. De Koreaanse stationsnaam staat er altijd bij.",
+        pl: "Przytrzymaj kartę stacji, by wybrać jeden z 24 języków. Koreańska nazwa stacji jest zawsze widoczna obok.",
+        sv: "Håll ned ett stationskort för att välja bland 24 språk. Det koreanska stationsnamnet visas alltid också.",
+        th: "กดค้างที่การ์ดสถานีเพื่อเลือกจาก 24 ภาษา ชื่อสถานีภาษาเกาหลีจะแสดงคู่กันเสมอ",
+        tr: "24 dil arasından seçmek için bir istasyon kartına basılı tut. İstasyonun Korece adı da hep görünür.",
+        vi: "Nhấn giữ thẻ ga để chọn trong 24 ngôn ngữ. Tên ga tiếng Hàn luôn hiện kèm.",
+        ar: "اضغط مطولًا على بطاقة المحطة لتختار من بين 24 لغة. ويظهر اسم المحطة بالكورية دائمًا أيضًا."
     )
     static let onboardingReplay = NavLoc(
         ko: "사용법 다시 보기",
@@ -4174,7 +4340,8 @@ extension NavLoc {
         sv: "Så använder du Korea Navi",
         th: "วิธีใช้ Korea Navi",
         tr: "Korea Navi nasıl kullanılır",
-        vi: "Cách dùng Korea Navi"
+        vi: "Cách dùng Korea Navi",
+        ar: "طريقة استخدام Korea Navi"
     )
     static let whatsNewTitle = NavLoc(
         ko: "새로 생긴 것",
@@ -4199,7 +4366,8 @@ extension NavLoc {
         sv: "Nyheter",
         th: "มีอะไรใหม่",
         tr: "Yenilikler",
-        vi: "Có gì mới"
+        vi: "Có gì mới",
+        ar: "الجديد"
     )
     static let whatsNew1 = NavLoc(
         ko: "처음 쓰는 분을 위한 세 장짜리 사용법",
@@ -4224,7 +4392,8 @@ extension NavLoc {
         sv: "En guide i tre steg för att komma igång",
         th: "คู่มือสามขั้นตอนสำหรับผู้ใช้ใหม่",
         tr: "Yeni başlayanlar için üç adımlık rehber",
-        vi: "Hướng dẫn ba bước cho người mới"
+        vi: "Hướng dẫn ba bước cho người mới",
+        ar: "دليل من ثلاث خطوات لمن يركب أول مرة"
     )
     static let whatsNew2 = NavLoc(
         ko: "앱에서 바로 의견을 보내고 답장도 받아요",
@@ -4249,7 +4418,8 @@ extension NavLoc {
         sv: "Skicka feedback direkt i appen och läs våra svar",
         th: "ส่งความคิดเห็นในแอปและอ่านคำตอบจากเราได้",
         tr: "Uygulamadan geri bildirim gönder, yanıtlarımızı oku",
-        vi: "Gửi góp ý ngay trong ứng dụng và đọc phản hồi của chúng tôi"
+        vi: "Gửi góp ý ngay trong ứng dụng và đọc phản hồi của chúng tôi",
+        ar: "أرسل ملاحظاتك من التطبيق واقرأ ردودنا"
     )
     static let whatsNew3 = NavLoc(
         ko: "고대비와 동작 줄이기 설정을 따라요",
@@ -4274,7 +4444,8 @@ extension NavLoc {
         sv: "Följer inställningarna Öka kontrast och Minska rörelse",
         th: "รองรับการตั้งค่าเพิ่มความต่างของสีและลดการเคลื่อนไหว",
         tr: "Kontrastı Artır ve Hareketi Azalt ayarlarına uyar",
-        vi: "Tuân theo cài đặt Tăng độ tương phản và Giảm chuyển động"
+        vi: "Tuân theo cài đặt Tăng độ tương phản và Giảm chuyển động",
+        ar: "يتبع إعدادَي زيادة التباين وتقليل الحركة"
     )
     static let noMatchingStationHint = NavLoc(
         ko: "한글, 영어, 일본어, 중국어 역 이름으로 찾아보세요.",
@@ -4299,7 +4470,8 @@ extension NavLoc {
         sv: "Testa stationsnamnet på koreanska, engelska, japanska eller kinesiska.",
         th: "ลองพิมพ์ชื่อสถานีเป็นภาษาเกาหลี อังกฤษ ญี่ปุ่น หรือจีน",
         tr: "İstasyon adını Korece, İngilizce, Japonca veya Çince dene.",
-        vi: "Thử nhập tên ga bằng tiếng Hàn, Anh, Nhật hoặc Trung."
+        vi: "Thử nhập tên ga bằng tiếng Hàn, Anh, Nhật hoặc Trung.",
+        ar: "ابحث باسم المحطة بالإنجليزية أو الكورية أو اليابانية أو الصينية."
     )
     static let hideCamera = NavLoc(
         ko: "카메라 숨기기",
@@ -4324,7 +4496,8 @@ extension NavLoc {
         sv: "Dölj kamera",
         th: "ซ่อนกล้อง",
         tr: "Kamerayı gizle",
-        vi: "Ẩn camera"
+        vi: "Ẩn camera",
+        ar: "إخفاء الكاميرا"
     )
     static let scanSkipsStop = NavLoc(
         ko: "{0}에 서지 않는 열차예요. 일반열차를 타세요",
@@ -4349,7 +4522,8 @@ extension NavLoc {
         sv: "Stannar inte vid {0}. Ta ett tåg som stannar överallt",
         th: "ขบวนนี้ไม่จอดที่ {0} ขึ้นขบวนธรรมดาแทน",
         tr: "{0} durağında durmuyor. Her durakta duran trene bin",
-        vi: "Tàu này không dừng ở {0}. Hãy đi tàu thường"
+        vi: "Tàu này không dừng ở {0}. Hãy đi tàu thường",
+        ar: "هذا القطار لا يتوقف في {0}. اركب القطار العادي"
     )
     static let trainTypeExpress = NavLoc(
         ko: "급행",
@@ -4374,7 +4548,8 @@ extension NavLoc {
         sv: "Expresståg",
         th: "ขบวนด่วน",
         tr: "Ekspres",
-        vi: "Tàu nhanh"
+        vi: "Tàu nhanh",
+        ar: "سريع"
     )
     static let roadmapExpress = NavLoc(
         ko: "급행열차 구별",
@@ -4399,7 +4574,8 @@ extension NavLoc {
         sv: "Känn igen expresståg",
         th: "แยกขบวนด่วน",
         tr: "Ekspres trenleri ayırt etme",
-        vi: "Nhận biết tàu nhanh"
+        vi: "Nhận biết tàu nhanh",
+        ar: "تمييز القطارات السريعة"
     )
     static let roadmapExpressDetail = NavLoc(
         ko: "카메라로 안내판을 비추면, 급행이 내 역에 서지 않을 때 알려 줘요. 9호선부터 시작해요.",
@@ -4424,7 +4600,8 @@ extension NavLoc {
         sv: "Rikta kameran mot skylten så säger vi till när ett expresståg hoppar över din station. Vi börjar med linje 9.",
         th: "ส่องกล้องไปที่ป้าย แล้วเราจะบอกเมื่อขบวนด่วนไม่จอดที่สถานีของคุณ เริ่มที่สาย 9",
         tr: "Kamerayı tabelaya tut, ekspres tren durağını atlıyorsa haber verelim. 9. hatla başlıyoruz.",
-        vi: "Hướng camera vào bảng chỉ dẫn, ứng dụng sẽ báo khi tàu nhanh không dừng ở ga của bạn. Bắt đầu với tuyến số 9."
+        vi: "Hướng camera vào bảng chỉ dẫn, ứng dụng sẽ báo khi tàu nhanh không dừng ở ga của bạn. Bắt đầu với tuyến số 9.",
+        ar: "وجّه الكاميرا إلى اللافتة وسنخبرك إن كان القطار السريع لا يتوقف في محطتك. نبدأ بالخط 9."
     )
     static let attractionsHeader = NavLoc(
         ko: "명소",
@@ -4449,7 +4626,8 @@ extension NavLoc {
         sv: "Sevärdheter",
         th: "สถานที่ท่องเที่ยว",
         tr: "Gezilecek yerler",
-        vi: "Điểm tham quan"
+        vi: "Điểm tham quan",
+        ar: "أماكن تستحق الزيارة"
     )
     static let exitNumbers = NavLoc(
         ko: "{0}번 출구",
@@ -4474,7 +4652,8 @@ extension NavLoc {
         sv: "Utgångar {0}",
         th: "ทางออก {0}",
         tr: "{0} numaralı çıkışlar",
-        vi: "Lối ra số {0}"
+        vi: "Lối ra số {0}",
+        ar: "المخارج {0}"
     )
     static let walkAboutMinutes = NavLoc(
         ko: "도보 약 {0}분",
@@ -4499,7 +4678,8 @@ extension NavLoc {
         sv: "Ca {0} min promenad",
         th: "เดินประมาณ {0} นาที",
         tr: "Yürüyerek yaklaşık {0} dk",
-        vi: "Đi bộ khoảng {0} phút"
+        vi: "Đi bộ khoảng {0} phút",
+        ar: "نحو {0} د سيرًا"
     )
     static let pickOnMap = NavLoc(
         ko: "지도에서 고르기",
@@ -4524,7 +4704,8 @@ extension NavLoc {
         sv: "Välj på kartan",
         th: "เลือกบนแผนที่",
         tr: "Haritadan seç",
-        vi: "Chọn trên bản đồ"
+        vi: "Chọn trên bản đồ",
+        ar: "اختر من الخريطة"
     )
     static let chooseThisStation = NavLoc(
         ko: "이 역 선택",
@@ -4549,7 +4730,8 @@ extension NavLoc {
         sv: "Välj den här stationen",
         th: "เลือกสถานีนี้",
         tr: "Bu istasyonu seç",
-        vi: "Chọn ga này"
+        vi: "Chọn ga này",
+        ar: "اختر هذه المحطة"
     )
     static let zoomInForStations = NavLoc(
         ko: "확대하면 역이 보여요",
@@ -4574,7 +4756,8 @@ extension NavLoc {
         sv: "Zooma in för att se stationer",
         th: "ซูมเข้าเพื่อดูสถานี",
         tr: "İstasyonları görmek için yakınlaştır",
-        vi: "Phóng to để xem các ga"
+        vi: "Phóng to để xem các ga",
+        ar: "قرّب الخريطة لترى المحطات"
     )
     static let roadmapPlaces = NavLoc(
         ko: "가고 싶은 곳으로 역 찾기",
@@ -4599,7 +4782,8 @@ extension NavLoc {
         sv: "Hitta station via plats",
         th: "หาสถานีจากสถานที่",
         tr: "Yere göre istasyon bul",
-        vi: "Tìm ga theo địa điểm"
+        vi: "Tìm ga theo địa điểm",
+        ar: "ابحث عن المحطات بالمكان"
     )
     static let roadmapPlacesDetail = NavLoc(
         ko: "코엑스처럼 가고 싶은 곳을 찾으면 가까운 역과 출구를 알려 줘요. 지도에서 역을 바로 고를 수도 있어요.",
@@ -4624,7 +4808,8 @@ extension NavLoc {
         sv: "Sök efter en plats som COEX så visar vi närmaste stationer och utgångar. Du kan också välja station direkt på kartan.",
         th: "ค้นหาสถานที่อย่าง COEX แล้วเราจะบอกสถานีและทางออกที่ใกล้ที่สุด เลือกสถานีจากแผนที่ได้โดยตรงด้วย",
         tr: "COEX gibi bir yer ara, en yakın istasyonları ve çıkışları gösterelim. İstasyonu doğrudan haritadan da seçebilirsin.",
-        vi: "Tìm một nơi như COEX, ứng dụng sẽ chỉ ga và lối ra gần nhất. Bạn cũng có thể chọn ga ngay trên bản đồ."
+        vi: "Tìm một nơi như COEX, ứng dụng sẽ chỉ ga và lối ra gần nhất. Bạn cũng có thể chọn ga ngay trên bản đồ.",
+        ar: "ابحث عن مكان مثل COEX وسنعرض لك أقرب المحطات والمخارج. ويمكنك أيضًا اختيار المحطة من الخريطة مباشرة."
     )
     static let close = NavLoc(
         ko: "닫기",
@@ -4649,7 +4834,8 @@ extension NavLoc {
         sv: "Stäng",
         th: "ปิด",
         tr: "Kapat",
-        vi: "Đóng"
+        vi: "Đóng",
+        ar: "إغلاق"
     )
     static let roadmapWatch = NavLoc(
         ko: "Apple Watch 하차 진동",
@@ -4674,7 +4860,8 @@ extension NavLoc {
         sv: "Kliv av-varning på Apple Watch",
         th: "เตือนลงรถบน Apple Watch",
         tr: "Apple Watch’ta inme uyarısı",
-        vi: "Báo xuống ga trên Apple Watch"
+        vi: "Báo xuống ga trên Apple Watch",
+        ar: "تنبيه النزول على Apple Watch"
     )
     static let roadmapWatchDetail = NavLoc(
         ko: "남은 정거장을 손목에서 보고, 한 정거장 남으면 손목이 울려요.",
@@ -4699,6 +4886,7 @@ extension NavLoc {
         sv: "Se stationerna kvar på handleden och känn en vibration en station innan.",
         th: "ดูสถานีที่เหลือบนข้อมือ และนาฬิกาจะสั่นก่อนถึงสถานีที่ต้องลงหนึ่งสถานี",
         tr: "Kalan durakları bileğinde gör, inmeden bir durak önce titreşimi hisset.",
-        vi: "Xem số ga còn lại trên cổ tay và cảm nhận rung báo trước một ga."
+        vi: "Xem số ga còn lại trên cổ tay và cảm nhận rung báo trước một ga.",
+        ar: "شاهد المحطات المتبقية على معصمك، وستشعر بنقرة قبل محطتك بمحطة واحدة."
     )
 }

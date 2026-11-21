@@ -1115,6 +1115,7 @@ extension SeoulMetroLineInfo {
     func localizedName(_ lang: StationLanguage) -> String {
         guard code != nil else { return NavLoc.lineLabel(number, lang) }
         guard lang != .korean, let names = Self.namedLineNames[name] else { return name }
+        if lang == .arabic, let ar = Self.arabicNamedLineNames[name] { return ar }
         switch lang.stationNames {
         case .korean:             return name
         case .japanese:           return names.ja
@@ -1152,5 +1153,36 @@ extension SeoulMetroLineInfo {
         "대경선":          ("大慶線", "Daegyeong Line", "大庆线", "大慶線"),
         "광주 1호선":      ("光州1号線", "Gwangju Line 1", "光州1号线", "光州1號線"),
         "대전 1호선":      ("大田1号線", "Daejeon Line 1", "大田1号线", "大田1號線"),
+    ]
+
+    /// 아랍어: '선 · 경전철' 은 아랍어로, 고유 이름은 역 표지판의 로마자 그대로 (역 이름과 같은 규칙).
+    private static let arabicNamedLineNames: [String: String] = [
+        "GTX-A":          "GTX-A",
+        "공항철도":        "قطار المطار AREX",
+        "신분당선":        "خط Shinbundang",
+        "수인분당선":      "خط Suin-Bundang",
+        "경의중앙선":      "خط Gyeongui-Jungang",
+        "경춘선":          "خط Gyeongchun",
+        "경강선":          "خط Gyeonggang",
+        "서해선":          "خط Seohae",
+        "김포골드라인":    "خط Gimpo Goldline",
+        "신림선":          "خط Sillim",
+        "우이신설선":      "خط Ui-Sinseol",
+        "의정부경전철":    "القطار الخفيف Uijeongbu",
+        "용인에버라인":    "خط Yongin EverLine",
+        "인천 1호선":      "خط Incheon 1",
+        "인천 2호선":      "خط Incheon 2",
+        "부산 1호선":      "خط Busan 1",
+        "부산 2호선":      "خط Busan 2",
+        "부산 3호선":      "خط Busan 3",
+        "부산 4호선":      "خط Busan 4",
+        "부산김해경전철":  "القطار الخفيف Busan-Gimhae",
+        "동해선":          "خط Donghae",
+        "대구 1호선":      "خط Daegu 1",
+        "대구 2호선":      "خط Daegu 2",
+        "대구 3호선":      "خط Daegu 3",
+        "대경선":          "خط Daegyeong",
+        "광주 1호선":      "خط Gwangju 1",
+        "대전 1호선":      "خط Daejeon 1",
     ]
 }

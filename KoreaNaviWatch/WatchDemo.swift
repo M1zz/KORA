@@ -59,6 +59,7 @@ enum WatchDemo {
         "th": ("สาย 2", ["Hongik Univ.", "Sinchon", "Ewha Womans Univ.", "Ahyeon", "Chungjeongno", "City Hall"], ["ลงที่", "สถานีถัดไป", "ลงสถานีถัดไป", "ลงเดี๋ยวนี้!", "ต่อรถ", "สถานี"]),
         "tr": ("Hat 2", ["Hongik Univ.", "Sinchon", "Ewha Womans Univ.", "Ahyeon", "Chungjeongno", "City Hall"], ["İneceğin istasyon", "Sonraki istasyon", "Sonraki istasyonda in", "Şimdi in!", "Aktarma", "durak"]),
         "vi": ("Tuyến 2", ["Hongik Univ.", "Sinchon", "Ewha Womans Univ.", "Ahyeon", "Chungjeongno", "City Hall"], ["Xuống tại", "Ga tiếp theo", "Xuống ở ga tiếp theo", "Xuống ngay!", "Chuyển tuyến", "ga"]),
+        "ar": ("الخط 2", ["Hongik Univ.", "Sinchon", "Ewha Womans Univ.", "Ahyeon", "Chungjeongno", "City Hall"], ["انزل في", "المحطة التالية", "انزل في المحطة التالية", "انزل الآن!", "تبديل", "محطات"]),
     ]
 }
 #endif

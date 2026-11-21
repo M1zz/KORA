@@ -148,6 +148,12 @@
             "state" : "translated",
             "value" : "Korea Navi"
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Korea Navi"
+          }
         }
       }
     },
@@ -311,6 +317,12 @@
             "state" : "translated",
             "value" : "Point the camera at a platform sign or the train's destination display to check you're boarding in the right direction. Images are processed on your device and never saved or sent."
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "وجّه الكاميرا إلى لافتة الرصيف أو شاشة وجهة القطار لتتأكد أنك تركب في الاتجاه الصحيح. تُعالج الصور على جهازك ولا تُحفظ ولا تُرسل."
+          }
         }
       }
     },
@@ -460,6 +472,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Used to find the nearest subway station and to check which station you're at while riding."
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "لإيجاد أقرب محطة مترو إليك ومعرفة المحطة التي أنت فيها أثناء الرحلة."
           }
         }
       }
@@ -611,6 +629,12 @@
             "state" : "translated",
             "value" : "Listens to the in-train announcements to confirm the current station and which side the doors open. Audio is processed on your device and never saved or sent."
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يستمع إلى إعلانات القطار ليتأكد من المحطة الحالية ومن جهة فتح الأبواب. يُعالج الصوت على جهازك ولا يُحفظ ولا يُرسل."
+          }
         }
       }
     },
@@ -761,6 +785,12 @@
             "state" : "translated",
             "value" : "Uses the accelerometer to detect when the train departs and stops, so the current station stays accurate while you ride."
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يستخدم مقياس التسارع لرصد انطلاق القطار وتوقفه، فتبقى المحطة الحالية دقيقة أثناء الرحلة."
+          }
         }
       }
     },
@@ -910,6 +940,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Recognises station names in the in-train announcements. Recognition happens entirely on your device."
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "للتعرّف على أسماء المحطات في إعلانات القطار. يجري التعرّف كله على جهازك."
           }
         }
       }

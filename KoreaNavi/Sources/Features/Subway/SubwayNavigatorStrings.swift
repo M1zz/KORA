@@ -32,6 +32,7 @@ struct NavLoc {
     let th: String
     let tr: String
     let vi: String
+    let ar: String
 
     func resolved(_ lang: StationLanguage) -> String {
         switch lang {
@@ -58,6 +59,7 @@ struct NavLoc {
         case .thai:     return th
         case .turkish:  return tr
         case .vietnamese: return vi
+        case .arabic:   return ar
         }
     }
 
@@ -107,6 +109,19 @@ extension NavLoc {
         }
     }
 
+    /// 아랍어 수 세기: 1 · 2 는 수 없이 낱말로(محطة واحدة · محطتان), 3~10 은 복수(محطات),
+    /// 11 부터는 단수 목적격(محطة). 끝 두 자리로 고른다(103 → 3~10 꼴).
+    private static func arabic(_ n: Int, one: String, two: String, few: String, many: String) -> String {
+        let m100 = n % 100
+        switch n {
+        case 1: return one
+        case 2: return two
+        default:
+            if (3...10).contains(m100) { return "\(n) \(few)" }
+            return "\(n) \(many)"
+        }
+    }
+
     /// "3 stops" — remaining stops / stop count.
     static func stopsRemaining(_ stops: Int, _ lang: StationLanguage) -> String {
         let n = stops
@@ -134,7 +149,15 @@ extension NavLoc {
         case .thai:     return "\(n) สถานี"
         case .turkish:  return "\(n) durak"
         case .vietnamese: return "\(n) ga"
+        case .arabic:   return arabic(n, one: "محطة واحدة", two: "محطتان", few: "محطات", many: "محطة")
         }
+    }
+
+    /// 큰 숫자 아래에 붙는 '정거장' 낱말 (워치). 숫자를 따로 크게 쓰므로 수 없이 낱말만.
+    static func stopsUnitWord(_ n: Int, _ lang: StationLanguage) -> String {
+        guard lang == .arabic else { return String(stopsRemaining(n, lang).dropFirst("\(n) ".count)) }
+        if n == 2 { return "محطتان" }
+        return (3...10).contains(n % 100) ? "محطات" : "محطة"
     }
 
     /// "2 transfers" for the route summary (n ≥ 1; 0 uses `noTransfer`).
@@ -163,6 +186,7 @@ extension NavLoc {
         case .thai:     return "ต่อรถ \(n) ครั้ง"
         case .turkish:  return "\(n) aktarma"
         case .vietnamese: return "\(n) lần chuyển tuyến"
+        case .arabic:   return arabic(n, one: "تبديل واحد", two: "تبديلان", few: "تبديلات", many: "تبديلًا")
         }
     }
 
@@ -192,6 +216,7 @@ extension NavLoc {
         case .thai:     return "คุณเดินทางถึงที่หมายกับ Korea Navi มาแล้ว \(n) ครั้ง"
         case .turkish:  return "Korea Navi ile \(n) kez hedefine ulaştın"
         case .vietnamese: return "Bạn đã đến nơi \(n) lần cùng Korea Navi"
+        case .arabic:   return "وصلت إلى وجهتك " + arabic(n, one: "مرة واحدة", two: "مرتين", few: "مرات", many: "مرة") + " مع Korea Navi"
         }
     }
 
@@ -222,6 +247,7 @@ extension NavLoc {
         case .thai:     return "อีกประมาณ \(n) นาที"
         case .turkish:  return "~\(n) dk sonra"
         case .vietnamese: return "khoảng \(n) phút nữa"
+        case .arabic:   return "بعد " + arabic(n, one: "دقيقة", two: "دقيقتين", few: "دقائق", many: "دقيقة") + " تقريبًا"
         }
     }
 
@@ -250,6 +276,7 @@ extension NavLoc {
         case .thai:     return "สาย \(num)"
         case .turkish:  return "Hat \(num)"
         case .vietnamese: return "Tuyến \(num)"
+        case .arabic:   return "الخط \(num)"
         }
     }
 }
@@ -257,6 +284,9 @@ extension NavLoc {
 // MARK: - Locale for formatting
 
 extension StationLanguage {
+    /// 오른쪽에서 왼쪽으로 쓰는 언어 — 앱 루트에서 화면 방향을 이것으로 바꾼다.
+    var isRightToLeft: Bool { self == .arabic }
+
     /// 날짜·시각·숫자를 이 언어의 표기로 쓸 때의 로케일 (앱 안에서 고른 언어를 따른다).
     var locale: Locale {
         let id: String
@@ -284,6 +314,8 @@ extension StationLanguage {
         case .thai: id = "th_TH"
         case .turkish: id = "tr_TR"
         case .vietnamese: id = "vi_VN"
+        // 숫자는 0~9, 달력은 양력으로 맞춘다 (사우디 기기에선 ١٢٣ 와 123 이 섞이고 날짜가 히즈리력으로 나온다).
+        case .arabic: id = "ar_SA@numbers=latn;calendar=gregorian"
         }
         return Locale(identifier: id)
     }

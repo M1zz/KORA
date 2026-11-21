@@ -524,6 +524,7 @@ struct SubwayNavigatorView: View {
                         Image(systemName: "chevron.right.2")
                             .font(.callout).fontWeight(.black)
                             .foregroundStyle(.white)
+                            .flipsForRightToLeftLayoutDirection(true)
                     )
                     .shadow(color: seg.line.color.opacity(0.4), radius: 6, y: 2)
                     .offset(x: 4 + boardDragOffset)
@@ -584,7 +585,7 @@ struct SubwayNavigatorView: View {
                     .fill(seg.line.color)
                     .frame(width: thumbW, height: geo.size.height - 10)
                     .overlay(
-                        Image(systemName: "arrow.right.circle.fill")
+                        Image(systemName: "arrow.forward.circle.fill")
                             .font(.callout).fontWeight(.black)
                             .foregroundStyle(.white)
                     )
@@ -763,6 +764,7 @@ struct SubwayNavigatorView: View {
             await KoreaNaviLiveActivityManager.shared.start(
                 destination: name(dest), current: name(currentKo), next: name(nextKo),
                 stopsRemaining: stopsLeft, stopsUnit: NavLoc.stopsUnit.resolved(lang),
+                stopsUnits: (0...stopsLeft).map { NavLoc.stopsUnitWord($0, lang) },
                 lineColor: seg.line.color, lineName: seg.line.localizedName(lang)
             )
         }
@@ -1010,7 +1012,7 @@ struct SubwayNavigatorView: View {
                 HStack(spacing: 1) {
                     ForEach(0..<count, id: \.self) { i in
                         let angle = phase * .pi * 2 - Double(i) * (.pi * 2 / Double(count))
-                        Image(systemName: "chevron.right")
+                        Image(systemName: "chevron.forward")
                             .font(.title3).fontWeight(.black)
                             .foregroundStyle(lineColor.opacity(reduceMotion
                                 ? 0.85
@@ -1502,9 +1504,7 @@ struct SubwayNavigatorView: View {
             transfers: boardedSegmentIdx < segCount - 1,
             vibrate: guidedRide,
             // "3 정거장" 에서 숫자를 뺀 말 — 러시아어 · 폴란드어처럼 수에 따라 바뀌는 말도 맞게
-            stopsUnits: (0..<max(seg.stations.count, 1)).map {
-                String(NavLoc.stopsRemaining($0, lang).dropFirst("\($0) ".count))
-            },
+            stopsUnits: (0..<max(seg.stations.count, 1)).map { NavLoc.stopsUnitWord($0, lang) },
             labels: .init(
                 getOffAt: NavLoc.alightCalm.resolved(lang),
                 nextStation: NavLoc.nextStationShort.resolved(lang),
@@ -2187,7 +2187,7 @@ struct SubwayNavigatorView: View {
 
                 Spacer()
 
-                Image(systemName: "chevron.right")
+                Image(systemName: "chevron.forward")
                     .font(.body).fontWeight(.bold)
                     .foregroundStyle(ko != nil ? primaryColor : KoreaNaviTheme.accentText)
             }
@@ -2357,7 +2357,7 @@ struct SubwayNavigatorView: View {
 
                 Spacer()
 
-                Image(systemName: "chevron.right")
+                Image(systemName: "chevron.forward")
                     .font(.body).fontWeight(.bold)
                     .foregroundStyle(ko != nil ? primaryColor : KoreaNaviTheme.accentText)
             }
@@ -3438,7 +3438,7 @@ struct PositionCorrectionSheet: View {
                     }
                 }
                 Spacer()
-                Image(systemName: "chevron.right")
+                Image(systemName: "chevron.forward")
                     .font(.body)
                     .foregroundStyle(KoreaNaviTheme.labelTertiary)
             }

@@ -8,7 +8,7 @@
 //     - 새 항목: `.planned`. 손대기 시작하면 `.building`. 내보내면 `.shipped("1.1.0")`.
 //     - id 는 한 번 정하면 바꾸지 않는다(문구는 바꿔도 된다).
 //     - 문구는 사용자 말로 쓴다(내부 이름 · 기술 용어 금지). 번역은 이 앱의 방식대로
-//       `scripts/i18n/navloc.json` 에 23개 언어를 다 넣고 `python3 scripts/i18n/gen_navloc.py` 로 만든다.
+//       `scripts/i18n/navloc.json` 에 24개 언어를 다 넣고 `python3 scripts/i18n/gen_navloc.py` 로 만든다.
 //       (앱 안에서 고른 언어를 따르므로 NSLocalizedString 이 아니라 NavLoc 이다)
 //     - 사용자에게 보일 만한 것만 적는다. 리팩터링 · 시험 · 빌드 설정은 `.sprintcommander/tasks.json` 의 몫이다.
 //

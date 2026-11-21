@@ -147,6 +147,12 @@
             "state": "translated",
             "value": "在 iPhone 上開始導航後，這裡會顯示到下車站還剩幾站。"
           }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ابدأ مسارًا على iPhone وستظهر هنا المحطات المتبقية حتى محطة نزولك."
+          }
         }
       }
     }

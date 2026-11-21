@@ -88,6 +88,8 @@ struct KoreaNaviApp: App {
             // Single screen — the subway navigator is the whole app.
             SubwayView()
                 .tint(KoreaNaviTheme.accent)
+                // 화면 방향 · 숫자를 앱 안에서 고른 언어에 맞춘다 (아랍어는 오른쪽에서 왼쪽).
+                .modifier(AppLanguageLayout())
                 // 개발자가 보낸 의견에 답장하면, 앱이 앞으로 올 때 답장을 시트로 보여 준다 (LeeoKit).
                 .leeoFeedbackReplyNotice(KoreaNaviSpec.self)
                 // 유료가 되면 콘페티, 모든 사용자가 한 번은 감사를 받는다 (LeeoKit). 판정은 LeeoStore 가 한다.
@@ -95,6 +97,21 @@ struct KoreaNaviApp: App {
                 // 아이폰 듀오: 접힘을 재서 아래로 흘린다. 시트 · 알림창도 접힌 선을 비킨다.
                 .foldAware()
         }
+    }
+}
+
+/// 화면 방향을 **앱 안 언어**에 맞춘다. 방향은 원래 기기 언어를 따르므로, 언어 시트에서 아랍어만 고르면
+/// 글은 아랍어인데 배치는 왼쪽에서 오른쪽으로 남는다(거꾸로 아랍어 기기에서 영어를 고르면 영어가 오른쪽부터).
+/// 아랍어에서는 숫자 · 날짜도 맞춘다: 기기 지역을 따르면 `Text("\(n)")` 은 ١٢٣ 으로, 문구 속 숫자는 123 으로 섞였다.
+private struct AppLanguageLayout: ViewModifier {
+    @AppStorage("kora.display_language") private var languagePref: String = ""
+    @Environment(\.locale) private var deviceLocale
+
+    func body(content: Content) -> some View {
+        let lang = StationLanguage(rawValue: languagePref) ?? StationLanguage.resolveFromSystemLocale()
+        content
+            .environment(\.layoutDirection, lang.isRightToLeft ? .rightToLeft : .leftToRight)
+            .environment(\.locale, lang.isRightToLeft ? lang.locale : deviceLocale)
     }
 }
 

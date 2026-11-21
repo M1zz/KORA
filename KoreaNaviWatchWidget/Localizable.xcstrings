@@ -147,6 +147,12 @@
             "state": "translated",
             "value": "目前未搭車"
           }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "لست في قطار الآن"
+          }
         }
       }
     },
@@ -296,6 +302,12 @@
             "state": "translated",
             "value": "顯示距離下車站還有幾站。"
           }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "يعرض عدد المحطات المتبقية حتى محطة نزولك."
+          }
         }
       }
     },
@@ -444,6 +456,12 @@
           "stringUnit": {
             "state": "translated",
             "value": "剩餘站數"
+          }
+        },
+        "ar": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "المحطات المتبقية"
           }
         }
       }

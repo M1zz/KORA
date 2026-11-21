@@ -140,6 +140,12 @@
             "state" : "translated",
             "value" : "用${applicationName}去${station}"
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "الطريق إلى ${station} عبر ${applicationName}"
+          }
         }
       }
     },
@@ -281,6 +287,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "用${applicationName}查捷運路線"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إرشادات المترو عبر ${applicationName}"
           }
         }
       }
@@ -424,6 +436,12 @@
             "state" : "translated",
             "value" : "${applicationName}最近的車站"
           }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "أقرب محطة في ${applicationName}"
+          }
         }
       }
     },
@@ -565,6 +583,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "用${applicationName}找最近的車站"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ابحث عن أقرب محطة عبر ${applicationName}"
           }
         }
       }
