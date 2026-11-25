@@ -10,7 +10,7 @@ Korea Navi: Subway Routes
 
 ### 부제
 
-Seoul Metro Guide for Visitors
+Seoul metro, never miss a stop
 
 ### 키워드
 
@@ -18,7 +18,7 @@ arex,train,gwangju,daejeon,korean,route,busan,daegu,incheon,exit,gtx,tourist,ktx
 
 ### 프로모션 텍스트
 
-Board in the right direction every time. Korea Navi shows it exactly as the train's sign reads and buzzes as your stop approaches, all in your own language.
+Ride the Seoul and Busan subway without getting lost. Board the way the train's sign reads and feel a buzz as your stop approaches, all in your own language.
 
 ### 설명
 
@@ -85,7 +85,7 @@ Korea Navi: Subway Routes
 
 ### 부제
 
-Seoul Metro Guide for Visitors
+Seoul metro, never miss a stop
 
 ### 키워드
 
@@ -93,7 +93,7 @@ busan,incheon,daegu,daejeon,gwangju,gtx,arex,airport,train,transfer,station,tube
 
 ### 프로모션 텍스트
 
-Board in the right direction every time. Korea Navi shows it exactly as the train's sign reads and buzzes as your stop approaches, all in your own language.
+Ride the Seoul and Busan subway without getting lost. Board the way the train's sign reads and feel a buzz as your stop approaches, all in your own language.
 
 ### 설명
 
