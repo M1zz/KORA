@@ -4889,4 +4889,30 @@ extension NavLoc {
         vi: "Xem số ga còn lại trên cổ tay và cảm nhận rung báo trước một ga.",
         ar: "شاهد المحطات المتبقية على معصمك، وستشعر بنقرة قبل محطتك بمحطة واحدة."
     )
+    static let recentDestinations = NavLoc(
+        ko: "최근 도착역",
+        ja: "最近の到着駅",
+        en: "Recent destinations",
+        zh: "最近的目的地",
+        zhHant: "最近的目的地",
+        de: "Letzte Ziele",
+        es: "Destinos recientes",
+        fr: "Destinations récentes",
+        it: "Destinazioni recenti",
+        ptBR: "Destinos recentes",
+        ru: "Недавние станции",
+        cs: "Nedávné cíle",
+        da: "Seneste destinationer",
+        el: "Πρόσφατοι προορισμοί",
+        fi: "Viimeisimmät määränpäät",
+        id: "Tujuan terakhir",
+        nb: "Nylige reisemål",
+        nl: "Recente bestemmingen",
+        pl: "Ostatnie cele",
+        sv: "Senaste resmål",
+        th: "ปลายทางล่าสุด",
+        tr: "Son gidilen yerler",
+        vi: "Điểm đến gần đây",
+        ar: "الوجهات الأخيرة"
+    )
 }

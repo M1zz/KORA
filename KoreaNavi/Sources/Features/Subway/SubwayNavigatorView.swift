@@ -68,6 +68,9 @@ struct SubwayNavigatorView: View {
     @Environment(\.foldLayout) private var fold
     @AppStorage("kora.current_station") private var persistedFromStation: String = ""
     @AppStorage("kora.destination_station") private var persistedToStation: String = ""
+    /// 최근 고른 도착역(최신이 앞, 줄바꿈으로 구분). 앱을 실수로 꺼도 첫 화면에서 한 번에 다시 고른다.
+    @AppStorage("kora.recent_destinations") private var recentDestinationsRaw: String = ""
+    private static let recentDestinationLimit = 3
     /// Siri 로 고른 도착역 (→ Common/Services/KoreaNaviIntents.swift)
     @Bindable private var intentRouter = KoreaNaviIntentRouter.shared
     @State private var fromStation: String? = nil
@@ -264,6 +267,7 @@ struct SubwayNavigatorView: View {
         }
         .onChange(of: toStation) { _, new in
             persistedToStation = new ?? ""
+            if let new { rememberDestination(new) }
             journeyGuided = nil
             arrivalPaywallShown = false
             arrivalRecorded = false
@@ -2101,11 +2105,74 @@ struct SubwayNavigatorView: View {
                 .padding(.vertical, 4)
 
                 destinationCTA
+
+                recentDestinationsRow
             }
 
             Spacer(minLength: 0)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    }
+
+    // MARK: Recent destinations
+
+    /// 지금 보여 줄 최근 도착역 — 출발역과 같은 역은 뺀다.
+    private var recentDestinations: [String] {
+        recentDestinationsRaw.split(separator: "\n").map(String.init).filter { $0 != fromStation }
+    }
+
+    private func rememberDestination(_ ko: String) {
+        #if DEBUG
+        if ScreenshotScene.current != nil { return }
+        #endif
+        let rest = recentDestinationsRaw.split(separator: "\n").map(String.init).filter { $0 != ko }
+        recentDestinationsRaw = ([ko] + rest).prefix(Self.recentDestinationLimit).joined(separator: "\n")
+    }
+
+    /// 도착역 카드 아래의 작은 칩 한 줄. 기록이 없으면 아무것도 그리지 않는다.
+    @ViewBuilder
+    private var recentDestinationsRow: some View {
+        let recents = recentDestinations
+        if !recents.isEmpty {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    Image(systemName: "clock.arrow.circlepath")
+                        .font(.subheadline).fontWeight(.semibold)
+                        .foregroundStyle(KoreaNaviTheme.labelSecondary)
+                        .accessibilityHidden(true)
+                    ForEach(recents, id: \.self) { ko in
+                        recentDestinationChip(ko)
+                    }
+                }
+                .padding(.horizontal, 20)
+                .padding(.vertical, 4)
+            }
+            .padding(.top, 6)
+            .accessibilityElement(children: .contain)
+            .accessibilityLabel(NavLoc.recentDestinations.resolved(displayLanguage))
+        }
+    }
+
+    private func recentDestinationChip(_ ko: String) -> some View {
+        let color = MetroLineData.linesContaining(ko).first.map { MetroLineData.lineColor($0) } ?? KoreaNaviTheme.accent
+        return Button {
+            selectedJourneyIdx = 0
+            toStation = ko
+        } label: {
+            HStack(spacing: 6) {
+                Circle().fill(color).frame(width: 8, height: 8)
+                Text(MetroLineData.displayName(for: ko, language: displayLanguage))
+                    .font(.subheadline).fontWeight(.semibold)
+                    .foregroundStyle(KoreaNaviTheme.labelPrimary)
+                    .lineLimit(1)
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 8)
+            .background(Capsule().fill(Color(.secondarySystemBackground)))
+            .contentShape(Capsule())
+        }
+        .buttonStyle(PressScaleButtonStyle())
+        .accessibilityIdentifier("chip.recent")
     }
 
     /// Departure input card — shows selected station or a placeholder when nil.
