@@ -38,3 +38,4 @@ __pycache__/
 
 # 배포 산출물 (DeployBar 가 아카이브를 만드는 곳)
 build/
+KORA/Config/Secrets.xcconfig
