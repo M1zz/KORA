@@ -5,6 +5,208 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 언어마다 `### ...` 제목에 언어 이름이 들어 있고, 코드 블록 안의 글만 올라간다.
 코드 블록 안은 한 줄에 한 문장, 이모지나 마크다운 기호 없이 평문으로 쓴다.
 
+## 1.1.3
+
+### 앱스토어 (English en-US)
+
+```
+A fresh icon in the colors of the Korean flag
+Your recent destinations now wait on the home screen
+Closed the app by accident? Pick your stop again in one tap
+```
+
+### 앱스토어 (영국 영어 en-GB)
+
+```
+A fresh icon in the colours of the Korean flag
+Your recent destinations now wait on the home screen
+Closed the app by accident? Pick your stop again in one tap
+```
+
+### 앱스토어 (한국어 ko)
+
+```
+아이콘을 태극기 색으로 새로 바꿨어요
+최근에 간 도착역을 첫 화면에서 바로 골라요
+앱을 실수로 꺼도 한 번에 다시 찾아갈 수 있어요
+```
+
+### 앱스토어 (日本語 ja)
+
+```
+アイコンを韓国国旗の色で新しくしました
+最近の到着駅をホーム画面からすぐ選べます
+うっかりアプリを閉じても、ワンタップで戻れます
+```
+
+### 앱스토어 (중국어 간체 zh-Hans)
+
+```
+图标换上了韩国国旗的颜色
+首页可直接选择最近的目的地
+不小心关掉应用，也能一键找回
+```
+
+### 앱스토어 (중국어 번체 zh-Hant)
+
+```
+圖示換上了韓國國旗的顏色
+首頁可直接選擇最近的目的地
+不小心關掉 App，也能一鍵找回
+```
+
+### 앱스토어 (독일어 de)
+
+```
+Neues Icon in den Farben der koreanischen Flagge
+Deine letzten Ziele direkt auf dem Startbildschirm
+App aus Versehen geschlossen? Ein Tipp und weiter
+```
+
+### 앱스토어 (스페인어 es)
+
+```
+Nuevo icono con los colores de la bandera coreana
+Tus destinos recientes, en la pantalla de inicio
+¿Cerraste la app sin querer? Vuelve con un toque
+```
+
+### 앱스토어 (프랑스어 fr)
+
+```
+Nouvelle icône aux couleurs du drapeau coréen
+Vos destinations récentes dès l'écran d'accueil
+App fermée par erreur ? Un toucher pour reprendre
+```
+
+### 앱스토어 (이탈리아어 it)
+
+```
+Nuova icona con i colori della bandiera coreana
+Le destinazioni recenti sono nella schermata iniziale
+Hai chiuso l'app per sbaglio? Riprendi con un tocco
+```
+
+### 앱스토어 (포르투갈어 브라질 pt-BR)
+
+```
+Novo ícone com as cores da bandeira coreana
+Seus destinos recentes já na tela inicial
+Fechou o app sem querer? Volte com um toque
+```
+
+### 앱스토어 (러시아어 ru)
+
+```
+Новая иконка в цветах флага Кореи
+Недавние станции прямо на главном экране
+Случайно закрыли приложение? Вернитесь одним касанием
+```
+
+### 앱스토어 (체코어 cs)
+
+```
+Nová ikona v barvách korejské vlajky
+Nedávné cíle hned na úvodní obrazovce
+Omylem jste aplikaci zavřeli? Vraťte se jedním klepnutím
+```
+
+### 앱스토어 (덴마크어 da)
+
+```
+Nyt ikon i det koreanske flags farver
+Dine seneste destinationer på startskærmen
+Lukkede du appen ved et uheld? Ét tryk, så er du tilbage
+```
+
+### 앱스토어 (그리스어 el)
+
+```
+Νέο εικονίδιο στα χρώματα της κορεατικής σημαίας
+Οι πρόσφατοι προορισμοί σας στην αρχική οθόνη
+Κλείσατε την εφαρμογή κατά λάθος; Επιστρέψτε με ένα άγγιγμα
+```
+
+### 앱스토어 (핀란드어 fi)
+
+```
+Uusi kuvake Korean lipun väreissä
+Viimeisimmät määränpäät suoraan aloitusnäytöllä
+Suljitko sovelluksen vahingossa? Jatka yhdellä napautuksella
+```
+
+### 앱스토어 (인도네시아어 id)
+
+```
+Ikon baru dengan warna bendera Korea
+Tujuan terakhir langsung di layar utama
+Tidak sengaja menutup aplikasi? Lanjutkan dengan satu ketukan
+```
+
+### 앱스토어 (노르웨이어 보크말 nb)
+
+```
+Nytt ikon i fargene til det koreanske flagget
+Nylige reisemål rett på startskjermen
+Lukket appen ved et uhell? Ett trykk, så er du i gang igjen
+```
+
+### 앱스토어 (네덜란드어 nl)
+
+```
+Nieuw icoon in de kleuren van de Koreaanse vlag
+Je recente bestemmingen direct op het startscherm
+App per ongeluk gesloten? Met één tik ga je verder
+```
+
+### 앱스토어 (폴란드어 pl)
+
+```
+Nowa ikona w barwach flagi Korei
+Ostatnie cele od razu na ekranie głównym
+Zamknięta przez przypadek aplikacja? Wróć jednym dotknięciem
+```
+
+### 앱스토어 (스웨덴어 sv)
+
+```
+Ny ikon i den koreanska flaggans färger
+Dina senaste resmål direkt på startskärmen
+Stängde du appen av misstag? Ett tryck så är du tillbaka
+```
+
+### 앱스토어 (태국어 th)
+
+```
+ไอคอนใหม่ในสีธงชาติเกาหลี
+เลือกปลายทางล่าสุดได้ทันทีจากหน้าแรก
+เผลอปิดแอป ก็กลับมาได้ในแตะเดียว
+```
+
+### 앱스토어 (튀르키예어 tr)
+
+```
+Kore bayrağının renklerinde yeni simge
+Son gittiğin yerler artık ana ekranda
+Uygulamayı yanlışlıkla mı kapattın? Tek dokunuşla devam et
+```
+
+### 앱스토어 (베트남어 vi)
+
+```
+Biểu tượng mới mang màu cờ Hàn Quốc
+Điểm đến gần đây hiện ngay trên màn hình chính
+Lỡ tắt ứng dụng? Chạm một lần là quay lại
+```
+
+### 앱스토어 (아랍어 ar)
+
+```
+أيقونة جديدة بألوان العلم الكوري
+وجهاتك الأخيرة على الشاشة الرئيسية مباشرة
+أغلقت التطبيق بالخطأ؟ عُد بلمسة واحدة
+```
+
 ## 1.1.2
 
 ### 앱스토어 (English en-US)
