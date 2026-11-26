@@ -5,6 +5,158 @@ DeployBar 가 배포할 때 이 파일의 `## <버전>` 절을 읽어 간다.
 언어마다 `### ...` 제목에 언어 이름이 들어 있고, 코드 블록 안의 글만 올라간다.
 코드 블록 안은 한 줄에 한 문장, 이모지나 마크다운 기호 없이 평문으로 쓴다.
 
+## 1.1.4
+
+### App Store (English)
+
+See your current and next station clearly on board
+Get a thank-you gift when we use your idea
+Smoother and more reliable overall
+
+### App Store (en-GB)
+
+See your current and next station clearly on board
+Get a thank-you gift when we use your idea
+Smoother and more reliable overall
+
+### 앱스토어 (한국어)
+
+타고 가는 중 지금 역과 다음 역을 나눠 보여 줘요
+보낸 의견이 채택되면 감사 선물을 드려요
+더 안정적으로 움직이도록 다듬었어요
+
+### App Store (Japanese)
+
+乗車中、今の駅と次の駅を分けて表示します
+ご意見が採用されるとお礼のギフトが届きます
+全体的に動作がより安定しました
+
+### App Store (zh-Hans)
+
+乘车时分开显示当前站和下一站
+你的建议被采纳后，会收到一份感谢礼物
+整体运行更加稳定流畅
+
+### App Store (zh-Hant)
+
+乘車時分開顯示目前車站和下一站
+你的建議被採納後，會收到一份感謝禮物
+整體運作更加穩定流暢
+
+### App Store (German)
+
+Unterwegs: aktuelle und nächste Station getrennt
+Danke-Geschenk für umgesetzte Vorschläge
+Läuft jetzt stabiler und flüssiger
+
+### App Store (Spanish)
+
+En el trayecto ves la estación actual y la siguiente
+Si adoptamos tu idea, te enviamos un regalo
+Funciona de forma más estable y fluida
+
+### App Store (French)
+
+En route, station actuelle et suivante bien distinctes
+Un cadeau si nous retenons votre idée
+Plus stable et plus fluide
+
+### App Store (Italian)
+
+In viaggio, stazione attuale e successiva separate
+Un regalo se scegliamo la tua idea
+Più stabile e fluida
+
+### App Store (pt-BR)
+
+Na viagem, estação atual e próxima bem separadas
+Ganhe um presente se usarmos sua ideia
+Mais estável e fluido
+
+### App Store (Russian)
+
+В пути текущая и следующая станции видны отдельно
+Если мы примем ваш отзыв, вас ждёт подарок
+Приложение работает стабильнее
+
+### App Store (Czech)
+
+Za jízdy uvidíte zvlášť aktuální a další stanici
+Za přijatý návrh dostanete dárek
+Stabilnější a plynulejší chod
+
+### App Store (Danish)
+
+Undervejs vises nuværende og næste station hver for sig
+Få en gave, når vi bruger din idé
+Kører mere stabilt og glat
+
+### App Store (Greek)
+
+Στη διαδρομή, τρέχων και επόμενος σταθμός χωριστά
+Ένα δώρο αν υιοθετήσουμε την ιδέα σας
+Πιο σταθερή και ομαλή λειτουργία
+
+### App Store (Finnish)
+
+Matkalla nykyinen ja seuraava asema näkyvät erikseen
+Saat lahjan, kun toteutamme ideasi
+Toimii vakaammin ja sujuvammin
+
+### App Store (Indonesian)
+
+Saat naik, stasiun sekarang dan berikutnya dipisah jelas
+Dapatkan hadiah saat ide Anda kami pakai
+Berjalan lebih stabil dan lancar
+
+### App Store (Norwegian)
+
+Underveis vises nåværende og neste stasjon hver for seg
+Få en gave når vi bruker ideen din
+Kjører mer stabilt og jevnt
+
+### App Store (Dutch)
+
+Onderweg zie je huidig en volgend station apart
+Een cadeau als we jouw idee gebruiken
+Werkt stabieler en soepeler
+
+### App Store (Polish)
+
+W trasie obecna i następna stacja osobno
+Prezent, gdy wykorzystamy Twój pomysł
+Działa stabilniej i płynniej
+
+### App Store (Swedish)
+
+Under resan visas nuvarande och nästa station var för sig
+Få en gåva när vi använder din idé
+Går stabilare och smidigare
+
+### App Store (Thai)
+
+ระหว่างเดินทาง แยกแสดงสถานีปัจจุบันและสถานีถัดไป
+รับของขวัญเมื่อเรานำไอเดียของคุณไปใช้
+ทำงานได้ลื่นไหลและเสถียรขึ้น
+
+### App Store (Turkish)
+
+Yolculukta şimdiki ve sonraki istasyon ayrı gösterilir
+Fikriniz kullanılırsa size bir hediye
+Daha kararlı ve akıcı çalışıyor
+
+### App Store (Vietnamese)
+
+Khi đi tàu, ga hiện tại và ga kế tiếp được tách rõ
+Nhận quà khi góp ý của bạn được chọn
+Hoạt động ổn định và mượt mà hơn
+
+### App Store (Arabic)
+
+أثناء الرحلة تظهر المحطة الحالية والتالية بشكل منفصل
+هدية شكر عندما نعتمد اقتراحك
+أداء أكثر ثباتًا وسلاسة
+
 ## 1.1.3
 
 ### 앱스토어 (English en-US)
