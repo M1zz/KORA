@@ -1343,30 +1343,46 @@ struct SubwayNavigatorView: View {
                     }
                     .frame(width: trackW)
                     VStack(alignment: .leading, spacing: 0) {
-                        // Current-station name removed — the filled dot is "you are here".
-                        Color.clear.frame(height: trackW)
+                        // 채운 점 옆 = 지금 역 (작게), 빈 점 옆 = 다음 역 (크게). 꼬리표로 어느 쪽인지 바로 읽힌다.
+                        HStack(spacing: 8) {
+                            stationRowTag(NavLoc.currentStationTitle.resolved(displayLanguage),
+                                          color: seg.line.color, filled: false)
+                            Text(MetroLineData.displayName(for: currentKo, language: displayLanguage))
+                                .font(.headline)
+                                .foregroundStyle(KoreaNaviTheme.labelSecondary)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.6)
+                        }
+                        .frame(height: trackW, alignment: .center)
+                        .id(currentKo)
+                        .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
                         Color.clear.frame(height: connectorH)
                         if let nk = nextStKo {
                             // Hangul row stays level with the hollow "next" circle;
                             // the rider's reading hangs just below it.
-                            VStack(alignment: .leading, spacing: 0) {
-                                // Full-height Hangul centred on the circle's row: it may
-                                // overhang the 22pt row (instead of being squeezed to fit
-                                // it), so it stays the biggest thing in the card.
-                                Text(nk)
-                                    .font(.system(size: 26, weight: .black))
-                                    .foregroundStyle(seg.line.color)
-                                    .lineLimit(1)
-                                    .minimumScaleFactor(0.5)
-                                    .fixedSize(horizontal: false, vertical: true)
+                            HStack(alignment: .top, spacing: 8) {
+                                stationRowTag(NavLoc.nextStationShort.resolved(displayLanguage),
+                                              color: seg.line.color, filled: true)
                                     .frame(height: trackW, alignment: .center)
-                                if showNextTrans {
-                                    Text(nextStDisplay)
-                                        .font(.subheadline).fontWeight(.semibold)
-                                        .foregroundStyle(KoreaNaviTheme.labelSecondary)
+                                VStack(alignment: .leading, spacing: 0) {
+                                    // Full-height Hangul centred on the circle's row: it may
+                                    // overhang the 22pt row (instead of being squeezed to fit
+                                    // it), so it stays the biggest thing in the card.
+                                    Text(nk)
+                                        .font(.system(size: 26, weight: .black))
+                                        .foregroundStyle(seg.line.color)
                                         .lineLimit(1)
-                                        .minimumScaleFactor(0.6)
-                                        .padding(.top, 8)
+                                        .minimumScaleFactor(0.5)
+                                        .fixedSize(horizontal: false, vertical: true)
+                                        .frame(height: trackW, alignment: .center)
+                                    if showNextTrans {
+                                        Text(nextStDisplay)
+                                            .font(.subheadline).fontWeight(.semibold)
+                                            .foregroundStyle(KoreaNaviTheme.labelSecondary)
+                                            .lineLimit(1)
+                                            .minimumScaleFactor(0.6)
+                                            .padding(.top, 8)
+                                    }
                                 }
                             }
                             .padding(.bottom, 6)
@@ -1400,6 +1416,18 @@ struct SubwayNavigatorView: View {
         .accessibilityLabel(a11yNearCurrent(currentKo: currentKo, nextKo: nextStKo))
         .accessibilityHint(NavLoc.correctPosition.resolved(displayLanguage))
         .accessibilityAddTraits(.isButton)
+    }
+
+    /// 탑승 중 카드의 "현재 역" / "다음역" 꼬리표. 다음역은 노선 색으로 채워 눈이 먼저 가게 한다.
+    private func stationRowTag(_ text: String, color: Color, filled: Bool) -> some View {
+        Text(text)
+            .font(.caption2).fontWeight(.bold)
+            .foregroundStyle(filled ? .white : color)
+            .lineLimit(1)
+            .fixedSize()
+            .padding(.horizontal, 7).padding(.vertical, 3)
+            .background(Capsule().fill(filled ? color : color.opacity(0.12)))
+            .accessibilityHidden(true)
     }
 
     /// Downward-flowing wave chevron connector used between station circles.
