@@ -65,6 +65,12 @@ struct KoreaNaviApp: App {
         // 연결되면(활성화가 끝나면) 손목에 남은 지난 열차를 거둔다.
         KoreaNaviWatchLink.shared.activate()
 
+        // 막차 · 출구 표(큰 JSON 두 개)를 뒤에서 미리 읽는다. 첫 경로 화면이 메인에서 읽느라 멈췄다.
+        Task.detached(priority: .utility) {
+            LastTrainService.preload()
+            StationExitGuide.preload()
+        }
+
         // 막차 알림을 앱을 보고 있을 때도 배너로 띄운다.
         UNUserNotificationCenter.current().delegate = KoreaNaviNotificationPresenter.shared
 

@@ -48,6 +48,9 @@ enum LastTrainService {
         return decoded
     }()
 
+    /// 표를 미리 읽어 둔다 — 앱 시작 때 메인 밖에서 부른다.
+    static func preload() { _ = table }
+
     // 서울은 서머타임이 없어 UTC+9 고정값과 같다.
     static let seoul = TimeZone(identifier: "Asia/Seoul") ?? TimeZone(secondsFromGMT: 9 * 3600) ?? .current
     private static var calendar: Calendar {

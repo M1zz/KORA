@@ -986,6 +986,21 @@ enum MetroLineData {
     /// Find direct + 1-transfer (+ 2-transfer fallback) journeys.
     /// Returns the best few options sorted by (transfers ↑, total stops ↑).
     static func findAnyJourneys(from: String, to: String) -> [TransferJourney] {
+        // 경로는 출발 · 도착만으로 정해진다. 화면은 위치가 바뀔 때마다(5초) 다시 그려지며
+        // 여기를 불렀다 — 같은 두 역이면 지난 답을 그대로 돌려준다.
+        let key = "\(from)|\(to)"
+        if let hit = journeyCacheLock.withLock({ journeyCache?.key == key ? journeyCache?.journeys : nil }) {
+            return hit
+        }
+        let found = searchJourneys(from: from, to: to)
+        journeyCacheLock.withLock { journeyCache = (key, found) }
+        return found
+    }
+
+    private static let journeyCacheLock = NSLock()
+    private static var journeyCache: (key: String, journeys: [TransferJourney])?
+
+    private static func searchJourneys(from: String, to: String) -> [TransferJourney] {
         guard from != to else { return [] }
         let signpost = KoreaNaviSignpost.route.beginInterval("findAnyJourneys")
         defer { KoreaNaviSignpost.route.endInterval("findAnyJourneys", signpost) }

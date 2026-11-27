@@ -41,6 +41,11 @@ final class StationAnnouncementListener: NSObject, ObservableObject {
     /// the announcement referred to the *next* station ("다음 역은 …").
     private var onConfirm: ((String, Bool) -> Void)?
     private var lastConfirmed: (station: String, isCurrent: Bool)?
+    /// start · stop 마다 하나씩 는다. 세션을 켜는 동안 멈추거나 다시 시작했으면 늦게 끝난 켜기는 버린다.
+    private var generation = 0
+
+    /// 오디오 세션 켜고 끄기는 수백 ms 걸릴 수 있어 메인 밖에서, 차례대로 한다.
+    nonisolated private static let sessionQueue = DispatchQueue(label: "kora.announcement.session")
 
     // MARK: - Authorization
 
@@ -68,14 +73,18 @@ final class StationAnnouncementListener: NSObject, ObservableObject {
             return
         }
         guard recognizer?.isAvailable == true, recognizer?.supportsOnDeviceRecognition == true else { return }
-        do {
-            try configureSession()
-            try startEngine()
-            isListening = true
-            beginRecognition()
-        } catch {
-            KoreaNaviLog.announcement.error("안내방송 듣기 시작 실패: \(error.localizedDescription, privacy: .public)")
-            isListening = false
+        let started = generation
+        Task {
+            do {
+                try await Self.activateSession()
+                guard generation == started else { return }   // 켜는 사이 멈췄거나 다시 시작했다
+                try startEngine()
+                isListening = true
+                beginRecognition()
+            } catch {
+                KoreaNaviLog.announcement.error("안내방송 듣기 시작 실패: \(error.localizedDescription, privacy: .public)")
+                isListening = false
+            }
         }
     }
 
@@ -85,6 +94,7 @@ final class StationAnnouncementListener: NSObject, ObservableObject {
     }
 
     func stop() {
+        generation += 1
         isListening = false
         task?.cancel(); task = nil
         request?.endAudio(); request = nil
@@ -92,18 +102,30 @@ final class StationAnnouncementListener: NSObject, ObservableObject {
         // 남은 탭 위에 다시 걸면 예외로 죽으므로, 엔진이 도는지와 상관없이 뗀다(없는 탭을 떼는 건 괜찮다).
         audioEngine.stop()
         audioEngine.inputNode.removeTap(onBus: 0)
-        try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        Self.sessionQueue.async {
+            try? AVAudioSession.sharedInstance().setActive(false, options: .notifyOthersOnDeactivation)
+        }
     }
 
     // MARK: - Audio
 
-    private func configureSession() throws {
-        let session = AVAudioSession.sharedInstance()
-        // .mixWithOthers so the rider's music/podcast keeps playing while we listen.
-        try session.setCategory(.record, mode: .measurement, options: [.mixWithOthers])
-        // 녹음 세션은 기본으로 진동을 막는다. 풀지 않으면 듣는 동안 하차 진동이 울리지 않는다.
-        try session.setAllowHapticsAndSystemSoundsDuringRecording(true)
-        try session.setActive(true, options: .notifyOthersOnDeactivation)
+    /// 세션 큐에서 켠다. 앞서 보낸 끄기가 먼저 끝난 뒤에 켜진다(같은 큐, 차례대로).
+    nonisolated private static func activateSession() async throws {
+        try await withCheckedThrowingContinuation { (cont: CheckedContinuation<Void, Error>) in
+            sessionQueue.async {
+                do {
+                    let session = AVAudioSession.sharedInstance()
+                    // .mixWithOthers so the rider's music/podcast keeps playing while we listen.
+                    try session.setCategory(.record, mode: .measurement, options: [.mixWithOthers])
+                    // 녹음 세션은 기본으로 진동을 막는다. 풀지 않으면 듣는 동안 하차 진동이 울리지 않는다.
+                    try session.setAllowHapticsAndSystemSoundsDuringRecording(true)
+                    try session.setActive(true, options: .notifyOthersOnDeactivation)
+                    cont.resume()
+                } catch {
+                    cont.resume(throwing: error)
+                }
+            }
+        }
     }
 
     private func startEngine() throws {
